@@ -68,10 +68,10 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+      <h1 className="text-2xl md:text-7xl font-bold text-black" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
         YOU DESIGNED IT. <br /> LET AI VISUALIZE IT.
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+      <p className="max-w-2xl text-base md:text-xl mt-8 text-gray-600" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
         Typus.AI fully preserves the structure of your architectural input while creating stunning AI-powered
         visualizations. Transform your CAD files and sketches into photorealistic renders.
       </p>
@@ -95,23 +95,26 @@ export const ProductCard = ({
       style={{
         x: translate,
       }}
-      whileHover={{
-        y: -20,
-      }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product cursor-pointer h-96 w-[30rem] relative flex-shrink-0 overflow-hidden rounded-lg"
     >
-      <Link href={product.link} className="block group-hover/product:shadow-2xl ">
-        <Image
+      <Link href={product.link} className="block cursor-pointer group-hover/product:shadow-2xl absolute inset-0">
+        <img
           src={product.thumbnail || "/placeholder.svg"}
-          height="600"
-          width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
+          className="object-cover object-left-top absolute h-full w-full cursor-pointer inset-0 group-hover/product:scale-110 transition-transform duration-300 ease-out"
           alt={product.title}
         />
       </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">{product.title}</h2>
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+      <motion.h2 
+        className="absolute bottom-4 left-4 text-white font-semibold text-lg"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+      >
+        {product.title}
+      </motion.h2>
     </motion.div>
   )
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -6,7 +6,7 @@
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: #ffffff;
+  --background: rgb(250, 250, 250);
   --foreground: #475569;
   --card: #ecfeff;
   --card-foreground: #164e63;
@@ -123,15 +123,16 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    background-color: rgb(250, 250, 250);
   }
   
-  .font-inter {
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  .font-space-grotesk {
+    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
 }
 

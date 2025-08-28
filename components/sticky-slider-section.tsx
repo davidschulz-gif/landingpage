@@ -2,15 +2,14 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { THEME_COLORS } from "@/lib/theme";
 
 interface SlideData {
   id: number;
   title: string;
   subtitle: string;
   description: string;
-  image: string;
-  backgroundColor: string;
+  video: string;
   textColor: string;
   buttonText: string;
   progress: string;
@@ -22,8 +21,7 @@ const slides: SlideData[] = [
     title: "Transform CAD files",
     subtitle: "into stunning renders",
     description: "Upload your architectural drawings and watch AI transform them into photorealistic visualizations in seconds.",
-    image: "/modern-villa-render.png",
-    backgroundColor: "bg-white",
+    video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
     textColor: "text-black",
     buttonText: "Upload CAD File",
     progress: "1/4"
@@ -33,9 +31,8 @@ const slides: SlideData[] = [
     title: "Preserve structure",
     subtitle: "enhance visuals",
     description: "Our AI maintains your exact architectural design while adding professional lighting, materials, and atmosphere.",
-    image: "/structure-preservation-architecture.png",
-    backgroundColor: "bg-black",
-    textColor: "text-white",
+    video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+    textColor: "text-black",
     buttonText: "See Examples",
     progress: "2/4"
   },
@@ -44,8 +41,7 @@ const slides: SlideData[] = [
     title: "Real-time processing",
     subtitle: "instant results",
     description: "No waiting hours for renders. Get professional-quality visualizations in under 30 seconds with our AI engine.",
-    image: "/real-time-rendering-demo.png",
-    backgroundColor: "bg-white",
+    video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
     textColor: "text-black",
     buttonText: "Try Now",
     progress: "3/4"
@@ -55,10 +51,9 @@ const slides: SlideData[] = [
     title: "Professional quality",
     subtitle: "client-ready results",
     description: "Create presentation-ready visualizations that impress clients and win projects. Export in 4K resolution.",
-    image: "/architectural-render.png",
-    backgroundColor: "bg-black",
-    textColor: "text-white",
-    buttonText: "Start Creating",
+    video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+    textColor: "text-black",
+    buttonText: "Get Started",
     progress: "4/4"
   }
 ];
@@ -67,6 +62,8 @@ export function StickySliderSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
+  const prevSlideRef = useRef(0);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -77,8 +74,10 @@ export function StickySliderSection() {
 
   useEffect(() => {
     const unsubscribe = slideProgress.onChange((latest) => {
-      const newSlide = Math.round(latest);
-      if (newSlide !== currentSlide && newSlide >= 0 && newSlide < slides.length) {
+      const newSlide = Math.max(0, Math.min(slides.length - 1, Math.round(latest)));
+      if (newSlide !== currentSlide) {
+        setScrollDirection(newSlide > prevSlideRef.current ? 'down' : 'up');
+        prevSlideRef.current = currentSlide;
         setCurrentSlide(newSlide);
       }
     });
@@ -95,166 +94,139 @@ export function StickySliderSection() {
   }, [scrollYProgress]);
 
   return (
-    <div ref={containerRef} className="relative h-[400vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
+    <div ref={containerRef} className="relative h-[400vh]" style={{ backgroundColor: "rgb(250, 250, 250)" }}>
+      <div className="sticky top-0 h-screen overflow-hidden" style={{ backgroundColor: "rgb(250, 250, 250)" }}>
         {slides.map((slide, index) => (
-          <motion.div
+          <div
             key={slide.id}
-            className={`absolute inset-0 ${slide.backgroundColor} ${slide.textColor}`}
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: currentSlide === index ? 1 : 0,
-              scale: currentSlide === index ? 1 : 1.1
+            className={`absolute inset-0 ${slide.textColor}`}
+            style={{ 
+              opacity: currentSlide === index ? 1 : 0
             }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 h-full items-center">
+            <div className="container mx-auto px-8 lg:px-16 h-full" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <div className="flex flex-col lg:flex-row h-full">
                 {/* Content Side */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ 
-                    opacity: currentSlide === index ? 1 : 0,
-                    x: currentSlide === index ? 0 : -50
-                  }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="space-y-6 sm:space-y-8"
-                >
+                <div className="flex-1 flex flex-col justify-center py-16 lg:py-0 lg:pr-16">
                   {/* Progress Indicator */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3 mb-8">
                     {slides.map((_, i) => (
                       <div
                         key={i}
                         className={`h-1 rounded-full transition-all duration-500 ${
-                          i <= currentSlide 
-                            ? "w-8" 
-                            : "w-4"
+                          i <= currentSlide ? "w-12" : "w-6"
                         }`}
                         style={{
-                          backgroundColor: i <= currentSlide 
-                            ? 'rgb(255, 54, 54)' 
-                            : slide.textColor === 'text-white' ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)'
+                          backgroundColor: i <= currentSlide ? THEME_COLORS.primary : THEME_COLORS.primaryMuted
                         }}
                       />
                     ))}
-                    <span className="text-sm font-mono ml-4 opacity-70">
-                      {slide.progress}
+                    <span className="text-sm font-mono ml-6 opacity-80" style={{ color: THEME_COLORS.textMuted }}>
+                      {slides[currentSlide].progress}
                     </span>
                   </div>
 
-                  <div className="space-y-4">
-                    <motion.h2
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ 
-                        opacity: currentSlide === index ? 1 : 0,
-                        y: currentSlide === index ? 0 : 30
-                      }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-                    >
-                      {slide.title}
-                    </motion.h2>
-                    
-                    <motion.h3
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ 
-                        opacity: currentSlide === index ? 1 : 0,
-                        y: currentSlide === index ? 0 : 30
-                      }}
-                      transition={{ duration: 0.6, delay: 0.5 }}
-                      className="text-2xl sm:text-3xl md:text-4xl font-light opacity-90"
-                    >
-                      {slide.subtitle}
-                    </motion.h3>
+                  {/* Text Content */}
+                  <div className="relative overflow-hidden">
+                    {slides.map((slideContent, slideIndex) => (
+                      <motion.div
+                        key={slideContent.id}
+                        className={slideIndex === currentSlide ? "block" : "hidden"}
+                        initial={{ y: scrollDirection === 'down' ? 50 : -50 }}
+                        animate={{ y: slideIndex === currentSlide ? 0 : (scrollDirection === 'down' ? 50 : -50) }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                      >
+                        <div className="space-y-6">
+                          <motion.h1 
+                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.9]" 
+                            style={{ color: THEME_COLORS.textPrimary }}
+                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                          >
+                            {slideContent.title}
+                          </motion.h1>
+                          
+                          <motion.h2 
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight" 
+                            style={{ color: THEME_COLORS.textSecondary }}
+                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                          >
+                            {slideContent.subtitle}
+                          </motion.h2>
+                        </div>
+
+                        <motion.p 
+                          className="text-xl sm:text-2xl leading-relaxed max-w-2xl mt-8" 
+                          style={{ color: THEME_COLORS.textMuted }}
+                          initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                          animate={{ y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                          {slideContent.description}
+                        </motion.p>
+                      </motion.div>
+                    ))}
                   </div>
 
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: currentSlide === index ? 1 : 0,
-                      y: currentSlide === index ? 0 : 20
-                    }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-lg sm:text-xl leading-relaxed opacity-90 max-w-lg"
-                  >
-                    {slide.description}
-                  </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: currentSlide === index ? 1 : 0,
-                      y: currentSlide === index ? 0 : 20
-                    }}
-                    transition={{ duration: 0.6, delay: 0.7 }}
-                  >
+                  {/* Button */}
+                  <div className="mt-12">
                     <Button
                       size="lg"
-                      className={`px-8 py-4 text-lg font-semibold rounded-full min-h-[44px] shadow-lg hover:shadow-xl transition-all duration-300`}
-                      style={{
-                        backgroundColor: 'rgb(255, 54, 54)',
-                        color: 'white',
-                        border: 'none'
+                      className="px-16 py-8 text-2xl font-semibold rounded-full min-h-[80px] shadow-2xl hover:shadow-3xl transition-all duration-300 text-white hover:scale-105"
+                      style={{ 
+                        backgroundColor: THEME_COLORS.primary,
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgb(220, 38, 38)';
+                        e.currentTarget.style.backgroundColor = THEME_COLORS.primaryHover;
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgb(255, 54, 54)';
+                        e.currentTarget.style.backgroundColor = THEME_COLORS.primary;
                       }}
                     >
-                      {slide.buttonText}
+                      {slides[currentSlide].buttonText}
                     </Button>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
 
-                {/* Image Side */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50, scale: 0.9 }}
-                  animate={{ 
-                    opacity: currentSlide === index ? 1 : 0,
-                    x: currentSlide === index ? 0 : 50,
-                    scale: currentSlide === index ? 1 : 0.9
-                  }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl"
-                >
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                  
-                  {/* Floating Elements */}
-                  <motion.div
-                    animate={{ 
-                      y: [0, -10, 0],
-                      rotate: [0, 2, 0]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-3"
-                  >
-                    <div className="w-3 h-3 bg-white rounded-full" />
-                  </motion.div>
-                </motion.div>
+                {/* Video Side */}
+                <div className="flex-1 flex items-center justify-center py-16 lg:py-0 relative overflow-hidden">
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    {slides.map((slideContent, slideIndex) => (
+                      <motion.div
+                        key={slideContent.id}
+                        className="absolute inset-0 flex items-center justify-center"
+                        initial={{ y: scrollDirection === 'down' ? '100%' : '-100%' }}
+                        animate={{ 
+                          y: slideIndex === currentSlide ? '0%' : (scrollDirection === 'down' ? '100%' : '-100%')
+                        }}
+                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        style={{
+                          opacity: slideIndex === currentSlide ? 1 : 0
+                        }}
+                      >
+                        <video
+                          className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] object-contain shadow-2xl"
+                          playsInline
+                          loop
+                          autoPlay
+                          muted
+                        >
+                          <source src={slideContent.video} type="video/mp4" />
+                        </video>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
-            </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
-      {/* Scroll Indicator - Only show when component is in view */}
+      {/* Scroll Indicator */}
       {isInView && (
         <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 space-y-2">
           {slides.map((_, index) => (
@@ -263,8 +235,8 @@ export function StickySliderSection() {
               className="w-2 h-8 rounded-full transition-all duration-300 shadow-lg"
               style={{
                 backgroundColor: currentSlide === index 
-                  ? 'rgb(255, 54, 54)' 
-                  : 'rgba(255, 255, 255, 0.3)'
+                  ? THEME_COLORS.primary 
+                  : THEME_COLORS.primaryMuted
               }}
             />
           ))}
