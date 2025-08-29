@@ -1,0 +1,167 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Wand2, Edit3, Sparkles, Video } from "lucide-react";
+import { VideoPlayer } from "@/components/video/player";
+
+const tabs = [
+  {
+    id: "create",
+    title: "Create Mode",
+    icon: Wand2,
+    description: "Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.",
+    video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    poster: "/modern-villa-render.png",
+    features: ["AI-Powered Generation", "Instant Results", "Multiple Styles"]
+  },
+  {
+    id: "edit",
+    title: "Edit Mode", 
+    icon: Edit3,
+    description: "Add People, subtract furniture, and modify facades in your designs with natural language.",
+    video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    poster: "/modern-office-building.png",
+    features: ["Natural Language Editing", "Object Manipulation", "Smart Modifications"]
+  },
+  {
+    id: "enhance",
+    title: "Enhance Mode",
+    icon: Sparkles,
+    description: "Sharpen existing renderings, or add extra detail to your designs with a single click.",
+    video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    poster: "/modern-interior-design.png",
+    features: ["Quality Enhancement", "Detail Addition", "One-Click Processing"]
+  },
+  {
+    id: "animate",
+    title: "Animate Mode",
+    icon: Video,
+    description: "Use Cinematic Presets to bring your visualizations to life in seconds.",
+    video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    poster: "/modern-apartment-complex.png",
+    features: ["Cinematic Presets", "Life-like Animation", "Quick Generation"]
+  }
+];
+
+export function TabVideoShowcase() {
+  const [activeTab, setActiveTab] = useState("animate");
+  const activeTabData = tabs.find(tab => tab.id === activeTab);
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
+            From Concept To Animation
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
+          </p>
+        </div>
+
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto">
+          {/* Video Display */}
+          <div className="relative mb-12">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <VideoPlayer
+                src={activeTabData?.video || ""}
+                title={activeTabData?.title || ""}
+                poster={activeTabData?.poster}
+                height="h-[650px]"
+              />
+            </motion.div>
+          </div>
+
+          {/* Tabs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              
+              return (
+                <motion.div
+                  key={tab.id}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Card
+                    className={`cursor-pointer transition-all duration-300 ${
+                      isActive
+                        ? "bg-red-100 dark:bg-red-900/30 border-red-500 shadow-lg"
+                        : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md"
+                    }`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className={`p-2 rounded-lg ${
+                          isActive ? "bg-red-500" : "bg-gray-100 dark:bg-gray-700"
+                        }`}>
+                          <Icon className={`w-5 h-5 ${
+                            isActive ? "text-white" : "text-gray-600 dark:text-gray-300"
+                          }`} />
+                        </div>
+                        <h3 className={`font-bold ${
+                          isActive ? "text-red-700 dark:text-red-300" : "text-gray-900 dark:text-white"
+                        }`}>
+                          {tab.title}
+                        </h3>
+                      </div>
+                      
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                        {tab.description}
+                      </p>
+
+                      <div className="space-y-2">
+                        {tab.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full ${
+                              isActive ? "bg-green-500" : "bg-gray-400"
+                            }`} />
+                            <span className="text-xs text-gray-500 dark:text-gray-400">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Active Tab Details */}
+          {/* <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="mt-8 text-center"
+            >
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  {activeTabData?.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                  {activeTabData?.description}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence> */}
+        </div>
+      </div>
+    </section>
+  );
+}

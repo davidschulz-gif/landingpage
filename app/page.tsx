@@ -9,6 +9,8 @@ import { SplashScreen } from "@/components/splash-screen";
 import { StickySliderSection } from "@/components/sticky-slider-section";
 import { TestimonialCarouselWidget } from "@/components/testimonial-carousel-widget";
 import TypusNavbar from "@/components/typus-navbar";
+import { VideoShowcaseSection } from "@/components/video-showcase-section";
+import { TabVideoShowcase } from "@/components/tab-video-showcase";
 import { useEffect, useState } from "react";
 
 const products = [
@@ -108,38 +110,44 @@ export default function Home() {
       {/* Hero Section with Parallax */}
       <HeroParallax products={products} />
 
+      {/* Video Showcase Section */}
+      <VideoShowcaseSection />
+
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
       {/* Sticky Slider Section */}
       <StickySliderSection />
 
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
       {/* Horizontal Stop Scroll Section */}
-      <HorizontalStopScroll />
+      {/* <HorizontalStopScroll /> */}
 
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
+      {/* Tab Video Showcase */}
+      <TabVideoShowcase />
+      
       {/* Feature Showcase Section */}
       <FeatureShowcaseWidget />
 
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
       {/* Testimonials Section */}
       <TestimonialCarouselWidget />
 
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
       {/* Enhanced CTA Section */}
-      <CTASectionWidget />
+      {/* <CTASectionWidget /> */}
 
       {/* Animated Separator */}
-      <AnimatedSeparator />
+      {/* <AnimatedSeparator /> */}
 
       {/* Enhanced Footer */}
       <FooterSection />

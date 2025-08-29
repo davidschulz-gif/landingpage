@@ -1,10 +1,15 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Zap, Target, Users } from "lucide-react";
+import { ArrowRight, Zap, Target, Users } from "lucide-react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const features = [
   {
@@ -31,46 +36,40 @@ const features = [
 
 export function HorizontalStopScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [showContent, setShowContent] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Background and text animations
-  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 1.5]);
-  const textScale = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.6],
-    [0.6, 1.5, 2.5]
-  );
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.7],
-    [1, 1, 1, 0]
-  );
-  const textX = useTransform(scrollYProgress, [0, 0.3, 0.6], [0, 0, -800]);
-
-  // Cards animations
-  const cardsOpacity = useTransform(scrollYProgress, [0.6, 0.8], [0, 1]);
-  const cardsX = useTransform(scrollYProgress, [0.6, 0.8], [300, 0]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % features.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + features.length) % features.length);
-  };
+  // Transform values for translate3d and scale like ManyChat
+  const translateY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+  
+  // Stop scroll and show content at specific point
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (latest) => {
+      if (latest >= 0.5 && !showContent) {
+        setShowContent(true);
+      } else if (latest < 0.5 && showContent) {
+        setShowContent(false);
+      }
+    });
+    
+    return () => unsubscribe();
+  }, [scrollYProgress, showContent]);
 
   return (
     <div ref={containerRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Background Image with Parallax */}
-        <motion.div
-          style={{ scale: bgScale }}
-          className="absolute inset-0 w-full h-full"
+        {/* Background Image with translate3d and scale transforms */}
+        <motion.div 
+          style={{ 
+            y: translateY,
+            scale: scale
+          }}
+          className="relative h-screen w-full will-change-transform"
         >
           <Image
             src="/modern-villa-render.png"
@@ -78,112 +77,136 @@ export function HorizontalStopScroll() {
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white-400/90 to-blue-500/50 dark:from-black/90 dark:via-gray-900/80 dark:to-black/90" />
-        </motion.div>
-
-        {/* Large Text Section */}
-        <motion.div
-          style={{ scale: textScale, opacity: textOpacity, x: textX }}
-          className="absolute inset-0 flex items-center justify-center z-10"
-        >
-          <div className="text-center">
-            <motion.h1 className="text-[20rem] sm:text-[24rem] md:text-[24rem] lg:text-[28rem] xl:text-[32rem] 2xl:text-[32rem] font-black text-white tracking-tight leading-none">
-              TYPUS.AI
-            </motion.h1>
-            <motion.h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mt-4">
-              AI for Architects.
-            </motion.h2>
-            {/* <motion.h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
-              architecture is
-            </motion.h2> */}
+          
+          {/* TYPUS.AI Text Overlay - Always Visible */}
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className="text-center">
+              <motion.h1 
+                style={{ 
+                  y: translateY,
+                  scale: scale
+                }}
+                className="text-[12rem] sm:text-[18rem] md:text-[24rem] lg:text-[30rem] xl:text-[36rem] 2xl:text-[42rem] font-black text-red-400 tracking-tight leading-none drop-shadow-2xl will-change-transform"
+              >
+                TYPUS.AI
+              </motion.h1>
+            </div>
           </div>
         </motion.div>
 
-        {/* Cards Section */}
-        <motion.div
-          style={{ opacity: cardsOpacity, x: cardsX }}
-          className="absolute inset-0 flex items-center justify-center z-20 bg-white dark:bg-black transition-colors duration-300"
-        >
-          <div className="w-full max-w-6xl px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-black dark:text-white mb-4">
-                Everywhere your
-              </h2>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-black dark:text-white">
-                audience is
-              </h2>
+        {/* Content Section - Shows when scroll stops */}
+        {showContent && (
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+            {/* Red Background with Grid Pattern */}
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-600 via-red-700 to-red-800" />
+              <div className="absolute inset-0 opacity-20" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }} />
+              <div className="absolute inset-0 opacity-30" style={{
+                backgroundImage: 'radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
+                backgroundSize: '20px 20px'
+              }} />
             </div>
+            
+            <div className="w-full max-w-6xl px-8 relative z-10">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
+                  Transform Your
+                </h2>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white">
+                  Architecture Vision
+                </h2>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                  >
-                    <Card className="h-full bg-white dark:bg-gray-900 border border-black/10 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-[rgb(255,54,54)] dark:hover:border-[rgb(255,54,54)] transition-all duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 rounded-lg bg-[rgb(255,54,54)]">
-                            <Icon className="w-5 h-5 text-white" />
-                          </div>
-                          <h3 className="text-lg font-bold text-black dark:text-white">
-                            {feature.title}
-                          </h3>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                          {feature.description}
-                        </p>
-                        <div className="space-y-2 mb-4">
-                          {feature.features.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-[rgb(255,54,54)] rounded-full" />
-                              <span className="text-xs text-gray-600 dark:text-gray-400">
-                                {item}
-                              </span>
+              {/* Horizontal Swiper for Features */}
+              <Swiper
+                modules={[Pagination, Navigation]}
+                direction="horizontal"
+                spaceBetween={20}
+                slidesPerView={1.2}
+                centeredSlides={false}
+                loop={true}
+                pagination={{ 
+                  clickable: true,
+                  dynamicBullets: true
+                }}
+                navigation={{
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }}
+                grabCursor={true}
+                touchRatio={1}
+                simulateTouch={true}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 25,
+                  },
+                  1024: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30,
+                  },
+                  1280: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                  },
+                }}
+                className="swiper swiper-initialized swiper-horizontal swiper-watch-progress mb-8 !overflow-visible"
+              >
+                {features.map((feature) => {
+                  const Icon = feature.icon;
+                  return (
+                    <SwiperSlide key={feature.title}>
+                      <Card className="h-full bg-white/95 backdrop-blur-sm border border-white/20 shadow-xl hover:shadow-2xl hover:bg-white transition-all duration-300">
+                        <CardContent className="p-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 rounded-lg bg-black">
+                              <Icon className="w-5 h-5 text-white" />
                             </div>
-                          ))}
-                        </div>
-                        <Button
-                          className="w-full bg-[rgb(255,54,54)] text-white hover:bg-[rgb(255,54,54)]/90 text-sm"
-                          size="sm"
-                        >
-                          LEARN MORE
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Navigation */}
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={prevSlide}
-                className="rounded-full w-10 h-10 p-0 border-black/20 dark:border-white/20 hover:bg-[rgb(255,54,54)] hover:text-white hover:border-[rgb(255,54,54)]"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={nextSlide}
-                className="rounded-full w-10 h-10 p-0 border-black/20 dark:border-white/20 hover:bg-[rgb(255,54,54)] hover:text-white hover:border-[rgb(255,54,54)]"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+                            <h3 className="text-lg font-bold text-black">
+                              {feature.title}
+                            </h3>
+                          </div>
+                          <p className="text-gray-700 text-sm mb-4">
+                            {feature.description}
+                          </p>
+                          <div className="space-y-2 mb-4">
+                            {feature.features.map((item, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 bg-black rounded-full" />
+                                <span className="text-xs text-gray-600">
+                                  {item}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                          <Button
+                            className="w-full bg-black text-white hover:bg-gray-800 text-sm"
+                            size="sm"
+                          >
+                            LEARN MORE
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
             </div>
           </div>
-        </motion.div>
+        )}
       </div>
     </div>
   );
