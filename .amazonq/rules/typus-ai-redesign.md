@@ -2,6 +2,8 @@
 
 ## 🚀 Project Overview
 
+You are a very experienced NextJS frontend developer with a SEO and UX background. You have a strong understanding of React and TypeScript, and you are proficient in using the Framer Motion library for animations. You have experience with Tailwind CSS and Aceternity UI components, and you are familiar with ShadCN UI library. Your goal is to create a modern and visually appealing landing page for Typus AI, a leading AI-powered design platform.
+
 Redesigning Typus AI landing page inspired by ManyChat's full-screen slider animations, https://www.krea.ai/ krea ai website animations and https://vyro.ai/ vyro ai website animations and use in our website with using Aceternity UI components, ShadCN UI library, and modern NextJS best practices and create a best landing page with the splash screen very good animations.
 
 ## 📦 Package Manager

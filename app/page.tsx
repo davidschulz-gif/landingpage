@@ -1,24 +1,15 @@
 "use client";
-import { useState } from "react";
-import { SplashScreen } from "@/components/splash-screen";
-import TypusNavbar from "@/components/typus-navbar";
-import { HeroParallax } from "@/components/hero-parallax";
-import { FeatureShowcaseWidget } from "@/components/feature-showcase-widget";
-import { TestimonialCarouselWidget } from "@/components/testimonial-carousel-widget";
-import { CTASectionWidget } from "@/components/cta-section-widget";
-import { FooterSection } from "@/components/footer-section";
-import { StickySliderSection } from "@/components/sticky-slider-section";
-import { ScrollZoomText } from "@/components/ui/scroll-zoom-text";
-import { ProfessionalSlider } from "@/components/ui/professional-slider";
-import { AnimatedText } from "@/components/animated-text";
-import { ScrollRevealSection } from "@/components/sections/ScrollRevealSection";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
 import { AnimatedSeparator } from "@/components/animated-separator";
+import { CTASectionWidget } from "@/components/cta-section-widget";
+import { FeatureShowcaseWidget } from "@/components/feature-showcase-widget";
+import { FooterSection } from "@/components/footer-section";
+import { HeroParallax } from "@/components/hero-parallax";
 import { HorizontalStopScroll } from "@/components/horizontal-stop-scroll";
+import { SplashScreen } from "@/components/splash-screen";
+import { StickySliderSection } from "@/components/sticky-slider-section";
+import { TestimonialCarouselWidget } from "@/components/testimonial-carousel-widget";
+import TypusNavbar from "@/components/typus-navbar";
+import { useEffect, useState } from "react";
 
 const products = [
   {
@@ -100,16 +91,17 @@ const products = [
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
   };
 
-  if (showSplash) {
-    return <SplashScreen onComplete={handleSplashComplete} />;
-  }
-
-  return (
+  const MainContent = () => (
     <div className="relative w-full">
       <TypusNavbar />
 
@@ -152,5 +144,21 @@ export default function Home() {
       {/* Enhanced Footer */}
       <FooterSection />
     </div>
+  );
+
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <>
+      {/* Main Content - Always Rendered */}
+      <MainContent />
+      
+      {/* Splash Screen Overlay */}
+      {showSplash && (
+        <SplashScreen onComplete={handleSplashComplete} />
+      )}
+    </>
   );
 }

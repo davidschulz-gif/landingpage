@@ -1,6 +1,6 @@
 // Global font configuration for Typus AI
 export const typusFont = {
-  fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+  fontFamily: '"Space Grotesk", "Helvetica Neue", Arial, sans-serif',
   fontWeight: {
     light: '300',
     normal: '400',
@@ -12,7 +12,7 @@ export const typusFont = {
 };
 
 // CSS class for consistent font application
-export const fontClass = 'font-inter';
+export const fontClass = 'font-space-grotesk';
 
 // Utility function to get font styles
 export const getFontStyle = (weight: keyof typeof typusFont.fontWeight = 'normal') => ({
