@@ -1,16 +1,13 @@
 "use client";
-import { AnimatedSeparator } from "@/components/animated-separator";
-import { CTASectionWidget } from "@/components/cta-section-widget";
 import { FeatureShowcaseWidget } from "@/components/feature-showcase-widget";
 import { FooterSection } from "@/components/footer-section";
 import { HeroParallax } from "@/components/hero-parallax";
-import { HorizontalStopScroll } from "@/components/horizontal-stop-scroll";
 import { SplashScreen } from "@/components/splash-screen";
 import { StickySliderSection } from "@/components/sticky-slider-section";
+import { TabVideoShowcase } from "@/components/tab-video-showcase";
 import { TestimonialCarouselWidget } from "@/components/testimonial-carousel-widget";
 import TypusNavbar from "@/components/typus-navbar";
 import { VideoShowcaseSection } from "@/components/video-showcase-section";
-import { TabVideoShowcase } from "@/components/tab-video-showcase";
 import { useEffect, useState } from "react";
 
 const products = [
