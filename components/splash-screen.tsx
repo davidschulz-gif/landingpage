@@ -52,7 +52,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
         style={{ willChange: "transform" }}
       >
         <WavyBackground
-          backgroundFill="rgb(251, 251, 251)"
+          backgroundFill="rgb(250, 250, 250)"
           colors={["#dc2626", "#ef4444", "#f87171", "#fca5a5"]}
           waveWidth={80}
           blur={15}
@@ -64,7 +64,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl pb-1 sm:text-6xl lg:text-8xl font-bold text-black tracking-wide flex items-center justify-center"
+            className="text-4xl pb-1 sm:text-6xl lg:text-8xl font-black text-black tracking-wide flex items-center justify-center"
           >
             <span>Imagine.&nbsp;</span>
             <motion.span
