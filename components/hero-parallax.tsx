@@ -1,9 +1,7 @@
 "use client"
-import React, { useEffect, useState } from "react"
-import { motion, useScroll, useTransform, useSpring, useAnimationFrame, type MotionValue } from "framer-motion"
-import Image from "next/image"
+import { motion, useAnimationFrame, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
 import Link from "next/link"
-import { Highlight } from "@/components/ui/hero-highlight"
+import React, { useState } from "react"
 
 export const HeroParallax = ({
   products,
@@ -242,7 +240,7 @@ export const ProductCard = ({
         rotateX,
         y: floatY,
       }}
-      className="group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl"
+      className="group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl ease-out"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ 
@@ -250,14 +248,11 @@ export const ProductCard = ({
         delay: index * 0.05,
         ease: "easeOut"
       }}
-      whileHover={{
-        scale: 1.02,
-      }}
     >
       <Link href={product.link} className="block cursor-pointer absolute inset-0">
         <motion.img
           src={product.thumbnail || "/placeholder.svg"}
-          className="object-cover absolute h-full w-full cursor-pointer inset-0 transition-transform duration-300 ease-out group-hover/product:scale-110"
+          className="object-cover absolute h-full w-full cursor-pointer inset-0 ease-out"
           alt={product.title}
         />
       </Link>

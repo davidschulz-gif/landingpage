@@ -122,9 +122,6 @@ export default function Home() {
       {/* Feature Showcase Section */}
       <FeatureShowcaseWidget />
 
-      {/* Animated Separator */}
-      {/* <AnimatedSeparator /> */}
-
       {/* Testimonials Section */}
       {/* <TestimonialCarouselWidget /> */}
 

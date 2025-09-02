@@ -474,29 +474,8 @@ export function StickySliderSection() {
                     ))}
                   </div>
 
-                  {/* Reviews Section */}
+                  {/* Button Section */}
                   <div className="mt-8 space-y-6">
-                    {/* <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style={{ backgroundColor: THEME_COLORS.primary }}>
-                          A
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <h4 className="font-semibold text-gray-900">Alex Chen</h4>
-                            <div className="flex space-x-1">
-                              {[...Array(5)].map((_, i) => (
-                                <div key={i} className="w-4 h-4 bg-yellow-400 rounded-full"></div>
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            "Typus AI has revolutionized our architectural workflow. The {currentTabSlides[currentSlide]?.title.toLowerCase()} feature is incredibly intuitive and saves us hours of work."
-                          </p>
-                        </div>
-                      </div>
-                    </div> */}
-                    
                     <Button
                       size="default"
                       className="px-8 py-3 text-sm font-medium rounded-lg text-white transition-all duration-300 shadow-md hover:shadow-lg"
