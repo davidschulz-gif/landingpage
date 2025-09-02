@@ -110,20 +110,11 @@ export default function Home() {
       {/* Video Showcase Section */}
       <VideoShowcaseSection />
 
-      {/* Animated Separator */}
-      {/* <AnimatedSeparator /> */}
-
       {/* Sticky Slider Section */}
       <StickySliderSection />
 
-      {/* Animated Separator */}
-      {/* <AnimatedSeparator /> */}
-
       {/* Horizontal Stop Scroll Section */}
       {/* <HorizontalStopScroll /> */}
-
-      {/* Animated Separator */}
-      {/* <AnimatedSeparator /> */}
 
       {/* Tab Video Showcase */}
       <TabVideoShowcase />
@@ -135,10 +126,7 @@ export default function Home() {
       {/* <AnimatedSeparator /> */}
 
       {/* Testimonials Section */}
-      <TestimonialCarouselWidget />
-
-      {/* Animated Separator */}
-      {/* <AnimatedSeparator /> */}
+      {/* <TestimonialCarouselWidget /> */}
 
       {/* Enhanced CTA Section */}
       {/* <CTASectionWidget /> */}

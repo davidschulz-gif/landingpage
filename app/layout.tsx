@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Typus.AI" }],
   creator: "Typus.AI",
   publisher: "Typus.AI",
+  icons: {
+    icon: "/logo/typus_logo.png",
+    shortcut: "/logo/typus_logo.png",
+    apple: "/logo/typus_logo.png",
+  },
   openGraph: {
     title: "Typus.AI - AI-Powered Architectural Visualization",
     description:

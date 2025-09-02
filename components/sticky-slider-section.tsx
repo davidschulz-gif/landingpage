@@ -15,194 +15,173 @@ interface SlideData {
   progress: string;
 }
 
+interface SubCategory {
+  id: number;
+  name: string;
+  slideId: number;
+}
+
 interface TabData {
   id: number;
   name: string;
   slides: SlideData[];
+  subCategories: SubCategory[];
 }
 
 const tabsData: TabData[] = [
   {
     id: 1,
-    name: "CAD Transform",
+    name: "CREATOR",
+    subCategories: [
+      { id: 1, name: "sketch", slideId: 1 },
+      { id: 2, name: "3d model to render (plugins)", slideId: 2 },
+      { id: 3, name: "cad", slideId: 3 },
+      { id: 4, name: "sitephoto", slideId: 4 },
+      { id: 5, name: "model photo", slideId: 5 },
+      { id: 6, name: "color map (upload custom textures)", slideId: 6 }
+    ],
     slides: [
       {
         id: 1,
-        title: "Transform CAD files",
-        subtitle: "into stunning renders",
-        description: "Upload your architectural drawings and watch AI transform them into photorealistic visualizations in seconds.",
+        title: "Sketch to render",
+        subtitle: "hand drawings come alive",
+        description: "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
-        buttonText: "Upload CAD File",
-        progress: "1/4"
+        buttonText: "Upload Sketch",
+        progress: "1/6"
       },
       {
         id: 2,
-        title: "Preserve structure",
-        subtitle: "enhance visuals",
-        description: "Our AI maintains your exact architectural design while adding professional lighting, materials, and atmosphere.",
+        title: "3D model to render",
+        subtitle: "plugins integration",
+        description: "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
-        buttonText: "See Examples",
-        progress: "2/4"
+        buttonText: "Get Plugins",
+        progress: "2/6"
       },
       {
         id: 3,
-        title: "Real-time processing",
-        subtitle: "instant results",
-        description: "No waiting hours for renders. Get professional-quality visualizations in under 30 seconds with our AI engine.",
+        title: "CAD transformation",
+        subtitle: "technical to visual",
+        description: "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
         video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
         textColor: "text-black",
-        buttonText: "Try Now",
-        progress: "3/4"
+        buttonText: "Try CAD",
+        progress: "3/6"
       },
       {
         id: 4,
-        title: "Professional quality",
-        subtitle: "client-ready results",
-        description: "Create presentation-ready visualizations that impress clients and win projects. Export in 4K resolution.",
+        title: "Site photo enhancement",
+        subtitle: "context visualization",
+        description: "Place your designs in real environments using site photos for contextual visualization.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
-        buttonText: "Get Started",
-        progress: "4/4"
+        buttonText: "Upload Photo",
+        progress: "4/6"
+      },
+      {
+        id: 5,
+        title: "Model photography",
+        subtitle: "physical to digital",
+        description: "Capture physical architectural models and transform them into digital renders.",
+        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        textColor: "text-black",
+        buttonText: "Capture Model",
+        progress: "5/6"
+      },
+      {
+        id: 6,
+        title: "Custom textures",
+        subtitle: "color map upload",
+        description: "Upload your own textures and materials to create unique, personalized architectural visualizations.",
+        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
+        textColor: "text-black",
+        buttonText: "Upload Textures",
+        progress: "6/6"
       }
     ]
   },
   {
     id: 2,
-    name: "AI Design",
+    name: "EDITOR",
+    subCategories: [
+      { id: 1, name: "inpaint", slideId: 1 },
+      { id: 2, name: "outpaint", slideId: 2 },
+      { id: 3, name: "add style", slideId: 3 },
+      { id: 4, name: "remove objects & background", slideId: 4 },
+      { id: 5, name: "edit by text", slideId: 5 }
+    ],
     slides: [
       {
         id: 1,
-        title: "Generate concepts",
-        subtitle: "from simple prompts",
-        description: "Describe your vision and let AI create multiple design variations instantly.",
+        title: "Inpaint details",
+        subtitle: "precise modifications",
+        description: "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
-        buttonText: "Try Generator",
-        progress: "1/4"
+        buttonText: "Start Inpainting",
+        progress: "1/5"
       },
       {
         id: 2,
-        title: "Refine details",
-        subtitle: "perfect your vision",
-        description: "Fine-tune materials, lighting, and atmosphere with intelligent suggestions.",
+        title: "Outpaint expansion",
+        subtitle: "extend your vision",
+        description: "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
-        buttonText: "Explore Tools",
-        progress: "2/4"
+        buttonText: "Expand View",
+        progress: "2/5"
       },
       {
         id: 3,
-        title: "Style transfer",
-        subtitle: "apply any aesthetic",
-        description: "Transform your designs with different architectural styles and artistic approaches.",
+        title: "Style application",
+        subtitle: "aesthetic transformation",
+        description: "Apply different architectural styles and artistic approaches to transform your designs.",
         video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
         textColor: "text-black",
-        buttonText: "See Styles",
-        progress: "3/4"
+        buttonText: "Browse Styles",
+        progress: "3/5"
       },
       {
         id: 4,
-        title: "Export ready",
-        subtitle: "high-res outputs",
-        description: "Download your creations in multiple formats ready for presentation or production.",
+        title: "Object removal",
+        subtitle: "clean backgrounds",
+        description: "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
-        buttonText: "Download",
-        progress: "4/4"
+        buttonText: "Remove Objects",
+        progress: "4/5"
+      },
+      {
+        id: 5,
+        title: "Text-based editing",
+        subtitle: "describe changes",
+        description: "Make complex edits by simply describing what you want to change in natural language.",
+        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        textColor: "text-black",
+        buttonText: "Edit by Text",
+        progress: "5/5"
       }
     ]
   },
   {
     id: 3,
-    name: "3D Modeling",
+    name: "UPSCALER",
+    subCategories: [
+      { id: 1, name: "enhance details & upscale", slideId: 1 }
+    ],
     slides: [
       {
         id: 1,
-        title: "Build 3D models",
-        subtitle: "from 2D sketches",
-        description: "Convert your drawings into detailed 3D models with AI-powered reconstruction.",
+        title: "Detail enhancement",
+        subtitle: "AI-powered upscaling",
+        description: "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
-        buttonText: "Start Modeling",
-        progress: "1/4"
-      },
-      {
-        id: 2,
-        title: "Add textures",
-        subtitle: "realistic materials",
-        description: "Apply photorealistic textures and materials with our extensive library.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
-        textColor: "text-black",
-        buttonText: "Browse Materials",
-        progress: "2/4"
-      },
-      {
-        id: 3,
-        title: "Dynamic lighting",
-        subtitle: "perfect ambiance",
-        description: "Set up professional lighting scenarios that enhance your 3D models.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
-        textColor: "text-black",
-        buttonText: "Light Setup",
-        progress: "3/4"
-      },
-      {
-        id: 4,
-        title: "Render engine",
-        subtitle: "studio quality",
-        description: "Generate stunning renders with our advanced ray-tracing engine.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
-        textColor: "text-black",
-        buttonText: "Render Now",
-        progress: "4/4"
-      }
-    ]
-  },
-  {
-    id: 4,
-    name: "Collaboration",
-    slides: [
-      {
-        id: 1,
-        title: "Team workspace",
-        subtitle: "shared projects",
-        description: "Collaborate with your team in real-time on design projects and iterations.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
-        textColor: "text-black",
-        buttonText: "Create Team",
-        progress: "1/4"
-      },
-      {
-        id: 2,
-        title: "Version control",
-        subtitle: "track changes",
-        description: "Keep track of all design iterations with automatic version management.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
-        textColor: "text-black",
-        buttonText: "View History",
-        progress: "2/4"
-      },
-      {
-        id: 3,
-        title: "Client feedback",
-        subtitle: "streamlined reviews",
-        description: "Share designs with clients and collect feedback directly on the platform.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
-        textColor: "text-black",
-        buttonText: "Share Project",
-        progress: "3/4"
-      },
-      {
-        id: 4,
-        title: "Export & deliver",
-        subtitle: "final handoff",
-        description: "Package and deliver final assets with comprehensive documentation.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
-        textColor: "text-black",
-        buttonText: "Deliver",
-        progress: "4/4"
+        buttonText: "Enhance Details",
+        progress: "1/1"
       }
     ]
   }
@@ -214,6 +193,7 @@ export function StickySliderSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
+  const [manualTabSwitch, setManualTabSwitch] = useState(false);
   const prevSlideRef = useRef(0);
   
   const { scrollYProgress } = useScroll({
@@ -222,20 +202,40 @@ export function StickySliderSection() {
   });
 
   const currentTabSlides = tabsData[activeTab].slides;
-  const slideProgress = useTransform(scrollYProgress, [0, 1], [0, currentTabSlides.length - 1]);
+  const totalSlides = tabsData.reduce((acc, tab) => acc + tab.slides.length, 0);
+  const slideProgress = useTransform(scrollYProgress, [0, 1], [0, totalSlides - 1]);
 
   useEffect(() => {
     const unsubscribe = slideProgress.onChange((latest) => {
-      const newSlide = Math.max(0, Math.min(currentTabSlides.length - 1, Math.round(latest)));
-      if (newSlide !== currentSlide) {
-        setScrollDirection(newSlide > prevSlideRef.current ? 'down' : 'up');
+      if (manualTabSwitch) return;
+      
+      const globalSlideIndex = Math.round(latest);
+      let targetTab = 0;
+      let targetSlide = 0;
+      let slideCount = 0;
+      
+      for (let i = 0; i < tabsData.length; i++) {
+        if (globalSlideIndex < slideCount + tabsData[i].slides.length) {
+          targetTab = i;
+          targetSlide = globalSlideIndex - slideCount;
+          break;
+        }
+        slideCount += tabsData[i].slides.length;
+      }
+      
+      if (targetTab !== activeTab) {
+        setActiveTab(targetTab);
+      }
+      
+      if (targetSlide !== currentSlide) {
+        setScrollDirection(targetSlide > prevSlideRef.current ? 'down' : 'up');
         prevSlideRef.current = currentSlide;
-        setCurrentSlide(newSlide);
+        setCurrentSlide(targetSlide);
       }
     });
 
     return () => unsubscribe();
-  }, [slideProgress, currentSlide, currentTabSlides.length]);
+  }, [slideProgress, currentSlide, activeTab, manualTabSwitch]);
 
   useEffect(() => {
     const unsubscribeProgress = scrollYProgress.onChange((latest) => {
@@ -247,7 +247,21 @@ export function StickySliderSection() {
 
   useEffect(() => {
     setCurrentSlide(0);
+    setManualTabSwitch(false);
   }, [activeTab]);
+
+  const handleTabClick = (tabIndex: number) => {
+    setManualTabSwitch(true);
+    setActiveTab(tabIndex);
+    setTimeout(() => setManualTabSwitch(false), 100);
+  };
+
+  const handleSubCategoryClick = (tabIndex: number, slideIndex: number) => {
+    setManualTabSwitch(true);
+    setActiveTab(tabIndex);
+    setCurrentSlide(slideIndex);
+    setTimeout(() => setManualTabSwitch(false), 100);
+  };
 
   return (
     <div ref={containerRef} className="relative h-[400vh]" style={{ backgroundColor: "rgb(250, 250, 250)" }}>
@@ -262,47 +276,136 @@ export function StickySliderSection() {
           >
             <div className="container mx-auto px-8 lg:px-16 h-full" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               <div className="flex flex-col lg:flex-row h-full">
-                {/* Vertical Tabs */}
+                {/* Professional Navigation */}
                 <div className="hidden lg:flex flex-col justify-center py-16 w-80 pr-8">
-                  <div className="space-y-3">
-                    {tabsData.map((tab, index) => (
-                      <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(index)}
-                        className={`group relative w-full text-left p-4 rounded-xl transition-all duration-300 ${
-                          activeTab === index 
-                            ? 'bg-white shadow-lg scale-105' 
-                            : 'bg-white/30 hover:bg-white/60 hover:shadow-md'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div 
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                              activeTab === index ? 'scale-125' : 'scale-100'
-                            }`}
-                            style={{
-                              backgroundColor: activeTab === index 
-                                ? THEME_COLORS.primary 
-                                : THEME_COLORS.primaryMuted
-                            }}
-                          />
-                          <div className="flex-1">
-                            <div className={`font-semibold text-base transition-colors duration-300 ${
-                              activeTab === index ? 'text-black' : 'text-gray-600'
+                  <div className="relative">
+                    <div className="mb-6">
+                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                        Features
+                      </h3>
+                      <div className="h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
+                    </div>
+
+                    <div className="space-y-2">
+                      {tabsData.map((tab, tabIndex) => {
+                        const isActiveTab = activeTab === tabIndex;
+                        return (
+                          <div key={tab.id} className="relative">
+                            <button
+                              onClick={() => handleTabClick(tabIndex)}
+                              className={`group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden ${
+                                isActiveTab 
+                                  ? 'text-white shadow-lg' 
+                                  : 'hover:bg-white/60 text-gray-700 hover:text-black'
+                              }`}
+                              style={{
+                                background: isActiveTab ? THEME_COLORS.primary : 'transparent'
+                              }}
+                            >
+                              <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${
+                                isActiveTab ? 'opacity-100' : 'opacity-0'
+                              }`} style={{ backgroundColor: THEME_COLORS.primary }}></div>
+                              
+                              <div className="flex items-center justify-between p-4 pl-6">
+                                <div className="flex items-center space-x-3">
+                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                    isActiveTab ? 'bg-white/20' : 'bg-gray-100 group-hover:bg-gray-200'
+                                  }`}>
+                                    <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                      isActiveTab ? 'bg-white' : 'bg-gray-400 group-hover:bg-gray-600'
+                                    }`}></div>
+                                  </div>
+                                  
+                                  <div>
+                                    <div className={`font-bold text-sm tracking-wide transition-colors duration-300 ${
+                                      isActiveTab ? 'text-white' : 'text-gray-800 group-hover:text-black'
+                                    }`}>
+                                      {tab.name}
+                                    </div>
+                                    <div className={`text-xs transition-colors duration-300 ${
+                                      isActiveTab ? 'text-white/70' : 'text-gray-500'
+                                    }`}>
+                                      {tab.subCategories?.length || 0} tools
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div className={`w-5 h-5 flex items-center justify-center transition-transform duration-300 ${
+                                  isActiveTab ? 'rotate-90' : 'rotate-0'
+                                }`}>
+                                  <div className={`w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 transition-colors duration-300 ${
+                                    isActiveTab ? 'border-white/70' : 'border-gray-400'
+                                  }`}></div>
+                                </div>
+                              </div>
+                            </button>
+                            
+                            <div className={`overflow-hidden transition-all duration-500 ease-out ${
+                              isActiveTab ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                             }`}>
-                              {tab.name}
+                              <div className="pt-2 pb-4 ml-6">
+                                <div className="space-y-1 relative">
+                                  {tab.subCategories?.map((subCat) => {
+                                    const slideIndex = subCat.slideId - 1;
+                                    const isActiveSubCat = currentSlide === slideIndex && isActiveTab;
+                                    return (
+                                      <button
+                                        key={subCat.id}
+                                        onClick={() => handleSubCategoryClick(tabIndex, slideIndex)}
+                                        className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
+                                          isActiveSubCat
+                                            ? 'text-black shadow-sm border'
+                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                                        }`}
+                                        style={{
+                                          background: isActiveSubCat ? THEME_COLORS.primaryLight : 'transparent',
+                                          borderColor: isActiveSubCat ? THEME_COLORS.primaryMuted : 'transparent'
+                                        }}
+                                      >
+                                        <div className="flex items-center p-3 pl-4">
+                                          <div className={`w-2 h-2 rounded-full mr-3 transition-all duration-200 ${
+                                            isActiveSubCat 
+                                              ? 'shadow-sm' 
+                                              : 'bg-gray-300 group-hover/sub:bg-gray-400'
+                                          }`} style={{
+                                            backgroundColor: isActiveSubCat ? THEME_COLORS.primary : undefined
+                                          }}></div>
+                                          
+                                          <div className="flex-1">
+                                            <div className={`text-xs font-medium transition-colors duration-200 ${
+                                              isActiveSubCat ? 'text-gray-800' : 'text-gray-600 group-hover/sub:text-gray-800'
+                                            }`}>
+                                              {subCat.name}
+                                            </div>
+                                          </div>
+                                          
+                                          {isActiveSubCat && (
+                                            <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: THEME_COLORS.primary }}></div>
+                                          )}
+                                        </div>
+                                        
+                                        {isActiveSubCat && (
+                                          <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: THEME_COLORS.primaryLight }}></div>
+                                        )}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
                             </div>
                           </div>
+                        );
+                      })}
+                    </div>
+                    
+                    <div className="mt-6 pt-4">
+                      <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-200"></div>
+                      <div className="mt-3 px-2">
+                        <div className="text-xs text-gray-400 font-medium">
+                          {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
                         </div>
-                        
-                        <div 
-                          className={`absolute left-0 top-0 bottom-0 w-1 rounded-r-full transition-all duration-300 ${
-                            activeTab === index ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          style={{ backgroundColor: THEME_COLORS.primary }}
-                        />
-                      </button>
-                    ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -311,9 +414,10 @@ export function StickySliderSection() {
                   {/* Progress Indicator */}
                   <div className="flex items-center space-x-3 mb-8">
                     {currentTabSlides.map((_, i) => (
-                      <div
+                      <button
                         key={i}
-                        className={`h-1 rounded-full transition-all duration-500 ${
+                        onClick={() => setCurrentSlide(i)}
+                        className={`h-1 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
                           i <= currentSlide ? "w-12" : "w-6"
                         }`}
                         style={{
@@ -321,10 +425,12 @@ export function StickySliderSection() {
                         }}
                       />
                     ))}
-                    <span className="text-sm font-mono ml-6 opacity-80" style={{ color: THEME_COLORS.textMuted }}>
-                      {currentTabSlides[currentSlide].progress}
+                    <span className="text-sm font-mono ml-6 opacity-80 text-black">
+                      {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
                     </span>
                   </div>
+
+
 
                   {/* Text Content */}
                   <div className="relative overflow-hidden">
@@ -336,10 +442,9 @@ export function StickySliderSection() {
                         animate={{ y: slideIndex === currentSlide ? 0 : (scrollDirection === 'down' ? 50 : -50) }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                           <motion.h1 
-                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.9]" 
-                            style={{ color: THEME_COLORS.textPrimary }}
+                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.9] text-black" 
                             initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
@@ -348,8 +453,7 @@ export function StickySliderSection() {
                           </motion.h1>
                           
                           <motion.h2 
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight" 
-                            style={{ color: THEME_COLORS.textSecondary }}
+                            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-black" 
                             initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
@@ -359,8 +463,7 @@ export function StickySliderSection() {
                         </div>
 
                         <motion.p 
-                          className="text-xl sm:text-2xl leading-relaxed max-w-2xl mt-8" 
-                          style={{ color: THEME_COLORS.textMuted }}
+                          className="text-base sm:text-lg leading-relaxed max-w-2xl mt-6 text-black" 
                           initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                           animate={{ y: 0 }}
                           transition={{ duration: 0.6, delay: 0.3 }}
@@ -371,12 +474,33 @@ export function StickySliderSection() {
                     ))}
                   </div>
 
-                  {/* Button */}
-                  <div className="mt-12">
+                  {/* Reviews Section */}
+                  <div className="mt-8 space-y-6">
+                    {/* <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg" style={{ backgroundColor: THEME_COLORS.primary }}>
+                          A
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <h4 className="font-semibold text-gray-900">Alex Chen</h4>
+                            <div className="flex space-x-1">
+                              {[...Array(5)].map((_, i) => (
+                                <div key={i} className="w-4 h-4 bg-yellow-400 rounded-full"></div>
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            "Typus AI has revolutionized our architectural workflow. The {currentTabSlides[currentSlide]?.title.toLowerCase()} feature is incredibly intuitive and saves us hours of work."
+                          </p>
+                        </div>
+                      </div>
+                    </div> */}
+                    
                     <Button
-                      size="lg"
-                      className="px-16 py-8 text-2xl font-semibold rounded-full min-h-[80px] shadow-2xl hover:shadow-3xl transition-all duration-300 text-white hover:scale-105"
-                      style={{ 
+                      size="default"
+                      className="px-8 py-3 text-sm font-medium rounded-lg text-white transition-all duration-300 shadow-md hover:shadow-lg"
+                      style={{
                         backgroundColor: THEME_COLORS.primary,
                       }}
                       onMouseEnter={(e) => {
@@ -386,7 +510,7 @@ export function StickySliderSection() {
                         e.currentTarget.style.backgroundColor = THEME_COLORS.primary;
                       }}
                     >
-                      {currentTabSlides[currentSlide].buttonText}
+                      {currentTabSlides[currentSlide]?.buttonText || 'Get Started'}
                     </Button>
                   </div>
                 </div>
@@ -398,9 +522,9 @@ export function StickySliderSection() {
                       <motion.div
                         key={slideContent.id}
                         className="absolute inset-0 flex items-center justify-center"
-                        initial={{ y: scrollDirection === 'down' ? '100%' : '-100%' }}
+                        initial={{ y: '-100%' }}
                         animate={{ 
-                          y: slideIndex === currentSlide ? '0%' : (scrollDirection === 'down' ? '100%' : '-100%')
+                          y: slideIndex === currentSlide ? '0%' : '-100%'
                         }}
                         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                         style={{

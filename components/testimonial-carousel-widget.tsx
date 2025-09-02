@@ -61,7 +61,7 @@ export function TestimonialCarouselWidget() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-black" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Loved by people all over the universe
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
@@ -69,32 +69,32 @@ export function TestimonialCarouselWidget() {
           </p>
         </motion.div>
 
-        <div className="relative h-[600px] w-full overflow-hidden flex items-center justify-center">
+        <div className="relative h-[500px] w-full overflow-hidden flex items-center justify-center">
           <div className="flex w-full max-w-6xl mx-auto gap-4">
             {/* First Column */}
             <div className="flex-1">
               <InfiniteMovingCardsVertical
-                items={testimonials.slice(0, 3)}
+                items={[...testimonials, ...testimonials]}
                 direction="up"
-                speed="slow"
+                speed="normal"
               />
             </div>
             
             {/* Second Column */}
             <div className="flex-1">
               <InfiniteMovingCardsVertical
-                items={testimonials.slice(3, 6)}
+                items={[...testimonials.reverse(), ...testimonials]}
                 direction="down"
-                speed="slow"
+                speed="normal"
               />
             </div>
             
             {/* Third Column */}
             <div className="flex-1">
               <InfiniteMovingCardsVertical
-                items={testimonials.slice(6, 9)}
+                items={[...testimonials, ...testimonials]}
                 direction="up"
-                speed="slow"
+                speed="normal"
               />
             </div>
           </div>

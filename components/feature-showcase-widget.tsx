@@ -72,7 +72,7 @@ export function FeatureShowcaseWidget() {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-black dark:text-white">
-            Why Choose <span style={{ color: 'rgb(255, 54, 54)' }}>Typus.AI</span>
+            Why Choose <span className="text-black">Typus.AI</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto leading-relaxed">
             Revolutionary AI technology that transforms architectural visualization.
@@ -199,15 +199,8 @@ export function FeatureShowcaseWidget() {
           className="text-center mt-12 sm:mt-16"
         >
           <Button
-            size="lg"
-            className="text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold min-h-[44px] transition-all duration-300"
-            style={{ backgroundColor: 'rgb(255, 54, 54)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgb(220, 38, 38)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgb(255, 54, 54)';
-            }}
+            size="default"
+            className="text-white px-4 py-2 text-sm font-medium bg-black hover:bg-gray-800 transition-all duration-300"
           >
             Experience All Features
           </Button>

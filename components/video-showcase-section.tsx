@@ -102,18 +102,10 @@ export const VideoShowcaseSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.span 
-            className="bg-gradient-to-r from-red-600 via-red-500 to-red-700 bg-clip-text text-transparent"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            style={{
-              backgroundSize: "200% 200%",
-            }}
+            className="text-black dark:text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
           >
             Transform Your Vision
           </motion.span>
