@@ -50,7 +50,7 @@ const FloatingParticles = () => {
 }
 
 export function GetStartedSection() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [visibleFeatures, setVisibleFeatures] = useState<number[]>([]);
   const controls = useAnimation();
@@ -58,8 +58,8 @@ export function GetStartedSection() {
   const mouseY = useMotionValue(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = (ref.current as HTMLElement)?.getBoundingClientRect();
-    if (rect) {
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
       mouseX.set(e.clientX - rect.left);
       mouseY.set(e.clientY - rect.top);
     }
