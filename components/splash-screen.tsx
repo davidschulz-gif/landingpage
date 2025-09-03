@@ -3,6 +3,7 @@
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 interface SplashScreenProps {
@@ -11,15 +12,23 @@ interface SplashScreenProps {
   children?: React.ReactNode;
 }
 
-export function SplashScreen({ className, onComplete, children }: SplashScreenProps) {
+export function SplashScreen({
+  className,
+  onComplete,
+  children,
+}: SplashScreenProps) {
   const [slideOut, setSlideOut] = useState(false);
   const [showDelegate, setShowDelegate] = useState(true);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
 
-  const containerStyle = useMemo(() => ({
-    willChange: "transform",
-    background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)"
-  }), []);
+  const containerStyle = useMemo(
+    () => ({
+      willChange: "transform",
+      background:
+        "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)",
+    }),
+    []
+  );
 
   useEffect(() => {
     timeoutRefs.current.forEach(clearTimeout);
@@ -28,7 +37,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
     const t1 = setTimeout(() => setShowDelegate(false), 2000);
     const t2 = setTimeout(() => setSlideOut(true), 4000);
     const t3 = setTimeout(() => onComplete?.(), 4800);
-    
+
     timeoutRefs.current = [t1, t2, t3];
 
     return () => timeoutRefs.current.forEach(clearTimeout);
@@ -36,12 +45,8 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
 
   return (
     <>
-      {children && (
-        <div className="fixed inset-0 z-0">
-          {children}
-        </div>
-      )}
-      
+      {children && <div className="fixed inset-0 z-0">{children}</div>}
+
       <motion.div
         className={cn(
           "fixed inset-0 z-50",
@@ -55,7 +60,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
       >
         {/* Wavy Background Section */}
         <div className="absolute inset-0">
-        {/* colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]} */}
+          {/* colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]} */}
           <WavyBackground
             backgroundFill="transparent"
             colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]}
@@ -65,6 +70,8 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
             waveOpacity={0.1}
             className="relative w-full h-full"
           >
+            {/* Logo Section - Top of Vertex */}
+
             {/* Main Text - Center of Vertex */}
             <div className="absolute inset-0">
               <div className="h-full w-full relative">
@@ -74,7 +81,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <motion.div 
+                  <motion.div
                     className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-gray-800 dark:text-gray-200 whitespace-nowrap font-space-grotesk"
                     animate={{
                       opacity: [0.7, 1, 0.7],
@@ -88,7 +95,11 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                     <motion.span
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.4,
+                        ease: "easeOut",
+                      }}
                     >
                       Imagine.&nbsp;
                     </motion.span>
@@ -97,17 +108,23 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                       initial={{
                         opacity: 1,
                         scaleX: 1,
-                        width: "auto"
+                        width: "auto",
                       }}
                       animate={{
                         opacity: showDelegate ? 1 : 0,
                         scaleX: showDelegate ? 1 : 0,
-                        width: showDelegate ? "auto" : 0
+                        width: showDelegate ? "auto" : 0,
                       }}
                       transition={{ duration: 0.3 }}
-                      style={{ overflow: "visible", transformOrigin: "left", whiteSpace: "nowrap" }}
+                      style={{
+                        overflow: "visible",
+                        transformOrigin: "left",
+                        whiteSpace: "nowrap",
+                      }}
                     >
-                      <span className={showDelegate ? "" : "line-through"}>Delegate.&nbsp;</span>
+                      <span className={showDelegate ? "" : "line-through"}>
+                        Delegate.&nbsp;
+                      </span>
                       {!showDelegate && (
                         <motion.div
                           className="absolute inset-0 bg-gray-500 h-1 top-1/2 transform -translate-y-1/2"
@@ -120,13 +137,17 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                     <motion.span
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.6,
+                        ease: "easeOut",
+                      }}
                     >
                       Create.
                     </motion.span>
                   </motion.div>
                 </motion.div>
-                
+
                 {/* Floating elements */}
                 <motion.div
                   className="absolute top-20 right-20 w-4 h-4 bg-gray-500/30 rounded-full"
@@ -180,6 +201,21 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
             transition={{ duration: 0.4, delay: 0.8 }}
             className="flex flex-col items-center space-y-4"
           >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            >
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/logo/typus_logo_transparent.png"
+                  alt="Typus AI Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </motion.div>
             {/* Progress Bar */}
             <div className="w-32 h-0.5 bg-gray-400 rounded-full overflow-hidden">
               <motion.div
@@ -190,17 +226,22 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                   duration: 2.5,
                   ease: "easeInOut",
                   repeat: Infinity,
-                  repeatType: "loop"
+                  repeatType: "loop",
                 }}
               />
             </div>
-            
+
             {/* INITIALIZING Text */}
             <motion.p
               className="text-xs font-bold tracking-[0.15em] text-gray-700 font-space-grotesk"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.4,
+              }}
             >
               INITIALIZING
             </motion.p>
