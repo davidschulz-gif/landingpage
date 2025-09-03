@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react"
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion"
 import { Users, Sparkles, FolderKanban } from "lucide-react"
 import { VideoPlayer } from "@/components/video/player"
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 export const VideoShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -30,7 +31,7 @@ export const VideoShowcaseSection = () => {
       {/* Background Elements - Scoped to this section only */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-red-50/20 via-transparent to-transparent dark:from-red-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-red-50/40 via-transparent to-transparent dark:from-red-950/40" />
         
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] opacity-40" />
@@ -39,7 +40,7 @@ export const VideoShowcaseSection = () => {
         <motion.div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(220, 38, 38, 0.1) 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(220, 38, 38, 0.3) 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }}
           animate={{
@@ -71,11 +72,11 @@ export const VideoShowcaseSection = () => {
         
         {/* Floating Grid Lines */}
         <motion.div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(220, 38, 38, 0.3) 1px, transparent 1px),
-              linear-gradient(rgba(220, 38, 38, 0.3) 1px, transparent 1px)
+              linear-gradient(90deg, rgba(220, 38, 38, 0.5) 1px, transparent 1px),
+              linear-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px)
             `,
             backgroundSize: '100px 100px'
           }}
@@ -95,39 +96,43 @@ export const VideoShowcaseSection = () => {
         className="sticky top-14 z-0 flex w-full flex-col items-center justify-center gap-2 text-center sm:top-28"
         style={{ opacity: titleOpacity, scale: titleScale, y: titleY }}
       >
-        <motion.h1 
-          className="mb-2 text-4xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200 md:text-7xl"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <motion.span 
-            className="text-black dark:text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+        <BreathingAnimationText animationType="black-gray">
+          <motion.h1 
+            className="mb-2 text-4xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200 md:text-7xl"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
-            Transform Your Vision
-          </motion.span>
-          <br />
-          <motion.span
-            className="text-neutral-800 dark:text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            Into Reality
-          </motion.span>
-        </motion.h1>
+            <motion.span 
+              className="text-black dark:text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              Transform Your Vision
+            </motion.span>
+            <br />
+            <motion.span
+              className="text-neutral-800 dark:text-white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              Into Reality
+            </motion.span>
+          </motion.h1>
+        </BreathingAnimationText>
         
-        <motion.p 
-          className="mx-auto mb-6 px-4 text-base font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24 md:text-lg"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-        >
-          Experience the future of architectural visualization with AI-powered rendering that brings your concepts to life with unprecedented detail and realism.
-        </motion.p>
+        <BreathingAnimationText animationType="black-gray">
+          <motion.p 
+            className="mx-auto mb-6 px-4 text-base font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24 md:text-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          >
+            Experience the future of architectural visualization with AI-powered rendering that brings your concepts to life with unprecedented detail and realism.
+          </motion.p>
+        </BreathingAnimationText>
 
         {/* Stats Badges */}
         <motion.div 

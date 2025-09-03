@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Wand2, Edit3, Sparkles, Video } from "lucide-react";
 import { VideoPlayer } from "@/components/video/player";
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 const tabs = [
   {
@@ -53,12 +54,16 @@ export function TabVideoShowcase() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
-            From Concept To Animation
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
-          </p>
+          <BreathingAnimationText animationType="black-gray">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
+              From Concept To Animation
+            </h2>
+          </BreathingAnimationText>
+          <BreathingAnimationText animationType="black-gray">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
+            </p>
+          </BreathingAnimationText>
         </div>
 
         {/* Main Content */}
@@ -110,16 +115,20 @@ export function TabVideoShowcase() {
                             isActive ? "text-white" : "text-gray-600 dark:text-gray-300"
                           }`} />
                         </div>
-                        <h3 className={`font-bold ${
-                          isActive ? "text-red-700 dark:text-red-300" : "text-gray-900 dark:text-white"
-                        }`}>
-                          {tab.title}
-                        </h3>
+                        <BreathingAnimationText animationType={isActive ? "red-orange" : "black-gray"}>
+                          <h3 className={`font-bold ${
+                            isActive ? "text-red-700 dark:text-red-300" : "text-gray-900 dark:text-white"
+                          }`}>
+                            {tab.title}
+                          </h3>
+                        </BreathingAnimationText>
                       </div>
                       
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                        {tab.description}
-                      </p>
+                      <BreathingAnimationText animationType="black-gray">
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                          {tab.description}
+                        </p>
+                      </BreathingAnimationText>
 
                       <div className="space-y-2">
                         {tab.features.map((feature, idx) => (
@@ -127,9 +136,11 @@ export function TabVideoShowcase() {
                             <div className={`w-1.5 h-1.5 rounded-full ${
                               isActive ? "bg-green-500" : "bg-gray-400"
                             }`} />
-                            <span className="text-xs text-gray-500 dark:text-gray-400">
-                              {feature}
-                            </span>
+                            <BreathingAnimationText animationType="black-gray">
+                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                                {feature}
+                              </span>
+                            </BreathingAnimationText>
                           </div>
                         ))}
                       </div>

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -6,9 +5,9 @@
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: rgb(250, 250, 250);
+  --background: #f0f0f0;
   --foreground: #475569;
-  --card: #ecfeff;
+  --card: #ffffff;
   --card-foreground: #164e63;
   --popover: #ffffff;
   --popover-foreground: #475569;
@@ -16,14 +15,14 @@
   --primary-foreground: #ffffff;
   --secondary: #38bdf8;
   --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
+  --muted: #e5e7eb;
   --muted-foreground: #475569;
   --accent: #38bdf8;
   --accent-foreground: #ffffff;
   --destructive: #be123c;
   --destructive-foreground: #ffffff;
   --border: #e0e7ff;
-  --input: #f8fafc;
+  --input: #ffffff;
   --ring: #38bdf8;
   --chart-1: #38bdf8;
   --chart-2: #a16207;
@@ -123,16 +122,9 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    background-color: rgb(250, 250, 250);
-  }
-  
-  .font-space-grotesk {
-    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
@@ -251,4 +243,34 @@
 
 .animate-loading-bar {
   animation: loading-bar 2.5s ease-out forwards;
+}
+
+@keyframes breathe-black-gray {
+  0%, 100% {
+    color: #000000;
+    opacity: 1;
+  }
+  50% {
+    color: #808080;
+    opacity: 0.7;
+  }
+}
+
+.animate-breathe-black-gray {
+  animation: breathe-black-gray 4s ease-in-out infinite;
+}
+
+@keyframes breathe-red-orange {
+  0%, 100% {
+    color: #ff0000;
+    opacity: 1;
+  }
+  50% {
+    color: #ffa500;
+    opacity: 0.7;
+  }
+}
+
+.animate-breathe-red-orange {
+  animation: breathe-red-orange 4s ease-in-out infinite;
 }

@@ -1,20 +1,13 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Manrope } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const geist = Geist({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-geist",
-})
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-space-grotesk",
 })
 
 export const metadata: Metadata = {
@@ -64,8 +57,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${manrope.variable} antialiased`} suppressHydrationWarning>
-      <body className="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <html lang="en" className={`${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+      <body className="font-sans dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

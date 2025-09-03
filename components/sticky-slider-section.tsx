@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { THEME_COLORS } from "@/lib/theme";
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 interface SlideData {
   id: number;
@@ -264,8 +265,8 @@ export function StickySliderSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh]" style={{ backgroundColor: "rgb(250, 250, 250)" }}>
-      <div className="sticky top-0 h-screen overflow-hidden" style={{ backgroundColor: "rgb(250, 250, 250)" }}>
+    <div ref={containerRef} className="relative h-[400vh]">
+      <div className="sticky top-0 h-screen overflow-hidden">
         {currentTabSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -280,9 +281,11 @@ export function StickySliderSection() {
                 <div className="hidden lg:flex flex-col justify-center py-16 w-80 pr-8">
                   <div className="relative">
                     <div className="mb-6">
-                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
-                        Features
-                      </h3>
+                      <BreathingAnimationText animationType="black-gray">
+                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                          Features
+                        </h3>
+                      </BreathingAnimationText>
                       <div className="h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
 
@@ -300,8 +303,7 @@ export function StickySliderSection() {
                               }`}
                               style={{
                                 background: isActiveTab ? THEME_COLORS.primary : 'transparent'
-                              }}
-                            >
+                              }}>
                               <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${
                                 isActiveTab ? 'opacity-100' : 'opacity-0'
                               }`} style={{ backgroundColor: THEME_COLORS.primary }}></div>
@@ -317,16 +319,20 @@ export function StickySliderSection() {
                                   </div>
                                   
                                   <div>
-                                    <div className={`font-bold text-sm tracking-wide transition-colors duration-300 ${
-                                      isActiveTab ? 'text-white' : 'text-gray-800 group-hover:text-black'
-                                    }`}>
-                                      {tab.name}
-                                    </div>
-                                    <div className={`text-xs transition-colors duration-300 ${
-                                      isActiveTab ? 'text-white/70' : 'text-gray-500'
-                                    }`}>
-                                      {tab.subCategories?.length || 0} tools
-                                    </div>
+                                    <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
+                                      <div className={`font-bold text-sm tracking-wide transition-colors duration-300 ${
+                                        isActiveTab ? 'text-white' : 'text-gray-800 group-hover:text-black'
+                                      }`}>
+                                        {tab.name}
+                                      </div>
+                                    </BreathingAnimationText>
+                                    <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
+                                      <div className={`text-xs transition-colors duration-300 ${
+                                        isActiveTab ? 'text-white/70' : 'text-gray-500'
+                                      }`}>
+                                        {tab.subCategories?.length || 0} tools
+                                      </div>
+                                    </BreathingAnimationText>
                                   </div>
                                 </div>
                                 
@@ -372,11 +378,13 @@ export function StickySliderSection() {
                                           }}></div>
                                           
                                           <div className="flex-1">
-                                            <div className={`text-xs font-medium transition-colors duration-200 ${
-                                              isActiveSubCat ? 'text-gray-800' : 'text-gray-600 group-hover/sub:text-gray-800'
-                                            }`}>
-                                              {subCat.name}
-                                            </div>
+                                            <BreathingAnimationText animationType={isActiveSubCat ? "red-orange" : "black-gray"}>
+                                              <div className={`text-xs font-medium transition-colors duration-200 ${
+                                                isActiveSubCat ? 'text-gray-800' : 'text-gray-600 group-hover/sub:text-gray-800'
+                                              }`}>
+                                                {subCat.name}
+                                              </div>
+                                            </BreathingAnimationText>
                                           </div>
                                           
                                           {isActiveSubCat && (
@@ -401,9 +409,11 @@ export function StickySliderSection() {
                     <div className="mt-6 pt-4">
                       <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-200"></div>
                       <div className="mt-3 px-2">
-                        <div className="text-xs text-gray-400 font-medium">
-                          {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
-                        </div>
+                        <BreathingAnimationText animationType="black-gray">
+                          <div className="text-xs text-gray-400 font-medium">
+                            {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+                          </div>
+                        </BreathingAnimationText>
                       </div>
                     </div>
                   </div>
@@ -425,9 +435,11 @@ export function StickySliderSection() {
                         }}
                       />
                     ))}
-                    <span className="text-sm font-mono ml-6 opacity-80 text-black">
-                      {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
-                    </span>
+                    <BreathingAnimationText animationType="black-gray">
+                      <span className="text-sm font-mono ml-6 opacity-80 text-black">
+                        {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+                      </span>
+                    </BreathingAnimationText>
                   </div>
 
 
@@ -442,34 +454,36 @@ export function StickySliderSection() {
                         animate={{ y: slideIndex === currentSlide ? 0 : (scrollDirection === 'down' ? 50 : -50) }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
-                        <div className="space-y-4">
-                          <motion.h1 
-                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.9] text-black" 
-                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                          >
-                            {slideContent.title}
-                          </motion.h1>
-                          
-                          <motion.h2 
-                            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-black" 
-                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                          >
-                            {slideContent.subtitle}
-                          </motion.h2>
-                        </div>
+                        <BreathingAnimationText animationType="black-gray">
+                          <div className="space-y-4">
+                            <motion.h1 
+                              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.9] text-black" 
+                              initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                              animate={{ y: 0 }}
+                              transition={{ duration: 0.6, delay: 0.1 }}
+                            >
+                              {slideContent.title}
+                            </motion.h1>
+                            
+                            <motion.h2 
+                              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-black" 
+                              initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                              animate={{ y: 0 }}
+                              transition={{ duration: 0.6, delay: 0.2 }}
+                            >
+                              {slideContent.subtitle}
+                            </motion.h2>
+                          </div>
 
-                        <motion.p 
-                          className="text-base sm:text-lg leading-relaxed max-w-2xl mt-6 text-black" 
-                          initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
-                          animate={{ y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                        >
-                          {slideContent.description}
-                        </motion.p>
+                          <motion.p 
+                            className="text-base sm:text-lg leading-relaxed max-w-2xl mt-6 text-black" 
+                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                          >
+                            {slideContent.description}
+                          </motion.p>
+                        </BreathingAnimationText>
                       </motion.div>
                     ))}
                   </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { BreathingAnimationText } from "./breathing-animation-text";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -81,71 +82,72 @@ export function SplashScreen({
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <motion.div
-                    className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-gray-800 dark:text-gray-200 whitespace-nowrap font-space-grotesk"
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <motion.span
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.8,
-                        delay: 0.4,
-                        ease: "easeOut",
-                      }}
-                    >
-                      Imagine.&nbsp;
-                    </motion.span>
-                    <motion.span
-                      className="relative inline-block"
-                      initial={{
-                        opacity: 1,
-                        scaleX: 1,
-                        width: "auto",
-                      }}
+                  <BreathingAnimationText animationType="black-gray" className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-gray-800 dark:text-gray-200 whitespace-nowrap font-space-grotesk">
+                    <motion.div
                       animate={{
-                        opacity: showDelegate ? 1 : 0,
-                        scaleX: showDelegate ? 1 : 0,
-                        width: showDelegate ? "auto" : 0,
+                        opacity: [0.7, 1, 0.7],
                       }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        overflow: "visible",
-                        transformOrigin: "left",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      <span className={showDelegate ? "" : "line-through"}>
-                        Delegate.&nbsp;
-                      </span>
-                      {!showDelegate && (
-                        <motion.div
-                          className="absolute inset-0 bg-gray-500 h-1 top-1/2 transform -translate-y-1/2"
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                    </motion.span>
-                    <motion.span
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: 0.8,
-                        delay: 0.6,
-                        ease: "easeOut",
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
                       }}
                     >
-                      Create.
-                    </motion.span>
-                  </motion.div>
+                      <motion.span
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.4,
+                          ease: "easeOut",
+                        }}
+                      >
+                        Imagine.&nbsp;
+                      </motion.span>
+                      <motion.span
+                        className="relative inline-block"
+                        initial={{
+                          opacity: 1,
+                          scaleX: 1,
+                          width: "auto",
+                        }}
+                        animate={{
+                          opacity: showDelegate ? 1 : 0,
+                          scaleX: showDelegate ? 1 : 0,
+                          width: showDelegate ? "auto" : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          overflow: "visible",
+                          transformOrigin: "left",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        <span className={showDelegate ? "" : "line-through"}>
+                          Delegate.&nbsp;
+                        </span>
+                        {!showDelegate && (
+                          <motion.div
+                            className="absolute inset-0 bg-gray-500 h-1 top-1/2 transform -translate-y-1/2"
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+                      </motion.span>
+                      <motion.span
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.6,
+                          ease: "easeOut",
+                        }}
+                      >
+                        Create.
+                      </motion.span>
+                    </motion.div>
+                  </BreathingAnimationText>
                 </motion.div>
 
                 {/* Floating elements */}

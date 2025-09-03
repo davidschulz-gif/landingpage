@@ -2,6 +2,7 @@
 import { motion, useAnimationFrame, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
 import Link from "next/link"
 import React, { useState } from "react"
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 export const HeroParallax = ({
   products,
@@ -45,7 +46,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[215vh] py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-white dark:bg-black"
+      className="h-[215vh] py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
       <motion.div
@@ -98,39 +99,26 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-60 px-4 w-full left-0 top-0">
-      <motion.h1 
-        className="text-2xl md:text-7xl font-bold relative z-20 text-black dark:text-white"
-        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <span className="text-black dark:text-white">AI FOR </span>
-        <span className="text-black dark:text-white font-black">
-          ARCHITECTS.
-        </span>
-      </motion.h1>
-      <motion.p 
-        className="max-w-2xl text-base md:text-xl mt-8 text-black dark:text-white" 
-        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-      >
-        <motion.span
-          animate={{
-            opacity: [0.7, 1, 0.7],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+      <BreathingAnimationText animationType="black-gray">
+        <motion.h1 
+          className="text-2xl md:text-7xl font-bold relative z-20 text-black dark:text-white"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          AI fully preserves the structure of your architectural input while creating stunning AI-powered
-          visualizations. Transform your CAD files and sketches into photorealistic renders.
-        </motion.span>
-      </motion.p>
+          <span className="text-black dark:text-white">AI FOR </span>
+          <span className="text-black dark:text-white font-black">
+            ARCHITECTS.
+          </span>
+        </motion.h1>
+      </BreathingAnimationText>
+      <BreathingAnimationText
+        animationType="black-gray"
+        className="max-w-2xl text-base md:text-xl mt-8"
+      >
+        AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
+      </BreathingAnimationText>
       
       {/* Floating elements */}
       <motion.div
