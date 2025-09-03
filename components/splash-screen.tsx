@@ -3,8 +3,7 @@
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface SplashScreenProps {
   className?: string;
@@ -55,59 +54,44 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
         style={containerStyle}
       >
         {/* Wavy Background Section */}
-        <div className="absolute left-0 right-0 top-16 bottom-24">
-            {/* Logo Section - Outside Wavy Background */}
-        <div className="absolute top-56 left-0 right-0 h-28 z-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="absolute bottom-1 left-1/2 transform -translate-x-1/2"
-          >
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24">
-              <Image
-                src="/logo/typus_logo_transparent.png"
-                alt="Typus AI Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </motion.div>
-        </div>
+        <div className="absolute inset-0">
+        {/* colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]} */}
           <WavyBackground
             backgroundFill="transparent"
-            colors={["#dc2626", "#ef4444", "#f87171", "#fca5a5"]}
+            colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]}
             waveWidth={80}
             blur={5}
             speed="fast"
-            waveOpacity={0.9}
+            waveOpacity={0.1}
             className="relative w-full h-full"
           >
-            {/* TYPUS.AI Text - Top of Vertex */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-              className="relative top-82 left-1/2 transform -translate-x-1/2 text-center"
-            >
-              <h2 className="text-sm font-bold sm:text-base tracking-[0.2em] text-white">
-                TYPUS.AI
-              </h2>
-              <div className="w-12 h-px bg-white/60 mx-auto mt-2" />
-            </motion.div>
-
             {/* Main Text - Center of Vertex */}
             <div className="absolute inset-0">
               <div className="h-full w-full relative">
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <div className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-white whitespace-nowrap">
-                    <span>Imagine.&nbsp;</span>
+                  <motion.div 
+                    className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-gray-800 dark:text-gray-200 whitespace-nowrap font-space-grotesk"
+                    animate={{
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                    >
+                      Imagine.&nbsp;
+                    </motion.span>
                     <motion.span
                       className="relative inline-block"
                       initial={{
@@ -126,16 +110,63 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
                       <span className={showDelegate ? "" : "line-through"}>Delegate.&nbsp;</span>
                       {!showDelegate && (
                         <motion.div
-                          className="absolute inset-0 bg-red-500 h-1 top-1/2 transform -translate-y-1/2"
+                          className="absolute inset-0 bg-gray-500 h-1 top-1/2 transform -translate-y-1/2"
                           initial={{ width: 0 }}
                           animate={{ width: "100%" }}
                           transition={{ duration: 0.3 }}
                         />
                       )}
                     </motion.span>
-                    <span>Create.</span>
-                  </div>
+                    <motion.span
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                    >
+                      Create.
+                    </motion.span>
+                  </motion.div>
                 </motion.div>
+                
+                {/* Floating elements */}
+                <motion.div
+                  className="absolute top-20 right-20 w-4 h-4 bg-gray-500/30 rounded-full"
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="absolute bottom-32 left-20 w-6 h-6 bg-gray-600/20 rounded-full"
+                  animate={{
+                    y: [0, 15, 0],
+                    x: [0, 10, 0],
+                    opacity: [0.2, 0.6, 0.2],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                />
+                <motion.div
+                  className="absolute top-1/3 right-1/4 w-2 h-2 bg-gray-700/40 rounded-full"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.4, 0.9, 0.4],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                />
               </div>
             </div>
           </WavyBackground>
@@ -152,7 +183,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
             {/* Progress Bar */}
             <div className="w-32 h-0.5 bg-gray-400 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-red-500 rounded-full"
+                className="h-full bg-gray-700 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
@@ -166,7 +197,7 @@ export function SplashScreen({ className, onComplete, children }: SplashScreenPr
             
             {/* INITIALIZING Text */}
             <motion.p
-              className="text-xs font-bold tracking-[0.15em] text-red-500"
+              className="text-xs font-bold tracking-[0.15em] text-gray-700 font-space-grotesk"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
