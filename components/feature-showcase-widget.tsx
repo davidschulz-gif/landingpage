@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Zap, Brain, Shield } from "lucide-react";
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 interface Feature {
   id: number;
@@ -71,12 +72,16 @@ export function FeatureShowcaseWidget() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-black dark:text-white">
-            Why Choose <span className="text-black">Typus.AI</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Revolutionary AI technology that transforms architectural visualization.
-          </p>
+          <BreathingAnimationText animationType="black-gray">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-black dark:text-white">
+              Why Choose <span className="text-black">Typus.AI</span>
+            </h2>
+          </BreathingAnimationText>
+          <BreathingAnimationText animationType="black-gray">
+            <p className="text-base sm:text-lg md:text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto leading-relaxed">
+              Revolutionary AI technology that transforms architectural visualization.
+            </p>
+          </BreathingAnimationText>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -112,6 +117,7 @@ export function FeatureShowcaseWidget() {
                       </div>
                       
                       <div className="flex-1 min-w-0">
+                        <BreathingAnimationText animationType="black-gray">
                         <h3
                           className={`text-lg sm:text-xl font-bold mb-2 ${
                             activeFeature === index ? "text-white" : "text-black dark:text-white"
@@ -119,6 +125,8 @@ export function FeatureShowcaseWidget() {
                         >
                           {feature.title}
                         </h3>
+                      </BreathingAnimationText>
+                      <BreathingAnimationText animationType="black-gray">
                         <p
                           className={`text-sm sm:text-base leading-relaxed ${
                             activeFeature === index ? "text-white/90" : "text-black/70 dark:text-white/70"
@@ -126,10 +134,12 @@ export function FeatureShowcaseWidget() {
                         >
                           {feature.description}
                         </p>
+                      </BreathingAnimationText>
                         
                         <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-4">
                           {feature.stats.map((stat, statIndex) => (
                             <div key={statIndex} className="text-center">
+                              <BreathingAnimationText animationType="black-gray">
                               <div
                                 className={`text-xs sm:text-sm font-bold ${
                                   activeFeature === index ? "text-white" : "text-black dark:text-white"
@@ -137,6 +147,8 @@ export function FeatureShowcaseWidget() {
                               >
                                 {stat.value}
                               </div>
+                            </BreathingAnimationText>
+                            <BreathingAnimationText animationType="black-gray">
                               <div
                                 className={`text-xs ${
                                   activeFeature === index ? "text-white/80" : "text-black/60 dark:text-white/60"
@@ -144,6 +156,7 @@ export function FeatureShowcaseWidget() {
                               >
                                 {stat.label}
                               </div>
+                            </BreathingAnimationText>
                             </div>
                           ))}
                         </div>
@@ -182,8 +195,12 @@ export function FeatureShowcaseWidget() {
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                 <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 sm:p-4">
                   <div className="flex justify-between items-center text-white text-xs sm:text-sm font-medium">
-                    <span>{features[activeFeature].title}</span>
-                    <span>{activeFeature + 1}/{features.length}</span>
+                    <BreathingAnimationText animationType="black-gray">
+                      <span>{features[activeFeature].title}</span>
+                    </BreathingAnimationText>
+                    <BreathingAnimationText animationType="black-gray">
+                      <span>{activeFeature + 1}/{features.length}</span>
+                    </BreathingAnimationText>
                   </div>
                 </div>
               </div>
@@ -202,7 +219,9 @@ export function FeatureShowcaseWidget() {
             size="default"
             className="text-white px-4 py-2 text-sm font-medium bg-black hover:bg-gray-800 transition-all duration-300"
           >
-            Experience All Features
+            <BreathingAnimationText animationType="black-gray">
+              Experience All Features
+            </BreathingAnimationText>
           </Button>
         </motion.div>
       </div>

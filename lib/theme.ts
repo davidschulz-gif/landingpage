@@ -1,9 +1,9 @@
 // Typus AI Theme Colors
 export const THEME_COLORS = {
-  primary: "rgb(255, 54, 54)", // Main red theme color from splash screen
-  primaryHover: "rgb(230, 49, 49)", // Darker red for hover states
-  primaryLight: "rgba(255, 54, 54, 0.1)", // Light red for backgrounds
-  primaryMuted: "rgba(255, 54, 54, 0.3)", // Muted red for inactive states
+  primary: "rgb(255, 69, 0)", // OrangeRed
+  primaryHover: "rgb(230, 62, 0)", // Darker OrangeRed for hover states
+  primaryLight: "rgba(255, 69, 0, 0.1)", // Light OrangeRed for backgrounds
+  primaryMuted: "rgba(255, 69, 0, 0.3)", // Muted OrangeRed for inactive states
   
   // Text colors
   textPrimary: "rgb(15, 23, 42)", // slate-900
