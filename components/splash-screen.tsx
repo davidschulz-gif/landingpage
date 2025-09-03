@@ -206,7 +206,7 @@ export function SplashScreen({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             >
-              <div className="relative w-12 h-12">
+              <div className="relative w-8 h-8">
                 <Image
                   src="/logo/typus_logo_transparent.png"
                   alt="Typus AI Logo"
@@ -217,9 +217,9 @@ export function SplashScreen({
               </div>
             </motion.div>
             {/* Progress Bar */}
-            <div className="w-32 h-0.5 bg-gray-400 rounded-full overflow-hidden">
+            <div className="w-32 h-0.5 bg-red-400 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gray-700 rounded-full"
+                className="h-full bg-red-700 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
@@ -233,7 +233,7 @@ export function SplashScreen({
 
             {/* INITIALIZING Text */}
             <motion.p
-              className="text-xs font-bold tracking-[0.15em] text-gray-700 font-space-grotesk"
+              className="text-[0.625rem] font-bold tracking-[0.15em] text-red-700 font-space-grotesk"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{

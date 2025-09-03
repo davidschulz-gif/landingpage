@@ -191,7 +191,7 @@ export default function TypusNavbar() {
               )}
             </button>
             <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Sign Up</NavbarButton>
+            <NavbarButton variant="primary" className="whitespace-nowrap">Sign Up</NavbarButton>
           </div>
         </NavBody>
 
