@@ -6,6 +6,12 @@ You are a very experienced NextJS frontend developer with a SEO and UX backgroun
 
 Redesigning Typus AI landing page inspired by ManyChat's full-screen slider animations, https://www.krea.ai/ krea ai website animations and https://vyro.ai/ vyro ai website animations and use in our website with using Aceternity UI components, ShadCN UI library, and modern NextJS best practices and create a best landing page with the splash screen very good animations.
 
+# Theme:
+- Use red color of color code (255 54 54) for every red color in the design and midjourney orange color instead of the dark red.
+- Use all the font colors white and black.
+- Use the 'Space Grotesk' font for the text in all page.
+- Use the #f0f0f0 color as a background.
+
 ## 📦 Package Manager
 
 - **ALWAYS use `bun` instead of `npm`**

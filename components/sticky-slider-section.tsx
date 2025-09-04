@@ -275,7 +275,7 @@ export function StickySliderSection() {
               opacity: currentSlide === index ? 1 : 0
             }}
           >
-            <div className="container mx-auto px-8 lg:px-16 h-full" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <div className="container mx-auto px-8 lg:px-16 h-full">
               <div className="flex flex-col lg:flex-row h-full">
                 {/* Professional Navigation */}
                 <div className="hidden lg:flex flex-col justify-center py-16 w-80 pr-8">
@@ -298,14 +298,15 @@ export function StickySliderSection() {
                               onClick={() => handleTabClick(tabIndex)}
                               className={`group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden ${
                                 isActiveTab 
-                                  ? 'text-white shadow-lg' 
+                                  ? 'text-black shadow-lg border-2 animate-breathe-border' 
                                   : 'hover:bg-white/60 text-gray-700 hover:text-black'
                               }`}
                               style={{
-                                background: isActiveTab ? THEME_COLORS.primary : 'transparent'
+                                background: 'transparent',
+                                borderColor: isActiveTab ? THEME_COLORS.primary : 'transparent'
                               }}>
                               <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${
-                                isActiveTab ? 'opacity-100' : 'opacity-0'
+                                isActiveTab ? 'opacity-100 animate-breathe-primary-hover' : 'opacity-0'
                               }`} style={{ backgroundColor: THEME_COLORS.primary }}></div>
                               
                               <div className="flex items-center justify-between p-4 pl-6">
@@ -314,21 +315,21 @@ export function StickySliderSection() {
                                     isActiveTab ? 'bg-white/20' : 'bg-gray-100 group-hover:bg-gray-200'
                                   }`}>
                                     <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                      isActiveTab ? 'bg-white' : 'bg-gray-400 group-hover:bg-gray-600'
+                                      isActiveTab ? 'bg-primary animate-breathe-primary-hover' : 'bg-gray-400 group-hover:bg-gray-600'
                                     }`}></div>
                                   </div>
                                   
                                   <div>
                                     <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
                                       <div className={`font-bold text-sm tracking-wide transition-colors duration-300 ${
-                                        isActiveTab ? 'text-white' : 'text-gray-800 group-hover:text-black'
-                                      }`}>
+                                        isActiveTab ? 'text-black' : 'text-gray-800 group-hover:text-black'
+                                      }`} style={{ color: isActiveTab ? THEME_COLORS.primary : undefined }}>
                                         {tab.name}
                                       </div>
                                     </BreathingAnimationText>
                                     <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
                                       <div className={`text-xs transition-colors duration-300 ${
-                                        isActiveTab ? 'text-white/70' : 'text-gray-500'
+                                        isActiveTab ? 'text-black/70' : 'text-gray-500'
                                       }`}>
                                         {tab.subCategories?.length || 0} tools
                                       </div>
@@ -340,8 +341,8 @@ export function StickySliderSection() {
                                   isActiveTab ? 'rotate-90' : 'rotate-0'
                                 }`}>
                                   <div className={`w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 transition-colors duration-300 ${
-                                    isActiveTab ? 'border-white/70' : 'border-gray-400'
-                                  }`}></div>
+                                    isActiveTab ? 'border-black/70 animate-breathe-border' : 'border-gray-400'
+                                  }`} style={{ borderColor: isActiveTab ? THEME_COLORS.primary : undefined }}></div>
                                 </div>
                               </div>
                             </button>
@@ -360,18 +361,18 @@ export function StickySliderSection() {
                                         onClick={() => handleSubCategoryClick(tabIndex, slideIndex)}
                                         className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
                                           isActiveSubCat
-                                            ? 'text-black shadow-sm border'
+                                            ? 'text-black shadow-sm border animate-breathe-border'
                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
                                         }`}
                                         style={{
                                           background: isActiveSubCat ? THEME_COLORS.primaryLight : 'transparent',
-                                          borderColor: isActiveSubCat ? THEME_COLORS.primaryMuted : 'transparent'
+                                          borderColor: isActiveSubCat ? THEME_COLORS.primary : 'transparent'
                                         }}
                                       >
                                         <div className="flex items-center p-3 pl-4">
                                           <div className={`w-2 h-2 rounded-full mr-3 transition-all duration-200 ${
                                             isActiveSubCat 
-                                              ? 'shadow-sm' 
+                                              ? 'shadow-sm animate-breathe-primary-hover' 
                                               : 'bg-gray-300 group-hover/sub:bg-gray-400'
                                           }`} style={{
                                             backgroundColor: isActiveSubCat ? THEME_COLORS.primary : undefined
@@ -380,21 +381,19 @@ export function StickySliderSection() {
                                           <div className="flex-1">
                                             <BreathingAnimationText animationType={isActiveSubCat ? "red-orange" : "black-gray"}>
                                               <div className={`text-xs font-medium transition-colors duration-200 ${
-                                                isActiveSubCat ? 'text-gray-800' : 'text-gray-600 group-hover/sub:text-gray-800'
-                                              }`}>
+                                                isActiveSubCat ? 'text-black' : 'text-gray-600 group-hover/sub:text-gray-800'
+                                              }`} style={{ color: isActiveSubCat ? THEME_COLORS.primary : undefined }}>
                                                 {subCat.name}
                                               </div>
                                             </BreathingAnimationText>
                                           </div>
                                           
                                           {isActiveSubCat && (
-                                            <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: THEME_COLORS.primary }}></div>
+                                            <div className="w-1 h-1 rounded-full animate-breathe-primary-hover"></div>
                                           )}
                                         </div>
                                         
-                                        {isActiveSubCat && (
-                                          <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: THEME_COLORS.primaryLight }}></div>
-                                        )}
+
                                       </button>
                                     );
                                   })}
@@ -428,7 +427,7 @@ export function StickySliderSection() {
                         key={i}
                         onClick={() => setCurrentSlide(i)}
                         className={`h-1 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
-                          i <= currentSlide ? "w-12" : "w-6"
+                          i <= currentSlide ? "w-12 animate-breathe-primary-hover" : "w-6"
                         }`}
                         style={{
                           backgroundColor: i <= currentSlide ? THEME_COLORS.primary : THEME_COLORS.primaryMuted
@@ -436,7 +435,7 @@ export function StickySliderSection() {
                       />
                     ))}
                     <BreathingAnimationText animationType="black-gray">
-                      <span className="text-sm font-mono ml-6 opacity-80 text-black">
+                      <span className="text-sm ml-6 opacity-80 text-black">
                         {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
                       </span>
                     </BreathingAnimationText>
@@ -492,16 +491,7 @@ export function StickySliderSection() {
                   <div className="mt-8 space-y-6">
                     <Button
                       size="default"
-                      className="px-8 py-3 text-sm font-medium rounded-lg text-white transition-all duration-300 shadow-md hover:shadow-lg"
-                      style={{
-                        backgroundColor: THEME_COLORS.primary,
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = THEME_COLORS.primaryHover;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = THEME_COLORS.primary;
-                      }}
+                      className="px-8 py-3 text-sm font-medium rounded-lg text-white shadow-md hover:shadow-lg animate-breathe-primary-hover"
                     >
                       {currentTabSlides[currentSlide]?.buttonText || 'Get Started'}
                     </Button>
@@ -549,7 +539,9 @@ export function StickySliderSection() {
           {currentTabSlides.map((_, index) => (
             <div
               key={index}
-              className="w-2 h-8 rounded-full transition-all duration-300 shadow-lg"
+              className={`w-2 h-8 rounded-full transition-all duration-300 shadow-lg ${
+                currentSlide === index ? 'animate-breathe-primary-hover' : ''
+              }`}
               style={{
                 backgroundColor: currentSlide === index 
                   ? THEME_COLORS.primary 

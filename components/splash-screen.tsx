@@ -25,8 +25,7 @@ export function SplashScreen({
   const containerStyle = useMemo(
     () => ({
       willChange: "transform",
-      background:
-        "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)",
+      background: "#f0f0f0",
     }),
     []
   );
@@ -61,10 +60,9 @@ export function SplashScreen({
       >
         {/* Wavy Background Section */}
         <div className="absolute inset-0">
-          {/* colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]} */}
           <WavyBackground
-            backgroundFill="transparent"
-            colors={["#f8fafc", "#f1f5f9", "#e2e8f0", "#cbd5e1"]}
+            backgroundFill="#f0f0f0"
+            colors={["#f0f0f0", "#ffffff"]}
             waveWidth={80}
             blur={5}
             speed="fast"
@@ -82,7 +80,7 @@ export function SplashScreen({
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <BreathingAnimationText animationType="black-gray" className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-gray-800 dark:text-gray-200 whitespace-nowrap font-space-grotesk">
+                  <BreathingAnimationText animationType="black-gray" className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-black whitespace-nowrap">
                     <motion.div
                       animate={{
                         opacity: [0.7, 1, 0.7],
@@ -152,7 +150,8 @@ export function SplashScreen({
 
                 {/* Floating elements */}
                 <motion.div
-                  className="absolute top-20 right-20 w-4 h-4 bg-gray-500/30 rounded-full"
+                  className="absolute top-20 right-20 w-4 h-4 rounded-full"
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                   animate={{
                     y: [0, -20, 0],
                     opacity: [0.3, 0.8, 0.3],
@@ -164,7 +163,8 @@ export function SplashScreen({
                   }}
                 />
                 <motion.div
-                  className="absolute bottom-32 left-20 w-6 h-6 bg-gray-600/20 rounded-full"
+                  className="absolute bottom-32 left-20 w-6 h-6 rounded-full"
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                   animate={{
                     y: [0, 15, 0],
                     x: [0, 10, 0],
@@ -178,7 +178,8 @@ export function SplashScreen({
                   }}
                 />
                 <motion.div
-                  className="absolute top-1/3 right-1/4 w-2 h-2 bg-gray-700/40 rounded-full"
+                  className="absolute top-1/3 right-1/4 w-2 h-2 rounded-full"
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.4)" }}
                   animate={{
                     scale: [1, 1.5, 1],
                     opacity: [0.4, 0.9, 0.4],
@@ -219,9 +220,10 @@ export function SplashScreen({
               </div>
             </motion.div>
             {/* Progress Bar */}
-            <div className="w-32 h-0.5 bg-red-400 rounded-full overflow-hidden">
+            <div className="w-32 h-0.5 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255, 54, 54, 0.3)" }}>
               <motion.div
-                className="h-full bg-red-700 rounded-full"
+                className="h-full rounded-full"
+                style={{ backgroundColor: "rgb(255, 54, 54)" }}
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
@@ -235,7 +237,10 @@ export function SplashScreen({
 
             {/* INITIALIZING Text */}
             <motion.p
-              className="text-[0.625rem] font-bold tracking-[0.15em] text-red-700 font-space-grotesk"
+              className="text-[0.625rem] font-bold tracking-[0.15em]"
+              style={{ 
+                color: "rgb(255, 54, 54)"
+              }}
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{

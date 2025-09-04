@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Wand2, Edit3, Sparkles, Video } from "lucide-react";
 import { VideoPlayer } from "@/components/video/player";
 import { BreathingAnimationText } from "./breathing-animation-text";
+import { THEME_COLORS } from "@/lib/theme";
 
 const tabs = [
   {
@@ -101,24 +102,31 @@ export function TabVideoShowcase() {
                   <Card
                     className={`cursor-pointer transition-all duration-300 ${
                       isActive
-                        ? "bg-red-100 dark:bg-red-900/30 border-red-500 shadow-lg"
+                        ? "bg-red-100 dark:bg-red-900/30 border-2 shadow-lg animate-breathe-border"
                         : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md"
                     }`}
+                    style={{
+                      borderColor: isActive ? THEME_COLORS.primary : undefined
+                    }}
                     onClick={() => setActiveTab(tab.id)}
                   >
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className={`p-2 rounded-lg ${
-                          isActive ? "bg-red-500" : "bg-gray-100 dark:bg-gray-700"
-                        }`}>
+                          isActive ? "animate-breathe-primary-hover" : "bg-gray-100 dark:bg-gray-700"
+                        }`} style={{
+                          backgroundColor: isActive ? THEME_COLORS.primary : undefined
+                        }}>
                           <Icon className={`w-5 h-5 ${
                             isActive ? "text-white" : "text-gray-600 dark:text-gray-300"
                           }`} />
                         </div>
                         <BreathingAnimationText animationType={isActive ? "red-orange" : "black-gray"}>
                           <h3 className={`font-bold ${
-                            isActive ? "text-red-700 dark:text-red-300" : "text-gray-900 dark:text-white"
-                          }`}>
+                            isActive ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-white"
+                          }`} style={{
+                            color: isActive ? THEME_COLORS.primary : undefined
+                          }}>
                             {tab.title}
                           </h3>
                         </BreathingAnimationText>
@@ -134,8 +142,10 @@ export function TabVideoShowcase() {
                         {tab.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center gap-2">
                             <div className={`w-1.5 h-1.5 rounded-full ${
-                              isActive ? "bg-green-500" : "bg-gray-400"
-                            }`} />
+                              isActive ? "animate-breathe-primary-hover" : "bg-gray-400"
+                            }`} style={{
+                              backgroundColor: isActive ? THEME_COLORS.primary : undefined
+                            }} />
                             <BreathingAnimationText animationType="black-gray">
                               <span className="text-xs text-gray-500 dark:text-gray-400">
                                 {feature}
