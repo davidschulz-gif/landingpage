@@ -5,7 +5,7 @@ export const measurePerformance = () => {
   // Core Web Vitals
   const observer = new PerformanceObserver((list) => {
     list.getEntries().forEach((entry) => {
-      console.log(`📊 ${entry.name}:`, entry.value);
+      console.log(`📊 ${entry.name}:`, entry.startTime);
     });
   });
 
@@ -19,8 +19,8 @@ export const measurePerformance = () => {
       'DNS Lookup': navigation.domainLookupEnd - navigation.domainLookupStart,
       'TCP Connection': navigation.connectEnd - navigation.connectStart,
       'Server Response': navigation.responseEnd - navigation.requestStart,
-      'DOM Content Loaded': navigation.domContentLoadedEventEnd - navigation.navigationStart,
-      'Page Load Complete': navigation.loadEventEnd - navigation.navigationStart,
+      'DOM Content Loaded': navigation.domContentLoadedEventEnd - navigation.fetchStart,
+      'Page Load Complete': navigation.loadEventEnd - navigation.fetchStart,
       'First Paint': performance.getEntriesByName('first-paint')[0]?.startTime || 0,
       'First Contentful Paint': performance.getEntriesByName('first-contentful-paint')[0]?.startTime || 0,
     };
