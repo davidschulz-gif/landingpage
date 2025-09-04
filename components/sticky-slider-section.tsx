@@ -34,18 +34,18 @@ const tabsData: TabData[] = [
     id: 1,
     name: "CREATOR",
     subCategories: [
-      { id: 1, name: "sketch", slideId: 1 },
-      { id: 2, name: "3d model to render (plugins)", slideId: 2 },
-      { id: 3, name: "cad", slideId: 3 },
-      { id: 4, name: "sitephoto", slideId: 4 },
-      { id: 5, name: "model photo", slideId: 5 },
-      { id: 6, name: "color map (upload custom textures)", slideId: 6 }
+      { id: 1, name: "Sketch", slideId: 1 },
+      { id: 2, name: "3D Model To Render (plugins)", slideId: 2 },
+      { id: 3, name: "CAD", slideId: 3 },
+      { id: 4, name: "Sitephoto", slideId: 4 },
+      { id: 5, name: "Model Photo", slideId: 5 },
+      { id: 6, name: "Color Map (Upload Custom Textures)", slideId: 6 }
     ],
     slides: [
       {
         id: 1,
-        title: "Sketch to render",
-        subtitle: "hand drawings come alive",
+        title: "SKETCH TO RENDER",
+        subtitle: "Hand Drawings Come Alive",
         description: "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
@@ -54,8 +54,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 2,
-        title: "3D model to render",
-        subtitle: "plugins integration",
+        title: "3D MODEL TO RENDER",
+        subtitle: "Plugins Integration",
         description: "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
@@ -64,8 +64,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 3,
-        title: "CAD transformation",
-        subtitle: "technical to visual",
+        title: "CAD TRANSFORMATION",
+        subtitle: "Technical To Visual",
         description: "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
         video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
         textColor: "text-black",
@@ -75,7 +75,7 @@ const tabsData: TabData[] = [
       {
         id: 4,
         title: "Site photo enhancement",
-        subtitle: "context visualization",
+        subtitle: "Context Visualization",
         description: "Place your designs in real environments using site photos for contextual visualization.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
@@ -84,8 +84,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 5,
-        title: "Model photography",
-        subtitle: "physical to digital",
+        title: "MODEL PHOTOGRAPHY",
+        subtitle: "Physical To Digital",
         description: "Capture physical architectural models and transform them into digital renders.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
@@ -94,8 +94,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 6,
-        title: "Custom textures",
-        subtitle: "color map upload",
+        title: "CUSTOM TEXTURES",
+        subtitle: "Color Map Upload",
         description: "Upload your own textures and materials to create unique, personalized architectural visualizations.",
         video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
         textColor: "text-black",
@@ -108,17 +108,17 @@ const tabsData: TabData[] = [
     id: 2,
     name: "EDITOR",
     subCategories: [
-      { id: 1, name: "inpaint", slideId: 1 },
-      { id: 2, name: "outpaint", slideId: 2 },
-      { id: 3, name: "add style", slideId: 3 },
-      { id: 4, name: "remove objects & background", slideId: 4 },
-      { id: 5, name: "edit by text", slideId: 5 }
+      { id: 1, name: "Inpaint Details", slideId: 1 },
+      { id: 2, name: "Outpaint Expansion", slideId: 2 },
+      { id: 3, name: "Add Style", slideId: 3 },
+      { id: 4, name: "Remove Objects & Background", slideId: 4 },
+      { id: 5, name: "Edit by Text", slideId: 5 }
     ],
     slides: [
       {
         id: 1,
-        title: "Inpaint details",
-        subtitle: "precise modifications",
+        title: "INPAINT DETAILS",
+        subtitle: "Precise Modifications",
         description: "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
@@ -127,8 +127,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 2,
-        title: "Outpaint expansion",
-        subtitle: "extend your vision",
+        title: "OUTPAINT EXPANSION",
+        subtitle: "Extend Your Vision",
         description: "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
@@ -137,8 +137,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 3,
-        title: "Style application",
-        subtitle: "aesthetic transformation",
+        title: "STYLE APPLICATION",
+        subtitle: "Aesthetic Transformation",
         description: "Apply different architectural styles and artistic approaches to transform your designs.",
         video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
         textColor: "text-black",
@@ -147,8 +147,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 4,
-        title: "Object removal",
-        subtitle: "clean backgrounds",
+        title: "OBJECT REMOVAL",
+        subtitle: "Clean Backgrounds",
         description: "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
         textColor: "text-black",
@@ -157,8 +157,8 @@ const tabsData: TabData[] = [
       },
       {
         id: 5,
-        title: "Text-based editing",
-        subtitle: "describe changes",
+        title: "TEXT-BASED EDITING",
+        subtitle: "Describe Changes",
         description: "Make complex edits by simply describing what you want to change in natural language.",
         video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
         textColor: "text-black",
@@ -171,12 +171,12 @@ const tabsData: TabData[] = [
     id: 3,
     name: "UPSCALER",
     subCategories: [
-      { id: 1, name: "enhance details & upscale", slideId: 1 }
+      { id: 1, name: "Enhance Details & Upscale", slideId: 1 }
     ],
     slides: [
       {
         id: 1,
-        title: "Detail enhancement",
+        title: "DETAIL ENHANCEMENT",
         subtitle: "AI-powered upscaling",
         description: "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
         video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
@@ -456,7 +456,7 @@ export function StickySliderSection() {
                         <BreathingAnimationText animationType="black-gray">
                           <div className="space-y-4">
                             <motion.h1 
-                              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.9] text-black" 
+                              className="text-xl sm:text-3xl lg:text-5xl font-bold leading-[0.9] text-black" 
                               initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.6, delay: 0.1 }}

@@ -98,7 +98,7 @@ export const VideoShowcaseSection = () => {
       >
         <BreathingAnimationText animationType="black-gray">
           <motion.h1 
-            className="mb-2 text-4xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200 md:text-7xl"
+            className="mb-2 text-xl sm:text-3xl lg:text-5xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}

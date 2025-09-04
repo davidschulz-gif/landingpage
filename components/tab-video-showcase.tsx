@@ -56,7 +56,7 @@ export function TabVideoShowcase() {
         {/* Header */}
         <div className="text-center mb-16">
           <BreathingAnimationText animationType="black-gray">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 font-normal">
+            <h2 className="text-xl sm:text-3xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-normal">
               FROM CONCEPT TO ANIMATION
             </h2>
           </BreathingAnimationText>

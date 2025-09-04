@@ -107,7 +107,7 @@ export const Header = () => {
     <div className="max-w-7xl relative mx-auto py-20 md:py-60 px-4 w-full left-0 top-0">
       <BreathingAnimationText animationType="black-gray">
         <motion.h1 
-          className="text-2xl md:text-7xl font-normal relative z-20 text-black dark:text-white"
+          className="text-xl sm:text-3xl lg:text-5xl font-normal relative z-20 text-black dark:text-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
