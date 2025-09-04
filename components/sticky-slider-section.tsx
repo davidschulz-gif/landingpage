@@ -427,10 +427,10 @@ export function StickySliderSection() {
                         key={i}
                         onClick={() => setCurrentSlide(i)}
                         className={`h-1 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
-                          i <= currentSlide ? "w-12 animate-breathe-primary-hover" : "w-6"
+                          i === currentSlide ? "w-12 animate-breathe-primary-hover" : "w-6"
                         }`}
                         style={{
-                          backgroundColor: i <= currentSlide ? THEME_COLORS.primary : THEME_COLORS.primaryMuted
+                          backgroundColor: i === currentSlide ? THEME_COLORS.primary : THEME_COLORS.primaryMuted
                         }}
                       />
                     ))}
