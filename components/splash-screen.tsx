@@ -80,7 +80,7 @@ export function SplashScreen({
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <BreathingAnimationText animationType="black-gray" className="text-xl sm:text-3xl lg:text-5xl font-black tracking-wide text-black whitespace-nowrap">
+                  <BreathingAnimationText animationType="black-gray" className="font-normal text-xl sm:text-3xl lg:text-5xl tracking-wide text-black whitespace-nowrap">
                     <motion.div
                       animate={{
                         opacity: [0.7, 1, 0.7],
@@ -100,7 +100,7 @@ export function SplashScreen({
                           ease: "easeOut",
                         }}
                       >
-                        Imagine.&nbsp;
+                        IMAGINE.&nbsp;
                       </motion.span>
                       <motion.span
                         className="relative inline-block"
@@ -122,7 +122,7 @@ export function SplashScreen({
                         }}
                       >
                         <span className={showDelegate ? "" : "line-through"}>
-                          Delegate.&nbsp;
+                          DELEGATE.&nbsp;
                         </span>
                         {!showDelegate && (
                           <motion.div
@@ -142,7 +142,7 @@ export function SplashScreen({
                           ease: "easeOut",
                         }}
                       >
-                        Create.
+                        CREATE.
                       </motion.span>
                     </motion.div>
                   </BreathingAnimationText>
@@ -213,9 +213,11 @@ export function SplashScreen({
                 <Image
                   src="/logo/typus_logo_transparent.png"
                   alt="Typus AI Logo"
-                  fill
+                  width={32}
+                  height={32}
                   className="object-contain"
                   priority
+                  quality={90}
                 />
               </div>
             </motion.div>

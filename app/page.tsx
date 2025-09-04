@@ -251,8 +251,8 @@ export default function Home() {
           import("@/components/footer-section")
         ];
         
-        // Preload critical images
-        const imagePromises = row123Products.slice(0, 6).map(product => {
+        // Preload only critical above-the-fold images
+        const imagePromises = row123Products.slice(0, 3).map(product => {
           return new Promise((resolve) => {
             const img = new Image();
             img.onload = resolve;
@@ -261,7 +261,9 @@ export default function Home() {
           });
         });
         
-        await Promise.all([...componentPromises, ...imagePromises]);
+        // Load components and images in parallel but don't block on images
+        await Promise.all(componentPromises);
+        Promise.all(imagePromises); // Don't await images
         
         const endTime = performance.now();
         const loadTime = endTime - startTime;

@@ -107,6 +107,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://app.typus.ai" />
+        <link rel="preload" href="/hero-parallax-images/row-1-2-3/commercial building.png" as="image" />
+        <link rel="preload" href="/logo/typus_logo_transparent.png" as="image" />
         <meta name="theme-color" content="#ff3636" />
         <meta name="msapplication-TileColor" content="#ff3636" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

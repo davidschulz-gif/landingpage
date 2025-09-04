@@ -107,14 +107,14 @@ export const Header = () => {
     <div className="max-w-7xl relative mx-auto py-20 md:py-60 px-4 w-full left-0 top-0">
       <BreathingAnimationText animationType="black-gray">
         <motion.h1 
-          className="text-2xl md:text-7xl font-bold relative z-20 text-black dark:text-white"
+          className="text-2xl md:text-7xl font-normal relative z-20 text-black dark:text-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <span className="text-black dark:text-white">AI FOR </span>
-          <span className="text-black dark:text-white font-black">
+          <span className="text-black dark:text-white font-normal">
             ARCHITECTS.
           </span>
         </motion.h1>
@@ -249,9 +249,10 @@ export const ProductCard = ({
           fill
           className="object-cover cursor-pointer ease-out"
           alt={product.title}
-          sizes="(max-width: 768px) 300px, 400px"
-          quality={85}
-          priority={index < 8}
+          sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 400px"
+          quality={75}
+          priority={index < 4}
+          loading={index < 4 ? "eager" : "lazy"}
           placeholder="blur"
           blurDataURL="data:image/webp;base64,UklGRpQAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
         />

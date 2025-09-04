@@ -17,7 +17,7 @@ export default function TypusNavbar() {
   const { theme, setTheme } = useTheme();
   const navItems = [
     {
-      name: "Solutions",
+      name: "SOLUTIONS",
       link: "#solutions",
       submenu: [
         {
@@ -43,7 +43,7 @@ export default function TypusNavbar() {
       ],
     },
     {
-      name: "Community",
+      name: "COMMUNITY",
       link: "#community",
       submenu: [
         {
@@ -67,7 +67,7 @@ export default function TypusNavbar() {
       ],
     },
     {
-      name: "Licenses",
+      name: "LICENSES",
       link: "#licenses",
       submenu: [
         {
@@ -91,7 +91,7 @@ export default function TypusNavbar() {
       ],
     },
     {
-      name: "About",
+      name: "ABOUT",
       link: "#about",
       submenu: [
         {
@@ -125,7 +125,7 @@ export default function TypusNavbar() {
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 ml-8">
             {navItems.map((item, idx) => (
               <div
                 key={`nav-item-${idx}`}
@@ -135,7 +135,7 @@ export default function TypusNavbar() {
               >
                 <a
                   href={item.link}
-                  className="flex items-center gap-1 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
+                  className="flex items-center gap-1 text-sm font-normal capitalize text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
                 >
                   {item.name}
                   <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />

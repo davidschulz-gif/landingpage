@@ -104,21 +104,21 @@ export const VideoShowcaseSection = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <motion.span 
-              className="text-black dark:text-white"
+              className="text-black dark:text-white font-normal"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              Transform Your Vision
+              TRANSFORM YOUR VISION
             </motion.span>
             <br />
             <motion.span
-              className="text-neutral-800 dark:text-white"
+              className="text-neutral-800 dark:text-white font-normal"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              Into Reality
+              INTO REALITY
             </motion.span>
           </motion.h1>
         </BreathingAnimationText>
