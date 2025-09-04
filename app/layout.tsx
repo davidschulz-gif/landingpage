@@ -11,44 +11,89 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "Typus.AI - AI-Powered Architectural Visualization",
-  description:
-    "Transform your architectural designs with AI. Typus.AI preserves structure while creating stunning visualizations from your CAD files and sketches.",
-  keywords: "AI architecture, architectural visualization, CAD to render, AI design, building visualization",
-  authors: [{ name: "Typus.AI" }],
-  creator: "Typus.AI",
-  publisher: "Typus.AI",
-  icons: {
-    icon: "/logo/typus_logo.png",
-    shortcut: "/logo/typus_logo.png",
-    apple: "/logo/typus_logo.png",
+  metadataBase: new URL('https://typus.ai'),
+  title: {
+    default: "Typus AI - AI-Powered Architectural Visualization & Design Platform",
+    template: "%s | Typus AI"
   },
+  description: "Transform your architectural designs with AI. Typus AI preserves structure while creating photorealistic visualizations from CAD files, sketches, and 3D models. Professional AI rendering for architects.",
+  keywords: [
+    "AI architecture",
+    "architectural visualization", 
+    "CAD to render",
+    "AI design",
+    "building visualization",
+    "architectural rendering",
+    "AI powered design",
+    "photorealistic rendering",
+    "3D visualization",
+    "architectural AI",
+    "design automation",
+    "building design AI"
+  ],
+  authors: [{ name: "Typus AI", url: "https://typus.ai" }],
+  creator: "Typus AI",
+  publisher: "Typus AI",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: "/logo/typus_logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo/typus_logo.png", sizes: "16x16", type: "image/png" }
+    ],
+    shortcut: "/logo/typus_logo.png",
+    apple: [
+      { url: "/logo/typus_logo.png", sizes: "180x180", type: "image/png" }
+    ],
+  },
+  manifest: "/manifest.json",
   openGraph: {
-    title: "Typus.AI - AI-Powered Architectural Visualization",
-    description:
-      "Transform your architectural designs with AI. Preserve structure while creating stunning visualizations.",
-    url: "https://typus.ai",
-    siteName: "Typus.AI",
     type: "website",
+    locale: "en_US",
+    url: "https://typus.ai",
+    siteName: "Typus AI",
+    title: "Typus AI - AI-Powered Architectural Visualization & Design Platform",
+    description: "Transform your architectural designs with AI. Create photorealistic visualizations from CAD files, sketches, and 3D models while preserving structural integrity.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Typus AI - AI-Powered Architectural Visualization",
+        type: "image/jpeg"
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Typus.AI - AI-Powered Architectural Visualization",
-    description:
-      "Transform your architectural designs with AI. Preserve structure while creating stunning visualizations.",
+    site: "@TypusAI",
+    creator: "@TypusAI",
+    title: "Typus AI - AI-Powered Architectural Visualization",
+    description: "Transform your architectural designs with AI. Create photorealistic visualizations from CAD files and sketches.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
-  generator: "Next.js",
+  alternates: {
+    canonical: "https://typus.ai",
+  },
+  category: "Technology",
+  classification: "AI Software",
+  referrer: "origin-when-cross-origin",
 }
 
 export default function RootLayout({
@@ -58,6 +103,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://app.typus.ai" />
+        <meta name="theme-color" content="#ff3636" />
+        <meta name="msapplication-TileColor" content="#ff3636" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
       <body className="dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
         <ThemeProvider
           attribute="class"

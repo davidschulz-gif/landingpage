@@ -208,7 +208,7 @@ export const NavbarLogo = () => {
   return (
     <a href="#" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
       <img src="/logo/typus_logo_transparent.png" alt="Typus.AI logo" width={40} height={40} className="object-contain" />
-      <span className="font-medium text-black dark:text-white" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Typus.AI</span>
+      <span className="text-black dark:text-white">Typus.AI</span>
     </a>
   )
 }

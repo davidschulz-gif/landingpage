@@ -1,24 +1,30 @@
 "use client"
 import { motion, useAnimationFrame, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import React, { useState } from "react"
 import { BreathingAnimationText } from "./breathing-animation-text";
 
 export const HeroParallax = ({
-  products,
+  row123Products,
+  row4Products,
 }: {
-  products: {
+  row123Products: {
+    title: string
+    link: string
+    thumbnail: string
+  }[]
+  row4Products: {
     title: string
     link: string
     thumbnail: string
   }[]
 }) => {
-  // Simple product duplication for infinite scroll
-  const duplicatedProducts = [...products, ...products]
-  const firstRow = duplicatedProducts
-  const secondRow = duplicatedProducts
-  const thirdRow = duplicatedProducts
-  const fourthRow = duplicatedProducts
+  // Organize products by rows with duplication for infinite scroll
+  const firstRow = [...row123Products, ...row123Products]
+  const secondRow = [...row123Products, ...row123Products]
+  const thirdRow = [...row123Products, ...row123Products]
+  const fourthRow = [...row4Products, ...row4Products]
   
   const ref = React.useRef(null)
   const [time, setTime] = useState(0)
@@ -238,22 +244,30 @@ export const ProductCard = ({
       }}
     >
       <Link href={product.link} className="block cursor-pointer absolute inset-0">
-        <motion.img
+        <Image
           src={product.thumbnail || "/placeholder.svg"}
-          className="object-cover absolute h-full w-full cursor-pointer inset-0 ease-out"
+          fill
+          className="object-cover cursor-pointer ease-out"
           alt={product.title}
+          sizes="(max-width: 768px) 300px, 400px"
+          quality={85}
+          priority={index < 8}
+          placeholder="blur"
+          blurDataURL="data:image/webp;base64,UklGRpQAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
         />
       </Link>
       <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none"></div>
-      <motion.div 
-        className="absolute bottom-4 left-4 right-4 flex justify-start"
-      >
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5">
-          <span className="text-white font-medium text-sm leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            {product.title}
-          </span>
-        </div>
-      </motion.div>
+      {product.title && (
+        <motion.div 
+          className="absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none"
+        >
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5">
+            <span className="text-white font-medium text-sm leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              {product.title}
+            </span>
+          </div>
+        </motion.div>
+      )}
       <motion.div
         className="absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full"
         animate={{
