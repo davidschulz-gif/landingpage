@@ -2,6 +2,8 @@
 import { HeroParallax } from "@/components/hero-parallax";
 import { SplashScreen } from "@/components/splash-screen";
 import TypusNavbar from "@/components/typus-navbar";
+
+import { StickyBottomSheet } from "@/components/sticky-bottom-sheet";
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import dynamic from 'next/dynamic';
@@ -297,6 +299,9 @@ export default function Home() {
 
       {/* Enhanced Footer */}
       <FooterSection />
+      
+      {/* Sticky Bottom Sheet */}
+      <StickyBottomSheet />
     </div>
   );
 

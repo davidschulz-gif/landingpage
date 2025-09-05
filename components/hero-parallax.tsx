@@ -1,9 +1,9 @@
 "use client"
-import { motion, useAnimationFrame, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
-import Link from "next/link"
+import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
 import Image from "next/image"
+import Link from "next/link"
 import React, { useState } from "react"
-import { BreathingAnimationText } from "./breathing-animation-text";
+import { BreathingAnimationText } from "./breathing-animation-text"
 
 export const HeroParallax = ({
   row123Products,
@@ -35,22 +35,19 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 400, damping: 40, bounce: 0 }
 
-  // Infinite scroll animation
-  // useAnimationFrame((t) => {
-  //   setTime(t * 0.00005)
-  // })
-
-  const baseTranslateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 800]), springConfig)
-  const baseTranslateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -800]), springConfig)
+  const baseTranslateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 500]), springConfig)
+  const baseTranslateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -400]), springConfig)
   
   const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.3], [25, 0]), springConfig)
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.1, 1]), springConfig)
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.3], [15, 0]), springConfig)
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-600, 100]), springConfig)
+  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-800, 0]), springConfig)
   const scale = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.9, 1]), springConfig)
+  
   return (
     <div
       ref={ref}
+      data-hero-section
       className="h-[215vh] py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
@@ -104,7 +101,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-60 px-4 w-full left-0 top-0">
+    <div className="max-w-7xl relative mx-auto py-4 md:py-40 px-4 w-full left-0 top-0">
       <BreathingAnimationText animationType="black-gray">
         <motion.h1 
           className="text-xl sm:text-3xl lg:text-5xl font-normal relative z-20 text-black dark:text-white"
@@ -187,7 +184,7 @@ const InfiniteMarqueeRow = ({
   className: string;
   isFirstRow?: boolean;
 }) => {
-  const cardWidth = 280 + 20 // card width + gap
+  const cardWidth = 280 + 20
   const totalWidth = products.length * cardWidth
   const infiniteX = ((direction * time * speed) % totalWidth)
   

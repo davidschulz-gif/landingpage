@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { THEME_COLORS } from "@/lib/theme";
 import { BreathingAnimationText } from "./breathing-animation-text";
+import { Button as MovingBorderButton } from "./ui/moving-border";
 
 interface SlideData {
   id: number;
@@ -47,7 +48,7 @@ const tabsData: TabData[] = [
         title: "SKETCH TO RENDER",
         subtitle: "Hand Drawings Come Alive",
         description: "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+        video: "/videos/sketch.mp4",
         textColor: "text-black",
         buttonText: "Upload Sketch",
         progress: "1/6"
@@ -57,7 +58,7 @@ const tabsData: TabData[] = [
         title: "3D MODEL TO RENDER",
         subtitle: "Plugins Integration",
         description: "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        video: "/videos/3d.mp4",
         textColor: "text-black",
         buttonText: "Get Plugins",
         progress: "2/6"
@@ -67,7 +68,7 @@ const tabsData: TabData[] = [
         title: "CAD TRANSFORMATION",
         subtitle: "Technical To Visual",
         description: "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
+        video: "/videos/cad.mp4",
         textColor: "text-black",
         buttonText: "Try CAD",
         progress: "3/6"
@@ -77,7 +78,7 @@ const tabsData: TabData[] = [
         title: "Site photo enhancement",
         subtitle: "Context Visualization",
         description: "Place your designs in real environments using site photos for contextual visualization.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+        video: "/videos/photo.mp4",
         textColor: "text-black",
         buttonText: "Upload Photo",
         progress: "4/6"
@@ -87,7 +88,7 @@ const tabsData: TabData[] = [
         title: "MODEL PHOTOGRAPHY",
         subtitle: "Physical To Digital",
         description: "Capture physical architectural models and transform them into digital renders.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        video: "/videos/modelphoto.mp4",
         textColor: "text-black",
         buttonText: "Capture Model",
         progress: "5/6"
@@ -97,7 +98,7 @@ const tabsData: TabData[] = [
         title: "CUSTOM TEXTURES",
         subtitle: "Color Map Upload",
         description: "Upload your own textures and materials to create unique, personalized architectural visualizations.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
+        video: "/videos/colormap.mp4",
         textColor: "text-black",
         buttonText: "Upload Textures",
         progress: "6/6"
@@ -120,7 +121,7 @@ const tabsData: TabData[] = [
         title: "INPAINT DETAILS",
         subtitle: "Precise Modifications",
         description: "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+        video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Start Inpainting",
         progress: "1/5"
@@ -130,7 +131,7 @@ const tabsData: TabData[] = [
         title: "OUTPAINT EXPANSION",
         subtitle: "Extend Your Vision",
         description: "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Expand View",
         progress: "2/5"
@@ -140,7 +141,7 @@ const tabsData: TabData[] = [
         title: "STYLE APPLICATION",
         subtitle: "Aesthetic Transformation",
         description: "Apply different architectural styles and artistic approaches to transform your designs.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/refine_1.mp4#t=1,70",
+        video: "/videos/styletransfer.mp4",
         textColor: "text-black",
         buttonText: "Browse Styles",
         progress: "3/5"
@@ -150,7 +151,7 @@ const tabsData: TabData[] = [
         title: "OBJECT REMOVAL",
         subtitle: "Clean Backgrounds",
         description: "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+        video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Remove Objects",
         progress: "4/5"
@@ -160,7 +161,7 @@ const tabsData: TabData[] = [
         title: "TEXT-BASED EDITING",
         subtitle: "Describe Changes",
         description: "Make complex edits by simply describing what you want to change in natural language.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/tweak-it.mp4#t=1,70",
+        video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Edit by Text",
         progress: "5/5"
@@ -179,7 +180,7 @@ const tabsData: TabData[] = [
         title: "DETAIL ENHANCEMENT",
         subtitle: "AI-powered upscaling",
         description: "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
-        video: "https://typus.ai/wp-content/uploads/2024/12/create_1-1.mp4#t=1",
+        video: "/videos/upscale.mp4",
         textColor: "text-black",
         buttonText: "Enhance Details",
         progress: "1/1"
@@ -332,58 +333,75 @@ export function StickySliderSection() {
                         const isActiveTab = activeTab === tabIndex;
                         return (
                           <div key={tab.id} className="relative">
-                            <button
-                              onClick={() => handleTabClick(tabIndex)}
-                              className={`group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden ${
-                                isActiveTab 
-                                  ? 'text-black shadow-lg border-2 animate-breathe-border' 
-                                  : 'hover:bg-white/60 text-gray-700 hover:text-black'
-                              }`}
-                              style={{
-                                background: 'transparent',
-                                borderColor: isActiveTab ? THEME_COLORS.primary : 'transparent'
-                              }}>
-                              <div className={`absolute left-0 top-0 bottom-0 w-1 transition-all duration-300 ${
-                                isActiveTab ? 'opacity-100 animate-breathe-primary-hover' : 'opacity-0'
-                              }`} style={{ backgroundColor: THEME_COLORS.primary }}></div>
-                              
-                              <div className="flex items-center justify-between p-4 pl-6">
+                            {isActiveTab ? (
+                              <MovingBorderButton
+                                duration={3000}
+                                className="bg-transparent border border-[#ff6b35] text-black flex items-center justify-between w-full p-2"
+                                containerClassName="w-full h-auto"
+                                borderClassName="bg-[radial-gradient(#ff6b35_40%,#ff3636_60%)] opacity-80"
+                                borderRadius="0.75rem"
+                                onClick={() => handleTabClick(tabIndex)}
+                                style={{
+                                  borderRadius: "0.75rem",
+                                  background: isActiveTab ? `linear-gradient(to right, ${THEME_COLORS.primaryLight}, rgba(255, 140, 0, 0.1))` : 'transparent',
+                                  borderColor: isActiveTab ? THEME_COLORS.primary : 'transparent'
+                                }}
+                              >
                                 <div className="flex items-center space-x-3">
-                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                                    isActiveTab ? 'bg-white/20' : 'bg-gray-100 group-hover:bg-gray-200'
-                                  }`}>
-                                    <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                      isActiveTab ? 'bg-primary animate-breathe-primary-hover' : 'bg-gray-400 group-hover:bg-gray-600'
-                                    }`}></div>
+                                  <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/20">
+                                    <div className="w-3 h-3 rounded-full bg-primary animate-breathe-primary-hover"></div>
                                   </div>
                                   
                                   <div>
-                                    <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
-                                      <div className={`font-bold text-sm tracking-wide transition-colors duration-300 ${
-                                        isActiveTab ? 'text-black' : 'text-gray-800 group-hover:text-black'
-                                      }`} style={{ color: isActiveTab ? THEME_COLORS.primary : undefined }}>
+                                    <BreathingAnimationText animationType="red-orange">
+                                      <div className="font-bold text-sm tracking-wide text-black" style={{ color: THEME_COLORS.primary }}>
                                         {tab.name}
                                       </div>
                                     </BreathingAnimationText>
-                                    <BreathingAnimationText animationType={isActiveTab ? "red-orange" : "black-gray"}>
-                                      <div className={`text-xs transition-colors duration-300 ${
-                                        isActiveTab ? 'text-black/70' : 'text-gray-500'
-                                      }`}>
+                                    <BreathingAnimationText animationType="red-orange">
+                                      <div className="text-xs text-black/70">
                                         {tab.subCategories?.length || 0} tools
                                       </div>
                                     </BreathingAnimationText>
                                   </div>
                                 </div>
                                 
-                                <div className={`w-5 h-5 flex items-center justify-center transition-transform duration-300 ${
-                                  isActiveTab ? 'rotate-90' : 'rotate-0'
-                                }`}>
-                                  <div className={`w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 transition-colors duration-300 ${
-                                    isActiveTab ? 'border-black/70 animate-breathe-border' : 'border-gray-400'
-                                  }`} style={{ borderColor: isActiveTab ? THEME_COLORS.primary : undefined }}></div>
+                                <div className="w-5 h-5 flex items-center justify-center rotate-90">
+                                  <div className="w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 border-black/70 animate-breathe-border" style={{ borderColor: THEME_COLORS.primary }}></div>
                                 </div>
-                              </div>
-                            </button>
+                              </MovingBorderButton>
+                            ) : (
+                              <button
+                                onClick={() => handleTabClick(tabIndex)}
+                                className="group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden hover:bg-white/60 text-gray-700 hover:text-black"
+                                style={{ background: 'transparent' }}
+                              >
+                                <div className="flex items-center justify-between p-4 pl-6">
+                                  <div className="flex items-center space-x-3">
+                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gray-100 group-hover:bg-gray-200">
+                                      <div className="w-3 h-3 rounded-full bg-gray-400 group-hover:bg-gray-600"></div>
+                                    </div>
+                                    
+                                    <div>
+                                      <BreathingAnimationText animationType="black-gray">
+                                        <div className="font-bold text-sm tracking-wide text-gray-800 group-hover:text-black">
+                                          {tab.name}
+                                        </div>
+                                      </BreathingAnimationText>
+                                      <BreathingAnimationText animationType="black-gray">
+                                        <div className="text-xs text-gray-500">
+                                          {tab.subCategories?.length || 0} tools
+                                        </div>
+                                      </BreathingAnimationText>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="w-5 h-5 flex items-center justify-center">
+                                    <div className="w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 border-gray-400"></div>
+                                  </div>
+                                </div>
+                              </button>
+                            )}
                             
                             <div className={`overflow-hidden transition-all duration-500 ease-out ${
                               isActiveTab ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
@@ -403,7 +421,7 @@ export function StickySliderSection() {
                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
                                         }`}
                                         style={{
-                                          background: isActiveSubCat ? THEME_COLORS.primaryLight : 'transparent',
+                                          background: isActiveSubCat ? `linear-gradient(to right, ${THEME_COLORS.primaryLight}, rgba(255, 140, 0, 0.1))` : 'transparent',
                                           borderColor: isActiveSubCat ? THEME_COLORS.primary : 'transparent'
                                         }}
                                       >
@@ -430,8 +448,6 @@ export function StickySliderSection() {
                                             <div className="w-1 h-1 rounded-full animate-breathe-primary-hover"></div>
                                           )}
                                         </div>
-                                        
-
                                       </button>
                                     );
                                   })}
@@ -494,7 +510,8 @@ export function StickySliderSection() {
                         <BreathingAnimationText animationType="black-gray">
                           <div className="space-y-4">
                             <motion.h1 
-                              className="text-xl sm:text-3xl lg:text-5xl font-bold leading-[0.9] text-black" 
+                              className="text-lg sm:text-2xl lg:text-4xl font-normal leading-[0.9] text-black" 
+                              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                               initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.6, delay: 0.1 }}
@@ -554,7 +571,7 @@ export function StickySliderSection() {
                       >
                         {sectionInView && loadedVideos.has(slideContent.video) ? (
                           <video
-                            className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] object-contain shadow-2xl"
+                            className="w-full max-w-md h-[70vh] rounded-2xl object-cover shadow-2xl"
                             playsInline
                             loop
                             autoPlay
@@ -564,7 +581,7 @@ export function StickySliderSection() {
                             <source src={slideContent.video} type="video/mp4" />
                           </video>
                         ) : (
-                          <div className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
+                          <div className="w-full max-w-md h-[70vh] rounded-2xl bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
                             <div className="text-gray-500 text-sm">Loading...</div>
                           </div>
                         )}
