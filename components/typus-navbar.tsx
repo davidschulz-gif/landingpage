@@ -120,26 +120,28 @@ export default function TypusNavbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <div className="sticky top-0 z-50  w-full p-4">
+    <div className="sticky top-0 z-50 w-full p-4">
       <Navbar>
         {/* Desktop Navigation */}
-        <NavBody>
-          <NavbarLogo />
-          <div className="hidden md:flex items-center space-x-8 ml-8">
-            {navItems.map((item, idx) => (
-              <div
-                key={`nav-item-${idx}`}
-                className="relative group"
-                onMouseEnter={() => setHoveredItem(item.name)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <a
-                  href={item.link}
-                  className="flex items-center gap-1 text-sm font-normal capitalize text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
-                >
-                  {item.name}
-                  <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
-                </a>
+        <NavBody className="h-13 px-6">
+          <div className="flex items-center justify-between w-full h-full">
+            <div className="flex items-center h-full">
+              <NavbarLogo />
+              <div className="hidden md:flex items-center space-x-8 ml-8 h-full">
+                {navItems.map((item, idx) => (
+                  <div
+                    key={`nav-item-${idx}`}
+                    className="relative group h-full flex items-center"
+                    onMouseEnter={() => setHoveredItem(item.name)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <a
+                      href={item.link}
+                      className="flex items-center gap-1 text-sm font-normal text-black dark:text-white transition-colors duration-200 h-full"
+                    >
+                      {item.name}
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                    </a>
                 <div
                   className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
                     hoveredItem === item.name
@@ -175,23 +177,29 @@ export default function TypusNavbar() {
                       </a>
                     ))}
                   </div>
-                </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg cursor-pointer bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-            >
-              {theme === "dark" ? (
-                <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              ) : (
-                <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              )}
-            </button>
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary" className="whitespace-nowrap">Sign Up</NavbarButton>
+            </div>
+            <div className="flex items-center gap-6 h-full">
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-lg cursor-pointer bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                )}
+              </button>
+              <a href="#login" className="text-sm font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+                LOGIN
+              </a>
+              <a href="#signup" className="text-sm font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+                SIGN UP
+              </a>
+            </div>
           </div>
         </NavBody>
 
@@ -248,14 +256,14 @@ export default function TypusNavbar() {
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="secondary"
-                className="w-full"
+                className="w-full min-w-[140px] text-nowrap"
               >
                 Login
               </NavbarButton>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
-                className="w-full"
+                className="w-full min-w-[140px] text-nowrap"
               >
                 Sign Up
               </NavbarButton>

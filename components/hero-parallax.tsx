@@ -37,9 +37,9 @@ export const HeroParallax = ({
   const springConfig = { stiffness: 400, damping: 40, bounce: 0 }
 
   // Infinite scroll animation
-  useAnimationFrame((t) => {
-    setTime(t * 0.0005)
-  })
+  // useAnimationFrame((t) => {
+  //   setTime(t * 0.00005)
+  // })
 
   const baseTranslateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 800]), springConfig)
   const baseTranslateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -800]), springConfig)

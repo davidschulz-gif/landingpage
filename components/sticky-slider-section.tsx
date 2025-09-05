@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { THEME_COLORS } from "@/lib/theme";
 import { BreathingAnimationText } from "./breathing-animation-text";
@@ -188,6 +188,9 @@ const tabsData: TabData[] = [
   }
 ];
 
+// Video cache for performance
+const videoCache = new Map<string, HTMLVideoElement>();
+
 export function StickySliderSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState(0);
@@ -195,7 +198,9 @@ export function StickySliderSection() {
   const [isInView, setIsInView] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
   const [manualTabSwitch, setManualTabSwitch] = useState(false);
+  const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
   const prevSlideRef = useRef(0);
+  const sectionInView = useInView(containerRef, { once: true, margin: "300px" });
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -245,6 +250,39 @@ export function StickySliderSection() {
 
     return () => unsubscribeProgress();
   }, [scrollYProgress]);
+
+  // Preload videos when section comes into view
+  useEffect(() => {
+    if (!sectionInView) return;
+
+    const preloadVideo = (src: string) => {
+      if (videoCache.has(src) || loadedVideos.has(src)) return;
+      
+      const video = document.createElement('video');
+      video.preload = 'metadata';
+      video.src = src;
+      video.load();
+      
+      video.addEventListener('loadedmetadata', () => {
+        videoCache.set(src, video);
+        setLoadedVideos(prev => new Set([...prev, src]));
+      });
+    };
+
+    // Load current slide video first
+    const currentVideo = tabsData[activeTab]?.slides[currentSlide]?.video;
+    if (currentVideo) {
+      preloadVideo(currentVideo);
+    }
+
+    // Preload other videos with delay
+    const allVideos = tabsData.flatMap(tab => tab.slides.map(slide => slide.video));
+    const timeouts = allVideos.map((video, index) => 
+      setTimeout(() => preloadVideo(video), index * 300)
+    );
+
+    return () => timeouts.forEach(clearTimeout);
+  }, [sectionInView, activeTab, currentSlide]);
 
   useEffect(() => {
     setCurrentSlide(0);
@@ -514,15 +552,22 @@ export function StickySliderSection() {
                           opacity: slideIndex === currentSlide ? 1 : 0
                         }}
                       >
-                        <video
-                          className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] object-contain shadow-2xl"
-                          playsInline
-                          loop
-                          autoPlay
-                          muted
-                        >
-                          <source src={slideContent.video} type="video/mp4" />
-                        </video>
+                        {sectionInView && loadedVideos.has(slideContent.video) ? (
+                          <video
+                            className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] object-contain shadow-2xl"
+                            playsInline
+                            loop
+                            autoPlay
+                            muted
+                            preload="metadata"
+                          >
+                            <source src={slideContent.video} type="video/mp4" />
+                          </video>
+                        ) : (
+                          <div className="h-auto max-h-[80vh] w-[47.8%] rounded-t-[2rem] bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
+                            <div className="text-gray-500 text-sm">Loading...</div>
+                          </div>
+                        )}
                       </motion.div>
                     ))}
                   </div>

@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Wand2, Edit3, Sparkles, Video } from "lucide-react";
 import { VideoPlayer } from "@/components/video/player";
@@ -46,12 +46,50 @@ const tabs = [
   }
 ];
 
+// Video cache
+const videoCache = new Map<string, HTMLVideoElement>();
+
 export function TabVideoShowcase() {
   const [activeTab, setActiveTab] = useState("animate");
+  const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "200px" });
+  
   const activeTabData = tabs.find(tab => tab.id === activeTab);
 
+  // Preload videos when component comes into view
+  useEffect(() => {
+    if (!isInView) return;
+
+    const preloadVideo = (src: string) => {
+      if (videoCache.has(src) || loadedVideos.has(src)) return;
+      
+      const video = document.createElement('video');
+      video.preload = 'metadata';
+      video.src = src;
+      video.load();
+      
+      video.addEventListener('loadedmetadata', () => {
+        videoCache.set(src, video);
+        setLoadedVideos(prev => new Set([...prev, src]));
+      });
+    };
+
+    // Load active tab video first
+    if (activeTabData?.video) {
+      preloadVideo(activeTabData.video);
+    }
+
+    // Then preload other videos with delay
+    const timeouts = tabs.map((tab, index) => 
+      setTimeout(() => preloadVideo(tab.video), index * 500)
+    );
+
+    return () => timeouts.forEach(clearTimeout);
+  }, [isInView, activeTabData]);
+
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -78,12 +116,19 @@ export function TabVideoShowcase() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <VideoPlayer
-                src={activeTabData?.video || ""}
-                title={activeTabData?.title || ""}
-                poster={activeTabData?.poster}
-                height="h-[650px]"
-              />
+              {isInView && activeTabData ? (
+                <VideoPlayer
+                  src={activeTabData.video}
+                  title={activeTabData.title}
+                  poster={activeTabData.poster}
+                  height="h-[650px]"
+                  preload={loadedVideos.has(activeTabData.video) ? "auto" : "metadata"}
+                />
+              ) : (
+                <div className="h-[650px] bg-gray-200 rounded-xl animate-pulse flex items-center justify-center">
+                  <div className="text-gray-500">Loading video...</div>
+                </div>
+              )}
             </motion.div>
           </div>
 

@@ -5,14 +5,46 @@ import { Users, Sparkles, FolderKanban } from "lucide-react"
 import { VideoPlayer } from "@/components/video/player"
 import { BreathingAnimationText } from "./breathing-animation-text";
 
+// Video cache for performance
+const videoCache = new Map<string, HTMLVideoElement>();
+
 export const VideoShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoSectionRef = useRef<HTMLDivElement>(null)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const isInView = useInView(containerRef, { once: true, margin: "200px" })
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
+
+  // Preload main video when component comes into view
+  useEffect(() => {
+    if (!isInView) return;
+
+    const videoSrc = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+    
+    if (videoCache.has(videoSrc)) {
+      setVideoLoaded(true);
+      return;
+    }
+
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+    video.src = videoSrc;
+    video.load();
+    
+    video.addEventListener('loadedmetadata', () => {
+      videoCache.set(videoSrc, video);
+      setVideoLoaded(true);
+    });
+
+    video.addEventListener('error', () => {
+      console.warn('Video failed to load:', videoSrc);
+      setVideoLoaded(true); // Still show player even if preload fails
+    });
+  }, [isInView]);
 
   // Smooth spring animations
   const titleOpacity = useSpring(useTransform(scrollYProgress, [0, 0.4], [1, 0]), { stiffness: 300, damping: 30 })
@@ -173,12 +205,19 @@ export const VideoShowcaseSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="relative w-full max-w-5xl">
-            <VideoPlayer
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              title="Typus AI rendering software demonstration"
-              poster="/video-poster.jpg"
-              height="h-[500px] md:h-[600px]"
-            />
+            {isInView && videoLoaded ? (
+              <VideoPlayer
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                title="Typus AI rendering software demonstration"
+                poster="/video-poster.jpg"
+                height="h-[500px] md:h-[600px]"
+                preload="metadata"
+              />
+            ) : (
+              <div className="h-[500px] md:h-[600px] bg-gray-200 rounded-xl animate-pulse flex items-center justify-center">
+                <div className="text-gray-500">Loading video...</div>
+              </div>
+            )}
           </div>
         </motion.div>
 
