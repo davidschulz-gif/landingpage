@@ -41,7 +41,7 @@ export const HeroParallax = ({
   const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.3], [25, 0]), springConfig)
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.1, 1]), springConfig)
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.3], [15, 0]), springConfig)
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-800, 0]), springConfig)
+  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-400, 0]), springConfig)
   const scale = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.9, 1]), springConfig)
   
   return (
@@ -105,7 +105,7 @@ export const Header = () => {
       <div className="max-w-4xl">
         <BreathingAnimationText animationType="black-gray">
           <motion.h1 
-            className="text-[32px] md:text-[40px] lg:text-[48px] font-normal relative z-20 text-black dark:text-white leading-tight mb-6"
+            className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-2"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -119,7 +119,7 @@ export const Header = () => {
         </BreathingAnimationText>
         <BreathingAnimationText
           animationType="black-gray"
-          className="max-w-3xl text-[16px] md:text-[18px] leading-relaxed text-gray-700 dark:text-gray-300"
+          className="z-999 max-w-3xl text-[14px] leading-relaxed text-gray-700 dark:text-gray-300"
         >
           AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
         </BreathingAnimationText>
