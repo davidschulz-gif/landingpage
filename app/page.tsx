@@ -1,15 +1,17 @@
 "use client";
-import { FeatureShowcaseWidget } from "@/components/feature-showcase-widget";
-import { FooterSection } from "@/components/footer-section";
 import { HeroParallax } from "@/components/hero-parallax";
 import { SplashScreen } from "@/components/splash-screen";
-import { StickySliderSection } from "@/components/sticky-slider-section";
-import { TabVideoShowcase } from "@/components/tab-video-showcase";
 import TypusNavbar from "@/components/typus-navbar";
-import { VideoShowcaseSection } from "@/components/video-showcase-section";
 import { useEffect, useState } from "react";
 import Script from "next/script";
+import dynamic from 'next/dynamic';
 import { measurePerformance } from "@/lib/performance";
+
+const VideoShowcaseSection = dynamic(() => import('@/components/video-showcase-section').then(mod => mod.VideoShowcaseSection));
+const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection));
+const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase));
+const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget));
+const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
 
 // Row 1, 2, 3 images from row-1-2-3 folder
 const row123Products = [
@@ -210,11 +212,6 @@ const row4Products = [
   {
     title: "",
     link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-vhepizzbif7kbm7c5pyeyiptia.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
     thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-xz34dkjb66kihbm7g4qcwqxude.png",
   },
   {
@@ -242,15 +239,6 @@ export default function Home() {
     // Background preloading during splash
     const preloadResources = async () => {
       try {
-        // Preload critical components
-        const componentPromises = [
-          import("@/components/video-showcase-section"),
-          import("@/components/sticky-slider-section"),
-          import("@/components/tab-video-showcase"),
-          import("@/components/feature-showcase-widget"),
-          import("@/components/footer-section")
-        ];
-        
         // Preload only critical above-the-fold images
         const imagePromises = row123Products.slice(0, 3).map(product => {
           return new Promise((resolve) => {
@@ -260,10 +248,9 @@ export default function Home() {
             img.src = product.thumbnail;
           });
         });
-        
-        // Load components and images in parallel but don't block on images
-        await Promise.all(componentPromises);
-        Promise.all(imagePromises); // Don't await images
+
+        // Await critical images
+        await Promise.all(imagePromises);
         
         const endTime = performance.now();
         const loadTime = endTime - startTime;

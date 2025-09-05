@@ -20,12 +20,11 @@ export const HeroParallax = ({
     thumbnail: string
   }[]
 }) => {
-  // Organize products by rows with duplication for infinite scroll
-  const firstRow = [...row123Products, ...row123Products]
-  const secondRow = [...row123Products, ...row123Products]
-  const thirdRow = [...row123Products, ...row123Products]
-  const fourthRow = [...row4Products, ...row4Products]
-  
+  const firstRow = row123Products;
+  const secondRow = row123Products;
+  const thirdRow = row123Products;
+  const fourthRow = row4Products;
+
   const ref = React.useRef(null)
   const [time, setTime] = useState(0)
   
@@ -65,32 +64,33 @@ export const HeroParallax = ({
         }}
         className="relative z-10"
       >
-        <InfiniteMarqueeRow 
-          products={firstRow} 
+        <InfiniteMarqueeRow
+          products={firstRow}
           baseTranslate={baseTranslateX}
           time={time}
           direction={1}
           speed={30}
           className="mb-8"
+          isFirstRow={true}
         />
-        <InfiniteMarqueeRow 
-          products={secondRow} 
+        <InfiniteMarqueeRow
+          products={secondRow}
           baseTranslate={baseTranslateXReverse}
           time={time}
           direction={-1}
           speed={25}
           className="mb-8"
         />
-        <InfiniteMarqueeRow 
-          products={thirdRow} 
+        <InfiniteMarqueeRow
+          products={thirdRow}
           baseTranslate={baseTranslateX}
           time={time}
           direction={1}
           speed={35}
           className="mb-8"
         />
-        <InfiniteMarqueeRow 
-          products={fourthRow} 
+        <InfiniteMarqueeRow
+          products={fourthRow}
           baseTranslate={baseTranslateXReverse}
           time={time}
           direction={-1}
@@ -177,13 +177,15 @@ const InfiniteMarqueeRow = ({
   direction,
   speed,
   className,
+  isFirstRow = false,
 }: {
-  products: any[]
-  baseTranslate: MotionValue<number>
-  time: number
-  direction: number
-  speed: number
-  className: string
+  products: any[];
+  baseTranslate: MotionValue<number>;
+  time: number;
+  direction: number;
+  speed: number;
+  className: string;
+  isFirstRow?: boolean;
 }) => {
   const cardWidth = 280 + 20 // card width + gap
   const totalWidth = products.length * cardWidth
@@ -198,11 +200,12 @@ const InfiniteMarqueeRow = ({
         }}
       >
         {products.map((product, index) => (
-          <ProductCard 
+          <ProductCard
             key={`${product.title}-${index}`}
-            product={product} 
+            product={product}
             index={index}
             time={time}
+            isFirstRow={isFirstRow}
           />
         ))}
       </motion.div>
@@ -214,14 +217,16 @@ export const ProductCard = ({
   product,
   index,
   time,
+  isFirstRow,
 }: {
   product: {
-    title: string
-    link: string
-    thumbnail: string
-  }
-  index: number
-  time: number
+    title: string;
+    link: string;
+    thumbnail: string;
+  };
+  index: number;
+  time: number;
+  isFirstRow?: boolean;
 }) => {
   const rotateY = Math.sin(time + index * 0.5) * 8
   const rotateX = Math.cos(time + index * 0.3) * 4
@@ -251,8 +256,8 @@ export const ProductCard = ({
           alt={product.title}
           sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 400px"
           quality={75}
-          priority={index < 4}
-          loading={index < 4 ? "eager" : "lazy"}
+          priority={isFirstRow && index < 4}
+          loading={isFirstRow && index < 4 ? "eager" : "lazy"}
           placeholder="blur"
           blurDataURL="data:image/webp;base64,UklGRpQAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA"
         />

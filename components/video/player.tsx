@@ -24,9 +24,10 @@ type Props = {
   title?: string
   poster?: string
   height?: string
+  preload?: "auto" | "metadata" | "none"
 }
 
-export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]" }: Props) {
+export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]", preload = "metadata" }: Props) {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const videoRef = React.useRef<HTMLVideoElement>(null)
 
@@ -273,7 +274,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
           src={src}
           poster={poster}
           playsInline
-          preload="metadata"
+          preload={preload}
           controls={false}
           onClick={togglePlay}
           style={{ objectFit: 'cover' }}
