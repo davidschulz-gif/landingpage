@@ -67,11 +67,11 @@ export function FooterSection() {
           >
             <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles className="w-6 h-6 text-cyan-500" />
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-[30px] font-bold text-gray-900 dark:text-white">
                 Stay Updated
               </h3>
             </div>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-[14px] text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Get the latest updates on new features, tutorials, and architectural inspiration delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

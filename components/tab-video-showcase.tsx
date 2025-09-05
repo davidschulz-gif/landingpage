@@ -94,12 +94,12 @@ export function TabVideoShowcase() {
         {/* Header */}
         <div className="text-center mb-16">
           <BreathingAnimationText animationType="black-gray">
-            <h2 className="text-xl sm:text-3xl lg:text-5xl text-gray-900 dark:text-white mb-6 font-normal">
+            <h2 className="text-[30px] text-gray-900 dark:text-white mb-6 font-normal">
               FROM CONCEPT TO ANIMATION
             </h2>
           </BreathingAnimationText>
           <BreathingAnimationText animationType="black-gray">
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-normal">
+            <p className="text-[14px] text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-normal">
               Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
             </p>
           </BreathingAnimationText>

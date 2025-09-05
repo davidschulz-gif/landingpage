@@ -104,7 +104,7 @@ export const Header = () => {
     <div className="max-w-7xl relative mx-auto py-4 md:py-28 px-4 w-full left-0 top-0">
       <BreathingAnimationText animationType="black-gray">
         <motion.h1 
-          className="text-xl sm:text-3xl lg:text-5xl font-normal relative z-20 text-black dark:text-white"
+          className="text-[30px] font-normal relative z-20 text-black dark:text-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export const Header = () => {
       </BreathingAnimationText>
       <BreathingAnimationText
         animationType="black-gray"
-        className="max-w-2xl text-base md:text-xl mt-8"
+        className="max-w-2xl text-[14px] mt-8"
       >
         AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
       </BreathingAnimationText>

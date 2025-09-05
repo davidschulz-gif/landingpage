@@ -130,7 +130,7 @@ export const VideoShowcaseSection = () => {
       >
         <BreathingAnimationText animationType="black-gray">
           <motion.h1 
-            className="mb-2 text-xl sm:text-3xl lg:text-5xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200"
+            className="mb-2 text-[30px] font-medium !leading-tight text-neutral-800 dark:text-neutral-200"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
@@ -157,7 +157,7 @@ export const VideoShowcaseSection = () => {
         
         <BreathingAnimationText animationType="black-gray">
           <motion.p 
-            className="mx-auto mb-6 px-4 text-base font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24 md:text-lg"
+            className="mx-auto mb-6 px-4 text-[14px] font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}

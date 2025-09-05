@@ -334,73 +334,76 @@ export function StickySliderSection() {
                         return (
                           <div key={tab.id} className="relative">
                             {isActiveTab ? (
-                              <MovingBorderButton
-                                duration={3000}
-                                className="bg-transparent border border-[#ff6b35] text-black flex items-center justify-between w-full p-2"
-                                containerClassName="w-full h-auto"
-                                borderClassName="bg-[radial-gradient(#ff6b35_40%,#ff3636_60%)] opacity-80"
-                                borderRadius="0.75rem"
-                                onClick={() => handleTabClick(tabIndex)}
-                                style={{
-                                  borderRadius: "0.75rem",
-                                  background: isActiveTab ? `linear-gradient(to right, ${THEME_COLORS.primaryLight}, rgba(255, 140, 0, 0.1))` : 'transparent',
-                                  borderColor: isActiveTab ? THEME_COLORS.primary : 'transparent'
-                                }}
+                              <motion.div
+                                initial={{ scale: 0.98, opacity: 0.9 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                                className="relative w-full"
                               >
-                                <div className="flex items-center space-x-3">
-                                  <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/20">
-                                    <div className="w-3 h-3 rounded-full bg-primary animate-breathe-primary-hover"></div>
-                                  </div>
-                                  
-                                  <div>
-                                    <BreathingAnimationText animationType="red-orange">
-                                      <div className="font-bold text-sm tracking-wide text-black" style={{ color: THEME_COLORS.primary }}>
-                                        {tab.name}
-                                      </div>
-                                    </BreathingAnimationText>
-                                    <BreathingAnimationText animationType="red-orange">
-                                      <div className="text-xs text-black/70">
-                                        {tab.subCategories?.length || 0} tools
-                                      </div>
-                                    </BreathingAnimationText>
-                                  </div>
-                                </div>
-                                
-                                <div className="w-5 h-5 flex items-center justify-center rotate-90">
-                                  <div className="w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 border-black/70 animate-breathe-border" style={{ borderColor: THEME_COLORS.primary }}></div>
-                                </div>
-                              </MovingBorderButton>
-                            ) : (
-                              <button
-                                onClick={() => handleTabClick(tabIndex)}
-                                className="group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden hover:bg-white/60 text-gray-700 hover:text-black"
-                                style={{ background: 'transparent' }}
-                              >
-                                <div className="flex items-center justify-between p-4 pl-6">
-                                  <div className="flex items-center space-x-3">
-                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gray-100 group-hover:bg-gray-200">
-                                      <div className="w-3 h-3 rounded-full bg-gray-400 group-hover:bg-gray-600"></div>
+                                <MovingBorderButton
+                                  duration={3000}
+                                  className="bg-white border-0 text-black flex items-center justify-between w-full p-2 shadow-lg"
+                                  containerClassName="w-full h-auto"
+                                  borderClassName="bg-[radial-gradient(#ff6b35_40%,#ff3636_60%)] opacity-80"
+                                  borderRadius="0.75rem"
+                                  onClick={() => handleTabClick(tabIndex)}
+                                  style={{
+                                    borderRadius: "0.75rem",
+                                    background: 'white',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1)'
+                                  }}
+                                >
+                                  <div className="flex items-center space-x-4">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50 border border-gray-100">
+                                      <div className="w-4 h-4 rounded-full" style={{ backgroundColor: THEME_COLORS.primary }}></div>
                                     </div>
                                     
-                                    <div>
+                                    <div className="flex flex-col justify-center items-start">
                                       <BreathingAnimationText animationType="black-gray">
-                                        <div className="font-bold text-sm tracking-wide text-gray-800 group-hover:text-black">
+                                        <div className="font-semibold text-sm tracking-wide text-gray-900">
                                           {tab.name}
                                         </div>
                                       </BreathingAnimationText>
-                                      <BreathingAnimationText animationType="black-gray">
-                                        <div className="text-xs text-gray-500">
-                                          {tab.subCategories?.length || 0} tools
-                                        </div>
-                                      </BreathingAnimationText>
+                                      <div className="text-xs text-gray-500">
+                                        {tab.subCategories?.length || 0} tools
+                                      </div>
                                     </div>
                                   </div>
                                   
-                                  <div className="w-5 h-5 flex items-center justify-center">
-                                    <div className="w-1.5 h-1.5 border-r-2 border-b-2 rotate-45 border-gray-400"></div>
+                                  <div className="w-6 h-6 flex items-center justify-center">
+                                    <div className="w-2 h-2 border-r-2 border-b-2 border-gray-400 transition-transform duration-200 transform rotate-[135deg]"></div>
+                                  </div>
+                                </MovingBorderButton>
+                              </motion.div>
+                            ) : (
+                              <motion.button
+                                onClick={() => handleTabClick(tabIndex)}
+                                className="group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden bg-gray-50/50 hover:bg-white hover:shadow-md border border-gray-100/50 hover:border-gray-200"
+                                whileHover={{ scale: 1.01, y: -1 }}
+                                whileTap={{ scale: 0.99 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                              >
+                                <div className="flex items-center justify-between p-2">
+                                  <div className="flex items-center space-x-4">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-gray-200 group-hover:border-gray-300 transition-colors duration-200">
+                                      <div className="w-4 h-4 rounded-full bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200"></div>
+                                    </div>
+                                    
+                                    <div>
+                                      <div className="font-semibold text-sm tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors duration-200">
+                                        {tab.name}
+                                      </div>
+                                      <div className="text-xs text-gray-500 group-hover:text-gray-600 transition-colors duration-200 mt-0.5">
+                                        {tab.subCategories?.length || 0} tools
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="w-6 h-6 flex items-center justify-center">
+                                    <div className="w-2 h-2 border-r-2 border-b-2 rotate-45 border-gray-400 group-hover:border-gray-600 transition-all duration-200"></div>
                                   </div>
                                 </div>
-                              </button>
+                              </motion.button>
                             )}
                             
                             <div className={`overflow-hidden transition-all duration-500 ease-out ${
@@ -412,7 +415,7 @@ export function StickySliderSection() {
                                     const slideIndex = subCat.slideId - 1;
                                     const isActiveSubCat = currentSlide === slideIndex && isActiveTab;
                                     return (
-                                      <button
+                                      <motion.button
                                         key={subCat.id}
                                         onClick={() => handleSubCategoryClick(tabIndex, slideIndex)}
                                         className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
@@ -424,31 +427,37 @@ export function StickySliderSection() {
                                           background: isActiveSubCat ? `linear-gradient(to right, ${THEME_COLORS.primaryLight}, rgba(255, 140, 0, 0.1))` : 'transparent',
                                           borderColor: isActiveSubCat ? THEME_COLORS.primary : 'transparent'
                                         }}
+                                        whileHover={{ scale: isActiveSubCat ? 1 : 1.01, x: isActiveSubCat ? 0 : 2 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        transition={{ duration: 0.15, ease: "easeOut" }}
                                       >
                                         <div className="flex items-center p-3 pl-4">
-                                          <div className={`w-2 h-2 rounded-full mr-3 transition-all duration-200 ${
+                                          <div className={`w-2 h-2 rounded-full mr-4 transition-all duration-200 ${
                                             isActiveSubCat 
-                                              ? 'shadow-sm animate-breathe-primary-hover' 
+                                              ? 'shadow-sm' 
                                               : 'bg-gray-300 group-hover/sub:bg-gray-400'
                                           }`} style={{
                                             backgroundColor: isActiveSubCat ? THEME_COLORS.primary : undefined
                                           }}></div>
                                           
                                           <div className="flex-1">
-                                            <BreathingAnimationText animationType={isActiveSubCat ? "red-orange" : "black-gray"}>
-                                              <div className={`text-xs font-medium transition-colors duration-200 ${
-                                                isActiveSubCat ? 'text-black' : 'text-gray-600 group-hover/sub:text-gray-800'
-                                              }`} style={{ color: isActiveSubCat ? THEME_COLORS.primary : undefined }}>
-                                                {subCat.name}
-                                              </div>
-                                            </BreathingAnimationText>
+                                            <div className={`text-xs font-medium transition-colors duration-200 ${
+                                              isActiveSubCat ? 'text-gray-900' : 'text-gray-600 group-hover/sub:text-gray-800'
+                                            }`}>
+                                              {subCat.name}
+                                            </div>
                                           </div>
                                           
                                           {isActiveSubCat && (
-                                            <div className="w-1 h-1 rounded-full animate-breathe-primary-hover"></div>
+                                            <motion.div 
+                                              initial={{ scale: 0, opacity: 0 }}
+                                              animate={{ scale: 1, opacity: 1 }}
+                                              className="w-1.5 h-1.5 rounded-full"
+                                              style={{ backgroundColor: THEME_COLORS.primary }}
+                                            />
                                           )}
                                         </div>
-                                      </button>
+                                      </motion.button>
                                     );
                                   })}
                                 </div>
@@ -480,12 +489,9 @@ export function StickySliderSection() {
                       <button
                         key={i}
                         onClick={() => setCurrentSlide(i)}
-                        className={`h-1 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
-                          i === currentSlide ? "w-12 animate-breathe-primary-hover" : "w-6"
+                        className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-zinc-700 ${
+                          i === currentSlide ? "w-12 bg-white" : "w-6 bg-transparent"
                         }`}
-                        style={{
-                          backgroundColor: i === currentSlide ? THEME_COLORS.primary : THEME_COLORS.primaryMuted
-                        }}
                       />
                     ))}
                     <BreathingAnimationText animationType="black-gray">
@@ -510,7 +516,7 @@ export function StickySliderSection() {
                         <BreathingAnimationText animationType="black-gray">
                           <div className="space-y-4">
                             <motion.h1 
-                              className="text-lg sm:text-2xl lg:text-4xl font-normal leading-[0.9] text-black" 
+                              className="text-[30px] font-normal leading-[0.9] text-black" 
                               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                               initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                               animate={{ y: 0 }}
@@ -520,7 +526,7 @@ export function StickySliderSection() {
                             </motion.h1>
                             
                             <motion.h2 
-                              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-black" 
+                              className="text-[18px] font-light leading-tight text-black" 
                               initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.6, delay: 0.2 }}
@@ -530,7 +536,7 @@ export function StickySliderSection() {
                           </div>
 
                           <motion.p 
-                            className="text-base sm:text-lg leading-relaxed max-w-2xl mt-6 text-black" 
+                            className="text-[14px] leading-relaxed max-w-2xl mt-6 text-black" 
                             initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}

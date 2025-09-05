@@ -73,12 +73,12 @@ export function FeatureShowcaseWidget() {
           className="text-center mb-12 sm:mb-16"
         >
           <BreathingAnimationText animationType="black-gray">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-black dark:text-white">
+            <h2 className="text-[30px] font-bold mb-4 sm:mb-6 text-black dark:text-white">
               Why Choose <span className="text-black">Typus.AI</span>
             </h2>
           </BreathingAnimationText>
           <BreathingAnimationText animationType="black-gray">
-            <p className="text-base sm:text-lg md:text-xl text-black/70 dark:text-white/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-[14px] text-black/70 dark:text-white/70 max-w-3xl mx-auto leading-relaxed">
               Revolutionary AI technology that transforms architectural visualization.
             </p>
           </BreathingAnimationText>
