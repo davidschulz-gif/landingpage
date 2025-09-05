@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Space_Grotesk, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -8,6 +8,13 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-space-grotesk",
+})
+
+const sourceSerif4 = Source_Serif_4({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-serif-4",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"]
 })
 
 export const metadata: Metadata = {
@@ -102,7 +109,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${sourceSerif4.variable} antialiased`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

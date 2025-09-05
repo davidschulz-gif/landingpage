@@ -9,7 +9,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Play, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -118,9 +118,19 @@ export default function TypusNavbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="sticky top-0 z-50 w-full p-4">
+    <div className={`sticky z-50 w-full p-4 transition-all duration-300 ${isScrolled ? 'top-[-20px]' : 'top-0'}`}>
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="h-13 px-6">

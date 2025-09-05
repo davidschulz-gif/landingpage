@@ -571,7 +571,7 @@ export function StickySliderSection() {
                       >
                         {sectionInView && loadedVideos.has(slideContent.video) ? (
                           <video
-                            className="w-full max-w-md h-[70vh] rounded-2xl object-cover shadow-2xl"
+                            className="w-full max-w-xs h-[50vh] rounded-2xl object-cover shadow-2xl"
                             playsInline
                             loop
                             autoPlay
@@ -581,7 +581,7 @@ export function StickySliderSection() {
                             <source src={slideContent.video} type="video/mp4" />
                           </video>
                         ) : (
-                          <div className="w-full max-w-md h-[70vh] rounded-2xl bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
+                          <div className="w-full max-w-xs h-[50vh] rounded-2xl bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
                             <div className="text-gray-500 text-sm">Loading...</div>
                           </div>
                         )}

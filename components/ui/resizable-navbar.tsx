@@ -206,9 +206,22 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a href="#" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
+    <a href="#" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1">
       <img src="/logo/typus_logo_transparent.png" alt="Typus.AI logo" width={40} height={40} className="object-contain" />
-      <span className="text-black dark:text-white">Typus.AI</span>
+      <span 
+        className="text-center uppercase"
+        style={{
+          fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
+          fontSize: '18px',
+          fontWeight: 300,
+          letterSpacing: '2.5px',
+          lineHeight: '1.3em',
+          color: '#FF1E1E',
+          textTransform: 'uppercase'
+        }}
+      >
+        typus.AI
+      </span>
     </a>
   )
 }

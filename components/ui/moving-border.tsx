@@ -88,10 +88,17 @@ export const MovingBorder = ({
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
+    try {
+      const element = pathRef.current;
+      if (element && element.isConnected && element.getBoundingClientRect().width > 0) {
+        const length = element.getTotalLength();
+        if (length) {
+          const pxPerMillisecond = length / duration;
+          progress.set((time * pxPerMillisecond) % length);
+        }
+      }
+    } catch (error) {
+      // Silently handle the error when element is not rendered
     }
   });
 
