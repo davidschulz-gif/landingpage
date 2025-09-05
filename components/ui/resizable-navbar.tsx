@@ -212,7 +212,7 @@ export const NavbarLogo = () => {
         className="text-center uppercase"
         style={{
           fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
-          fontSize: '18px',
+          fontSize: '12px',
           fontWeight: 300,
           letterSpacing: '2.5px',
           lineHeight: '1.3em',

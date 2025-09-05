@@ -130,7 +130,7 @@ export default function TypusNavbar() {
   }, []);
 
   return (
-    <div className={`sticky z-50 w-full p-4 transition-all duration-300 ${isScrolled ? 'top-[-20px]' : 'top-0'}`}>
+    <div className={`sticky z-50 w-full p-1 transition-all duration-300 ${isScrolled ? 'top-[-20px]' : 'top-0'}`}>
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="h-13 px-6">
@@ -147,7 +147,7 @@ export default function TypusNavbar() {
                   >
                     <a
                       href={item.link}
-                      className="flex items-center gap-1 text-sm font-normal text-black dark:text-white transition-colors duration-200 h-full"
+                      className="flex items-center gap-1 text-[12px] font-normal text-black dark:text-white transition-colors duration-200 h-full"
                     >
                       {item.name}
                       <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
@@ -203,10 +203,10 @@ export default function TypusNavbar() {
                   <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 )}
               </button>
-              <a href="#login" className="text-sm font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+              <a href="#login" className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
                 LOGIN
               </a>
-              <a href="#signup" className="text-sm font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+              <a href="#signup" className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
                 SIGN UP
               </a>
             </div>

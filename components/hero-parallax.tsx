@@ -48,7 +48,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className="h-[175vh] py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
+      className="h-[180vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
       <motion.div
@@ -67,7 +67,7 @@ export const HeroParallax = ({
           time={time}
           direction={1}
           speed={30}
-          className="mb-8"
+          className="mb-6 md:mb-8"
           isFirstRow={true}
         />
         <InfiniteMarqueeRow
@@ -76,7 +76,7 @@ export const HeroParallax = ({
           time={time}
           direction={-1}
           speed={25}
-          className="mb-8"
+          className="mb-6 md:mb-8"
         />
         <InfiniteMarqueeRow
           products={thirdRow}
@@ -84,7 +84,7 @@ export const HeroParallax = ({
           time={time}
           direction={1}
           speed={35}
-          className="mb-8"
+          className="mb-6 md:mb-8"
         />
         <InfiniteMarqueeRow
           products={fourthRow}
@@ -92,7 +92,7 @@ export const HeroParallax = ({
           time={time}
           direction={-1}
           speed={28}
-          className=""
+          className="mb-4"
         />
       </motion.div>
     </div>
@@ -101,34 +101,36 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-4 md:py-28 px-4 w-full left-0 top-0">
-      <BreathingAnimationText animationType="black-gray">
-        <motion.h1 
-          className="text-[30px] font-normal relative z-20 text-black dark:text-white"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+    <div className="max-w-7xl relative mx-auto py-8 md:py-20 lg:py-32 px-6 md:px-8 lg:px-12 w-full">
+      <div className="max-w-4xl">
+        <BreathingAnimationText animationType="black-gray">
+          <motion.h1 
+            className="text-[32px] md:text-[40px] lg:text-[48px] font-normal relative z-20 text-black dark:text-white leading-tight mb-6"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <span className="text-black dark:text-white">AI FOR </span>
+            <span className="text-black dark:text-white font-normal">
+              ARCHITECTS.
+            </span>
+          </motion.h1>
+        </BreathingAnimationText>
+        <BreathingAnimationText
+          animationType="black-gray"
+          className="max-w-3xl text-[16px] md:text-[18px] leading-relaxed text-gray-700 dark:text-gray-300"
         >
-          <span className="text-black dark:text-white">AI FOR </span>
-          <span className="text-black dark:text-white font-normal">
-            ARCHITECTS.
-          </span>
-        </motion.h1>
-      </BreathingAnimationText>
-      <BreathingAnimationText
-        animationType="black-gray"
-        className="max-w-2xl text-[14px] mt-8"
-      >
-        AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
-      </BreathingAnimationText>
+          AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
+        </BreathingAnimationText>
+      </div>
       
       {/* Floating elements */}
       <motion.div
-        className="absolute top-10 right-10 w-4 h-4 bg-blue-500/30 rounded-full"
+        className="absolute top-16 right-16 w-3 h-3 bg-blue-500/20 rounded-full hidden md:block"
         animate={{
-          y: [0, -20, 0],
-          opacity: [0.3, 0.8, 0.3],
+          y: [0, -15, 0],
+          opacity: [0.2, 0.6, 0.2],
         }}
         transition={{
           duration: 3,
@@ -137,11 +139,11 @@ export const Header = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 left-20 w-6 h-6 bg-purple-500/20 rounded-full"
+        className="absolute bottom-24 left-24 w-4 h-4 bg-purple-500/15 rounded-full hidden lg:block"
         animate={{
-          y: [0, 15, 0],
-          x: [0, 10, 0],
-          opacity: [0.2, 0.6, 0.2],
+          y: [0, 12, 0],
+          x: [0, 8, 0],
+          opacity: [0.15, 0.4, 0.15],
         }}
         transition={{
           duration: 4,
@@ -151,10 +153,10 @@ export const Header = () => {
         }}
       />
       <motion.div
-        className="absolute top-1/2 right-1/4 w-2 h-2 bg-cyan-500/40 rounded-full"
+        className="absolute top-1/3 right-1/3 w-2 h-2 bg-cyan-500/25 rounded-full hidden xl:block"
         animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.4, 0.9, 0.4],
+          scale: [1, 1.3, 1],
+          opacity: [0.25, 0.5, 0.25],
         }}
         transition={{
           duration: 2.5,
