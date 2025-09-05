@@ -80,7 +80,7 @@ export function SplashScreen({
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <BreathingAnimationText animationType="black-gray" className="font-normal text-xl sm:text-3xl lg:text-5xl tracking-wide text-black whitespace-nowrap">
+                  <BreathingAnimationText animationType="black-gray" className="font-normal text-[30px] tracking-wide text-black whitespace-nowrap">
                     <motion.div
                       animate={{
                         opacity: [0.9, 1, 0.9],
