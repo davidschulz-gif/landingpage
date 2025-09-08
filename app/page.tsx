@@ -13,6 +13,8 @@ const VideoShowcaseSection = dynamic(() => import('@/components/video-showcase-s
 const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection));
 const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase));
 const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget));
+const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection));
+const PricingSection = dynamic(() => import('@/components/pricing-section').then(mod => mod.PricingSection));
 const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
 
 // Row 1, 2, 3 images from row-1-2-3 folder
@@ -296,6 +298,12 @@ export default function Home() {
       
       {/* Feature Showcase Section */}
       <FeatureShowcaseWidget />
+
+      {/* Reviews Section with Marquee */}
+      <ReviewsSection />
+
+      {/* Pricing Section */}
+      <PricingSection />
 
       {/* Enhanced Footer */}
       <FooterSection />

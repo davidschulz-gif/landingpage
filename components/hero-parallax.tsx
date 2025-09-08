@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React, { useState } from "react"
 import { BreathingAnimationText } from "./breathing-animation-text"
+import { Button } from "@/components/ui/button"
 
 export const HeroParallax = ({
   row123Products,
@@ -48,7 +49,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className="h-[180vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
+      className="h-[185vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
       <motion.div
@@ -101,8 +102,8 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-8 md:py-20 lg:py-32 px-6 md:px-8 lg:px-12 w-full">
-      <div className="max-w-4xl">
+    <div className="max-w-7xl relative mx-auto pt-20 pb-20 md:pt-32 md:pb-16 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
+      <div className="max-w-4xl pt-40">
         <BreathingAnimationText animationType="black-gray">
           <motion.h1 
             className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-2"
@@ -119,10 +120,23 @@ export const Header = () => {
         </BreathingAnimationText>
         <BreathingAnimationText
           animationType="black-gray"
-          className="z-999 max-w-3xl text-[14px] leading-relaxed text-gray-700 dark:text-gray-300"
+          className="z-999 max-w-3xl text-[14px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4"
         >
           AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
         </BreathingAnimationText>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+        >
+          <Button 
+            className="animate-breathe-primary-hover text-white px-8 py-2 text-base font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Get Started Free
+          </Button>
+        </motion.div>
       </div>
       
       {/* Floating elements */}
