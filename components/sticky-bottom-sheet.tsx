@@ -4,18 +4,34 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { TrustedBySection } from "./trusted-by-section";
 
-export const StickyBottomSheet = () => {
+interface StickyBottomSheetProps {
+  showOnlyInHero?: boolean;
+}
+
+export const StickyBottomSheet = ({ showOnlyInHero = false }: StickyBottomSheetProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const heroSection = document.querySelector('[data-hero-section]');
+      const heroHeight = heroSection?.getBoundingClientRect().height || 0;
       
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
-        setIsVisible(true);
+      if (showOnlyInHero) {
+        // Hide on scroll down in hero section
+        if (currentScrollY < heroHeight) {
+          setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 100);
+        } else {
+          setIsVisible(false);
+        }
+      } else {
+        // Original scroll behavior
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY) {
+          setIsVisible(true);
+        }
       }
       
       setLastScrollY(currentScrollY);
@@ -23,7 +39,7 @@ export const StickyBottomSheet = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, showOnlyInHero]);
 
   const handleClose = () => {
     setIsVisible(false);

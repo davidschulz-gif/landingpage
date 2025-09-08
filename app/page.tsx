@@ -309,7 +309,7 @@ export default function Home() {
       <FooterSection />
       
       {/* Sticky Bottom Sheet */}
-      <StickyBottomSheet />
+      <StickyBottomSheet showOnlyInHero={true} />
     </div>
   );
 

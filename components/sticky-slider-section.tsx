@@ -603,20 +603,23 @@ export function StickySliderSection() {
 
       {/* Scroll Indicator */}
       {isInView && (
-        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 space-y-2">
-          {currentTabSlides.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-8 rounded-full transition-all duration-300 shadow-lg ${
-                currentSlide === index ? 'animate-breathe-primary-hover' : ''
-              }`}
-              style={{
-                backgroundColor: currentSlide === index 
-                  ? THEME_COLORS.primary 
-                  : THEME_COLORS.primaryMuted
-              }}
-            />
-          ))}
+        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
+          <div className="flex flex-col items-center space-y-3">
+            {currentTabSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-zinc-700 ${
+                  index === currentSlide ? "h-12 bg-white" : "h-6 bg-transparent"
+                }`}
+              />
+            ))}
+            <BreathingAnimationText animationType="black-gray">
+              <span className="text-sm mt-6 opacity-80 text-black">
+                {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+              </span>
+            </BreathingAnimationText>
+          </div>
         </div>
       )}
     </div>

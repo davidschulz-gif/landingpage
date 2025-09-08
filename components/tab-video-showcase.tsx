@@ -89,7 +89,7 @@ export function TabVideoShowcase() {
   }, [isInView, activeTabData]);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section ref={sectionRef} className="py-20" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">

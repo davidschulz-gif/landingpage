@@ -149,7 +149,7 @@ const PricingCard = ({ plan, index }: { plan: typeof pricingPlans[0]; index: num
 
 export function PricingSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-16"

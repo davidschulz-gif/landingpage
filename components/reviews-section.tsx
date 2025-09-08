@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Marquee from "@/components/ui/marquee";
 
 const reviews = [
   {
@@ -100,8 +99,8 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => {
 
 export function ReviewsSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <section className="py-0 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         <motion.div
           className="text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
@@ -110,61 +109,54 @@ export function ReviewsSection() {
           viewport={{ once: true }}
         >
           <h2 
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+            className="text-[30px] font-normal text-black mb-6"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Trusted by <span className="text-red-500">Architects</span> Worldwide
+            READY TO SPREAD THE NEWS ABOUT TYPUS.AI?
           </h2>
-          <p 
-            className="text-lg text-gray-600 leading-relaxed"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Join thousands of professionals who have transformed their architectural visualization workflow with Typus AI.
-          </p>
         </motion.div>
       </div>
 
-      <div className="relative">
-        {/* Blurred edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-        
-        <div className="flex justify-center gap-2 h-[500px] max-w-6xl mx-auto">
-          <div className="flex-1 max-w-xs">
-            <Marquee vertical pauseOnHover className="[--duration:30s] [--gap:1rem] h-full">
-              {reviews.slice(0, 3).map((review, index) => (
-                <ReviewCard key={`col1-${index}`} review={review} />
-              ))}
-            </Marquee>
-          </div>
-          
-          <div className="flex-1 max-w-xs">
-            <Marquee vertical reverse pauseOnHover className="[--duration:35s] [--gap:1rem] h-full">
-              {reviews.slice(1, 4).map((review, index) => (
-                <ReviewCard key={`col2-${index}`} review={review} />
-              ))}
-            </Marquee>
-          </div>
-          
-          <div className="hidden md:block flex-1 max-w-xs">
-            <Marquee vertical pauseOnHover className="[--duration:40s] [--gap:1rem] h-full">
-              {reviews.slice(2, 5).map((review, index) => (
-                <ReviewCard key={`col3-${index}`} review={review} />
-              ))}
-            </Marquee>
-          </div>
-          
-          <div className="hidden lg:block flex-1 max-w-xs">
-            <Marquee vertical reverse pauseOnHover className="[--duration:25s] [--gap:1rem] h-full">
-              {reviews.slice(3, 6).map((review, index) => (
-                <ReviewCard key={`col4-${index}`} review={review} />
-              ))}
-            </Marquee>
-          </div>
+      <div className="w-full">
+        <style jsx>{`
+          #testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b {
+            position: relative;
+          }
+          #testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 50px;
+            background: white;
+            z-index: 10;
+          }
+        `}</style>
+        <div className="w-full">
+          <script 
+            type="text/javascript" 
+            src="https://testimonial.to/js/iframeResizer.min.js"
+            async
+          />
+          <iframe 
+            id="testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b" 
+            src="https://embed-v2.testimonial.to/w/yanus?id=b6f883ac-9b79-48ea-b5f2-20cadc234b2b" 
+            frameBorder="0" 
+            scrolling="no" 
+            width="100%"
+            className="min-h-[500px] rounded-lg"
+          />
+          <script 
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `iFrameResize({log: false, checkOrigin: false}, '#testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b');`
+            }}
+          />
         </div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         className="text-center mt-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -187,7 +179,7 @@ export function ReviewsSection() {
           <div className="h-6 w-px bg-gray-300"></div>
           <span className="font-medium">50+ Countries</span>
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
