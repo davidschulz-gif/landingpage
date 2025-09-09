@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { BreathingAnimationText } from "./breathing-animation-text";
 
 const reviews = [
   {
@@ -108,12 +109,14 @@ export function ReviewsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 
-            className="text-[30px] font-normal text-black mb-6"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            READY TO SPREAD THE NEWS ABOUT TYPUS.AI?
-          </h2>
+          <BreathingAnimationText animationType="black-gray">
+            <h2 
+              className="text-[30px] font-normal text-black mb-6"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              READY TO SPREAD THE NEWS ABOUT TYPUS.AI?
+            </h2>
+          </BreathingAnimationText>
         </motion.div>
       </div>
 

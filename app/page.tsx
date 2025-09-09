@@ -297,7 +297,7 @@ export default function Home() {
       <TabVideoShowcase />
       
       {/* Feature Showcase Section */}
-      <FeatureShowcaseWidget />
+      {/* <FeatureShowcaseWidget /> */}
 
       {/* Reviews Section with Marquee */}
       <ReviewsSection />
