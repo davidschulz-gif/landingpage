@@ -20,14 +20,14 @@ export const StickyBottomSheet = ({ showOnlyInHero = false }: StickyBottomSheetP
       
       if (showOnlyInHero) {
         // Hide on scroll down in hero section
-        if (currentScrollY < heroHeight) {
+        if (currentScrollY < (heroHeight - 200)) {
           setIsVisible(currentScrollY <= lastScrollY || currentScrollY < 100);
         } else {
           setIsVisible(false);
         }
       } else {
         // Original scroll behavior
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
           setIsVisible(false);
         } else if (currentScrollY < lastScrollY) {
           setIsVisible(true);
@@ -44,7 +44,6 @@ export const StickyBottomSheet = ({ showOnlyInHero = false }: StickyBottomSheetP
   const handleClose = () => {
     setIsVisible(false);
   };
-
 
 
   return (

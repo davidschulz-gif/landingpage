@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring, useInView } from "framer-mo
 import { Users, Sparkles, FolderKanban } from "lucide-react"
 import { VideoPlayer } from "@/components/video/player"
 import { BreathingAnimationText } from "./breathing-animation-text";
+import { Skeleton } from "./ui/skeleton";
 
 // Video cache for performance
 const videoCache = new Map<string, HTMLVideoElement>();
@@ -13,6 +14,7 @@ export const VideoShowcaseSection = () => {
   const videoSectionRef = useRef<HTMLDivElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const isInView = useInView(containerRef, { once: true, margin: "200px" })
+  const videoInView = useInView(videoSectionRef, { once: false, margin: "-100px" })
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -23,7 +25,7 @@ export const VideoShowcaseSection = () => {
   useEffect(() => {
     if (!isInView) return;
 
-    const videoSrc = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+    const videoSrc = "videos/INTRO_typus.mp4";
     
     if (videoCache.has(videoSrc)) {
       setVideoLoaded(true);
@@ -47,18 +49,17 @@ export const VideoShowcaseSection = () => {
   }, [isInView]);
 
   // Smooth spring animations
-  const titleOpacity = useSpring(useTransform(scrollYProgress, [0, 0.4], [1, 0]), { stiffness: 300, damping: 30 })
-  const titleScale = useSpring(useTransform(scrollYProgress, [0, 0.4], [1, 0.7]), { stiffness: 300, damping: 30 })
-  const titleY = useSpring(useTransform(scrollYProgress, [0, 0.4], [0, -100]), { stiffness: 300, damping: 30 })
+  const titleOpacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [1, 0]), { stiffness: 300, damping: 30 })
+  const titleScale = useSpring(useTransform(scrollYProgress, [0, 0.2], [1, 0.7]), { stiffness: 300, damping: 30 })
+  const titleY = useSpring(useTransform(scrollYProgress, [0, 0], [0, -100]), { stiffness: 300, damping: 30 })
   
   const videoScale = useSpring(useTransform(scrollYProgress, [0.1, 0.9], [0.8, 1.1]), { stiffness: 400, damping: 40 })
   const videoY = useSpring(useTransform(scrollYProgress, [0.1, 0.9], [50, -50]), { stiffness: 400, damping: 40 })
-  const videoOpacity = useSpring(useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]), { stiffness: 300, damping: 30 })
 
   return (
     <section 
       ref={containerRef}
-      className="relative mx-auto flex max-w-7xl flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-14 sm:pt-16 h-[200vh]"
+      className="relative mx-auto flex max-w-7xl flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-20 sm:pt-24 h-[150vh]"
     >
       {/* Background Elements - Scoped to this section only */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -126,7 +127,7 @@ export const VideoShowcaseSection = () => {
       {/* Sticky Title Section */}
       <motion.div 
         className="sticky top-14 z-0 flex w-full flex-col items-center justify-center gap-2 text-center sm:top-28"
-        style={{ opacity: titleOpacity, scale: titleScale, y: titleY }}
+        style={{ opacity: titleOpacity, scale: titleScale, y: titleY, display: titleOpacity.get() === 0 ? 'none' : 'flex' }}
       >
         <BreathingAnimationText animationType="black-gray">
           <motion.h1 
@@ -157,7 +158,7 @@ export const VideoShowcaseSection = () => {
         
         <BreathingAnimationText animationType="black-gray">
           <motion.p 
-            className="mx-auto mb-6 px-4 text-[14px] font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24"
+            className="mx-auto mb-2 px-4 text-[14px] font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
@@ -196,67 +197,32 @@ export const VideoShowcaseSection = () => {
       </motion.div>
 
       {/* Video Section */}
-      <div ref={videoSectionRef} className="flex min-h-screen w-full flex-col items-center justify-center gap-4 py-4 md:h-screen lg:gap-12 sticky top-0">
+      <div ref={videoSectionRef} className="flex min-h-screen w-full flex-col items-center justify-center md:h-screen lg:gap-12 sticky top-0 z-10">
         <motion.div 
           className="flex w-full items-center justify-center overflow-hidden drop-shadow-xl"
-          style={{ scale: videoScale, y: videoY, opacity: videoOpacity }}
-          initial={{ opacity: 1, scale: 1, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          style={{ scale: videoScale, y: videoY }}
+          initial={{ scale: 1, y: 30 }}
+          animate={{ scale: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="relative w-full max-w-5xl">
+          <div className="relative w-full max-w-5xl mx-auto px-4">
             {isInView && videoLoaded ? (
               <VideoPlayer
-                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                src="videos/INTRO_typus.mp4"
                 title="Typus AI rendering software demonstration"
                 poster="/video-poster.jpg"
-                height="h-[500px] md:h-[600px]"
+                height="h-[400px] md:h-[500px] lg:h-[600px]"
                 preload="metadata"
+                shouldPlay={videoInView}
               />
             ) : (
-              <div className="h-[500px] md:h-[600px] bg-gray-200 rounded-xl animate-pulse flex items-center justify-center">
-                <div className="text-gray-500">Loading video...</div>
-              </div>
+              <Skeleton className="h-[400px] md:h-[500px] lg:h-[600px] w-full rounded-xl" />
             )}
           </div>
         </motion.div>
 
-        {/* Company Logos */}
-        {/* <div className="mx-auto w-full py-12 text-center md:py-0">
-          <p className="max-w-xl text-base font-thin text-neutral-800 dark:text-neutral-200 md:text-base mx-auto mb-4 text-sm font-medium">
-            Used by architects & interior designers at
-          </p>
-          <div className="flex h-12 w-full max-w-full items-center justify-center sm:h-14 lg:h-16">
-            <div className="relative h-12 w-full sm:h-14 lg:h-16">
-              <div className="hidden h-full items-center justify-center gap-6 sm:flex sm:gap-12 md:gap-16 lg:gap-20">
-                <div className="relative flex h-8 w-20 shrink-0 items-center justify-center sm:h-10 sm:w-24 lg:h-12 lg:w-32">
-                  <div className="w-full h-full bg-neutral-200 dark:bg-neutral-700 rounded flex items-center justify-center text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    LOGO 1
-                  </div>
-                </div>
-                <div className="relative flex h-8 w-20 shrink-0 items-center justify-center sm:h-10 sm:w-24 lg:h-12 lg:w-32">
-                  <div className="w-full h-full bg-neutral-200 dark:bg-neutral-700 rounded flex items-center justify-center text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    LOGO 2
-                  </div>
-                </div>
-                <div className="relative flex h-8 w-20 shrink-0 items-center justify-center sm:h-10 sm:w-24 lg:h-12 lg:w-32">
-                  <div className="w-full h-full bg-neutral-200 dark:bg-neutral-700 rounded flex items-center justify-center text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    LOGO 3
-                  </div>
-                </div>
-                <div className="relative flex h-8 w-20 shrink-0 items-center justify-center sm:h-10 sm:w-24 lg:h-12 lg:w-32">
-                  <div className="w-full h-full bg-neutral-200 dark:bg-neutral-700 rounded flex items-center justify-center text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    LOGO 4
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
 
-      {/* Spacer */}
-      <div className="my-24 h-1 w-full" />
     </section>
   )
 }

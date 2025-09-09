@@ -25,9 +25,10 @@ type Props = {
   poster?: string
   height?: string
   preload?: "auto" | "metadata" | "none"
+  shouldPlay?: boolean
 }
 
-export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]", preload = "metadata" }: Props) {
+export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]", preload = "metadata", shouldPlay = false }: Props) {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const videoRef = React.useRef<HTMLVideoElement>(null)
 
@@ -65,6 +66,18 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
       window.clearTimeout(timer)
     }
   }, [isPlaying])
+
+  // Auto play when shouldPlay changes
+  React.useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    
+    if (shouldPlay && video.paused) {
+      video.play().catch(() => {})
+    } else if (!shouldPlay && !video.paused) {
+      video.pause()
+    }
+  }, [shouldPlay])
 
   // Media events
   React.useEffect(() => {
@@ -278,6 +291,8 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
           controls={false}
           onClick={togglePlay}
           style={{ objectFit: 'cover' }}
+          muted
+          loop
         />
 
         {/* Center Play */}
@@ -328,166 +343,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
         </AnimatePresence>
       </div>
 
-      {/* Controls */}
-      <AnimatePresence>
-        {(isControlsVisible || !isPlaying || isScrubbing) && (
-          <motion.div
-            className="absolute inset-x-0 bottom-0 z-[3] bg-gradient-to-t from-black/70 via-black/20 to-transparent px-3 pb-3 pt-10"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.2 }}
-          >
-            {/* Progress */}
-            <div
-              id="progress-bar"
-              className="relative mb-3 h-3 w-full cursor-pointer rounded-full bg-white/10"
-              onMouseMove={onProgressMouseMove}
-              onMouseLeave={onProgressLeave}
-              onMouseDown={onProgressMouseDown}
-              role="slider"
-              aria-label="Seek"
-              aria-valuemin={0}
-              aria-valuemax={duration || 0}
-              aria-valuenow={currentTime}
-            >
-              <div
-                aria-hidden
-                className="absolute inset-y-0 left-0 rounded-full bg-white/20"
-                style={{ width: `${bufferedPct}%` }}
-              />
-              <motion.div
-                aria-hidden
-                className="absolute inset-y-0 left-0 rounded-full bg-blue-500"
-                style={{ width: `${progressPct}%` }}
-                transition={{ type: "spring", stiffness: 200, damping: 30 }}
-              />
-              <motion.div
-                aria-hidden
-                className="absolute -top-[6px] h-4 w-4 mt-[3px] -translate-x-1/2 rounded-full bg-cyan-400 shadow-[0_0_0_6px_rgba(34,211,238,0.25)]"
-                style={{ left: `calc(${progressPct}% )` }}
-              />
-              <AnimatePresence>
-                {hoverTime !== null && (
-                  <motion.div
-                    className="absolute -top-8 rounded-md bg-zinc-900 px-2 py-1 text-xs text-white ring-1 ring-white/10"
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    style={{
-                      left: `max(0px, min(calc(100% - 40px), calc(${((hoverTime / (duration || 1)) * 100).toFixed(
-                        2,
-                      )}% - 20px)))`,
-                    }}
-                  >
-                    {formatTime(hoverTime)}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
 
-            {/* Actions */}
-            <div className="flex items-center justify-between gap-3 text-white">
-              <div className="flex items-center gap-2">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={togglePlay}
-                  aria-label={isPlaying ? "Pause" : "Play"}
-                  title={isPlaying ? "Pause (Space/K)" : "Play (Space/K)"}
-                  className="h-9 w-9 rounded-full bg-white/10 text-white hover:bg-white/20"
-                >
-                  {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => skip(-10)}
-                  aria-label="Rewind 10 seconds"
-                  title="Rewind 10s (J/←)"
-                  className="h-9 w-9 rounded-full bg-white/5 text-white hover:bg-white/15"
-                >
-                  <Rewind className="h-5 w-5" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => skip(10)}
-                  aria-label="Forward 10 seconds"
-                  title="Forward 10s (L/→)"
-                  className="h-9 w-9 rounded-full bg-white/5 text-white hover:bg-white/15"
-                >
-                  <FastForward className="h-5 w-5" />
-                </Button>
-
-                <div className="ml-2 hidden items-center gap-2 md:flex">
-                  <span className="min-w-[68px] text-xs tabular-nums text-zinc-200">{formatTime(currentTime)}</span>
-                  <span className="text-xs text-zinc-400">/</span>
-                  <span className="min-w-[68px] text-xs tabular-nums text-zinc-200">{formatTime(duration)}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={toggleMute}
-                  aria-label={muted ? "Unmute" : "Mute"}
-                  title="Mute (M)"
-                  className="h-9 w-9 rounded-full bg-white/5 text-white hover:bg-white/15"
-                >
-                  {muted || volume === 0 ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
-                </Button>
-                <div className="hidden w-28 md:block">
-                  <Slider
-                    value={[muted ? 0 : Math.round(volume * 100)]}
-                    onValueChange={([v]) => {
-                      const nv = (v ?? 0) / 100
-                      setVolume(nv)
-                      if (nv > 0 && muted) setMuted(false)
-                      if (nv === 0) setMuted(true)
-                    }}
-                    aria-label="Volume"
-                  />
-                </div>
-
-                <Button
-                  variant="ghost"
-                  onClick={cycleSpeed}
-                  aria-label="Change playback speed"
-                  title="Change speed"
-                  className="h-9 rounded-full bg-white/5 px-3 text-xs text-white hover:bg-white/15"
-                >
-                  <Gauge className="mr-1 h-4 w-4 text-cyan-400" />
-                  {playbackRate}x
-                </Button>
-
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={togglePiP}
-                  aria-label="Picture in Picture"
-                  title="Picture in Picture (P)"
-                  className="h-9 w-9 rounded-full bg-white/5 text-white hover:bg-white/15"
-                >
-                  <PictureInPicture2 className="h-5 w-5" />
-                </Button>
-
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={toggleFullscreen}
-                  aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-                  title="Fullscreen (F)"
-                  className="h-9 w-9 rounded-full bg-white/10 text-white hover:bg-white/20"
-                >
-                  {isFullscreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
