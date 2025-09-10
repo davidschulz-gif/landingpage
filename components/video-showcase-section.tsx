@@ -64,7 +64,7 @@ export const VideoShowcaseSection = () => {
       {/* Background Elements - Scoped to this section only */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-red-50/40 via-transparent to-transparent dark:from-red-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-100/40 via-transparent to-transparent dark:from-gray-800/40" />
         
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] opacity-40" />
@@ -73,7 +73,7 @@ export const VideoShowcaseSection = () => {
         <motion.div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(220, 38, 38, 0.3) 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(209, 213, 219, 0.4) 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }}
           animate={{
@@ -90,7 +90,7 @@ export const VideoShowcaseSection = () => {
         <motion.div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 12.5px 12.5px, rgba(59, 130, 246, 0.05) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle at 12.5px 12.5px, rgba(229, 231, 235, 0.3) 1px, transparent 1px)`,
             backgroundSize: '25px 25px'
           }}
           animate={{
@@ -105,11 +105,11 @@ export const VideoShowcaseSection = () => {
         
         {/* Floating Grid Lines */}
         <motion.div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(220, 38, 38, 0.5) 1px, transparent 1px),
-              linear-gradient(rgba(220, 38, 38, 0.5) 1px, transparent 1px)
+              linear-gradient(90deg, rgba(209, 213, 219, 0.6) 1px, transparent 1px),
+              linear-gradient(rgba(209, 213, 219, 0.6) 1px, transparent 1px)
             `,
             backgroundSize: '100px 100px'
           }}

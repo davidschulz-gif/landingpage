@@ -264,7 +264,6 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
       ref={containerRef}
       className={cn(
         "group relative mx-auto w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/60 backdrop-blur-md shadow-2xl",
-        isPlaying ? "ring-2 ring-blue-500/40" : "ring-1 ring-white/5",
       )}
       tabIndex={0}
       onKeyDown={onKeyDown}
