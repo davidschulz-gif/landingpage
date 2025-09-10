@@ -27,7 +27,7 @@ const pricingPlans = [
       "ALL PLUGIN INTEGRATIONS",
     ],
     buttonText: "Get Started",
-    buttonBg: "#ff3636",
+    buttonBg: "#000000",
   },
   {
     id: "explorer",
@@ -51,7 +51,7 @@ const pricingPlans = [
       "NO QUEUE",
     ],
     buttonText: "Get Started",
-    buttonBg: "#ff3636",
+    buttonBg: "#000000",
     popular: true,
   },
   {
@@ -73,7 +73,7 @@ const pricingPlans = [
       "RESOLUTION UP TO 13K",
     ],
     buttonText: "Get Started",
-    buttonBg: "#ff3636",
+    buttonBg: "#000000",
   },
 ];
 
@@ -149,43 +149,47 @@ export function ManyChatPricingSection() {
               </h2>
             </BreathingAnimationText>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-              <button
-                onClick={() => setIsYearly(true)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  isYearly
-                    ? "bg-white border-2 text-black"
-                    : "text-gray-600 hover:text-gray-800"
-                }`}
-                style={{
-                  borderColor: isYearly ? "#ff3636" : "transparent",
-                }}
-              >
-                Yearly Billing{" "}
-                {isYearly && (
-                  <span
-                    className="text-white px-2 py-1 rounded ml-2"
-                    style={{
-                      backgroundColor: "#ff3636",
-                      fontFamily: "'Space Grotesk', sans-serif",
-                    }}
-                  >
-                    75% OFF
-                  </span>
-                )}
-              </button>
-              <button
-                onClick={() => setIsYearly(false)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                  !isYearly
-                    ? "bg-white border-2 text-black"
-                    : "text-gray-600 hover:text-gray-800"
-                }`}
-                style={{
-                  borderColor: !isYearly ? "#ff3636" : "transparent",
-                }}
-              >
-                Monthly Billing
-              </button>
+              <BreathingAnimationText animationType="black-gray">
+                <button
+                  onClick={() => setIsYearly(true)}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                    isYearly
+                      ? "bg-white border-2 text-black"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
+                  style={{
+                    borderColor: isYearly ? "#000000" : "transparent",
+                  }}
+                >
+                  Yearly Billing{" "}
+                  {isYearly && (
+                    <span
+                      className="text-white px-2 py-1 rounded ml-2"
+                      style={{
+                        backgroundColor: "#000000",
+                        fontFamily: "'Space Grotesk', sans-serif",
+                      }}
+                    >
+                      75% OFF
+                    </span>
+                  )}
+                </button>
+              </BreathingAnimationText>
+              <BreathingAnimationText animationType="black-gray">
+                <button
+                  onClick={() => setIsYearly(false)}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                    !isYearly
+                      ? "bg-white border-2 text-black"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
+                  style={{
+                    borderColor: !isYearly ? "#000000" : "transparent",
+                  }}
+                >
+                  Monthly Billing
+                </button>
+              </BreathingAnimationText>
             </div>
             <BreathingAnimationText animationType="black-gray">
               <p
@@ -261,7 +265,7 @@ function PricingCard({
               <span
                 className="text-white px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap"
                 style={{
-                  backgroundColor: "#ff3636",
+                  backgroundColor: "#000000",
                   fontFamily: "'Space Grotesk', sans-serif",
                 }}
               >

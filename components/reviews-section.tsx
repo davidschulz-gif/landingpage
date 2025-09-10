@@ -109,12 +109,18 @@ export function ReviewsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <BreathingAnimationText animationType="black-gray">
-            <h2 
+          <BreathingAnimationText
+            animationType="black-gray"
+            className="font-space-grotesk"
+          >
+            <h2
               className="text-[30px] font-normal text-black mb-6"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{
+                fontFamily:
+                  "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+              }}
             >
-              READY TO SPREAD THE NEWS ABOUT TYPUS.AI?
+              WHAT EXPERTS SAY
             </h2>
           </BreathingAnimationText>
         </motion.div>

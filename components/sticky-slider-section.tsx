@@ -40,70 +40,76 @@ const tabsData: TabData[] = [
       { id: 3, name: "CAD", slideId: 3 },
       { id: 4, name: "Sitephoto", slideId: 4 },
       { id: 5, name: "Model Photo", slideId: 5 },
-      { id: 6, name: "Color Map (Upload Custom Textures)", slideId: 6 }
+      { id: 6, name: "Color Map (Upload Custom Textures)", slideId: 6 },
     ],
     slides: [
       {
         id: 1,
         title: "SKETCH TO RENDER",
         subtitle: "Hand Drawings Come Alive",
-        description: "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
+        description:
+          "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
         video: "/videos/sketch.mp4",
         textColor: "text-black",
         buttonText: "Upload Sketch",
-        progress: "1/6"
+        progress: "1/6",
       },
       {
         id: 2,
         title: "3D MODEL TO RENDER",
         subtitle: "Plugins Integration",
-        description: "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
+        description:
+          "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
         video: "/videos/3d.mp4",
         textColor: "text-black",
         buttonText: "Get Plugins",
-        progress: "2/6"
+        progress: "2/6",
       },
       {
         id: 3,
         title: "CAD TRANSFORMATION",
         subtitle: "Technical To Visual",
-        description: "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
+        description:
+          "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
         video: "/videos/cad.mp4",
         textColor: "text-black",
         buttonText: "Try CAD",
-        progress: "3/6"
+        progress: "3/6",
       },
       {
         id: 4,
         title: "Site photo enhancement",
         subtitle: "Context Visualization",
-        description: "Place your designs in real environments using site photos for contextual visualization.",
+        description:
+          "Place your designs in real environments using site photos for contextual visualization.",
         video: "/videos/photo.mp4",
         textColor: "text-black",
         buttonText: "Upload Photo",
-        progress: "4/6"
+        progress: "4/6",
       },
       {
         id: 5,
         title: "MODEL PHOTOGRAPHY",
         subtitle: "Physical To Digital",
-        description: "Capture physical architectural models and transform them into digital renders.",
+        description:
+          "Capture physical architectural models and transform them into digital renders.",
         video: "/videos/modelphoto.mp4",
         textColor: "text-black",
         buttonText: "Capture Model",
-        progress: "5/6"
+        progress: "5/6",
       },
       {
         id: 6,
         title: "CUSTOM TEXTURES",
         subtitle: "Color Map Upload",
-        description: "Upload your own textures and materials to create unique, personalized architectural visualizations.",
+        description:
+          "Upload your own textures and materials to create unique, personalized architectural visualizations.",
         video: "/videos/colormap.mp4",
         textColor: "text-black",
         buttonText: "Upload Textures",
-        progress: "6/6"
-      }
-    ]
+        progress: "6/6",
+      },
+    ],
   },
   {
     id: 2,
@@ -113,80 +119,84 @@ const tabsData: TabData[] = [
       { id: 2, name: "Outpaint Expansion", slideId: 2 },
       { id: 3, name: "Add Style", slideId: 3 },
       { id: 4, name: "Remove Objects & Background", slideId: 4 },
-      { id: 5, name: "Edit by Text", slideId: 5 }
+      { id: 5, name: "Edit by Text", slideId: 5 },
     ],
     slides: [
       {
         id: 1,
         title: "INPAINT DETAILS",
         subtitle: "Precise Modifications",
-        description: "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
+        description:
+          "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Start Inpainting",
-        progress: "1/5"
+        progress: "1/5",
       },
       {
         id: 2,
         title: "OUTPAINT EXPANSION",
         subtitle: "Extend Your Vision",
-        description: "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
+        description:
+          "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Expand View",
-        progress: "2/5"
+        progress: "2/5",
       },
       {
         id: 3,
         title: "STYLE APPLICATION",
         subtitle: "Aesthetic Transformation",
-        description: "Apply different architectural styles and artistic approaches to transform your designs.",
+        description:
+          "Apply different architectural styles and artistic approaches to transform your designs.",
         video: "/videos/styletransfer.mp4",
         textColor: "text-black",
         buttonText: "Browse Styles",
-        progress: "3/5"
+        progress: "3/5",
       },
       {
         id: 4,
         title: "OBJECT REMOVAL",
         subtitle: "Clean Backgrounds",
-        description: "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
+        description:
+          "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Remove Objects",
-        progress: "4/5"
+        progress: "4/5",
       },
       {
         id: 5,
         title: "TEXT-BASED EDITING",
         subtitle: "Describe Changes",
-        description: "Make complex edits by simply describing what you want to change in natural language.",
+        description:
+          "Make complex edits by simply describing what you want to change in natural language.",
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Edit by Text",
-        progress: "5/5"
-      }
-    ]
+        progress: "5/5",
+      },
+    ],
   },
   {
     id: 3,
     name: "UPSCALER",
-    subCategories: [
-      { id: 1, name: "Enhance Details & Upscale", slideId: 1 }
-    ],
+    subCategories: [{ id: 1, name: "Enhance Details & Upscale", slideId: 1 }],
     slides: [
       {
         id: 1,
         title: "DETAIL ENHANCEMENT",
         subtitle: "AI-powered upscaling",
-        description: "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
+        description:
+          "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
         video: "/videos/upscale.mp4",
         textColor: "text-black",
         buttonText: "Enhance Details",
-        progress: "1/1"
-      }
-    ]
-  }
+        progress: "1/1",
+      },
+    ],
+  },
 ];
 
 // Video cache for performance
@@ -197,30 +207,37 @@ export function StickySliderSection() {
   const [activeTab, setActiveTab] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isInView, setIsInView] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
   const [manualTabSwitch, setManualTabSwitch] = useState(false);
   const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
   const prevSlideRef = useRef(0);
-  const sectionInView = useInView(containerRef, { once: true, margin: "300px" });
-  
+  const sectionInView = useInView(containerRef, {
+    once: true,
+    margin: "300px",
+  });
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   const currentTabSlides = tabsData[activeTab].slides;
   const totalSlides = tabsData.reduce((acc, tab) => acc + tab.slides.length, 0);
-  const slideProgress = useTransform(scrollYProgress, [0, 1], [0, totalSlides - 1]);
+  const slideProgress = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, totalSlides - 1]
+  );
 
   useEffect(() => {
     const unsubscribe = slideProgress.onChange((latest) => {
       if (manualTabSwitch) return;
-      
+
       const globalSlideIndex = Math.round(latest);
       let targetTab = 0;
       let targetSlide = 0;
       let slideCount = 0;
-      
+
       for (let i = 0; i < tabsData.length; i++) {
         if (globalSlideIndex < slideCount + tabsData[i].slides.length) {
           targetTab = i;
@@ -229,13 +246,13 @@ export function StickySliderSection() {
         }
         slideCount += tabsData[i].slides.length;
       }
-      
+
       if (targetTab !== activeTab) {
         setActiveTab(targetTab);
       }
-      
+
       if (targetSlide !== currentSlide) {
-        setScrollDirection(targetSlide > prevSlideRef.current ? 'down' : 'up');
+        setScrollDirection(targetSlide > prevSlideRef.current ? "down" : "up");
         prevSlideRef.current = currentSlide;
         setCurrentSlide(targetSlide);
       }
@@ -258,15 +275,15 @@ export function StickySliderSection() {
 
     const preloadVideo = (src: string) => {
       if (videoCache.has(src) || loadedVideos.has(src)) return;
-      
-      const video = document.createElement('video');
-      video.preload = 'metadata';
+
+      const video = document.createElement("video");
+      video.preload = "metadata";
       video.src = src;
       video.load();
-      
-      video.addEventListener('loadedmetadata', () => {
+
+      video.addEventListener("loadedmetadata", () => {
         videoCache.set(src, video);
-        setLoadedVideos(prev => new Set([...prev, src]));
+        setLoadedVideos((prev) => new Set([...prev, src]));
       });
     };
 
@@ -277,8 +294,10 @@ export function StickySliderSection() {
     }
 
     // Preload other videos with delay
-    const allVideos = tabsData.flatMap(tab => tab.slides.map(slide => slide.video));
-    const timeouts = allVideos.map((video, index) => 
+    const allVideos = tabsData.flatMap((tab) =>
+      tab.slides.map((slide) => slide.video)
+    );
+    const timeouts = allVideos.map((video, index) =>
       setTimeout(() => preloadVideo(video), index * 300)
     );
 
@@ -310,8 +329,8 @@ export function StickySliderSection() {
           <div
             key={slide.id}
             className={`absolute inset-0 ${slide.textColor}`}
-            style={{ 
-              opacity: currentSlide === index ? 1 : 0
+            style={{
+              opacity: currentSlide === index ? 1 : 0,
             }}
           >
             <div className="container mx-auto px-8 lg:px-16 h-full">
@@ -349,15 +368,16 @@ export function StickySliderSection() {
                                   onClick={() => handleTabClick(tabIndex)}
                                   style={{
                                     borderRadius: "0.75rem",
-                                    background: 'white',
-                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1)'
+                                    background: "white",
+                                    boxShadow:
+                                      "0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1)",
                                   }}
                                 >
                                   <div className="flex items-center space-x-4">
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50 border border-gray-100">
-                                      <div className="w-4 h-4 rounded-full" style={{ backgroundColor: THEME_COLORS.primary }}></div>
+                                      <div className="w-4 h-4 rounded-full bg-black animate-pulse"></div>
                                     </div>
-                                    
+
                                     <div className="flex flex-col justify-center items-start">
                                       <BreathingAnimationText animationType="black-gray">
                                         <div className="font-semibold text-sm tracking-wide text-gray-900">
@@ -369,7 +389,7 @@ export function StickySliderSection() {
                                       </div>
                                     </div>
                                   </div>
-                                  
+
                                   <div className="w-6 h-6 flex items-center justify-center">
                                     <div className="w-2 h-2 border-r-2 border-b-2 border-gray-400 transition-transform duration-200 transform rotate-[135deg]"></div>
                                   </div>
@@ -388,7 +408,7 @@ export function StickySliderSection() {
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-gray-200 group-hover:border-gray-300 transition-colors duration-200">
                                       <div className="w-4 h-4 rounded-full bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200"></div>
                                     </div>
-                                    
+
                                     <div>
                                       <div className="font-semibold text-sm tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors duration-200">
                                         {tab.name}
@@ -398,62 +418,78 @@ export function StickySliderSection() {
                                       </div>
                                     </div>
                                   </div>
-                                  
+
                                   <div className="w-6 h-6 flex items-center justify-center">
                                     <div className="w-2 h-2 border-r-2 border-b-2 rotate-45 border-gray-400 group-hover:border-gray-600 transition-all duration-200"></div>
                                   </div>
                                 </div>
                               </motion.button>
                             )}
-                            
-                            <div className={`overflow-hidden transition-all duration-500 ease-out ${
-                              isActiveTab ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                            }`}>
+
+                            <div
+                              className={`overflow-hidden transition-all duration-500 ease-out ${
+                                isActiveTab
+                                  ? "max-h-96 opacity-100"
+                                  : "max-h-0 opacity-0"
+                              }`}
+                            >
                               <div className="pt-2 pb-4 ml-6">
                                 <div className="space-y-1 relative">
                                   {tab.subCategories?.map((subCat) => {
                                     const slideIndex = subCat.slideId - 1;
-                                    const isActiveSubCat = currentSlide === slideIndex && isActiveTab;
+                                    const isActiveSubCat =
+                                      currentSlide === slideIndex &&
+                                      isActiveTab;
                                     return (
                                       <motion.button
                                         key={subCat.id}
-                                        onClick={() => handleSubCategoryClick(tabIndex, slideIndex)}
+                                        onClick={() =>
+                                          handleSubCategoryClick(
+                                            tabIndex,
+                                            slideIndex
+                                          )
+                                        }
                                         className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
                                           isActiveSubCat
-                                            ? 'text-black shadow-sm border animate-breathe-border'
-                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                                            ? "text-black shadow-sm border border-black bg-white"
+                                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
                                         }`}
-                                        style={{
-                                          background: isActiveSubCat ? `linear-gradient(to right, ${THEME_COLORS.primaryLight}, rgba(255, 140, 0, 0.1))` : 'transparent',
-                                          borderColor: isActiveSubCat ? THEME_COLORS.primary : 'transparent'
+                                        whileHover={{
+                                          scale: isActiveSubCat ? 1 : 1.01,
+                                          x: isActiveSubCat ? 0 : 2,
                                         }}
-                                        whileHover={{ scale: isActiveSubCat ? 1 : 1.01, x: isActiveSubCat ? 0 : 2 }}
                                         whileTap={{ scale: 0.98 }}
-                                        transition={{ duration: 0.15, ease: "easeOut" }}
+                                        transition={{
+                                          duration: 0.15,
+                                          ease: "easeOut",
+                                        }}
                                       >
                                         <div className="flex items-center p-3 pl-4">
-                                          <div className={`w-2 h-2 rounded-full mr-4 transition-all duration-200 ${
-                                            isActiveSubCat 
-                                              ? 'shadow-sm' 
-                                              : 'bg-gray-300 group-hover/sub:bg-gray-400'
-                                          }`} style={{
-                                            backgroundColor: isActiveSubCat ? THEME_COLORS.primary : undefined
-                                          }}></div>
-                                          
+                                          <div
+                                            className={`w-2 h-2 rounded-full mr-4 transition-all duration-200 ${
+                                              isActiveSubCat
+                                                ? "bg-black shadow-sm animate-pulse"
+                                                : "bg-gray-300 group-hover/sub:bg-gray-400"
+                                            }`}
+                                          ></div>
+
                                           <div className="flex-1">
-                                            <div className={`text-xs font-medium transition-colors duration-200 ${
-                                              isActiveSubCat ? 'text-gray-900' : 'text-gray-600 group-hover/sub:text-gray-800'
-                                            }`}>
+                                            <div
+                                              className={`text-xs font-medium transition-colors duration-200 ${
+                                                isActiveSubCat
+                                                  ? "text-gray-900"
+                                                  : "text-gray-600 group-hover/sub:text-gray-800"
+                                              }`}
+                                            >
                                               {subCat.name}
                                             </div>
                                           </div>
-                                          
+
                                           {isActiveSubCat && (
-                                            <motion.div 
+                                            <motion.div
                                               initial={{ scale: 0, opacity: 0 }}
                                               animate={{ scale: 1, opacity: 1 }}
-                                              className="w-1.5 h-1.5 rounded-full"
-                                              style={{ backgroundColor: THEME_COLORS.primary }}
+                                              className="w-1.5 h-1.5 rounded-full bg-black animate-pulse"
                                             />
                                           )}
                                         </div>
@@ -467,13 +503,14 @@ export function StickySliderSection() {
                         );
                       })}
                     </div>
-                    
+
                     <div className="mt-6 pt-4">
                       <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-200"></div>
                       <div className="mt-3 px-2">
                         <BreathingAnimationText animationType="black-gray">
                           <div className="text-xs text-gray-400 font-medium">
-                            {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+                            {currentTabSlides[currentSlide]?.progress ||
+                              `${currentSlide + 1}/${currentTabSlides.length}`}
                           </div>
                         </BreathingAnimationText>
                       </div>
@@ -489,45 +526,61 @@ export function StickySliderSection() {
                       <button
                         key={i}
                         onClick={() => setCurrentSlide(i)}
-                        className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-zinc-700 ${
-                          i === currentSlide ? "w-12 bg-white" : "w-6 bg-transparent"
+                        className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-black ${
+                          i === currentSlide
+                            ? "w-12 bg-white"
+                            : "w-6 bg-transparent"
                         }`}
                       />
                     ))}
                     <BreathingAnimationText animationType="black-gray">
                       <span className="text-sm ml-6 opacity-80 text-black">
-                        {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+                        {currentTabSlides[currentSlide]?.progress ||
+                          `${currentSlide + 1}/${currentTabSlides.length}`}
                       </span>
                     </BreathingAnimationText>
                   </div>
-
-
 
                   {/* Text Content */}
                   <div className="relative overflow-hidden">
                     {currentTabSlides.map((slideContent, slideIndex) => (
                       <motion.div
                         key={slideContent.id}
-                        className={slideIndex === currentSlide ? "block" : "hidden"}
-                        initial={{ y: scrollDirection === 'down' ? 50 : -50 }}
-                        animate={{ y: slideIndex === currentSlide ? 0 : (scrollDirection === 'down' ? 50 : -50) }}
+                        className={
+                          slideIndex === currentSlide ? "block" : "hidden"
+                        }
+                        initial={{ y: scrollDirection === "down" ? 50 : -50 }}
+                        animate={{
+                          y:
+                            slideIndex === currentSlide
+                              ? 0
+                              : scrollDirection === "down"
+                              ? 50
+                              : -50,
+                        }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
                         <BreathingAnimationText animationType="black-gray">
                           <div className="space-y-4">
-                            <motion.h1 
-                              className="text-[30px] font-normal leading-[0.9] text-black" 
-                              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                              initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                            <motion.h1
+                              className="text-[30px] font-normal leading-[0.9] text-black"
+                              style={{
+                                fontFamily: "'Space Grotesk', sans-serif",
+                              }}
+                              initial={{
+                                y: scrollDirection === "down" ? 30 : -30,
+                              }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.6, delay: 0.1 }}
                             >
                               {slideContent.title}
                             </motion.h1>
-                            
-                            <motion.h2 
-                              className="text-[18px] font-light leading-tight text-black" 
-                              initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+
+                            <motion.h2
+                              className="text-[18px] font-light leading-tight text-black"
+                              initial={{
+                                y: scrollDirection === "down" ? 30 : -30,
+                              }}
                               animate={{ y: 0 }}
                               transition={{ duration: 0.6, delay: 0.2 }}
                             >
@@ -535,9 +588,11 @@ export function StickySliderSection() {
                             </motion.h2>
                           </div>
 
-                          <motion.p 
-                            className="text-[14px] leading-relaxed max-w-2xl mt-6 text-black" 
-                            initial={{ y: scrollDirection === 'down' ? 30 : -30 }}
+                          <motion.p
+                            className="text-[14px] leading-relaxed max-w-2xl mt-6 text-black"
+                            initial={{
+                              y: scrollDirection === "down" ? 30 : -30,
+                            }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                           >
@@ -554,7 +609,8 @@ export function StickySliderSection() {
                       size="default"
                       className="px-8 py-3 text-sm font-medium rounded-lg text-white shadow-md hover:shadow-lg animate-breathe-primary-hover"
                     >
-                      {currentTabSlides[currentSlide]?.buttonText || 'Get Started'}
+                      {currentTabSlides[currentSlide]?.buttonText ||
+                        "Get Started"}
                     </Button>
                   </div>
                 </div>
@@ -566,16 +622,20 @@ export function StickySliderSection() {
                       <motion.div
                         key={slideContent.id}
                         className="absolute inset-0 flex items-center justify-center"
-                        initial={{ y: '-100%' }}
-                        animate={{ 
-                          y: slideIndex === currentSlide ? '0%' : '-100%'
+                        initial={{ y: "-100%" }}
+                        animate={{
+                          y: slideIndex === currentSlide ? "0%" : "-100%",
                         }}
-                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{
+                          duration: 0.8,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
                         style={{
-                          opacity: slideIndex === currentSlide ? 1 : 0
+                          opacity: slideIndex === currentSlide ? 1 : 0,
                         }}
                       >
-                        {sectionInView && loadedVideos.has(slideContent.video) ? (
+                        {sectionInView &&
+                        loadedVideos.has(slideContent.video) ? (
                           <video
                             className="w-full max-w-xs h-[50vh] rounded-2xl object-cover shadow-2xl"
                             playsInline
@@ -588,7 +648,9 @@ export function StickySliderSection() {
                           </video>
                         ) : (
                           <div className="w-full max-w-xs h-[50vh] rounded-2xl bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
-                            <div className="text-gray-500 text-sm">Loading...</div>
+                            <div className="text-gray-500 text-sm">
+                              Loading...
+                            </div>
                           </div>
                         )}
                       </motion.div>
@@ -610,13 +672,16 @@ export function StickySliderSection() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-zinc-700 ${
-                  index === currentSlide ? "h-12 bg-white" : "h-6 bg-transparent"
+                  index === currentSlide
+                    ? "h-12 bg-white"
+                    : "h-6 bg-transparent"
                 }`}
               />
             ))}
             <BreathingAnimationText animationType="black-gray">
               <span className="text-sm mt-6 opacity-80 text-black">
-                {currentTabSlides[currentSlide]?.progress || `${currentSlide + 1}/${currentTabSlides.length}`}
+                {currentTabSlides[currentSlide]?.progress ||
+                  `${currentSlide + 1}/${currentTabSlides.length}`}
               </span>
             </BreathingAnimationText>
           </div>

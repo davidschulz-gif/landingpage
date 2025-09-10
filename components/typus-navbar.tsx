@@ -123,26 +123,22 @@ export default function TypusNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.querySelector('[data-hero-section]');
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        setShowNavbar(heroBottom <= 0);
-      }
+      setShowNavbar(window.scrollY > 100);
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className={`fixed z-50 w-full p-1 transition-all duration-300 ${showNavbar ? 'top-0 opacity-100' : 'top-[-100px] opacity-0'}`}>
+    <div className={`fixed z-50 w-full ${showNavbar ? '-top-4' : 'top-0'} opacity-100 transition-all duration-300`}>
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="h-13 px-6">
           <div className="flex items-center justify-between w-full h-full">
             <div className="flex items-center h-full">
-              <NavbarLogo />
+              <NavbarLogo visible={showNavbar} />
               <div className="hidden md:flex items-center space-x-8 ml-8 h-full">
                 {navItems.map((item, idx) => (
                   <div
@@ -158,41 +154,41 @@ export default function TypusNavbar() {
                       {item.name}
                       <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                     </a>
-                <div
-                  className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
-                    hoveredItem === item.name
-                      ? "opacity-100 visible translate-y-0"
-                      : "opacity-0 invisible translate-y-2"
-                  }`}
-                >
-                  <div className="p-2">
-                    {item.submenu?.map((subitem, subIdx) => (
-                      <a
-                        key={`submenu-${idx}-${subIdx}`}
-                        href={subitem.link}
-                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item"
-                      >
-                        <div className="relative flex-shrink-0 w-16 h-10 bg-neutral-100 dark:bg-neutral-800 rounded-md overflow-hidden">
-                          <img
-                            src={subitem.video || "/placeholder.svg"}
-                            alt={subitem.title}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-200">
-                            <Play className="w-4 h-4 text-white" />
-                          </div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors duration-200">
-                            {subitem.title}
-                          </h4>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
-                            {subitem.description}
-                          </p>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
+                    <div
+                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
+                        hoveredItem === item.name
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible translate-y-2"
+                      }`}
+                    >
+                      <div className="p-2">
+                        {item.submenu?.map((subitem, subIdx) => (
+                          <a
+                            key={`submenu-${idx}-${subIdx}`}
+                            href={subitem.link}
+                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item"
+                          >
+                            <div className="relative flex-shrink-0 w-16 h-10 bg-neutral-100 dark:bg-neutral-800 rounded-md overflow-hidden">
+                              <img
+                                src={subitem.video || "/placeholder.svg"}
+                                alt={subitem.title}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-200">
+                                <Play className="w-4 h-4 text-white" />
+                              </div>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors duration-200">
+                                {subitem.title}
+                              </h4>
+                              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
+                                {subitem.description}
+                              </p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -209,10 +205,16 @@ export default function TypusNavbar() {
                   <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 )}
               </button>
-              <a href="#login" className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+              <a
+                href="#login"
+                className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap"
+              >
                 LOGIN
               </a>
-              <a href="#signup" className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap">
+              <a
+                href="#signup"
+                className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap"
+              >
                 SIGN UP
               </a>
             </div>

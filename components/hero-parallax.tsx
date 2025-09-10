@@ -130,62 +130,139 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto pt-20 pb-20 md:pt-32 md:pb-16 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
-      <div className="flex flex-col items-center text-center pt-40">
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
-        >
-          <Image
-            src="/logo/typus_logo.png"
-            alt="Typus AI Logo"
-            width={120}
-            height={40}
-            className="w-24 h-8 sm:w-32 sm:h-10 lg:w-40 lg:h-12 object-contain"
-            priority
-          />
-        </motion.div>
+      <div className="pt-24 relative">
+        {/* Left Side - Headline and Description */}
+        <div className="absolute left-0 top-16 max-w-lg">
+          <BreathingAnimationText animationType="black-gray">
+            <motion.h1
+              className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <span className="text-black dark:text-white">AI FOR </span>
+              <span className="text-black dark:text-white font-normal">
+                ARCHITECTS.
+              </span>
+            </motion.h1>
+          </BreathingAnimationText>
 
-        {/* Centered Headline */}
-        <BreathingAnimationText animationType="black-gray">
-          <motion.h1
-            className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-2"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            initial={{ opacity: 0, y: 50 }}
+          <BreathingAnimationText
+            animationType="black-gray"
+            className="z-999 text-[14px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4"
+          >
+            AI fully preserves the structure of your architectural input while
+            creating stunning AI-powered visualizations. Transform your CAD
+            files and sketches into photorealistic renders.
+          </BreathingAnimationText>
+        </div>
+
+        {/* Center - Logo, Title and Button */}
+        <div className="flex flex-col items-center text-center pt-24">
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="mb-0 flex flex-col items-center space-y-2"
           >
-            <span className="text-black dark:text-white">AI FOR </span>
-            <span className="text-black dark:text-white font-normal">
-              ARCHITECTS.
+            <img
+              src="/logo/typus_logo_transparent.png"
+              alt="Typus.AI logo"
+              width={60}
+              height={60}
+              className="object-contain"
+            />
+            <span
+              className="text-center uppercase"
+              style={{
+                fontFamily:
+                  "var(--font-source-serif-4), 'Source Serif 4', serif",
+                fontSize: "12px",
+                fontWeight: 300,
+                letterSpacing: "2.5px",
+                lineHeight: "1.3em",
+                color: "#FF1E1E",
+                textTransform: "uppercase",
+              }}
+            >
+              typus.AI
             </span>
-          </motion.h1>
-        </BreathingAnimationText>
+          </motion.div>
 
-        <BreathingAnimationText
-          animationType="black-gray"
-          className="z-999 max-w-3xl text-[14px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4"
-        >
-          AI fully preserves the structure of your architectural input while
-          creating stunning AI-powered visualizations. Transform your CAD files
-          and sketches into photorealistic renders.
-        </BreathingAnimationText>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-        >
-          <Button
-            className="animate-breathe-primary-hover text-white px-8 py-2 text-base font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          {/* Features Marquee */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+            className="mt-12 w-full overflow-hidden"
           >
-            Get Started Free
-          </Button>
-        </motion.div>
+            <div className="relative">
+              <div className="flex animate-marquee space-x-8">
+                {[
+                  "CREATE A FREE ACCOUNT",
+                  "DOWNLOAD & INSTALL PLUGINS FOR FREE",
+                  "TUTORIAL",
+                  "STEP BY STEP GUIDE",
+                  "GET CASE STUDIES",
+                  "GET A COUPON WELCOME GIFT",
+                ]
+                  .concat([
+                    "CREATE A FREE ACCOUNT",
+                    "DOWNLOAD & INSTALL PLUGINS FOR FREE",
+                    "TUTORIAL",
+                    "STEP BY STEP GUIDE",
+                    "GET CASE STUDIES",
+                    "GET A COUPON WELCOME GIFT",
+                  ])
+                  .map((feature, index) => (
+                    <div
+                      key={`${feature}-${index}`}
+                      className="flex items-center space-x-3 whitespace-nowrap flex-shrink-0"
+                    >
+                      <div className="w-4 h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
+                        <svg
+                          className="w-2.5 h-2.5 text-white dark:text-black"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <BreathingAnimationText animationType="black-gray">
+                        <span
+                          className="text-sm font-medium text-black dark:text-white"
+                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
+                          {feature}
+                        </span>
+                      </BreathingAnimationText>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
+        }
+      `}</style>
 
       {/* Floating elements */}
       <motion.div

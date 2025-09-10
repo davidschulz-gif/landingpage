@@ -15,6 +15,8 @@ const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase')
 const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget));
 const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection));
 const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection));
+const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection));
+const FeaturedTestimonialSection = dynamic(() => import('@/components/featured-testimonial-section').then(mod => mod.FeaturedTestimonialSection));
 const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
 
 // Row 1, 2, 3 images from row-1-2-3 folder
@@ -304,6 +306,12 @@ export default function Home() {
 
       {/* Pricing Section */}
       <ManyChatPricingSection />
+
+      {/* Meet Our Team Section */}
+      <MeetOurTeamSection />
+
+      {/* Featured Testimonial Section */}
+      <FeaturedTestimonialSection />
 
       {/* Enhanced Footer */}
       <FooterSection />
