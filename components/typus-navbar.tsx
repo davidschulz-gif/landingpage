@@ -119,9 +119,15 @@ export default function TypusNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      const heroSection = document.querySelector('[data-hero-section]');
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        setShowNavbar(heroBottom <= 0);
+      }
       setIsScrolled(window.scrollY > 50);
     };
 
@@ -130,7 +136,7 @@ export default function TypusNavbar() {
   }, []);
 
   return (
-    <div className={`sticky z-50 w-full p-1 transition-all duration-300 ${isScrolled ? 'top-[-20px]' : 'top-0'}`}>
+    <div className={`fixed z-50 w-full p-1 transition-all duration-300 ${showNavbar ? 'top-0 opacity-100' : 'top-[-100px] opacity-0'}`}>
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="h-13 px-6">

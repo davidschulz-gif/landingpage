@@ -59,21 +59,21 @@ export const VideoShowcaseSection = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative mx-auto flex max-w-7xl flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-20 sm:pt-24 h-[150vh]"
+      className="relative mx-auto flex max-w-7xl flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
     >
       {/* Background Elements - Scoped to this section only */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-100/40 via-transparent to-transparent dark:from-gray-800/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent dark:from-white/10" />
         
         {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] opacity-40" />
+        <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.02] opacity-40" />
         
         {/* Animated Dots Pattern */}
         <motion.div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(209, 213, 219, 0.4) 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.4) 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }}
           animate={{
@@ -90,7 +90,7 @@ export const VideoShowcaseSection = () => {
         <motion.div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 12.5px 12.5px, rgba(229, 231, 235, 0.3) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle at 12.5px 12.5px, rgba(255, 255, 255, 0.3) 1px, transparent 1px)`,
             backgroundSize: '25px 25px'
           }}
           animate={{
@@ -108,8 +108,8 @@ export const VideoShowcaseSection = () => {
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(209, 213, 219, 0.6) 1px, transparent 1px),
-              linear-gradient(rgba(209, 213, 219, 0.6) 1px, transparent 1px)
+              linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+              linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px)
             `,
             backgroundSize: '100px 100px'
           }}
@@ -213,7 +213,7 @@ export const VideoShowcaseSection = () => {
                 poster="/video-poster.jpg"
                 height="h-[400px] md:h-[500px] lg:h-[600px]"
                 preload="metadata"
-                shouldPlay={videoInView}
+                shouldPlay={true}
               />
             ) : (
               <Skeleton className="h-[400px] md:h-[500px] lg:h-[600px] w-full rounded-xl" />

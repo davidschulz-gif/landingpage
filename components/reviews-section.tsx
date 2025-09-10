@@ -148,7 +148,8 @@ export function ReviewsSection() {
             frameBorder="0" 
             scrolling="no" 
             width="100%"
-            className="min-h-[500px] rounded-lg"
+            className="min-h-[400px] rounded-lg"
+            style={{ height: 'auto', minHeight: '400px' }}
           />
           <script 
             type="text/javascript"

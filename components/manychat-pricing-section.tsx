@@ -355,16 +355,17 @@ function PricingCard({
         </ul>
       </div>
 
-      <Button
-        className="mt-2 w-full rounded-full px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-normal uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg flex-shrink-0"
-        style={{
-          backgroundColor: plan.buttonBg,
-          color: "#ffffff",
-          fontFamily: "'Space Grotesk', sans-serif",
-        }}
-      >
-        Get Started
-      </Button>
+      <BreathingAnimationText animationType="red-orange">
+        <Button
+          className="mt-2 w-full rounded-full px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-normal uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg flex-shrink-0"
+          style={{
+            backgroundColor: plan.buttonBg,
+            fontFamily: "'Space Grotesk', sans-serif",
+          }}
+        >
+          Get Started
+        </Button>
+      </BreathingAnimationText>
     </div>
   );
 }

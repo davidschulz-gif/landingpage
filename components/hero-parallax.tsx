@@ -1,50 +1,77 @@
-"use client"
-import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
-import React, { useState } from "react"
-import { BreathingAnimationText } from "./breathing-animation-text"
-import { Button } from "@/components/ui/button"
+"use client";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
+import { BreathingAnimationText } from "./breathing-animation-text";
+import { Button } from "@/components/ui/button";
 
 export const HeroParallax = ({
   row123Products,
   row4Products,
 }: {
   row123Products: {
-    title: string
-    link: string
-    thumbnail: string
-  }[]
+    title: string;
+    link: string;
+    thumbnail: string;
+  }[];
   row4Products: {
-    title: string
-    link: string
-    thumbnail: string
-  }[]
+    title: string;
+    link: string;
+    thumbnail: string;
+  }[];
 }) => {
   const firstRow = row123Products;
   const secondRow = row123Products;
   const thirdRow = row123Products;
   const fourthRow = row4Products;
 
-  const ref = React.useRef(null)
-  const [time, setTime] = useState(0)
-  
+  const ref = React.useRef(null);
+  const [time, setTime] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const springConfig = { stiffness: 400, damping: 40, bounce: 0 }
+  const springConfig = { stiffness: 400, damping: 40, bounce: 0 };
 
-  const baseTranslateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 500]), springConfig)
-  const baseTranslateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -400]), springConfig)
-  
-  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.3], [25, 0]), springConfig)
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.1, 1]), springConfig)
-  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.3], [15, 0]), springConfig)
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-400, 0]), springConfig)
-  const scale = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.9, 1]), springConfig)
-  
+  const baseTranslateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 500]),
+    springConfig
+  );
+  const baseTranslateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -400]),
+    springConfig
+  );
+
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [25, 0]),
+    springConfig
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [0.1, 1]),
+    springConfig
+  );
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [15, 0]),
+    springConfig
+  );
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [-400, 0]),
+    springConfig
+  );
+  const scale = useSpring(
+    useTransform(scrollYProgress, [0, 0.3], [0.9, 1]),
+    springConfig
+  );
+
   return (
     <div
       ref={ref}
@@ -97,20 +124,38 @@ export const HeroParallax = ({
         />
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto pt-20 pb-20 md:pt-32 md:pb-16 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
-      <div className="max-w-4xl pt-40">
+      <div className="flex flex-col items-center text-center pt-40">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <Image
+            src="/logo/typus_logo.png"
+            alt="Typus AI Logo"
+            width={120}
+            height={40}
+            className="w-24 h-8 sm:w-32 sm:h-10 lg:w-40 lg:h-12 object-contain"
+            priority
+          />
+        </motion.div>
+
+        {/* Centered Headline */}
         <BreathingAnimationText animationType="black-gray">
-          <motion.h1 
+          <motion.h1
             className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-2"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             <span className="text-black dark:text-white">AI FOR </span>
             <span className="text-black dark:text-white font-normal">
@@ -118,19 +163,22 @@ export const Header = () => {
             </span>
           </motion.h1>
         </BreathingAnimationText>
+
         <BreathingAnimationText
           animationType="black-gray"
           className="z-999 max-w-3xl text-[14px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4"
         >
-          AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.
+          AI fully preserves the structure of your architectural input while
+          creating stunning AI-powered visualizations. Transform your CAD files
+          and sketches into photorealistic renders.
         </BreathingAnimationText>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         >
-          <Button 
+          <Button
             className="animate-breathe-primary-hover text-white px-8 py-2 text-base font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
@@ -138,7 +186,7 @@ export const Header = () => {
           </Button>
         </motion.div>
       </div>
-      
+
       {/* Floating elements */}
       <motion.div
         className="absolute top-16 right-16 w-3 h-3 bg-blue-500/20 rounded-full hidden md:block"
@@ -200,13 +248,17 @@ const InfiniteMarqueeRow = ({
   className: string;
   isFirstRow?: boolean;
 }) => {
-  const cardWidth = 280 + 20
-  const totalWidth = products.length * cardWidth
-  const infiniteX = ((direction * time * speed) % totalWidth)
-  
+  const cardWidth = 280 + 20;
+  const totalWidth = products.length * cardWidth;
+  const infiniteX = (direction * time * speed) % totalWidth;
+
   return (
-    <div className={`flex ${direction === 1 ? 'flex-row-reverse' : 'flex-row'} ${className}`}>
-      <motion.div 
+    <div
+      className={`flex ${
+        direction === 1 ? "flex-row-reverse" : "flex-row"
+      } ${className}`}
+    >
+      <motion.div
         className="flex gap-5 will-change-transform"
         style={{
           x: useTransform(baseTranslate, (value) => value + infiniteX),
@@ -223,8 +275,8 @@ const InfiniteMarqueeRow = ({
         ))}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export const ProductCard = ({
   product,
@@ -241,10 +293,10 @@ export const ProductCard = ({
   time: number;
   isFirstRow?: boolean;
 }) => {
-  const rotateY = Math.sin(time + index * 0.5) * 8
-  const rotateX = Math.cos(time + index * 0.3) * 4
-  const floatY = Math.sin(time * 2 + index * 0.8) * 5
-  
+  const rotateY = Math.sin(time + index * 0.5) * 8;
+  const rotateX = Math.cos(time + index * 0.3) * 4;
+  const floatY = Math.sin(time * 2 + index * 0.8) * 5;
+
   return (
     <motion.div
       style={{
@@ -255,13 +307,16 @@ export const ProductCard = ({
       className="group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl ease-out"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: index * 0.05,
-        ease: "easeOut"
+        ease: "easeOut",
       }}
     >
-      <Link href={product.link} className="block cursor-pointer absolute inset-0">
+      <Link
+        href={product.link}
+        className="block cursor-pointer absolute inset-0"
+      >
         <Image
           src={product.thumbnail || "/placeholder.svg"}
           fill
@@ -277,11 +332,12 @@ export const ProductCard = ({
       </Link>
       <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none"></div>
       {product.title && (
-        <motion.div 
-          className="absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none"
-        >
+        <motion.div className="absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none">
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5">
-            <span className="text-white font-medium text-sm leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <span
+              className="text-white font-medium text-sm leading-tight"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
               {product.title}
             </span>
           </div>
@@ -300,5 +356,5 @@ export const ProductCard = ({
         }}
       />
     </motion.div>
-  )
-}
+  );
+};
