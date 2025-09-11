@@ -87,59 +87,59 @@ export function ManyChatPricingSection() {
   });
 
   // Multi-layer parallax effects
-  const headerY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const headerY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
-  const cardParallaxY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const cardParallaxY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
   // Cards sliding from behind center card - sticky until all cards visible
   const leftCardX = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 0.85],
+    [0, 0.25, 0.5, 1],
     ["100%", "100%", "0%", "0%"]
   );
   const rightCardX = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 0.85],
+    [0, 0.5, 0.75, 1],
     ["-100%", "-100%", "0%", "0%"]
   );
   const leftCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 0.85],
+    [0, 0.25, 0.5, 1],
     [0, 0, 1, 1]
   );
   const rightCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 0.85],
+    [0, 0.5, 0.75, 1],
     [0, 0, 1, 1]
   );
   const centerCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.85],
+    [0, 0.1, 1],
     [0, 1, 1]
   );
 
   return (
     <section
       ref={containerRef}
-      className="h-[400vh] pt-0 pb-10 relative"
+      className="h-[420vh] py-10 relative"
       style={{ backgroundColor: "#f0f0f0" }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4">
-        <div className="w-full max-w-7xl mx-auto px-4 relative z-10">
+        <div className="w-full max-w-7xl mx-auto px-4 relative z-10 pt-20">
           <motion.div
-            className="text-center mb-8 relative z-40"
+            className="text-center mb-0 relative z-40"
             style={{ y: headerY }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "100px" }}
           >
             <BreathingAnimationText
               animationType="black-gray"
               className="font-space-grotesk"
             >
               <h2
-                className="text-[30px] font-normal text-black mb-6"
+                className="text-[30px] font-normal text-black mb-2"
                 style={{
                   fontFamily:
                     "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
@@ -154,19 +154,15 @@ export function ManyChatPricingSection() {
                   onClick={() => setIsYearly(true)}
                   className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                     isYearly
-                      ? "bg-white border-2 text-black"
+                      ? "bg-white text-black shadow-md"
                       : "text-gray-600 hover:text-gray-800"
                   }`}
-                  style={{
-                    borderColor: isYearly ? "#000000" : "transparent",
-                  }}
                 >
                   Yearly Billing{" "}
                   {isYearly && (
                     <span
-                      className="text-white px-2 py-1 rounded ml-2"
+                      className="text-white bg-black px-2 py-1 rounded ml-2"
                       style={{
-                        backgroundColor: "#000000",
                         fontFamily: "'Space Grotesk', sans-serif",
                       }}
                     >
@@ -180,12 +176,9 @@ export function ManyChatPricingSection() {
                   onClick={() => setIsYearly(false)}
                   className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                     !isYearly
-                      ? "bg-white border-2 text-black"
+                      ? "bg-white text-black shadow-md"
                       : "text-gray-600 hover:text-gray-800"
                   }`}
-                  style={{
-                    borderColor: !isYearly ? "#000000" : "transparent",
-                  }}
                 >
                   Monthly Billing
                 </button>
@@ -193,7 +186,7 @@ export function ManyChatPricingSection() {
             </div>
             <BreathingAnimationText animationType="black-gray">
               <p
-                className="text-gray-600"
+                className="text-gray-600 pb-0 mb-8"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Switch to Yearly to save 75%
@@ -210,6 +203,10 @@ export function ManyChatPricingSection() {
                 opacity: leftCardOpacity,
                 y: cardParallaxY,
               }}
+              initial={{ opacity: 0, y: 100, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <PricingCard plan={pricingPlans[0]} isYearly={isYearly} />
             </motion.div>
@@ -221,6 +218,10 @@ export function ManyChatPricingSection() {
                 opacity: centerCardOpacity,
                 y: cardParallaxY,
               }}
+              initial={{ opacity: 0, y: 100, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <PricingCard plan={pricingPlans[1]} isYearly={isYearly} />
             </motion.div>
@@ -233,6 +234,10 @@ export function ManyChatPricingSection() {
                 opacity: rightCardOpacity,
                 y: cardParallaxY,
               }}
+              initial={{ opacity: 0, y: 100, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
             >
               <PricingCard plan={pricingPlans[2]} isYearly={isYearly} />
             </motion.div>
@@ -252,122 +257,108 @@ function PricingCard({
 }) {
   return (
     <div
-      className="flex h-[60vh] min-h-[500px] max-h-[650px] flex-col items-center justify-between rounded-[1.5rem] sm:rounded-[2rem] p-3 sm:p-4 pt-0 md:rounded-[3.2rem] md:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+      className="flex h-[550px] flex-col rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[3.2rem] p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
       style={{
         backgroundColor: plan.bgColor,
         color: plan.textColor,
       }}
     >
-      <div className="flex w-full flex-col items-center">
-        <div className="relative mt-4 sm:mt-6 flex w-full flex-col items-center text-center">
-          {plan.popular && (
-            <div className="mb-2">
-              <span
-                className="text-white px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide whitespace-nowrap"
-                style={{
-                  backgroundColor: "#000000",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                }}
-              >
-                Most Popular
-              </span>
-            </div>
-          )}
-
-          <BreathingAnimationText animationType="black-gray">
+      {/* Header Section */}
+      <div className="flex flex-col items-center text-center mb-4">
+        {plan.popular && (
+          <div className="mb-2">
             <span
-              className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-2 sm:mb-3"
+              className="text-white bg-black px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
+              // className="bg-red-500 text-white px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+              }}
+            >
+              Most Popular
+            </span>
+          </div>
+        )}
+
+        <BreathingAnimationText animationType="black-gray">
+          <span
+            className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider mb-2 block"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            {plan.name}
+          </span>
+        </BreathingAnimationText>
+
+        {/* Pricing Section */}
+        <div className="mb-3">
+          <div className="flex items-baseline justify-center mb-1">
+            <span
+              className="text-2xl font-bold"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {plan.name}
+              {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
             </span>
-          </BreathingAnimationText>
-
-          <div className="mb-3 sm:mb-4">
-            <div className="flex items-baseline justify-center">
-              <span
-                className="text-xl sm:text-2xl font-bold"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
-              </span>
-              <span
-                className="text-xs sm:text-sm ml-1"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                {isYearly ? plan.yearlyPeriod : plan.period}
-              </span>
-            </div>
-            {isYearly && (
-              <div
-                className="text-[10px] mt-1"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                Billed yearly ({plan.yearlyPrice}/year)
-              </div>
-            )}
-            {!isYearly && (
-              <div
-                className="text-[10px] mt-1"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
+            <span
+              className="text-xs ml-1 text-gray-600"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              {isYearly ? plan.yearlyPeriod : plan.period}
+            </span>
+          </div>
+          
+          <div className="space-y-0.5 text-[10px] text-gray-500">
+            {isYearly ? (
+              <>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  Billed yearly ({plan.yearlyPrice}/year)
+                </div>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  Save €{plan.id === "starter" ? "169" : plan.id === "explorer" ? "439" : "899"} with annual billing
+                </div>
+              </>
+            ) : (
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 Billed monthly
               </div>
             )}
-            <div
-              className="text-[10px]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Plus 19% VAT
             </div>
-            {isYearly && (
-              <div
-                className="text-[10px] mt-1"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                Save €
-                {plan.id === "starter"
-                  ? "169"
-                  : plan.id === "explorer"
-                  ? "439"
-                  : "899"}{" "}
-                with annual billing 75% off
-              </div>
-            )}
           </div>
         </div>
+      </div>
 
-        <ul className="mt-1 sm:mt-2 grid w-full gap-0.5 sm:gap-1 flex-1">
+      {/* Features Section - Flex Grow */}
+      <div className="flex-1 mb-3">
+        <ul className="space-y-1.5">
           {plan.features.map((feature, index) => (
             <li
               key={index}
-              className="relative flex min-h-[1.5rem] items-center justify-between uppercase text-[9px] sm:text-[10px] font-medium border-b border-opacity-20 pb-0.5 sm:pb-1"
-              style={{
-                borderColor:
-                  plan.textColor === "#ffffff" ? "#ffffff1F" : "#0000001F",
-              }}
+              className="flex items-start justify-between text-[9px] font-medium py-1.5 border-b border-gray-100 last:border-b-0"
             >
               <span
-                className="pr-2 leading-tight text-left"
+                className="pr-2 leading-tight text-left flex-1"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {feature}
               </span>
-              <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
+              <Check className="w-2.5 h-2.5 flex-shrink-0 mt-0.5 text-green-600" />
             </li>
           ))}
         </ul>
       </div>
 
-      <Button
-        className="animate-breathe-primary-hover mt-2 w-full rounded-full px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-normal uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg flex-shrink-0"
-        style={{
-          backgroundColor: plan.buttonBg,
-          fontFamily: "'Space Grotesk', sans-serif",
-        }}
-      >
-        Get Started
-      </Button>
+      {/* Button Section - Fixed at Bottom */}
+      <div className="mt-auto">
+        <Button
+          className="animate-breathe-primary-hover w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="animate-breathe-primary-hover w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg bg-red-500 text-white"
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+          }}
+        >
+          Get Started
+        </Button>
+      </div>
     </div>
   );
 }

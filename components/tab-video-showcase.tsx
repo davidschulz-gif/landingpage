@@ -89,31 +89,49 @@ export function TabVideoShowcase() {
   }, [isInView, activeTabData]);
 
   return (
-    <section ref={sectionRef} className="py-20" style={{ backgroundColor: '#f0f0f0' }}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-12" style={{ backgroundColor: '#f0f0f0' }}>
+      <div className="w-full max-w-[75%] mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <BreathingAnimationText animationType="black-gray">
-            <h2 className="text-[30px] text-gray-900 dark:text-white mb-6 font-normal">
+            <motion.h2 
+              className="text-[24px] text-gray-900 dark:text-white mb-4 font-normal"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               FROM CONCEPT TO ANIMATION
-            </h2>
+            </motion.h2>
           </BreathingAnimationText>
           <BreathingAnimationText animationType="black-gray">
-            <p className="text-[14px] text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-normal">
+            <motion.p 
+              className="text-[12px] text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-normal"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
               Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
-            </p>
+            </motion.p>
           </BreathingAnimationText>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full">
           {/* Video Display */}
-          <div className="relative mb-12">
+          <motion.div 
+            className="relative mb-6"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative"
             >
               {isInView && activeTabData ? (
@@ -121,27 +139,41 @@ export function TabVideoShowcase() {
                   src={activeTabData.video}
                   title={activeTabData.title}
                   poster={activeTabData.poster}
-                  height="h-[650px]"
+                  height="h-[400px]"
                   preload={loadedVideos.has(activeTabData.video) ? "auto" : "metadata"}
                 />
               ) : (
-                <div className="h-[650px] bg-gray-200 rounded-xl animate-pulse flex items-center justify-center">
+                <div className="h-[400px] bg-gray-200 rounded-xl animate-pulse flex items-center justify-center">
                   <div className="text-gray-500">Loading video...</div>
                 </div>
               )}
             </motion.div>
-          </div>
+          </motion.div>
 
           {/* Tabs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {tabs.map((tab) => {
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {tabs.map((tab, index) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               
               return (
                 <motion.div
                   key={tab.id}
-                  whileHover={{ scale: 1.02 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.3 + (index * 0.1), 
+                    ease: "easeOut" 
+                  }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <Card
@@ -155,56 +187,96 @@ export function TabVideoShowcase() {
                     }}
                     onClick={() => setActiveTab(tab.id)}
                   >
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className={`p-2 rounded-lg ${
-                          isActive ? "animate-breathe-primary-hover" : "bg-gray-100 dark:bg-gray-700"
-                        }`} style={{
-                          backgroundColor: isActive ? THEME_COLORS.primary : undefined
-                        }}>
-                          <Icon className={`w-5 h-5 ${
+                    <CardContent className="p-3 h-40">
+                      <motion.div 
+                        className="flex items-center gap-1.5 mb-2"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <motion.div 
+                          className={`p-1 rounded-lg ${
+                            isActive ? "animate-breathe-primary-hover" : "bg-gray-100 dark:bg-gray-700"
+                          }`} 
+                          style={{
+                            backgroundColor: isActive ? THEME_COLORS.primary : undefined
+                          }}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Icon className={`w-3 h-3 ${
                             isActive ? "text-white" : "text-gray-600 dark:text-gray-300"
                           }`} />
-                        </div>
+                        </motion.div>
                         <BreathingAnimationText animationType={isActive ? "red-orange" : "black-gray"}>
-                          <h3 className={`font-bold ${
-                            isActive ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-white"
-                          }`} style={{
-                            color: isActive ? THEME_COLORS.primary : undefined
-                          }}>
+                          <motion.h3 
+                            className={`text-xs font-bold ${
+                              isActive ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-white"
+                            }`} 
+                            style={{
+                              color: isActive ? THEME_COLORS.primary : undefined
+                            }}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 0.2 }}
+                            viewport={{ once: true }}
+                          >
                             {tab.title}
-                          </h3>
+                          </motion.h3>
                         </BreathingAnimationText>
-                      </div>
+                      </motion.div>
                       
                       <BreathingAnimationText animationType="black-gray">
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                        <motion.p 
+                          className="text-[10px] text-gray-600 dark:text-gray-300 mb-2 leading-tight"
+                          initial={{ opacity: 0, y: 15 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          viewport={{ once: true }}
+                        >
                           {tab.description}
-                        </p>
+                        </motion.p>
                       </BreathingAnimationText>
 
-                      <div className="space-y-2">
+                      <motion.div 
+                        className="space-y-1"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        viewport={{ once: true }}
+                      >
                         {tab.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
-                            <div className={`w-1.5 h-1.5 rounded-full ${
+                          <motion.div 
+                            key={idx} 
+                            className="flex items-center gap-1"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ 
+                              duration: 0.4, 
+                              delay: 0.5 + (idx * 0.1) 
+                            }}
+                            viewport={{ once: true }}
+                          >
+                            <div className={`w-0.5 h-0.5 rounded-full ${
                               isActive ? "animate-breathe-primary-hover" : "bg-gray-400"
                             }`} style={{
                               backgroundColor: isActive ? THEME_COLORS.primary : undefined
                             }} />
                             <BreathingAnimationText animationType="black-gray">
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                              <span className="text-[8px] text-gray-500 dark:text-gray-400">
                                 {feature}
                               </span>
                             </BreathingAnimationText>
-                          </div>
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </CardContent>
                   </Card>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
           {/* Active Tab Details */}
           {/* <AnimatePresence mode="wait">

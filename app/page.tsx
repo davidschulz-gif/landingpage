@@ -2,6 +2,7 @@
 import { HeroParallax } from "@/components/hero-parallax";
 import { SplashScreen } from "@/components/splash-screen";
 import TypusNavbar from "@/components/typus-navbar";
+import { motion } from "framer-motion";
 
 import { StickyBottomSheet } from "@/components/sticky-bottom-sheet";
 import { measurePerformance } from "@/lib/performance";
@@ -291,34 +292,94 @@ export default function Home() {
       <HeroParallax row123Products={row123Products} row4Products={row4Products} />
 
       {/* Video Showcase Section */}
-      <VideoShowcaseSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <VideoShowcaseSection />
+      </motion.div>
 
       {/* Sticky Slider Section */}
-      <StickySliderSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <StickySliderSection />
+      </motion.div>
 
       {/* Tab Video Showcase */}
-      <TabVideoShowcase />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <TabVideoShowcase />
+      </motion.div>
       
-      {/* Feature Showcase Section */}
-      {/* <FeatureShowcaseWidget /> */}
-
       {/* Reviews Section with Marquee */}
-      <ReviewsSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <ReviewsSection />
+      </motion.div>
 
       {/* Before & After Section */}
-      <CompareDemo />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <CompareDemo />
+      </motion.div>
 
       {/* Pricing Section */}
-      <ManyChatPricingSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <ManyChatPricingSection />
+      </motion.div>
 
       {/* Meet Our Team Section */}
-      <MeetOurTeamSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <MeetOurTeamSection />
+      </motion.div>
 
       {/* Featured Testimonial Section */}
-      <FeaturedTestimonialSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <FeaturedTestimonialSection />
+      </motion.div>
 
       {/* Enhanced Footer */}
-      <FooterSection />
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <FooterSection />
+      </motion.div>
       
       {/* Sticky Bottom Sheet */}
       <StickyBottomSheet showOnlyInHero={true} />

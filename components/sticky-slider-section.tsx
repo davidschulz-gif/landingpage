@@ -340,9 +340,15 @@ export function StickySliderSection() {
                   <div className="relative">
                     <div className="mb-6">
                       <BreathingAnimationText animationType="black-gray">
-                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2">
+                        <motion.h3 
+                          className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2"
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, ease: "easeOut" }}
+                          viewport={{ once: true, margin: "-50px" }}
+                        >
                           Features
-                        </h3>
+                        </motion.h3>
                       </BreathingAnimationText>
                       <div className="h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
                     </div>
