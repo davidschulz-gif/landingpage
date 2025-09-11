@@ -95,7 +95,7 @@ export function TabVideoShowcase() {
         <div className="text-center mb-8">
           <BreathingAnimationText animationType="black-gray">
             <motion.h2 
-              className="text-[24px] text-gray-900 dark:text-white mb-4 font-normal"
+              className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-gray-900 dark:text-white mb-4 font-normal whitespace-nowrap"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}

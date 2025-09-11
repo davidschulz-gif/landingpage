@@ -200,7 +200,7 @@ export const Header = () => {
           >
             <Button
               size="lg"
-              className="text-white px-8 py-3 rounded-full font-medium animate-breathe-primary-hover"
+              className="text-white  px-8 py-3 rounded-full font-bold animate-breathe-primary-hover"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               Get Started
@@ -214,7 +214,7 @@ export const Header = () => {
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
             className="mt-12 w-full"
           >
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
               {[
                 "CREATE A FREE ACCOUNT",
                 "DOWNLOAD & INSTALL PLUGINS FOR FREE",
@@ -225,11 +225,11 @@ export const Header = () => {
               ].map((feature, index) => (
                 <div
                   key={feature}
-                  className="flex items-center space-x-3"
+                  className="flex items-center space-x-2 sm:space-x-3"
                 >
-                  <div className="w-4 h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
                     <svg
-                      className="w-2.5 h-2.5 text-white dark:text-black"
+                      className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 text-white dark:text-black"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -242,7 +242,7 @@ export const Header = () => {
                   </div>
                   <BreathingAnimationText animationType="black-gray">
                     <span
-                      className="text-sm font-medium text-black dark:text-white"
+                      className="text-[8px] sm:text-[10px] md:text-xs font-medium text-black dark:text-white whitespace-nowrap"
                       style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                     >
                       {feature}

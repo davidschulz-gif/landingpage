@@ -351,7 +351,6 @@ function PricingCard({
       <div className="mt-auto">
         <Button
           className="animate-breathe-primary-hover w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          className="animate-breathe-primary-hover w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg bg-red-500 text-white"
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
           }}
