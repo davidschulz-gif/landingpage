@@ -374,7 +374,7 @@ export function StickySliderSection() {
                                   }}
                                 >
                                   <div className="flex items-center space-x-4">
-                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50 border border-gray-100">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50">
                                       <div className="w-4 h-4 rounded-full bg-black animate-pulse"></div>
                                     </div>
 
@@ -391,21 +391,21 @@ export function StickySliderSection() {
                                   </div>
 
                                   <div className="w-6 h-6 flex items-center justify-center">
-                                    <div className="w-2 h-2 border-r-2 border-b-2 border-gray-400 transition-transform duration-200 transform rotate-[135deg]"></div>
+                                    <div className="w-2 h-2 bg-gray-400 rounded-full transition-transform duration-200"></div>
                                   </div>
                                 </MovingBorderButton>
                               </motion.div>
                             ) : (
                               <motion.button
                                 onClick={() => handleTabClick(tabIndex)}
-                                className="group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden bg-gray-50/50 hover:bg-white hover:shadow-md border border-gray-100/50 hover:border-gray-200"
+                                className="group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden bg-gray-50/50 hover:bg-white hover:shadow-md"
                                 whileHover={{ scale: 1.01, y: -1 }}
                                 whileTap={{ scale: 0.99 }}
                                 transition={{ duration: 0.2, ease: "easeOut" }}
                               >
                                 <div className="flex items-center justify-between p-2">
                                   <div className="flex items-center space-x-4">
-                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-gray-200 group-hover:border-gray-300 transition-colors duration-200">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white transition-colors duration-200">
                                       <div className="w-4 h-4 rounded-full bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200"></div>
                                     </div>
 
@@ -420,7 +420,7 @@ export function StickySliderSection() {
                                   </div>
 
                                   <div className="w-6 h-6 flex items-center justify-center">
-                                    <div className="w-2 h-2 border-r-2 border-b-2 rotate-45 border-gray-400 group-hover:border-gray-600 transition-all duration-200"></div>
+                                    <div className="w-2 h-2 bg-gray-400 group-hover:bg-gray-600 rounded-full transition-all duration-200"></div>
                                   </div>
                                 </div>
                               </motion.button>
@@ -451,7 +451,7 @@ export function StickySliderSection() {
                                         }
                                         className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
                                           isActiveSubCat
-                                            ? "text-black shadow-sm border border-black bg-white"
+                                            ? "text-black shadow-sm bg-white"
                                             : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
                                         }`}
                                         whileHover={{
@@ -526,10 +526,10 @@ export function StickySliderSection() {
                       <button
                         key={i}
                         onClick={() => setCurrentSlide(i)}
-                        className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-black ${
+                        className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
                           i === currentSlide
-                            ? "w-12 bg-white"
-                            : "w-6 bg-transparent"
+                            ? "w-8 bg-white animate-pulse"
+                            : "w-6 bg-gray-300 animate-breathe-black-gray"
                         }`}
                       />
                     ))}
@@ -671,10 +671,10 @@ export function StickySliderSection() {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 border border-zinc-700 ${
+                className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
                   index === currentSlide
-                    ? "h-12 bg-white"
-                    : "h-6 bg-transparent"
+                    ? "h-8 bg-white animate-pulse"
+                    : "h-6 bg-gray-300 animate-breathe-black-gray"
                 }`}
               />
             ))}

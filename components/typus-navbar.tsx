@@ -195,7 +195,7 @@ export default function TypusNavbar() {
               </div>
             </div>
             <div className="flex items-center gap-6 h-full">
-              <button
+              {/* <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="p-2 rounded-lg cursor-pointer bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
               >
@@ -204,7 +204,7 @@ export default function TypusNavbar() {
                 ) : (
                   <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 )}
-              </button>
+              </button> */}
               <a
                 href="#login"
                 className="text-[12px] font-normal text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200 whitespace-nowrap"

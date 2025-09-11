@@ -4,12 +4,13 @@ import { SplashScreen } from "@/components/splash-screen";
 import TypusNavbar from "@/components/typus-navbar";
 
 import { StickyBottomSheet } from "@/components/sticky-bottom-sheet";
-import { useEffect, useState } from "react";
-import Script from "next/script";
-import dynamic from 'next/dynamic';
 import { measurePerformance } from "@/lib/performance";
+import dynamic from 'next/dynamic';
+import Script from "next/script";
+import { useEffect, useState } from "react";
 
-const VideoShowcaseSection = dynamic(() => import('@/components/video-showcase-section').then(mod => mod.VideoShowcaseSection));
+import CompareDemo from '@/components/compare-drag-demo';
+import { VideoShowcaseSection } from '@/components/video-showcase-section';
 const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection));
 const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase));
 const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget));
@@ -303,6 +304,9 @@ export default function Home() {
 
       {/* Reviews Section with Marquee */}
       <ReviewsSection />
+
+      {/* Before & After Section */}
+      <CompareDemo />
 
       {/* Pricing Section */}
       <ManyChatPricingSection />

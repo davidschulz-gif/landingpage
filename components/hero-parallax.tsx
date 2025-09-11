@@ -170,8 +170,8 @@ export const Header = () => {
             <img
               src="/logo/typus_logo_transparent.png"
               alt="Typus.AI logo"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
               className="object-contain"
             />
             <span
@@ -191,78 +191,72 @@ export const Header = () => {
             </span>
           </motion.div>
 
-          {/* Features Marquee */}
+          {/* Get Started Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+            className="mt-8"
+          >
+            <Button
+              size="lg"
+              className="text-white px-8 py-3 rounded-full font-medium animate-breathe-primary-hover"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Get Started
+            </Button>
+          </motion.div>
+          
+          {/* Features */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-            className="mt-12 w-full overflow-hidden"
+            className="mt-12 w-full"
           >
-            <div className="relative">
-              <div className="flex animate-marquee space-x-8">
-                {[
-                  "CREATE A FREE ACCOUNT",
-                  "DOWNLOAD & INSTALL PLUGINS FOR FREE",
-                  "TUTORIAL",
-                  "STEP BY STEP GUIDE",
-                  "GET CASE STUDIES",
-                  "GET A COUPON WELCOME GIFT",
-                ]
-                  .concat([
-                    "CREATE A FREE ACCOUNT",
-                    "DOWNLOAD & INSTALL PLUGINS FOR FREE",
-                    "TUTORIAL",
-                    "STEP BY STEP GUIDE",
-                    "GET CASE STUDIES",
-                    "GET A COUPON WELCOME GIFT",
-                  ])
-                  .map((feature, index) => (
-                    <div
-                      key={`${feature}-${index}`}
-                      className="flex items-center space-x-3 whitespace-nowrap flex-shrink-0"
+            <div className="flex flex-wrap justify-center gap-6">
+              {[
+                "CREATE A FREE ACCOUNT",
+                "DOWNLOAD & INSTALL PLUGINS FOR FREE",
+                "TUTORIAL",
+                "STEP BY STEP GUIDE",
+                "GET CASE STUDIES",
+                "GET A COUPON WELCOME GIFT",
+              ].map((feature, index) => (
+                <div
+                  key={feature}
+                  className="flex items-center space-x-3"
+                >
+                  <div className="w-4 h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-2.5 h-2.5 text-white dark:text-black"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
                     >
-                      <div className="w-4 h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
-                        <svg
-                          className="w-2.5 h-2.5 text-white dark:text-black"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <BreathingAnimationText animationType="black-gray">
-                        <span
-                          className="text-sm font-medium text-black dark:text-white"
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                        >
-                          {feature}
-                        </span>
-                      </BreathingAnimationText>
-                    </div>
-                  ))}
-              </div>
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <BreathingAnimationText animationType="black-gray">
+                    <span
+                      className="text-sm font-medium text-black dark:text-white"
+                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    >
+                      {feature}
+                    </span>
+                  </BreathingAnimationText>
+                </div>
+              ))}
             </div>
           </motion.div>
+
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-      `}</style>
+
 
       {/* Floating elements */}
       <motion.div

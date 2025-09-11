@@ -5,57 +5,18 @@ import {
   useScroll,
   useTransform,
   useSpring,
-  useInView,
 } from "framer-motion";
 import { Users, Sparkles, FolderKanban } from "lucide-react";
 import { VideoPlayer } from "@/components/video/player";
 import { BreathingAnimationText } from "./breathing-animation-text";
-import { Skeleton } from "./ui/skeleton";
-
-// Video cache for performance
-const videoCache = new Map<string, HTMLVideoElement>();
 
 export const VideoShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const isInView = useInView(containerRef, { once: true, margin: "200px" });
-  const videoInView = useInView(videoSectionRef, {
-    once: false,
-    margin: "-100px",
-  });
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
-
-  // Preload main video when component comes into view
-  useEffect(() => {
-    if (!isInView) return;
-
-    const videoSrc = "videos/INTRO_typus.mp4";
-
-    if (videoCache.has(videoSrc)) {
-      setVideoLoaded(true);
-      return;
-    }
-
-    const video = document.createElement("video");
-    video.preload = "metadata";
-    video.src = videoSrc;
-    video.load();
-
-    video.addEventListener("loadedmetadata", () => {
-      videoCache.set(videoSrc, video);
-      setVideoLoaded(true);
-    });
-
-    video.addEventListener("error", () => {
-      console.warn("Video failed to load:", videoSrc);
-      setVideoLoaded(true); // Still show player even if preload fails
-    });
-  }, [isInView]);
 
   // Smooth spring animations
   const titleOpacity = useSpring(
@@ -91,13 +52,13 @@ export const VideoShowcaseSection = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent dark:from-white/10" />
 
         {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.02] opacity-40" />
+        <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-black/[0.02] opacity-40" />
 
         {/* Animated Dots Pattern */}
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.4) 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25px 25px, rgba(0, 0, 0, 0.4) 2px, transparent 2px)`,
             backgroundSize: "50px 50px",
           }}
           animate={{
@@ -109,31 +70,14 @@ export const VideoShowcaseSection = () => {
             ease: "linear",
           }}
         />
-
-        {/* Secondary Dots Pattern */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 12.5px 12.5px, rgba(255, 255, 255, 0.3) 1px, transparent 1px)`,
-            backgroundSize: "25px 25px",
-          }}
-          animate={{
-            backgroundPosition: ["0px 0px", "-25px -25px", "0px 0px"],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-
+        
         {/* Floating Grid Lines */}
         <motion.div
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(90deg, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
-              linear-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1px)
+              linear-gradient(90deg, rgba(0, 0, 0, 0.6) 1px, transparent 1px),
+              linear-gradient(rgba(0, 0, 0, 0.6) 1px, transparent 1px)
             `,
             backgroundSize: "100px 100px",
           }}
@@ -247,18 +191,14 @@ export const VideoShowcaseSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="relative w-full max-w-5xl mx-auto px-4">
-            {isInView && videoLoaded ? (
-              <VideoPlayer
-                src="videos/INTRO_typus.mp4"
-                title="Typus AI rendering software demonstration"
-                poster="/video-poster.jpg"
-                height="h-[400px] md:h-[500px] lg:h-[600px]"
-                preload="metadata"
-                shouldPlay={true}
-              />
-            ) : (
-              <Skeleton className="h-[400px] md:h-[500px] lg:h-[600px] w-full rounded-xl" />
-            )}
+            <VideoPlayer
+              src="videos/INTRO_typus.mp4"
+              title="Typus AI rendering software demonstration"
+              poster="/video-poster.jpg"
+              height="h-[400px] md:h-[500px] lg:h-[600px]"
+              preload="auto"
+              shouldPlay={true}
+            />
           </div>
         </motion.div>
       </div>

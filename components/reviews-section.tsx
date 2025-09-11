@@ -126,7 +126,7 @@ export function ReviewsSection() {
         </motion.div>
       </div>
 
-      <div className="w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <style jsx>{`
           #testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b {
             position: relative;
@@ -154,8 +154,8 @@ export function ReviewsSection() {
             frameBorder="0" 
             scrolling="no" 
             width="100%"
-            className="min-h-[400px] rounded-lg"
-            style={{ height: 'auto', minHeight: '400px' }}
+            className="min-h-[600px] rounded-lg"
+            style={{ height: 'auto', minHeight: '600px' }}
           />
           <script 
             type="text/javascript"

@@ -121,7 +121,7 @@ export function ManyChatPricingSection() {
   return (
     <section
       ref={containerRef}
-      className="h-[400vh] py-20 relative"
+      className="h-[400vh] pt-0 pb-10 relative"
       style={{ backgroundColor: "#f0f0f0" }}
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4">
