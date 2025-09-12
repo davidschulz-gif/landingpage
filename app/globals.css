@@ -191,6 +191,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-space-grotesk), 'Helvetica Neue', Arial, sans-serif;
+    /* zoom: 0.75;  ` */
   }
 }
 

@@ -37,7 +37,7 @@ const pricingPlans = [
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
-    bgColor: "#f8f9fa",
+    bgColor: "#ffffff",
     textColor: "#000000",
     features: [
       "150 CREDITS /month (e.g. 100 base images and 10 Refinements )",
@@ -159,7 +159,7 @@ export function ManyChatPricingSection() {
                   }`}
                 >
                   Yearly Billing{" "}
-                  {isYearly && (
+                  {/* {isYearly && (
                     <span
                       className="text-white bg-black px-2 py-1 rounded ml-2"
                       style={{
@@ -168,7 +168,7 @@ export function ManyChatPricingSection() {
                     >
                       75% OFF
                     </span>
-                  )}
+                  )} */}
                 </button>
               </BreathingAnimationText>
               <BreathingAnimationText animationType="black-gray">

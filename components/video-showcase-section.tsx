@@ -46,7 +46,7 @@ export const VideoShowcaseSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto flex max-w-7xl flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
+      className="relative mx-auto flex max-w-[75%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
     >
 
 
@@ -150,7 +150,7 @@ export const VideoShowcaseSection = () => {
           animate={{ scale: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="relative w-full max-w-5xl mx-auto px-4">
+          <div className="relative w-full h-full mx-auto px-4">
             <VideoPlayer
               src="videos/INTRO_typus.mp4"
               title="Typus AI rendering software demonstration"

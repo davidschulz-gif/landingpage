@@ -54,54 +54,10 @@ const reviews = [
   },
 ];
 
-const ReviewCard = ({ review }: { review: typeof reviews[0] }) => {
-  return (
-    <motion.div
-      className="relative w-72 mx-2 mb-4 p-5 bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-xl shadow-md"
-      whileHover={{ y: -3, scale: 1.01 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-    >
-      <div className="flex items-center mb-4">
-        <Image
-          src={review.avatar}
-          alt={review.name}
-          width={48}
-          height={48}
-          className="rounded-full mr-4"
-        />
-        <div>
-          <h4 className="font-semibold text-gray-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            {review.name}
-          </h4>
-          <p className="text-sm text-gray-600">
-            {review.role} at {review.company}
-          </p>
-        </div>
-      </div>
-      
-      <div className="flex mb-3">
-        {[...Array(review.rating)].map((_, i) => (
-          <svg
-            key={i}
-            className="w-4 h-4 text-yellow-400 fill-current"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-          </svg>
-        ))}
-      </div>
-      
-      <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        "{review.content}"
-      </p>
-    </motion.div>
-  );
-};
-
 export function ReviewsSection() {
   return (
-    <section className="py-0 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+    <section className="w-full max-w-[75%] mx-auto px-4 py-0 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
+      <div className="mb-4">
         <motion.div
           className="text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
@@ -126,7 +82,7 @@ export function ReviewsSection() {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full">
         <style jsx>{`
           #testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b {
             position: relative;

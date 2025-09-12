@@ -323,7 +323,7 @@ export function StickySliderSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh]">
+    <div ref={containerRef} className="relative w-full max-w-[75%] mx-auto h-[400vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {currentTabSlides.map((slide, index) => (
           <div
@@ -333,7 +333,7 @@ export function StickySliderSection() {
               opacity: currentSlide === index ? 1 : 0,
             }}
           >
-            <div className="container mx-auto px-8 lg:px-16 h-full">
+            <div className="h-full">
               <div className="flex flex-col lg:flex-row h-full">
                 {/* Professional Navigation */}
                 <div className="hidden lg:flex flex-col justify-center py-16 w-80 pr-8">
@@ -534,8 +534,8 @@ export function StickySliderSection() {
                         onClick={() => setCurrentSlide(i)}
                         className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
                           i === currentSlide
-                            ? "w-8 bg-white animate-pulse"
-                            : "w-6 bg-gray-300 animate-breathe-black-gray"
+                            ? "w-10 bg-white animate-pulse"
+                            : "w-6 bg-white animate-breathe-black-gray"
                         }`}
                       />
                     ))}
@@ -671,7 +671,7 @@ export function StickySliderSection() {
 
       {/* Scroll Indicator */}
       {isInView && (
-        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
+        <div className="fixed right-[12.5%] top-1/2 transform -translate-y-1/2 z-50">
           <div className="flex flex-col items-center space-y-3">
             {currentTabSlides.map((_, index) => (
               <button
@@ -679,8 +679,8 @@ export function StickySliderSection() {
                 onClick={() => setCurrentSlide(index)}
                 className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
                   index === currentSlide
-                    ? "h-8 bg-white animate-pulse"
-                    : "h-6 bg-gray-300 animate-breathe-black-gray"
+                    ? "h-10 bg-white animate-pulse"
+                    : "h-6 bg-white animate-breathe-black-gray"
                 }`}
               />
             ))}

@@ -70,7 +70,7 @@ export function FeaturedTestimonialSection() {
         >
           <BreathingAnimationText animationType="black-gray">
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 mb-4"
+              className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-4"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               WHAT EXPERTS SAY
@@ -168,7 +168,7 @@ export function FeaturedTestimonialSection() {
                   className="animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  read full article
+                  Read full article
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>

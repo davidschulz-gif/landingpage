@@ -96,9 +96,9 @@ export function TabVideoShowcase() {
           <BreathingAnimationText animationType="black-gray">
             <motion.h2 
               className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-gray-900 dark:text-white mb-4 font-normal whitespace-nowrap"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
               FROM CONCEPT TO ANIMATION
@@ -121,7 +121,7 @@ export function TabVideoShowcase() {
         <div className="w-full">
           {/* Video Display */}
           <motion.div 
-            className="relative mb-6"
+            className="relative mb-3"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -129,9 +129,9 @@ export function TabVideoShowcase() {
           >
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              initial={{ opacity: 0, scale: 1, y: 0 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="relative"
             >
               {isInView && activeTabData ? (
@@ -139,7 +139,7 @@ export function TabVideoShowcase() {
                   src={activeTabData.video}
                   title={activeTabData.title}
                   poster={activeTabData.poster}
-                  height="h-[400px]"
+                  height="h-[400px] md:h-[500px] lg:h-[600px]"
                   preload={loadedVideos.has(activeTabData.video) ? "auto" : "metadata"}
                 />
               ) : (
@@ -163,40 +163,28 @@ export function TabVideoShowcase() {
               const isActive = activeTab === tab.id;
               
               return (
-                <motion.div
-                  key={tab.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 0.3 + (index * 0.1), 
-                    ease: "easeOut" 
-                  }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+                <div key={tab.id}>
                   <Card
                     className={`cursor-pointer transition-all duration-300 ${
                       isActive
                         ? "bg-red-100 dark:bg-red-900/30 border-2 shadow-lg animate-breathe-border"
                         : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md"
-                    }`}
+                    } px-4 pb-6 pt-4`}
                     style={{
                       borderColor: isActive ? THEME_COLORS.primary : undefined
                     }}
                     onClick={() => setActiveTab(tab.id)}
                   >
-                    <CardContent className="p-3 h-40">
+                    <CardContent className="p-3 h-48 flex flex-col">
                       <motion.div 
-                        className="flex items-center gap-1.5 mb-2"
+                        className="flex items-center gap-2 mb-3"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         viewport={{ once: true }}
                       >
                         <motion.div 
-                          className={`p-1 rounded-lg ${
+                          className={`p-1 rounded ${
                             isActive ? "animate-breathe-primary-hover" : "bg-gray-100 dark:bg-gray-700"
                           }`} 
                           style={{
@@ -211,7 +199,7 @@ export function TabVideoShowcase() {
                         </motion.div>
                         <BreathingAnimationText animationType={isActive ? "red-orange" : "black-gray"}>
                           <motion.h3 
-                            className={`text-xs font-bold ${
+                            className={`text-sm font-bold ${
                               isActive ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-white"
                             }`} 
                             style={{
@@ -229,7 +217,7 @@ export function TabVideoShowcase() {
                       
                       <BreathingAnimationText animationType="black-gray">
                         <motion.p 
-                          className="text-[10px] text-gray-600 dark:text-gray-300 mb-2 leading-tight"
+                          className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed"
                           initial={{ opacity: 0, y: 15 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
@@ -240,7 +228,7 @@ export function TabVideoShowcase() {
                       </BreathingAnimationText>
 
                       <motion.div 
-                        className="space-y-1"
+                        className="space-y-1 flex-1"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
@@ -249,7 +237,7 @@ export function TabVideoShowcase() {
                         {tab.features.map((feature, idx) => (
                           <motion.div 
                             key={idx} 
-                            className="flex items-center gap-1"
+                            className="flex items-center gap-1.5"
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ 
@@ -258,13 +246,13 @@ export function TabVideoShowcase() {
                             }}
                             viewport={{ once: true }}
                           >
-                            <div className={`w-0.5 h-0.5 rounded-full ${
+                            <div className={`w-1 h-1 rounded-full flex-shrink-0 ${
                               isActive ? "animate-breathe-primary-hover" : "bg-gray-400"
                             }`} style={{
                               backgroundColor: isActive ? THEME_COLORS.primary : undefined
                             }} />
                             <BreathingAnimationText animationType="black-gray">
-                              <span className="text-[8px] text-gray-500 dark:text-gray-400">
+                              <span className="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">
                                 {feature}
                               </span>
                             </BreathingAnimationText>
@@ -273,31 +261,10 @@ export function TabVideoShowcase() {
                       </motion.div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               );
             })}
           </motion.div>
-
-          {/* Active Tab Details */}
-          {/* <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="mt-8 text-center"
-            >
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {activeTabData?.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                  {activeTabData?.description}
-                </p>
-              </div>
-            </motion.div>
-          </AnimatePresence> */}
         </div>
       </div>
     </section>
