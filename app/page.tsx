@@ -18,7 +18,7 @@ const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcas
 const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection));
 const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection));
 const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection));
-const FeaturedTestimonialSection = dynamic(() => import('@/components/featured-testimonial-section').then(mod => mod.FeaturedTestimonialSection));
+
 const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
 
 // Row 1, 2, 3 images from row-1-2-3 folder
@@ -361,15 +361,7 @@ export default function Home() {
         <MeetOurTeamSection />
       </motion.div>
 
-      {/* Featured Testimonial Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <FeaturedTestimonialSection />
-      </motion.div>
+
 
       {/* Enhanced Footer */}
       <motion.div

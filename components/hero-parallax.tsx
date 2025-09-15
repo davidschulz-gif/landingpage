@@ -76,7 +76,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className="w-full max-w-[60%] mx-auto h-[200vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
+      className="w-full max-w-[80%] mx-auto h-[200vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
       <motion.div
@@ -214,7 +214,7 @@ export const Header = () => {
             transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
             className="mt-12 w-full"
           >
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
+            <div className="flex flex-wrap justify-center gap-2">
               {[
                 "CREATE A FREE ACCOUNT",
                 "DOWNLOAD & INSTALL PLUGINS FOR FREE",

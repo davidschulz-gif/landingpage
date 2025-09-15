@@ -22,7 +22,7 @@ const trustedByItems = [
   {
     title: "INTEGRATIONS",
     logo: (
-      <div className="flex items-center justify-center gap-3 w-full">
+      <div className="flex items-center justify-center gap-0 w-full">
         <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105">
           <Image src="/logo/revit_logo.avif" alt="Revit" width={120} height={60}  />
         </div>
@@ -41,7 +41,7 @@ const trustedByItems = [
   {
     title: "AS SEEN ON",
     logo: (
-      <div className="flex items-center justify-center gap-3 w-full">
+      <div className="flex items-center justify-center gap-0 w-full">
         <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105">
           <Image src="/logo/dab_logo.png" alt="DAB Logo" width={80} height={50}  />
         </div>
@@ -82,7 +82,7 @@ export const TrustedBySection = () => {
   return (
     <div className="w-full bg-[#f0f0f0] backdrop-blur-sm relative z-30" style={{ minHeight: '15%', maxHeight: '15%', height: '15%' }}>
       <div className="flex justify-center items-start" style={{ padding: '10px 0px 20px' }}>
-        <div className="flex flex-wrap justify-around gap-x-4 gap-y-6" style={{ width: '100%' }}>
+        <div className="flex flex-wrap justify-around gap-x-2 gap-y-6" style={{ width: '100%' }}>
           {trustedByItems.map((item, index) => (
             <div key={index} className="flex flex-col" style={{ width: 'max-content' }}>
               <div 

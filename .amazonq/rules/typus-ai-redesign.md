@@ -280,6 +280,36 @@ export function Component() {
   // Missing closing parenthesis and brace
 ```
 
+### useEffect Dependency Array Rules
+```typescript
+// ✅ ALWAYS include ALL dependencies that are used inside useEffect
+// ✅ ALWAYS ensure dependency arrays have CONSISTENT SIZE across renders
+const Component = ({ src, shouldPlay, preload }) => {
+  useEffect(() => {
+    // Uses src, shouldPlay, preload
+  }, [src, shouldPlay, preload]); // All dependencies included
+};
+
+// ❌ NEVER have inconsistent dependency array sizes
+// This causes "useEffect changed size between renders" error
+const BadComponent = ({ src, shouldPlay }) => {
+  useEffect(() => {
+    if (shouldPlay) {
+      // Uses src when shouldPlay is true
+    }
+  }, shouldPlay ? [src] : []); // ❌ Array size changes!
+};
+
+// ✅ CORRECT: Always include all possible dependencies
+const GoodComponent = ({ src, shouldPlay }) => {
+  useEffect(() => {
+    if (shouldPlay) {
+      // Uses src when shouldPlay is true
+    }
+  }, [src, shouldPlay]); // ✅ Consistent array size
+};
+```
+
 ### Global Error Boundary
 
 ```typescript
@@ -922,6 +952,8 @@ const items = [
 3. **Use Prettier for consistent formatting**
 4. **Validate syntax before every save**
 5. **Test components immediately after creation**
+6. **CRITICAL: Always ensure useEffect dependency arrays have consistent size across renders**
+7. **Include ALL dependencies used inside useEffect, even if conditionally used**
 
 ---
 

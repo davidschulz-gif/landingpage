@@ -45,10 +45,10 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
   const [isScrubbing, setIsScrubbing] = React.useState(false)
   const [bufferedEnd, setBufferedEnd] = React.useState(0)
 
-  // Force autoplay on mount
+  // Only autoplay if shouldPlay is true
   React.useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    if (!video || !shouldPlay) return
     
     const attemptPlay = () => {
       video.play().catch(() => {
@@ -68,7 +68,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
     } else {
       video.addEventListener('canplay', attemptPlay, { once: true })
     }
-  }, [])
+  }, [shouldPlay])
 
   // Auto-hide controls during playback
   React.useEffect(() => {
@@ -104,10 +104,10 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
     }
   }, [shouldPlay])
 
-  // Intersection observer for autoplay
+  // Intersection observer for autoplay only if shouldPlay is true
   React.useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    if (!video || !shouldPlay) return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -122,7 +122,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
 
     observer.observe(video)
     return () => observer.disconnect()
-  }, [])
+  }, [shouldPlay])
 
   // Media events
   React.useEffect(() => {
@@ -166,7 +166,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
       video.removeEventListener("canplay", onCanPlay)
       video.removeEventListener("progress", setBuffered)
     }
-  }, [])
+  }, [src, shouldPlay, preload])
 
   // Sync state -> element
   React.useEffect(() => {
@@ -337,7 +337,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
           style={{ objectFit: 'cover' }}
           muted
           loop
-          autoPlay
+          autoPlay={shouldPlay}
           webkit-playsinline="true"
         />
 
