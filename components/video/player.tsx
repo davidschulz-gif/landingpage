@@ -45,6 +45,31 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
   const [isScrubbing, setIsScrubbing] = React.useState(false)
   const [bufferedEnd, setBufferedEnd] = React.useState(0)
 
+  // Force autoplay on mount
+  React.useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    
+    const attemptPlay = () => {
+      video.play().catch(() => {
+        // Fallback: try again after user interaction
+        const playOnInteraction = () => {
+          video.play().catch(() => {})
+          document.removeEventListener('click', playOnInteraction)
+          document.removeEventListener('touchstart', playOnInteraction)
+        }
+        document.addEventListener('click', playOnInteraction)
+        document.addEventListener('touchstart', playOnInteraction)
+      })
+    }
+    
+    if (video.readyState >= 3) {
+      attemptPlay()
+    } else {
+      video.addEventListener('canplay', attemptPlay, { once: true })
+    }
+  }, [])
+
   // Auto-hide controls during playback
   React.useEffect(() => {
     if (!isPlaying) {
@@ -78,6 +103,26 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
       video.pause()
     }
   }, [shouldPlay])
+
+  // Intersection observer for autoplay
+  React.useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {})
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
 
   // Media events
   React.useEffect(() => {
@@ -292,6 +337,8 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
           style={{ objectFit: 'cover' }}
           muted
           loop
+          autoPlay
+          webkit-playsinline="true"
         />
 
         {/* Center Play */}

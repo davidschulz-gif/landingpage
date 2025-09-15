@@ -4,7 +4,7 @@ import { BreathingAnimationText } from "./breathing-animation-text";
 
 export default function CompareDemo() {
   return (
-    <section className="w-full max-w-[75%] mx-auto pt-20 pb-0" style={{ backgroundColor: "#f0f0f0" }}>
+    <section className="w-full max-w-[60%] mx-auto pt-20 pb-0" style={{ backgroundColor: "#f0f0f0" }}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <BreathingAnimationText

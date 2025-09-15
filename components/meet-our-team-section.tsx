@@ -106,7 +106,7 @@ export function MeetOurTeamSection() {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-[#0077B5] text-white rounded-lg transition-all duration-300 hover:bg-[#005885]"
+                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-600 text-white rounded-lg transition-all duration-300 hover:bg-gray-800"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >

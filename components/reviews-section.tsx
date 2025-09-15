@@ -56,7 +56,7 @@ const reviews = [
 
 export function ReviewsSection() {
   return (
-    <section className="w-full max-w-[75%] mx-auto px-4 py-0 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
+    <section className="w-full max-w-[60%] mx-auto px-4 py-0 overflow-hidden relative" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="mb-4">
         <motion.div
           className="text-center max-w-3xl mx-auto"
