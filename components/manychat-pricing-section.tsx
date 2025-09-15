@@ -333,15 +333,15 @@ function PricingCard({
           {plan.features.map((feature, index) => (
             <li
               key={index}
-              className="flex items-start justify-between text-[9px] font-medium py-1.5 border-b border-gray-100 last:border-b-0"
+              className="flex items-start text-[9px] font-medium py-1.5 border-b border-gray-100 last:border-b-0"
             >
+              <Check className="w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-green-600" />
               <span
-                className="pr-2 leading-tight text-left flex-1"
+                className="leading-tight text-left flex-1"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {feature}
               </span>
-              <Check className="w-2.5 h-2.5 flex-shrink-0 mt-0.5 text-green-600" />
             </li>
           ))}
         </ul>
