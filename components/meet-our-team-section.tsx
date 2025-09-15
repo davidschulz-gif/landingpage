@@ -31,13 +31,13 @@ const teamMembers = [
 
 export function MeetOurTeamSection() {
   return (
-    <section className="py-20" style={{ backgroundColor: '#f0f0f0' }}>
+    <section className="py-10" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <BreathingAnimationText animationType="black-gray">
             <motion.h2 
-              className="text-[30px] text-gray-900 mb-6 font-normal"
+              className="text-[20px] text-gray-900 mb-3 font-normal"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export function MeetOurTeamSection() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-2xl mx-auto">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
@@ -68,23 +68,23 @@ export function MeetOurTeamSection() {
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-all duration-500 p-[2px]">
                   <div className="w-full h-full bg-[#f0f0f0] rounded-2xl"></div>
                 </div>
-                <div className="bg-white rounded-2xl p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500">
+                <div className="bg-white rounded-xl p-4 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500">
                 {/* Profile Image */}
-                <div className="relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded flex-shrink-0">
+                <div className="relative w-24 h-24 mx-auto mb-3 overflow-hidden rounded flex-shrink-0">
                   <Image
                     src={member.image}
                     alt=""
-                    width={192}
-                    height={192}
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    sizes="192px"
+                    sizes="96px"
                   />
                 </div>
 
                 {/* Name */}
                 <BreathingAnimationText animationType="black-gray">
                   <h3 
-                    className="text-lg font-bold text-gray-900 mb-2"
+                    className="text-sm font-bold text-gray-900 mb-1"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {member.name}
@@ -94,7 +94,7 @@ export function MeetOurTeamSection() {
                 {/* Role */}
                 <BreathingAnimationText animationType="black-gray">
                   <p 
-                    className="text-sm text-gray-600 mb-6"
+                    className="text-xs text-gray-600 mb-3"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {member.role}
@@ -106,11 +106,11 @@ export function MeetOurTeamSection() {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-600 text-white rounded-lg transition-all duration-300 hover:bg-gray-800"
+                  className="inline-flex items-center justify-center w-8 h-8 bg-gray-600 text-white rounded-lg transition-all duration-300 hover:bg-gray-800"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <LinkedinIcon className="w-4 h-4" />
+                  <LinkedinIcon className="w-3 h-3" />
                 </motion.a>
                 </div>
               </div>

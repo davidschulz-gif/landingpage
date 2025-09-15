@@ -151,13 +151,15 @@ export const VideoShowcaseSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="relative w-full h-full mx-auto px-4">
-            <VideoPlayer
+            <video
+              className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl shadow-2xl"
               src="videos/INTRO_typus.mp4"
-              title="Typus AI rendering software demonstration"
               poster="/video-poster.jpg"
-              height="h-[400px] md:h-[500px] lg:h-[600px]"
+              autoPlay
+              muted
+              loop
+              playsInline
               preload="auto"
-              shouldPlay={true}
             />
           </div>
         </motion.div>
