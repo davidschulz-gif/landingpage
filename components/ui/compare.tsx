@@ -112,6 +112,30 @@ export const Compare = ({
     [slideMode, isDragging]
   );
 
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (slideMode === "drag" && isDragging) {
+        handleMove(e.clientX);
+      }
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (slideMode === "drag") {
+        setIsDragging(false);
+      }
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleGlobalMouseMove);
+      document.addEventListener('mouseup', handleGlobalMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, handleMove, slideMode]);
+
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => handleStart(e.clientX),
     [handleStart]
@@ -149,10 +173,10 @@ export const Compare = ({
   return (
     <div
       ref={sliderRef}
-      className={cn("w-[400px] h-[400px] overflow-hidden", className)}
+      className={cn("w-full h-[400px] overflow-hidden rounded-2xl relative", className)}
       style={{
         position: "relative",
-        cursor: slideMode === "drag" ? "grab" : "col-resize",
+        cursor: slideMode === "drag" ? (isDragging ? "grabbing" : "grab") : "col-resize",
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={mouseLeaveHandler}
@@ -163,24 +187,44 @@ export const Compare = ({
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
     >
+      {/* Before Label - Hidden when slider covers it */}
+      <div 
+        className="absolute bottom-1/2 left-[5%] z-50 transition-opacity duration-200"
+        style={{
+          opacity: sliderXPercent < 15 ? 0 : 1
+        }}
+      >
+        <div className="rounded-sm border border-border bg-background px-2 text-base">
+          Before
+        </div>
+      </div>
+      
+      {/* After Label - Hidden when slider covers it */}
+      <div 
+        className="absolute bottom-1/2 right-[5%] z-50 transition-opacity duration-200"
+        style={{
+          opacity: sliderXPercent > 85 ? 0 : 1
+        }}
+      >
+        <div className="rounded-sm border border-border bg-background px-2 text-base">
+          After
+        </div>
+      </div>
+
       <AnimatePresence initial={false}>
         <motion.div
-          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-transparent from-[5%] to-[95%] via-indigo-500 to-transparent"
+          className="relative flex items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 z-40 w-[2px] h-full"
           style={{
             left: `${sliderXPercent}%`,
-            top: "0",
-            zIndex: 40,
+            transform: 'translateX(-50%)',
+            touchAction: 'none',
+            userSelect: 'none'
           }}
           transition={{ duration: 0 }}
         >
-          <div className="w-36 h-full [mask-image:radial-gradient(100px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-indigo-400 via-transparent to-transparent z-20 opacity-50" />
-          <div className="w-10 h-1/2 [mask-image:radial-gradient(50px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-cyan-400 via-transparent to-transparent z-10 opacity-100" />
-          <div className="w-10 h-3/4 top-1/2 -translate-y-1/2 absolute -right-10 [mask-image:radial-gradient(100px_at_left,white,transparent)]">
-            <div className="w-full h-full bg-gradient-to-r from-white/20 via-white/10 to-transparent animate-pulse" />
-          </div>
           {showHandlebar && (
-            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-white z-30 -right-2.5 absolute   flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF40]">
-              <MoreVertical className="h-4 w-4 text-black" />
+            <div className="z-10 flex h-6 w-6 items-center justify-center rounded-sm border bg-border">
+              <MoreVertical className="h-4 w-4" />
             </div>
           )}
         </motion.div>
@@ -199,10 +243,10 @@ export const Compare = ({
               transition={{ duration: 0 }}
             >
               <img
-                alt="first image"
+                alt="Before image"
                 src={firstImage}
                 className={cn(
-                  "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
+                  "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out opacity-100",
                   firstImageClassName
                 )}
                 draggable={false}
@@ -216,10 +260,10 @@ export const Compare = ({
         {secondImage ? (
           <motion.img
             className={cn(
-              "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
+              "pointer-events-none absolute inset-0 h-full object-cover transition-opacity duration-500 ease-in-out opacity-100",
               secondImageClassname
             )}
-            alt="second image"
+            alt="After image"
             src={secondImage}
             draggable={false}
           />
