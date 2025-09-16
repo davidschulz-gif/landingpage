@@ -84,7 +84,7 @@ const PricingCard = ({ plan, index }: { plan: typeof pricingPlans[0]; index: num
             : 'border border-gray-200 bg-white hover:border-gray-300'
         }`}
       >
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <h3 
             className="text-2xl font-bold text-gray-900 mb-2"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}

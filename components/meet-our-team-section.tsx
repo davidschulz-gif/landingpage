@@ -34,10 +34,10 @@ export function MeetOurTeamSection() {
     <section className="py-10" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <BreathingAnimationText animationType="black-gray">
             <motion.h2 
-              className="text-[20px] text-gray-900 mb-3 font-normal"
+              className="text-[30px] text-gray-900 mb-3 font-normal"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}

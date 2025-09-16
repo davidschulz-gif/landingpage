@@ -92,7 +92,7 @@ export function TabVideoShowcase() {
     <section ref={sectionRef} className="py-12" style={{ backgroundColor: '#f0f0f0' }}>
       <div className="w-full max-w-[65%] mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <BreathingAnimationText animationType="black-gray">
             <motion.h2 
               className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-gray-900 dark:text-white mb-4 font-normal whitespace-nowrap"

@@ -20,7 +20,7 @@ export function FeaturedTestimonialSection() {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto flex max-w-7xl flex-col px-4 py-32 text-neutral-800 dark:text-neutral-200"
+      className="relative mx-auto flex max-w-7xl flex-col px-4 py-4 text-neutral-800 dark:text-neutral-200"
       style={{ backgroundColor: "#f0f0f0" }}
     >
       {/* Background Effects - Matching website pattern */}
@@ -62,7 +62,7 @@ export function FeaturedTestimonialSection() {
       <motion.div className="relative z-10 w-full" style={{ y, opacity }}>
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -76,17 +76,17 @@ export function FeaturedTestimonialSection() {
               WHAT EXPERTS SAY
             </h2>
           </BreathingAnimationText>
-          <BreathingAnimationText animationType="black-gray">
+          {/* <BreathingAnimationText animationType="black-gray">
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
               Leading architects and industry professionals share their
               experience with Typus AI
             </p>
-          </BreathingAnimationText>
+          </BreathingAnimationText> */}
         </motion.div>
 
         {/* Testimonial Card */}
         <motion.div
-          className="max-w-5xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/20"
+          className="max-w-xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -102,15 +102,15 @@ export function FeaturedTestimonialSection() {
               viewport={{ once: true }}
             >
               <div className="relative inline-block mb-4">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto">
-                  <Image
-                    src="/blog/blog_1.png"
-                    alt="Dr. Dietmar Köring"
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                  <div className="w-40 h-40 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto">
+                    <Image
+                      src="/blog/blog_1.png"
+                      alt="Dr. Dietmar Köring"
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 <motion.div
                   className="absolute -bottom-1 -right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center"
                   animate={{ scale: [1, 1.1, 1] }}
@@ -122,7 +122,7 @@ export function FeaturedTestimonialSection() {
 
               <BreathingAnimationText animationType="black-gray">
                 <h3
-                  className="text-lg font-bold text-neutral-800 mb-1"
+                  className="text-[18px] font-bold text-neutral-800 mb-1"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   DR. DIETMAR KÖRING
@@ -144,7 +144,7 @@ export function FeaturedTestimonialSection() {
               viewport={{ once: true }}
             >
               <BreathingAnimationText animationType="black-gray">
-                <blockquote className="text-lg md:text-xl font-light leading-relaxed text-neutral-700 mb-6">
+                <blockquote className="text-[18px] font-light leading-relaxed text-neutral-700 mb-6">
                   "Sehr vielversprechend sieht derzeit die Anwendung Yanus aus.
                   Wenn man dies in Zukunft mit Materialien und deren Herstellung
                   abstimmt, wäre das ein
@@ -158,11 +158,11 @@ export function FeaturedTestimonialSection() {
               </BreathingAnimationText>
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <BreathingAnimationText animationType="black-gray">
+                {/* <BreathingAnimationText animationType="black-gray">
                   <p className="text-xs text-neutral-500 uppercase tracking-wider">
-                    DAB ONLINE INTERVIEW
+                    DAB ONLINE
                   </p>
-                </BreathingAnimationText>
+                </BreathingAnimationText> */}
 
                 <Button
                   className="animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
