@@ -323,7 +323,7 @@ export function StickySliderSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-[60%] mx-auto h-[400vh]">
+    <div ref={containerRef} className="relative w-full max-w-[65%] mx-auto h-[400vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {currentTabSlides.map((slide, index) => (
           <div

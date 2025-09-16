@@ -320,16 +320,6 @@ export default function Home() {
       >
         <TabVideoShowcase />
       </motion.div>
-      
-      {/* Reviews Section with Marquee */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <ReviewsSection />
-      </motion.div>
 
       {/* Before & After Section */}
       <motion.div
@@ -361,7 +351,16 @@ export default function Home() {
         <MeetOurTeamSection />
       </motion.div>
 
-
+ 
+      {/* Reviews Section with Marquee */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <ReviewsSection />
+      </motion.div>
 
       {/* Enhanced Footer */}
       <motion.div

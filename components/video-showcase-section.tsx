@@ -46,7 +46,7 @@ export const VideoShowcaseSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto flex max-w-[60%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
+      className="relative mx-auto flex max-w-[65%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
     >
 
 
