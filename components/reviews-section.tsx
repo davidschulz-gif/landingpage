@@ -102,23 +102,23 @@ export function ReviewsSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="max-w-3xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-white/20">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
+          <div className="max-w-lg mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-xl border border-white/20">
+            <div className="flex flex-col md:flex-row gap-4 items-center">
               {/* Profile */}
               <motion.div
-                className="text-center"
+                className="text-center flex-shrink-0"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <div className="relative inline-block mb-4">
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto">
+                <div className="relative inline-block mb-1">
+                  <div className="w-40 h-40 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto">
                     <Image
                       src="/blog/blog_1.png"
                       alt="Dr. Dietmar Köring"
-                      width={80}
-                      height={80}
+                      width={160}
+                      height={160}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -133,14 +133,14 @@ export function ReviewsSection() {
 
                 <BreathingAnimationText animationType="black-gray">
                   <h3
-                    className="text-lg font-bold text-neutral-800 mb-1"
+                    className="text-xs font-bold text-neutral-800 mb-0.5"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     DR. DIETMAR KÖRING
                   </h3>
                 </BreathingAnimationText>
                 <BreathingAnimationText animationType="black-gray">
-                  <p className="text-sm text-neutral-600 uppercase tracking-wide">
+                  <p className="text-[10px] text-neutral-600 uppercase tracking-wide">
                     ARPHENOTYPE
                   </p>
                 </BreathingAnimationText>
@@ -148,14 +148,14 @@ export function ReviewsSection() {
 
               {/* Quote */}
               <motion.div
-                className="md:col-span-2"
+                className="flex-1"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
                 viewport={{ once: true }}
               >
                 <BreathingAnimationText animationType="black-gray">
-                  <blockquote className="text-lg md:text-xl font-light leading-relaxed text-neutral-700 mb-6">
+                  <blockquote className="text-[16px] font-normal leading-relaxed text-black mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     "Sehr vielversprechend sieht derzeit die Anwendung Yanus aus.
                     Wenn man dies in Zukunft mit Materialien und deren Herstellung
                     abstimmt, wäre das ein

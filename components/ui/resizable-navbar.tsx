@@ -207,7 +207,7 @@ export const MobileNavToggle = ({
 export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
   return (
     <a href="#" className={`relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-      <img src="/logo/typus_logo_transparent.png" alt="Typus.AI logo" width={40} height={40} className="object-contain" />
+      <img src="/logo/typus_logo_red_transp.png" alt="Typus.AI logo" width={40} height={40} className="object-contain" />
       <span 
         className="text-center uppercase flex items-center justify-center"
         style={{

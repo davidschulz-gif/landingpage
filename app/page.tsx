@@ -429,7 +429,7 @@ export default function Home() {
             "@type": "Organization",
             "name": "Typus AI",
             "url": "https://typus.ai",
-            "logo": "https://typus.ai/logo/typus_logo.png",
+            "logo": "https://typus.ai/logo/typus_logo_red_transp.png",
             "description": "Leading AI-powered architectural visualization platform",
             "foundingDate": "2024",
             "industry": "Artificial Intelligence",

@@ -211,7 +211,7 @@ export function SplashScreen({
             >
               <div className="relative w-8 h-8">
                 <Image
-                  src="/logo/typus_logo_transparent.png"
+                  src="/logo/typus_logo_red_transp.png"
                   alt="Typus AI Logo"
                   width={32}
                   height={32}

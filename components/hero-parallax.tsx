@@ -168,7 +168,7 @@ export const Header = () => {
             className="mb-0 flex flex-col items-center space-y-2"
           >
             <img
-              src="/logo/typus_logo_transparent.png"
+              src="/logo/typus_logo_red_transp.png"
               alt="Typus.AI logo"
               width={40}
               height={40}

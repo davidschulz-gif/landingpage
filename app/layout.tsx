@@ -48,12 +48,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo/typus_logo.png", sizes: "32x32", type: "image/png" },
-      { url: "/logo/typus_logo.png", sizes: "16x16", type: "image/png" }
+      { url: "/logo/typus_logo_red_transp.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo/typus_logo_red_transp.png", sizes: "16x16", type: "image/png" }
     ],
-    shortcut: "/logo/typus_logo.png",
+    shortcut: "/logo/typus_logo_red_transp.png",
     apple: [
-      { url: "/logo/typus_logo.png", sizes: "180x180", type: "image/png" }
+      { url: "/logo/typus_logo_red_transp.png", sizes: "180x180", type: "image/png" }
     ],
   },
   manifest: "/manifest.json",
@@ -115,7 +115,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://app.typus.ai" />
         <link rel="preload" href="/hero-parallax-images/row-1-2-3/commercial building.png" as="image" />
-        <link rel="preload" href="/logo/typus_logo_transparent.png" as="image" />
+        <link rel="preload" href="/logo/typus_logo_red_transp.png" as="image" />
         <meta name="theme-color" content="#ff3636" />
         <meta name="msapplication-TileColor" content="#ff3636" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
