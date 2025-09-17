@@ -90,7 +90,7 @@ export function TabVideoShowcase() {
 
   return (
     <section ref={sectionRef} className="py-12" style={{ backgroundColor: '#f0f0f0' }}>
-      <div className="w-full max-w-[65%] mx-auto px-4">
+      <div className="w-full max-w-[65%] mx-auto px-4 py-10">
         {/* Header */}
         <div className="text-center mb-12">
           <BreathingAnimationText animationType="black-gray">
@@ -118,7 +118,7 @@ export function TabVideoShowcase() {
         </div>
 
         {/* Main Content */}
-        <div className="w-full">
+        <div className="w-full max-w-[90%] mx-auto px-4">
           {/* Video Display */}
           <motion.div 
             className="relative mb-3"
@@ -139,12 +139,12 @@ export function TabVideoShowcase() {
                   src={activeTabData.video}
                   title={activeTabData.title}
                   poster={activeTabData.poster}
-                  height="h-[400px] md:h-[500px] lg:h-[600px]"
+                  height="h-[300px] md:h-[450px] lg:h-[550px]"
                   preload={loadedVideos.has(activeTabData.video) ? "auto" : "metadata"}
                   shouldPlay={false}
                 />
               ) : (
-                <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
+                <div className="relative h-[300px] md:h-[350px] lg:h-[400px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
                   {/* Video skeleton background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
                   

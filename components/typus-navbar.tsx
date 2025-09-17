@@ -155,39 +155,41 @@ export default function TypusNavbar() {
                       <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                     </a>
                     <div
-                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
+                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-96 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
                         hoveredItem === item.name
                           ? "opacity-100 visible translate-y-0"
                           : "opacity-0 invisible translate-y-2"
                       }`}
                     >
-                      <div className="p-2">
-                        {item.submenu?.map((subitem, subIdx) => (
-                          <a
-                            key={`submenu-${idx}-${subIdx}`}
-                            href={subitem.link}
-                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item"
-                          >
-                            <div className="relative flex-shrink-0 w-16 h-10 bg-neutral-100 dark:bg-neutral-800 rounded-md overflow-hidden">
-                              <img
-                                src={subitem.video || "/placeholder.svg"}
-                                alt={subitem.title}
-                                className="w-full h-full object-cover"
-                              />
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-200">
-                                <Play className="w-4 h-4 text-white" />
+                      <div className="p-4">
+                        <div className="grid grid-cols-1 gap-3">
+                          {item.submenu?.map((subitem, subIdx) => (
+                            <a
+                              key={`submenu-${idx}-${subIdx}`}
+                              href={subitem.link}
+                              className="flex items-center gap-4 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700"
+                            >
+                              <div className="relative flex-shrink-0 w-20 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg overflow-hidden">
+                                <img
+                                  src={subitem.video || "/placeholder.svg"}
+                                  alt={subitem.title}
+                                  className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-200">
+                                  <Play className="w-4 h-4 text-white" />
+                                </div>
                               </div>
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover/item:text-cyan-600 dark:group-hover/item:text-cyan-400 transition-colors duration-200">
-                                {subitem.title}
-                              </h4>
-                              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
-                                {subitem.description}
-                              </p>
-                            </div>
-                          </a>
-                        ))}
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover/item:text-red-600 dark:group-hover/item:text-red-400 transition-colors duration-200 uppercase tracking-wide">
+                                  {subitem.title}
+                                </h4>
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
+                                  {subitem.description}
+                                </p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>

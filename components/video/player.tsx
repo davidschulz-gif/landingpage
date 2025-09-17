@@ -308,7 +308,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
     <div
       ref={containerRef}
       className={cn(
-        "group relative mx-auto w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/60 backdrop-blur-md shadow-2xl",
+        "group relative mx-auto w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/60 backdrop-blur-md",
       )}
       tabIndex={0}
       onKeyDown={onKeyDown}
@@ -354,13 +354,13 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
               onClick={togglePlay}
             >
               <div className="relative">
-                <Play className="h-8 w-8 text-white drop-shadow" />
+                <Play className="h-8 w-8 text-white" />
                 <span className="sr-only">Play</span>
                 <motion.span
                   aria-hidden
                   className="pointer-events-none absolute inset-0 -z-10 rounded-full"
                   style={{
-                    boxShadow: "0 0 40px 8px rgba(59,130,246,0.35), 0 0 80px 16px rgba(34,211,238,0.2)",
+                    boxShadow: "none",
                   }}
                   initial={{ opacity: 0.7 }}
                   animate={{ opacity: [0.7, 0.3, 0.7] }}

@@ -57,7 +57,7 @@ export const CompareWithAnimation = ({ className }: CompareWithAnimationProps) =
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             }}
           >
-            BEFORE & AFTER
+            BEFORE  &  AFTER
           </h2>
         </BreathingAnimationText>
         <BreathingAnimationText animationType="black-gray">

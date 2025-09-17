@@ -447,13 +447,15 @@ export function StickySliderSection() {
                                         }}
                                       >
                                         <div className="flex items-center p-3 pl-4">
-                                          <div
-                                            className={`w-2 h-2 rounded-sm mr-4 transition-all duration-200 ${
-                                              isActiveSubCat
-                                                ? "bg-black shadow-sm animate-pulse"
-                                                : "bg-gray-300 group-hover/sub:bg-gray-400"
-                                            }`}
-                                          ></div>
+                                          <div className="w-4 h-4 rounded-sm flex items-center justify-center bg-gray-100 group-hover/sub:bg-gray-200 transition-colors duration-200 mr-3">
+                                            <div
+                                              className={`w-1.5 h-1.5 rounded-xs transition-all duration-200 ${
+                                                isActiveSubCat
+                                                  ? "bg-black shadow-sm animate-pulse"
+                                                  : "bg-gray-300 group-hover/sub:bg-gray-400"
+                                              }`}
+                                            ></div>
+                                          </div>
 
                                           <div className="flex-1">
                                             <div
