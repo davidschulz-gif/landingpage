@@ -118,8 +118,6 @@ const tabsData: TabData[] = [
       { id: 1, name: "Inpaint Details", slideId: 1 },
       { id: 2, name: "Outpaint Expansion", slideId: 2 },
       { id: 3, name: "Add Style", slideId: 3 },
-      { id: 4, name: "Remove Objects & Background", slideId: 4 },
-      { id: 5, name: "Edit by Text", slideId: 5 },
     ],
     slides: [
       {
@@ -131,7 +129,7 @@ const tabsData: TabData[] = [
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Start Inpainting",
-        progress: "1/5",
+        progress: "1/3",
       },
       {
         id: 2,
@@ -142,7 +140,7 @@ const tabsData: TabData[] = [
         video: "/videos/artpresets.mp4",
         textColor: "text-black",
         buttonText: "Expand View",
-        progress: "2/5",
+        progress: "2/3",
       },
       {
         id: 3,
@@ -153,29 +151,7 @@ const tabsData: TabData[] = [
         video: "/videos/styletransfer.mp4",
         textColor: "text-black",
         buttonText: "Browse Styles",
-        progress: "3/5",
-      },
-      {
-        id: 4,
-        title: "OBJECT REMOVAL",
-        subtitle: "Clean Backgrounds",
-        description:
-          "Remove unwanted objects and backgrounds with intelligent AI-powered content removal.",
-        video: "/videos/artpresets.mp4",
-        textColor: "text-black",
-        buttonText: "Remove Objects",
-        progress: "4/5",
-      },
-      {
-        id: 5,
-        title: "TEXT-BASED EDITING",
-        subtitle: "Describe Changes",
-        description:
-          "Make complex edits by simply describing what you want to change in natural language.",
-        video: "/videos/artpresets.mp4",
-        textColor: "text-black",
-        buttonText: "Edit by Text",
-        progress: "5/5",
+        progress: "3/3",
       },
     ],
   },
@@ -381,7 +357,7 @@ export function StickySliderSection() {
                                 >
                                   <div className="flex items-center space-x-4">
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50">
-                                      <div className="w-4 h-4 rounded-full bg-black animate-pulse"></div>
+                                      <div className="w-3 h-3 rounded-xs bg-black animate-pulse"></div>
                                     </div>
 
                                     <div className="flex flex-col justify-center items-start">
@@ -397,7 +373,7 @@ export function StickySliderSection() {
                                   </div>
 
                                   <div className="w-6 h-6 flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full transition-transform duration-200"></div>
+                                    <div className="w-2 h-2 bg-gray-400 rounded-sm transition-transform duration-200"></div>
                                   </div>
                                 </MovingBorderButton>
                               </motion.div>
@@ -412,7 +388,7 @@ export function StickySliderSection() {
                                 <div className="flex items-center justify-between p-2">
                                   <div className="flex items-center space-x-4">
                                     <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white transition-colors duration-200">
-                                      <div className="w-4 h-4 rounded-full bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200"></div>
+                                      <div className="w-3 h-3 rounded-xs bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200"></div>
                                     </div>
 
                                     <div>
@@ -426,7 +402,7 @@ export function StickySliderSection() {
                                   </div>
 
                                   <div className="w-6 h-6 flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-gray-400 group-hover:bg-gray-600 rounded-full transition-all duration-200"></div>
+                                    <div className="w-2 h-2 bg-gray-400 group-hover:bg-gray-600 rounded-sm transition-all duration-200"></div>
                                   </div>
                                 </div>
                               </motion.button>
@@ -472,7 +448,7 @@ export function StickySliderSection() {
                                       >
                                         <div className="flex items-center p-3 pl-4">
                                           <div
-                                            className={`w-2 h-2 rounded-full mr-4 transition-all duration-200 ${
+                                            className={`w-2 h-2 rounded-sm mr-4 transition-all duration-200 ${
                                               isActiveSubCat
                                                 ? "bg-black shadow-sm animate-pulse"
                                                 : "bg-gray-300 group-hover/sub:bg-gray-400"
@@ -495,7 +471,7 @@ export function StickySliderSection() {
                                             <motion.div
                                               initial={{ scale: 0, opacity: 0 }}
                                               animate={{ scale: 1, opacity: 1 }}
-                                              className="w-1.5 h-1.5 rounded-full bg-black animate-pulse"
+                                              className="w-1.5 h-1.5 rounded-sm bg-black animate-pulse"
                                             />
                                           )}
                                         </div>

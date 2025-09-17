@@ -170,8 +170,8 @@ export const Header = () => {
             <img
               src="/logo/typus_logo_red_transp.png"
               alt="Typus.AI logo"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               className="object-contain"
             />
             <span
@@ -179,7 +179,7 @@ export const Header = () => {
               style={{
                 fontFamily:
                   "var(--font-source-serif-4), 'Source Serif 4', serif",
-                fontSize: "12px",
+                fontSize: "18px",
                 fontWeight: 300,
                 letterSpacing: "2.5px",
                 lineHeight: "1.3em",
