@@ -10,7 +10,7 @@ const pricingPlans = [
   {
     id: "starter",
     name: "STARTER",
-    monthlyPrice: "€5",
+    monthlyPrice: "$19",
     yearlyPrice: "€59",
     period: "/month",
     yearlyPeriod: "/year",
@@ -32,7 +32,7 @@ const pricingPlans = [
   {
     id: "explorer",
     name: "EXPLORER",
-    monthlyPrice: "€12",
+    monthlyPrice: "$49",
     yearlyPrice: "€149",
     period: "/month",
     yearlyPeriod: "/year",
@@ -57,7 +57,7 @@ const pricingPlans = [
   {
     id: "pro",
     name: "PRO",
-    monthlyPrice: "€25",
+    monthlyPrice: "$99",
     yearlyPrice: "€299",
     period: "/month",
     yearlyPeriod: "/year",
