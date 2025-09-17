@@ -132,8 +132,14 @@ export default function TypusNavbar() {
   }, []);
 
   return (
-    <div className={`fixed z-50 w-full ${showNavbar ? '-top-4' : 'top-0'} opacity-100 transition-all duration-300`}>
-      <Navbar>
+    <>
+      {/* Background blur overlay */}
+      {hoveredItem && (
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-all duration-300" />
+      )}
+      
+      <div className={`fixed z-50 w-full ${showNavbar ? '-top-4' : 'top-0'} opacity-100 transition-all duration-300`}>
+        <Navbar>
         {/* Desktop Navigation */}
         <NavBody className="h-13 px-6">
           <div className="flex items-center justify-between w-full h-full">
@@ -155,21 +161,24 @@ export default function TypusNavbar() {
                       <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                     </a>
                     <div
-                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-96 bg-white dark:bg-neutral-900 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
+                      className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-96 bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-800 overflow-hidden transition-all duration-300 ${
                         hoveredItem === item.name
                           ? "opacity-100 visible translate-y-0"
                           : "opacity-0 invisible translate-y-2"
                       }`}
                     >
-                      <div className="p-4">
-                        <div className="grid grid-cols-1 gap-3">
+                      <div className="p-6">
+                        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-4 uppercase tracking-wide">
+                          {item.name}
+                        </h3>
+                        <div className="space-y-3">
                           {item.submenu?.map((subitem, subIdx) => (
                             <a
                               key={`submenu-${idx}-${subIdx}`}
                               href={subitem.link}
-                              className="flex items-center gap-4 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700"
+                              className="flex items-center gap-4 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors duration-200 group/item"
                             >
-                              <div className="relative flex-shrink-0 w-20 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg overflow-hidden">
+                              <div className="relative flex-shrink-0 w-16 h-10 bg-neutral-100 dark:bg-neutral-800 rounded-lg overflow-hidden">
                                 <img
                                   src={subitem.video || "/placeholder.svg"}
                                   alt={subitem.title}
@@ -180,10 +189,10 @@ export default function TypusNavbar() {
                                 </div>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover/item:text-red-600 dark:group-hover/item:text-red-400 transition-colors duration-200 uppercase tracking-wide">
+                                <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 group-hover/item:text-red-600 dark:group-hover/item:text-red-400 transition-colors duration-200">
                                   {subitem.title}
                                 </h4>
-                                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                                   {subitem.description}
                                 </p>
                               </div>
@@ -291,6 +300,7 @@ export default function TypusNavbar() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-    </div>
+      </div>
+    </>
   );
 }
