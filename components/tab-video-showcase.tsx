@@ -279,7 +279,7 @@ export function TabVideoShowcase() {
                               backgroundColor: isActive ? THEME_COLORS.primary : undefined
                             }} />
                             <BreathingAnimationText animationType="black-gray">
-                              <span className="text-[10px] text-gray-500 dark:text-gray-400 leading-tight truncate">
+                              <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight truncate">
                                 {feature}
                               </span>
                             </BreathingAnimationText>

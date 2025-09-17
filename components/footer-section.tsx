@@ -61,15 +61,15 @@ export function FooterSection() {
           <img
             src="/logo/typus_logo_red_transp.png"
             alt="Typus.AI logo"
-            width={40}
-            height={40}
+            width={50}
+            height={50}
             className="object-contain"
           />
           <span
             className="text-center uppercase"
             style={{
               fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
-              fontSize: "12px",
+              fontSize: "18px",
               fontWeight: 300,
               letterSpacing: "2.5px",
               lineHeight: "1.3em",
@@ -83,7 +83,7 @@ export function FooterSection() {
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           <div className="col-span-2">
-            <h3 className="sm:text-[18px] md:text-[24px] lg:[text-30px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Product</h3>
+            <h3 className="sm:text-[16px] md:text-[20px] lg:[text-24px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Product</h3>
             <ul className="space-y-2">
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Features</Link></li>
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Pricing</Link></li>
@@ -94,7 +94,7 @@ export function FooterSection() {
           </div>
           
           <div>
-            <h3 className="sm:text-[18px] md:text-[24px] lg:[text-30px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Company</h3>
+            <h3 className="sm:text-[16px] md:text-[20px] lg:[text-24px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Company</h3>
             <ul className="space-y-2">
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">About</Link></li>
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Blog</Link></li>
@@ -104,7 +104,7 @@ export function FooterSection() {
           </div>
           
           <div>
-            <h3 className="sm:text-[18px] md:text-[24px] lg:[text-30px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Resources</h3>
+            <h3 className="sm:text-[16px] md:text-[20px] lg:[text-24px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Resources</h3>
             <ul className="space-y-2">
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Documentation</Link></li>
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Tutorials</Link></li>
@@ -114,7 +114,7 @@ export function FooterSection() {
           </div>
           
           <div>
-            <h3 className="sm:text-[18px] md:text-[24px] lg:[text-30px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Legal</h3>
+            <h3 className="sm:text-[16px] md:text-[20px] lg:[text-24px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Legal</h3>
             <ul className="space-y-2">
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Privacy</Link></li>
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Terms</Link></li>
@@ -123,7 +123,7 @@ export function FooterSection() {
           </div>
           
           <div>
-            <h3 className="sm:text-[18px] md:text-[24px] lg:[text-30px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Connect</h3>
+            <h3 className="sm:text-[16px] md:text-[20px] lg:[text-24px] font-semibold text-gray-900 uppercase tracking-wide mb-4">Connect</h3>
             <ul className="space-y-2">
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">Twitter</Link></li>
               <li><Link href="#" className="text-sm text-gray-600 hover:text-gray-900">LinkedIn</Link></li>

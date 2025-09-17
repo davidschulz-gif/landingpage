@@ -49,7 +49,7 @@ const tabsData: TabData[] = [
         subtitle: "Hand Drawings Come Alive",
         description:
           "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
-        video: "/videos/sketch.mp4",
+        video: "/videos/create_sketch_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Sketch",
         progress: "1/6",
@@ -60,7 +60,7 @@ const tabsData: TabData[] = [
         subtitle: "Plugins Integration",
         description:
           "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
-        video: "/videos/3d.mp4",
+        video: "/videos/create_3d_s.mp4",
         textColor: "text-black",
         buttonText: "Get Plugins",
         progress: "2/6",
@@ -71,7 +71,7 @@ const tabsData: TabData[] = [
         subtitle: "Technical To Visual",
         description:
           "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
-        video: "/videos/cad.mp4",
+        video: "/videos/create_cad_s.mp4",
         textColor: "text-black",
         buttonText: "Try CAD",
         progress: "3/6",
@@ -82,7 +82,7 @@ const tabsData: TabData[] = [
         subtitle: "Context Visualization",
         description:
           "Place your designs in real environments using site photos for contextual visualization.",
-        video: "/videos/photo.mp4",
+        video: "/videos/create_photo_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Photo",
         progress: "4/6",
@@ -93,7 +93,7 @@ const tabsData: TabData[] = [
         subtitle: "Physical To Digital",
         description:
           "Capture physical architectural models and transform them into digital renders.",
-        video: "/videos/modelphoto.mp4",
+        video: "/videos/create_modelphoto_s.mp4",
         textColor: "text-black",
         buttonText: "Capture Model",
         progress: "5/6",
@@ -104,7 +104,7 @@ const tabsData: TabData[] = [
         subtitle: "Color Map Upload",
         description:
           "Upload your own textures and materials to create unique, personalized architectural visualizations.",
-        video: "/videos/colormap.mp4",
+        video: "/videos/create_colormap_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Textures",
         progress: "6/6",
@@ -126,7 +126,7 @@ const tabsData: TabData[] = [
         subtitle: "Precise Modifications",
         description:
           "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
-        video: "/videos/artpresets.mp4",
+        video: "/videos/create_artpresets_s.mp4",
         textColor: "text-black",
         buttonText: "Start Inpainting",
         progress: "1/3",
@@ -137,7 +137,7 @@ const tabsData: TabData[] = [
         subtitle: "Extend Your Vision",
         description:
           "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
-        video: "/videos/artpresets.mp4",
+        video: "/videos/create_artpresets_s.mp4",
         textColor: "text-black",
         buttonText: "Expand View",
         progress: "2/3",
@@ -148,7 +148,7 @@ const tabsData: TabData[] = [
         subtitle: "Aesthetic Transformation",
         description:
           "Apply different architectural styles and artistic approaches to transform your designs.",
-        video: "/videos/styletransfer.mp4",
+        video: "/videos/edit_styletransfer_s.mp4",
         textColor: "text-black",
         buttonText: "Browse Styles",
         progress: "3/3",
@@ -166,7 +166,7 @@ const tabsData: TabData[] = [
         subtitle: "AI-powered upscaling",
         description:
           "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
-        video: "/videos/upscale.mp4",
+        video: "/videos/upscale_s.mp4",
         textColor: "text-black",
         buttonText: "Enhance Details",
         progress: "1/1",
@@ -310,9 +310,9 @@ export function StickySliderSection() {
             }}
           >
             <div className="h-full">
-              <div className="flex flex-col lg:flex-row h-full">
+              <div className="flex flex-col xl:flex-row h-full">
                 {/* Professional Navigation */}
-                <div className="hidden lg:flex flex-col justify-center py-16 w-80 pr-8">
+                <div className="hidden xl:flex flex-col justify-center py-16 w-80 pr-8">
                   <div className="relative">
                     <div className="mb-6">
                       <BreathingAnimationText animationType="black-gray">
@@ -501,7 +501,7 @@ export function StickySliderSection() {
                 </div>
 
                 {/* Content Side */}
-                <div className="flex-1 flex flex-col justify-center py-16 lg:py-0 lg:pr-16">
+                <div className="flex-1 flex flex-col justify-center py-16 xl:py-0 xl:pr-16">
                   {/* Progress Indicator */}
                   <div className="flex items-center space-x-3 mb-8">
                     {currentTabSlides.map((_, i) => (
@@ -598,8 +598,8 @@ export function StickySliderSection() {
                 </div>
 
                 {/* Video Side */}
-                <div className="flex-1 flex items-center justify-center py-16 lg:py-0 relative overflow-hidden">
-                  <div className="relative w-full h-full flex items-center justify-center">
+                <div className="flex items-center justify-center py-16 xl:py-0 relative overflow-hidden">
+                  <div className="relative w-96 h-96 flex items-center justify-center">
                     {currentTabSlides.map((slideContent, slideIndex) => (
                       <motion.div
                         key={slideContent.id}
@@ -619,7 +619,7 @@ export function StickySliderSection() {
                         {sectionInView &&
                         loadedVideos.has(slideContent.video) ? (
                           <video
-                            className="w-full max-w-xs h-[50vh] rounded-2xl object-cover shadow-2xl"
+                            className="w-96 h-96 rounded-2xl object-cover"
                             playsInline
                             loop
                             autoPlay
@@ -629,7 +629,7 @@ export function StickySliderSection() {
                             <source src={slideContent.video} type="video/mp4" />
                           </video>
                         ) : (
-                          <div className="w-full max-w-xs h-[50vh] rounded-2xl bg-gray-200 animate-pulse shadow-2xl flex items-center justify-center">
+                          <div className="w-96 h-96 rounded-2xl bg-gray-200 animate-pulse flex items-center justify-center">
                             <div className="text-gray-500 text-sm">
                               Loading...
                             </div>
