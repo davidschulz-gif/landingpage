@@ -144,7 +144,7 @@ export const VideoShowcaseSection = () => {
         className="flex min-h-screen w-full flex-col items-center justify-center md:h-screen lg:gap-12 sticky top-0 z-10"
       >
         <motion.div
-          className="flex w-full items-center justify-center overflow-hidden drop-shadow-xl"
+          className="flex w-full items-center justify-center overflow-hidden"
           style={{ scale: videoScale, y: videoY }}
           initial={{ scale: 1, y: 30 }}
           animate={{ scale: 1, y: 0 }}
@@ -152,7 +152,7 @@ export const VideoShowcaseSection = () => {
         >
           <div className="relative w-full h-full mx-auto px-4">
             <video
-              className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl shadow-2xl"
+              className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
               src="videos/INTRO_typus_newlogo.mp4"
               poster="/video-poster.jpg"
               autoPlay

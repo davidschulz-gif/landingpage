@@ -257,7 +257,7 @@ function PricingCard({
 }) {
   return (
     <div
-      className="flex h-[550px] flex-col rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[3.2rem] p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+      className="flex h-[580px] flex-col rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[3.2rem] p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
       style={{
         backgroundColor: plan.bgColor,
         color: plan.textColor,
@@ -333,7 +333,7 @@ function PricingCard({
           {plan.features.map((feature, index) => (
             <li
               key={index}
-              className="flex items-start text-[9px] font-medium py-1.5 border-b border-gray-100 last:border-b-0"
+              className="flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0"
             >
               <Check className="w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-green-600" />
               <span
