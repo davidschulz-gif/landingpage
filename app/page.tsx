@@ -18,6 +18,7 @@ const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcas
 const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection));
 const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection));
 const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection));
+const ArticleCarouselSection = dynamic(() => import('@/components/article-carousel-section').then(mod => mod.ArticleCarouselSection));
 
 const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
 
@@ -352,16 +353,26 @@ export default function Home() {
         <MeetOurTeamSection />
       </motion.div>
 
- 
-      {/* Reviews Section with Marquee */}
+      {/* Article Carousel Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <ReviewsSection />
+        <ArticleCarouselSection />
       </motion.div>
+
+ 
+      {/* Reviews Section with Marquee */}
+      {/* <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <ReviewsSection />
+      </motion.div> */}
 
       {/* Enhanced Footer */}
       <motion.div

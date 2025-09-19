@@ -41,6 +41,7 @@ const tabsData: TabData[] = [
       { id: 4, name: "Sitephoto", slideId: 4 },
       { id: 5, name: "Model Photo", slideId: 5 },
       { id: 6, name: "Color Map (Upload Custom Textures)", slideId: 6 },
+      { id: 7, name: "Art Presets", slideId: 7 },
     ],
     slides: [
       {
@@ -107,7 +108,18 @@ const tabsData: TabData[] = [
         video: "/videos/create_colormap_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Textures",
-        progress: "6/6",
+        progress: "6/7",
+      },
+      {
+        id: 7,
+        title: "ART PRESETS",
+        subtitle: "Style Library Access",
+        description:
+          "Access our curated library of architectural presets and styles to quickly apply professional looks to your renders.",
+        video: "/videos/create_artpresets_s.mp4",
+        textColor: "text-black",
+        buttonText: "Browse Presets",
+        progress: "7/7",
       },
     ],
   },

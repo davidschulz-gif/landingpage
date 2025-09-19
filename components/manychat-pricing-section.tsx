@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Check } from "lucide-react";
 import { BreathingAnimationText } from "./breathing-animation-text";
 
-const pricingPlans = [
+const professionalPlans = [
   {
     id: "starter",
     name: "STARTER",
@@ -77,9 +78,84 @@ const pricingPlans = [
   },
 ];
 
+const educationPlans = [
+  {
+    id: "student",
+    name: "STUDENT",
+    monthlyPrice: "$9",
+    yearlyPrice: "€29",
+    period: "/month",
+    yearlyPeriod: "/year",
+    yearlyDiscount: "75% off",
+    bgColor: "#ffffff",
+    textColor: "#000000",
+    features: [
+      "25 CREDITS /month (e.g. 15 base images and 5 Refinements)",
+      "STUDENT VERIFICATION REQUIRED",
+      "1 CONCURRENT JOB",
+      "INTEGRATED REFINER",
+      "CANCEL ANYTIME",
+      "SECURE PAYMENT ON STRIPE",
+      "ALL PLUGIN INTEGRATIONS",
+    ],
+    buttonText: "Get Started",
+    buttonBg: "#000000",
+  },
+  {
+    id: "educator",
+    name: "EDUCATOR",
+    monthlyPrice: "$24",
+    yearlyPrice: "€74",
+    period: "/month",
+    yearlyPeriod: "/year",
+    yearlyDiscount: "75% off",
+    bgColor: "#ffffff",
+    textColor: "#000000",
+    features: [
+      "75 CREDITS /month (e.g. 50 base images and 5 Refinements)",
+      "EDUCATOR VERIFICATION REQUIRED",
+      "2 CONCURRENT JOBS",
+      "INTEGRATED REFINER",
+      "CANCEL ANYTIME",
+      "SECURE PAYMENT ON STRIPE",
+      "ALL PLUGIN INTEGRATIONS",
+      "RESOLUTION UP TO 4K",
+      "CLASSROOM SHARING TOOLS",
+    ],
+    buttonText: "Get Started",
+    buttonBg: "#000000",
+    popular: true,
+  },
+  {
+    id: "institution",
+    name: "INSTITUTION",
+    monthlyPrice: "$49",
+    yearlyPrice: "€149",
+    period: "/month",
+    yearlyPeriod: "/year",
+    yearlyDiscount: "75% off",
+    bgColor: "#ffffff",
+    textColor: "#000000",
+    features: [
+      "500 CREDITS /month (e.g. 400 base images and 20 Refinements)",
+      "ALL FEATURES FROM EDUCATOR",
+      "4 CONCURRENT JOBS",
+      "PREMIUM LIVE VIDEO CALL SUPPORT",
+      "INCREASED SPEED OF GENERATION",
+      "RESOLUTION UP TO 13K",
+      "MULTI-USER MANAGEMENT",
+    ],
+    buttonText: "Get Started",
+    buttonBg: "#000000",
+  },
+];
+
 export function ManyChatPricingSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isYearly, setIsYearly] = useState(true);
+  const [isProfessional, setIsProfessional] = useState(true);
+  
+  const currentPlans = isProfessional ? professionalPlans : educationPlans;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -145,9 +221,58 @@ export function ManyChatPricingSection() {
                     "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
                 }}
               >
-                PROFESSIONAL PLANS
+                {isProfessional ? "PROFESSIONAL PLANS" : "EDUCATION PLANS"}
               </h2>
             </BreathingAnimationText>
+            
+            {/* Plan Type Toggle Switch */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="flex items-center bg-transparent rounded-full p-1">
+                {isProfessional ? (
+                  <MovingBorderButton
+                    duration={3000}
+                    className="bg-white border-0 text-black rounded-full text-sm font-medium transition-all duration-300 shadow-sm"
+                    containerClassName="rounded-full"
+                    borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
+                    borderRadius="0.5rem"
+                    onClick={() => setIsProfessional(true)}
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    Professional
+                  </MovingBorderButton>
+                ) : (
+                  <button
+                    onClick={() => setIsProfessional(true)}
+                    className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    Professional
+                  </button>
+                )}
+                {!isProfessional ? (
+                  <MovingBorderButton
+                    duration={3000}
+                    className="bg-white border-0 text-black rounded-full text-sm font-medium transition-all duration-300 shadow-sm"
+                    containerClassName="rounded-full"
+                    borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
+                    borderRadius="1.5rem"
+                    onClick={() => setIsProfessional(false)}
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    Education
+                  </MovingBorderButton>
+                ) : (
+                  <button
+                    onClick={() => setIsProfessional(false)}
+                    className="px-2 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    Education
+                  </button>
+                )}
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
               <BreathingAnimationText animationType="black-gray">
                 <button
@@ -208,7 +333,7 @@ export function ManyChatPricingSection() {
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              <PricingCard plan={pricingPlans[0]} isYearly={isYearly} />
+              <PricingCard plan={currentPlans[0]} isYearly={isYearly} />
             </motion.div>
 
             {/* Center Card */}
@@ -223,7 +348,7 @@ export function ManyChatPricingSection() {
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              <PricingCard plan={pricingPlans[1]} isYearly={isYearly} />
+              <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
             </motion.div>
 
             {/* Right Card */}
@@ -239,7 +364,7 @@ export function ManyChatPricingSection() {
               transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              <PricingCard plan={pricingPlans[2]} isYearly={isYearly} />
+              <PricingCard plan={currentPlans[2]} isYearly={isYearly} />
             </motion.div>
           </div>
         </div>
@@ -252,7 +377,7 @@ function PricingCard({
   plan,
   isYearly,
 }: {
-  plan: (typeof pricingPlans)[0];
+  plan: (typeof professionalPlans)[0];
   isYearly: boolean;
 }) {
   return (
@@ -267,15 +392,18 @@ function PricingCard({
       <div className="flex flex-col items-center text-center mb-4">
         {plan.popular && (
           <div className="mb-2">
-            <span
-              className="text-white bg-black px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
-              // className="bg-red-500 text-white px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
+            <MovingBorderButton
+              duration={3000}
+              className="bg-transparent border-0 text-black px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
+              containerClassName="rounded-full"
+              borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
+              borderRadius="1rem"
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
               }}
             >
               Most Popular
-            </span>
+            </MovingBorderButton>
           </div>
         )}
 

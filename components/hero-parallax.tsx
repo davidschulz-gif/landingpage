@@ -27,9 +27,9 @@ export const HeroParallax = ({
     thumbnail: string;
   }[];
 }) => {
-  const firstRow = row123Products;
-  const secondRow = row123Products;
-  const thirdRow = row123Products;
+  const firstRow = row123Products.slice(0, 6);
+  const secondRow = row123Products.slice(6, 12);
+  const thirdRow = row123Products.slice(12, 19);
   const fourthRow = row4Products;
 
   const ref = React.useRef(null);
