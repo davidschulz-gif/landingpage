@@ -12,35 +12,35 @@ interface CompareWithAnimationProps {
 export const CompareWithAnimation = ({ className }: CompareWithAnimationProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Before images (CAD/basic architectural drawings)
+  // Before images (original/CAD files)
   const beforeImages = [
-    "/easy-integration-cad.png",
-    "/structure-preservation-architecture.png",
-    "/ai-architectural-precision.png",
-    "/design-gallery-showcase.png"
+    "before-after/a_before.png",
+    "before-after/b_before.png",
+    "before-after/c_before.png",    
+    "before-after/d_before.png",
   ];
   
-  // After images (photorealistic renders)
+  // After images (result/output renders)
   const afterImages = [
-    "/modern-office-building.png",
-    "/modern-villa-render.png",
-    "/cultural-center-render.png",
-    "/sustainable-green-building.png"
+    "/before-after/a_after.png",
+    "/before-after/b_after.png",
+    "/before-after/c_after.png",
+    "/before-after/d_after.png",
   ];
 
-  // Thumbnail images for navigation
+  // Thumbnail images for navigation (using output images as thumbnails)
   const thumbnailImages = [
-    "/modern-office-building.png",
-    "/modern-villa-render.png",
-    "/cultural-center-render.png",
-    "/sustainable-green-building.png"
-  ];
+    "before-after/a_after.png",
+    "before-after/b_after.png",
+    "before-after/c_after.png",
+    "before-after/d_after.png",
+  ]
 
   const projectTitles = [
-    "Modern Office Complex",
-    "Residential Villa",
-    "Cultural Center",
-    "Sustainable Building"
+    "3D Architecture Model",
+    "CAD to Photorealistic",
+    "Colormap Visualization",
+    "Concept to Reality",
   ];
 
   return (
@@ -74,7 +74,7 @@ export const CompareWithAnimation = ({ className }: CompareWithAnimationProps) =
       <div className="flex flex-col gap-8 lg:flex-row">
         <div className="flex w-full flex-shrink-0 flex-col justify-center px-4 sm:px-6 lg:px-8 lg:w-1/3">
           <div className="mb-4 text-[10px] sm:text-xs md:text-sm font-medium tracking-tight text-muted-foreground animate-breathe-black-gray">AI-Powered Transformation</div>
-          <div className="mb-2 text-[14px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-medium tracking-tight animate-breathe-black-gray">CAD to Photorealistic</div>
+          <div className="mb-2 text-[14px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-medium tracking-tight animate-breathe-black-gray">{projectTitles[activeIndex]}</div>
           <div className="mb-8 max-w-[35ch] text-[12px] sm:text-sm md:text-base animate-breathe-black-gray">Transform your architectural drawings into stunning photorealistic visualizations with AI precision.</div>
           <div className="mb-6 flex gap-4">
             {thumbnailImages.map((thumb, index) => (

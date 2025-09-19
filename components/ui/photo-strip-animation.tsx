@@ -10,30 +10,23 @@ interface PhotoStripAnimationProps {
 export const PhotoStripAnimation = ({
   className,
 }: PhotoStripAnimationProps) => {
-  // Original/Before images (CAD/basic architectural drawings)
   const originalImages = [
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-3d-original.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-photo-original.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Fimagedelivery.net%2FFV8miKNd3yFQsUZdiZHNqQ%2F111ce6a4-9fe3-4450-9eab-36bde1abd200%2Fpublic&w=750&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-sketch-original.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-0-original.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-1-original.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-2-original.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-3-original.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-4-original.jpg&w=640&q=75",
+    "/before-after/slider_original/3d_screenshot.png",
+    "/before-after/slider_original/cad.png",
+    "/before-after/slider_original/colormap7.png",
+    "/before-after/slider_original/freepik.png",
+    "/before-after/slider_original/sitemodel.png",
+    "/before-after/slider_original/sketch1.png",
   ];
 
   // Result/After images (photorealistic renders)
   const resultImages = [
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Fimagedelivery.net%2FFV8miKNd3yFQsUZdiZHNqQ%2Faa665545-b2d7-4d6c-3909-9d9a04a56300%2Fpublic&w=750&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-3d-rendered.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-photo-rendered.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fjtbd%2Fcase-sketch-rendered.jpg&w=1080&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-0-rendered.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-1-rendered.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-2-rendered.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-3-rendered.jpg&w=640&q=75",
-    "https://rerenderai.com/_next/image?url=https%3A%2F%2Frerender.s3.amazonaws.com%2Fassets%2Flanding%2Fphotostrip%2Fgallery-4-rendered.jpg&w=640&q=75",
+    "/before-after/slider_output/1337-6f74b340-522b-11ef-ad2d-f624cd86d646.png",
+    "/before-after/slider_output/1337-d5698ca8-5225-11ef-a345-3686f2249b31.png",
+    "/before-after/slider_output/1337-ebba22d4-522e-11ef-a176-7671bf278d58.png",
+    "/before-after/slider_output/5656565656565656_generated_images_123455-62277081.png",
+    "/before-after/slider_output/yanus.ai_hello_1758106602834_6600.png",
+    "/before-after/slider_output/yanus.ai_team_1747855586574_1700_compressed.png",
   ];
 
   return (
@@ -52,47 +45,55 @@ export const PhotoStripAnimation = ({
         </div>
       </div>
 
-      {/* Desktop Photo Strip */}
-      <div className="relative hidden w-full overflow-hidden h-64 md:block">
-        {/* Center Separator Line */}
-        <div className="absolute left-1/2 top-[-20px] z-20 h-[calc(100%+40px)] w-[2px] rounded-full bg-neutral-500"></div>
-
-        {/* Original Images Strip (Left Side) */}
-        <div className="absolute mt-6 left-0 top-0 z-10 w-1/2 overflow-hidden">
-          <div
-            className="flex flex-row items-center animate-scroll-right"
-            style={{ width: "200%" }}
-          >
-            {originalImages.map((image, index) => (
+      {/* Desktop Photo Strip - Match HTML structure */}
+      <div className="relative hidden w-full overflow-x-hidden py-3 md:block">
+        {/* Magic separator */}
+        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[2px] rounded-full bg-neutral-500"></div>
+        
+        {/* Left side - Original images with overflow hidden */}
+        <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
+          <div className="photo_strip flex flex-row items-center animate-scroll-right" style={{ width: "200%" }}>
+            {/* Render original images twice for seamless loop */}
+            {[...originalImages, ...originalImages].map((image, index) => (
               <div
                 key={index}
                 className="relative aspect-square w-1/2 flex-shrink-0 md:w-1/4"
               >
                 <img
-                  alt={`Original ${index}`}
+                  alt={`photo frame ${index % originalImages.length}`}
+                  loading="lazy"
+                  width="512"
+                  height="512"
+                  decoding="async"
+                  data-nimg="1"
+                  className="checkered h-full w-full rounded-md border object-cover sm:rounded-lg"
+                  style={{ color: "transparent" }}
                   src={image}
-                  className="h-full w-full rounded-md border object-cover sm:rounded-lg"
                 />
               </div>
             ))}
           </div>
         </div>
-
-        {/* Result Images Strip (Right Side Only) */}
-        <div className="absolute mt-6 right-0 top-0 z-10 w-1/2 overflow-hidden">
-          <div
-            className="flex flex-row items-center animate-scroll-right"
-            style={{ width: "200%" }}
-          >
-            {resultImages.map((image, index) => (
+        
+        {/* Right side - Synchronized result images */}
+        <div className="z-0 w-full">
+          <div className="photo_strip flex w-full flex-row items-center animate-scroll-right">
+            {/* Render result images twice for seamless loop, synchronized with originals */}
+            {[...resultImages, ...resultImages].map((image, index) => (
               <div
                 key={index}
                 className="relative aspect-square w-1/2 flex-shrink-0 md:w-1/4"
               >
                 <img
-                  alt={`Result ${index}`}
+                  alt={`photo frame ${index % resultImages.length}`}
+                  loading="lazy"
+                  width="512"
+                  height="512"
+                  decoding="async"
+                  data-nimg="1"
+                  className="checkered h-full w-full rounded-md border object-cover sm:rounded-lg"
+                  style={{ color: "transparent" }}
                   src={image}
-                  className="h-full w-full rounded-md border object-cover sm:rounded-lg"
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex flex-row justify-center p-2">
                   <div className="mx-auto rounded bg-black bg-opacity-50 px-2 text-xs text-white md:text-sm">
@@ -106,46 +107,52 @@ export const PhotoStripAnimation = ({
       </div>
 
       {/* Mobile Photo Strip */}
-      <div className="relative block w-full overflow-hidden h-32 md:hidden">
-        {/* Center Separator Line */}
-        <div className="absolute left-1/2 top-[-10px] z-20 h-[calc(100%+20px)] w-[1px] rounded-full bg-neutral-500"></div>
-
-        {/* Original Images Strip (Left Side) */}
-        <div className="absolute left-0 top-0 z-10 w-1/2 overflow-hidden">
-          <div
-            className="flex flex-row items-center animate-scroll-right"
-            style={{ width: "200%" }}
-          >
-            {originalImages.slice(2, 8).map((image, index) => (
+      <div className="relative block w-full overflow-hidden py-3 md:hidden">
+        {/* Magic separator */}
+        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[1px] rounded-full bg-neutral-500"></div>
+        
+        {/* Left side - Original images */}
+        <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
+          <div className="photo_strip flex flex-row items-center animate-scroll-right" style={{ width: "200%" }}>
+            {[...originalImages, ...originalImages].map((image, index) => (
               <div
                 key={index}
                 className="relative aspect-square w-1/2 flex-shrink-0"
               >
                 <img
-                  alt={`Original ${index}`}
+                  alt={`photo frame ${index % originalImages.length}`}
+                  loading="lazy"
+                  width="512"
+                  height="512"
+                  decoding="async"
+                  data-nimg="1"
+                  className="checkered h-full w-full rounded-md border object-cover"
+                  style={{ color: "transparent" }}
                   src={image}
-                  className="h-full w-full rounded-md border object-cover"
                 />
               </div>
             ))}
           </div>
         </div>
-
-        {/* Mobile Result Images Strip (Right Side Only) */}
-        <div className="absolute right-0 top-0 z-10 w-1/2 overflow-hidden">
-          <div
-            className="flex flex-row items-center animate-scroll-right"
-            style={{ width: "200%" }}
-          >
-            {resultImages.map((image, index) => (
+        
+        {/* Right side - Synchronized result images */}
+        <div className="z-0 w-full">
+          <div className="photo_strip flex w-full flex-row items-center animate-scroll-right">
+            {[...resultImages, ...resultImages].map((image, index) => (
               <div
                 key={index}
                 className="relative aspect-square w-1/2 flex-shrink-0"
               >
                 <img
-                  alt={`Result ${index}`}
+                  alt={`photo frame ${index % resultImages.length}`}
+                  loading="lazy"
+                  width="512"
+                  height="512"
+                  decoding="async"
+                  data-nimg="1"
+                  className="checkered h-full w-full rounded-md border object-cover"
+                  style={{ color: "transparent" }}
                   src={image}
-                  className="h-full w-full rounded-md border object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex flex-row justify-center p-2">
                   <div className="mx-auto rounded bg-black bg-opacity-50 px-2 text-xs text-white">

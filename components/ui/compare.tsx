@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { MoreVertical } from "lucide-react";
+import { IconDotsVertical } from "@tabler/icons-react";
 
 interface CompareProps {
   firstImage?: string;
@@ -112,30 +113,6 @@ export const Compare = ({
     [slideMode, isDragging]
   );
 
-  useEffect(() => {
-    const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (slideMode === "drag" && isDragging) {
-        handleMove(e.clientX);
-      }
-    };
-
-    const handleGlobalMouseUp = () => {
-      if (slideMode === "drag") {
-        setIsDragging(false);
-      }
-    };
-
-    if (isDragging) {
-      document.addEventListener('mousemove', handleGlobalMouseMove);
-      document.addEventListener('mouseup', handleGlobalMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleGlobalMouseMove);
-      document.removeEventListener('mouseup', handleGlobalMouseUp);
-    };
-  }, [isDragging, handleMove, slideMode]);
-
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => handleStart(e.clientX),
     [handleStart]
@@ -173,10 +150,10 @@ export const Compare = ({
   return (
     <div
       ref={sliderRef}
-      className={cn("w-full h-[400px] overflow-hidden rounded-2xl relative", className)}
+      className={cn("w-[400px] h-[400px] overflow-hidden border border-gray-300 rounded-2xl relative", className)}
       style={{
         position: "relative",
-        cursor: slideMode === "drag" ? (isDragging ? "grabbing" : "grab") : "col-resize",
+        cursor: slideMode === "drag" ? "grab" : "col-resize",
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={mouseLeaveHandler}
@@ -213,18 +190,21 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         <motion.div
-          className="relative flex items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 z-40 w-[2px] h-full"
+          className="h-full w-px absolute top-0 m-auto z-30 bg-white"
           style={{
             left: `${sliderXPercent}%`,
-            transform: 'translateX(-50%)',
-            touchAction: 'none',
-            userSelect: 'none'
+            top: "0",
+            zIndex: 40,
           }}
           transition={{ duration: 0 }}
         >
           {showHandlebar && (
-            <div className="z-10 flex h-6 w-6 items-center justify-center rounded-sm border bg-border">
-              <MoreVertical className="h-4 w-4" />
+            <div className="h-8 w-8 rounded-full top-1/2 -translate-y-1/2 bg-white border-2 border-gray-300 z-30 -left-4 absolute flex items-center justify-center shadow-lg">
+              <div className="flex flex-col gap-0.5">
+                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+              </div>
             </div>
           )}
         </motion.div>
@@ -243,10 +223,10 @@ export const Compare = ({
               transition={{ duration: 0 }}
             >
               <img
-                alt="Before image"
+                alt="first image"
                 src={firstImage}
                 className={cn(
-                  "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-in-out opacity-100",
+                  "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
                   firstImageClassName
                 )}
                 draggable={false}
@@ -260,10 +240,10 @@ export const Compare = ({
         {secondImage ? (
           <motion.img
             className={cn(
-              "pointer-events-none absolute inset-0 h-full object-cover transition-opacity duration-500 ease-in-out opacity-100",
+              "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
               secondImageClassname
             )}
-            alt="After image"
+            alt="second image"
             src={secondImage}
             draggable={false}
           />
@@ -273,3 +253,4 @@ export const Compare = ({
   );
 };
 
+const MemoizedSparklesCore = React.memo(SparklesCore);
