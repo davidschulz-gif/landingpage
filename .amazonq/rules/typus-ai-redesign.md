@@ -957,4 +957,731 @@ const items = [
 
 ---
 
-**CRITICAL**: Always validate syntax before saving. Use TypeScript strict mode and ESLint to catch errors early. **NEVER commit code with syntax errors.**
+## 🏛️ World-Class Next.js Architecture Patterns
+
+### Advanced Component Architecture
+
+```typescript
+// Component Layer Architecture
+src/
+├── components/
+│   ├── atoms/              # Basic UI elements (Button, Input, Icon)
+│   ├── molecules/          # Simple combinations (SearchBox, Card)
+│   ├── organisms/          # Complex sections (Header, ProductList)
+│   ├── templates/          # Page layouts
+│   └── pages/              # Full page components
+├── hooks/
+│   ├── core/               # Essential hooks (useLocalStorage, useDebounce)
+│   ├── api/                # Data fetching hooks
+│   └── ui/                 # UI-specific hooks (useModal, useToast)
+├── services/
+│   ├── api/                # API layer
+│   ├── auth/               # Authentication
+│   └── analytics/          # Tracking services
+├── stores/
+│   ├── global/             # Global state management
+│   └── features/           # Feature-specific stores
+├── utils/
+│   ├── helpers/            # Pure utility functions
+│   ├── constants/          # App constants
+│   └── validators/         # Validation schemas
+└── types/
+    ├── api/                # API response types
+    ├── ui/                 # UI component types
+    └── global/             # Global type definitions
+```
+
+### Advanced Patterns Implementation
+
+```typescript
+// Provider Pattern for Global State
+interface AppContextType {
+  theme: Theme;
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export function AppProvider({ children }: { children: React.ReactNode }) {
+  const [state, dispatch] = useReducer(appReducer, initialState);
+  
+  return (
+    <AppContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </AppContext.Provider>
+  );
+}
+
+// Custom Hook for Context
+export function useAppContext() {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error('useAppContext must be used within AppProvider');
+  }
+  return context;
+}
+```
+
+### Component Composition Pattern
+
+```typescript
+// Compound Component Pattern
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+function Card({ children, className }: CardProps) {
+  return (
+    <div className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)}>
+      {children}
+    </div>
+  );
+}
+
+function CardHeader({ children, className }: CardProps) {
+  return (
+    <div className={cn("flex flex-col space-y-1.5 p-6", className)}>
+      {children}
+    </div>
+  );
+}
+
+function CardContent({ children, className }: CardProps) {
+  return (
+    <div className={cn("p-6 pt-0", className)}>
+      {children}
+    </div>
+  );
+}
+
+// Export as compound component
+Card.Header = CardHeader;
+Card.Content = CardContent;
+Card.Footer = CardFooter;
+
+export { Card };
+```
+
+### Higher-Order Components (HOC) for Reusability
+
+```typescript
+// HOC for loading states
+function withLoading<P extends object>(
+  Component: React.ComponentType<P>
+) {
+  return function WithLoadingComponent(props: P & { isLoading?: boolean }) {
+    const { isLoading, ...restProps } = props;
+    
+    if (isLoading) {
+      return <LoadingSpinner />;
+    }
+    
+    return <Component {...(restProps as P)} />;
+  };
+}
+
+// HOC for error boundaries
+function withErrorBoundary<P extends object>(
+  Component: React.ComponentType<P>
+) {
+  return function WithErrorBoundaryComponent(props: P) {
+    return (
+      <ErrorBoundary>
+        <Component {...props} />
+      </ErrorBoundary>
+    );
+  };
+}
+```
+
+## 🎯 Task Management & Code Review Workflow
+
+### Pre-Development Task Creation Protocol
+
+**MANDATORY**: Before any development work, create detailed tasks using this structure:
+
+```typescript
+// Task Creation Template
+interface DevelopmentTask {
+  id: string;
+  title: string;
+  description: string;
+  type: 'component' | 'feature' | 'animation' | 'responsive' | 'optimization';
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  estimatedTime: string;
+  dependencies: string[];
+  acceptanceCriteria: string[];
+  designReference?: string;
+  animationSpecs?: AnimationSpecs;
+}
+
+// Example Task Structure
+const sampleTask: DevelopmentTask = {
+  id: 'TASK-001',
+  title: 'Create Hero Section with Parallax Animation',
+  description: 'Implement hero section matching ManyChat-style animations',
+  type: 'component',
+  priority: 'critical',
+  estimatedTime: '4-6 hours',
+  dependencies: ['hero-parallax-component', 'responsive-design-system'],
+  acceptanceCriteria: [
+    'Full-screen hero with smooth parallax scrolling',
+    'Mobile-responsive design',
+    'Performance optimized animations',
+    'Accessibility compliant',
+    'Cross-browser compatibility'
+  ],
+  designReference: 'https://manychat.com',
+  animationSpecs: {
+    duration: '0.8s',
+    easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+    triggerPoint: 'viewport-entry'
+  }
+};
+```
+
+### Code Review Checklist
+
+**BEFORE implementing any feature:**
+
+1. **Architecture Review**
+   - ✅ Component follows atomic design principles
+   - ✅ Proper separation of concerns
+   - ✅ Reusable and composable structure
+   - ✅ TypeScript interfaces defined
+   - ✅ Performance implications considered
+
+2. **Animation Review**
+   - ✅ Smooth 60fps animations
+   - ✅ Hardware acceleration utilized
+   - ✅ Reduced motion preferences respected
+   - ✅ Mobile performance optimized
+   - ✅ Animation timing matches design specs
+
+3. **Responsive Review**
+   - ✅ Mobile-first approach implemented
+   - ✅ All breakpoints tested
+   - ✅ Touch interactions optimized
+   - ✅ Content accessibility maintained
+   - ✅ Performance across devices validated
+
+4. **Code Quality Review**
+   - ✅ No unused imports or variables
+   - ✅ Consistent naming conventions
+   - ✅ Proper error handling
+   - ✅ Accessibility standards met
+   - ✅ SEO optimization implemented
+
+### Automated Code Cleanup Rules
+
+```typescript
+// ESLint configuration for automatic cleanup
+// .eslintrc.js
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    '@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended'
+  ],
+  rules: {
+    // Remove unused imports
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-unused-vars': 'off',
+    
+    // Enforce consistent component naming
+    'react/display-name': 'error',
+    
+    // Remove console.logs in production
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    
+    // Enforce proper hook dependencies
+    'react-hooks/exhaustive-deps': 'error',
+    
+    // Consistent import ordering
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index'
+        ],
+        'newlines-between': 'always'
+      }
+    ]
+  }
+};
+```
+
+## 🎨 Premium Animation System
+
+### World-Class Animation Standards
+
+```typescript
+// Animation Configuration System
+interface AnimationConfig {
+  duration: number;
+  easing: string;
+  delay?: number;
+  stagger?: number;
+  viewport?: {
+    once?: boolean;
+    margin?: string;
+    amount?: number;
+  };
+}
+
+// Premium Animation Presets
+export const AnimationPresets = {
+  // Apple-style animations
+  apple: {
+    smooth: {
+      duration: 0.8,
+      easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)'
+    },
+    bounce: {
+      duration: 1.2,
+      easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+    }
+  },
+  
+  // ManyChat-style animations
+  manychat: {
+    slide: {
+      duration: 0.6,
+      easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+    },
+    scale: {
+      duration: 0.4,
+      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+    }
+  },
+  
+  // Performance optimized
+  performance: {
+    fade: {
+      duration: 0.3,
+      easing: 'ease-out'
+    },
+    transform: {
+      duration: 0.2,
+      easing: 'ease-in-out'
+    }
+  }
+};
+
+// Animation Hook
+export function useAnimation(preset: keyof typeof AnimationPresets) {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+  
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+  
+  return { ref, controls, preset: AnimationPresets[preset] };
+}
+```
+
+### Scroll-Triggered Animation System
+
+```typescript
+// Advanced Scroll Animation Hook
+export function useScrollAnimation({
+  threshold = 0.1,
+  triggerOnce = true,
+  stagger = 0.1
+}: ScrollAnimationOptions = {}) {
+  const [ref, inView] = useInView({ threshold, triggerOnce });
+  const controls = useAnimation();
+  
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.4, 0.0, 0.2, 1],
+        staggerChildren: stagger
+      }
+    }
+  };
+  
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+  
+  return { ref, controls, variants };
+}
+```
+
+## 📱 World-Class Responsive Design System
+
+### Advanced Breakpoint System
+
+```typescript
+// Extended Breakpoint Configuration
+const breakpoints = {
+  xs: '320px',   // Small phones
+  sm: '640px',   // Large phones
+  md: '768px',   // Tablets
+  lg: '1024px',  // Small laptops
+  xl: '1280px',  // Desktops
+  '2xl': '1536px', // Large desktops
+  '3xl': '1920px', // Ultra-wide
+  '4xl': '2560px'  // 4K displays
+} as const;
+
+// Responsive Hook with Device Detection
+export function useResponsive() {
+  const [screenSize, setScreenSize] = useState<keyof typeof breakpoints>('md');
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  useEffect(() => {
+    const updateScreenSize = () => {
+      const width = window.innerWidth;
+      
+      // Determine screen size
+      if (width >= 2560) setScreenSize('4xl');
+      else if (width >= 1920) setScreenSize('3xl');
+      else if (width >= 1536) setScreenSize('2xl');
+      else if (width >= 1280) setScreenSize('xl');
+      else if (width >= 1024) setScreenSize('lg');
+      else if (width >= 768) setScreenSize('md');
+      else if (width >= 640) setScreenSize('sm');
+      else setScreenSize('xs');
+      
+      // Device type detection
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1024);
+      setIsDesktop(width >= 1024);
+    };
+    
+    updateScreenSize();
+    window.addEventListener('resize', debounce(updateScreenSize, 100));
+    
+    return () => {
+      window.removeEventListener('resize', updateScreenSize);
+    };
+  }, []);
+  
+  return {
+    screenSize,
+    isMobile,
+    isTablet,
+    isDesktop,
+    breakpoints
+  };
+}
+```
+
+### Fluid Typography System
+
+```typescript
+// Fluid Typography Calculator
+function clamp(min: number, preferred: number, max: number): string {
+  return `clamp(${min}rem, ${preferred}vw, ${max}rem)`;
+}
+
+// Fluid Typography Scale
+export const fluidTypography = {
+  // Display text
+  display: {
+    '4xl': clamp(2.5, 8, 4.5),   // 40px - 72px
+    '3xl': clamp(2, 6, 3.75),    // 32px - 60px
+    '2xl': clamp(1.75, 5, 3),    // 28px - 48px
+    xl: clamp(1.5, 4, 2.25),     // 24px - 36px
+  },
+  
+  // Heading text
+  heading: {
+    h1: clamp(1.75, 4, 2.5),     // 28px - 40px
+    h2: clamp(1.5, 3.5, 2),      // 24px - 32px
+    h3: clamp(1.25, 3, 1.75),    // 20px - 28px
+    h4: clamp(1.125, 2.5, 1.5),  // 18px - 24px
+  },
+  
+  // Body text
+  body: {
+    lg: clamp(1.125, 2, 1.25),   // 18px - 20px
+    base: clamp(1, 1.5, 1.125),  // 16px - 18px
+    sm: clamp(0.875, 1.25, 1),   // 14px - 16px
+    xs: clamp(0.75, 1, 0.875),   // 12px - 14px
+  }
+};
+
+// Usage in Tailwind config
+// tailwind.config.ts
+module.exports = {
+  theme: {
+    extend: {
+      fontSize: fluidTypography
+    }
+  }
+};
+```
+
+### Container Queries Support
+
+```typescript
+// Container Query Hook
+export function useContainerQuery(containerRef: RefObject<HTMLElement>) {
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerSize({
+          width: entry.contentRect.width,
+          height: entry.contentRect.height
+        });
+      }
+    });
+    
+    resizeObserver.observe(containerRef.current);
+    
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [containerRef]);
+  
+  return {
+    ...containerSize,
+    isMobile: containerSize.width < 640,
+    isTablet: containerSize.width >= 640 && containerSize.width < 1024,
+    isDesktop: containerSize.width >= 1024
+  };
+}
+```
+
+## 🧩 Component Consistency Framework
+
+### Design Token System
+
+```typescript
+// Design Tokens
+export const designTokens = {
+  colors: {
+    primary: {
+      50: '#fef2f2',
+      500: '#ef4444', // Red (255, 54, 54)
+      900: '#7f1d1d'
+    },
+    accent: {
+      500: '#f97316'  // Midjourney orange
+    },
+    neutral: {
+      50: '#f9fafb',
+      100: '#f3f4f6',
+      200: '#e5e7eb',
+      800: '#1f2937',
+      900: '#111827'
+    },
+    background: '#f0f0f0'
+  },
+  
+  spacing: {
+    section: {
+      xs: '2rem',
+      sm: '4rem',
+      md: '6rem',
+      lg: '8rem',
+      xl: '12rem'
+    },
+    container: {
+      padding: {
+        mobile: '1rem',
+        tablet: '2rem',
+        desktop: '3rem'
+      }
+    }
+  },
+  
+  typography: {
+    fontFamily: {
+      primary: ['Space Grotesk', 'sans-serif']
+    },
+    fontWeight: {
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700
+    }
+  },
+  
+  borderRadius: {
+    sm: '0.5rem',
+    md: '0.75rem',
+    lg: '1rem',
+    xl: '1.5rem'
+  },
+  
+  shadows: {
+    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    md: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+    xl: '0 20px 25px -5px rgb(0 0 0 / 0.1)'
+  }
+};
+```
+
+### Component Variant System
+
+```typescript
+// Button Component with Variants
+import { cva, type VariantProps } from "class-variance-authority";
+
+const buttonVariants = cva(
+  // Base styles
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline"
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-lg px-10 text-base",
+        icon: "h-10 w-10"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95 transition-transform",
+        slide: "hover:translate-x-1 transition-transform",
+        glow: "hover:shadow-lg hover:shadow-primary/25 transition-shadow"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+      animation: "scale"
+    }
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, animation, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, animation, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+```
+
+### Component Documentation Template
+
+```typescript
+/**
+ * Component: PremiumCard
+ * 
+ * @description A premium card component with advanced animations and responsive design
+ * 
+ * @features
+ * - Responsive design with fluid typography
+ * - Smooth hover animations
+ * - Accessibility compliant
+ * - Performance optimized
+ * - Consistent with design system
+ * 
+ * @usage
+ * ```tsx
+ * <PremiumCard
+ *   variant="elevated"
+ *   animation="scale"
+ *   className="max-w-md"
+ * >
+ *   <PremiumCard.Header>
+ *     <h3>Card Title</h3>
+ *   </PremiumCard.Header>
+ *   <PremiumCard.Content>
+ *     <p>Card content goes here</p>
+ *   </PremiumCard.Content>
+ * </PremiumCard>
+ * ```
+ * 
+ * @responsive
+ * - Mobile: Stack content vertically
+ * - Tablet: 2-column grid layout
+ * - Desktop: 3-column grid layout
+ * 
+ * @animation
+ * - Entry: Fade up with stagger delay
+ * - Hover: Scale with shadow elevation
+ * - Exit: Fade out smoothly
+ * 
+ * @accessibility
+ * - ARIA labels for screen readers
+ * - Keyboard navigation support
+ * - Focus indicators
+ * - Reduced motion support
+ */
+```
+
+## 🚀 Performance Optimization Rules
+
+### Code Splitting Strategy
+
+```typescript
+// Route-based code splitting
+const HomePage = dynamic(() => import('../pages/home'), {
+  loading: () => <PageSkeleton />,
+  ssr: true
+});
+
+const AboutPage = dynamic(() => import('../pages/about'), {
+  loading: () => <PageSkeleton />,
+  ssr: false // Client-side only if needed
+});
+
+// Component-based code splitting
+const HeavyChart = dynamic(() => import('../components/HeavyChart'), {
+  loading: () => <ChartSkeleton />,
+  ssr: false
+});
+
+// Conditional loading
+const Admin

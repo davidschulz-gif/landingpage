@@ -286,6 +286,7 @@ export default function Home() {
 
   const MainContent = () => (
     <div className="relative w-full">
+      {/* Navbar */}
       <TypusNavbar />
 
       {/* Hero Section with Parallax */}

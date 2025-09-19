@@ -76,37 +76,37 @@ export function FooterSection() {
         
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="sm:text-[12px] md:text-[16px] lg:text-[20px] font-medium uppercase tracking-wide mb-4">Solutions</h3>
+            <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-4">Solutions</h3>
             <ul className="space-y-2">
               {footerLinks.solutions.map((link) => (
-                <li key={link.name}><Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900">{link.name}</Link></li>
+                <li key={link.name}><Link href={link.href} className="text-[12px] font-medium text-gray-900">{link.name}</Link></li>
               ))}
             </ul>
           </div>
           
           <div>
-            <h3 className="sm:text-[12px] md:text-[16px] lg:text-[20px] font-medium uppercase tracking-wide mb-4">Community</h3>
+            <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-4">Community</h3>
             <ul className="space-y-2">
               {footerLinks.community.map((link) => (
-                <li key={link.name}><Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900">{link.name}</Link></li>
+                <li key={link.name}><Link href={link.href} className="text-[12px] font-medium text-gray-900">{link.name}</Link></li>
               ))}
             </ul>
           </div>
           
           <div>
-            <h3 className="sm:text-[12px] md:text-[16px] lg:text-[20px] font-medium uppercase tracking-wide mb-4">Licenses</h3>
+            <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-4">Licenses</h3>
             <ul className="space-y-2">
               {footerLinks.licenses.map((link) => (
-                <li key={link.name}><Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900">{link.name}</Link></li>
+                <li key={link.name}><Link href={link.href} className="text-[12px] font-medium text-gray-900">{link.name}</Link></li>
               ))}
             </ul>
           </div>
           
           <div>
-            <h3 className="sm:text-[12px] md:text-[16px] lg:text-[20px] font-medium uppercase tracking-wide mb-4">Contact</h3>
+            <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-4">Contact</h3>
             <ul className="space-y-2">
               {footerLinks.contact.map((link) => (
-                <li key={link.name}><Link href={link.href} className="text-sm text-gray-600 hover:text-gray-900">{link.name}</Link></li>
+                <li key={link.name}><Link href={link.href} className="text-[12px] font-medium text-gray-900">{link.name}</Link></li>
               ))}
             </ul>
           </div>
