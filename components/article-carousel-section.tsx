@@ -25,7 +25,7 @@ const articleData: Article[] = [
     id: 0,
     title: "PRÄI: Materialien gezielt steuern – KI-Visualisierung neu definiert",
     excerpt: "Innovative AI-powered architectural visualization platform transforming the industry with precision material control and advanced visualization capabilities.",
-    image: "https://typus.ai/wp-content/uploads/2025/05/Screenshot-2025-05-10-103415.png",
+    image: "/logo/heinze_logo.png",
     source: "Heinze BauNetz-Newsletter",
     link: "https://www.heinze.de/aktuelles/praei-materialien-gezielt-steuern-ki-visualisierung-neu-definiert/48536808/"
   },
