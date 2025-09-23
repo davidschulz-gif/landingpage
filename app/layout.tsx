@@ -120,7 +120,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#ff3636" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
-      <body className="bg-white text-gray-900 transition-colors duration-300">
+      <body className="bg-[#f0f0f0] text-gray-900 transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
