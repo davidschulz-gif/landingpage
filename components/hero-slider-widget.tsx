@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { LazyImage } from "@/components/lazy-image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Play } from "lucide-react"
 
@@ -67,7 +67,7 @@ export function HeroSliderWidget() {
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [isAutoPlaying])
@@ -95,22 +95,23 @@ export function HeroSliderWidget() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute inset-0"
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {/* Background Image */}
           <motion.div
-            initial={{ scale: 1.1 }}
+            initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 8, ease: "easeOut" }}
+            transition={{ duration: 6, ease: "easeOut" }}
             className="absolute inset-0"
           >
-            <Image
+            {/* Use LazyImage for better performance */}
+            <LazyImage
               src={slides[currentSlide].image}
               alt={slides[currentSlide].title}
               fill
               className="object-cover"
-              priority
+              priority={currentSlide === 0}
+              quality={80}
             />
             <div className={`absolute inset-0 bg-gradient-to-r ${slides[currentSlide].gradient} opacity-80`} />
           </motion.div>
@@ -120,47 +121,47 @@ export function HeroSliderWidget() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl">
                 <motion.div
-                  initial={{ opacity: 0, y: 100 }}
+                  initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="space-y-6"
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="space-y-4"
                 >
                   <motion.h1
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight"
-                    initial={{ opacity: 0, x: -50 }}
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight"
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                   >
                     {slides[currentSlide].title}
                   </motion.h1>
                   
                   <motion.h2
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-cyan-200"
-                    initial={{ opacity: 0, x: 50 }}
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light text-cyan-200"
+                    initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
                   >
                     {slides[currentSlide].subtitle}
                   </motion.h2>
 
                   <motion.p
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-2xl leading-relaxed"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 max-w-2xl leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
                   >
                     {slides[currentSlide].description}
                   </motion.p>
 
                   <motion.div
-                    className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-8"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6"
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
                   >
                     <Button
                       size="lg"
-                      className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold min-h-[44px]"
+                      className="bg-white text-gray-900 hover:bg-gray-100 px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold min-h-[40px]"
                       asChild
                     >
                       <Link href={slides[currentSlide].cta.primary.href}>
@@ -171,7 +172,7 @@ export function HeroSliderWidget() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg bg-transparent min-h-[44px]"
+                      className="border-white text-white hover:bg-white hover:text-gray-900 px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base bg-transparent min-h-[40px]"
                       asChild
                     >
                       <Link href={slides[currentSlide].cta.secondary.href}>
@@ -188,27 +189,27 @@ export function HeroSliderWidget() {
       </AnimatePresence>
 
       {/* Navigation Controls */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex items-center space-x-4">
+      <div className="absolute bottom-5 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="flex items-center space-x-3">
           <button
             onClick={prevSlide}
-            className="p-2 sm:p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors min-h-[44px] min-w-[44px]"
+            className="p-1.5 sm:p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors min-h-[40px] min-w-[40px]"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
 
-          <div className="flex space-x-2">
+          <div className="flex space-x-1.5">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 min-h-[40px] min-w-[40px] flex items-center justify-center ${
                   index === currentSlide
-                    ? "bg-white scale-125"
+                    ? "bg-white scale-110"
                     : "bg-white/50 hover:bg-white/70"
                 }`}
               >
-                <div className={`w-3 h-3 rounded-full ${
+                <div className={`w-2.5 h-2.5 rounded-full ${
                   index === currentSlide ? "bg-white" : "bg-white/50"
                 }`} />
               </button>
@@ -217,9 +218,9 @@ export function HeroSliderWidget() {
 
           <button
             onClick={nextSlide}
-            className="p-2 sm:p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors min-h-[44px] min-w-[44px]"
+            className="p-1.5 sm:p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors min-h-[40px] min-w-[40px]"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </button>
         </div>
       </div>
@@ -230,15 +231,15 @@ export function HeroSliderWidget() {
           className="h-full bg-white"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
-          transition={{ duration: 6, ease: "linear" }}
+          transition={{ duration: 4, ease: "linear" }}
           key={currentSlide}
         />
       </div>
 
       {/* Slide Counter */}
-      <div className="absolute top-6 sm:top-8 right-4 sm:right-8 z-20">
-        <div className="bg-black/30 backdrop-blur-sm rounded-full px-3 py-1 sm:px-4 sm:py-2">
-          <span className="text-white font-mono text-xs sm:text-sm">
+      <div className="absolute top-5 sm:top-6 right-3 sm:right-6 z-20">
+        <div className="bg-black/30 backdrop-blur-sm rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1">
+          <span className="text-white font-mono text-xs">
             {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
           </span>
         </div>

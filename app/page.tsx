@@ -12,15 +12,15 @@ import { useEffect, useState } from "react";
 
 import CompareDemo from '@/components/compare-drag-demo';
 import { VideoShowcaseSection } from '@/components/video-showcase-section';
-const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection));
-const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase));
-const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget));
-const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection));
-const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection));
-const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection));
-const ArticleCarouselSection = dynamic(() => import('@/components/article-carousel-section').then(mod => mod.ArticleCarouselSection));
+const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+const ArticleCarouselSection = dynamic(() => import('@/components/article-carousel-section').then(mod => mod.ArticleCarouselSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
 
-const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection));
+const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection), { ssr: false, loading: () => <div className="h-64 bg-gray-100 animate-pulse" /> });
 
 // Row 1, 2, 3 images from row-1-2-3 folder
 const row123Products = [
@@ -245,11 +245,11 @@ export default function Home() {
     const startTime = performance.now();
     console.log('🚀 Page load started at:', startTime);
     
-    // Background preloading during splash
+    // Background preloading during splash - optimized for faster loading
     const preloadResources = async () => {
       try {
         // Preload only critical above-the-fold images
-        const imagePromises = row123Products.slice(0, 3).map(product => {
+        const imagePromises = row123Products.slice(0, 2).map(product => {
           return new Promise((resolve) => {
             const img = new Image();
             img.onload = resolve;
@@ -264,7 +264,7 @@ export default function Home() {
         const endTime = performance.now();
         const loadTime = endTime - startTime;
         console.log(`✅ Resources preloaded in ${loadTime.toFixed(2)}ms`);
-        console.log(`📊 Performance: ${loadTime < 2000 ? 'Excellent' : loadTime < 3000 ? 'Good' : 'Needs improvement'}`);
+        console.log(`📊 Performance: ${loadTime < 1500 ? 'Excellent' : loadTime < 2500 ? 'Good' : 'Needs improvement'}`);
         
         setIsPreloaded(true);
       } catch (error) {
@@ -281,7 +281,7 @@ export default function Home() {
       setShowSplash(false);
     } else {
       // Wait for preloading to complete
-      setTimeout(() => setShowSplash(false), 500);
+      setTimeout(() => setShowSplash(false), 100); // Reduced from 500ms
     }
   };
 
@@ -297,7 +297,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <VideoShowcaseSection />
@@ -307,7 +307,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <StickySliderSection />
@@ -317,7 +317,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <TabVideoShowcase />
@@ -327,7 +327,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <CompareDemo />
@@ -337,7 +337,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <ManyChatPricingSection />
@@ -347,7 +347,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <MeetOurTeamSection />
@@ -357,7 +357,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <ArticleCarouselSection />
@@ -368,7 +368,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <ReviewsSection />
@@ -378,7 +378,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
         viewport={{ once: true, margin: "-100px" }}
       >
         <FooterSection />

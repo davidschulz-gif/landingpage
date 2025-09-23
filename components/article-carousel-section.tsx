@@ -33,7 +33,7 @@ const articleData: Article[] = [
     id: 1,
     title: "Architectural Visualization with AI Technology",
     excerpt: "Comprehensive coverage of AI-powered architectural visualization tools and their impact on modern design workflows and professional practice.",
-    image: "https://typus.ai/wp-content/uploads/2025/05/baunetz-newsletter-logo-24-300x92.png",
+    image: "/logo/baunetz_logo.png",
     source: "BauNetz Newsletter",
     link: "https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239"
   },
@@ -41,7 +41,7 @@ const articleData: Article[] = [
     id: 2,
     title: "Leading Plugin Integrations with Architectural Software",
     excerpt: "It offers seamless plugin integrations with leading architectural software solutions such as Revit, ArchiCAD, Rhino, and SketchUp for enhanced workflow efficiency.",
-    image: "https://typus.ai/wp-content/uploads/2025/06/ADDD-logo-Red-350x350-1-300x300.png",
+    image: "/logo/addd_logo.png",
     source: "ADDD Platform",
     link: "https://addd.io/product/prai"
   },
@@ -49,7 +49,7 @@ const articleData: Article[] = [
     id: 3,
     title: "AI-Generated Architectural Precision and Visual Excellence",
     excerpt: "Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.",
-    image: "https://typus.ai/wp-content/uploads/2024/12/dabonline_logo_white.png-300x197.png",
+    image: "/logo/dab_logo.png",
     source: "DAB ONLINE",
     link: "https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/"
   },
@@ -57,7 +57,7 @@ const articleData: Article[] = [
     id: 4,
     title: "Innovation Forum: Leading Construction Technology Startups",
     excerpt: "Featured among the best startups showcasing innovative solutions in construction technology, architectural visualization, and industry advancement.",
-    image: "https://typus.ai/wp-content/uploads/2025/05/ABE_BauforumInnovationen2025_Teilnahme-768x768.gif",
+    image: "/logo/bauforum_logo.gif",
     source: "Bauforum Innovation 2025",
     link: "https://bauforum-innovationen.de/teilnahmeinformationen-vertretene-unternehmen/"
   },
@@ -65,7 +65,7 @@ const articleData: Article[] = [
     id: 5,
     title: "Construction Industry Innovation Showcase",
     excerpt: "Participation in leading construction technology conferences, showcasing innovative AI solutions and networking with established technology leaders.",
-    image: "https://typus.ai/wp-content/uploads/2025/05/FA-KON_BauforumInnovationen_Banner_800x800-768x768.png",
+    image: "/logo/praii_logo.png",
     source: "F.A.Z. Konferenzen",
     link: "https://bauforum-innovationen.de/startups/"
   },
@@ -81,7 +81,7 @@ const articleData: Article[] = [
     id: 7,
     title: "GOOGLE REVIEWS",
     excerpt: "\"FANTASTIC! GREAT EXPERIENCE AND IMPRESSIVE QUALITY! EASY TO WORK AND FAST OUTPUT!\"",
-    image: "https://developers.google.com/static/identity/images/g-logo.png",
+    image: "/logo/google_logo.png",
     source: "ROLAND WOBORSKY, SELF-EMPLOYED",
     link: "https://g.page/r/CQX8vZxZ8Z8ZEBM/review"
   }

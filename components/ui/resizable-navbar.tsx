@@ -52,7 +52,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
+    if (latest > 50) { // Reduced from 100
       setVisible(true)
     } else {
       setVisible(false)
@@ -62,7 +62,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <div
       ref={ref}
-      className={cn("sticky inset-x-0 top-20 z-40 w-full", className)}
+      className={cn("sticky inset-x-0 top-16 z-40 w-full", className)} // Reduced from top-20
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -110,6 +110,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             <motion.div
               layoutId="hovered"
               className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+              transition={{ duration: 0.2 }} // Added transition
             />
           )}
           <span className="relative z-20">{item.name}</span>
@@ -170,15 +171,15 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
   return (
-    <a href="#" className={`relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-      <img src="/logo/typus_logo_red_transp.png" alt="Typus.AI logo" width={40} height={40} className="object-contain" />
+    <a href="#" className={`relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 transition-opacity duration-200 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+      <img src="/logo/typus_logo_red_transp.png" alt="Typus.AI logo" width={32} height={32} className="object-contain" /> {/* Reduced from 40x40 */}
       <span 
         className="text-center uppercase flex items-center justify-center"
         style={{
           fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
-          fontSize: '12px',
+          fontSize: '10px', // Reduced from 12px
           fontWeight: 300,
-          letterSpacing: '2.5px',
+          letterSpacing: '2px', // Reduced from 2.5px
           lineHeight: '1.3em',
           color: '#FF1E1E',
           textTransform: 'uppercase'
@@ -205,7 +206,7 @@ export const NavbarButton = ({
   variant?: "primary" | "secondary" | "dark" | "gradient"
 } & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center"
+    "px-3 py-1.5 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-150 inline-block text-center" // Reduced padding and duration
 
   const variantStyles = {
     primary:

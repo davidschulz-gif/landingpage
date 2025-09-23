@@ -34,6 +34,14 @@ export const measurePerformance = () => {
                   totalTime < 4000 ? 'Fair (B)' : 'Poor (C)';
     
     console.log(`🎯 Performance Score: ${score} (${totalTime.toFixed(0)}ms)`);
+    
+    // Log performance recommendation
+    if (totalTime > 3000) {
+      console.warn('⚠️  Page load time exceeds 3 seconds. Consider further optimizations:');
+      console.warn('   - Reduce image sizes');
+      console.warn('   - Minimize JavaScript bundles');
+      console.warn('   - Optimize critical rendering path');
+    }
   });
 };
 
@@ -43,4 +51,18 @@ export const PERFORMANCE_TARGETS = {
   GOOD: 2500,      // < 2.5s  
   FAIR: 4000,      // < 4s
   POOR: 4000       // > 4s
+};
+
+// Utility to measure component render times
+export const measureRenderTime = (componentName: string) => {
+  if (typeof window !== 'undefined') {
+    const start = performance.now();
+    return () => {
+      const end = performance.now();
+      const duration = end - start;
+      console.log(`⏱️  ${componentName} render time: ${duration.toFixed(2)}ms`);
+      return duration;
+    };
+  }
+  return () => {};
 };

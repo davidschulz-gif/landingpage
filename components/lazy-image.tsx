@@ -14,6 +14,7 @@ interface LazyImageProps {
   className?: string;
   priority?: boolean;
   sizes?: string;
+  quality?: number;
 }
 
 export function LazyImage({
@@ -25,6 +26,7 @@ export function LazyImage({
   className,
   priority = false,
   sizes,
+  quality,
   ...props
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -50,6 +52,7 @@ export function LazyImage({
           )}
           onLoad={() => setIsLoaded(true)}
           sizes={sizes}
+          quality={quality}
           {...props}
         />
       )}

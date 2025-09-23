@@ -34,9 +34,10 @@ export function SplashScreen({
     timeoutRefs.current.forEach(clearTimeout);
     timeoutRefs.current = [];
 
-    const t1 = setTimeout(() => setShowDelegate(false), 1200);
-    const t2 = setTimeout(() => setSlideOut(true), 2800);
-    const t3 = setTimeout(() => onComplete?.(), 3200);
+    // Reduce splash screen time for faster loading
+    const t1 = setTimeout(() => setShowDelegate(false), 600);  // Reduced from 1200ms
+    const t2 = setTimeout(() => setSlideOut(true), 1800);     // Reduced from 2800ms
+    const t3 = setTimeout(() => onComplete?.(), 2000);        // Reduced from 3200ms
 
     timeoutRefs.current = [t1, t2, t3];
 
@@ -55,7 +56,7 @@ export function SplashScreen({
         )}
         initial={{ y: "0%" }}
         animate={{ y: slideOut ? "-100%" : "0%" }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }} // Reduced from 0.4s
         style={containerStyle}
       >
         {/* Wavy Background Section */}
@@ -77,7 +78,7 @@ export function SplashScreen({
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }} // Reduced from 0.4s
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
                   <BreathingAnimationText animationType="black-gray" className="font-normal text-[30px] tracking-wide text-black whitespace-nowrap">
@@ -95,8 +96,8 @@ export function SplashScreen({
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 0.3,
-                          delay: 0.1,
+                          duration: 0.2, // Reduced from 0.3s
+                          delay: 0.05,   // Reduced from 0.1s
                           ease: "easeOut",
                         }}
                       >
@@ -114,7 +115,7 @@ export function SplashScreen({
                           scaleX: showDelegate ? 1 : 0,
                           width: showDelegate ? "auto" : 0,
                         }}
-                        transition={{ duration: 0.15 }}
+                        transition={{ duration: 0.1 }} // Reduced from 0.15s
                         style={{
                           overflow: "visible",
                           transformOrigin: "left",
@@ -129,7 +130,7 @@ export function SplashScreen({
                             className="absolute inset-0 bg-gray-500 h-1 top-1/2 transform -translate-y-1/2"
                             initial={{ width: 0 }}
                             animate={{ width: "100%" }}
-                            transition={{ duration: 0.15 }}
+                            transition={{ duration: 0.1 }} // Reduced from 0.15s
                           />
                         )}
                       </motion.span>
@@ -137,8 +138,8 @@ export function SplashScreen({
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 0.3,
-                          delay: 0.2,
+                          duration: 0.2, // Reduced from 0.3s
+                          delay: 0.1,   // Reduced from 0.2s
                           ease: "easeOut",
                         }}
                       >
@@ -201,13 +202,13 @@ export function SplashScreen({
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0.3 }}
+            transition={{ duration: 0.1, delay: 0.1 }} // Reduced from 0.2s
             className="flex flex-col items-center space-y-4"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.1, ease: "easeOut" }} // Reduced from 0.2s
             >
               <div className="relative w-8 h-8">
                 <Image
@@ -229,7 +230,7 @@ export function SplashScreen({
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
-                  duration: 1.5,
+                  duration: 1, // Reduced from 1.5s
                   ease: "easeInOut",
                   repeat: Infinity,
                   repeatType: "loop",
@@ -246,10 +247,10 @@ export function SplashScreen({
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{
-                duration: 1.5,
+                duration: 1, // Reduced from 1.5s
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 0.8,
+                delay: 0.5, // Reduced from 0.8s
               }}
             >
               INITIALIZING

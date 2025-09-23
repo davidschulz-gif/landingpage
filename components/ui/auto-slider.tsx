@@ -13,7 +13,7 @@ interface AutoSliderProps {
 
 export function AutoSlider({ 
   children, 
-  autoPlayInterval = 5000,
+  autoPlayInterval = 3000, // Reduced from 5000ms
   className 
 }: AutoSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,10 +52,10 @@ export function AutoSlider({
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }} // Reduced from 0.5s
             className="absolute inset-0"
           >
             {children[currentIndex]}
@@ -68,28 +68,28 @@ export function AutoSlider({
         variant="outline"
         size="icon"
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border-gray-300 hover:bg-white hover:border-red-500"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border-gray-300 hover:bg-white hover:border-red-500" // Reduced from w-10 h-10
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="w-4 h-4" /> {/* Reduced from w-4 h-4 */}
       </Button>
 
       <Button
         variant="outline"
         size="icon"
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border-gray-300 hover:bg-white hover:border-red-500"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border-gray-300 hover:bg-white hover:border-red-500" // Reduced from w-10 h-10
       >
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-4 h-4" /> {/* Reduced from w-4 h-4 */}
       </Button>
 
       {/* Dots Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10"> {/* Reduced from space-x-2 and bottom-4 */}
         {children.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={cn(
-              "w-2 h-2 rounded-full transition-all duration-300",
+              "w-2 h-2 rounded-full transition-all duration-200", // Reduced from w-2 h-2
               index === currentIndex
                 ? "bg-red-500 scale-125"
                 : "bg-white/60 hover:bg-white/80"
@@ -99,7 +99,7 @@ export function AutoSlider({
       </div>
 
       {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-200/20">
+      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-200/20"> {/* Reduced from h-1 */}
         <motion.div
           className="h-full bg-red-500"
           initial={{ width: "0%" }}

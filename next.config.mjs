@@ -19,9 +19,37 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    serverComponentsExternalPackages: ['@tsparticles/react', '@tsparticles/engine', '@tsparticles/slim'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Bundle optimization
+  webpack: (config, { isServer }) => {
+    // Reduce bundle size by excluding unnecessary modules
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    
+    // Optimize for performance
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+    };
+    
+    return config;
   },
   async headers() {
     return [
