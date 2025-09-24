@@ -148,9 +148,9 @@ export default function AdaptiveNavbar() {
           )}
           
           <div className="fixed z-50 w-full top-0">
-            <Navbar className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+            <Navbar isScrolled={isScrolled} className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
               isScrolled || isMenuOpen
-                ? 'bg-white/95 backdrop-blur-xl' 
+                ? 'bg-white/50 backdrop-blur-xl' 
                 : 'bg-transparent backdrop-blur-xl'
             }`}>
               {/* Desktop Navigation */}

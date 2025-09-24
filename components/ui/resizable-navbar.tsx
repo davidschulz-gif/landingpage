@@ -3,17 +3,19 @@ import { cn } from "@/lib/utils"
 import { IconMenu2, IconX } from "@tabler/icons-react"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 interface NavbarProps {
   children: React.ReactNode
   className?: string
+    isScrolled?: boolean
 }
 
 interface NavBodyProps {
   children: React.ReactNode
   className?: string
   visible?: boolean
+
 }
 
 interface NavItemsProps {
@@ -43,7 +45,7 @@ interface MobileNavMenuProps {
   onClose: () => void
 }
 
-export const Navbar = ({ children, className }: NavbarProps) => {
+export const Navbar = ({ children, className,isScrolled }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll({
     target: ref,
@@ -59,17 +61,28 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     }
   })
 
+    useEffect(() => {
+    if (typeof isScrolled === "boolean") {
+      setVisible(isScrolled)
+    }
+  }, [isScrolled])
+
   return (
     <div
-      ref={ref}
-      className={cn("sticky inset-x-0 top-16 z-40 w-full", className)} // Reduced from top-20
-    >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement<{ visible?: boolean }>, { visible })
-          : child,
-      )}
-    </div>
+  ref={ref}
+  className={cn(
+    "sticky inset-x-0 top-16 z-40",
+    isScrolled ? "w-[60%] mx-auto mt-4 rounded-3xl" : "w-full",
+    className
+  )}
+>
+  {React.Children.map(children, (child) =>
+    React.isValidElement(child)
+      ? React.cloneElement(child as React.ReactElement<{ visible?: boolean }>, { visible })
+      : child
+  )}
+</div>
+
   )
 }
 
@@ -78,7 +91,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     <div
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-none flex-row items-center justify-between self-start bg-transparent px-4 py-1 lg:flex dark:bg-transparent h-12",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        visible && "bg-transparent dark:bg-neutral-950/80",
         className,
       )}
     >
