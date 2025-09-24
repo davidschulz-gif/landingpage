@@ -6,228 +6,82 @@ import { motion } from "framer-motion";
 
 import { StickyBottomSheet } from "@/components/sticky-bottom-sheet";
 import { measurePerformance } from "@/lib/performance";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
-import CompareDemo from '@/components/compare-drag-demo';
-import { VideoShowcaseSection } from '@/components/video-showcase-section';
-const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const ArticleCarouselSection = dynamic(() => import('@/components/article-carousel-section').then(mod => mod.ArticleCarouselSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
+import CompareDemo from "@/components/compare-drag-demo";
+import { VideoShowcaseSection } from "@/components/video-showcase-section";
+import { row123Products, row4Products } from "@/constants/homePage";
+import { NavbarDemo } from "@/components/adaptive-navbar-2";
+const StickySliderSection = dynamic(
+  () =>
+    import("@/components/sticky-slider-section").then(
+      (mod) => mod.StickySliderSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
+const TabVideoShowcase = dynamic(
+  () =>
+    import("@/components/tab-video-showcase").then(
+      (mod) => mod.TabVideoShowcase
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
+const ReviewsSection = dynamic(
+  () =>
+    import("@/components/reviews-section").then((mod) => mod.ReviewsSection),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
+const ManyChatPricingSection = dynamic(
+  () =>
+    import("@/components/manychat-pricing-section").then(
+      (mod) => mod.ManyChatPricingSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
+const MeetOurTeamSection = dynamic(
+  () =>
+    import("@/components/meet-our-team-section").then(
+      (mod) => mod.MeetOurTeamSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
+const ArticleCarouselSection = dynamic(
+  () =>
+    import("@/components/article-carousel-section").then(
+      (mod) => mod.ArticleCarouselSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="h-96 bg-gray-100 animate-pulse" />,
+  }
+);
 
-const FooterSection = dynamic(() => import('@/components/footer-section').then(mod => mod.FooterSection), { ssr: false, loading: () => <div className="h-64 bg-gray-100 animate-pulse" /> });
+const FooterSection = dynamic(
+  () => import("@/components/footer-section").then((mod) => mod.FooterSection),
+  {
+    ssr: false,
+    loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
+  }
+);
 
 // Row 1, 2, 3 images from row-1-2-3 folder
-const row123Products = [
-  {
-    title: "Commercial Building",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/commercial building.png",
-  },
-  {
-    title: "Conceptual Representation",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/conceptual representation.png",
-  },
-  {
-    title: "Contemporary Residential Villa",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/contemporary residential villa.png",
-  },
-  {
-    title: "Cultural Building",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/cultural building.png",
-  },
-  {
-    title: "Curtain Wall Façade",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/Curtain wall façade.png",
-  },
-  {
-    title: "Industrial Loft Style",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/industrial loft style.png",
-  },
-  {
-    title: "Institutional Building",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/institutional building.png",
-  },
-  {
-    title: "Japandi Style",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/japandi.png",
-  },
-  {
-    title: "Modern Residential House",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/modern residential house.png",
-  },
-  {
-    title: "Modern Single Family House",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/modern single family house.png",
-  },
-  {
-    title: "Morning Light Sunbeams",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/morning light sunbeams.png",
-  },
-  {
-    title: "Multi-Family House",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/multi-family house.png",
-  },
-  {
-    title: "Multistory Compartment House",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/multistory compartment house.png",
-  },
-  {
-    title: "Multistory Office Building",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/multistroy office building.png",
-  },
-  {
-    title: "Pale Light From The Moon",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/PALE LIGHT FROM THE MOON.png",
-  },
-  {
-    title: "Precast Concrete Panels",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/precast concrete panels.png",
-  },
-  {
-    title: "Residential Building",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/residential building.png",
-  },
-  {
-    title: "Shabby Chic",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/shabby chic.png",
-  },
-  {
-    title: "Warm Sunlight After Sunrise",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-1-2-3/warm sunlight just after sunrise.png",
-  },
-];
-
-// Row 4 images from row-4 folder
-const row4Products = [
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-2eqryfjbvmo6ptttvn6khaq5qi.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-3danovrbb74jhxjjw6rbuldkwy.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-5sxa2lrb27dhm5www6pucj2qs4.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-6q7ztkrbuvz22gs3xmhsmgsnfe.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-b2goewrbzuw6qkccdkpfolpbhe.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-fgzcyqrb5yqqc64gqmeszwzh7i.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-hbbru2bbfsrx44rqjgpknel3e4.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-hg2suxbb4kjlb35amj7jgiseo4.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-hsuwavbbbsioh2nj3ggvtlmc74.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-jkhoezzb7nsxnqvmsg2dcsd5he.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-lucuvfrbovpno32e4wy4m6zlhi.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-mh7cfbzbuq3hvfs3j3pvvjvvue.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-np6tkcjbnfky7nnkj2zpomvnxu.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-r24c5zzbqua3anh66eywkxi5mm.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-rakarxbb2dqug5gg5czjxd2b4e.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-rybyolzbxov34yn4xaka6xvfpi.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-sv2kspbbnmszahkxsoc2xby6dm.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-ucyyzuzbzubtf5hpjdephj5e3e.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-va7ibhrbeshesmlskryvbzjubu.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-xz34dkjb66kihbm7g4qcwqxude.png",
-  },
-  {
-    title: "",
-    link: "https://app.typus.ai",
-    thumbnail: "/hero-parallax-images/row-4/u_replicate-prediction-yofkahzbb5rhnld2qzblbpfza4.png",
-  },
-];
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -236,19 +90,19 @@ export default function Home() {
 
   useEffect(() => {
     setIsClient(true);
-    
+
     // Initialize performance monitoring
     measurePerformance();
-    
+
     // Performance monitoring
     const startTime = performance.now();
-    console.log('🚀 Page load started at:', startTime);
-    
+    console.log("🚀 Page load started at:", startTime);
+
     // Background preloading during splash - optimized for faster loading
     const preloadResources = async () => {
       try {
         // Preload only critical above-the-fold images
-        const imagePromises = row123Products.slice(0, 2).map(product => {
+        const imagePromises = row123Products.slice(0, 2).map((product) => {
           return new Promise((resolve) => {
             const img = new Image();
             img.onload = resolve;
@@ -259,19 +113,27 @@ export default function Home() {
 
         // Await critical images
         await Promise.all(imagePromises);
-        
+
         const endTime = performance.now();
         const loadTime = endTime - startTime;
         console.log(`✅ Resources preloaded in ${loadTime.toFixed(2)}ms`);
-        console.log(`📊 Performance: ${loadTime < 1500 ? 'Excellent' : loadTime < 2500 ? 'Good' : 'Needs improvement'}`);
-        
+        console.log(
+          `📊 Performance: ${
+            loadTime < 1500
+              ? "Excellent"
+              : loadTime < 2500
+              ? "Good"
+              : "Needs improvement"
+          }`
+        );
+
         setIsPreloaded(true);
       } catch (error) {
-        console.error('Preload error:', error);
+        console.error("Preload error:", error);
         setIsPreloaded(true);
       }
     };
-    
+
     preloadResources();
   }, []);
 
@@ -287,10 +149,14 @@ export default function Home() {
   const MainContent = () => (
     <div className="relative w-full">
       {/* Navbar */}
-      <AdaptiveNavbar />
+      {/* <AdaptiveNavbar /> */}
+      <NavbarDemo />
 
       {/* Hero Section with Parallax */}
-      <HeroParallax row123Products={row123Products} row4Products={row4Products} />
+      <HeroParallax
+        row123Products={row123Products}
+        row4Products={row4Products}
+      />
 
       {/* Video Showcase Section */}
       <motion.div
@@ -362,7 +228,6 @@ export default function Home() {
         <ArticleCarouselSection />
       </motion.div>
 
- 
       {/* Reviews Section with Marquee */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -382,7 +247,7 @@ export default function Home() {
       >
         <FooterSection />
       </motion.div>
-      
+
       {/* Sticky Bottom Sheet */}
       <StickyBottomSheet showOnlyInHero={true} />
     </div>
@@ -402,33 +267,34 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Typus AI",
-            "description": "AI-powered architectural visualization platform that transforms CAD files and sketches into photorealistic renders while preserving structural integrity.",
-            "url": "https://typus.ai",
-            "applicationCategory": "DesignApplication",
-            "operatingSystem": "Web Browser",
-            "offers": {
+            name: "Typus AI",
+            description:
+              "AI-powered architectural visualization platform that transforms CAD files and sketches into photorealistic renders while preserving structural integrity.",
+            url: "https://typus.ai",
+            applicationCategory: "DesignApplication",
+            operatingSystem: "Web Browser",
+            offers: {
               "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock"
+              price: "0",
+              priceCurrency: "USD",
+              availability: "https://schema.org/InStock",
             },
-            "creator": {
+            creator: {
               "@type": "Organization",
-              "name": "Typus AI",
-              "url": "https://typus.ai"
+              name: "Typus AI",
+              url: "https://typus.ai",
             },
-            "featureList": [
+            featureList: [
               "AI-powered architectural visualization",
               "CAD file processing",
               "Photorealistic rendering",
               "Structure preservation",
-              "Real-time processing"
-            ]
-          })
+              "Real-time processing",
+            ],
+          }),
         }}
       />
-      
+
       {/* Organization Schema */}
       <Script
         id="organization-schema"
@@ -437,31 +303,30 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Typus AI",
-            "url": "https://typus.ai",
-            "logo": "https://typus.ai/logo/typus_logo_red_transp.png",
-            "description": "Leading AI-powered architectural visualization platform",
-            "foundingDate": "2024",
-            "industry": "Artificial Intelligence",
-            "serviceArea": "Worldwide",
-            "knowsAbout": [
+            name: "Typus AI",
+            url: "https://typus.ai",
+            logo: "https://typus.ai/logo/typus_logo_red_transp.png",
+            description:
+              "Leading AI-powered architectural visualization platform",
+            foundingDate: "2024",
+            industry: "Artificial Intelligence",
+            serviceArea: "Worldwide",
+            knowsAbout: [
               "Artificial Intelligence",
               "Architectural Visualization",
               "3D Rendering",
               "CAD Processing",
-              "Design Automation"
-            ]
-          })
+              "Design Automation",
+            ],
+          }),
         }}
       />
 
       {/* Main Content - Always Rendered */}
       <MainContent />
-      
+
       {/* Splash Screen Overlay */}
-      {showSplash && (
-        <SplashScreen onComplete={handleSplashComplete} />
-      )}
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
     </>
   );
 }

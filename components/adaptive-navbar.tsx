@@ -43,7 +43,7 @@ export default function AdaptiveNavbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -67,7 +67,8 @@ export default function AdaptiveNavbar() {
         },
         {
           title: "Upscale",
-          description: "Enhance image resolution and quality with AI-powered upscaling",
+          description:
+            "Enhance image resolution and quality with AI-powered upscaling",
           link: "#upscale",
         },
       ],
@@ -83,7 +84,8 @@ export default function AdaptiveNavbar() {
         },
         {
           title: "Press",
-          description: "Latest news, features, and media coverage about Typus.AI",
+          description:
+            "Latest news, features, and media coverage about Typus.AI",
           link: "#press",
         },
         {
@@ -114,7 +116,8 @@ export default function AdaptiveNavbar() {
         },
         {
           title: "Plugins",
-          description: "Extend functionality with our professional plugin suite",
+          description:
+            "Extend functionality with our professional plugin suite",
           link: "#plugins",
         },
         {
@@ -146,35 +149,38 @@ export default function AdaptiveNavbar() {
           {isMenuOpen && (
             <div className="fixed inset-0 bg-black/5 backdrop-blur-[2px] z-[45] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)]" />
           )}
-          
+
           <div className="fixed z-50 w-full top-0">
-            <Navbar isScrolled={isScrolled} className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-              isScrolled || isMenuOpen
-                ? 'bg-white/50 backdrop-blur-xl' 
-                : 'bg-transparent backdrop-blur-xl'
-            }`}>
+            <Navbar
+              isScrolled={isScrolled}
+              className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                isScrolled || isMenuOpen
+                  ? "bg-white/50 backdrop-blur-xl"
+                  : "bg-transparent backdrop-blur-xl"
+              }`}
+            >
               {/* Desktop Navigation */}
               <NavBody className="px-6 h-16 py-3 max-w-[80%] mx-auto">
                 <div className="flex items-center justify-between w-full h-full">
                   <div className="flex items-center h-full">
                     <div className="hidden md:flex items-center h-full space-x-8">
-                      <div 
+                      <div
                         ref={triggerRef}
                         className="relative group h-full flex items-center hover-menu-trigger"
                         onMouseEnter={handleMenuEnter}
                         onMouseLeave={handleMenuLeave}
                       >
                         {navItems.map((item, index) => (
-                          <button 
+                          <button
                             key={item.name}
                             className="font-medium text-gray-900 h-full px-3 cursor-pointer hover:text-red-600 text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
                           >
                             <span>{item.name}</span>
                           </button>
                         ))}
-                        
+
                         {/* Apple-style mega menu showing all sections */}
-                        <div 
+                        <div
                           ref={menuRef}
                           className={`fixed left-0 right-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[60] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
                             isMenuOpen
@@ -188,13 +194,23 @@ export default function AdaptiveNavbar() {
                           <div className="relative overflow-hidden">
                             {/* Subtle gradient background */}
                             <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/80"></div>
-                            
+
                             <div className="relative max-w-[80%] mx-auto px-8 py-8">
                               <div className="grid grid-cols-4 gap-8">
                                 {navItems.map((navItem, navIdx) => (
-                                  <div key={`section-${navIdx}`} className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                                    isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
-                                  }`} style={{ transitionDelay: isMenuOpen ? `${navIdx * 50}ms` : '0ms' }}>
+                                  <div
+                                    key={`section-${navIdx}`}
+                                    className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                                      isMenuOpen
+                                        ? "opacity-100 translate-y-0"
+                                        : "opacity-0 translate-y-3"
+                                    }`}
+                                    style={{
+                                      transitionDelay: isMenuOpen
+                                        ? `${navIdx * 50}ms`
+                                        : "0ms",
+                                    }}
+                                  >
                                     <div className="relative">
                                       <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1">
                                         {navItem.name}
@@ -202,42 +218,58 @@ export default function AdaptiveNavbar() {
                                       <div className="w-8 h-px bg-gradient-to-r from-red-500 to-red-300"></div>
                                     </div>
                                     <div className="space-y-3">
-                                      {navItem.submenu?.map((subitem, subIdx) => (
-                                        <a
-                                          key={`submenu-${navIdx}-${subIdx}`}
-                                          href={subitem.link}
-                                          className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
-                                        >
-                                          <div className="flex-1">
-                                            <h4 className="text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200">
-                                              {subitem.title}
-                                            </h4>
-                                            <p className="text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200">
-                                              {subitem.description}
-                                            </p>
-                                          </div>
-                                        </a>
-                                      ))}
+                                      {navItem.submenu?.map(
+                                        (subitem, subIdx) => (
+                                          <a
+                                            key={`submenu-${navIdx}-${subIdx}`}
+                                            href={subitem.link}
+                                            className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
+                                          >
+                                            <div className="flex-1">
+                                              <h4 className="text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200">
+                                                {subitem.title}
+                                              </h4>
+                                              <p className="text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200">
+                                                {subitem.description}
+                                              </p>
+                                            </div>
+                                          </a>
+                                        )
+                                      )}
                                     </div>
                                   </div>
                                 ))}
                               </div>
-                              
+
                               {/* Premium bottom section */}
                               {/* Premium bottom section - hidden when menu is open */}
-                              <div className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                                isMenuOpen ? 'opacity-0 translate-y-3 hidden' : 'opacity-100 translate-y-0'
-                              }`} style={{ transitionDelay: isMenuOpen ? '0ms' : '200ms' }}>
+                              <div
+                                className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                                  isMenuOpen
+                                    ? "opacity-0 translate-y-3 hidden"
+                                    : "opacity-100 translate-y-0"
+                                }`}
+                                style={{
+                                  transitionDelay: isMenuOpen ? "0ms" : "200ms",
+                                }}
+                              >
                                 <div className="flex items-center justify-between">
                                   <div className="text-[10px] text-gray-500 font-medium tracking-wide">
-                                    Explore our AI-powered architectural visualization platform
+                                    Explore our AI-powered architectural
+                                    visualization platform
                                   </div>
                                   <div className="flex items-center gap-6">
-                                    <a href="#demo" className="inline-flex items-center gap-1.5 text-[11px] text-red-600 hover:text-red-700 font-medium transition-all duration-200 hover:translate-x-0.5">
+                                    <a
+                                      href="#demo"
+                                      className="inline-flex items-center gap-1.5 text-[11px] text-red-600 hover:text-red-700 font-medium transition-all duration-200 hover:translate-x-0.5"
+                                    >
                                       <Play className="w-3 h-3" />
                                       View Demo
                                     </a>
-                                    <a href="#pricing" className="text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5 rounded-lg hover:bg-gray-100/60 transition-all duration-200">
+                                    <a
+                                      href="#pricing"
+                                      className="text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5 rounded-lg hover:bg-gray-100/60 transition-all duration-200"
+                                    >
                                       See Pricing
                                     </a>
                                   </div>

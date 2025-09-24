@@ -1,0 +1,263 @@
+"use client";
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/ui/resizable-navbar-2";
+import { useState, useRef } from "react";
+
+export function NavbarDemo() {
+  const navItems = [
+    {
+      name: "SOLUTIONS",
+      link: "#solutions",
+      submenu: [
+        {
+          title: "Create",
+          description:
+            "Generate stunning architectural visualizations from scratch with AI",
+          link: "#create",
+        },
+        {
+          title: "Edit",
+          description:
+            "Transform and modify existing designs with intelligent editing tools",
+          link: "#edit",
+        },
+        {
+          title: "Upscale",
+          description:
+            "Enhance image resolution and quality with AI-powered upscaling",
+          link: "#upscale",
+        },
+      ],
+    },
+    {
+      name: "COMMUNITY",
+      link: "#community",
+      submenu: [
+        {
+          title: "Tutorials",
+          description: "Learn from comprehensive guides and video tutorials",
+          link: "#tutorials",
+        },
+        {
+          title: "Press",
+          description:
+            "Latest news, features, and media coverage about Typus.AI",
+          link: "#press",
+        },
+        {
+          title: "Reviews",
+          description: "Read testimonials and reviews from our community",
+          link: "#reviews",
+        },
+        {
+          title: "Instagram",
+          description: "Follow us for daily inspiration and design showcases",
+          link: "#instagram",
+        },
+        {
+          title: "Linkedin",
+          description: "Connect with us for professional updates and insights",
+          link: "#linkedin",
+        },
+      ],
+    },
+    {
+      name: "LICENSES",
+      link: "#licenses",
+      submenu: [
+        {
+          title: "Pricing",
+          description: "Choose the perfect plan for your creative needs",
+          link: "#pricing",
+        },
+        {
+          title: "Plugins",
+          description:
+            "Extend functionality with our professional plugin suite",
+          link: "#plugins",
+        },
+        {
+          title: "Student Access",
+          description: "Special discounted rates for students and educators",
+          link: "#student-access",
+        },
+      ],
+    },
+    {
+      name: "CONTACT",
+      link: "#contact",
+      submenu: [
+        {
+          title: "Book a Call",
+          description: "Schedule a personalized demo with our team",
+          link: "#book-a-call",
+        },
+      ],
+    },
+  ];
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  const handleMenuEnter = (idx: number) => {
+    setIsMenuOpen(true);
+    setHoveredIndex(idx);
+  };
+  const handleMenuLeave = () => {
+    setIsMenuOpen(false);
+    setHoveredIndex(null);
+  };
+
+  return (
+    <Navbar>
+      {/* Desktop Navigation */}
+      <NavBody>
+        <NavbarLogo visible />
+        <div className="hidden md:flex items-center h-full space-x-4 relative">
+          {navItems.map((item, idx) => (
+            <div
+              key={item.name}
+              className="relative group h-full flex items-center hover-menu-trigger"
+              onMouseEnter={() => handleMenuEnter(idx)}
+              onMouseLeave={handleMenuLeave}
+              ref={idx === 0 ? triggerRef : undefined}
+            >
+              <button
+                className={`font-medium text-gray-900 h-full px-3 cursor-pointer text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                  isMenuOpen && hoveredIndex === idx
+                    ? "text-red-600"
+                    : "hover:text-red-600"
+                }`}
+              >
+                <span>{item.name}</span>
+              </button>
+              {/* Mega menu for this nav item */}
+              {isMenuOpen && hoveredIndex === idx && (
+                <div
+                  ref={menuRef}
+                  className={`fixed left-0 right-0  w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[60] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                    isMenuOpen
+                      ? "opacity-100 visible translate-y-0"
+                      : "opacity-0 invisible -translate-y-2"
+                  }`}
+                  style={{ top: "64px" }}
+                  onMouseEnter={() => handleMenuEnter(idx)}
+                  onMouseLeave={handleMenuLeave}
+                >
+                  <div className="relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/80"></div>
+                    <div className="relative max-w-[80%] mx-auto px-8 py-8">
+                      <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+                        <div
+                          className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                            isMenuOpen
+                              ? "opacity-100 translate-y-0"
+                              : "opacity-0 translate-y-3"
+                          }`}
+                        >
+                          <div className="relative">
+                            <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1">
+                              {item.name}
+                            </h3>
+                            <div className="w-8 h-px bg-gradient-to-r from-red-500 to-red-300"></div>
+                          </div>
+                          <div className="space-y-3">
+                            {item.submenu?.map((subitem, subIdx) => (
+                              <a
+                                key={`submenu-${idx}-${subIdx}`}
+                                href={subitem.link}
+                                className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
+                              >
+                                <div className="flex-1">
+                                  <h4 className="text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200">
+                                    {subitem.title}
+                                  </h4>
+                                  <p className="text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200">
+                                    {subitem.description}
+                                  </p>
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center gap-6 h-full">
+          <a
+            href="#login"
+            className="font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
+          >
+            LOGIN
+          </a>
+          <a
+            href="#signup"
+            className="font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
+          >
+            SIGN UP
+          </a>
+        </div>
+      </NavBody>
+
+      {/* Mobile Navigation */}
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
+            isOpen={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          />
+        </MobileNavHeader>
+
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {navItems.map((item, idx) => (
+            <a
+              key={`mobile-link-${idx}`}
+              href={item.link}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="relative text-neutral-600 dark:text-neutral-300"
+            >
+              <span className="block">{item.name}</span>
+            </a>
+          ))}
+          <div className="flex w-full flex-col gap-4">
+            <NavbarButton
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant="secondary"
+              className="w-full min-w-[140px] text-nowrap"
+            >
+              Login
+            </NavbarButton>
+            <NavbarButton
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant="primary"
+              className="w-full min-w-[140px] text-nowrap"
+            >
+              Sign Up
+            </NavbarButton>
+          </div>
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
+  );
+}
