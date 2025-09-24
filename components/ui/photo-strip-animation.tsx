@@ -11,22 +11,22 @@ export const PhotoStripAnimation = ({
   className,
 }: PhotoStripAnimationProps) => {
   const originalImages = [
-    "/before-after/slider_original/3d_screenshot.png",
-    "/before-after/slider_original/cad.png",
-    "/before-after/slider_original/colormap7.png",
-    "/before-after/slider_original/freepik.png",
-    "/before-after/slider_original/sitemodel.png",
-    "/before-after/slider_original/sketch1.png",
+    "/before-after/slider_original/3d_original.png",
+    "/before-after/slider_original/cad_original.png",
+    "/before-after/slider_original/colormap_original.png",
+    "/before-after/slider_original/freepik_original.png",
+    "/before-after/slider_original/sitemodel_original.jpg",
+    "/before-after/slider_original/sketch_original.png",
   ];
 
   // Result/After images (photorealistic renders)
   const resultImages = [
-    "/before-after/slider_output/1337-6f74b340-522b-11ef-ad2d-f624cd86d646.png",
-    "/before-after/slider_output/1337-d5698ca8-5225-11ef-a345-3686f2249b31.png",
-    "/before-after/slider_output/1337-ebba22d4-522e-11ef-a176-7671bf278d58.png",
-    "/before-after/slider_output/5656565656565656_generated_images_123455-62277081.png",
-    "/before-after/slider_output/yanus.ai_hello_1758106602834_6600.png",
-    "/before-after/slider_output/yanus.ai_team_1747855586574_1700_compressed.png",
+    "/before-after/slider_output/3d_result.png",
+    "/before-after/slider_output/cad_result.png",
+    "/before-after/slider_output/colormap_result.png",
+    "/before-after/slider_output/freepik_result.png",
+    "/before-after/slider_output/sitemodel_result.png",
+    "/before-after/slider_output/sketch_result.png",
   ];
 
   return (
@@ -52,7 +52,7 @@ export const PhotoStripAnimation = ({
         
         {/* Left side - Original images with overflow hidden */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
-          <div className="photo_strip flex flex-row items-center animate-scroll-right" style={{ width: "200%" }}>
+          <div className="photo_strip flex flex-row items-center photo_strip_animation" style={{ width: "200%" }}>
             {/* Render original images twice for seamless loop */}
             {[...originalImages, ...originalImages].map((image, index) => (
               <div
@@ -77,7 +77,7 @@ export const PhotoStripAnimation = ({
         
         {/* Right side - Synchronized result images */}
         <div className="z-0 w-full">
-          <div className="photo_strip flex w-full flex-row items-center animate-scroll-right">
+          <div className="photo_strip flex w-full flex-row items-center photo_strip_animation">
             {/* Render result images twice for seamless loop, synchronized with originals */}
             {[...resultImages, ...resultImages].map((image, index) => (
               <div
@@ -113,7 +113,7 @@ export const PhotoStripAnimation = ({
         
         {/* Left side - Original images */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
-          <div className="photo_strip flex flex-row items-center animate-scroll-right" style={{ width: "200%" }}>
+          <div className="photo_strip flex flex-row items-center photo_strip_animation_mobile" style={{ width: "200%" }}>
             {[...originalImages, ...originalImages].map((image, index) => (
               <div
                 key={index}
@@ -137,7 +137,7 @@ export const PhotoStripAnimation = ({
         
         {/* Right side - Synchronized result images */}
         <div className="z-0 w-full">
-          <div className="photo_strip flex w-full flex-row items-center animate-scroll-right">
+          <div className="photo_strip flex w-full flex-row items-center photo_strip_animation_mobile">
             {[...resultImages, ...resultImages].map((image, index) => (
               <div
                 key={index}
@@ -164,6 +164,61 @@ export const PhotoStripAnimation = ({
           </div>
         </div>
       </div>
+
+      {/* Add the CSS animations */}
+      <style jsx>{`
+        .magic-separator {
+          transform: translateX(-50%);
+        }
+
+        .photo_strip {
+          animation: photo_strip_animation 36s linear infinite;
+        }
+
+        .photo_strip_animation {
+          animation-duration: 36s;
+          animation-timing-function: linear;
+          animation-delay: 0s;
+          animation-iteration-count: infinite;
+          animation-direction: normal;
+          animation-fill-mode: none;
+          animation-play-state: running;
+          animation-name: photo_strip_animation;
+        }
+
+        @keyframes photo_strip_animation {
+          0% {
+            transform: translateX(-200%);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+
+        .photo_strip_mobile {
+          animation: photo_strip_animation_mobile 18s linear infinite;
+        }
+
+        .photo_strip_animation_mobile {
+          animation-duration: 18s;
+          animation-timing-function: linear;
+          animation-delay: 0s;
+          animation-iteration-count: infinite;
+          animation-direction: normal;
+          animation-fill-mode: none;
+          animation-play-state: running;
+          animation-name: photo_strip_animation_mobile;
+        }
+
+        @keyframes photo_strip_animation_mobile {
+          0% {
+            transform: translateX(-400%);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

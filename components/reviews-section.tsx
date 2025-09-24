@@ -22,9 +22,9 @@ export function ReviewsSection() {
       style={{ backgroundColor: "#f0f0f0" }}
     >
          {/* Featured Testimonial - Using dedicated component */}
-         <div className="max-w-2xl mx-auto">
+         {/* <div className="max-w-2xl mx-auto">
           <FeaturedTestimonialSection />
-        </div>
+        </div> */}
       {/* Header */}
       <div className="my-12">
         <motion.div

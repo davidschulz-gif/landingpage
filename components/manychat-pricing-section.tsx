@@ -232,9 +232,9 @@ export function ManyChatPricingSection() {
                   <MovingBorderButton
                     duration={3000}
                     className="bg-white border-0 text-black rounded-full text-sm font-medium transition-all duration-300 shadow-sm"
-                    containerClassName="rounded-full"
+                    containerClassName="rounded-full !h-10 w-30 mr-2"
                     borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
-                    borderRadius="0.5rem"
+                    borderRadius="1.5rem"
                     onClick={() => setIsProfessional(true)}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
@@ -253,8 +253,8 @@ export function ManyChatPricingSection() {
                   <MovingBorderButton
                     duration={3000}
                     className="bg-white border-0 text-black rounded-full text-sm font-medium transition-all duration-300 shadow-sm"
-                    containerClassName="rounded-full"
-                    borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
+                    containerClassName="rounded-full !h-10 w-30 ml-2"
+                    borderClassName="bg-[radial-gradient(#ff8c00_100%,#ff3636_100%)] opacity-80"
                     borderRadius="1.5rem"
                     onClick={() => setIsProfessional(false)}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -264,7 +264,7 @@ export function ManyChatPricingSection() {
                 ) : (
                   <button
                     onClick={() => setIsProfessional(false)}
-                    className="px-2 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70"
+                    className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     Education
@@ -382,7 +382,7 @@ function PricingCard({
 }) {
   return (
     <div
-      className="flex h-[580px] flex-col rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[3.2rem] p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+      className="flex h-[580px] mb-4 flex-col rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[3.2rem] p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
       style={{
         backgroundColor: plan.bgColor,
         color: plan.textColor,
@@ -393,10 +393,10 @@ function PricingCard({
         {plan.popular && (
           <div className="mb-2">
             <MovingBorderButton
-              duration={3000}
-              className="bg-transparent border-0 text-black px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"
-              containerClassName="rounded-full"
-              borderClassName="bg-[radial-gradient(#ff8c00_40%,#ff3636_60%)] opacity-80"
+              duration={2000}
+              className="bg-transparent border-0 text-black rounded-full text-[10px] font-bold uppercase tracking-wide"
+              containerClassName="rounded-full !h-10 w-30"
+              borderClassName="bg-[radial-gradient(#ff8c00_100%,#ff3636_100%)]"
               borderRadius="1rem"
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",

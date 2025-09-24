@@ -150,12 +150,6 @@ export const MovingBorder = ({
           rx={rx}
           ry={ry}
           ref={pathRef}
-          style={{ display: 'none' }}
-        />
-        <path
-          fill="none"
-          d="M10,0 L90,0 Q100,0 100,10 L100,90 Q100,100 90,100 L10,100 Q0,100 0,90 L0,10 Q0,0 10,0 Z"
-          ref={pathRef}
         />
       </svg>
       <motion.div

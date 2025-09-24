@@ -1,7 +1,7 @@
 "use client";
+import AdaptiveNavbar from "@/components/adaptive-navbar";
 import { HeroParallax } from "@/components/hero-parallax";
 import { SplashScreen } from "@/components/splash-screen";
-import TypusNavbar from "@/components/typus-navbar";
 import { motion } from "framer-motion";
 
 import { StickyBottomSheet } from "@/components/sticky-bottom-sheet";
@@ -14,7 +14,6 @@ import CompareDemo from '@/components/compare-drag-demo';
 import { VideoShowcaseSection } from '@/components/video-showcase-section';
 const StickySliderSection = dynamic(() => import('@/components/sticky-slider-section').then(mod => mod.StickySliderSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
 const TabVideoShowcase = dynamic(() => import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
-const FeatureShowcaseWidget = dynamic(() => import('@/components/feature-showcase-widget').then(mod => mod.FeatureShowcaseWidget), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
 const ReviewsSection = dynamic(() => import('@/components/reviews-section').then(mod => mod.ReviewsSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
 const ManyChatPricingSection = dynamic(() => import('@/components/manychat-pricing-section').then(mod => mod.ManyChatPricingSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
 const MeetOurTeamSection = dynamic(() => import('@/components/meet-our-team-section').then(mod => mod.MeetOurTeamSection), { ssr: false, loading: () => <div className="h-96 bg-gray-100 animate-pulse" /> });
@@ -288,7 +287,7 @@ export default function Home() {
   const MainContent = () => (
     <div className="relative w-full">
       {/* Navbar */}
-      <TypusNavbar />
+      <AdaptiveNavbar />
 
       {/* Hero Section with Parallax */}
       <HeroParallax row123Products={row123Products} row4Products={row4Products} />

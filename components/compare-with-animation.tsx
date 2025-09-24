@@ -57,7 +57,7 @@ export const CompareWithAnimation = ({ className }: CompareWithAnimationProps) =
               fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
             }}
           >
-            BEFORE  &  AFTER
+            UPSCALE UP TO 13K RESOLUTION
           </h2>
         </BreathingAnimationText>
         <BreathingAnimationText animationType="black-gray">
