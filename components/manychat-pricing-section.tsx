@@ -167,6 +167,29 @@ export function ManyChatPricingSection() {
 
   const cardParallaxY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
+  useEffect(() => {
+    const checkUrlHash = () => {
+      if (window.location.hash === "#student-access") {
+        setIsProfessional(false);
+      }
+    };
+
+    // Check on mount
+    checkUrlHash();
+
+    // Listen for hash changes
+    const handleHashChange = () => {
+      checkUrlHash();
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   // Cards sliding from behind center card - sticky until all cards visible
   const leftCardX = useTransform(
     scrollYProgress,
@@ -201,7 +224,10 @@ export function ManyChatPricingSection() {
       style={{ backgroundColor: "#f0f0f0" }}
       id="pricing"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4">
+      <div
+        className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4"
+        id="student-access"
+      >
         <div className="w-full max-w-7xl mx-auto px-4 relative z-10 pt-20">
           <motion.div
             className="text-center mb-0 relative z-40"

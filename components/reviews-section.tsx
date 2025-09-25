@@ -18,7 +18,7 @@ export function ReviewsSection() {
   return (
     <section
       ref={containerRef}
-      className="w-full max-w-[95%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative"
+      className="w-full max-w-[100%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative"
       style={{ backgroundColor: "#f0f0f0" }}
       id="reviews"
     >

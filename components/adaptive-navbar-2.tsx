@@ -105,7 +105,8 @@ export function NavbarDemo() {
         {
           title: "Book a Call",
           description: "Schedule a personalized demo with our team",
-          link: "#book-a-call",
+          link: "https://calendly.com/hello-typus-ai/call",
+          target: "_blank",
         },
       ],
     },
