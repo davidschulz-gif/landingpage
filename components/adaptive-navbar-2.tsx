@@ -48,7 +48,8 @@ export function NavbarDemo() {
         {
           title: "Tutorials",
           description: "Learn from comprehensive guides and video tutorials",
-          link: "#tutorials",
+          link: "https://www.youtube.com/@typus_ai",
+          target: "_blank",
         },
         {
           title: "Press",
@@ -64,12 +65,14 @@ export function NavbarDemo() {
         {
           title: "Instagram",
           description: "Follow us for daily inspiration and design showcases",
-          link: "#instagram",
+          link: "https://www.instagram.com/typus.ai/",
+          target: "_blank",
         },
         {
           title: "Linkedin",
           description: "Connect with us for professional updates and insights",
-          link: "#linkedin",
+          link: "https://www.linkedin.com/company/typus-ai/",
+          target: "_blank",
         },
       ],
     },
@@ -187,6 +190,7 @@ export function NavbarDemo() {
                       <a
                         key={`submenu-${navIdx}-${subIdx}`}
                         href={subitem.link}
+                        target={subitem.target ?? "_self"}
                         className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
                       >
                         <div className="flex-1">

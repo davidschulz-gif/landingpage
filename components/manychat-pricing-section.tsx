@@ -154,7 +154,7 @@ export function ManyChatPricingSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isYearly, setIsYearly] = useState(true);
   const [isProfessional, setIsProfessional] = useState(true);
-  
+
   const currentPlans = isProfessional ? professionalPlans : educationPlans;
 
   const { scrollYProgress } = useScroll({
@@ -199,6 +199,7 @@ export function ManyChatPricingSection() {
       ref={containerRef}
       className="h-[420vh] py-10 relative"
       style={{ backgroundColor: "#f0f0f0" }}
+      id="pricing"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4">
         <div className="w-full max-w-7xl mx-auto px-4 relative z-10 pt-20">
@@ -224,7 +225,7 @@ export function ManyChatPricingSection() {
                 {isProfessional ? "PROFESSIONAL PLANS" : "EDUCATION PLANS"}
               </h2>
             </BreathingAnimationText>
-            
+
             {/* Plan Type Toggle Switch */}
             <div className="flex items-center justify-center mb-6">
               <div className="flex items-center bg-transparent rounded-full p-1">
@@ -272,7 +273,7 @@ export function ManyChatPricingSection() {
                 )}
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
               <BreathingAnimationText animationType="black-gray">
                 <button
@@ -432,7 +433,7 @@ function PricingCard({
               {isYearly ? plan.yearlyPeriod : plan.period}
             </span>
           </div>
-          
+
           <div className="space-y-0.5 text-[10px] text-gray-500">
             {isYearly ? (
               <>
@@ -440,7 +441,13 @@ function PricingCard({
                   Billed yearly ({plan.yearlyPrice}/year)
                 </div>
                 <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  Save €{plan.id === "starter" ? "169" : plan.id === "explorer" ? "439" : "899"} with annual billing
+                  Save €
+                  {plan.id === "starter"
+                    ? "169"
+                    : plan.id === "explorer"
+                    ? "439"
+                    : "899"}{" "}
+                  with annual billing
                 </div>
               </>
             ) : (

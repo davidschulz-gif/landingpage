@@ -100,7 +100,11 @@ const articleData: Article[] = [
 
 export function ArticleCarouselSection() {
   return (
-    <div className="w-full py-20" style={{ backgroundColor: "#f0f0f0" }}>
+    <div
+      className="w-full py-20"
+      style={{ backgroundColor: "#f0f0f0" }}
+      id="press"
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <BreathingAnimationText animationType="black-gray">

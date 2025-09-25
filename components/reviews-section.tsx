@@ -20,6 +20,7 @@ export function ReviewsSection() {
       ref={containerRef}
       className="w-full max-w-[95%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative"
       style={{ backgroundColor: "#f0f0f0" }}
+      id="reviews"
     >
       {/* Featured Testimonial - Using dedicated component */}
       {/* <div className="max-w-2xl mx-auto">

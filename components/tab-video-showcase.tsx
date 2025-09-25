@@ -212,7 +212,6 @@ export function TabVideoShowcase() {
             </motion.span>
           </motion.h1>
         </BreathingAnimationText>
-
         <BreathingAnimationText animationType="black-gray">
           <motion.p
             className="mx-auto mb-2 px-4 text-[14px] font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24"
@@ -226,6 +225,10 @@ export function TabVideoShowcase() {
           </motion.p>
         </BreathingAnimationText>
       </motion.div>
+
+      <div id="create" />
+      <div id="edit" />
+      <div id="enhance" />
 
       {/* Video Section - Scrollable */}
       <motion.div
