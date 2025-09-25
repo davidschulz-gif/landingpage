@@ -220,12 +220,12 @@ export function ManyChatPricingSection() {
   return (
     <section
       ref={containerRef}
-      className="h-[420vh] py-10 relative"
+      className="md:h-[420vh] py-10 relative"
       style={{ backgroundColor: "#f0f0f0" }}
       id="pricing"
     >
       <div
-        className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden px-4"
+        className="md:sticky top-0 md:h-screen flex flex-col justify-center overflow-hidden px-4"
         id="student-access"
       >
         <div className="w-full max-w-7xl mx-auto px-4 relative z-10 pt-20">
@@ -346,7 +346,7 @@ export function ManyChatPricingSection() {
             </BreathingAnimationText>
           </motion.div>
 
-          <div className="relative flex justify-center items-center h-[70vh] min-h-[600px] w-full gap-4">
+          <div className="relative md:flex hidden justify-center items-center h-[70vh] min-h-[600px] w-full gap-4">
             {/* Left Card */}
             <motion.div
               className="w-full max-w-xs z-10"
@@ -388,6 +388,40 @@ export function ManyChatPricingSection() {
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <PricingCard plan={currentPlans[2]} isYearly={isYearly} />
+            </motion.div>
+          </div>
+          <div className="relative md:hidden flex flex-col justify-center items-center w-full gap-4">
+            {/* Left Card */}
+            <motion.div
+              className="w-full max-w-xs z-10"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <PricingCard plan={currentPlans[0]} isYearly={isYearly} />
+            </motion.div>
+
+            {/* Center Card */}
+            <motion.div
+              className="w-full max-w-xs z-30"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
+            </motion.div>
+
+            {/* Right Card */}
+            <motion.div
+              className="w-full max-w-xs z-10"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
