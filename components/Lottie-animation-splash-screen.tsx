@@ -5,7 +5,7 @@ import animationData from "../public/lottie/Loader.json";
 export default function LottieAnimationSplashScreen() {
   return (
     <div className="">
-      <div className="size-44">
+      <div className="">
         <Lottie animationData={animationData} loop={true} autoplay={true} />
       </div>
     </div>

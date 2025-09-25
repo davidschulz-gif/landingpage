@@ -82,7 +82,7 @@ export function SplashScreen({
                   transition={{ duration: 0.3, ease: "easeOut" }} // Reduced from 0.4s
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <BreathingAnimationText
+                  {/* <BreathingAnimationText
                     animationType="black-gray"
                     className="font-normal text-[30px] tracking-wide text-black whitespace-nowrap"
                   >
@@ -150,7 +150,8 @@ export function SplashScreen({
                         CREATE.
                       </motion.span>
                     </motion.div>
-                  </BreathingAnimationText>
+                  </BreathingAnimationText> */}
+                  <LottieAnimationSplashScreen />
                 </motion.div>
 
                 {/* Floating elements */}
@@ -213,18 +214,27 @@ export function SplashScreen({
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.1, ease: "easeOut" }} // Reduced from 0.2s
-              className="-mb-20"
             >
-              <LottieAnimationSplashScreen />
+              <div className="relative w-8 h-8">
+                <Image
+                  src="/logo/typus_logo_black.png"
+                  alt="Typus AI Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain filter saturate-0"
+                  priority
+                  quality={90}
+                />
+              </div>
             </motion.div>
             {/* Progress Bar */}
             <div
               className="w-32 h-0.5 rounded-full overflow-hidden"
-              style={{ backgroundColor: "rgba(255, 54, 54, 0.3)" }}
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
             >
               <motion.div
                 className="h-full rounded-full"
-                style={{ backgroundColor: "rgb(255, 54, 54)" }}
+                style={{ backgroundColor: "rgb(0,0,0)" }}
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{
@@ -240,7 +250,7 @@ export function SplashScreen({
             <motion.p
               className="text-[0.625rem] font-bold tracking-[0.15em]"
               style={{
-                color: "rgb(255, 54, 54)",
+                color: "rgb(0, 0, 0)",
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
