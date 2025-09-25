@@ -37,10 +37,10 @@ export function SplashScreen({
 
     // Reduce splash screen time for faster loading
     const t1 = setTimeout(() => setShowDelegate(false), 600); // Reduced from 1200ms
-    // const t2 = setTimeout(() => setSlideOut(true), 1800);     // Reduced from 2800ms
-    // const t3 = setTimeout(() => onComplete?.(), 2000);        // Reduced from 3200ms
+    const t2 = setTimeout(() => setSlideOut(true), 1800); // Reduced from 2800ms
+    const t3 = setTimeout(() => onComplete?.(), 2000); // Reduced from 3200ms
 
-    timeoutRefs.current = [t1];
+    timeoutRefs.current = [t1, t2, t3];
 
     return () => timeoutRefs.current.forEach(clearTimeout);
   }, [onComplete]);
