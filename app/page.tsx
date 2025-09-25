@@ -326,7 +326,7 @@ export default function Home() {
       <MainContent />
 
       {/* Splash Screen Overlay */}
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      {/* {showSplash && <SplashScreen onComplete={handleSplashComplete} />} */}
     </>
   );
 }
