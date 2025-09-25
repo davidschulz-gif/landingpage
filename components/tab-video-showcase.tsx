@@ -1,6 +1,13 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Wand2, Edit3, Sparkles, Video } from "lucide-react";
@@ -13,28 +20,39 @@ const tabs = [
     id: "create",
     title: "Create Mode",
     icon: Wand2,
-    description: "Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.",
-    video: "/videos/INTRO_typus_newlogo.mp4",
+    description:
+      "Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.",
+    video: "/videos/showcase/create_showcase.mp4",
     poster: "/modern-villa-render.png",
-    features: ["AI-Powered Generation", "Instant Results", "Multiple Styles"]
+    features: ["AI-Powered Generation", "Instant Results", "Multiple Styles"],
   },
   {
     id: "edit",
-    title: "Edit Mode", 
+    title: "Edit Mode",
     icon: Edit3,
-    description: "Add People, subtract furniture, and modify facades in your designs with natural language.",
-    video: "/videos/INTRO_typus_newlogo.mp4",
+    description:
+      "Add People, subtract furniture, and modify facades in your designs with natural language.",
+    video: "/videos/showcase/edit_showcase.mp4",
     poster: "/modern-office-building.png",
-    features: ["Natural Language Editing", "Object Manipulation", "Smart Modifications"]
+    features: [
+      "Natural Language Editing",
+      "Object Manipulation",
+      "Smart Modifications",
+    ],
   },
   {
     id: "enhance",
     title: "Upscale Mode",
     icon: Sparkles,
-    description: "Sharpen existing renderings, or add extra detail to your designs with a single click.",
-    video: "/videos/INTRO_typus_newlogo.mp4",
+    description:
+      "Sharpen existing renderings, or add extra detail to your designs with a single click.",
+    video: "/videos/showcase/upscale_showcase.mp4",
     poster: "/modern-interior-design.png",
-    features: ["Quality Enhancement", "Detail Addition", "One-Click Processing"]
+    features: [
+      "Quality Enhancement",
+      "Detail Addition",
+      "One-Click Processing",
+    ],
   },
   // {
   //   id: "animate",
@@ -59,9 +77,12 @@ export function TabVideoShowcase() {
   const videoSectionRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, margin: "100px" });
-  const videoInView = useInView(videoSectionRef, { once: false, margin: "-100px" });
-  
-  const activeTabData = tabs.find(tab => tab.id === activeTab);
+  const videoInView = useInView(videoSectionRef, {
+    once: false,
+    margin: "-100px",
+  });
+
+  const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -95,21 +116,21 @@ export function TabVideoShowcase() {
   useEffect(() => {
     const preloadVideo = (src: string) => {
       if (videoCache.has(src) || loadedVideos.has(src)) return;
-      
-      const video = document.createElement('video');
-      video.preload = 'metadata';
+
+      const video = document.createElement("video");
+      video.preload = "metadata";
       video.src = src;
       video.muted = true; // Ensure muted for autoplay
       video.load();
-      
-      video.addEventListener('loadedmetadata', () => {
+
+      video.addEventListener("loadedmetadata", () => {
         videoCache.set(src, video);
-        setLoadedVideos(prev => new Set([...prev, src]));
-        console.log('Preloaded video:', src);
+        setLoadedVideos((prev) => new Set([...prev, src]));
+        console.log("Preloaded video:", src);
       });
-      
-      video.addEventListener('error', (e) => {
-        console.error('Failed to preload video:', src, e);
+
+      video.addEventListener("error", (e) => {
+        console.error("Failed to preload video:", src, e);
       });
     };
 
@@ -119,7 +140,7 @@ export function TabVideoShowcase() {
     }
 
     // Then preload other videos with delay
-    const timeouts = tabs.map((tab, index) => 
+    const timeouts = tabs.map((tab, index) =>
       setTimeout(() => preloadVideo(tab.video), index * 1000)
     );
 
@@ -128,25 +149,34 @@ export function TabVideoShowcase() {
 
   // Debug effect
   useEffect(() => {
-    console.log('TabVideoShowcase state:', {
+    console.log("TabVideoShowcase state:", {
       activeTab,
       isInView,
       videoInView,
-      activeTabData: activeTabData ? {
-        id: activeTabData.id,
-        video: activeTabData.video,
-        title: activeTabData.title
-      } : null,
+      activeTabData: activeTabData
+        ? {
+            id: activeTabData.id,
+            video: activeTabData.video,
+            title: activeTabData.title,
+          }
+        : null,
       loadedVideos: Array.from(loadedVideos),
-      videoLoadError
+      videoLoadError,
     });
-  }, [activeTab, isInView, videoInView, activeTabData, loadedVideos, videoLoadError]);
+  }, [
+    activeTab,
+    isInView,
+    videoInView,
+    activeTabData,
+    loadedVideos,
+    videoLoadError,
+  ]);
 
   return (
     <section
       ref={containerRef}
       className="relative mx-auto flex max-w-[65%] w-full flex-col px-4 py-16 text-neutral-800 dark:text-neutral-200"
-      style={{ backgroundColor: '#f0f0f0' }}
+      style={{ backgroundColor: "#f0f0f0" }}
     >
       {/* Title Section */}
       <motion.div
@@ -191,7 +221,8 @@ export function TabVideoShowcase() {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
           >
-            Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.
+            Leverage best in class AI Models to bring any design to life, in any
+            style with natural language and no training required.
           </motion.p>
         </BreathingAnimationText>
       </motion.div>
@@ -220,18 +251,18 @@ export function TabVideoShowcase() {
               preload="metadata"
               controls={false}
               onLoadStart={() => {
-                console.log('Video loading started:', activeTabData.video);
+                console.log("Video loading started:", activeTabData.video);
                 setVideoLoadError(null);
               }}
               onLoadedData={() => {
-                console.log('Video loaded:', activeTabData.video);
+                console.log("Video loaded:", activeTabData.video);
                 setVideoLoadError(null);
               }}
               onCanPlay={() => {
-                console.log('Video can play:', activeTabData.video);
+                console.log("Video can play:", activeTabData.video);
               }}
               onError={(e) => {
-                console.error('Video error:', e, activeTabData.video);
+                console.error("Video error:", e, activeTabData.video);
                 setVideoLoadError(activeTabData.video);
               }}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -243,9 +274,11 @@ export function TabVideoShowcase() {
               {videoLoadError ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-red-50">
                   <div className="text-center p-8">
-                    <div className="text-red-500 text-lg mb-2">Failed to load video</div>
+                    <div className="text-red-500 text-lg mb-2">
+                      Failed to load video
+                    </div>
                     <div className="text-red-400 text-sm">{videoLoadError}</div>
-                    <button 
+                    <button
                       onClick={() => {
                         setVideoLoadError(null);
                         setActiveTab(activeTab); // Force reload
@@ -260,14 +293,17 @@ export function TabVideoShowcase() {
                 <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
                   {/* Video skeleton background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
-                  
+
                   {/* Skeleton play button */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center animate-pulse">
-                      <div className="w-6 h-6 bg-white/40 rounded-sm animate-pulse" style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }} />
+                      <div
+                        className="w-6 h-6 bg-white/40 rounded-sm animate-pulse"
+                        style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
+                      />
                     </div>
                   </div>
-                  
+
                   {/* Skeleton controls bar */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="bg-black/20 rounded-lg p-3 backdrop-blur-sm">
@@ -278,12 +314,14 @@ export function TabVideoShowcase() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Loading text */}
                   <div className="absolute top-4 left-4">
                     <div className="bg-black/20 rounded-lg px-3 py-1 backdrop-blur-sm">
                       <div className="text-white/70 text-sm animate-pulse">
-                        {videoLoadError ? 'Error loading video...' : 'Loading video...'}
+                        {videoLoadError
+                          ? "Error loading video..."
+                          : "Loading video..."}
                       </div>
                     </div>
                   </div>
@@ -295,7 +333,7 @@ export function TabVideoShowcase() {
       </motion.div>
 
       {/* Tabs Section - Appears after video */}
-      <motion.div 
+      <motion.div
         className="w-full max-w-4xl mx-auto px-4"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +344,7 @@ export function TabVideoShowcase() {
           {tabs.map((tab, index) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
-            
+
             return (
               <div key={tab.id}>
                 {isActive ? (
@@ -325,103 +363,104 @@ export function TabVideoShowcase() {
                       duration={2000}
                       onClick={() => setActiveTab(tab.id)}
                     >
-                      <Card
-                        className="bg-white dark:bg-gray-800 border-0 hover:shadow-md px-4 pb-6 pt-4 w-full h-full shadow-sm relative z-10"
-                      >
-                      <CardContent className="p-3 min-h-[200px] flex flex-col">
-                        <motion.div 
-                          className="flex items-center gap-2 mb-3"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, delay: 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          <motion.div 
-                            className="p-1 rounded animate-breathe-primary-hover" 
-                            style={{
-                              backgroundColor: THEME_COLORS.primary
-                            }}
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <Icon className="w-3 h-3 text-white" />
-                          </motion.div>
-                          <BreathingAnimationText animationType="red-orange">
-                            <motion.h3 
-                              className="text-sm font-bold text-gray-900 dark:text-white" 
-                              style={{
-                                color: THEME_COLORS.primary
-                              }}
-                              initial={{ opacity: 0, y: 10 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4, delay: 0.2 }}
-                              viewport={{ once: true }}
-                            >
-                              {tab.title}
-                            </motion.h3>
-                          </BreathingAnimationText>
-                        </motion.div>
-                        
-                        <BreathingAnimationText animationType="black-gray">
-                          <motion.p 
-                            className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-3"
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
+                      <Card className="bg-white dark:bg-gray-800 border-0 hover:shadow-md px-4 pb-6 pt-4 w-full h-full shadow-sm relative z-10">
+                        <CardContent className="p-3 min-h-[200px] flex flex-col">
+                          <motion.div
+                            className="flex items-center gap-2 mb-3"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
                             viewport={{ once: true }}
                           >
-                            {tab.description}
-                          </motion.p>
-                        </BreathingAnimationText>
-
-                        <motion.div 
-                          className="space-y-1 flex-1"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          transition={{ duration: 0.6, delay: 0.4 }}
-                          viewport={{ once: true }}
-                        >
-                          {tab.features.map((feature, idx) => (
-                            <motion.div 
-                              key={idx} 
-                              className="flex items-center gap-1.5"
-                              initial={{ opacity: 0, x: -10 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ 
-                                duration: 0.4, 
-                                delay: 0.5 + (idx * 0.1) 
+                            <motion.div
+                              className="p-1 rounded animate-breathe-primary-hover"
+                              style={{
+                                backgroundColor: THEME_COLORS.primary,
                               }}
+                              whileHover={{ scale: 1.1, rotate: 5 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Icon className="w-3 h-3 text-white" />
+                            </motion.div>
+                            <BreathingAnimationText animationType="red-orange">
+                              <motion.h3
+                                className="text-sm font-bold text-gray-900 dark:text-white"
+                                style={{
+                                  color: THEME_COLORS.primary,
+                                }}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: 0.2 }}
+                                viewport={{ once: true }}
+                              >
+                                {tab.title}
+                              </motion.h3>
+                            </BreathingAnimationText>
+                          </motion.div>
+
+                          <BreathingAnimationText animationType="black-gray">
+                            <motion.p
+                              className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-3"
+                              initial={{ opacity: 0, y: 15 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5, delay: 0.3 }}
                               viewport={{ once: true }}
                             >
-                              <div className="w-1 h-1 rounded-full flex-shrink-0 animate-breathe-primary-hover" style={{
-                                backgroundColor: THEME_COLORS.primary
-                              }} />
-                              <BreathingAnimationText animationType="black-gray">
-                                <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight truncate">
-                                  {feature}
-                                </span>
-                              </BreathingAnimationText>
-                            </motion.div>
-                          ))}
-                        </motion.div>
-                      </CardContent>
-                    </Card>
-                  </MovingBorderButton>
-                </div>
+                              {tab.description}
+                            </motion.p>
+                          </BreathingAnimationText>
+
+                          <motion.div
+                            className="space-y-1 flex-1"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            viewport={{ once: true }}
+                          >
+                            {tab.features.map((feature, idx) => (
+                              <motion.div
+                                key={idx}
+                                className="flex items-center gap-1.5"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  duration: 0.4,
+                                  delay: 0.5 + idx * 0.1,
+                                }}
+                                viewport={{ once: true }}
+                              >
+                                <div
+                                  className="w-1 h-1 rounded-full flex-shrink-0 animate-breathe-primary-hover"
+                                  style={{
+                                    backgroundColor: THEME_COLORS.primary,
+                                  }}
+                                />
+                                <BreathingAnimationText animationType="black-gray">
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight truncate">
+                                    {feature}
+                                  </span>
+                                </BreathingAnimationText>
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        </CardContent>
+                      </Card>
+                    </MovingBorderButton>
+                  </div>
                 ) : (
                   <Card
                     className="cursor-pointer transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md px-4 pb-6 pt-4"
                     onClick={() => setActiveTab(tab.id)}
                   >
                     <CardContent className="p-3 min-h-[200px] flex flex-col">
-                      <motion.div 
+                      <motion.div
                         className="flex items-center gap-2 mb-3"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         viewport={{ once: true }}
                       >
-                        <motion.div 
+                        <motion.div
                           className="p-1 rounded bg-gray-100 dark:bg-gray-700"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.2 }}
@@ -429,7 +468,7 @@ export function TabVideoShowcase() {
                           <Icon className="w-3 h-3 text-gray-600 dark:text-gray-300" />
                         </motion.div>
                         <BreathingAnimationText animationType="black-gray">
-                          <motion.h3 
+                          <motion.h3
                             className="text-sm font-bold text-gray-900 dark:text-white"
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -440,9 +479,9 @@ export function TabVideoShowcase() {
                           </motion.h3>
                         </BreathingAnimationText>
                       </motion.div>
-                      
+
                       <BreathingAnimationText animationType="black-gray">
-                        <motion.p 
+                        <motion.p
                           className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-3"
                           initial={{ opacity: 0, y: 15 }}
                           whileInView={{ opacity: 1, y: 0 }}
@@ -453,7 +492,7 @@ export function TabVideoShowcase() {
                         </motion.p>
                       </BreathingAnimationText>
 
-                      <motion.div 
+                      <motion.div
                         className="space-y-1 flex-1"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
@@ -461,14 +500,14 @@ export function TabVideoShowcase() {
                         viewport={{ once: true }}
                       >
                         {tab.features.map((feature, idx) => (
-                          <motion.div 
-                            key={idx} 
+                          <motion.div
+                            key={idx}
                             className="flex items-center gap-1.5"
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              delay: 0.5 + (idx * 0.1) 
+                            transition={{
+                              duration: 0.4,
+                              delay: 0.5 + idx * 0.1,
                             }}
                             viewport={{ once: true }}
                           >
