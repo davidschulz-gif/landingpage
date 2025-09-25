@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import LottieAnimationSplashScreen from "./Lottie-animation-splash-screen";
 
 interface SplashScreenProps {
   className?: string;
@@ -35,11 +36,11 @@ export function SplashScreen({
     timeoutRefs.current = [];
 
     // Reduce splash screen time for faster loading
-    const t1 = setTimeout(() => setShowDelegate(false), 600);  // Reduced from 1200ms
-    const t2 = setTimeout(() => setSlideOut(true), 1800);     // Reduced from 2800ms
-    const t3 = setTimeout(() => onComplete?.(), 2000);        // Reduced from 3200ms
+    const t1 = setTimeout(() => setShowDelegate(false), 600); // Reduced from 1200ms
+    // const t2 = setTimeout(() => setSlideOut(true), 1800);     // Reduced from 2800ms
+    // const t3 = setTimeout(() => onComplete?.(), 2000);        // Reduced from 3200ms
 
-    timeoutRefs.current = [t1, t2, t3];
+    timeoutRefs.current = [t1];
 
     return () => timeoutRefs.current.forEach(clearTimeout);
   }, [onComplete]);
@@ -81,7 +82,10 @@ export function SplashScreen({
                   transition={{ duration: 0.3, ease: "easeOut" }} // Reduced from 0.4s
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
                 >
-                  <BreathingAnimationText animationType="black-gray" className="font-normal text-[30px] tracking-wide text-black whitespace-nowrap">
+                  <BreathingAnimationText
+                    animationType="black-gray"
+                    className="font-normal text-[30px] tracking-wide text-black whitespace-nowrap"
+                  >
                     <motion.div
                       animate={{
                         opacity: [0.9, 1, 0.9],
@@ -97,7 +101,7 @@ export function SplashScreen({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                           duration: 0.2, // Reduced from 0.3s
-                          delay: 0.05,   // Reduced from 0.1s
+                          delay: 0.05, // Reduced from 0.1s
                           ease: "easeOut",
                         }}
                       >
@@ -139,7 +143,7 @@ export function SplashScreen({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                           duration: 0.2, // Reduced from 0.3s
-                          delay: 0.1,   // Reduced from 0.2s
+                          delay: 0.1, // Reduced from 0.2s
                           ease: "easeOut",
                         }}
                       >
@@ -209,21 +213,15 @@ export function SplashScreen({
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.1, ease: "easeOut" }} // Reduced from 0.2s
+              className="-mb-20"
             >
-              <div className="relative w-8 h-8">
-                <Image
-                  src="/logo/typus_logo_red_transp.png"
-                  alt="Typus AI Logo"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                  priority
-                  quality={90}
-                />
-              </div>
+              <LottieAnimationSplashScreen />
             </motion.div>
             {/* Progress Bar */}
-            <div className="w-32 h-0.5 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255, 54, 54, 0.3)" }}>
+            <div
+              className="w-32 h-0.5 rounded-full overflow-hidden"
+              style={{ backgroundColor: "rgba(255, 54, 54, 0.3)" }}
+            >
               <motion.div
                 className="h-full rounded-full"
                 style={{ backgroundColor: "rgb(255, 54, 54)" }}
@@ -241,8 +239,8 @@ export function SplashScreen({
             {/* INITIALIZING Text */}
             <motion.p
               className="text-[0.625rem] font-bold tracking-[0.15em]"
-              style={{ 
-                color: "rgb(255, 54, 54)"
+              style={{
+                color: "rgb(255, 54, 54)",
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: [0.5, 1, 0.5] }}
