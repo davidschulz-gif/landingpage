@@ -311,7 +311,10 @@ export function StickySliderSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-[65%] mx-auto h-[400vh]">
+    <div
+      ref={containerRef}
+      className="relative w-full max-w-[90%] md:max-w-[65%] mx-auto h-[400vh]"
+    >
       <div className="sticky top-0 h-screen overflow-hidden">
         {currentTabSlides.map((slide, index) => (
           <div
@@ -328,7 +331,7 @@ export function StickySliderSection() {
                   <div className="relative">
                     <div className="mb-6">
                       <BreathingAnimationText animationType="black-gray">
-                        <motion.h3 
+                        <motion.h3
                           className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-2"
                           initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}

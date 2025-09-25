@@ -1,11 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Users, Sparkles, FolderKanban } from "lucide-react";
 import { VideoPlayer } from "@/components/video/player";
 import { BreathingAnimationText } from "./breathing-animation-text";
@@ -14,7 +9,7 @@ export const VideoShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
   const [showTitle, setShowTitle] = useState(true);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -46,10 +41,8 @@ export const VideoShowcaseSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto flex max-w-[65%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
+      className="relative mx-auto flex max-w-[100%] md:max-w-[65%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
     >
-
-
       {/* Sticky Title Section */}
       {showTitle && (
         <motion.div
@@ -94,9 +87,9 @@ export const VideoShowcaseSection = () => {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              Experience the future of architectural visualization with AI-powered
-              rendering that brings your concepts to life with unprecedented
-              detail and realism.
+              Experience the future of architectural visualization with
+              AI-powered rendering that brings your concepts to life with
+              unprecedented detail and realism.
             </motion.p>
           </BreathingAnimationText>
 
@@ -114,7 +107,11 @@ export const VideoShowcaseSection = () => {
                   text: "80,000+ signed up architects",
                   delay: 0.1,
                 },
-                { icon: Sparkles, text: "150,000+ generated images", delay: 0.2 },
+                {
+                  icon: Sparkles,
+                  text: "150,000+ generated images",
+                  delay: 0.2,
+                },
               ].map((badge, index) => (
                 <motion.span
                   key={index}

@@ -31,7 +31,7 @@ export const PhotoStripAnimation = ({
 
   return (
     <div
-      className={cn("mt-20 max-w-7xl px-8 sm:px-0 overflow-hidden", className)}
+      className={cn("mt-20 max-w-7xl px-2 sm:px-0 overflow-hidden", className)}
     >
       {/* Desktop Labels */}
       <div className="hidden flex-row justify-between font-medium text-lg md:flex mb-4">
@@ -49,10 +49,13 @@ export const PhotoStripAnimation = ({
       <div className="relative hidden w-full overflow-x-hidden py-3 md:block">
         {/* Magic separator */}
         <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[2px] rounded-full bg-neutral-500"></div>
-        
+
         {/* Left side - Original images with overflow hidden */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
-          <div className="photo_strip flex flex-row items-center photo_strip_animation" style={{ width: "200%" }}>
+          <div
+            className="photo_strip flex flex-row items-center photo_strip_animation"
+            style={{ width: "200%" }}
+          >
             {/* Render original images twice for seamless loop */}
             {[...originalImages, ...originalImages].map((image, index) => (
               <div
@@ -74,7 +77,7 @@ export const PhotoStripAnimation = ({
             ))}
           </div>
         </div>
-        
+
         {/* Right side - Synchronized result images */}
         <div className="z-0 w-full">
           <div className="photo_strip flex w-full flex-row items-center photo_strip_animation">
@@ -110,10 +113,13 @@ export const PhotoStripAnimation = ({
       <div className="relative block w-full overflow-hidden py-3 md:hidden">
         {/* Magic separator */}
         <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[1px] rounded-full bg-neutral-500"></div>
-        
+
         {/* Left side - Original images */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
-          <div className="photo_strip flex flex-row items-center photo_strip_animation_mobile" style={{ width: "200%" }}>
+          <div
+            className="photo_strip flex flex-row items-center photo_strip_animation_mobile"
+            style={{ width: "200%" }}
+          >
             {[...originalImages, ...originalImages].map((image, index) => (
               <div
                 key={index}
@@ -134,7 +140,7 @@ export const PhotoStripAnimation = ({
             ))}
           </div>
         </div>
-        
+
         {/* Right side - Synchronized result images */}
         <div className="z-0 w-full">
           <div className="photo_strip flex w-full flex-row items-center photo_strip_animation_mobile">

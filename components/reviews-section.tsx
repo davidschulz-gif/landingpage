@@ -18,11 +18,11 @@ export function ReviewsSection() {
   return (
     <section
       ref={containerRef}
-      className="w-full max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative"
+      className="w-full max-w-[95%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative"
       style={{ backgroundColor: "#f0f0f0" }}
     >
-         {/* Featured Testimonial - Using dedicated component */}
-         {/* <div className="max-w-2xl mx-auto">
+      {/* Featured Testimonial - Using dedicated component */}
+      {/* <div className="max-w-2xl mx-auto">
           <FeaturedTestimonialSection />
         </div> */}
       {/* Header */}
@@ -50,7 +50,7 @@ export function ReviewsSection() {
       {/* Vertical Layout */}
       <div className="space-y-8">
         {/* Animated Reviews - Full Width with 3 Columns */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -95,7 +95,6 @@ export function ReviewsSection() {
             />
           </div>
         </motion.div>
-
       </div>
     </section>
   );

@@ -76,7 +76,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className="w-full max-w-[80%] mx-auto h-[200vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
+      className="w-full max-w-[100%] md:max-w-[80%] mx-auto h-[200vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent"
     >
       <Header />
       <motion.div
@@ -129,8 +129,8 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto pt-20 pb-20 md:pt-32 md:pb-16 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
-      <div className="pt-24 relative">
+    <div className="max-w-7xl relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
+      <div className="pt-0 md:pt-24 relative">
         {/* Left Side - Headline and Description */}
         <div className="absolute left-0 top-16 max-w-lg">
           <BreathingAnimationText animationType="black-gray">
@@ -159,7 +159,7 @@ export const Header = () => {
         </div>
 
         {/* Center - Logo, Title and Button */}
-        <div className="flex flex-col items-center text-center pt-24">
+        <div className="flex flex-col items-center text-center pt-56 md:pt-24">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -206,7 +206,7 @@ export const Header = () => {
               Get Started
             </Button>
           </motion.div>
-          
+
           {/* Features */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -252,11 +252,8 @@ export const Header = () => {
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
-
-
 
       {/* Floating elements */}
       <motion.div
