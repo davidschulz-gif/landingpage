@@ -343,7 +343,7 @@ export function TabVideoShowcase() {
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         viewport={{ once: true, margin: "-50px" }}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-1 md:gap-4">
           {tabs.map((tab, index) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -366,10 +366,10 @@ export function TabVideoShowcase() {
                       duration={2000}
                       onClick={() => setActiveTab(tab.id)}
                     >
-                      <Card className="bg-white dark:bg-gray-800 border-0 hover:shadow-md px-4 pb-6 pt-4 w-full h-full shadow-sm relative z-10">
-                        <CardContent className="p-3 min-h-[200px] flex flex-col">
+                      <Card className="bg-white dark:bg-gray-800 border-0 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4 w-full h-full shadow-sm relative z-10">
+                        <CardContent className="p-1 md:p-3 md:min-h-[200px] flex flex-col">
                           <motion.div
-                            className="flex items-center gap-2 mb-3"
+                            className="flex items-start md:items-center md:flex-row flex-col gap-2 mb-3"
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
@@ -387,7 +387,7 @@ export function TabVideoShowcase() {
                             </motion.div>
                             <BreathingAnimationText animationType="red-orange">
                               <motion.h3
-                                className="text-sm font-bold text-gray-900 dark:text-white"
+                                className="text-xs md:text-sm font-bold text-gray-900 dark:text-white"
                                 style={{
                                   color: THEME_COLORS.primary,
                                 }}
@@ -403,7 +403,7 @@ export function TabVideoShowcase() {
 
                           <BreathingAnimationText animationType="black-gray">
                             <motion.p
-                              className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-3"
+                              className="text-xs text-gray-600 md:text-center text-left dark:text-gray-300 mb-3 leading-relaxed line-clamp-5 md:line-clamp-3"
                               initial={{ opacity: 0, y: 15 }}
                               whileInView={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.5, delay: 0.3 }}
@@ -414,7 +414,7 @@ export function TabVideoShowcase() {
                           </BreathingAnimationText>
 
                           <motion.div
-                            className="space-y-1 flex-1"
+                            className="space-y-1 flex-1 md:flex hidden"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
@@ -452,12 +452,12 @@ export function TabVideoShowcase() {
                   </div>
                 ) : (
                   <Card
-                    className="cursor-pointer transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md px-4 pb-6 pt-4"
+                    className="cursor-pointer transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4"
                     onClick={() => setActiveTab(tab.id)}
                   >
-                    <CardContent className="p-3 min-h-[200px] flex flex-col">
+                    <CardContent className="p-1 md:p-3 md:min-h-[200px] flex flex-col">
                       <motion.div
-                        className="flex items-center gap-2 mb-3"
+                        className="flex items-start md:items-center md:flex-row flex-col gap-2 mb-3"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
@@ -472,7 +472,7 @@ export function TabVideoShowcase() {
                         </motion.div>
                         <BreathingAnimationText animationType="black-gray">
                           <motion.h3
-                            className="text-sm font-bold text-gray-900 dark:text-white"
+                            className="text-xs md:text-sm font-bold text-gray-900 dark:text-white"
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.2 }}
@@ -485,7 +485,7 @@ export function TabVideoShowcase() {
 
                       <BreathingAnimationText animationType="black-gray">
                         <motion.p
-                          className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-3"
+                          className="text-xs text-gray-600 dark:text-gray-300 mb-3 leading-relaxed line-clamp-5 md:line-clamp-3"
                           initial={{ opacity: 0, y: 15 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
@@ -496,7 +496,7 @@ export function TabVideoShowcase() {
                       </BreathingAnimationText>
 
                       <motion.div
-                        className="space-y-1 flex-1"
+                        className="space-y-1 flex-1 md:flex hidden"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
