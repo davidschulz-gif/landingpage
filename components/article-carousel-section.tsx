@@ -298,8 +298,8 @@ export function ArticleCarouselSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-12 cursor-pointer hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-300" />
-          <CarouselNext className="-right-12 hover:bg-red-500 cursor-pointer hover:border-red-500 hover:text-white transition-colors duration-300" />
+          <CarouselPrevious className="left-2 md:-left-12 cursor-pointer hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-300" />
+          <CarouselNext className="right-2 md:-right-12 hover:bg-red-500 cursor-pointer hover:border-red-500 hover:text-white transition-colors duration-300" />
         </Carousel>
       </div>
     </div>
