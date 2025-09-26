@@ -11,7 +11,7 @@ const professionalPlans = [
   {
     id: "starter",
     name: "STARTER",
-    monthlyPrice: "$19",
+    monthlyPrice: "€19",
     yearlyPrice: "€59",
     period: "/month",
     yearlyPeriod: "/year",
@@ -33,7 +33,7 @@ const professionalPlans = [
   {
     id: "explorer",
     name: "EXPLORER",
-    monthlyPrice: "$49",
+    monthlyPrice: "€49",
     yearlyPrice: "€149",
     period: "/month",
     yearlyPeriod: "/year",
@@ -58,7 +58,7 @@ const professionalPlans = [
   {
     id: "pro",
     name: "PRO",
-    monthlyPrice: "$99",
+    monthlyPrice: "€99",
     yearlyPrice: "€299",
     period: "/month",
     yearlyPeriod: "/year",
@@ -82,7 +82,7 @@ const educationPlans = [
   {
     id: "student",
     name: "STUDENT",
-    monthlyPrice: "$9",
+    monthlyPrice: "€6",
     yearlyPrice: "€29",
     period: "/month",
     yearlyPeriod: "/year",
@@ -104,7 +104,7 @@ const educationPlans = [
   {
     id: "educator",
     name: "EDUCATOR",
-    monthlyPrice: "$24",
+    monthlyPrice: "€12",
     yearlyPrice: "€74",
     period: "/month",
     yearlyPeriod: "/year",
@@ -129,7 +129,7 @@ const educationPlans = [
   {
     id: "institution",
     name: "INSTITUTION",
-    monthlyPrice: "$49",
+    monthlyPrice: "€18",
     yearlyPrice: "€149",
     period: "/month",
     yearlyPeriod: "/year",
