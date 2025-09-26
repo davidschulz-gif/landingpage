@@ -246,7 +246,7 @@ export function TabVideoShowcase() {
               key={`video-${activeTab}`}
               className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl"
               src={activeTabData.video}
-              poster={activeTabData.poster}
+              // poster={activeTabData.poster}
               autoPlay={true}
               muted
               loop
