@@ -414,7 +414,7 @@ export function TabVideoShowcase() {
                           </BreathingAnimationText>
 
                           <motion.div
-                            className="space-y-1 flex-1 md:flex hidden"
+                            className="space-y-1 flex-1 md:block hidden"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
@@ -496,7 +496,7 @@ export function TabVideoShowcase() {
                       </BreathingAnimationText>
 
                       <motion.div
-                        className="space-y-1 flex-1 md:flex hidden"
+                        className="space-y-1 flex-1 md:block hidden"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
