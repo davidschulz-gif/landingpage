@@ -129,7 +129,7 @@ const getTrustedByItems = () => [
   {
     title: "FINALIST FOR TIC\nAWARD 2024.",
     logo: (
-      <div className="relative cursor-pointer w-14 md:w-9 lg:w-12 xl:w-16">
+      <div className="relative cursor-pointer w-10 md:w-9 lg:w-12 xl:w-16">
         <Image
           src="/logo/tic_logo.png"
           alt="TIC Logo"
@@ -143,7 +143,7 @@ const getTrustedByItems = () => [
   {
     title: "MEMBER OF.",
     logo: (
-      <div className="relative w-14 md:w-12 lg:w-16 xl:w-20">
+      <div className="relative w-14 md:w-10 lg:w-16 xl:w-20">
         <Image
           src="/logo/lo_bdbau_1c_rz.avif"
           alt="Member Logo"
@@ -162,12 +162,9 @@ export const TrustedBySection = () => {
       className="w-full bg-[#f0f0f0] backdrop-blur-sm relative z-30"
       style={{ minHeight: "15%", maxHeight: "15%", height: "15%" }}
     >
-      <div
-        className="flex justify-center items-start"
-        style={{ padding: "10px 0px 10px" }}
-      >
+      <div className="flex justify-center items-start pt-3 md:pb-3 pb-1">
         <div
-          className="flex flex-wrap justify-around gap-y-2 md:gap-y-6"
+          className="flex flex-wrap justify-around gap-y-1 md:gap-y-6"
           style={{ width: "100%" }}
         >
           {getTrustedByItems().map((item, index) => (
@@ -177,14 +174,13 @@ export const TrustedBySection = () => {
               style={{ width: "max-content" }}
             >
               <div
-                className="text-xs font-bold text-center uppercase md:mb-3"
+                className="text-xs font-bold text-center uppercase md:mb-3 mb-1 md:h-[24px]"
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "12px",
                   fontWeight: 700,
                   letterSpacing: "1px",
                   lineHeight: 1,
-                  height: "24px",
                 }}
               >
                 {item.title}

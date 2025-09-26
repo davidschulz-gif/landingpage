@@ -100,7 +100,7 @@ export const VideoShowcaseSection = () => {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
           >
-            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
+            <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap">
               {[
                 {
                   icon: Users,
