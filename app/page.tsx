@@ -14,6 +14,7 @@ import CompareDemo from "@/components/compare-drag-demo";
 import { VideoShowcaseSection } from "@/components/video-showcase-section";
 import { row123Products, row4Products } from "@/constants/homePage";
 import { NavbarDemo } from "@/components/adaptive-navbar-2";
+import { SmallNavbarMenu } from "@/components/small-navbar-menu";
 const StickySliderSection = dynamic(
   () =>
     import("@/components/sticky-slider-section").then(
@@ -151,6 +152,8 @@ export default function Home() {
       {/* Navbar */}
       {/* <AdaptiveNavbar /> */}
       <NavbarDemo />
+
+      {/* <SmallNavbarMenu /> */}
 
       {/* Hero Section with Parallax */}
       <HeroParallax

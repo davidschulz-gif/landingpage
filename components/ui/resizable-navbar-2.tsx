@@ -13,6 +13,7 @@ import React, { useRef, useState } from "react";
 interface NavbarProps {
   children: React.ReactNode;
   className?: string;
+  setDoNotShowMegaMenu?: any;
 }
 
 interface NavBodyProps {
@@ -48,7 +49,11 @@ interface MobileNavMenuProps {
   onClose: () => void;
 }
 
-export const Navbar = ({ children, className }: NavbarProps) => {
+export const Navbar = ({
+  children,
+  className,
+  setDoNotShowMegaMenu,
+}: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
@@ -58,8 +63,14 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
+      if (setDoNotShowMegaMenu) {
+        setDoNotShowMegaMenu(true);
+      }
       setVisible(true);
     } else {
+      if (setDoNotShowMegaMenu) {
+        setDoNotShowMegaMenu(false);
+      }
       setVisible(false);
     }
   });
