@@ -41,7 +41,7 @@ export const VideoShowcaseSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative mx-auto flex max-w-[100%] md:max-w-[65%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 h-[150vh]"
+      className="relative mx-auto flex max-w-[100%] md:max-w-[65%] w-full flex-col px-4 py-0 text-neutral-800 dark:text-neutral-200 pt-32 sm:pt-40 md:h-[150vh]"
     >
       {/* Sticky Title Section */}
       {showTitle && (
@@ -138,7 +138,7 @@ export const VideoShowcaseSection = () => {
       {/* Video Section */}
       <div
         ref={videoSectionRef}
-        className="flex min-h-screen w-full flex-col items-center justify-center md:h-screen lg:gap-12 sticky top-0 z-10"
+        className="min-h-screen md:flex hidden w-full flex-col items-center justify-center h-screen lg:gap-12 sticky top-0 z-10"
       >
         <motion.div
           className="flex w-full items-center justify-center overflow-hidden"
@@ -160,6 +160,20 @@ export const VideoShowcaseSection = () => {
             />
           </div>
         </motion.div>
+      </div>
+      <div className="md:hidden flex w-full">
+        <div className="relative w-full h-full mx-auto px-4">
+          <video
+            className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
+            src="videos/INTRO_typus_newlogo.mp4"
+            poster="/video-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        </div>
       </div>
     </section>
   );
