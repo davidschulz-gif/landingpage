@@ -51,7 +51,7 @@ export function SplashScreen({
 
       <motion.div
         className={cn(
-          "fixed inset-0 z-50",
+          "fixed inset-0 z-[1001]",
           "motion-reduce:transition-none",
           className
         )}

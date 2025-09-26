@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { Play } from "lucide-react";
 import { useState, useRef } from "react";
+import Link from "next/link";
 
 export function NavbarDemo() {
   const navItems = [
@@ -137,18 +138,18 @@ export function NavbarDemo() {
           <NavItems items={navItems} />
         </div>
         <div className="flex items-center gap-6 h-full">
-          <a
-            href="#login"
+          <Link
+            href={"https://app.typus.ai/login"}
             className="font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
           >
             LOGIN
-          </a>
-          <a
-            href="#signup"
+          </Link>
+          <Link
+            href={"https://app.typus.ai/login"}
             className="font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]"
           >
             SIGN UP
-          </a>
+          </Link>
         </div>
       </NavBody>
       <div
@@ -272,16 +273,16 @@ export function NavbarDemo() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200"
                   >
-                    <div className="w-8 h-5 bg-neutral-100 dark:bg-neutral-800 rounded overflow-hidden flex-shrink-0 mt-0.5">
+                    {/* <div className="w-8 h-5 bg-neutral-100 dark:bg-neutral-800 rounded overflow-hidden flex-shrink-0 mt-0.5">
                       <div className="w-full h-full bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
                         <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                       </div>
-                    </div>
+                    </div> */}
                     <div>
                       <div className="font-medium">{subitem.title}</div>
-                      <div className="text-xs opacity-75">
+                      {/* <div className="text-xs opacity-75">
                         {subitem.description}
-                      </div>
+                      </div> */}
                     </div>
                   </a>
                 ))}
@@ -289,20 +290,24 @@ export function NavbarDemo() {
             </div>
           ))}
           <div className="flex w-full flex-col gap-4">
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="secondary"
-              className="w-full min-w-[140px] text-nowrap"
-            >
-              Login
-            </NavbarButton>
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
-              className="w-full min-w-[140px] text-nowrap"
-            >
-              Sign Up
-            </NavbarButton>
+            <Link href={"https://app.typus.ai/login"}>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="secondary"
+                className="w-full min-w-[140px] text-nowrap"
+              >
+                Login
+              </NavbarButton>
+            </Link>
+            <Link href={"https://app.typus.ai/register"}>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full min-w-[140px] text-nowrap"
+              >
+                Sign Up
+              </NavbarButton>
+            </Link>
           </div>
         </MobileNavMenu>
       </MobileNav>
