@@ -94,7 +94,7 @@ export const VideoShowcaseSection = () => {
           </BreathingAnimationText>
 
           <motion.div
-            className="max-w-md"
+            className="max-w-lg"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}

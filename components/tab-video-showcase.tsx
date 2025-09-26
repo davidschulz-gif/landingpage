@@ -172,6 +172,32 @@ export function TabVideoShowcase() {
     videoLoadError,
   ]);
 
+  // Add this after your existing useEffect hooks (around line 150)
+  useEffect(() => {
+    // iOS-specific video handling
+    const handleTouchStart = () => {
+      const videos = document.querySelectorAll("video");
+      videos.forEach((video) => {
+        if (video.paused) {
+          video.play().catch(console.error);
+        }
+      });
+    };
+
+    // Detect iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if (isIOS) {
+      document.addEventListener("touchstart", handleTouchStart, { once: true });
+      document.addEventListener("click", handleTouchStart, { once: true });
+    }
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("click", handleTouchStart);
+    };
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -246,13 +272,15 @@ export function TabVideoShowcase() {
               key={`video-${activeTab}`}
               className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl"
               src={activeTabData.video}
-              // poster={activeTabData.poster}
+              poster={activeTabData.poster}
               autoPlay={true}
-              muted
-              loop
-              playsInline
-              preload="metadata"
+              muted={true}
+              loop={true}
+              playsInline={true}
+              preload="auto"
               controls={false}
+              webkit-playsinline="true"
+              x5-playsinline="true"
               onLoadStart={() => {
                 console.log("Video loading started:", activeTabData.video);
                 setVideoLoadError(null);
@@ -263,6 +291,18 @@ export function TabVideoShowcase() {
               }}
               onCanPlay={() => {
                 console.log("Video can play:", activeTabData.video);
+              }}
+              onCanPlayThrough={() => {
+                // Force play specifically for iOS
+                const video = document.querySelector(
+                  `video[src="${activeTabData.video}"]`
+                ) as HTMLVideoElement;
+                if (video && video.paused) {
+                  video.play().catch((error) => {
+                    console.error("Autoplay failed:", error);
+                    setVideoLoadError(`Autoplay blocked: ${error.message}`);
+                  });
+                }
               }}
               onError={(e) => {
                 console.error("Video error:", e, activeTabData.video);
