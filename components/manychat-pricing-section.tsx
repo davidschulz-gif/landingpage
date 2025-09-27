@@ -14,6 +14,7 @@ const professionalPlans = [
     name: "STARTER",
     monthlyPrice: "€19",
     yearlyPrice: "€59",
+    monthlyEquivalant: "€5",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -36,6 +37,7 @@ const professionalPlans = [
     name: "EXPLORER",
     monthlyPrice: "€49",
     yearlyPrice: "€149",
+    monthlyEquivalant: "€12",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -61,6 +63,7 @@ const professionalPlans = [
     name: "PRO",
     monthlyPrice: "€99",
     yearlyPrice: "€299",
+    monthlyEquivalant: "€25",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -85,6 +88,7 @@ const educationPlans = [
     name: "STUDENT",
     monthlyPrice: "€6",
     yearlyPrice: "€18",
+    monthlyEquivalant: "€2",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -107,6 +111,7 @@ const educationPlans = [
     name: "EDUCATOR",
     monthlyPrice: "€12",
     yearlyPrice: "€36",
+    monthlyEquivalant: "€3",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -132,6 +137,7 @@ const educationPlans = [
     name: "INSTITUTION",
     monthlyPrice: "€18",
     yearlyPrice: "€54",
+    monthlyEquivalant: "€5",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -485,7 +491,7 @@ function PricingCard({
               className="text-2xl font-bold"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
+              {isYearly ? plan.monthlyEquivalant : plan.monthlyPrice}
             </span>
             <span
               className="text-xs ml-1 text-gray-600"
