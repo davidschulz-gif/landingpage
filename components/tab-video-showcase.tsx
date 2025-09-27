@@ -23,6 +23,7 @@ const tabs = [
     description:
       "Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.",
     video: "/videos/showcase/create_showcase.mp4",
+    videoMobile: "/videos/showcase/compressed/create_showcase.mp4",
     poster: "/modern-villa-render.png",
     features: ["AI-Powered Generation", "Instant Results", "Multiple Styles"],
   },
@@ -33,6 +34,7 @@ const tabs = [
     description:
       "Add People, subtract furniture, and modify facades in your designs with natural language.",
     video: "/videos/showcase/edit_showcase.mp4",
+    videoMobile: "/videos/showcase/compressed/edit_showcase.mp4",
     poster: "/modern-office-building.png",
     features: [
       "Natural Language Editing",
@@ -47,6 +49,7 @@ const tabs = [
     description:
       "Sharpen existing renderings, or add extra detail to your designs with a single click.",
     video: "/videos/showcase/upscale_showcase.mp4",
+    videoMobile: "/videos/showcase/compressed/upscale_showcase.mp4",
     poster: "/modern-interior-design.png",
     features: [
       "Quality Enhancement",
@@ -81,6 +84,8 @@ export function TabVideoShowcase() {
     once: false,
     margin: "-100px",
   });
+  // Add this hook at the top of your component (after existing useState declarations)
+  const [isMobile, setIsMobile] = useState(false);
 
   const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
@@ -198,6 +203,18 @@ export function TabVideoShowcase() {
     };
   }, []);
 
+  // Add this useEffect after your existing useEffect hooks
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -271,8 +288,8 @@ export function TabVideoShowcase() {
             <motion.video
               key={`video-${activeTab}`}
               className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl"
-              src={activeTabData.video}
-              poster={activeTabData.poster}
+              src={isMobile ? activeTabData.videoMobile : activeTabData.video}
+              poster={isMobile ? undefined : activeTabData.poster}
               autoPlay={true}
               muted={true}
               loop={true}
@@ -282,20 +299,32 @@ export function TabVideoShowcase() {
               webkit-playsinline="true"
               x5-playsinline="true"
               onLoadStart={() => {
-                console.log("Video loading started:", activeTabData.video);
+                const videoSrc = isMobile
+                  ? activeTabData.videoMobile
+                  : activeTabData.video;
+                console.log("Video loading started:", videoSrc);
                 setVideoLoadError(null);
               }}
               onLoadedData={() => {
-                console.log("Video loaded:", activeTabData.video);
+                const videoSrc = isMobile
+                  ? activeTabData.videoMobile
+                  : activeTabData.video;
+                console.log("Video loaded:", videoSrc);
                 setVideoLoadError(null);
               }}
               onCanPlay={() => {
-                console.log("Video can play:", activeTabData.video);
+                const videoSrc = isMobile
+                  ? activeTabData.videoMobile
+                  : activeTabData.video;
+                console.log("Video can play:", videoSrc);
               }}
               onCanPlayThrough={() => {
                 // Force play specifically for iOS
+                const videoSrc = isMobile
+                  ? activeTabData.videoMobile
+                  : activeTabData.video;
                 const video = document.querySelector(
-                  `video[src="${activeTabData.video}"]`
+                  `video[src="${videoSrc}"]`
                 ) as HTMLVideoElement;
                 if (video && video.paused) {
                   video.play().catch((error) => {
@@ -305,8 +334,11 @@ export function TabVideoShowcase() {
                 }
               }}
               onError={(e) => {
-                console.error("Video error:", e, activeTabData.video);
-                setVideoLoadError(activeTabData.video);
+                const videoSrc = isMobile
+                  ? activeTabData.videoMobile
+                  : activeTabData.video;
+                console.error("Video error:", e, videoSrc);
+                setVideoLoadError(videoSrc);
               }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
