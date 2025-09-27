@@ -179,28 +179,41 @@ export function TabVideoShowcase() {
 
   // Add this after your existing useEffect hooks (around line 150)
   useEffect(() => {
-    // iOS-specific video handling
-    const handleTouchStart = () => {
+    const handleUserInteraction = () => {
+      console.log("User interaction detected, attempting to play videos");
       const videos = document.querySelectorAll("video");
       videos.forEach((video) => {
         if (video.paused) {
-          video.play().catch(console.error);
+          video.play().catch((error) => {
+            console.log("Failed to play video after interaction:", error);
+          });
         }
       });
     };
 
-    // Detect iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    // Detect iOS/mobile
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isMobileBrowser = window.innerWidth < 768;
 
-    if (isIOS) {
-      document.addEventListener("touchstart", handleTouchStart, { once: true });
-      document.addEventListener("click", handleTouchStart, { once: true });
+    if (isIOS || isMobileBrowser) {
+      // Add multiple event listeners for different interaction types
+      const events = ["touchstart", "touchend", "click", "scroll", "keydown"];
+
+      events.forEach((eventType) => {
+        document.addEventListener(eventType, handleUserInteraction, {
+          once: true,
+          passive: true,
+        });
+      });
+
+      return () => {
+        events.forEach((eventType) => {
+          document.removeEventListener(eventType, handleUserInteraction);
+        });
+      };
     }
-
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("click", handleTouchStart);
-    };
   }, []);
 
   // Add this useEffect after your existing useEffect hooks
@@ -285,11 +298,33 @@ export function TabVideoShowcase() {
       >
         <div className="relative w-full h-full mx-auto px-4">
           {activeTabData ? (
+            // Replace your existing motion.video component with this updated version:
             <motion.video
               key={`video-${activeTab}`}
+              ref={(el) => {
+                if (el) {
+                  // Force play on iOS after element is created
+                  const playVideo = async () => {
+                    try {
+                      // Small delay to ensure video is ready
+                      await new Promise((resolve) => setTimeout(resolve, 100));
+                      if (el.paused) {
+                        await el.play();
+                        console.log("Video playing successfully");
+                      }
+                    } catch (error) {
+                      console.log(
+                        "Autoplay prevented, waiting for user interaction:",
+                        error
+                      );
+                    }
+                  };
+                  playVideo();
+                }
+              }}
               className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl"
               src={isMobile ? activeTabData.videoMobile : activeTabData.video}
-              poster={isMobile ? undefined : activeTabData.poster}
+              poster={activeTabData.poster}
               autoPlay={true}
               muted={true}
               loop={true}
@@ -298,6 +333,10 @@ export function TabVideoShowcase() {
               controls={false}
               webkit-playsinline="true"
               x5-playsinline="true"
+              style={{
+                // iOS-specific CSS fixes
+                objectFit: "cover",
+              }}
               onLoadStart={() => {
                 const videoSrc = isMobile
                   ? activeTabData.videoMobile
@@ -305,27 +344,38 @@ export function TabVideoShowcase() {
                 console.log("Video loading started:", videoSrc);
                 setVideoLoadError(null);
               }}
-              onLoadedData={() => {
+              onLoadedData={(e) => {
+                const video = e.currentTarget;
                 const videoSrc = isMobile
                   ? activeTabData.videoMobile
                   : activeTabData.video;
                 console.log("Video loaded:", videoSrc);
                 setVideoLoadError(null);
+
+                // Try to play immediately when data is loaded
+                if (video.paused) {
+                  video.play().catch(console.error);
+                }
               }}
-              onCanPlay={() => {
+              onCanPlay={(e) => {
+                const video = e.currentTarget;
                 const videoSrc = isMobile
                   ? activeTabData.videoMobile
                   : activeTabData.video;
                 console.log("Video can play:", videoSrc);
+
+                // Force play when video can play
+                if (video.paused) {
+                  video.play().catch(console.error);
+                }
               }}
-              onCanPlayThrough={() => {
-                // Force play specifically for iOS
+              onCanPlayThrough={(e) => {
+                const video = e.currentTarget;
                 const videoSrc = isMobile
                   ? activeTabData.videoMobile
                   : activeTabData.video;
-                const video = document.querySelector(
-                  `video[src="${videoSrc}"]`
-                ) as HTMLVideoElement;
+
+                // Final attempt to force play
                 if (video && video.paused) {
                   video.play().catch((error) => {
                     console.error("Autoplay failed:", error);
