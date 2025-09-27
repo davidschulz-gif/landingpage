@@ -7,7 +7,7 @@ export default function CompareDemo() {
       className="w-full max-w-[90%] md:max-w-[65%] mx-auto py-10 overflow-x-hidden"
       style={{ backgroundColor: "#f0f0f0" }}
     >
-      <div className="w-full overflow-x-auto">
+      <div className="w-full overflow-x-hidden md:overflow-x-auto">
         <CompareWithAnimation />
       </div>
     </section>

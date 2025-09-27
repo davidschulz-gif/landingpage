@@ -161,98 +161,100 @@ export default function Home() {
         row4Products={row4Products}
       />
 
-      {/* Video Showcase Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <VideoShowcaseSection />
-      </motion.div>
+      <div className="w-full relative md:overflow-x-auto overflow-x-hidden">
+        {/* Video Showcase Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <VideoShowcaseSection />
+        </motion.div>
 
-      {/* Sticky Slider Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <StickySliderSection />
-      </motion.div>
+        {/* Sticky Slider Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <StickySliderSection />
+        </motion.div>
 
-      {/* Tab Video Showcase */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <TabVideoShowcase />
-      </motion.div>
+        {/* Tab Video Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <TabVideoShowcase />
+        </motion.div>
 
-      {/* Before & After Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <CompareDemo />
-      </motion.div>
+        {/* Before & After Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <CompareDemo />
+        </motion.div>
 
-      {/* Pricing Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <ManyChatPricingSection />
-      </motion.div>
+        {/* Pricing Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <ManyChatPricingSection />
+        </motion.div>
 
-      {/* Meet Our Team Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <MeetOurTeamSection />
-      </motion.div>
+        {/* Meet Our Team Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <MeetOurTeamSection />
+        </motion.div>
 
-      {/* Article Carousel Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <ArticleCarouselSection />
-      </motion.div>
+        {/* Article Carousel Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <ArticleCarouselSection />
+        </motion.div>
 
-      {/* Reviews Section with Marquee */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <ReviewsSection />
-      </motion.div>
+        {/* Reviews Section with Marquee */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <ReviewsSection />
+        </motion.div>
 
-      {/* Enhanced Footer */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <FooterSection />
-      </motion.div>
+        {/* Enhanced Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} // Reduced from 0.8s
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <FooterSection />
+        </motion.div>
 
-      {/* Sticky Bottom Sheet */}
-      <StickyBottomSheet showOnlyInHero={true} />
+        {/* Sticky Bottom Sheet */}
+        <StickyBottomSheet showOnlyInHero={true} />
+      </div>
     </div>
   );
 
