@@ -285,6 +285,7 @@ export function TabVideoShowcase() {
       <div id="create" />
       <div id="edit" />
       <div id="enhance" />
+      <div id="demo" />
 
       {/* Video Section - Scrollable */}
       <motion.div

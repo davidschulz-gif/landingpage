@@ -166,13 +166,13 @@ export function NavbarDemo() {
                     Explore our AI-powered architectural visualization platform
                   </div>
                   <div className="flex items-center gap-6">
-                    <a
+                    <Link
                       href="#demo"
                       className="inline-flex items-center gap-1.5 text-[11px] text-red-600 hover:text-red-700 font-medium transition-all duration-200 hover:translate-x-0.5"
                     >
                       <Play className="w-3 h-3" />
                       View Demo
-                    </a>
+                    </Link>
                     <a
                       href="#pricing"
                       className="text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5 rounded-lg hover:bg-gray-100/60 transition-all duration-200"
