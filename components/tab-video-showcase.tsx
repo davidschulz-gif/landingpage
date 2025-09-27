@@ -300,97 +300,101 @@ export function TabVideoShowcase() {
         <div className="relative w-full h-full mx-auto px-4">
           {activeTabData ? (
             // Replace your existing motion.video component with this updated version:
-            <motion.video
-              key={`video-${activeTab}`}
-              ref={(el) => {
-                if (el) {
-                  // Force play on iOS after element is created
-                  const playVideo = async () => {
-                    try {
-                      // Small delay to ensure video is ready
-                      await new Promise((resolve) => setTimeout(resolve, 100));
-                      if (el.paused) {
-                        await el.play();
-                        console.log("Video playing successfully");
+            <div className="flex justify-center items-center w-full">
+              <motion.video
+                key={`video-${activeTab}`}
+                ref={(el) => {
+                  if (el) {
+                    // Force play on iOS after element is created
+                    const playVideo = async () => {
+                      try {
+                        // Small delay to ensure video is ready
+                        await new Promise((resolve) =>
+                          setTimeout(resolve, 100)
+                        );
+                        if (el.paused) {
+                          await el.play();
+                          console.log("Video playing successfully");
+                        }
+                      } catch (error) {
+                        console.log(
+                          "Autoplay prevented, waiting for user interaction:",
+                          error
+                        );
                       }
-                    } catch (error) {
-                      console.log(
-                        "Autoplay prevented, waiting for user interaction:",
-                        error
-                      );
-                    }
-                  };
-                  playVideo();
-                }
-              }}
-              className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] rounded object-contain"
-              src={isMobile ? activeTabData.videoMobile : activeTabData.video}
-              poster={activeTabData.poster}
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              playsInline={true}
-              preload="auto"
-              controls={false}
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              onLoadStart={() => {
-                const videoSrc = isMobile
-                  ? activeTabData.videoMobile
-                  : activeTabData.video;
-                console.log("Video loading started:", videoSrc);
-                setVideoLoadError(null);
-              }}
-              onLoadedData={(e) => {
-                const video = e.currentTarget;
-                const videoSrc = isMobile
-                  ? activeTabData.videoMobile
-                  : activeTabData.video;
-                console.log("Video loaded:", videoSrc);
-                setVideoLoadError(null);
+                    };
+                    playVideo();
+                  }
+                }}
+                className="md:w-1/2 rounded-2xl object-contain"
+                src={isMobile ? activeTabData.videoMobile : activeTabData.video}
+                poster={activeTabData.poster}
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                playsInline={true}
+                preload="auto"
+                controls={false}
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                onLoadStart={() => {
+                  const videoSrc = isMobile
+                    ? activeTabData.videoMobile
+                    : activeTabData.video;
+                  console.log("Video loading started:", videoSrc);
+                  setVideoLoadError(null);
+                }}
+                onLoadedData={(e) => {
+                  const video = e.currentTarget;
+                  const videoSrc = isMobile
+                    ? activeTabData.videoMobile
+                    : activeTabData.video;
+                  console.log("Video loaded:", videoSrc);
+                  setVideoLoadError(null);
 
-                // Try to play immediately when data is loaded
-                if (video.paused) {
-                  video.play().catch(console.error);
-                }
-              }}
-              onCanPlay={(e) => {
-                const video = e.currentTarget;
-                const videoSrc = isMobile
-                  ? activeTabData.videoMobile
-                  : activeTabData.video;
-                console.log("Video can play:", videoSrc);
+                  // Try to play immediately when data is loaded
+                  if (video.paused) {
+                    video.play().catch(console.error);
+                  }
+                }}
+                onCanPlay={(e) => {
+                  const video = e.currentTarget;
+                  const videoSrc = isMobile
+                    ? activeTabData.videoMobile
+                    : activeTabData.video;
+                  console.log("Video can play:", videoSrc);
 
-                // Force play when video can play
-                if (video.paused) {
-                  video.play().catch(console.error);
-                }
-              }}
-              onCanPlayThrough={(e) => {
-                const video = e.currentTarget;
-                const videoSrc = isMobile
-                  ? activeTabData.videoMobile
-                  : activeTabData.video;
+                  // Force play when video can play
+                  if (video.paused) {
+                    video.play().catch(console.error);
+                  }
+                }}
+                onCanPlayThrough={(e) => {
+                  const video = e.currentTarget;
+                  const videoSrc = isMobile
+                    ? activeTabData.videoMobile
+                    : activeTabData.video;
 
-                // Final attempt to force play
-                if (video && video.paused) {
-                  video.play().catch((error) => {
-                    console.error("Autoplay failed:", error);
-                    setVideoLoadError(`Autoplay blocked: ${error.message}`);
-                  });
-                }
-              }}
-              onError={(e) => {
-                const videoSrc = isMobile
-                  ? activeTabData.videoMobile
-                  : activeTabData.video;
-                console.error("Video error:", e, videoSrc);
-                setVideoLoadError(videoSrc);
-              }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            />
+                  // Final attempt to force play
+                  if (video && video.paused) {
+                    video.play().catch((error) => {
+                      console.error("Autoplay failed:", error);
+                      setVideoLoadError(`Autoplay blocked: ${error.message}`);
+                    });
+                  }
+                }}
+                onError={(e) => {
+                  const videoSrc = isMobile
+                    ? activeTabData.videoMobile
+                    : activeTabData.video;
+                  console.error("Video error:", e, videoSrc);
+                  setVideoLoadError(videoSrc);
+                }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              />
+            </div>
           ) : (
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
               {videoLoadError ? (
