@@ -323,7 +323,7 @@ export function TabVideoShowcase() {
                   playVideo();
                 }
               }}
-              className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-2xl"
+              className="w-full max-w-[80%] mx-auto h-[300px] md:h-[400px] lg:h-[500px] rounded object-contain"
               src={isMobile ? activeTabData.videoMobile : activeTabData.video}
               poster={activeTabData.poster}
               autoPlay={true}
@@ -334,10 +334,6 @@ export function TabVideoShowcase() {
               controls={false}
               webkit-playsinline="true"
               x5-playsinline="true"
-              style={{
-                // iOS-specific CSS fixes
-                objectFit: "cover",
-              }}
               onLoadStart={() => {
                 const videoSrc = isMobile
                   ? activeTabData.videoMobile
