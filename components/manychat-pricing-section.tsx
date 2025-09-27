@@ -15,6 +15,7 @@ const professionalPlans = [
     monthlyPrice: "€19",
     yearlyPrice: "€59",
     monthlyEquivalant: "€5",
+    save: "€169",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -38,6 +39,7 @@ const professionalPlans = [
     monthlyPrice: "€49",
     yearlyPrice: "€149",
     monthlyEquivalant: "€12",
+    save: "€439",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -64,6 +66,7 @@ const professionalPlans = [
     monthlyPrice: "€99",
     yearlyPrice: "€299",
     monthlyEquivalant: "€25",
+    save: "€889",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
@@ -85,17 +88,18 @@ const professionalPlans = [
 const educationPlans = [
   {
     id: "student",
-    name: "STUDENT",
+    name: "STARTER",
     monthlyPrice: "€6",
     yearlyPrice: "€18",
     monthlyEquivalant: "€2",
+    save: "€54",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
     bgColor: "#ffffff",
     textColor: "#000000",
     features: [
-      "25 CREDITS /month (e.g. 15 base images and 5 Refinements)",
+      "50 CREDITS /month (e.g. 15 base images and 5 Refinements)",
       "STUDENT VERIFICATION REQUIRED",
       "1 CONCURRENT JOB",
       "INTEGRATED REFINER",
@@ -108,17 +112,18 @@ const educationPlans = [
   },
   {
     id: "educator",
-    name: "EDUCATOR",
+    name: "EXPLORER",
     monthlyPrice: "€12",
     yearlyPrice: "€36",
     monthlyEquivalant: "€3",
+    save: "€108",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
     bgColor: "#ffffff",
     textColor: "#000000",
     features: [
-      "75 CREDITS /month (e.g. 50 base images and 5 Refinements)",
+      "150 CREDITS /month (e.g. 50 base images and 5 Refinements)",
       "EDUCATOR VERIFICATION REQUIRED",
       "2 CONCURRENT JOBS",
       "INTEGRATED REFINER",
@@ -134,17 +139,18 @@ const educationPlans = [
   },
   {
     id: "institution",
-    name: "INSTITUTION",
+    name: "PRO",
     monthlyPrice: "€18",
     yearlyPrice: "€54",
     monthlyEquivalant: "€5",
+    save: "€162",
     period: "/month",
     yearlyPeriod: "/year",
     yearlyDiscount: "75% off",
     bgColor: "#ffffff",
     textColor: "#000000",
     features: [
-      "500 CREDITS /month (e.g. 400 base images and 20 Refinements)",
+      "1000 CREDITS /month (e.g. 400 base images and 20 Refinements)",
       "ALL FEATURES FROM EDUCATOR",
       "4 CONCURRENT JOBS",
       "PREMIUM LIVE VIDEO CALL SUPPORT",
@@ -477,7 +483,7 @@ function PricingCard({
 
         <BreathingAnimationText animationType="black-gray">
           <span
-            className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider mb-2 block"
+            className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mb-2 block"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             {plan.name}
@@ -508,12 +514,7 @@ function PricingCard({
                   Billed yearly ({plan.yearlyPrice}/year)
                 </div>
                 <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  Save €
-                  {plan.id === "starter"
-                    ? "169"
-                    : plan.id === "explorer"
-                    ? "439"
-                    : "899"}{" "}
+                  Save {plan.save + " "}
                   with annual billing
                 </div>
               </>
