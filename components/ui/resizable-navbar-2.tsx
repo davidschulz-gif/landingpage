@@ -264,7 +264,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
         className="text-center uppercase flex items-center justify-center"
         style={{
           fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
-          fontSize: "10px", // Reduced from 12px
+          fontSize: "14px", // Reduced from 12px
           fontWeight: 300,
           letterSpacing: "2px", // Reduced from 2.5px
           lineHeight: "1.3em",

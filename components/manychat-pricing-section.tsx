@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Check } from "lucide-react";
 import { BreathingAnimationText } from "./breathing-animation-text";
+import Link from "next/link";
 
 const professionalPlans = [
   {
@@ -544,14 +545,16 @@ function PricingCard({
 
       {/* Button Section - Fixed at Bottom */}
       <div className="mt-auto">
-        <Button
-          className="animate-breathe-primary-hover w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-          }}
-        >
-          Get Started
-        </Button>
+        <Link href={"https://app.typus.ai/register"}>
+          <Button
+            className="animate-breathe-primary-hover cursor-pointer w-full rounded-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+          >
+            Get Started
+          </Button>
+        </Link>
       </div>
     </div>
   );

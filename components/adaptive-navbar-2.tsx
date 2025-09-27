@@ -37,7 +37,11 @@ export function NavbarDemo() {
     <Navbar setDoNotShowMegaMenu={setDoNotShowMegaMenu}>
       {/* Desktop Navigation */}
       <NavBody className="relative z-[60]">
-        <NavbarLogo visible />
+        {!doNotShowMegaMenu ? (
+          <div className="w-20"></div>
+        ) : (
+          <NavbarLogo visible />
+        )}
         <div
           className="w-fit"
           onMouseEnter={handleMenuEnter}

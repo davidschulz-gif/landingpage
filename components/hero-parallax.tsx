@@ -129,7 +129,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
+    <div className="max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
       <div className="pt-0 md:pt-24 relative">
         {/* Left Side - Headline and Description */}
         <div className="absolute left-0 top-16 max-w-lg">
@@ -198,13 +198,15 @@ export const Header = () => {
             transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
             className="mt-8"
           >
-            <Button
-              size="lg"
-              className="text-white  px-8 py-3 rounded-full font-bold animate-breathe-primary-hover"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              Get Started
-            </Button>
+            <Link href={"https://app.typus.ai/register"}>
+              <Button
+                size="lg"
+                className="text-white  px-8 py-3 cursor-pointer rounded-full font-bold animate-breathe-primary-hover"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Get Started
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Features */}

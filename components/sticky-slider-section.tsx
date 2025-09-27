@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { THEME_COLORS } from "@/lib/theme";
 import { BreathingAnimationText } from "./breathing-animation-text";
 import { Button as MovingBorderButton } from "./ui/moving-border";
+import Link from "next/link";
 
 interface SlideData {
   id: number;
@@ -604,13 +605,15 @@ export function StickySliderSection() {
 
                   {/* Button Section */}
                   <div className="mt-8 space-y-6">
-                    <Button
-                      size="default"
-                      className="px-8 py-3 text-sm font-medium rounded-lg text-white shadow-md hover:shadow-lg animate-breathe-primary-hover"
-                    >
-                      {currentTabSlides[currentSlide]?.buttonText ||
-                        "Get Started"}
-                    </Button>
+                    <Link href={"https://app.typus.ai/register"}>
+                      <Button
+                        size="default"
+                        className="px-8 py-3 text-sm cursor-pointer font-medium rounded-lg text-white shadow-md hover:shadow-lg animate-breathe-primary-hover"
+                      >
+                        {currentTabSlides[currentSlide]?.buttonText ||
+                          "Get Started"}
+                      </Button>
+                    </Link>
                   </div>
                 </div>
 
