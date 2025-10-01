@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import LenisScrollProvider from "@/components/smooth-scroll";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -127,7 +128,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+           <LenisScrollProvider>{children}</LenisScrollProvider>
         </ThemeProvider>
       </body>
     </html>
