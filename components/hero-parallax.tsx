@@ -10,7 +10,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BreathingAnimationText } from "./breathing-animation-text";
-import { Button } from "@/components/ui/button";
+import { ActionButton } from "./action-button";
+import { GoogleLogo } from "./icons/google-logo";
 
 export const HeroParallax = ({
   row123Products,
@@ -156,6 +157,78 @@ export const Header = () => {
             creating stunning AI-powered visualizations. Transform your CAD
             files and sketches into photorealistic renders.
           </BreathingAnimationText>
+
+          <div className="flex items-start gap-6 flex-col md:flex-row md:items-center">
+            <div className="w-auto">
+              <Link href='https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D' target="_blank" className="flex items-center">
+                <GoogleLogo fontSize={24} className="me-4" />
+                <div className="flex items-center">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      className={`w-5 h-5 ${
+                        star <= 4
+                          ? "text-yellow-400"
+                          : star === 5
+                          ? "text-gray-300"
+                          : "text-gray-300"
+                      }`}
+                      fill={
+                        star <= 4 || (star === 5 && star <= 4.5)
+                          ? "currentColor"
+                          : "none"
+                      }
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      {star === 5 ? (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          fill="url(#half-star)"
+                        />
+                      ) : (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                        />
+                      )}
+                    </svg>
+                  ))}
+                  {/* Half star for 4.5 rating */}
+                  <svg
+                    className="w-5 h-5 text-yellow-400 absolute"
+                    style={{ marginLeft: "80px" }}
+                  >
+                    <defs>
+                      <linearGradient id="half-star">
+                        <stop
+                          offset="50%"
+                          stopColor="currentColor"
+                        />
+                        <stop offset="50%" stopColor="#d1d5db" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <BreathingAnimationText animationType="black-gray">
+                  <span className="ml-2 text-sm font-medium text-gray-700">
+                    4.5/5
+                  </span>
+                </BreathingAnimationText>
+              </Link>
+              <BreathingAnimationText animationType="black-gray">
+                <span className="text-xs text-gray-500 mt-1 block">
+                  based on 90+ reviews
+                </span>
+              </BreathingAnimationText>
+            </div>
+            <Image className="block w-auto h-10" src='/eu-kofinanziert-von-der-europaeischen-union.png' alt="" width={200} height={200} />
+          </div>
         </div>
 
         {/* Center - Logo, Title and Button */}
@@ -198,15 +271,7 @@ export const Header = () => {
             transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
             className="mt-8"
           >
-            <Link href={"https://app.typus.ai/register"}>
-              <Button
-                size="lg"
-                className="text-white  px-8 py-3 cursor-pointer rounded-full font-bold animate-breathe-primary-hover"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                Get Started
-              </Button>
-            </Link>
+            <ActionButton href="https://app.typus.ai/register">Get Started</ActionButton>
           </motion.div>
 
           {/* Features */}

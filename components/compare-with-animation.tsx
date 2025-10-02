@@ -5,6 +5,7 @@ import { Compare } from "./ui/compare";
 import { BreathingAnimationText } from "./breathing-animation-text";
 import { PhotoStripAnimation } from "./ui/photo-strip-animation";
 import Link from "next/link";
+import { ActionButton } from "./action-button";
 
 interface CompareWithAnimationProps {
   className?: string;
@@ -108,11 +109,8 @@ export const CompareWithAnimation = ({
               </div>
             ))}
           </div>
-          <Link href={"https://app.typus.ai/register"}>
-            <button className="inline-flex cursor-pointer items-center justify-center whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-full flex-shrink-0 gap-1 sm:gap-2 animate-breathe-primary-hover text-[10px] sm:text-xs md:text-sm h-8 sm:h-9 md:h-10 px-3 sm:px-4 md:px-6 text-white">
-              <span className="text-[10px] sm:text-xs md:text-sm">
-                Start Creating Now
-              </span>
+          <div className="w-full">
+            <ActionButton href={"https://app.typus.ai/register"} icon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -131,8 +129,10 @@ export const CompareWithAnimation = ({
                 <path d="M3 5h4"></path>
                 <path d="M17 19h4"></path>
               </svg>
-            </button>
-          </Link>
+            }>
+              Start Creating Now
+            </ActionButton>
+          </div>
         </div>
         <div className="lg:w-2/3">
           <Compare

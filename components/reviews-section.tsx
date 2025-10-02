@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { BreathingAnimationText } from "./breathing-animation-text";
 import { FeaturedTestimonialSection } from "./featured-testimonial-section";
+import { ActionButton } from "./action-button";
 
 export function ReviewsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -95,6 +96,19 @@ export function ReviewsSection() {
               }}
             />
           </div>
+        </motion.div>
+
+        {/* View All Reviews Button */}
+        <motion.div
+          className="flex justify-center mt-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <ActionButton href="https://testimonial.to/typus-ai/all">
+            View All Reviews
+          </ActionButton>
         </motion.div>
       </div>
     </section>
