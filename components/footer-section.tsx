@@ -126,12 +126,12 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-4 justify-center pt-6 w-full items-center">
-          <Image className="h-11 w-auto" src='/eu-kofinanziert-von-der-europaeischen-union.png' alt="" width={200} height={200} />
-          <Image className="h-11 w-auto" src='/Logo_MWIKE.jpg' alt="" width={200} height={200} />
+        <div className="flex flex-wrap gap-4 justify-center mt-10 w-full items-center">
+          <Image className="h-9 w-auto" src='/eu-kofinanziert-von-der-europaeischen-union.png' alt="" width={200} height={200} />
+          <Image className="h-9 w-auto" src='/Logo_MWIKE.jpg' alt="" width={200} height={200} />
         </div>
         
-        <div className="border-t mt-20 border-gray-100 pt-8">
+        <div className="border-t mt-10 border-gray-100 pt-8">
           <p className="text-xs text-center text-gray-500">© 2025 Typus.AI. All rights reserved.</p>
         </div>
       </div>

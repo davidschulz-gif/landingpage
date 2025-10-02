@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Article {
   id: number;
@@ -18,6 +19,8 @@ interface Article {
   image: string;
   source: string;
   link: string;
+  labelLink?: string;
+  secondImage?: string;
 }
 
 const articleData: Article[] = [
@@ -28,7 +31,7 @@ const articleData: Article[] = [
       '"Sehr vielversprechend sieht derzeit die Anwendung Yanus aus. Wenn man dies in Zukunft mit Materialien und deren Herstellung abstimmt, wäre das ein enormer Gewinn. Auch könnte man so entsprechende Moods in Sekunden erstellen."',
     image: "/blog/blog_1.png",
     source: "DR. DIETMAR KÖRING - ARPHENOTYPE",
-    link: "#",
+    link: "https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/",
   },
   {
     id: 1,
@@ -38,6 +41,7 @@ const articleData: Article[] = [
     image: "/logo/google_logo.png",
     source: "ROLAND WOBORSKY, SELF-EMPLOYED",
     link: "https://g.page/r/CQX8vZxZ8Z8ZEBM/review",
+    labelLink: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D'
   },
   {
     id: 2,
@@ -45,17 +49,8 @@ const articleData: Article[] = [
       "PRÄI: Materialien gezielt steuern – KI-Visualisierung neu definiert",
     excerpt:
       "Innovative AI-powered architectural visualization platform transforming the industry with precision material control and advanced visualization capabilities.",
-    image: "/logo/heinze_logo.png",
+    image: "/logo/heinze-baunetz.png",
     source: "Heinze BauNetz-Newsletter",
-    link: "https://www.heinze.de/aktuelles/praei-materialien-gezielt-steuern-ki-visualisierung-neu-definiert/48536808/",
-  },
-  {
-    id: 3,
-    title: "Architectural Visualization with AI Technology",
-    excerpt:
-      "Comprehensive coverage of AI-powered architectural visualization tools and their impact on modern design workflows and professional practice.",
-    image: "/logo/baunetz_logo.png",
-    source: "BauNetz Newsletter",
     link: "https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239",
   },
   {
@@ -187,79 +182,81 @@ export function ArticleCarouselSection() {
                         </div>
                       </div>
                       <div className="p-6">
-                        <BreathingAnimationText animationType="black-gray">
-                          <h3
-                            className="text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2"
-                            style={{
-                              fontFamily: "'Space Grotesk', sans-serif",
-                            }}
-                          >
-                            {article.title}
-                          </h3>
-                        </BreathingAnimationText>
-                        {/* Add star rating for Google Reviews */}
-                        {article.title === "GOOGLE REVIEWS" && (
-                          <div className="flex items-center mb-3">
-                            <div className="flex items-center">
-                              {[1, 2, 3, 4, 5].map((star) => (
+                        <Link href={article.labelLink || '#'}>
+                          <BreathingAnimationText animationType="black-gray">
+                            <h3
+                              className="text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2"
+                              style={{
+                                fontFamily: "'Space Grotesk', sans-serif",
+                              }}
+                            >
+                              {article.title}
+                            </h3>
+                          </BreathingAnimationText>
+                          {/* Add star rating for Google Reviews */}
+                          {article.title === "GOOGLE REVIEWS" && (
+                            <div className="flex items-center mb-3">
+                              <div className="flex items-center">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                  <svg
+                                    key={star}
+                                    className={`w-5 h-5 ${
+                                      star <= 4
+                                        ? "text-yellow-400"
+                                        : star === 5
+                                        ? "text-gray-300"
+                                        : "text-gray-300"
+                                    }`}
+                                    fill={
+                                      star <= 4 || (star === 5 && star <= 4.5)
+                                        ? "currentColor"
+                                        : "none"
+                                    }
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                  >
+                                    {star === 5 ? (
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                        fill="url(#half-star)"
+                                      />
+                                    ) : (
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                      />
+                                    )}
+                                  </svg>
+                                ))}
+                                {/* Half star for 4.5 rating */}
                                 <svg
-                                  key={star}
-                                  className={`w-5 h-5 ${
-                                    star <= 4
-                                      ? "text-yellow-400"
-                                      : star === 5
-                                      ? "text-gray-300"
-                                      : "text-gray-300"
-                                  }`}
-                                  fill={
-                                    star <= 4 || (star === 5 && star <= 4.5)
-                                      ? "currentColor"
-                                      : "none"
-                                  }
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
+                                  className="w-5 h-5 text-yellow-400 absolute"
+                                  style={{ marginLeft: "80px" }}
                                 >
-                                  {star === 5 ? (
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                      fill="url(#half-star)"
-                                    />
-                                  ) : (
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                    />
-                                  )}
+                                  <defs>
+                                    <linearGradient id="half-star">
+                                      <stop
+                                        offset="50%"
+                                        stopColor="currentColor"
+                                      />
+                                      <stop offset="50%" stopColor="#d1d5db" />
+                                    </linearGradient>
+                                  </defs>
                                 </svg>
-                              ))}
-                              {/* Half star for 4.5 rating */}
-                              <svg
-                                className="w-5 h-5 text-yellow-400 absolute"
-                                style={{ marginLeft: "80px" }}
-                              >
-                                <defs>
-                                  <linearGradient id="half-star">
-                                    <stop
-                                      offset="50%"
-                                      stopColor="currentColor"
-                                    />
-                                    <stop offset="50%" stopColor="#d1d5db" />
-                                  </linearGradient>
-                                </defs>
-                              </svg>
+                              </div>
+                              <BreathingAnimationText animationType="black-gray">
+                                <span className="ml-2 text-sm font-medium text-gray-700">
+                                  4.5/5
+                                </span>
+                              </BreathingAnimationText>
                             </div>
-                            <BreathingAnimationText animationType="black-gray">
-                              <span className="ml-2 text-sm font-medium text-gray-700">
-                                4.5/5
-                              </span>
-                            </BreathingAnimationText>
-                          </div>
-                        )}
+                          )}
+                        </Link>
                         <BreathingAnimationText animationType="black-gray">
                           <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             {article.excerpt}
