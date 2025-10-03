@@ -162,7 +162,7 @@ export const VideoShowcaseSection = () => {
             <div className="relative w-full h-full mx-auto px-4">
               <video
                 className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
-                src="videos/INTRO_typus_newlogo.mp4"
+                src="https://ik.imagekit.io/typusai/INTRO_typus_newlogo.mp4"
                 poster="/video-poster.jpg"
                 autoPlay
                 muted
@@ -179,7 +179,7 @@ export const VideoShowcaseSection = () => {
           <div className="relative w-full h-full mx-auto px-4">
             <video
               className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
-              src="videos/INTRO_typus_newlogo.mp4"
+              src="https://ik.imagekit.io/typusai/INTRO_typus_newlogo.mp4"
               poster="/video-poster.jpg"
               autoPlay
               muted
