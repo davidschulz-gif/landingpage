@@ -130,7 +130,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-0 w-full">
+    <div className="max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-6 md:px-0 w-full">
       <div className="md:pb-12 relative">
         {/* Left Side - Headline and Description */}
         <div className="relative max-w-lg">
