@@ -14,8 +14,8 @@ import CompareDemo from "@/components/compare-drag-demo";
 import { VideoShowcaseSection } from "@/components/video-showcase-section";
 import { row123Products, row4Products } from "@/constants/homePage";
 import { NavbarDemo } from "@/components/adaptive-navbar-2";
-import { SmallNavbarMenu } from "@/components/small-navbar-menu";
 import clsx from "clsx";
+import { useIsMobile } from "@/hooks/use-mobile";
 const StickySliderSection = dynamic(
   () =>
     import("@/components/sticky-slider-section").then(
@@ -83,24 +83,11 @@ const FooterSection = dynamic(
   }
 );
 
-// Row 1, 2, 3 images from row-1-2-3 folder
-
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
   const [isClient, setIsClient] = useState(false);
   const [isPreloaded, setIsPreloaded] = useState(false);
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setIsClient(true);
