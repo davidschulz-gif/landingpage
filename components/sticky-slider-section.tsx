@@ -52,7 +52,7 @@ const tabsData: TabData[] = [
         subtitle: "Hand Drawings Come Alive",
         description:
           "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
-        video: "/videos/create_sketch_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_sketch_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Sketch",
         progress: "1/6",
@@ -63,7 +63,7 @@ const tabsData: TabData[] = [
         subtitle: "Plugins Integration",
         description:
           "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
-        video: "/videos/create_3d_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_3d_s.mp4",
         textColor: "text-black",
         buttonText: "Get Plugins",
         progress: "2/6",
@@ -74,7 +74,7 @@ const tabsData: TabData[] = [
         subtitle: "Technical To Visual",
         description:
           "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
-        video: "/videos/create_cad_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_cad_s.mp4",
         textColor: "text-black",
         buttonText: "Try CAD",
         progress: "3/6",
@@ -85,7 +85,7 @@ const tabsData: TabData[] = [
         subtitle: "Context Visualization",
         description:
           "Place your designs in real environments using site photos for contextual visualization.",
-        video: "/videos/create_photo_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_photo_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Photo",
         progress: "4/6",
@@ -96,7 +96,7 @@ const tabsData: TabData[] = [
         subtitle: "Physical To Digital",
         description:
           "Capture physical architectural models and transform them into digital renders.",
-        video: "/videos/create_modelphoto_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_modelphoto_s.mp4",
         textColor: "text-black",
         buttonText: "Capture Model",
         progress: "5/6",
@@ -107,7 +107,7 @@ const tabsData: TabData[] = [
         subtitle: "Color Map Upload",
         description:
           "Upload your own textures and materials to create unique, personalized architectural visualizations.",
-        video: "/videos/create_colormap_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_colormap_s.mp4",
         textColor: "text-black",
         buttonText: "Upload Textures",
         progress: "6/7",
@@ -118,7 +118,7 @@ const tabsData: TabData[] = [
         subtitle: "Style Library Access",
         description:
           "Access our curated library of architectural presets and styles to quickly apply professional looks to your renders.",
-        video: "/videos/create_artpresets_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_artpresets_s.mp4",
         textColor: "text-black",
         buttonText: "Browse Presets",
         progress: "7/7",
@@ -140,7 +140,7 @@ const tabsData: TabData[] = [
         subtitle: "Precise Modifications",
         description:
           "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
-        video: "/videos/create_artpresets_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_artpresets_s.mp4",
         textColor: "text-black",
         buttonText: "Start Inpainting",
         progress: "1/3",
@@ -151,7 +151,7 @@ const tabsData: TabData[] = [
         subtitle: "Extend Your Vision",
         description:
           "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
-        video: "/videos/create_artpresets_s.mp4",
+        video: "https://ik.imagekit.io/typusai/create_artpresets_s.mp4",
         textColor: "text-black",
         buttonText: "Expand View",
         progress: "2/3",
@@ -162,7 +162,7 @@ const tabsData: TabData[] = [
         subtitle: "Aesthetic Transformation",
         description:
           "Apply different architectural styles and artistic approaches to transform your designs.",
-        video: "/videos/edit_styletransfer_s.mp4",
+        video: "https://ik.imagekit.io/typusai/edit_styletransfer_s.mp4",
         textColor: "text-black",
         buttonText: "Browse Styles",
         progress: "3/3",
@@ -180,7 +180,7 @@ const tabsData: TabData[] = [
         subtitle: "AI-powered upscaling",
         description:
           "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
-        video: "/videos/upscale_s.mp4",
+        video: "https://ik.imagekit.io/typusai/upscale_s.mp4",
         textColor: "text-black",
         buttonText: "Enhance Details",
         progress: "1/1",
