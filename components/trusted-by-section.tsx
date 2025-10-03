@@ -6,7 +6,7 @@ const getTrustedByItems = () => [
   {
     title: "CERTIFIED BY",
     logo: (
-      <div className="relative w-12 md:w-12 lg:w-16 xl:w-20">
+      <div className="relative w-12 md:w-12 lg:w-16 xl:w-16">
         <Image
           src="/logo/ihk_logo.avif"
           alt="IHK Logo"
@@ -44,7 +44,7 @@ const getTrustedByItems = () => [
             className="w-full h-auto"
           />
         </div>
-        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20">
+        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-15">
           <Image
             src="/logo/rhino_logo.png"
             alt="Rhino"
