@@ -17,6 +17,7 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
 import { navItems } from "@/constants/navigation";
+import Image from "next/image";
 
 export function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -111,46 +112,53 @@ export function NavbarDemo() {
             </div>
 
             <div className="relative max-w-[80%] mx-auto px-8 ">
-              <div className="grid grid-cols-4 gap-8">
-                {navItems.map((navItem, navIdx) => (
-                  <div
-                    key={`section-${navIdx}`}
-                    className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                      isMenuOpen
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-3"
-                    }`}
-                    style={{
-                      transitionDelay: isMenuOpen ? `${navIdx * 50}ms` : "0ms",
-                    }}
-                  >
-                    <div className="relative">
-                      <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1">
-                        {navItem.name}
-                      </h3>
-                      <div className="w-8 h-px bg-gradient-to-r from-red-500 to-red-300"></div>
+              <div className="relative">
+                <div className="grid grid-cols-4 gap-8">
+                  {navItems.map((navItem, navIdx) => (
+                    <div
+                      key={`section-${navIdx}`}
+                      className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+                        isMenuOpen
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-3"
+                      }`}
+                      style={{
+                        transitionDelay: isMenuOpen ? `${navIdx * 50}ms` : "0ms",
+                      }}
+                    >
+                      <div className="relative">
+                        <h3 className="text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1">
+                          {navItem.name}
+                        </h3>
+                        <div className="w-8 h-px bg-gradient-to-r from-red-500 to-red-300"></div>
+                      </div>
+                      <div className="space-y-3">
+                        {navItem.submenu?.map((subitem, subIdx) => (
+                          <a
+                            key={`submenu-${navIdx}-${subIdx}`}
+                            href={subitem.link}
+                            target={subitem.target ?? "_self"}
+                            className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
+                          >
+                            <div className="flex-1">
+                              <h4 className="text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200">
+                                {subitem.title}
+                              </h4>
+                              <p className="text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200">
+                                {subitem.description}
+                              </p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
-                    <div className="space-y-3">
-                      {navItem.submenu?.map((subitem, subIdx) => (
-                        <a
-                          key={`submenu-${navIdx}-${subIdx}`}
-                          href={subitem.link}
-                          target={subitem.target ?? "_self"}
-                          className="block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1"
-                        >
-                          <div className="flex-1">
-                            <h4 className="text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200">
-                              {subitem.title}
-                            </h4>
-                            <p className="text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200">
-                              {subitem.description}
-                            </p>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                <div className="absolute bottom-0 right-0 gap-4 flex">
+                  <Image className="h-9 w-auto" src='/eu-kofinanziert-von-der-europaeischen-union.png' alt="" width={200} height={200} />
+                  <Image className="h-9 w-auto" src='/Logo_MWIKE.jpg' alt="" width={200} height={200} />
+                </div>
               </div>
 
               {/* Premium bottom section */}
