@@ -130,10 +130,10 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-18 lg:pb-24 px-6 md:px-8 lg:px-12 w-full">
-      <div className="pt-0 md:pt-24 relative">
+    <div className="max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-0 w-full">
+      <div className="md:pb-12 relative">
         {/* Left Side - Headline and Description */}
-        <div className="absolute left-0 top-16 max-w-lg">
+        <div className="relative max-w-lg">
           <BreathingAnimationText animationType="black-gray">
             <motion.h1
               className="text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6"
@@ -232,7 +232,7 @@ export const Header = () => {
         </div>
 
         {/* Center - Logo, Title and Button */}
-        <div className="flex flex-col items-center text-center pt-56 md:pt-24">
+        <div className="flex flex-col items-center text-center pt-12 md:pt-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

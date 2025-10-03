@@ -19,8 +19,6 @@ interface Article {
   image: string;
   source: string;
   link: string;
-  labelLink?: string;
-  secondImage?: string;
 }
 
 const articleData: Article[] = [
@@ -40,8 +38,7 @@ const articleData: Article[] = [
       '"FANTASTIC! GREAT EXPERIENCE AND IMPRESSIVE QUALITY! EASY TO WORK AND FAST OUTPUT!"',
     image: "/logo/google_logo.png",
     source: "ROLAND WOBORSKY, SELF-EMPLOYED",
-    link: "https://g.page/r/CQX8vZxZ8Z8ZEBM/review",
-    labelLink: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D'
+    link: "https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D",
   },
   {
     id: 2,
@@ -89,6 +86,14 @@ const articleData: Article[] = [
     source: "F.A.Z. Konferenzen",
     link: "https://bauforum-innovationen.de/startups/",
   },
+  {
+    id: 8,
+    title: 'DIGITAL INNOVATION AWARD',
+    excerpt: 'WE were ONE OF 4 FINALISTS FOR THE DIGITAL INNOVATION AWARD 2024',
+    image: '/blog/vote_for_us.png',
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions',
+    source: 'LinkedIn',
+  }
 ];
 
 //  | NOA NORD ORDINARY ARCHITECTURE
@@ -148,7 +153,7 @@ export function ArticleCarouselSection() {
                               style={{
                                 width:
                                   article.id === 5
-                                    ? "62px"
+                                    ? "122px"
                                     : article.id === 4
                                     ? "86px"
                                     : article.id === 3
@@ -156,7 +161,7 @@ export function ArticleCarouselSection() {
                                     : "auto",
                                 height:
                                   article.id === 5
-                                    ? "41px"
+                                    ? "101px"
                                     : article.id === 4
                                     ? "86px"
                                     : article.id === 3
@@ -182,81 +187,79 @@ export function ArticleCarouselSection() {
                         </div>
                       </div>
                       <div className="p-6">
-                        <Link href={article.labelLink || '#'}>
-                          <BreathingAnimationText animationType="black-gray">
-                            <h3
-                              className="text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2"
-                              style={{
-                                fontFamily: "'Space Grotesk', sans-serif",
-                              }}
-                            >
-                              {article.title}
-                            </h3>
-                          </BreathingAnimationText>
-                          {/* Add star rating for Google Reviews */}
-                          {article.title === "GOOGLE REVIEWS" && (
-                            <div className="flex items-center mb-3">
-                              <div className="flex items-center">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                  <svg
-                                    key={star}
-                                    className={`w-5 h-5 ${
-                                      star <= 4
-                                        ? "text-yellow-400"
-                                        : star === 5
-                                        ? "text-gray-300"
-                                        : "text-gray-300"
-                                    }`}
-                                    fill={
-                                      star <= 4 || (star === 5 && star <= 4.5)
-                                        ? "currentColor"
-                                        : "none"
-                                    }
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                  >
-                                    {star === 5 ? (
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                        fill="url(#half-star)"
-                                      />
-                                    ) : (
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                      />
-                                    )}
-                                  </svg>
-                                ))}
-                                {/* Half star for 4.5 rating */}
+                        <BreathingAnimationText animationType="black-gray">
+                          <h3
+                            className="text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2"
+                            style={{
+                              fontFamily: "'Space Grotesk', sans-serif",
+                            }}
+                          >
+                            {article.title}
+                          </h3>
+                        </BreathingAnimationText>
+                        {/* Add star rating for Google Reviews */}
+                        {article.title === "GOOGLE REVIEWS" && (
+                          <div className="flex items-center mb-3">
+                            <div className="flex items-center">
+                              {[1, 2, 3, 4, 5].map((star) => (
                                 <svg
-                                  className="w-5 h-5 text-yellow-400 absolute"
-                                  style={{ marginLeft: "80px" }}
+                                  key={star}
+                                  className={`w-5 h-5 ${
+                                    star <= 4
+                                      ? "text-yellow-400"
+                                      : star === 5
+                                      ? "text-gray-300"
+                                      : "text-gray-300"
+                                  }`}
+                                  fill={
+                                    star <= 4 || (star === 5 && star <= 4.5)
+                                      ? "currentColor"
+                                      : "none"
+                                  }
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
                                 >
-                                  <defs>
-                                    <linearGradient id="half-star">
-                                      <stop
-                                        offset="50%"
-                                        stopColor="currentColor"
-                                      />
-                                      <stop offset="50%" stopColor="#d1d5db" />
-                                    </linearGradient>
-                                  </defs>
+                                  {star === 5 ? (
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                      fill="url(#half-star)"
+                                    />
+                                  ) : (
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                    />
+                                  )}
                                 </svg>
-                              </div>
-                              <BreathingAnimationText animationType="black-gray">
-                                <span className="ml-2 text-sm font-medium text-gray-700">
-                                  4.5/5
-                                </span>
-                              </BreathingAnimationText>
+                              ))}
+                              {/* Half star for 4.5 rating */}
+                              <svg
+                                className="w-5 h-5 text-yellow-400 absolute"
+                                style={{ marginLeft: "80px" }}
+                              >
+                                <defs>
+                                  <linearGradient id="half-star">
+                                    <stop
+                                      offset="50%"
+                                      stopColor="currentColor"
+                                    />
+                                    <stop offset="50%" stopColor="#d1d5db" />
+                                  </linearGradient>
+                                </defs>
+                              </svg>
                             </div>
-                          )}
-                        </Link>
+                            <BreathingAnimationText animationType="black-gray">
+                              <span className="ml-2 text-sm font-medium text-gray-700">
+                                4.5/5
+                              </span>
+                            </BreathingAnimationText>
+                          </div>
+                        )}
                         <BreathingAnimationText animationType="black-gray">
                           <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                             {article.excerpt}
@@ -298,6 +301,15 @@ export function ArticleCarouselSection() {
           <CarouselPrevious className="left-2 md:-left-12 cursor-pointer hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-300" />
           <CarouselNext className="right-2 md:-right-12 hover:bg-red-500 cursor-pointer hover:border-red-500 hover:text-white transition-colors duration-300" />
         </Carousel>
+
+        {/* Company Evolution Note */}
+        <div className="text-center my-4">
+          <BreathingAnimationText animationType="black-gray">
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              TYPUS.AI has gone through different stages fast and was formerly called YANUS / Präi
+            </p>
+          </BreathingAnimationText>
+        </div>
       </div>
     </div>
   );
