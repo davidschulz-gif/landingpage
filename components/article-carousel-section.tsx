@@ -89,6 +89,14 @@ const articleData: Article[] = [
     source: "F.A.Z. Konferenzen",
     link: "https://bauforum-innovationen.de/startups/",
   },
+  {
+    id: 8,
+    title: 'DIGITAL INNOVATION AWARD',
+    excerpt: 'WE were ONE OF 4 FINALISTS FOR THE DIGITAL INNOVATION AWARD 2024',
+    image: '/blog/vote_for_us.png',
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions',
+    source: 'LinkedIn',
+  }
 ];
 
 //  | NOA NORD ORDINARY ARCHITECTURE
@@ -148,7 +156,7 @@ export function ArticleCarouselSection() {
                               style={{
                                 width:
                                   article.id === 5
-                                    ? "62px"
+                                    ? "122px"
                                     : article.id === 4
                                     ? "86px"
                                     : article.id === 3
@@ -156,7 +164,7 @@ export function ArticleCarouselSection() {
                                     : "auto",
                                 height:
                                   article.id === 5
-                                    ? "41px"
+                                    ? "101px"
                                     : article.id === 4
                                     ? "86px"
                                     : article.id === 3
@@ -298,6 +306,15 @@ export function ArticleCarouselSection() {
           <CarouselPrevious className="left-2 md:-left-12 cursor-pointer hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-300" />
           <CarouselNext className="right-2 md:-right-12 hover:bg-red-500 cursor-pointer hover:border-red-500 hover:text-white transition-colors duration-300" />
         </Carousel>
+
+        {/* Company Evolution Note */}
+        <div className="text-center my-4">
+          <BreathingAnimationText animationType="black-gray">
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              TYPUS.AI has gone through different stages fast and was formerly called YANUS / Präi
+            </p>
+          </BreathingAnimationText>
+        </div>
       </div>
     </div>
   );

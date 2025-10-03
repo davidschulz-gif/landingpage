@@ -35,7 +35,7 @@ const getTrustedByItems = () => [
     title: "INTEGRATIONS",
     logo: (
       <div className="flex items-center justify-center gap-4 w-full">
-        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-24">
+        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28">
           <Image
             src="/logo/revit_logo.avif"
             alt="Revit"
@@ -53,7 +53,7 @@ const getTrustedByItems = () => [
             className="w-full h-auto"
           />
         </div>
-        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-24">
+        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-32">
           <Image
             src="/logo/archicad_logo.avif"
             alt="ArchiCAD"
@@ -62,7 +62,7 @@ const getTrustedByItems = () => [
             className="w-full h-auto"
           />
         </div>
-        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-24">
+        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28">
           <Image
             src="/logo/sketchup.png"
             alt="SketchUp"
@@ -114,7 +114,7 @@ const getTrustedByItems = () => [
             className="w-full h-auto"
           />
         </div>
-        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20">
+        <div className="relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-24">
           <Image
             src="/logo/konferenzen-logo.png"
             alt="Konferenzen Logo"
