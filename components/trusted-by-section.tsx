@@ -6,7 +6,7 @@ const getTrustedByItems = () => [
   {
     title: "CERTIFIED BY",
     logo: (
-      <div className="relative w-12 md:w-12 lg:w-16 xl:w-16">
+      <div className="relative w-10 lg:w-12 xl:w-14">
         <Image
           src="/logo/ihk_logo.avif"
           alt="IHK Logo"
