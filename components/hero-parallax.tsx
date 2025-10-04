@@ -459,6 +459,7 @@ export const ProductCard = ({
     >
       <Link
         href={product.link}
+        aria-label={product.title}
         className='block cursor-pointer absolute inset-0'
       >
         <Image
