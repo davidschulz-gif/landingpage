@@ -9,7 +9,6 @@ import { VideoShowcaseSection } from '@/components/video-showcase-section'
 import { row123Products, row4Products } from '@/constants/homePage'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { measurePerformance } from '@/lib/performance'
-import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
@@ -149,11 +148,7 @@ export default function Home() {
   }
 
   const MainContent = () => (
-    <div
-      className={cn('relative w-full', {
-        'overflow-x-hidden': isMobile,
-      })}
-    >
+    <div className='relative w-full'>
       {/* Navbar */}
       {/* <AdaptiveNavbar /> */}
       <NavbarDemo />
