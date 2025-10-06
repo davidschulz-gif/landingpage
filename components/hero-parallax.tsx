@@ -8,7 +8,7 @@ import {
 } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { ActionButton } from './action-button'
 import { BreathingAnimationText } from './breathing-animation-text'
 import { GoogleLogo } from './icons/google-logo'
@@ -28,49 +28,73 @@ export const HeroParallax = ({
     thumbnail: string
   }[]
 }) => {
-  const firstRow = row123Products.slice(0, 6)
-  const secondRow = row123Products.slice(6, 12)
-  const thirdRow = row123Products.slice(12, 19)
-  const fourthRow = row4Products
+  // Optimize: Reduce image count for better performance
+  const firstRow = useMemo(() => row123Products.slice(0, 4), [row123Products])
+  const secondRow = useMemo(() => row123Products.slice(4, 8), [row123Products])
+  const thirdRow = useMemo(() => row123Products.slice(8, 12), [row123Products])
+  const fourthRow = useMemo(() => row4Products.slice(0, 8), [row4Products])
 
   const ref = React.useRef(null)
   const [time, setTime] = useState(0)
+  const [isInView, setIsInView] = useState(false)
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   })
 
-  const springConfig = { stiffness: 400, damping: 40, bounce: 0 }
+  // Optimize: Add intersection observer for better performance
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
 
-  const baseTranslateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 500]),
-    springConfig
-  )
-  const baseTranslateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -400]),
-    springConfig
-  )
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
 
-  const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.3], [25, 0]),
-    springConfig
-  )
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.3], [0.1, 1]),
-    springConfig
-  )
-  const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.3], [15, 0]),
-    springConfig
-  )
-  const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.3], [-400, 0]),
-    springConfig
-  )
-  const scale = useSpring(
-    useTransform(scrollYProgress, [0, 0.3], [0.9, 1]),
-    springConfig
+    return () => observer.disconnect()
+  }, [])
+
+  // Optimize: Use more performant spring config
+  const springConfig = { stiffness: 300, damping: 30, bounce: 0 }
+
+  // Optimize: Memoize transforms to prevent recalculation
+  const transforms = useMemo(
+    () => ({
+      baseTranslateX: useSpring(
+        useTransform(scrollYProgress, [0, 1], [0, 300]), // Reduced from 500
+        springConfig
+      ),
+      baseTranslateXReverse: useSpring(
+        useTransform(scrollYProgress, [0, 1], [0, -300]), // Reduced from -400
+        springConfig
+      ),
+      rotateX: useSpring(
+        useTransform(scrollYProgress, [0, 0.3], [15, 0]), // Reduced from 25
+        springConfig
+      ),
+      opacity: useSpring(
+        useTransform(scrollYProgress, [0, 0.3], [0.2, 1]), // Increased from 0.1
+        springConfig
+      ),
+      rotateZ: useSpring(
+        useTransform(scrollYProgress, [0, 0.3], [8, 0]), // Reduced from 15
+        springConfig
+      ),
+      translateY: useSpring(
+        useTransform(scrollYProgress, [0, 0.3], [-200, 0]), // Reduced from -400
+        springConfig
+      ),
+      scale: useSpring(
+        useTransform(scrollYProgress, [0, 0.3], [0.95, 1]), // Increased from 0.9
+        springConfig
+      ),
+    }),
+    [scrollYProgress, springConfig]
   )
 
   return (
@@ -82,47 +106,51 @@ export const HeroParallax = ({
       <Header />
       <motion.div
         style={{
-          rotateX,
-          rotateZ,
-          translateY,
-          opacity,
-          scale,
+          rotateX: transforms.rotateX,
+          rotateZ: transforms.rotateZ,
+          translateY: transforms.translateY,
+          opacity: transforms.opacity,
+          scale: transforms.scale,
         }}
         className='relative z-10'
       >
-        <InfiniteMarqueeRow
-          products={firstRow}
-          baseTranslate={baseTranslateX}
-          time={time}
-          direction={1}
-          speed={30}
-          className='mb-6 md:mb-8'
-          isFirstRow={true}
-        />
-        <InfiniteMarqueeRow
-          products={secondRow}
-          baseTranslate={baseTranslateXReverse}
-          time={time}
-          direction={-1}
-          speed={25}
-          className='mb-6 md:mb-8'
-        />
-        <InfiniteMarqueeRow
-          products={thirdRow}
-          baseTranslate={baseTranslateX}
-          time={time}
-          direction={1}
-          speed={35}
-          className='mb-6 md:mb-8'
-        />
-        <InfiniteMarqueeRow
-          products={fourthRow}
-          baseTranslate={baseTranslateXReverse}
-          time={time}
-          direction={-1}
-          speed={28}
-          className='mb-4'
-        />
+        {isInView && (
+          <>
+            <InfiniteMarqueeRow
+              products={firstRow}
+              baseTranslate={transforms.baseTranslateX}
+              time={time}
+              direction={1}
+              speed={20} // Reduced from 30
+              className='mb-6 md:mb-8'
+              isFirstRow={true}
+            />
+            <InfiniteMarqueeRow
+              products={secondRow}
+              baseTranslate={transforms.baseTranslateXReverse}
+              time={time}
+              direction={-1}
+              speed={18} // Reduced from 25
+              className='mb-6 md:mb-8'
+            />
+            <InfiniteMarqueeRow
+              products={thirdRow}
+              baseTranslate={transforms.baseTranslateX}
+              time={time}
+              direction={1}
+              speed={22} // Reduced from 35
+              className='mb-6 md:mb-8'
+            />
+            <InfiniteMarqueeRow
+              products={fourthRow}
+              baseTranslate={transforms.baseTranslateXReverse}
+              time={time}
+              direction={-1}
+              speed={20} // Reduced from 28
+              className='mb-4'
+            />
+          </>
+        )}
       </motion.div>
     </div>
   )
@@ -375,131 +403,167 @@ export const Header = () => {
   )
 }
 
-const InfiniteMarqueeRow = ({
-  products,
-  baseTranslate,
-  time,
-  direction,
-  speed,
-  className,
-  isFirstRow = false,
-}: {
-  products: any[]
-  baseTranslate: MotionValue<number>
-  time: number
-  direction: number
-  speed: number
-  className: string
-  isFirstRow?: boolean
-}) => {
-  const cardWidth = 280 + 20
-  const totalWidth = products.length * cardWidth
-  const infiniteX = (direction * time * speed) % totalWidth
+const InfiniteMarqueeRow = React.memo(
+  ({
+    products,
+    baseTranslate,
+    time,
+    direction,
+    speed,
+    className,
+    isFirstRow = false,
+  }: {
+    products: any[]
+    baseTranslate: MotionValue<number>
+    time: number
+    direction: number
+    speed: number
+    className: string
+    isFirstRow?: boolean
+  }) => {
+    // Optimize: Memoize calculations
+    const cardWidth = useMemo(() => 280 + 20, [])
+    const totalWidth = useMemo(
+      () => products.length * cardWidth,
+      [products.length, cardWidth]
+    )
+    const infiniteX = useMemo(
+      () => (direction * time * speed) % totalWidth,
+      [direction, time, speed, totalWidth]
+    )
 
-  return (
-    <div
-      className={`flex ${
-        direction === 1 ? 'flex-row-reverse' : 'flex-row'
-      } ${className}`}
-    >
-      <motion.div
-        className='flex gap-5 will-change-transform'
-        style={{
-          x: useTransform(baseTranslate, value => value + infiniteX),
-        }}
+    // Optimize: Memoize transform
+    const transformX = useMemo(
+      () => useTransform(baseTranslate, value => value + infiniteX),
+      [baseTranslate, infiniteX]
+    )
+
+    return (
+      <div
+        className={`flex ${
+          direction === 1 ? 'flex-row-reverse' : 'flex-row'
+        } ${className}`}
       >
-        {products.map((product, index) => (
-          <ProductCard
-            key={`${product.title}-${index}`}
-            product={product}
-            index={index}
-            time={time}
-            isFirstRow={isFirstRow}
-          />
-        ))}
-      </motion.div>
-    </div>
-  )
-}
-
-export const ProductCard = ({
-  product,
-  index,
-  time,
-  isFirstRow,
-}: {
-  product: {
-    title: string
-    link: string
-    thumbnail: string
+        <motion.div
+          className='flex gap-5 will-change-transform'
+          style={{
+            x: transformX,
+          }}
+        >
+          {products.map((product, index) => (
+            <ProductCard
+              key={`${product.title}-${index}`}
+              product={product}
+              index={index}
+              time={time}
+              isFirstRow={isFirstRow}
+            />
+          ))}
+        </motion.div>
+      </div>
+    )
   }
-  index: number
-  time: number
-  isFirstRow?: boolean
-}) => {
-  const rotateY = Math.sin(time + index * 0.5) * 8
-  const rotateX = Math.cos(time + index * 0.3) * 4
-  const floatY = Math.sin(time * 2 + index * 0.8) * 5
+)
 
-  return (
-    <motion.div
-      style={{
+export const ProductCard = React.memo(
+  ({
+    product,
+    index,
+    time,
+    isFirstRow,
+  }: {
+    product: {
+      title: string
+      link: string
+      thumbnail: string
+    }
+    index: number
+    time: number
+    isFirstRow?: boolean
+  }) => {
+    // Optimize: Reduce animation complexity
+    const rotateY = useMemo(
+      () => Math.sin(time + index * 0.3) * 4,
+      [time, index]
+    ) // Reduced from 8
+    const rotateX = useMemo(
+      () => Math.cos(time + index * 0.2) * 2,
+      [time, index]
+    ) // Reduced from 4
+    const floatY = useMemo(
+      () => Math.sin(time * 1.5 + index * 0.5) * 3,
+      [time, index]
+    ) // Reduced from 5
+
+    // Optimize: Memoize animation values
+    const animationStyle = useMemo(
+      () => ({
         rotateY,
         rotateX,
         y: floatY,
-      }}
-      className='group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl ease-out'
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.05,
-        ease: 'easeOut',
-      }}
-    >
-      <Link
-        href={product.link}
-        aria-label={product.title}
-        className='block cursor-pointer absolute inset-0'
-      >
-        <Image
-          src={product.thumbnail || '/placeholder.svg'}
-          fill
-          className='object-cover cursor-pointer ease-out'
-          alt={product.title}
-          sizes='(max-width: 768px) 280px, (max-width: 1024px) 320px, 400px'
-          quality={75}
-          priority={isFirstRow && index < 4}
-          loading={isFirstRow && index < 4 ? 'eager' : 'lazy'}
-          placeholder='blur'
-          blurDataURL='data:image/webp;base64,UklGRpQAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA'
-        />
-      </Link>
-      <div className='absolute inset-0 h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none'></div>
-      {product.title && (
-        <motion.div className='absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none'>
-          <div className='bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5'>
-            <span
-              className='text-white font-medium text-sm leading-tight'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              {product.title}
-            </span>
-          </div>
-        </motion.div>
-      )}
+      }),
+      [rotateY, rotateX, floatY]
+    )
+
+    return (
       <motion.div
-        className='absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full'
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.6, 1, 0.6],
-        }}
+        style={animationStyle}
+        className='group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl ease-out will-change-transform'
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{
-          duration: 2,
-          repeat: Infinity,
-          delay: index * 0.2,
+          duration: 0.4, // Reduced from 0.6
+          delay: index * 0.03, // Reduced from 0.05
+          ease: 'easeOut',
         }}
-      />
-    </motion.div>
-  )
-}
+      >
+        <Link
+          href={product.link}
+          aria-label={product.title}
+          className='block cursor-pointer absolute inset-0'
+        >
+          <Image
+            src={product.thumbnail || '/placeholder.svg'}
+            fill
+            className='object-cover cursor-pointer ease-out'
+            alt={product.title}
+            sizes='(max-width: 768px) 280px, (max-width: 1024px) 320px, 400px'
+            quality={60} // Reduced from 75
+            priority={isFirstRow && index < 2} // Only first 2 images in first row
+            loading={isFirstRow && index < 2 ? 'eager' : 'lazy'}
+            placeholder='blur'
+            blurDataURL='data:image/webp;base64,UklGRpQAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA'
+          />
+        </Link>
+        <div className='absolute inset-0 h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none'></div>
+        {product.title && (
+          <motion.div className='absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none'>
+            <div className='bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5'>
+              <span
+                className='text-white font-medium text-sm leading-tight'
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                {product.title}
+              </span>
+            </div>
+          </motion.div>
+        )}
+        {/* Optimize: Remove floating animation for better performance */}
+        {isFirstRow && index < 2 && (
+          <motion.div
+            className='absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full'
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.6, 0.9, 0.6],
+            }}
+            transition={{
+              duration: 3, // Increased from 2
+              repeat: Infinity,
+              delay: index * 0.5, // Increased delay
+            }}
+          />
+        )}
+      </motion.div>
+    )
+  }
+)
