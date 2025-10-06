@@ -171,14 +171,18 @@ export default function Home() {
       </motion.div>
 
       {/* Sticky Slider Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <StickySliderSection />
-      </motion.div>
+      {isMobile ? (
+        ''
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <StickySliderSection />
+        </motion.div>
+      )}
 
       {/* Tab Video Showcase */}
       <motion.div
