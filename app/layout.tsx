@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Space_Grotesk, Source_Serif_4 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { GoogleTagManager } from '@next/third-parties/google'
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -119,6 +120,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ff3636" />
         <meta name="msapplication-TileColor" content="#ff3636" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <GoogleTagManager gtmId="GTM-W2MLJGLN" gtmScriptUrl="https://metrics.typus.ai/gtm.js" />
       </head>
       <body className="bg-[#f0f0f0] text-gray-900 transition-colors duration-300">
         <ThemeProvider
