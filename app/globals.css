@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -119,22 +119,6 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
 }
 
 @layer base {
@@ -145,28 +129,28 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
-  
+
   * {
     scroll-behavior: smooth;
   }
-  
+
   body {
     scroll-behavior: smooth;
   }
-  
-  a[href^="#"] {
+
+  a[href^='#'] {
     scroll-behavior: smooth;
   }
-  
+
   /* Global smooth loading animations */
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
   }
-  
+
   .animate-fade-in-scale {
     animation: fadeInScale 0.8s ease-out forwards;
   }
-  
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -177,7 +161,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes fadeInScale {
     from {
       opacity: 0;
@@ -216,12 +200,14 @@
 }
 
 .animate-scroll {
-  animation: scroll var(--animation-duration) linear infinite var(--animation-direction);
+  animation: scroll var(--animation-duration) linear infinite
+    var(--animation-direction);
 }
 
 /* Adding vertical scroll animation class */
 .animate-scroll-vertical {
-  animation: scroll-vertical var(--animation-duration) linear infinite var(--animation-direction);
+  animation: scroll-vertical var(--animation-duration) linear infinite
+    var(--animation-direction);
 }
 
 .scroller {
@@ -313,7 +299,8 @@
 }
 
 @keyframes breathe-black-gray {
-  0%, 100% {
+  0%,
+  100% {
     color: #000000;
     opacity: 1;
   }
@@ -328,7 +315,8 @@
 }
 
 @keyframes breathe-red-orange {
-  0%, 100% {
+  0%,
+  100% {
     color: #ff0000;
     opacity: 1;
   }
@@ -343,7 +331,8 @@
 }
 
 @keyframes breathe-primary-hover {
-  0%, 100% {
+  0%,
+  100% {
     background-color: rgb(255, 54, 54);
     border-color: rgb(255, 54, 54);
   }
@@ -354,7 +343,8 @@
 }
 
 @keyframes breathe-border-primary {
-  0%, 100% {
+  0%,
+  100% {
     border-color: rgb(255, 54, 54);
     box-shadow: 0 0 0 rgba(255, 54, 54, 0.3);
   }
@@ -378,7 +368,8 @@
 
 /* Smooth gradient animation for popular badge */
 @keyframes gradient-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -428,8 +419,21 @@
   }
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .animate-scroll-left {
   animation: scroll-left 20s linear infinite;
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
 
 .animate-scroll-right {
