@@ -28,18 +28,37 @@ export function useVideoManager({
     (src: string) => {
       if (videoCache.has(src) || loadedVideos.has(src)) return
 
+      console.log('Preloading video:', src)
       const video = document.createElement('video')
       video.preload = 'metadata'
       video.src = src
       video.load()
 
       video.addEventListener('loadedmetadata', () => {
+        console.log('Video loaded successfully:', src)
         videoCache.set(src, video)
         onVideoLoaded(src)
       })
 
-      video.addEventListener('error', () => {
-        console.warn(`Failed to load video: ${src}`)
+      video.addEventListener('error', e => {
+        console.warn(`Failed to load video: ${src}`, e)
+        // Try fallback format if WebM fails
+        if (src.endsWith('.webm')) {
+          const mp4Src = src.replace('.webm', '.mp4')
+          const mp4Video = document.createElement('video')
+          mp4Video.preload = 'metadata'
+          mp4Video.src = mp4Src
+          mp4Video.load()
+
+          mp4Video.addEventListener('loadedmetadata', () => {
+            videoCache.set(src, mp4Video) // Use original key for consistency
+            onVideoLoaded(src)
+          })
+
+          mp4Video.addEventListener('error', () => {
+            console.warn(`Fallback video also failed: ${mp4Src}`)
+          })
+        }
       })
     },
     [loadedVideos, onVideoLoaded]

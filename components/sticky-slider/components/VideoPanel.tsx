@@ -44,8 +44,13 @@ const VideoSlide = memo(
           autoPlay
           muted
           preload='metadata'
+          onError={e => {
+            console.warn('Video failed to load:', slide.video)
+            e.currentTarget.style.display = 'none'
+          }}
         >
-          <source src={slide.video} type='video/mp4' />
+          <source src={slide.video} type='video/webm' />
+          <source src={slide.video.replace('.webm', '.mp4')} type='video/mp4' />
         </video>
       ) : (
         <div className='w-96 h-96 rounded-2xl bg-gray-200 animate-pulse flex items-center justify-center'>

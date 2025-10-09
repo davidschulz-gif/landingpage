@@ -20,8 +20,8 @@ const tabs = [
     icon: Wand2,
     description:
       'Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.',
-    video: '/videos/showcase/create_showcase.mp4',
-    videoMobile: '/videos/showcase/compressed/create_showcase.mp4',
+    video: '/videos/showcase/create_showcase.webm',
+    videoMobile: '/videos/showcase/compressed/create_showcase.webm',
     poster: '/modern-villa-render.png',
     features: ['AI-Powered Generation', 'Instant Results', 'Multiple Styles'],
   },
@@ -31,8 +31,8 @@ const tabs = [
     icon: Edit3,
     description:
       'Add People, subtract furniture, and modify facades in your designs with natural language.',
-    video: '/videos/showcase/edit_showcase.mp4',
-    videoMobile: '/videos/showcase/compressed/edit_showcase.mp4',
+    video: '/videos/showcase/edit_showcase.webm',
+    videoMobile: '/videos/showcase/compressed/edit_showcase.webm',
     poster: '/modern-office-building.png',
     features: [
       'Natural Language Editing',
@@ -46,8 +46,8 @@ const tabs = [
     icon: Sparkles,
     description:
       'Sharpen existing renderings, or add extra detail to your designs with a single click.',
-    video: '/videos/showcase/upscale_showcase.mp4',
-    videoMobile: '/videos/showcase/compressed/upscale_showcase.mp4',
+    video: '/videos/showcase/upscale_showcase.webm',
+    videoMobile: '/videos/showcase/compressed/upscale_showcase.webm',
     poster: '/modern-interior-design.png',
     features: [
       'Quality Enhancement',
@@ -60,7 +60,7 @@ const tabs = [
   //   title: "Animate Mode",
   //   icon: Video,
   //   description: "Use Cinematic Presets to bring your visualizations to life in seconds.",
-  //   video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+  //   video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.webm",
   //   poster: "/modern-apartment-complex.png",
   //   features: ["Cinematic Presets", "Life-like Animation", "Quick Generation"]
   // }
