@@ -20,9 +20,8 @@ const tabs = [
     icon: Wand2,
     description:
       'Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.',
-    video: 'https://ik.imagekit.io/typusai/showcase/create_showcase.mp4',
-    videoMobile:
-      'https://ik.imagekit.io/typusai/showcase/compressed/create_showcase.mp4',
+    video: '/videos/showcase/create_showcase.mp4',
+    videoMobile: '/videos/showcase/compressed/create_showcase.mp4',
     poster: '/modern-villa-render.png',
     features: ['AI-Powered Generation', 'Instant Results', 'Multiple Styles'],
   },
@@ -32,9 +31,8 @@ const tabs = [
     icon: Edit3,
     description:
       'Add People, subtract furniture, and modify facades in your designs with natural language.',
-    video: 'https://ik.imagekit.io/typusai/showcase/edit_showcase.mp4',
-    videoMobile:
-      'https://ik.imagekit.io/typusai/showcase/compressed/edit_showcase.mp4',
+    video: '/videos/showcase/edit_showcase.mp4',
+    videoMobile: '/videos/showcase/compressed/edit_showcase.mp4',
     poster: '/modern-office-building.png',
     features: [
       'Natural Language Editing',
@@ -48,9 +46,8 @@ const tabs = [
     icon: Sparkles,
     description:
       'Sharpen existing renderings, or add extra detail to your designs with a single click.',
-    video: 'https://ik.imagekit.io/typusai/showcase/upscale_showcase.mp4',
-    videoMobile:
-      'https://ik.imagekit.io/typusai/showcase/compressed/upscale_showcase.mp4',
+    video: '/videos/showcase/upscale_showcase.mp4',
+    videoMobile: '/videos/showcase/compressed/upscale_showcase.mp4',
     poster: '/modern-interior-design.png',
     features: [
       'Quality Enhancement',
