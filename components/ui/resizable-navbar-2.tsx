@@ -85,12 +85,7 @@ export const Navbar = ({
       )}
     >
       {React.Children.map(children, child =>
-        React.isValidElement(child)
-          ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible }
-            )
-          : child
+        React.isValidElement(child) ? React.cloneElement(child) : child
       )}
     </motion.div>
   )
