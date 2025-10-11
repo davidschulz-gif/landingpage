@@ -2,13 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
 import { THEME_COLORS } from '@/lib/theme'
-import {
-  motion,
-  useInView,
-  useScroll,
-  useSpring,
-  useTransform,
-} from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { Edit3, Sparkles, Wand2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { BreathingAnimationText } from './breathing-animation-text'
@@ -72,16 +66,9 @@ const videoCache = new Map<string, HTMLVideoElement>()
 export function TabVideoShowcase() {
   const [activeTab, setActiveTab] = useState('create')
   const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set())
-  const [showTitle, setShowTitle] = useState(true)
   const [videoLoadError, setVideoLoadError] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const videoSectionRef = useRef<HTMLDivElement>(null)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: false, margin: '100px' })
-  const videoInView = useInView(videoSectionRef, {
-    once: false,
-    margin: '-100px',
-  })
   // Add this hook at the top of your component (after existing useState declarations)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -91,14 +78,6 @@ export function TabVideoShowcase() {
     target: containerRef,
     offset: ['start end', 'end start'],
   })
-
-  // Monitor scroll to hide title when video section is in view
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', latest => {
-      setShowTitle(latest <= 0.3)
-    })
-    return () => unsubscribe()
-  }, [scrollYProgress])
 
   // Smooth spring animations for video scaling
   const titleY = useSpring(useTransform(scrollYProgress, [0, 0.5], [0, -50]), {
@@ -129,7 +108,6 @@ export function TabVideoShowcase() {
       video.addEventListener('loadedmetadata', () => {
         videoCache.set(src, video)
         setLoadedVideos(prev => new Set([...prev, src]))
-        console.log('Preloaded video:', src)
       })
 
       video.addEventListener('error', e => {
@@ -150,35 +128,9 @@ export function TabVideoShowcase() {
     return () => timeouts.forEach(clearTimeout)
   }, [activeTabData])
 
-  // Debug effect
-  useEffect(() => {
-    console.log('TabVideoShowcase state:', {
-      activeTab,
-      isInView,
-      videoInView,
-      activeTabData: activeTabData
-        ? {
-            id: activeTabData.id,
-            video: activeTabData.video,
-            title: activeTabData.title,
-          }
-        : null,
-      loadedVideos: Array.from(loadedVideos),
-      videoLoadError,
-    })
-  }, [
-    activeTab,
-    isInView,
-    videoInView,
-    activeTabData,
-    loadedVideos,
-    videoLoadError,
-  ])
-
   // Add this after your existing useEffect hooks (around line 150)
   useEffect(() => {
     const handleUserInteraction = () => {
-      console.log('User interaction detected, attempting to play videos')
       const videos = document.querySelectorAll('video')
       videos.forEach(video => {
         if (video.paused) {
@@ -229,7 +181,7 @@ export function TabVideoShowcase() {
   return (
     <section
       ref={containerRef}
-      className='relative mx-auto flex max-w-[95%] md:max-w-[65%] w-full flex-col md:px-4 py-16 text-neutral-800 dark:text-neutral-200'
+      className='relative overflow-hidden mx-auto flex max-w-[95%] md:max-w-[65%] w-full flex-col md:px-4 py-16 text-neutral-800 dark:text-neutral-200'
       style={{ backgroundColor: '#f0f0f0' }}
     >
       {/* Title Section */}
@@ -310,7 +262,6 @@ export function TabVideoShowcase() {
                         await new Promise(resolve => setTimeout(resolve, 100))
                         if (el.paused) {
                           await el.play()
-                          console.log('Video playing successfully')
                         }
                       } catch (error) {
                         console.log(
@@ -337,7 +288,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video loading started:', videoSrc)
                   setVideoLoadError(null)
                 }}
                 onLoadedData={e => {
@@ -345,7 +295,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video loaded:', videoSrc)
                   setVideoLoadError(null)
 
                   // Try to play immediately when data is loaded
@@ -358,7 +307,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video can play:', videoSrc)
 
                   // Force play when video can play
                   if (video.paused) {

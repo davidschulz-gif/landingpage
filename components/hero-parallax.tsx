@@ -62,39 +62,54 @@ export const HeroParallax = ({
   // Optimize: Use more performant spring config
   const springConfig = { stiffness: 300, damping: 30, bounce: 0 }
 
+  // Move all hook calls to top level to follow Rules of Hooks
+  const baseTranslateXTransform = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 300]
+  )
+  const baseTranslateXReverseTransform = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -300]
+  )
+  const rotateXTransform = useTransform(scrollYProgress, [0, 0.3], [15, 0])
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.3], [0.2, 1])
+  const rotateZTransform = useTransform(scrollYProgress, [0, 0.3], [8, 0])
+  const translateYTransform = useTransform(scrollYProgress, [0, 0.3], [-200, 0])
+  const scaleTransform = useTransform(scrollYProgress, [0, 0.3], [0.95, 1])
+
+  const baseTranslateX = useSpring(baseTranslateXTransform, springConfig)
+  const baseTranslateXReverse = useSpring(
+    baseTranslateXReverseTransform,
+    springConfig
+  )
+  const rotateX = useSpring(rotateXTransform, springConfig)
+  const opacity = useSpring(opacityTransform, springConfig)
+  const rotateZ = useSpring(rotateZTransform, springConfig)
+  const translateY = useSpring(translateYTransform, springConfig)
+  const scale = useSpring(scaleTransform, springConfig)
+
   // Optimize: Memoize transforms to prevent recalculation
   const transforms = useMemo(
     () => ({
-      baseTranslateX: useSpring(
-        useTransform(scrollYProgress, [0, 1], [0, 300]), // Reduced from 500
-        springConfig
-      ),
-      baseTranslateXReverse: useSpring(
-        useTransform(scrollYProgress, [0, 1], [0, -300]), // Reduced from -400
-        springConfig
-      ),
-      rotateX: useSpring(
-        useTransform(scrollYProgress, [0, 0.3], [15, 0]), // Reduced from 25
-        springConfig
-      ),
-      opacity: useSpring(
-        useTransform(scrollYProgress, [0, 0.3], [0.2, 1]), // Increased from 0.1
-        springConfig
-      ),
-      rotateZ: useSpring(
-        useTransform(scrollYProgress, [0, 0.3], [8, 0]), // Reduced from 15
-        springConfig
-      ),
-      translateY: useSpring(
-        useTransform(scrollYProgress, [0, 0.3], [-200, 0]), // Reduced from -400
-        springConfig
-      ),
-      scale: useSpring(
-        useTransform(scrollYProgress, [0, 0.3], [0.95, 1]), // Increased from 0.9
-        springConfig
-      ),
+      baseTranslateX,
+      baseTranslateXReverse,
+      rotateX,
+      opacity,
+      rotateZ,
+      translateY,
+      scale,
     }),
-    [scrollYProgress, springConfig]
+    [
+      baseTranslateX,
+      baseTranslateXReverse,
+      rotateX,
+      opacity,
+      rotateZ,
+      translateY,
+      scale,
+    ]
   )
 
   return (
@@ -432,11 +447,8 @@ const InfiniteMarqueeRow = React.memo(
       [direction, time, speed, totalWidth]
     )
 
-    // Optimize: Memoize transform
-    const transformX = useMemo(
-      () => useTransform(baseTranslate, value => value + infiniteX),
-      [baseTranslate, infiniteX]
-    )
+    // Move useTransform to top level to follow Rules of Hooks
+    const transformX = useTransform(baseTranslate, value => value + infiniteX)
 
     return (
       <div
