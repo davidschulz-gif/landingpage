@@ -108,7 +108,6 @@ export function TabVideoShowcase() {
       video.addEventListener('loadedmetadata', () => {
         videoCache.set(src, video)
         setLoadedVideos(prev => new Set([...prev, src]))
-        console.log('Preloaded video:', src)
       })
 
       video.addEventListener('error', e => {
@@ -263,7 +262,6 @@ export function TabVideoShowcase() {
                         await new Promise(resolve => setTimeout(resolve, 100))
                         if (el.paused) {
                           await el.play()
-                          console.log('Video playing successfully')
                         }
                       } catch (error) {
                         console.log(
@@ -290,7 +288,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video loading started:', videoSrc)
                   setVideoLoadError(null)
                 }}
                 onLoadedData={e => {
@@ -298,7 +295,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video loaded:', videoSrc)
                   setVideoLoadError(null)
 
                   // Try to play immediately when data is loaded
@@ -311,7 +307,6 @@ export function TabVideoShowcase() {
                   const videoSrc = isMobile
                     ? activeTabData.videoMobile
                     : activeTabData.video
-                  console.log('Video can play:', videoSrc)
 
                   // Force play when video can play
                   if (video.paused) {
