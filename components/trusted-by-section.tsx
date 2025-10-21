@@ -87,7 +87,12 @@ const getTrustedByItems = () => [
             className='w-full h-auto'
           />
         </div>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'>
+        <a
+          href='https://80-sekunden.de/'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'
+        >
           <Image
             src='/logo/80sek_black.png'
             alt='80sek Logo'
@@ -95,7 +100,7 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
+        </a>
         <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'>
           <Image
             src='/logo/heinze.png'
@@ -143,7 +148,12 @@ const getTrustedByItems = () => [
   {
     title: 'MEMBER OF.',
     logo: (
-      <div className='relative w-18 md:w-14 lg:w-20 xl:w-24'>
+      <a
+        href='https://bdbau.org/mitglieder/'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='relative w-18 md:w-14 lg:w-20 xl:w-24'
+      >
         <Image
           src='/logo/lo_bdbau_1c_rz.avif'
           alt='Member Logo'
@@ -151,7 +161,7 @@ const getTrustedByItems = () => [
           height={48}
           className='w-full h-auto'
         />
-      </div>
+      </a>
     ),
   },
 ]

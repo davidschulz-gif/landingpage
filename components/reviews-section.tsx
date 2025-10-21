@@ -83,11 +83,10 @@ export function ReviewsSection() {
             <iframe
               id='testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b'
               src='https://embed-v2.testimonial.to/w/yanus?id=b6f883ac-9b79-48ea-b5f2-20cadc234b2b&columns=3'
-              scrolling='no'
               aria-label='Reviews'
               width='100%'
               height='600px'
-              className='rounded-2xl'
+              className='rounded-2xl overflow-hidden'
             ></iframe>
             <script
               type='text/javascript'
