@@ -35,7 +35,12 @@ const getTrustedByItems = () => [
     title: 'INTEGRATIONS',
     logo: (
       <div className='flex items-center justify-center gap-4 w-full'>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'>
+        <a
+          href='https://apps.autodesk.com/RVT/en/Detail/Index?id=439862635907036577'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
+        >
           <Image
             src='/logo/revit_logo.avif'
             alt='Revit'
@@ -43,8 +48,13 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-15'>
+        </a>
+        <a
+          href='https://www.food4rhino.com/en/app/typusai'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-15'
+        >
           <Image
             src='/logo/rhino_logo.png'
             alt='Rhino'
@@ -52,7 +62,7 @@ const getTrustedByItems = () => [
             height={80}
             className='w-full h-auto'
           />
-        </div>
+        </a>
         <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-32'>
           <Image
             src='/logo/archicad_logo.avif'
@@ -62,7 +72,12 @@ const getTrustedByItems = () => [
             className='w-full h-auto'
           />
         </div>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'>
+        <a
+          href='https://extensions.sketchup.com/extension/e6a9ad72-52d1-4c06-96c5-b26e8180db06/typus-ai'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
+        >
           <Image
             src='/logo/sketchup.png'
             alt='SketchUp'
@@ -70,7 +85,7 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
+        </a>
       </div>
     ),
   },
@@ -78,7 +93,12 @@ const getTrustedByItems = () => [
     title: 'AS SEEN ON',
     logo: (
       <div className='flex items-center justify-center gap-4 w-full'>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'>
+        <a
+          href='https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'
+        >
           <Image
             src='/logo/dab_logo.png'
             alt='DAB Logo'
@@ -86,7 +106,7 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
+        </a>
         <a
           href='https://80-sekunden.de/'
           target='_blank'
@@ -110,7 +130,12 @@ const getTrustedByItems = () => [
             className='w-full h-auto'
           />
         </div>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'>
+        <a
+          href='https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-20'
+        >
           <Image
             src='/logo/baunetz-newsletter-logo.png'
             alt='Baunetz Logo'
@@ -118,8 +143,13 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-24'>
+        </a>
+        <a
+          href='https://bauforum-innovationen.de/startups/'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-24'
+        >
           <Image
             src='/logo/konferenzen-logo.png'
             alt='Konferenzen Logo'
@@ -127,14 +157,19 @@ const getTrustedByItems = () => [
             height={48}
             className='w-full h-auto'
           />
-        </div>
+        </a>
       </div>
     ),
   },
   {
     title: 'FINALIST FOR TIC\nAWARD 2024.',
     logo: (
-      <div className='relative cursor-pointer w-12 md:w-12 lg:w-16 xl:w-20'>
+      <a
+        href='https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='relative cursor-pointer w-12 md:w-12 lg:w-16 xl:w-20'
+      >
         <Image
           src='/logo/tic_logo.png'
           alt='TIC Logo'
@@ -142,7 +177,7 @@ const getTrustedByItems = () => [
           height={40}
           className='w-full h-auto'
         />
-      </div>
+      </a>
     ),
   },
   {
