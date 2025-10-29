@@ -71,14 +71,16 @@ export function MeetOurTeamSection() {
                 <div className='bg-white rounded-2xl p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500'>
                   {/* Profile Image */}
                   <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded flex-shrink-0'>
-                    <Image
-                      src={member.image}
-                      alt=''
-                      width={192}
-                      height={192}
-                      className='w-full h-full rounded-full object-cover object-center group-hover:scale-105 transition-transform duration-300'
-                      sizes='192px'
-                    />
+                    <div className='w-full h-full p-10'>
+                      <Image
+                        src={member.image}
+                        alt=''
+                        width={192}
+                        height={192}
+                        className='w-full h-full rounded-full object-cover object-center group-hover:scale-105 transition-transform duration-300'
+                        sizes='192px'
+                      />
+                    </div>
                   </div>
 
                   {/* Name */}
