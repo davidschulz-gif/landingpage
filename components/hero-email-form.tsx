@@ -40,7 +40,7 @@ export default function HeroEmailForm() {
 
     try {
       const response = await fetch(
-        'http://localhost:3000/api/bigmailer/contacts',
+        'https://app.typus.ai/api/bigmailer/contacts',
         {
           method: 'POST',
           headers: {
