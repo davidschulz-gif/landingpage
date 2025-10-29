@@ -10,21 +10,21 @@ const teamMembers = [
     id: 'julia',
     name: 'JULIA GÖGE',
     role: 'CONTENT MARKETING',
-    image: 'https://typus.ai/wp-content/uploads/2025/01/julia_klein-1.png',
+    image: '/team/juliagoge.png',
     linkedin: 'https://www.linkedin.com/in/julia-g%C3%B6ge-6256741a2/',
   },
   {
     id: 'marc',
     name: 'MARC HUPPERICH',
     role: '3D ARTIST',
-    image: 'https://typus.ai/wp-content/uploads/2024/12/marc.png',
+    image: '/team/marchupperich.png',
     linkedin: 'https://www.linkedin.com/in/marc-hupperich-621998156/',
   },
   {
     id: 'david',
     name: 'DAVID SCHULZ',
     role: 'KEY ACCOUNT MANAGER',
-    image: 'https://typus.ai/wp-content/uploads/2025/07/david-transparent.png',
+    image: '/team/davidschulz.png',
     linkedin: 'https://www.linkedin.com/in/david-schulz-6ba991286/',
   },
 ]
@@ -76,7 +76,7 @@ export function MeetOurTeamSection() {
                       alt=''
                       width={192}
                       height={192}
-                      className='w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300'
+                      className='w-full h-full rounded-full object-cover object-center group-hover:scale-105 transition-transform duration-300'
                       sizes='192px'
                     />
                   </div>

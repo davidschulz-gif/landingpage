@@ -5,7 +5,7 @@
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: #f0f0f0;
+  --background: #fcfcfd;
   --foreground: #475569;
   --card: #ffffff;
   --card-foreground: #164e63;
@@ -42,20 +42,20 @@
 
 .dark {
   /* Updated dark mode tokens to complement the cyan theme */
-  --background: #0f172a;
+  --background: #0d0e12;
   --foreground: #f1f5f9;
   --card: #1e293b;
   --card-foreground: #f1f5f9;
   --popover: #1e293b;
   --popover-foreground: #f1f5f9;
   --primary: #38bdf8;
-  --primary-foreground: #0f172a;
+  --primary-foreground: #0d0e12;
   --secondary: #164e63;
   --secondary-foreground: #f1f5f9;
   --muted: #334155;
   --muted-foreground: #94a3b8;
   --accent: #38bdf8;
-  --accent-foreground: #0f172a;
+  --accent-foreground: #0d0e12;
   --destructive: #dc2626;
   --destructive-foreground: #f1f5f9;
   --border: #334155;

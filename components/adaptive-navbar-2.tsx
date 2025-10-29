@@ -84,7 +84,7 @@ export function NavbarDemo() {
             LOGIN
           </Link>
           <Link
-            href={'https://app.typus.ai/login'}
+            href={'https://app.typus.ai/register'}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
           >
             SIGN UP
@@ -213,7 +213,7 @@ export function NavbarDemo() {
                 LOGIN
               </Link>
               <Link
-                href={'https://app.typus.ai/login'}
+                href={'https://app.typus.ai/register'}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 SIGN UP

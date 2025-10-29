@@ -1,4 +1,5 @@
 'use client'
+import { IconMail } from '@tabler/icons-react'
 import {
   motion,
   useScroll,
@@ -279,6 +280,45 @@ export const Header = () => {
               height={200}
             />
           </div>
+
+          {/* Small email form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1, ease: 'easeOut' }}
+            className='mt-4 w-full max-w-sm'
+          >
+            <form
+              action='https://app.typus.ai/register'
+              method='GET'
+              target='_blank'
+              className='flex items-stretch gap-2'
+            >
+              <input
+                type='email'
+                name='email'
+                required
+                placeholder='Enter your email'
+                aria-label='Email address'
+                className='flex-1 rounded-full border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none'
+              />
+              <button
+                type='submit'
+                className='!px-6 flex items-center flex-shrink-0 py-2 rounded-full bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90'
+              >
+                Learn more
+              </button>
+            </form>
+            <div className='mt-2 flex items-center gap-2'>
+              <IconMail size={14} className='text-gray-600' />
+              <span
+                className='text-[11px] text-gray-600 dark:text-gray-300'
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Learn more about the app and get notified about new features.
+              </span>
+            </div>
+          </motion.div>
         </div>
 
         {/* Center - Logo, Title and Button */}
