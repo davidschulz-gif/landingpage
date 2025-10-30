@@ -40,7 +40,7 @@ export default function HeroEmailForm() {
 
     try {
       const response = await fetch(
-        'https://app.typus.ai/api/bigmailer/contacts',
+        'http://app.typus.ai/api/bigmailer/request-verification-jwt',
         {
           method: 'POST',
           headers: {

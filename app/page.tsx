@@ -3,6 +3,7 @@
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import CompareDemo from '@/components/compare-drag-demo'
 import { HeroParallax } from '@/components/hero-parallax'
+import { ToastProvider } from '@/components/providers/toast-provider'
 import { SplashScreen } from '@/components/splash-screen'
 import { StickyBottomSheet } from '@/components/sticky-bottom-sheet'
 import { VideoShowcaseSection } from '@/components/video-showcase-section'
@@ -333,6 +334,8 @@ export default function Home() {
 
       {/* Splash Screen Overlay */}
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+
+      {!showSplash && <ToastProvider />}
     </>
   )
 }
