@@ -163,7 +163,7 @@ export default function RootLayout({
           gtmScriptUrl='https://metrics.typus.ai/gtm.js'
         />
       </head>
-      <body className='bg-[#f0f0f0] text-gray-900 transition-colors duration-300'>
+      <body className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'>
         <ThemeProvider
           attribute='class'
           defaultTheme='light'
