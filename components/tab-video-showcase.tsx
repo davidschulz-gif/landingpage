@@ -182,7 +182,7 @@ export function TabVideoShowcase() {
     <section
       ref={containerRef}
       className='relative overflow-hidden mx-auto flex max-w-[95%] md:max-w-[65%] w-full flex-col md:px-4 py-16 text-neutral-800 dark:text-neutral-200'
-      style={{ backgroundColor: '#f0f0f0' }}
+      style={{ backgroundColor: '#fcfcfd' }}
     >
       {/* Title Section */}
       <motion.div
