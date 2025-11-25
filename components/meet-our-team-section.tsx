@@ -65,12 +65,12 @@ export function MeetOurTeamSection() {
               className='group'
             >
               <div className='relative group'>
-                <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-all duration-500 p-[2px]'>
-                  <div className='w-full h-full bg-[#fcfcfd] rounded-2xl'></div>
+                <div className='absolute inset-0  bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-all duration-500 p-[2px]'>
+                  <div className='w-full h-full bg-[#fcfcfd] '></div>
                 </div>
-                <div className='bg-white rounded-2xl p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500'>
+                <div className='bg-white p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500'>
                   {/* Profile Image */}
-                  <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded flex-shrink-0'>
+                  <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden flex-shrink-0'>
                     <div className='w-full h-full p-10'>
                       <Image
                         src={member.image}

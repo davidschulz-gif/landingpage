@@ -38,7 +38,7 @@ const VideoSlide = memo(
     >
       {sectionInView && loadedVideos.has(slide.video) ? (
         <video
-          className='w-96 h-96 rounded-2xl object-cover'
+          className='w-96 h-96  object-cover'
           playsInline
           loop
           autoPlay
@@ -53,7 +53,7 @@ const VideoSlide = memo(
           <source src={slide.video.replace('.webm', '.mp4')} type='video/mp4' />
         </video>
       ) : (
-        <div className='w-96 h-96 rounded-2xl bg-gray-200 animate-pulse flex items-center justify-center'>
+        <div className='w-96 h-96  bg-gray-200 animate-pulse flex items-center justify-center'>
           <div className='text-gray-500 text-sm'>Loading...</div>
         </div>
       )}

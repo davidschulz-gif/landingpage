@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Compare } from "./ui/compare";
-import { BreathingAnimationText } from "./breathing-animation-text";
-import { PhotoStripAnimation } from "./ui/photo-strip-animation";
-import Link from "next/link";
+import { useState } from "react";
 import { ActionButton } from "./action-button";
+import { BreathingAnimationText } from "./breathing-animation-text";
+import { Compare } from "./ui/compare";
+import { PhotoStripAnimation } from "./ui/photo-strip-animation";
 
 interface CompareWithAnimationProps {
   className?: string;
@@ -94,7 +93,7 @@ export const CompareWithAnimation = ({
               <div
                 key={index}
                 className={cn(
-                  "h-16 w-24 cursor-pointer overflow-hidden rounded-lg transition-opacity lg:rounded-2xl",
+                  "h-16 w-24 cursor-pointer overflow-hidden  transition-opacity lg:",
                   activeIndex === index
                     ? "opacity-100"
                     : "opacity-50 hover:opacity-100"
@@ -138,7 +137,7 @@ export const CompareWithAnimation = ({
           <Compare
             firstImage={beforeImages[activeIndex]}
             secondImage={afterImages[activeIndex]}
-            className="w-full overflow-hidden rounded-3xl border border-border lg:rounded-[calc(var(--radius)*3)] aspect-[1.3]"
+            className="w-full overflow-hidden  border border-border lg: aspect-[1.3]"
             firstImageClassName="object-cover w-full h-full"
             secondImageClassname="object-cover w-full h-full"
             slideMode="drag"

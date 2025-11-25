@@ -47,13 +47,13 @@ export function SplashLoadingBar() {
 
         {/* Progress Bar */}
         <div
-          className={`rounded-full overflow-hidden ${
+          className={` overflow-hidden ${
             isMobile ? 'w-24 h-0.5' : 'w-32 h-0.5'
           }`}
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
         >
           <motion.div
-            className='h-full rounded-full'
+            className='h-full '
             style={{ backgroundColor: 'rgb(0,0,0)' }}
             initial={{ width: 0 }}
             animate={{ width: '100%' }}

@@ -140,7 +140,7 @@ export function ArticleCarouselSection() {
                 >
                   <Card className='border-0 gap-0 py-0 mb-4 md:ml-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white'>
                     <CardContent className='p-0'>
-                      <div className='aspect-square relative overflow-hidden rounded-t-lg'>
+                      <div className='aspect-square relative overflow-hidden '>
                         {/* Conditional rendering based on ID instead of source type */}
                         {[1, 2, 3, 4, 5].includes(article.id) ? (
                           <div className='w-full h-full bg-white flex items-center justify-center p-8'>
@@ -179,7 +179,7 @@ export function ArticleCarouselSection() {
                         )}
                         <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
                         <div className='absolute bottom-4 left-4 right-4'>
-                          <span className='text-white uppercase text-xs font-medium bg-black/30 px-2 py-1 rounded-full backdrop-blur-sm'>
+                          <span className='text-white uppercase text-xs font-medium bg-black/30 px-2 py-1  backdrop-blur-sm'>
                             {article.source}
                           </span>
                         </div>

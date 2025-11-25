@@ -126,7 +126,7 @@ export const VideoShowcaseSection = () => {
               ].map((badge, index) => (
                 <motion.span
                   key={index}
-                  className='inline-flex items-center rounded-full cursor-default hover:scale-105 transition-all duration-300 text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 bg-white text-black shadow-md border-0'
+                  className='inline-flex items-center  cursor-default hover:scale-105 transition-all duration-300 text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 bg-white text-black shadow-md border-0'
                   initial={{ opacity: 0, y: 30, scale: 0.8 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
@@ -161,7 +161,7 @@ export const VideoShowcaseSection = () => {
           >
             <div className='relative w-full h-full mx-auto px-4'>
               <video
-                className='w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl'
+                className='w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover '
                 src='/videos/INTRO_typus_newlogo.webm'
                 poster='/video-poster.jpg'
                 autoPlay
@@ -178,7 +178,7 @@ export const VideoShowcaseSection = () => {
         <div className=' flex w-full'>
           <div className='relative w-full h-full mx-auto px-4'>
             <video
-              className='w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-2xl'
+              className='w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover '
               src='/videos/INTRO_typus_newlogo.webm'
               poster='/video-poster.jpg'
               autoPlay

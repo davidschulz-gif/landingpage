@@ -38,18 +38,17 @@ const TabButton = memo(
             className='bg-white border-0 text-black flex items-center justify-between w-full p-2 shadow-lg'
             containerClassName='w-full h-auto'
             borderClassName='bg-[radial-gradient(#ff6b35_40%,#ff3636_60%)] opacity-80'
-            borderRadius='0.75rem'
+            borderRadius='0rem'
             onClick={() => onTabClick(tabIndex)}
             style={{
-              borderRadius: '0.75rem',
               background: 'white',
               boxShadow:
                 '0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1)',
             }}
           >
             <div className='flex items-center space-x-4'>
-              <div className='w-10 h-10 rounded-xl flex items-center justify-center bg-gray-50'>
-                <div className='w-3 h-3 rounded-xs bg-black animate-pulse'></div>
+              <div className='w-10 h-10  flex items-center justify-center bg-gray-50'>
+                <div className='w-3 h-3  bg-black animate-pulse'></div>
               </div>
               <div className='flex flex-col justify-center items-start'>
                 <BreathingAnimationText animationType='black-gray'>
@@ -63,7 +62,7 @@ const TabButton = memo(
               </div>
             </div>
             <div className='w-6 h-6 flex items-center justify-center'>
-              <div className='w-2 h-2 bg-gray-400 rounded-sm transition-transform duration-200'></div>
+              <div className='w-2 h-2 bg-gray-400  transition-transform duration-200'></div>
             </div>
           </MovingBorderButton>
         </motion.div>
@@ -73,15 +72,15 @@ const TabButton = memo(
     return (
       <motion.button
         onClick={() => onTabClick(tabIndex)}
-        className='group relative w-full text-left transition-all duration-300 ease-out rounded-xl overflow-hidden bg-gray-50/50 hover:bg-white hover:shadow-md'
+        className='group relative w-full text-left transition-all duration-300 ease-out  overflow-hidden bg-gray-50/50 hover:bg-white hover:shadow-md'
         whileHover={{ scale: 1.01, y: -1 }}
         whileTap={{ scale: 0.99 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         <div className='flex items-center justify-between p-2'>
           <div className='flex items-center space-x-4'>
-            <div className='w-10 h-10 rounded-xl flex items-center justify-center bg-white transition-colors duration-200'>
-              <div className='w-3 h-3 rounded-xs bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200'></div>
+            <div className='w-10 h-10  flex items-center justify-center bg-white transition-colors duration-200'>
+              <div className='w-3 h-3  bg-gray-300 group-hover:bg-gray-400 transition-colors duration-200'></div>
             </div>
             <div>
               <div className='font-semibold text-sm tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors duration-200'>
@@ -93,7 +92,7 @@ const TabButton = memo(
             </div>
           </div>
           <div className='w-6 h-6 flex items-center justify-center'>
-            <div className='w-2 h-2 bg-gray-400 group-hover:bg-gray-600 rounded-sm transition-all duration-200'></div>
+            <div className='w-2 h-2 bg-gray-400 group-hover:bg-gray-600  transition-all duration-200'></div>
           </div>
         </div>
       </motion.button>
@@ -119,7 +118,7 @@ const SubCategoryButton = memo(
   }) => (
     <motion.button
       onClick={() => onSubCategoryClick(tabIndex, slideIndex)}
-      className={`group/sub relative w-full text-left transition-all duration-200 ease-out rounded-lg overflow-hidden ${
+      className={`group/sub relative w-full text-left transition-all duration-200 ease-out  overflow-hidden ${
         isActive
           ? 'text-black shadow-sm bg-white'
           : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
@@ -135,9 +134,9 @@ const SubCategoryButton = memo(
       }}
     >
       <div className='flex items-center p-3 pl-4'>
-        <div className='w-4 h-4 rounded-sm flex items-center justify-center bg-gray-100 group-hover/sub:bg-gray-200 transition-colors duration-200 mr-3'>
+        <div className='w-4 h-4  flex items-center justify-center bg-gray-100 group-hover/sub:bg-gray-200 transition-colors duration-200 mr-3'>
           <div
-            className={`w-1.5 h-1.5 rounded-xs transition-all duration-200 ${
+            className={`w-1.5 h-1.5  transition-all duration-200 ${
               isActive
                 ? 'bg-black shadow-sm animate-pulse'
                 : 'bg-gray-300 group-hover/sub:bg-gray-400'
@@ -159,7 +158,7 @@ const SubCategoryButton = memo(
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className='w-1.5 h-1.5 rounded-sm bg-black animate-pulse'
+            className='w-1.5 h-1.5  bg-black animate-pulse'
           />
         )}
       </div>

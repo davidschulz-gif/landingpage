@@ -9,7 +9,7 @@ import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 const Lottie = dynamic(() => import('lottie-react'), {
   ssr: false,
   loading: () => (
-    <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+    <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
   ),
 })
 
@@ -43,7 +43,7 @@ function LottieAnimationSplashScreenComponent({
   if (isMobile || shouldReduceMotion) {
     return (
       <div className={`flex items-center justify-center ${className || ''}`}>
-        <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+        <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
       </div>
     )
   }
@@ -82,7 +82,7 @@ function LottieAnimationSplashScreenComponent({
   if (hasError || !animationData) {
     return (
       <div className={`flex items-center justify-center ${className || ''}`}>
-        <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+        <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
       </div>
     )
   }
@@ -107,7 +107,7 @@ function LottieAnimationSplashScreenComponent({
       />
       {!isLoaded && (
         <div className='absolute inset-0 flex items-center justify-center'>
-          <div className='w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+          <div className='w-8 h-8 border-2 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
         </div>
       )}
     </div>

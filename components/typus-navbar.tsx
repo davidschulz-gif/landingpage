@@ -197,7 +197,7 @@ export default function TypusNavbar() {
                     {navItems.map((item, index) => (
                       <button
                         key={item.name}
-                        className='font-medium text-gray-900 h-full px-3 cursor-pointer hover:text-red-600 text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
+                        className='font-medium text-gray-900 h-full px-3 cursor-pointer hover:text-black text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
                       >
                         <span>{item.name}</span>
                       </button>
@@ -239,17 +239,17 @@ export default function TypusNavbar() {
                                   <h3 className='text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1'>
                                     {navItem.name}
                                   </h3>
-                                  <div className='w-8 h-px bg-gradient-to-r from-red-500 to-red-300'></div>
+                                  <div className='w-8 h-px bg-gradient-to-r from-black to-gray-800'></div>
                                 </div>
                                 <div className='space-y-3'>
                                   {navItem.submenu?.map((subitem, subIdx) => (
                                     <a
                                       key={`submenu-${navIdx}-${subIdx}`}
                                       href={subitem.link}
-                                      className='block group/item p-2 -mx-2 rounded-lg hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
+                                      className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
                                     >
                                       <div className='flex-1'>
-                                        <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-red-600 mb-1 transition-colors duration-200'>
+                                        <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
                                           {subitem.title}
                                         </h4>
                                         <p className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
@@ -283,14 +283,14 @@ export default function TypusNavbar() {
                               <div className='flex items-center gap-6'>
                                 <a
                                   href='#demo'
-                                  className='inline-flex items-center gap-1.5 text-[11px] text-red-600 hover:text-red-700 font-medium transition-all duration-200 hover:translate-x-0.5'
+                                  className='inline-flex items-center gap-1.5 text-[11px] text-black hover:text-gray-900 font-medium transition-all duration-200 hover:translate-x-0.5'
                                 >
                                   <Play className='w-3 h-3' />
                                   View Demo
                                 </a>
                                 <a
                                   href='#pricing'
-                                  className='text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5 rounded-lg hover:bg-gray-100/60 transition-all duration-200'
+                                  className='text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5  hover:bg-gray-100/60 transition-all duration-200'
                                 >
                                   See Pricing
                                 </a>
@@ -307,7 +307,7 @@ export default function TypusNavbar() {
               <div className='flex items-center gap-6 h-full'>
                 {/* <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-lg cursor-pointer bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                className="p-2  cursor-pointer bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
               >
                 {theme === "dark" ? (
                   <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
@@ -362,9 +362,9 @@ export default function TypusNavbar() {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className='flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
                       >
-                        <div className='w-8 h-5 bg-neutral-100 dark:bg-neutral-800 rounded overflow-hidden flex-shrink-0 mt-0.5'>
-                          <div className='w-full h-full bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center'>
-                            <div className='w-2 h-2 bg-red-500 rounded-full'></div>
+                        <div className='w-8 h-5 bg-neutral-100 dark:bg-neutral-800 overflow-hidden flex-shrink-0 mt-0.5'>
+                          <div className='w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center'>
+                            <div className='w-2 h-2 bg-black '></div>
                           </div>
                         </div>
                         <div>

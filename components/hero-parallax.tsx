@@ -294,13 +294,7 @@ export const Header = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className='mb-0 flex flex-col items-center space-y-2'
           >
-            <img
-              src='/logo/typus_logo_red_transp.png'
-              alt='Typus.AI logo'
-              width={50}
-              height={50}
-              className='object-contain'
-            />
+            <div className='bg-black size-4 m-3'></div>
             <span
               className='text-center uppercase'
               style={{
@@ -310,7 +304,7 @@ export const Header = () => {
                 fontWeight: 300,
                 letterSpacing: '2.5px',
                 lineHeight: '1.3em',
-                color: '#FF1E1E',
+                color: '#000',
                 textTransform: 'uppercase',
               }}
             >
@@ -350,7 +344,7 @@ export const Header = () => {
                   key={feature}
                   className='flex items-center space-x-2 sm:space-x-3'
                 >
-                  <div className='w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-black dark:bg-white flex items-center justify-center flex-shrink-0'>
+                  <div className='w-3 h-3 sm:w-4 sm:h-4  bg-black dark:bg-white flex items-center justify-center flex-shrink-0'>
                     <svg
                       className='w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 text-white dark:text-black'
                       fill='currentColor'
@@ -380,7 +374,7 @@ export const Header = () => {
 
       {/* Floating elements */}
       <motion.div
-        className='absolute top-16 right-16 w-3 h-3 bg-blue-500/20 rounded-full hidden md:block'
+        className='absolute top-16 right-16 w-3 h-3 bg-blue-500/20  hidden md:block'
         animate={{
           y: [0, -15, 0],
           opacity: [0.2, 0.6, 0.2],
@@ -392,7 +386,7 @@ export const Header = () => {
         }}
       />
       <motion.div
-        className='absolute bottom-24 left-24 w-4 h-4 bg-purple-500/15 rounded-full hidden lg:block'
+        className='absolute bottom-24 left-24 w-4 h-4 bg-purple-500/15  hidden lg:block'
         animate={{
           y: [0, 12, 0],
           x: [0, 8, 0],
@@ -406,7 +400,7 @@ export const Header = () => {
         }}
       />
       <motion.div
-        className='absolute top-1/3 right-1/3 w-2 h-2 bg-cyan-500/25 rounded-full hidden xl:block'
+        className='absolute top-1/3 right-1/3 w-2 h-2 bg-cyan-500/25  hidden xl:block'
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.25, 0.5, 0.25],
@@ -524,7 +518,7 @@ export const ProductCard = React.memo(
     return (
       <motion.div
         style={animationStyle}
-        className='group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl ease-out will-change-transform'
+        className='group/product cursor-pointer h-56 w-72 relative flex-shrink-0 overflow-hidden shadow-xl ease-out will-change-transform'
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
@@ -554,7 +548,7 @@ export const ProductCard = React.memo(
         <div className='absolute inset-0 h-full w-full bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 pointer-events-none'></div>
         {product.title && (
           <motion.div className='absolute bottom-4 left-4 right-4 flex justify-start z-20 pointer-events-none'>
-            <div className='bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5'>
+            <div className='bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5'>
               <span
                 className='text-white font-medium text-sm leading-tight'
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -567,7 +561,7 @@ export const ProductCard = React.memo(
         {/* Optimize: Remove floating animation for better performance */}
         {isFirstRow && index < 2 && (
           <motion.div
-            className='absolute top-4 right-4 w-2 h-2 bg-white/60 rounded-full'
+            className='absolute top-4 right-4 w-2 h-2 bg-white/60'
             animate={{
               scale: [1, 1.1, 1],
               opacity: [0.6, 0.9, 0.6],

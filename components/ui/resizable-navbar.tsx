@@ -72,7 +72,7 @@ export const Navbar = ({ children, className, isScrolled }: NavbarProps) => {
       ref={ref}
       className={cn(
         'sticky inset-x-0 top-16 z-40',
-        isScrolled ? 'w-[60%] mx-auto mt-4 rounded-3xl' : 'w-full',
+        isScrolled ? 'w-[60%] mx-auto mt-4 ' : 'w-full',
         className
       )}
     >
@@ -124,7 +124,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           {hovered === idx && (
             <motion.div
               layoutId='hovered'
-              className='absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800'
+              className='absolute inset-0 h-full w-full  bg-gray-100 dark:bg-neutral-800'
               transition={{ duration: 0.2 }} // Added transition
             />
           )}
@@ -176,7 +176,7 @@ export const MobileNavMenu = ({
       {isOpen && (
         <div
           className={cn(
-            'absolute inset-x-0 top-16 !z-[1000] flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950',
+            'absolute inset-x-0 top-16 !z-[1000] flex w-full flex-col items-start justify-start gap-4  bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950',
             className
           )}
         >
@@ -209,23 +209,16 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <img
-        src='/logo/typus_logo_red_transp.png'
-        alt='Typus.AI logo'
-        width={32}
-        height={32}
-        className='object-contain'
-      />{' '}
-      {/* Reduced from 40x40 */}
+      <div className='bg-black size-3 m-2.5'></div>
       <span
-        className='text-center uppercase flex items-center justify-center'
+        className='text-center uppercase'
         style={{
           fontFamily: "var(--font-source-serif-4), 'Source Serif 4', serif",
-          fontSize: '10px', // Reduced from 12px
+          fontSize: '10px',
           fontWeight: 300,
-          letterSpacing: '2px', // Reduced from 2.5px
+          letterSpacing: '2px',
           lineHeight: '1.3em',
-          color: '#FF1E1E',
+          color: '#000',
           textTransform: 'uppercase',
         }}
       >
@@ -253,7 +246,7 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<'button'>
 )) => {
   const baseStyles =
-    'px-3 py-1.5 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-150 inline-block text-center' // Reduced padding and duration
+    'px-3 py-1.5  bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-150 inline-block text-center' // Reduced padding and duration
 
   const variantStyles = {
     primary:
