@@ -52,21 +52,20 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/logo/typus_logo_red_transp.png',
+        url: '/favicon-32x32.png',
         sizes: '32x32',
         type: 'image/png',
       },
       {
-        url: '/logo/typus_logo_red_transp.png',
+        url: '/favicon-16x16.png',
         sizes: '16x16',
         type: 'image/png',
       },
     ],
-    shortcut: '/logo/typus_logo_red_transp.png',
+    shortcut: '/favicon-32x32.png',
     apple: [
       {
-        url: '/logo/typus_logo_red_transp.png',
-        sizes: '180x180',
+        url: '/apple-touch-icon.png',
         type: 'image/png',
       },
     ],
