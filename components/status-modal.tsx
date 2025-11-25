@@ -34,10 +34,10 @@ const StatusModal: React.FC<StatusModalProps> = ({
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className='bg-white dark:bg-neutral-900 rounded-xl p-6 shadow-2xl flex flex-col items-center gap-3 max-w-full w-[400px] relative outline-none'
+          className='bg-white dark:bg-neutral-900 p-6 shadow-2xl flex flex-col items-center gap-3 max-w-full w-[400px] relative outline-none'
         >
           <button
-            className='absolute top-2 right-2 text-gray-500 hover:text-black dark:hover:text-white rounded-md p-1 focus:outline-none'
+            className='absolute top-2 right-2 text-gray-500 hover:text-black dark:hover:text-white p-1 focus:outline-none'
             aria-label='Close'
             onClick={onClose}
             autoFocus

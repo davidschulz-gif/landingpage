@@ -91,7 +91,7 @@ const ProgressIndicator = memo(
           key={i}
           onClick={() => onSlideChange(i)}
           aria-label={item.title}
-          className={`h-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
+          className={`h-2  transition-all duration-500 cursor-pointer hover:opacity-80 ${
             i === currentSlide
               ? 'w-10 bg-white animate-pulse'
               : 'w-6 bg-white animate-breathe-black-gray'

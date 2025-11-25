@@ -48,7 +48,7 @@ export const PhotoStripAnimation = ({
       {/* Desktop Photo Strip - Match HTML structure */}
       <div className="relative hidden w-full overflow-x-hidden py-3 md:block">
         {/* Magic separator */}
-        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[2px] rounded-full bg-neutral-500"></div>
+        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[2px]  bg-neutral-500"></div>
 
         {/* Left side - Original images with overflow hidden */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
@@ -69,7 +69,7 @@ export const PhotoStripAnimation = ({
                   height="512"
                   decoding="async"
                   data-nimg="1"
-                  className="checkered h-full w-full rounded-md border object-cover sm:rounded-lg"
+                  className="checkered h-full w-full  border object-cover sm:"
                   style={{ color: "transparent" }}
                   src={image}
                 />
@@ -94,12 +94,12 @@ export const PhotoStripAnimation = ({
                   height="512"
                   decoding="async"
                   data-nimg="1"
-                  className="checkered h-full w-full rounded-md border object-cover sm:rounded-lg"
+                  className="checkered h-full w-full  border object-cover sm:"
                   style={{ color: "transparent" }}
                   src={image}
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex flex-row justify-center p-2">
-                  <div className="mx-auto rounded bg-black bg-opacity-50 px-2 text-xs text-white md:text-sm">
+                  <div className="mx-auto bg-black bg-opacity-50 px-2 text-xs text-white md:text-sm">
                     AI GENERATED
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export const PhotoStripAnimation = ({
       {/* Mobile Photo Strip */}
       <div className="relative block w-full overflow-hidden py-3 md:hidden">
         {/* Magic separator */}
-        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[1px] rounded-full bg-neutral-500"></div>
+        <div className="magic-separator absolute left-1/2 top-0 z-20 h-full w-[1px]  bg-neutral-500"></div>
 
         {/* Left side - Original images */}
         <div className="absolute left-0 top-3 z-10 w-1/2 overflow-x-hidden">
@@ -132,7 +132,7 @@ export const PhotoStripAnimation = ({
                   height="512"
                   decoding="async"
                   data-nimg="1"
-                  className="checkered h-full w-full rounded-md border object-cover"
+                  className="checkered h-full w-full  border object-cover"
                   style={{ color: "transparent" }}
                   src={image}
                 />
@@ -156,12 +156,12 @@ export const PhotoStripAnimation = ({
                   height="512"
                   decoding="async"
                   data-nimg="1"
-                  className="checkered h-full w-full rounded-md border object-cover"
+                  className="checkered h-full w-full  border object-cover"
                   style={{ color: "transparent" }}
                   src={image}
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex flex-row justify-center p-2">
-                  <div className="mx-auto rounded bg-black bg-opacity-50 px-2 text-xs text-white">
+                  <div className="mx-auto bg-black bg-opacity-50 px-2 text-xs text-white">
                     AI GENERATED
                   </div>
                 </div>

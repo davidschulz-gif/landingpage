@@ -86,7 +86,7 @@ export function FeaturedTestimonialSection() {
 
         {/* Testimonial Card */}
         <motion.div
-          className='max-w-xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20'
+          className='max-w-xl mx-auto bg-white/80 backdrop-blur-sm  p-8 shadow-xl border border-white/20'
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -102,7 +102,7 @@ export function FeaturedTestimonialSection() {
               viewport={{ once: true }}
             >
               <div className='relative inline-block mb-4'>
-                <div className='w-40 h-40 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto'>
+                <div className='w-40 h-40  overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 mx-auto'>
                   <Image
                     src='/blog/blog_1.png'
                     alt='Dr. Dietmar Köring'
@@ -112,7 +112,7 @@ export function FeaturedTestimonialSection() {
                   />
                 </div>
                 <motion.div
-                  className='absolute -bottom-1 -right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center'
+                  className='absolute -bottom-1 -right-1 w-6 h-6 bg-black  flex items-center justify-center'
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -165,7 +165,7 @@ export function FeaturedTestimonialSection() {
                 </BreathingAnimationText> */}
 
                 <Button
-                  className='animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105'
+                  className='animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2  text-sm font-medium transition-all duration-300 hover:scale-105'
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   Read full article

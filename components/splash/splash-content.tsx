@@ -10,7 +10,7 @@ const LottieAnimationSplashScreen = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+      <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
     ),
   }
 )
@@ -19,7 +19,7 @@ const LottieAnimationSplashScreen = dynamic(
 const SplashLoaderCSS = dynamic(() => import('../splash-loader-css'), {
   ssr: false,
   loading: () => (
-    <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin md:hidden' />
+    <div className='w-16 h-16 border-4 border-gray-300 border-t-blue-600  animate-spin md:hidden' />
   ),
 })
 

@@ -150,7 +150,7 @@ export const Compare = ({
   return (
     <div
       ref={sliderRef}
-      className={cn("w-[400px] h-[400px] overflow-hidden border border-gray-300 rounded-2xl relative", className)}
+      className={cn("w-[400px] h-[400px] overflow-hidden border border-gray-300  relative", className)}
       style={{
         position: "relative",
         cursor: slideMode === "drag" ? "grab" : "col-resize",
@@ -171,7 +171,7 @@ export const Compare = ({
           opacity: sliderXPercent < 15 ? 0 : 1
         }}
       >
-        <div className="rounded-sm border border-border bg-background px-2 text-base">
+        <div className=" border border-border bg-background px-2 text-base">
           Before
         </div>
       </div>
@@ -183,7 +183,7 @@ export const Compare = ({
           opacity: sliderXPercent > 85 ? 0 : 1
         }}
       >
-        <div className="rounded-sm border border-border bg-background px-2 text-base">
+        <div className=" border border-border bg-background px-2 text-base">
           After
         </div>
       </div>
@@ -199,11 +199,11 @@ export const Compare = ({
           transition={{ duration: 0 }}
         >
           {showHandlebar && (
-            <div className="h-8 w-8 rounded-full top-1/2 -translate-y-1/2 bg-white border-2 border-gray-300 z-30 -left-4 absolute flex items-center justify-center shadow-lg">
+            <div className="h-8 w-8  top-1/2 -translate-y-1/2 bg-white border-2 border-gray-300 z-30 -left-4 absolute flex items-center justify-center shadow-lg">
               <div className="flex flex-col gap-0.5">
-                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-                <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-gray-400 "></div>
+                <div className="w-1 h-1 bg-gray-400 "></div>
+                <div className="w-1 h-1 bg-gray-400 "></div>
               </div>
             </div>
           )}
@@ -214,7 +214,7 @@ export const Compare = ({
           {firstImage ? (
             <motion.div
               className={cn(
-                "absolute inset-0 z-20 rounded-2xl shrink-0 w-full h-full select-none overflow-hidden",
+                "absolute inset-0 z-20  shrink-0 w-full h-full select-none overflow-hidden",
                 firstImageClassName
               )}
               style={{
@@ -226,7 +226,7 @@ export const Compare = ({
                 alt="first image"
                 src={firstImage}
                 className={cn(
-                  "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
+                  "absolute inset-0  z-20  shrink-0 w-full h-full select-none",
                   firstImageClassName
                 )}
                 draggable={false}
@@ -240,7 +240,7 @@ export const Compare = ({
         {secondImage ? (
           <motion.img
             className={cn(
-              "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
+              "absolute top-0 left-0 z-[19]   w-full h-full select-none",
               secondImageClassname
             )}
             alt="second image"

@@ -308,7 +308,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
     <div
       ref={containerRef}
       className={cn(
-        "group relative mx-auto w-full overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/60 backdrop-blur-md",
+        "group relative mx-auto w-full overflow-hidden  border border-white/10 bg-zinc-900/60 backdrop-blur-md",
       )}
       tabIndex={0}
       onKeyDown={onKeyDown}
@@ -346,7 +346,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
           {!isPlaying && !isBuffering && (
             <motion.button
               aria-label="Play"
-              className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 p-6 backdrop-blur-md outline-none ring-1 ring-white/20 hover:bg-white/15"
+              className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2  bg-white/10 p-6 backdrop-blur-md outline-none ring-1 ring-white/20 hover:bg-white/15"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -358,7 +358,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
                 <span className="sr-only">Play</span>
                 <motion.span
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 -z-10 rounded-full"
+                  className="pointer-events-none absolute inset-0 -z-10 "
                   style={{
                     boxShadow: "none",
                   }}
@@ -375,7 +375,7 @@ export function VideoPlayer({ src, title = "Video", poster, height = "h-[400px]"
         <AnimatePresence>
           {isBuffering && (
             <motion.div
-              className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/50 px-3 py-2 text-xs text-white ring-1 ring-white/10"
+              className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2  bg-black/50 px-3 py-2 text-xs text-white ring-1 ring-white/10"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}

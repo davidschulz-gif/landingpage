@@ -26,7 +26,7 @@ export const ScrollIndicator = memo(
             <button
               key={index}
               onClick={() => onSlideChange(index)}
-              className={`w-2 rounded-full transition-all duration-500 cursor-pointer hover:opacity-80 ${
+              className={`w-2  transition-all duration-500 cursor-pointer hover:opacity-80 ${
                 index === currentSlide
                   ? 'h-10 bg-white animate-pulse'
                   : 'h-6 bg-white animate-breathe-black-gray'

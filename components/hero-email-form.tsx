@@ -98,7 +98,7 @@ export default function HeroEmailForm() {
           required
           placeholder='Enter your email'
           aria-label='Email address'
-          className='flex-1 rounded-full border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60'
+          className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60'
           value={email}
           onChange={e => setEmail(e.target.value)}
           disabled={isRequesting}
@@ -107,7 +107,7 @@ export default function HeroEmailForm() {
         />
         <button
           type='button'
-          className='!px-6 flex items-center flex-shrink-0 py-2 rounded-full bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60'
+          className='!px-6 flex items-center flex-shrink-0 py-2 bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60'
           onClick={handleSubmit}
           disabled={isRequesting}
         >

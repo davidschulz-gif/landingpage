@@ -15,7 +15,7 @@ export function SplashFloatingElements() {
   return (
     <>
       <motion.div
-        className='absolute top-20 right-20 w-4 h-4 rounded-full'
+        className='absolute top-20 right-20 w-4 h-4 '
         style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}
         animate={{
           y: [0, -20, 0],
@@ -28,7 +28,7 @@ export function SplashFloatingElements() {
         }}
       />
       <motion.div
-        className='absolute bottom-32 left-20 w-6 h-6 rounded-full'
+        className='absolute bottom-32 left-20 w-6 h-6 '
         style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
         animate={{
           y: [0, 15, 0],
@@ -43,7 +43,7 @@ export function SplashFloatingElements() {
         }}
       />
       <motion.div
-        className='absolute top-1/3 right-1/4 w-2 h-2 rounded-full'
+        className='absolute top-1/3 right-1/4 w-2 h-2 '
         style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}
         animate={{
           scale: [1, 1.5, 1],

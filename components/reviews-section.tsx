@@ -74,7 +74,7 @@ export function ReviewsSection() {
               z-index: 10;
             }
           `}</style>
-          <div className='w-full mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden'>
+          <div className='w-full mx-auto bg-white/80 backdrop-blur-sm  shadow-xl border border-white/20 overflow-hidden'>
             <script
               type='text/javascript'
               src='https://testimonial.to/js/iframeResizer.min.js'
@@ -86,7 +86,7 @@ export function ReviewsSection() {
               aria-label='Reviews'
               width='100%'
               height='600px'
-              className='rounded-2xl overflow-hidden'
+              className=' overflow-hidden'
             ></iframe>
             <script
               type='text/javascript'

@@ -61,7 +61,7 @@ export const StickyBottomSheet = ({
             <button
               onClick={handleClose}
               aria-label='Close'
-              className='absolute top-4 right-4 z-10 p-2 bg-white/80 hover:bg-white/90 rounded-full shadow-sm transition-all duration-200'
+              className='absolute top-4 right-4 z-10 p-2 bg-white/80 hover:bg-white/90  shadow-sm transition-all duration-200'
             >
               <X className='w-4 h-4 text-gray-600' />
             </button>

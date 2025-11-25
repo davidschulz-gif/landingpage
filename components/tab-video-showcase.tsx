@@ -1,7 +1,6 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
-import { THEME_COLORS } from '@/lib/theme'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { Edit3, Sparkles, Wand2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -273,7 +272,7 @@ export function TabVideoShowcase() {
                     playVideo()
                   }
                 }}
-                className='md:w-1/2 rounded-2xl object-contain'
+                className='md:w-1/2  object-contain'
                 src={isMobile ? activeTabData.videoMobile : activeTabData.video}
                 poster={activeTabData.poster}
                 autoPlay={true}
@@ -340,7 +339,7 @@ export function TabVideoShowcase() {
               />
             </div>
           ) : (
-            <div className='relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden'>
+            <div className='relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300  overflow-hidden'>
               {videoLoadError ? (
                 <div className='absolute inset-0 flex items-center justify-center bg-red-50'>
                   <div className='text-center p-8'>
@@ -353,22 +352,22 @@ export function TabVideoShowcase() {
                         setVideoLoadError(null)
                         setActiveTab(activeTab) // Force reload
                       }}
-                      className='mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'
+                      className='mt-4 px-4 py-2 bg-red-500 text-white hover:bg-red-600'
                     >
                       Retry
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className='relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden'>
+                <div className='relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-br from-gray-200 to-gray-300  overflow-hidden'>
                   {/* Video skeleton background */}
                   <div className='absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse' />
 
                   {/* Skeleton play button */}
                   <div className='absolute inset-0 flex items-center justify-center'>
-                    <div className='w-16 h-16 bg-white/20 rounded-full flex items-center justify-center animate-pulse'>
+                    <div className='w-16 h-16 bg-white/20  flex items-center justify-center animate-pulse'>
                       <div
-                        className='w-6 h-6 bg-white/40 rounded-sm animate-pulse'
+                        className='w-6 h-6 bg-white/40  animate-pulse'
                         style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
                       />
                     </div>
@@ -376,18 +375,18 @@ export function TabVideoShowcase() {
 
                   {/* Skeleton controls bar */}
                   <div className='absolute bottom-4 left-4 right-4'>
-                    <div className='bg-black/20 rounded-lg p-3 backdrop-blur-sm'>
+                    <div className='bg-black/20  p-3 backdrop-blur-sm'>
                       <div className='flex items-center gap-3'>
-                        <div className='w-4 h-4 bg-white/30 rounded animate-pulse' />
-                        <div className='flex-1 h-1 bg-white/20 rounded animate-pulse' />
-                        <div className='w-8 h-3 bg-white/30 rounded animate-pulse' />
+                        <div className='w-4 h-4 bg-white/30 animate-pulse' />
+                        <div className='flex-1 h-1 bg-white/20 animate-pulse' />
+                        <div className='w-8 h-3 bg-white/30 animate-pulse' />
                       </div>
                     </div>
                   </div>
 
                   {/* Loading text */}
                   <div className='absolute top-4 left-4'>
-                    <div className='bg-black/20 rounded-lg px-3 py-1 backdrop-blur-sm'>
+                    <div className='bg-black/20  px-3 py-1 backdrop-blur-sm'>
                       <div className='text-white/70 text-sm animate-pulse'>
                         {videoLoadError
                           ? 'Error loading video...'
@@ -420,16 +419,16 @@ export function TabVideoShowcase() {
                 {isActive ? (
                   <div className='relative w-full'>
                     {/* Animated border background */}
-                    {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#ff8c00] via-[#ff3636] to-[#ff8c00] p-[2px] animate-gradient-x">
-                      <div className="h-full w-full rounded-2xl bg-white" />
+                    {/* <div className="absolute inset-0  bg-gradient-to-r from-[#ff8c00] via-[#ff3636] to-[#ff8c00] p-[2px] animate-gradient-x">
+                      <div className="h-full w-full  bg-white" />
                     </div>
                      */}
                     {/* Moving border effect */}
                     <MovingBorderButton
-                      borderRadius='1rem'
+                      borderRadius='0rem'
                       className='relative bg-transparent border-0 text-black cursor-pointer transition-all duration-300 p-0 h-auto w-full'
                       containerClassName='w-full h-auto'
-                      borderClassName='h-1 w-24 bg-gradient-to-r from-[#ff8c00] via-[#ff3636] to-[#ff8c00] opacity-90 blur-[0.5px]'
+                      borderClassName='h-1 w-24 bg-gradient-to-r from-gray-900 via-black to-gray-900 opacity-90 blur-[0.5px]'
                       duration={2000}
                       onClick={() => setActiveTab(tab.id)}
                     >
@@ -443,21 +442,15 @@ export function TabVideoShowcase() {
                             viewport={{ once: true }}
                           >
                             <motion.div
-                              className='p-1 rounded animate-breathe-primary-hover'
-                              style={{
-                                backgroundColor: THEME_COLORS.primary,
-                              }}
+                              className='p-1 bg-black dark:bg-gray-800'
                               whileHover={{ scale: 1.1, rotate: 5 }}
                               transition={{ duration: 0.2 }}
                             >
                               <Icon className='w-3 h-3 text-white' />
                             </motion.div>
-                            <BreathingAnimationText animationType='red-orange'>
+                            <BreathingAnimationText animationType='black-gray'>
                               <motion.h3
-                                className='text-xs md:text-sm font-bold text-gray-900 dark:text-white'
-                                style={{
-                                  color: THEME_COLORS.primary,
-                                }}
+                                className='text-xs md:text-sm font-bold text-black dark:text-white'
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: 0.2 }}
@@ -499,12 +492,7 @@ export function TabVideoShowcase() {
                                 }}
                                 viewport={{ once: true }}
                               >
-                                <div
-                                  className='w-1 h-1 rounded-full flex-shrink-0 animate-breathe-primary-hover'
-                                  style={{
-                                    backgroundColor: THEME_COLORS.primary,
-                                  }}
-                                />
+                                <div className='w-1 h-1  flex-shrink-0 bg-black dark:bg-gray-300' />
                                 <BreathingAnimationText animationType='black-gray'>
                                   <span className='text-xs text-gray-500 dark:text-gray-400 leading-tight truncate'>
                                     {feature}
@@ -531,7 +519,7 @@ export function TabVideoShowcase() {
                         viewport={{ once: true }}
                       >
                         <motion.div
-                          className='p-1 rounded bg-gray-100 dark:bg-gray-700'
+                          className='p-1 bg-gray-100 dark:bg-gray-700'
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.2 }}
                         >
@@ -581,7 +569,7 @@ export function TabVideoShowcase() {
                             }}
                             viewport={{ once: true }}
                           >
-                            <div className='w-1 h-1 rounded-full flex-shrink-0 bg-gray-400' />
+                            <div className='w-1 h-1  flex-shrink-0 bg-gray-400' />
                             <BreathingAnimationText animationType='black-gray'>
                               <span className='text-xs text-gray-500 dark:text-gray-400 leading-tight truncate'>
                                 {feature}
