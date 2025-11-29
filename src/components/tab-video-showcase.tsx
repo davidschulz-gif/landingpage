@@ -13,15 +13,15 @@ const videoCache = new Map<string, HTMLVideoElement>()
 export function TabVideoShowcase() {
   const t = useTranslations('TabVideoShowcase')
   const [activeTab, setActiveTab] = useState('create')
-  
+
   const tabs = [
     {
       id: 'create',
       title: t('tabs.create.title'),
       icon: Wand2,
       description: t('tabs.create.description'),
-      video: '/videos/showcase/create_showcase.webm',
-      videoMobile: '/videos/showcase/compressed/create_showcase.webm',
+      video: '/videos/showcase/create_showcase_typus.webm',
+      videoMobile: '/videos/showcase/create_showcase_typus.webm',
       poster: '/modern-villa-render.png',
       features: [
         t('tabs.create.features.aiGeneration'),

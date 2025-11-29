@@ -93,6 +93,9 @@
     "imagesCount": "150.000+ generierte Bilder"
   },
   "Features": {
+    "introTitle": "Wie unsere Plattform zu 10 Zielen für nachhaltige Entwicklung beiträgt",
+    "introText1": "Gemäß Artikel 9 Absatz 4 der Verordnung (EU) 2021/1060 sollen aus EFRE und JTF Vorhaben unterstützt werden, die im Einklang mit den Zielen der Vereinten Nationen für nachhaltige Entwicklung und dem Übereinkommen von Paris stehen sowie dem Grundsatz der \"Vermeidung erheblicher Beeinträchtigungen\" Rechnung tragen.",
+    "introText2": "Die Vereinten Nationen haben 17 Ziele für eine nachhaltige Entwicklung (sustainable development goals -SDGs) vereinbart, die bis 2030 umgesetzt werden sollen. Die Ziele sind auf eine gleichermaßen ökologisch, ökonomisch und sozial nachhaltige Entwicklung ausgerichtet.",
     "title": "LEISTUNGSSTARKE FUNKTIONEN",
     "subtitle": "Alles, was Sie brauchen, um Ihre architektonischen Visionen in atemberaubende Visualisierungen zu verwandeln",
     "health": "Gesundheit und Wohlergehen",
@@ -286,6 +289,8 @@
     "contact": "Kontakt",
     "legal": "Rechtliches",
     "copyright": "© 2025 Typus.AI. Alle Rechte vorbehalten.",
+    "coFinancingTitle": "Zur Kofinanzierung",
+    "coFinancing": "Das Projekt zielt auf die Entwicklung zentraler neuer Funktionen für die cloudbasierte KI-Visualisierungsplattform. Dazu gehören die ortsspezifische Einbindung von 3D-Modellen in reale Umgebungen, die Weiterverarbeitung vollständiger Modelle, die direkte BIM-Integration sowie KI-gestützte Texturverarbeitung. Ein KI-kompatibler Materialkatalog soll zudem den Einsatz realer Materialien und Hersteller ermöglichen. Gefördert wird die automatisierte Umwandlung von 3D-Modellen in photorealistische Renderings und erlaubt eine intuitive Bearbeitung direkt im Browser. Der Prototyp verbessert den Visualisierungsprozess deutlich. Für Architekt:innen entsteht damit ein neues Werkzeug, das effiziente, flexible und realitätsnahe Visualisierungen in frühen Entwurfsphasen ermöglicht – inklusive präziser Anpassungen und ortsgenauer Darstellung.",
     "links": {
       "create": "Erstellen",
       "edit": "Bearbeiten",

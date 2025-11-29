@@ -149,7 +149,7 @@ export function HeroVideoPlayer({
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
             onClick={togglePlay}
-            className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-black text-white hover:bg-gray-900 transition-all duration-200 flex items-center justify-center shadow-lg pointer-events-auto'
+            className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-black text-white hover:bg-white hover:text-black transition-all duration-200 flex items-center justify-center shadow-lg pointer-events-auto'
             aria-label='Play video'
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >

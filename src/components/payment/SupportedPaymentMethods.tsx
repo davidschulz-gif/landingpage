@@ -20,18 +20,23 @@ const SupportedPaymentMethods = memo(
     const displayTitle = title || t('title')
 
     return (
-      <section className={`space-y-3 ${className}`}>
-        <div className='relative text-center'>
-          <p className='text-xs font-semibold uppercase tracking-widest text-gray-500'>
+      <section className={`space-y-2 ${className}`}>
+        <div className='relative text-left'>
+          <p className='text-[10px] font-semibold uppercase tracking-wider text-gray-500'>
             {displayTitle}
           </p>
           {description && (
-            <p className='text-sm text-gray-600 mt-1'>{description}</p>
+            <p className='text-xs text-gray-600 mt-1'>{description}</p>
           )}
         </div>
-        <ul className='flex flex-wrap gap-3'>
+        <ul className='flex flex-wrap gap-2 justify-start'>
           {brands.map(brand => (
-            <div key={brand.label} title={brand.label} aria-label={brand.label}>
+            <div 
+              key={brand.label} 
+              title={brand.label} 
+              aria-label={brand.label}
+              className='scale-75 origin-left'
+            >
               {brand.icon}
             </div>
           ))}
