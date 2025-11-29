@@ -129,9 +129,6 @@ export default function BeforeYouGoPopup() {
                 <h2 className='text-2xl md:text-3xl font-light text-white mb-4 leading-relaxed'>
                   {t('title')}
                 </h2>
-                <p className='text-sm md:text-base font-light text-white/80 mb-8 leading-relaxed'>
-                  {t('remarketing')}
-                </p>
                 <div className='mb-6 flex flex-row items-center justify-center w-full'>
                   <HeroEmailForm />
                 </div>
