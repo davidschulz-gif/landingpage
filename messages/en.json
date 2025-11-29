@@ -92,6 +92,28 @@
     "architectsCount": "80,000+ signed up architects",
     "imagesCount": "150,000+ generated images"
   },
+  "Features": {
+    "title": "POWERFUL FEATURES",
+    "subtitle": "Everything you need to transform your architectural visions into stunning visualizations",
+    "health": "Health and Wellbeing",
+    "healthDesc": "The use of the platform reduces stress caused by long rendering times and working with local rendering. The accelerated rendering processes contribute to a better work-life balance, as architects can visualize their designs faster and reduce workload. Additionally, the project offers the possibility to develop projects more efficiently and with higher precision, contributing to better quality of construction projects and healthy, sustainable urban development.",
+    "education": "Quality Education",
+    "educationDesc": "The project enables educational institutions to teach students digital visualization techniques and AI design. This prepares the next generation for the requirements of the architecture industry.",
+    "equality": "Equality",
+    "equalityDesc": "The project commits to discrimination-free development and use of its technology. Our initiative promotes equal opportunities by providing an accessible, intuitive platform for architects and planners regardless of gender, ethnic origin, religion, worldview, disability, age, or sexual orientation.",
+    "cleanEnergy": "Affordable and Clean Energy",
+    "cleanEnergyDesc": "The project uses GPU-powered cloud rendering, which, despite higher energy consumption, is significantly more efficient in practice than traditional CPU rendering. Rendering times are reduced from hours or even days to just a few seconds, significantly reducing overall energy consumption. This technology not only optimizes energy consumption compared to conventional methods but also enables fast and resource-efficient use of modern visualization technologies.",
+    "decentWork": "Decent Work and Economic Growth",
+    "decentWorkDesc": "By automating visualization processes, the project supports architects, urban planners, and creative professionals in increasing their productivity. This creates space for more creative and valuable tasks and promotes long-term sustainable economic growth. It contributes to the digital transformation of the architecture industry and creates new jobs in the field of AI and architecture, contributing to the promotion of a broad, inclusive economy.",
+    "industryInfrastructure": "Industry, Innovation and Infrastructure",
+    "industryInfrastructureDesc": "The project promotes digitization and innovation in the architecture industry by providing a cloud-based, GPU-supported platform for AI visualizations. This technology is not only relevant for architecture but can also be applied to other industries, such as urban planning or real estate. It promotes the development of resilient infrastructure and supports the creation of sustainable and future-proof innovation processes.",
+    "inequality": "Reduced Inequalities",
+    "inequalityDesc": "The project contributes to reducing inequalities by opening access to advanced visualization technologies for small and medium-sized enterprises and freelancers. They benefit from the cost-effective, cloud-based solution that does not require expensive hardware. Smaller architecture firms can thus remain competitive and use the same innovative technologies as large companies.",
+    "citiesMunicipalities": "Sustainable Consumption and Production",
+    "citiesMunicipalitiesDesc": "The cloud-based solution reduces material consumption and enables environmentally friendly visualization of projects. This contributes to more sustainable production methods and minimizes energy consumption compared to traditional rendering processes.",
+    "climateProtection": "Climate Protection",
+    "climateProtectionDesc": "By optimizing rendering processes and reducing energy consumption, the project actively contributes to climate protection. The efficient use of cloud resources and the minimization of material consumption support sustainable practices and help reduce the ecological footprint of architectural visualization."
+  },
   "TabVideoShowcase": {
     "title": "FROM CONCEPT TO",
     "titleSecond": "ANIMATION",

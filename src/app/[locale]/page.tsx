@@ -85,6 +85,15 @@ const FooterSection = dynamic(
   }
 )
 
+const FeaturesSection = dynamic(
+  () =>
+    import('@/components/features-section').then(mod => mod.FeaturesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
@@ -202,6 +211,16 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <VideoShowcaseSection />
+      </motion.div>
+
+      {/* Features Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <FeaturesSection />
       </motion.div>
 
       {/* Sticky Slider Section */}

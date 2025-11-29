@@ -92,6 +92,28 @@
     "architectsCount": "80.000+ registrierte Architekten",
     "imagesCount": "150.000+ generierte Bilder"
   },
+  "Features": {
+    "title": "LEISTUNGSSTARKE FUNKTIONEN",
+    "subtitle": "Alles, was Sie brauchen, um Ihre architektonischen Visionen in atemberaubende Visualisierungen zu verwandeln",
+    "health": "Gesundheit und Wohlergehen",
+    "healthDesc": "Die Nutzung der Plattform reduziert den Stress, der durch lange Renderzeiten und die Arbeit mit lokalem Rendering verursacht wird. Die beschleunigten Renderprozesse tragen zu einer besseren Work-Life-Balance bei, da Architekten ihre Entwürfe schneller visualisieren und die Arbeitslast reduzieren können. Zudem bietet das Projekt die Möglichkeit, Projekte effizienter und mit höherer Präzision zu entwickeln, was zu einer besseren Qualität von Bauprojekten und einer gesunden, nachhaltigen Stadtentwicklung beiträgt.",
+    "education": "Hochwertige Bildung",
+    "educationDesc": "Das Projekt ermöglicht Bildungseinrichtungen, Studierenden digitale Visualisierungstechniken und KI-Design beizubringen. Dies bereitet die nächste Generation auf die Anforderungen der Architekturbranche vor.",
+    "equality": "Gleichheit",
+    "equalityDesc": "Das Projekt verpflichtet sich zu einer diskriminierungsfreien Entwicklung und Nutzung seiner Technologie. Unser Vorhaben fördert Chancengleichheit, indem es eine barrierefreie, intuitive Plattform für Architekten und Planer unabhängig von Geschlecht, ethnischer Herkunft, Religion, Weltanschauung, Behinderung, Alter oder sexueller Orientierung bereitstellt.",
+    "cleanEnergy": "Bezahlbare und saubere Energie",
+    "cleanEnergyDesc": "Das Projekt setzt auf GPU-gestütztes Cloud-Rendering, das trotz eines höheren Energieverbrauchs in der Praxis wesentlich effizienter ist als traditionelles CPU-Rendering. Die Renderzeiten werden von Stunden oder sogar Tagen auf nur wenige Sekunden reduziert, was den Gesamtenergieverbrauch erheblich verringert. Diese Technologie optimiert nicht nur den Energieverbrauch im Vergleich zu herkömmlichen Methoden, sondern ermöglicht es, eine schnelle und ressourcenschonende Nutzung moderner Visualisierungstechnologien zu gewährleisten.",
+    "decentWork": "Menschenwürdige Arbeit und Wirtschaftswachstum",
+    "decentWorkDesc": "Durch die Automatisierung von Visualisierungsprozessen unterstützt das Projekt Architekten, Städteplaner und Kreativschaffende dabei, ihre Produktivität zu steigern. Dies schafft Raum für kreativere und wertvollere Aufgaben und fördert langfristig nachhaltiges Wirtschaftswachstum. Es trägt zur digitalen Transformation der Architekturbranche bei und schafft neue Arbeitsplätze im Bereich der KI und Architektur, was zur Förderung einer breiten, inklusiven Wirtschaft beiträgt.",
+    "industryInfrastructure": "Industrie, Innovation und Infrastruktur",
+    "industryInfrastructureDesc": "Das Projekt fördert die Digitalisierung und Innovation in der Architekturbranche, indem es eine cloudbasierte, GPU-unterstützte Plattform für KI-Visualisierungen bereitstellt. Diese Technologie ist nicht nur für die Architektur relevant, sondern kann auch auf andere Industrien angewendet werden, etwa im Städtebau oder Immobiliensektor. Es fördert die Entwicklung widerstandsfähiger Infrastruktur und unterstützt die Schaffung von nachhaltigen und zukunftsfähigen Innovationsprozessen.",
+    "inequality": "Weniger Ungleichheiten",
+    "inequalityDesc": "Das Projekt trägt zur Verringerung von Ungleichheiten bei, indem es den Zugang zu fortschrittlichen Visualisierungstechnologien für kleine und mittelständische Unternehmen und Freelancer öffnet. Diese profitieren von der kostengünstigen, cloudbasierten Lösung, die keinen teuren Hardwareeinsatz erfordert. Kleinere Architekturbüros können so wettbewerbsfähig bleiben und die gleichen innovativen Technologien nutzen wie große Unternehmen.",
+    "citiesMunicipalities": "Nachhaltiger Konsum und Produktion",
+    "citiesMunicipalitiesDesc": "Die cloudbasierte Lösung reduziert den Materialverbrauch und ermöglicht eine umweltfreundliche Visualisierung von Projekten. Dies trägt zu nachhaltigeren Produktionsmethoden bei und minimiert den Energieverbrauch im Vergleich zu traditionellen Renderprozessen.",
+    "climateProtection": "Klimaschutz",
+    "climateProtectionDesc": "Durch die Optimierung von Renderprozessen und die Reduzierung des Energieverbrauchs trägt das Projekt aktiv zum Klimaschutz bei. Die effiziente Nutzung von Cloud-Ressourcen und die Minimierung von Materialverbrauch unterstützen nachhaltige Praktiken und helfen, den ökologischen Fußabdruck der Architekturvisualisierung zu reduzieren."
+  },
   "TabVideoShowcase": {
     "title": "VOM KONZEPT ZUR",
     "titleSecond": "ANIMATION",
