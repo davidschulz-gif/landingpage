@@ -72,7 +72,7 @@ export const FeaturesSection = () => {
   const t = useTranslations('Features')
 
   return (
-    <section className='relative mx-auto flex max-w-[100%] md:max-w-[85%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
+    <section className='relative mx-auto flex max-w-[100%] md:max-w-[70%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
       {/* Section Header */}
       <motion.div
         className='mb-8 md:mb-10 text-center'
