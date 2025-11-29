@@ -135,7 +135,7 @@ export function NavbarDemo() {
   return (
     <Navbar setDoNotShowMegaMenu={setDoNotShowMegaMenu}>
       {/* Desktop Navigation */}
-      <NavBody className='relative z-[60]'>
+      <NavBody className='relative z-[60]' visible={!doNotShowMegaMenu}>
         {!doNotShowMegaMenu ? (
           <div className='w-20'></div>
         ) : (
