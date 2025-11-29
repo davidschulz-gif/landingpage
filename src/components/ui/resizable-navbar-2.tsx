@@ -80,7 +80,10 @@ export const Navbar = ({
       ref={ref}
       // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
       className={cn(
-        'sticky inset-x-0 top-0 md:top-4 z-[1000] w-full px-4',
+        'sticky inset-x-0 top-2 z-[1000] w-full px-4',
+        {
+          '-top-4': !visible,
+        },
         className
       )}
     >
@@ -95,26 +98,66 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? 'blur(20px) saturate(180%)' : 'blur(12px) saturate(180%)',
+        backdropFilter: visible
+          ? 'blur(20px) saturate(180%)'
+          : 'blur(12px) saturate(180%)',
         boxShadow: visible
-          ? '0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset'
+          ? 'none'
           : '0 4px 24px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02)',
-        width: visible ? '40%' : '100%',
+        width: visible ? '95%' : '100%',
         y: visible ? 20 : 0,
-        borderRadius: visible ? '16px' : '20px',
+        borderRadius: visible ? '0px' : '24px',
+        borderWidth: visible ? '1px' : '0px',
+        borderColor: visible
+          ? 'rgba(255, 255, 255, 0.2)'
+          : 'rgba(255, 255, 255, 0)',
+        height: 'auto',
       }}
       transition={{
-        type: 'spring',
-        stiffness: 200,
-        damping: 50,
+        backdropFilter: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        boxShadow: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        width: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        y: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        borderRadius: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        borderWidth: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        borderColor: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
+        height: {
+          duration: 0.4,
+          ease: [0.16, 1, 0.3, 1],
+        },
       }}
+      layout
       style={{
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 px-6 py-3 lg:flex',
-        'border border-white/20 dark:border-neutral-800/50',
+        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 lg:flex',
         'shadow-lg',
+        'transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        visible
+          ? 'border border-white/20 dark:border-neutral-800/50 px-6 py-3'
+          : 'border border-transparent px-6 py-3',
         className
       )}
     >
