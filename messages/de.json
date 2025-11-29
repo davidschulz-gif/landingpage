@@ -322,7 +322,8 @@
     "success": "Sie werden über neue Features benachrichtigt."
   },
   "BeforeYouGo": {
-    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 30% Rabatt auf Ihr erstes Abonnement."
+    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 30% Rabatt auf Ihr erstes Abonnement.",
+    "remarketing": "Remarket abandoned checkout personalized (Emails to upgrade upsell as offer)"
   },
   "TrustedBy": {
     "certifiedBy": "ZERTIFIZIERT VON",

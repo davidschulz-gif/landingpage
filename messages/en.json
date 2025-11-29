@@ -322,7 +322,8 @@
     "success": "You will be notified about new features."
   },
   "BeforeYouGo": {
-    "title": "Before you leave, join our list and get 30% off your first subscription."
+    "title": "Before you leave, join our list and get 30% off your first subscription.",
+    "remarketing": "Remarket abandoned checkout personalized (Emails to upgrade upsell as offer)"
   },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",
