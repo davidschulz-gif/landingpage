@@ -1,0 +1,440 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Navbar": {
+    "login": "LOGIN",
+    "signUp": "SIGN UP",
+    "explorePlatform": "Explore our AI-powered architectural visualization platform",
+    "seePricing": "See Pricing",
+    "solutions": "SOLUTIONS",
+    "community": "COMMUNITY",
+    "licenses": "LICENSES",
+    "contact": "CONTACT",
+    "navigation": {
+      "solutions": {
+        "create": {
+          "title": "Create",
+          "description": "Generate stunning architectural visualizations from scratch with AI"
+        },
+        "edit": {
+          "title": "Edit",
+          "description": "Transform and modify existing designs with intelligent editing tools"
+        },
+        "upscale": {
+          "title": "Upscale",
+          "description": "Enhance image resolution and quality with AI-powered upscaling"
+        }
+      },
+      "community": {
+        "tutorials": {
+          "title": "Tutorials",
+          "description": "Learn from comprehensive guides and video tutorials"
+        },
+        "press": {
+          "title": "Press",
+          "description": "Latest news, features, and media coverage about Typus.AI"
+        },
+        "reviews": {
+          "title": "Reviews",
+          "description": "Read testimonials and reviews from our community"
+        },
+        "instagram": {
+          "title": "Instagram",
+          "description": "Follow us for daily inspiration and design showcases"
+        },
+        "linkedin": {
+          "title": "Linkedin",
+          "description": "Connect with us for professional updates and insights"
+        }
+      },
+      "licenses": {
+        "pricing": {
+          "title": "Pricing",
+          "description": "Choose the perfect plan for your creative needs"
+        },
+        "plugins": {
+          "title": "Plugins",
+          "description": "Extend functionality with our professional plugin suite"
+        },
+        "studentAccess": {
+          "title": "Student Access",
+          "description": "Special discounted rates for students and educators"
+        }
+      },
+      "contact": {
+        "bookCall": {
+          "title": "Book a Call",
+          "description": "Schedule a personalized demo with our team"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "title": "AI FOR ARCHITECTS.",
+    "description": "AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.",
+    "getStarted": "Get Started",
+    "rating": "4.5/5",
+    "reviewsCount": "based on 90+ reviews",
+    "features": {
+      "createAccount": "CREATE A FREE ACCOUNT",
+      "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",
+      "tutorial": "TUTORIAL",
+      "stepByStep": "STEP BY STEP GUIDE",
+      "caseStudies": "GET CASE STUDIES",
+      "welcomeGift": "GET A COUPON WELCOME GIFT"
+    }
+  },
+  "VideoShowcase": {
+    "title": "TRANSFORM YOUR VISION",
+    "titleSecond": "INTO REALITY",
+    "description": "Experience the future of architectural visualization with AI-powered rendering that brings your concepts to life with unprecedented detail and realism.",
+    "architectsCount": "80,000+ signed up architects",
+    "imagesCount": "150,000+ generated images"
+  },
+  "Features": {
+    "title": "POWERFUL FEATURES",
+    "subtitle": "Everything you need to transform your architectural visions into stunning visualizations",
+    "health": "Health and Wellbeing",
+    "healthDesc": "The use of the platform reduces stress caused by long rendering times and working with local rendering. The accelerated rendering processes contribute to a better work-life balance, as architects can visualize their designs faster and reduce workload. Additionally, the project offers the possibility to develop projects more efficiently and with higher precision, contributing to better quality of construction projects and healthy, sustainable urban development.",
+    "education": "Quality Education",
+    "educationDesc": "The project enables educational institutions to teach students digital visualization techniques and AI design. This prepares the next generation for the requirements of the architecture industry.",
+    "equality": "Equality",
+    "equalityDesc": "The project commits to discrimination-free development and use of its technology. Our initiative promotes equal opportunities by providing an accessible, intuitive platform for architects and planners regardless of gender, ethnic origin, religion, worldview, disability, age, or sexual orientation.",
+    "cleanEnergy": "Affordable and Clean Energy",
+    "cleanEnergyDesc": "The project uses GPU-powered cloud rendering, which, despite higher energy consumption, is significantly more efficient in practice than traditional CPU rendering. Rendering times are reduced from hours or even days to just a few seconds, significantly reducing overall energy consumption. This technology not only optimizes energy consumption compared to conventional methods but also enables fast and resource-efficient use of modern visualization technologies.",
+    "decentWork": "Decent Work and Economic Growth",
+    "decentWorkDesc": "By automating visualization processes, the project supports architects, urban planners, and creative professionals in increasing their productivity. This creates space for more creative and valuable tasks and promotes long-term sustainable economic growth. It contributes to the digital transformation of the architecture industry and creates new jobs in the field of AI and architecture, contributing to the promotion of a broad, inclusive economy.",
+    "industryInfrastructure": "Industry, Innovation and Infrastructure",
+    "industryInfrastructureDesc": "The project promotes digitization and innovation in the architecture industry by providing a cloud-based, GPU-supported platform for AI visualizations. This technology is not only relevant for architecture but can also be applied to other industries, such as urban planning or real estate. It promotes the development of resilient infrastructure and supports the creation of sustainable and future-proof innovation processes.",
+    "inequality": "Reduced Inequalities",
+    "inequalityDesc": "The project contributes to reducing inequalities by opening access to advanced visualization technologies for small and medium-sized enterprises and freelancers. They benefit from the cost-effective, cloud-based solution that does not require expensive hardware. Smaller architecture firms can thus remain competitive and use the same innovative technologies as large companies.",
+    "citiesMunicipalities": "Sustainable Consumption and Production",
+    "citiesMunicipalitiesDesc": "The cloud-based solution reduces material consumption and enables environmentally friendly visualization of projects. This contributes to more sustainable production methods and minimizes energy consumption compared to traditional rendering processes.",
+    "climateProtection": "Climate Protection",
+    "climateProtectionDesc": "By optimizing rendering processes and reducing energy consumption, the project actively contributes to climate protection. The efficient use of cloud resources and the minimization of material consumption support sustainable practices and help reduce the ecological footprint of architectural visualization."
+  },
+  "TabVideoShowcase": {
+    "title": "FROM CONCEPT TO",
+    "titleSecond": "ANIMATION",
+    "description": "Leverage best in class AI Models to bring any design to life, in any style with natural language and no training required.",
+    "tabs": {
+      "create": {
+        "title": "Create Mode",
+        "description": "Transform sketches, elevations and 3D models into photorealistic architectural renderings in seconds.",
+        "features": {
+          "aiGeneration": "AI-Powered Generation",
+          "instantResults": "Instant Results",
+          "multipleStyles": "Multiple Styles"
+        }
+      },
+      "edit": {
+        "title": "Edit Mode",
+        "description": "Add People, subtract furniture, and modify facades in your designs with natural language.",
+        "features": {
+          "naturalLanguage": "Natural Language Editing",
+          "objectManipulation": "Object Manipulation",
+          "smartModifications": "Smart Modifications"
+        }
+      },
+      "enhance": {
+        "title": "Upscale Mode",
+        "description": "Sharpen existing renderings, or add extra detail to your designs with a single click.",
+        "features": {
+          "qualityEnhancement": "Quality Enhancement",
+          "detailAddition": "Detail Addition",
+          "oneClickProcessing": "One-Click Processing"
+        }
+      }
+    },
+    "videoError": {
+      "failedToLoad": "Failed to load video",
+      "retry": "Retry",
+      "errorLoading": "Error loading video...",
+      "loading": "Loading video..."
+    }
+  },
+  "Compare": {
+    "title": "UPSCALE UP TO 13K RESOLUTION",
+    "description": "See the dramatic transformation from basic CAD files to photorealistic architectural visualizations",
+    "aiTransformation": "AI-Powered Transformation",
+    "startCreating": "Start Creating Now",
+    "before": "Before",
+    "after": "After",
+    "original": "Original",
+    "result": "Result",
+    "aiGenerated": "AI GENERATED",
+    "projectTitles": {
+      "model3d": "3D Architecture Model",
+      "cadToPhoto": "CAD to Photorealistic",
+      "colormap": "Colormap Visualization",
+      "conceptToReality": "Concept to Reality"
+    },
+    "descriptionText": "Transform your architectural drawings into stunning photorealistic visualizations with AI precision."
+  },
+  "Pricing": {
+    "professionalPlans": "PROFESSIONAL PLANS",
+    "educationPlans": "EDUCATION PLANS",
+    "professional": "Professional",
+    "education": "Education",
+    "freeTrial": "1-day free trial",
+    "freeTrialDescription": "for professional Architects | Sign up with company email account to get started.",
+    "yearlyBilling": "Yearly Billing",
+    "monthlyBilling": "Monthly Billing",
+    "switchToYearly": "Switch to Yearly to save 75%",
+    "mostPopular": "Most Popular",
+    "subscribe": "Subscribe",
+    "plusVat": "Plus 19% VAT",
+    "billedEvery3Months": "billed every 3 months",
+    "billedYearly": "Billed yearly",
+    "billedMonthly": "Billed monthly",
+    "saveWithAnnual": "Save {amount} with annual billing",
+    "plans": {
+      "starter": {
+        "name": "STARTER",
+        "features": {
+          "credits50": "50 CREDITS /month (e.g. 30 base images and 10 Refinements)",
+          "resolution2k": "2K RESOLUTION",
+          "allPlugins": "ALL PLUGIN INTEGRATIONS",
+          "noSupport": "NO SUPPORT",
+          "noImageEditing": "NO IMAGE EDITING",
+          "noUpscale": "NO UPSCALE",
+          "noCreditTopUps": "NO CREDIT TOP UPS"
+        }
+      },
+      "explorer": {
+        "name": "EXPLORER",
+        "features": {
+          "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
+          "resolution4k": "4K RESOLUTION (2 CONCURRENT JOB)",
+          "allPlugins": "ALL PLUGIN INTEGRATIONS",
+          "emailSupport": "EMAIL SUPPORT",
+          "imageEditing": "IMAGE EDITING",
+          "limitedUpscaling": "LIMITED UPSCALING",
+          "creditTopUps": "CREDIT TOP UPS"
+        }
+      },
+      "pro": {
+        "name": "PRO",
+        "features": {
+          "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
+          "resolution4k": "4K RESOLUTION (4 CONCURRENT JOB)",
+          "allPlugins": "ALL PLUGIN INTEGRATIONS",
+          "emailSupport": "EMAIL SUPPORT",
+          "imageEditing": "IMAGE EDITING",
+          "editByChat": "EDIT BY CHAT",
+          "upscale13k": "UPSCALE UP TO 13K",
+          "creditTopUps": "CREDIT TOP UPS",
+          "onboardingCall": "ONBOARDING VIDEO CALL"
+        }
+      },
+      "student": {
+        "name": "STARTER",
+        "features": {
+          "credits50": "50 CREDITS /month (e.g. 30 base images and 10 Refinements)",
+          "optCreditsTopUps": "OPT. CREDITS TOP UPS",
+          "unlimitedJobs": "UNLIMITED CONCURRENT JOBS",
+          "integratedRefiner": "INTEGRATED REFINER",
+          "cancelAnytime": "CANCEL ANYTIME",
+          "securePayment": "SECURE PAYMENT ON STRIPE",
+          "allPlugins": "ALL PLUGIN INTEGRATIONS"
+        }
+      },
+      "educator": {
+        "name": "EXPLORER",
+        "features": {
+          "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
+          "optCreditsTopUps": "OPT. CREDITS TOP UPS",
+          "concurrentJobs2": "2 CONCURRENT JOBS",
+          "integratedRefiner": "INTEGRATED REFINER",
+          "cancelAnytime": "CANCEL ANYTIME",
+          "securePayment": "SECURE PAYMENT ON STRIPE",
+          "allPlugins": "ALL PLUGIN INTEGRATIONS",
+          "resolution4k": "RESOLUTION UP TO 4K",
+          "noQueue": "NO QUEUE"
+        }
+      },
+      "institution": {
+        "name": "PRO",
+        "features": {
+          "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
+          "allFeaturesExplorer": "ALL FEATURES FROM EXPLORER",
+          "concurrentJobs4": "4 CONCURRENT JOBS",
+          "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
+          "increasedSpeed": "INCREASED SPEED OF GENERATION",
+          "resolution13k": "RESOLUTION UP TO 13K"
+        }
+      }
+    }
+  },
+  "Team": {
+    "title": "MEET OUR TEAM"
+  },
+  "Articles": {
+    "title": "PRESS ARTICLES",
+    "readFullArticle": "READ FULL ARTICLE",
+    "companyEvolution": "TYPUS.AI has gone through different stages fast and was formerly called YANUS / Präi"
+  },
+  "Reviews": {
+    "title": "WHAT OUR USERS SAY",
+    "viewAllReviews": "View All Reviews"
+  },
+  "Footer": {
+    "solutions": "Solutions",
+    "community": "Community",
+    "licenses": "Licenses",
+    "contact": "Contact",
+    "legal": "Legal",
+    "copyright": "© 2025 Typus.AI. All rights reserved.",
+    "links": {
+      "create": "Create",
+      "edit": "Edit",
+      "upscale": "Upscale",
+      "tutorials": "Tutorials",
+      "press": "Press",
+      "reviews": "Reviews",
+      "instagram": "Instagram",
+      "linkedin": "Linkedin",
+      "pricing": "Pricing",
+      "plugins": "Plugins",
+      "studentAccess": "Student Access",
+      "bookCall": "Book a Call",
+      "terms": "Terms",
+      "dataPrivacy": "Data Privacy",
+      "imprint": "Imprint"
+    }
+  },
+  "HeroEmailForm": {
+    "placeholder": "Enter your email",
+    "learnMore": "Learn more",
+    "description": "Learn more about the app and get notified about new features.",
+    "errors": {
+      "required": "Email is required",
+      "invalid": "Please enter a valid email address",
+      "timeout": "Request timed out. Please try again.",
+      "unexpected": "An unexpected error occurred. Please try again."
+    },
+    "success": "You will be notified about new features."
+  },
+  "TrustedBy": {
+    "certifiedBy": "CERTIFIED BY",
+    "gpuEngine": "GPU ENGINE USED",
+    "integrations": "INTEGRATIONS",
+    "asSeenOn": "AS SEEN ON",
+    "finalist": "FINALIST FOR TIC\nAWARD 2024.",
+    "memberOf": "MEMBER OF."
+  },
+  "StickySlider": {
+    "tabs": {
+      "creator": "CREATOR",
+      "editor": "EDITOR",
+      "upscaler": "UPSCALER"
+    },
+    "creator": {
+      "sketch": "Sketch",
+      "model3d": "3D Model To Render (plugins)",
+      "cad": "CAD",
+      "sitephoto": "Sitephoto",
+      "modelPhoto": "Model Photo",
+      "colorMap": "Color Map (Upload Custom Textures)",
+      "artPresets": "Art Presets",
+      "slides": {
+        "sketch": {
+          "title": "SKETCH TO RENDER",
+          "subtitle": "Hand Drawings Come Alive",
+          "description": "Transform your hand-drawn sketches into photorealistic architectural visualizations with AI precision.",
+          "button": "Upload Sketch"
+        },
+        "model3d": {
+          "title": "3D MODEL TO RENDER",
+          "subtitle": "Plugins Integration",
+          "description": "Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.",
+          "button": "Get Plugins"
+        },
+        "cad": {
+          "title": "CAD TRANSFORMATION",
+          "subtitle": "Technical To Visual",
+          "description": "Convert CAD files into stunning photorealistic renders while preserving structural accuracy.",
+          "button": "Try CAD"
+        },
+        "sitephoto": {
+          "title": "Site photo enhancement",
+          "subtitle": "Context Visualization",
+          "description": "Place your designs in real environments using site photos for contextual visualization.",
+          "button": "Upload Photo"
+        },
+        "modelPhoto": {
+          "title": "MODEL PHOTOGRAPHY",
+          "subtitle": "Physical To Digital",
+          "description": "Capture physical architectural models and transform them into digital renders.",
+          "button": "Capture Model"
+        },
+        "colorMap": {
+          "title": "CUSTOM TEXTURES",
+          "subtitle": "Color Map Upload",
+          "description": "Upload your own textures and materials to create unique, personalized architectural visualizations.",
+          "button": "Upload Textures"
+        },
+        "artPresets": {
+          "title": "ART PRESETS",
+          "subtitle": "Style Library Access",
+          "description": "Access our curated library of architectural presets and styles to quickly apply professional looks to your renders.",
+          "button": "Browse Presets"
+        }
+      }
+    },
+    "editor": {
+      "inpaint": "Inpaint Details",
+      "outpaint": "Outpaint Expansion",
+      "addStyle": "Add Style",
+      "slides": {
+        "inpaint": {
+          "title": "INPAINT DETAILS",
+          "subtitle": "Precise Modifications",
+          "description": "Edit specific areas of your renders with AI-powered inpainting for precise modifications.",
+          "button": "Start Inpainting"
+        },
+        "outpaint": {
+          "title": "OUTPAINT EXPANSION",
+          "subtitle": "Extend Your Vision",
+          "description": "Expand your renders beyond original boundaries with seamless AI-generated extensions.",
+          "button": "Expand View"
+        },
+        "addStyle": {
+          "title": "STYLE APPLICATION",
+          "subtitle": "Aesthetic Transformation",
+          "description": "Apply different architectural styles and artistic approaches to transform your designs.",
+          "button": "Browse Styles"
+        }
+      }
+    },
+    "upscaler": {
+      "enhanceDetails": "Enhance Details & Upscale",
+      "slides": {
+        "enhance": {
+          "title": "DETAIL ENHANCEMENT",
+          "subtitle": "AI-powered upscaling",
+          "description": "Enhance image details and upscale your renders to higher resolutions with advanced AI algorithms.",
+          "button": "Enhance Details"
+        }
+      }
+    }
+  },
+  "HeroProducts": {
+    "commercialBuilding": "Commercial Building",
+    "conceptualRepresentation": "Conceptual Representation",
+    "contemporaryResidentialVilla": "Contemporary Residential Villa",
+    "culturalBuilding": "Cultural Building",
+    "curtainWallFacade": "Curtain Wall Façade",
+    "industrialLoftStyle": "Industrial Loft Style",
+    "institutionalBuilding": "Institutional Building",
+    "japandiStyle": "Japandi Style",
+    "modernResidentialHouse": "Modern Residential House",
+    "modernSingleFamilyHouse": "Modern Single Family House",
+    "morningLightSunbeams": "Morning Light Sunbeams",
+    "multiFamilyHouse": "Multi-Family House"
+  },
+  "PaymentMethods": {
+    "title": "Supported payment methods"
+  }
+}

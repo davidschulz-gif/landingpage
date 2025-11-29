@@ -1,0 +1,440 @@
+{
+  "HomePage": {
+    "title": "Hallo Welt!"
+  },
+  "Navbar": {
+    "login": "ANMELDEN",
+    "signUp": "REGISTRIEREN",
+    "explorePlatform": "Entdecken Sie unsere KI-gestützte Architekturvisualisierungsplattform",
+    "seePricing": "Preise ansehen",
+    "solutions": "LÖSUNGEN",
+    "community": "COMMUNITY",
+    "licenses": "LIZENZEN",
+    "contact": "KONTAKT",
+    "navigation": {
+      "solutions": {
+        "create": {
+          "title": "Erstellen",
+          "description": "Erstellen Sie atemberaubende Architekturvisualisierungen von Grund auf mit KI"
+        },
+        "edit": {
+          "title": "Bearbeiten",
+          "description": "Transformieren und modifizieren Sie bestehende Designs mit intelligenten Bearbeitungstools"
+        },
+        "upscale": {
+          "title": "Hochskalieren",
+          "description": "Verbessern Sie Bildauflösung und Qualität mit KI-gestützter Hochskalierung"
+        }
+      },
+      "community": {
+        "tutorials": {
+          "title": "Tutorials",
+          "description": "Lernen Sie aus umfassenden Anleitungen und Video-Tutorials"
+        },
+        "press": {
+          "title": "Presse",
+          "description": "Neueste Nachrichten, Features und Medienberichte über Typus.AI"
+        },
+        "reviews": {
+          "title": "Bewertungen",
+          "description": "Lesen Sie Testimonials und Bewertungen aus unserer Community"
+        },
+        "instagram": {
+          "title": "Instagram",
+          "description": "Folgen Sie uns für tägliche Inspiration und Design-Präsentationen"
+        },
+        "linkedin": {
+          "title": "Linkedin",
+          "description": "Verbinden Sie sich mit uns für professionelle Updates und Einblicke"
+        }
+      },
+      "licenses": {
+        "pricing": {
+          "title": "Preise",
+          "description": "Wählen Sie den perfekten Plan für Ihre kreativen Bedürfnisse"
+        },
+        "plugins": {
+          "title": "Plugins",
+          "description": "Erweitern Sie die Funktionalität mit unserer professionellen Plugin-Suite"
+        },
+        "studentAccess": {
+          "title": "Studentenzugang",
+          "description": "Spezielle vergünstigte Tarife für Studenten und Pädagogen"
+        }
+      },
+      "contact": {
+        "bookCall": {
+          "title": "Anruf buchen",
+          "description": "Vereinbaren Sie eine personalisierte Demo mit unserem Team"
+        }
+      }
+    }
+  },
+  "Hero": {
+    "title": "KI FÜR ARCHITEKTEN.",
+    "description": "KI erhält die Struktur Ihrer architektonischen Eingabe vollständig bei, während sie atemberaubende KI-gestützte Visualisierungen erstellt. Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
+    "getStarted": "Loslegen",
+    "rating": "4.5/5",
+    "reviewsCount": "basierend auf 90+ Bewertungen",
+    "features": {
+      "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
+      "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
+      "tutorial": "TUTORIAL",
+      "stepByStep": "SCHRITT-FÜR-SCHRITT-ANLEITUNG",
+      "caseStudies": "FALLSTUDIEN ERHALTEN",
+      "welcomeGift": "WILLKOMMENSGUTSCHEIN ERHALTEN"
+    }
+  },
+  "VideoShowcase": {
+    "title": "VERWANDELN SIE IHRE VISION",
+    "titleSecond": "IN REALITÄT",
+    "description": "Erleben Sie die Zukunft der Architekturvisualisierung mit KI-gestütztem Rendering, das Ihre Konzepte mit beispiellosem Detail und Realismus zum Leben erweckt.",
+    "architectsCount": "80.000+ registrierte Architekten",
+    "imagesCount": "150.000+ generierte Bilder"
+  },
+  "Features": {
+    "title": "LEISTUNGSSTARKE FUNKTIONEN",
+    "subtitle": "Alles, was Sie brauchen, um Ihre architektonischen Visionen in atemberaubende Visualisierungen zu verwandeln",
+    "health": "Gesundheit und Wohlergehen",
+    "healthDesc": "Die Nutzung der Plattform reduziert den Stress, der durch lange Renderzeiten und die Arbeit mit lokalem Rendering verursacht wird. Die beschleunigten Renderprozesse tragen zu einer besseren Work-Life-Balance bei, da Architekten ihre Entwürfe schneller visualisieren und die Arbeitslast reduzieren können. Zudem bietet das Projekt die Möglichkeit, Projekte effizienter und mit höherer Präzision zu entwickeln, was zu einer besseren Qualität von Bauprojekten und einer gesunden, nachhaltigen Stadtentwicklung beiträgt.",
+    "education": "Hochwertige Bildung",
+    "educationDesc": "Das Projekt ermöglicht Bildungseinrichtungen, Studierenden digitale Visualisierungstechniken und KI-Design beizubringen. Dies bereitet die nächste Generation auf die Anforderungen der Architekturbranche vor.",
+    "equality": "Gleichheit",
+    "equalityDesc": "Das Projekt verpflichtet sich zu einer diskriminierungsfreien Entwicklung und Nutzung seiner Technologie. Unser Vorhaben fördert Chancengleichheit, indem es eine barrierefreie, intuitive Plattform für Architekten und Planer unabhängig von Geschlecht, ethnischer Herkunft, Religion, Weltanschauung, Behinderung, Alter oder sexueller Orientierung bereitstellt.",
+    "cleanEnergy": "Bezahlbare und saubere Energie",
+    "cleanEnergyDesc": "Das Projekt setzt auf GPU-gestütztes Cloud-Rendering, das trotz eines höheren Energieverbrauchs in der Praxis wesentlich effizienter ist als traditionelles CPU-Rendering. Die Renderzeiten werden von Stunden oder sogar Tagen auf nur wenige Sekunden reduziert, was den Gesamtenergieverbrauch erheblich verringert. Diese Technologie optimiert nicht nur den Energieverbrauch im Vergleich zu herkömmlichen Methoden, sondern ermöglicht es, eine schnelle und ressourcenschonende Nutzung moderner Visualisierungstechnologien zu gewährleisten.",
+    "decentWork": "Menschenwürdige Arbeit und Wirtschaftswachstum",
+    "decentWorkDesc": "Durch die Automatisierung von Visualisierungsprozessen unterstützt das Projekt Architekten, Städteplaner und Kreativschaffende dabei, ihre Produktivität zu steigern. Dies schafft Raum für kreativere und wertvollere Aufgaben und fördert langfristig nachhaltiges Wirtschaftswachstum. Es trägt zur digitalen Transformation der Architekturbranche bei und schafft neue Arbeitsplätze im Bereich der KI und Architektur, was zur Förderung einer breiten, inklusiven Wirtschaft beiträgt.",
+    "industryInfrastructure": "Industrie, Innovation und Infrastruktur",
+    "industryInfrastructureDesc": "Das Projekt fördert die Digitalisierung und Innovation in der Architekturbranche, indem es eine cloudbasierte, GPU-unterstützte Plattform für KI-Visualisierungen bereitstellt. Diese Technologie ist nicht nur für die Architektur relevant, sondern kann auch auf andere Industrien angewendet werden, etwa im Städtebau oder Immobiliensektor. Es fördert die Entwicklung widerstandsfähiger Infrastruktur und unterstützt die Schaffung von nachhaltigen und zukunftsfähigen Innovationsprozessen.",
+    "inequality": "Weniger Ungleichheiten",
+    "inequalityDesc": "Das Projekt trägt zur Verringerung von Ungleichheiten bei, indem es den Zugang zu fortschrittlichen Visualisierungstechnologien für kleine und mittelständische Unternehmen und Freelancer öffnet. Diese profitieren von der kostengünstigen, cloudbasierten Lösung, die keinen teuren Hardwareeinsatz erfordert. Kleinere Architekturbüros können so wettbewerbsfähig bleiben und die gleichen innovativen Technologien nutzen wie große Unternehmen.",
+    "citiesMunicipalities": "Nachhaltiger Konsum und Produktion",
+    "citiesMunicipalitiesDesc": "Die cloudbasierte Lösung reduziert den Materialverbrauch und ermöglicht eine umweltfreundliche Visualisierung von Projekten. Dies trägt zu nachhaltigeren Produktionsmethoden bei und minimiert den Energieverbrauch im Vergleich zu traditionellen Renderprozessen.",
+    "climateProtection": "Klimaschutz",
+    "climateProtectionDesc": "Durch die Optimierung von Renderprozessen und die Reduzierung des Energieverbrauchs trägt das Projekt aktiv zum Klimaschutz bei. Die effiziente Nutzung von Cloud-Ressourcen und die Minimierung von Materialverbrauch unterstützen nachhaltige Praktiken und helfen, den ökologischen Fußabdruck der Architekturvisualisierung zu reduzieren."
+  },
+  "TabVideoShowcase": {
+    "title": "VOM KONZEPT ZUR",
+    "titleSecond": "ANIMATION",
+    "description": "Nutzen Sie erstklassige KI-Modelle, um jedes Design in jedem Stil mit natürlicher Sprache zum Leben zu erwecken, ohne Schulung erforderlich.",
+    "tabs": {
+      "create": {
+        "title": "Erstellungsmodus",
+        "description": "Transformieren Sie Skizzen, Ansichten und 3D-Modelle in Sekunden in fotorealistische Architekturrenderings.",
+        "features": {
+          "aiGeneration": "KI-gestützte Generierung",
+          "instantResults": "Sofortige Ergebnisse",
+          "multipleStyles": "Mehrere Stile"
+        }
+      },
+      "edit": {
+        "title": "Bearbeitungsmodus",
+        "description": "Fügen Sie Personen hinzu, entfernen Sie Möbel und modifizieren Sie Fassaden in Ihren Designs mit natürlicher Sprache.",
+        "features": {
+          "naturalLanguage": "Bearbeitung in natürlicher Sprache",
+          "objectManipulation": "Objektmanipulation",
+          "smartModifications": "Intelligente Modifikationen"
+        }
+      },
+      "enhance": {
+        "title": "Hochskalierungsmodus",
+        "description": "Schärfen Sie bestehende Renderings oder fügen Sie Ihren Designs mit einem Klick zusätzliche Details hinzu.",
+        "features": {
+          "qualityEnhancement": "Qualitätsverbesserung",
+          "detailAddition": "Detailergänzung",
+          "oneClickProcessing": "Ein-Klick-Verarbeitung"
+        }
+      }
+    },
+    "videoError": {
+      "failedToLoad": "Video konnte nicht geladen werden",
+      "retry": "Wiederholen",
+      "errorLoading": "Fehler beim Laden des Videos...",
+      "loading": "Video wird geladen..."
+    }
+  },
+  "Compare": {
+    "title": "HOCHSKALIERUNG BIS ZU 13K AUFLÖSUNG",
+    "description": "Sehen Sie die dramatische Transformation von einfachen CAD-Dateien zu fotorealistischen Architekturvisualisierungen",
+    "aiTransformation": "KI-gestützte Transformation",
+    "startCreating": "Jetzt erstellen",
+    "before": "Vorher",
+    "after": "Nachher",
+    "original": "Original",
+    "result": "Ergebnis",
+    "aiGenerated": "KI-GENERIERT",
+    "projectTitles": {
+      "model3d": "3D-Architekturmodell",
+      "cadToPhoto": "CAD zu fotorealistisch",
+      "colormap": "Farbkarten-Visualisierung",
+      "conceptToReality": "Konzept zur Realität"
+    },
+    "descriptionText": "Transformieren Sie Ihre architektonischen Zeichnungen in atemberaubende fotorealistische Visualisierungen mit KI-Präzision."
+  },
+  "Pricing": {
+    "professionalPlans": "PROFESSIONELLE PLÄNE",
+    "educationPlans": "BILDUNGSPLÄNE",
+    "professional": "Professionell",
+    "education": "Bildung",
+    "freeTrial": "1-tägige kostenlose Testversion",
+    "freeTrialDescription": "für professionelle Architekten | Registrieren Sie sich mit einem Firmen-E-Mail-Konto, um zu beginnen.",
+    "yearlyBilling": "Jährliche Abrechnung",
+    "monthlyBilling": "Monatliche Abrechnung",
+    "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 75%",
+    "mostPopular": "Am beliebtesten",
+    "subscribe": "Abonnieren",
+    "plusVat": "Zuzüglich 19% MwSt",
+    "billedEvery3Months": "alle 3 Monate abgerechnet",
+    "billedYearly": "Jährlich abgerechnet",
+    "billedMonthly": "Monatlich abgerechnet",
+    "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
+    "plans": {
+      "starter": {
+        "name": "STARTER",
+        "features": {
+          "credits50": "50 CREDITS /Monat (z.B. 30 Basisbilder und 10 Verfeinerungen)",
+          "resolution2k": "2K AUFLÖSUNG",
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
+          "noSupport": "KEIN SUPPORT",
+          "noImageEditing": "KEINE BILDBEARBEITUNG",
+          "noUpscale": "KEINE HOCHSKALIERUNG",
+          "noCreditTopUps": "KEINE CREDIT-AUFLADUNGEN"
+        }
+      },
+      "explorer": {
+        "name": "EXPLORER",
+        "features": {
+          "credits150": "150 CREDITS /Monat (z.B. 100 Basisbilder und 10 Verfeinerungen)",
+          "resolution4k": "4K AUFLÖSUNG (2 GLEICHZEITIGE JOBS)",
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
+          "emailSupport": "E-MAIL-SUPPORT",
+          "imageEditing": "BILDBEARBEITUNG",
+          "limitedUpscaling": "BEGRENZTE HOCHSKALIERUNG",
+          "creditTopUps": "CREDIT-AUFLADUNGEN"
+        }
+      },
+      "pro": {
+        "name": "PRO",
+        "features": {
+          "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
+          "resolution4k": "4K AUFLÖSUNG (4 GLEICHZEITIGE JOBS)",
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
+          "emailSupport": "E-MAIL-SUPPORT",
+          "imageEditing": "BILDBEARBEITUNG",
+          "editByChat": "BEARBEITUNG PER CHAT",
+          "upscale13k": "HOCHSKALIERUNG BIS ZU 13K",
+          "creditTopUps": "CREDIT-AUFLADUNGEN",
+          "onboardingCall": "ONBOARDING-VIDEO-ANRUF"
+        }
+      },
+      "student": {
+        "name": "STARTER",
+        "features": {
+          "credits50": "50 CREDITS /Monat (z.B. 30 Basisbilder und 10 Verfeinerungen)",
+          "optCreditsTopUps": "OPT. CREDIT-AUFLADUNGEN",
+          "unlimitedJobs": "UNBEGRENZTE GLEICHZEITIGE JOBS",
+          "integratedRefiner": "INTEGRIERTER REFINER",
+          "cancelAnytime": "JEDERZEIT KÜNDBAR",
+          "securePayment": "SICHERE ZAHLUNG ÜBER STRIPE",
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN"
+        }
+      },
+      "educator": {
+        "name": "EXPLORER",
+        "features": {
+          "credits150": "150 CREDITS /Monat (z.B. 100 Basisbilder und 10 Verfeinerungen)",
+          "optCreditsTopUps": "OPT. CREDIT-AUFLADUNGEN",
+          "concurrentJobs2": "2 GLEICHZEITIGE JOBS",
+          "integratedRefiner": "INTEGRIERTER REFINER",
+          "cancelAnytime": "JEDERZEIT KÜNDBAR",
+          "securePayment": "SICHERE ZAHLUNG ÜBER STRIPE",
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
+          "resolution4k": "AUFLÖSUNG BIS ZU 4K",
+          "noQueue": "KEINE WARTESCHLANGE"
+        }
+      },
+      "institution": {
+        "name": "PRO",
+        "features": {
+          "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
+          "allFeaturesExplorer": "ALLE FEATURES VON EXPLORER",
+          "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
+          "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
+          "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
+          "resolution13k": "AUFLÖSUNG BIS ZU 13K"
+        }
+      }
+    }
+  },
+  "Team": {
+    "title": "LERNEN SIE UNSER TEAM KENNEN"
+  },
+  "Articles": {
+    "title": "PRESSEARTIKEL",
+    "readFullArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN",
+    "companyEvolution": "TYPUS.AI hat verschiedene Phasen schnell durchlaufen und hieß früher YANUS / Präi"
+  },
+  "Reviews": {
+    "title": "WAS UNSERE NUTZER SAGEN",
+    "viewAllReviews": "Alle Bewertungen ansehen"
+  },
+  "Footer": {
+    "solutions": "Lösungen",
+    "community": "Community",
+    "licenses": "Lizenzen",
+    "contact": "Kontakt",
+    "legal": "Rechtliches",
+    "copyright": "© 2025 Typus.AI. Alle Rechte vorbehalten.",
+    "links": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "upscale": "Hochskalieren",
+      "tutorials": "Tutorials",
+      "press": "Presse",
+      "reviews": "Bewertungen",
+      "instagram": "Instagram",
+      "linkedin": "Linkedin",
+      "pricing": "Preise",
+      "plugins": "Plugins",
+      "studentAccess": "Studentenzugang",
+      "bookCall": "Anruf buchen",
+      "terms": "AGB",
+      "dataPrivacy": "Datenschutz",
+      "imprint": "Impressum"
+    }
+  },
+  "HeroEmailForm": {
+    "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "learnMore": "Mehr erfahren",
+    "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
+    "errors": {
+      "required": "E-Mail ist erforderlich",
+      "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "timeout": "Anfrage hat das Zeitlimit überschritten. Bitte versuchen Sie es erneut.",
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    },
+    "success": "Sie werden über neue Features benachrichtigt."
+  },
+  "TrustedBy": {
+    "certifiedBy": "ZERTIFIZIERT VON",
+    "gpuEngine": "VERWENDETE GPU-ENGINE",
+    "integrations": "INTEGRATIONEN",
+    "asSeenOn": "ZU SEHEN AUF",
+    "finalist": "FINALE FÜR TIC\nAWARD 2024.",
+    "memberOf": "MITGLIED VON."
+  },
+  "StickySlider": {
+    "tabs": {
+      "creator": "ERSTELLER",
+      "editor": "EDITOR",
+      "upscaler": "HOCHSKALIERER"
+    },
+    "creator": {
+      "sketch": "Skizze",
+      "model3d": "3D-Modell zu Rendering (Plugins)",
+      "cad": "CAD",
+      "sitephoto": "Standortfoto",
+      "modelPhoto": "Modellfoto",
+      "colorMap": "Farbkarte (Eigene Texturen hochladen)",
+      "artPresets": "Kunst-Presets",
+      "slides": {
+        "sketch": {
+          "title": "SKIZZE ZU RENDERING",
+          "subtitle": "Handzeichnungen werden lebendig",
+          "description": "Transformieren Sie Ihre handgezeichneten Skizzen mit KI-Präzision in fotorealistische Architekturvisualisierungen.",
+          "button": "Skizze hochladen"
+        },
+        "model3d": {
+          "title": "3D-MODELL ZU RENDERING",
+          "subtitle": "Plugin-Integration",
+          "description": "Integrieren Sie nahtlos mit Ihrer bevorzugten 3D-Modellierungssoftware und verbessern Sie Renderings mit KI.",
+          "button": "Plugins erhalten"
+        },
+        "cad": {
+          "title": "CAD-TRANSFORMATION",
+          "subtitle": "Technisch zu visuell",
+          "description": "Konvertieren Sie CAD-Dateien in atemberaubende fotorealistische Renderings und bewahren Sie dabei die strukturelle Genauigkeit.",
+          "button": "CAD ausprobieren"
+        },
+        "sitephoto": {
+          "title": "Standortfoto-Verbesserung",
+          "subtitle": "Kontextvisualisierung",
+          "description": "Platzieren Sie Ihre Designs in realen Umgebungen mit Standortfotos für kontextuelle Visualisierung.",
+          "button": "Foto hochladen"
+        },
+        "modelPhoto": {
+          "title": "MODELLFOTOGRAFIE",
+          "subtitle": "Physisch zu digital",
+          "description": "Erfassen Sie physische Architekturmodelle und transformieren Sie sie in digitale Renderings.",
+          "button": "Modell erfassen"
+        },
+        "colorMap": {
+          "title": "EIGENE TEXTUREN",
+          "subtitle": "Farbkarten-Upload",
+          "description": "Laden Sie Ihre eigenen Texturen und Materialien hoch, um einzigartige, personalisierte Architekturvisualisierungen zu erstellen.",
+          "button": "Texturen hochladen"
+        },
+        "artPresets": {
+          "title": "KUNST-PRESETS",
+          "subtitle": "Stilbibliothek-Zugang",
+          "description": "Greifen Sie auf unsere kuratierte Bibliothek architektonischer Presets und Stile zu, um schnell professionelle Looks auf Ihre Renderings anzuwenden.",
+          "button": "Presets durchsuchen"
+        }
+      }
+    },
+    "editor": {
+      "inpaint": "Inpaint-Details",
+      "outpaint": "Outpaint-Erweiterung",
+      "addStyle": "Stil hinzufügen",
+      "slides": {
+        "inpaint": {
+          "title": "INPAINT-DETAILS",
+          "subtitle": "Präzise Modifikationen",
+          "description": "Bearbeiten Sie spezifische Bereiche Ihrer Renderings mit KI-gestütztem Inpainting für präzise Modifikationen.",
+          "button": "Inpainting starten"
+        },
+        "outpaint": {
+          "title": "OUTPAINT-ERWEITERUNG",
+          "subtitle": "Erweitern Sie Ihre Vision",
+          "description": "Erweitern Sie Ihre Renderings über die ursprünglichen Grenzen hinaus mit nahtlosen KI-generierten Erweiterungen.",
+          "button": "Ansicht erweitern"
+        },
+        "addStyle": {
+          "title": "STIL-ANWENDUNG",
+          "subtitle": "Ästhetische Transformation",
+          "description": "Wenden Sie verschiedene architektonische Stile und künstlerische Ansätze an, um Ihre Designs zu transformieren.",
+          "button": "Stile durchsuchen"
+        }
+      }
+    },
+    "upscaler": {
+      "enhanceDetails": "Details verbessern & Hochskalieren",
+      "slides": {
+        "enhance": {
+          "title": "DETAIL-VERBESSERUNG",
+          "subtitle": "KI-gestützte Hochskalierung",
+          "description": "Verbessern Sie Bilddetails und skalieren Sie Ihre Renderings mit fortschrittlichen KI-Algorithmen auf höhere Auflösungen hoch.",
+          "button": "Details verbessern"
+        }
+      }
+    }
+  },
+  "HeroProducts": {
+    "commercialBuilding": "Gewerbegebäude",
+    "conceptualRepresentation": "Konzeptionelle Darstellung",
+    "contemporaryResidentialVilla": "Zeitgenössische Wohnvilla",
+    "culturalBuilding": "Kulturgebäude",
+    "curtainWallFacade": "Vorhangfassade",
+    "industrialLoftStyle": "Industrie-Loft-Stil",
+    "institutionalBuilding": "Institutionelles Gebäude",
+    "japandiStyle": "Japandi-Stil",
+    "modernResidentialHouse": "Modernes Wohnhaus",
+    "modernSingleFamilyHouse": "Modernes Einfamilienhaus",
+    "morningLightSunbeams": "Morgenlicht Sonnenstrahlen",
+    "multiFamilyHouse": "Mehrfamilienhaus"
+  },
+  "PaymentMethods": {
+    "title": "Unterstützte Zahlungsmethoden"
+  }
+}
