@@ -13,7 +13,7 @@ import {
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
 import { Play } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
@@ -27,7 +27,7 @@ export function NavbarDemo() {
   const [doNotShowMegaMenu, setDoNotShowMegaMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<string | null>(null)
-
+  const locale = useLocale()
   // Get translated navigation items
   const getTranslatedNavItems = () => {
     return [
@@ -182,7 +182,7 @@ export function NavbarDemo() {
             {t('login')}
           </Link>
           <Link
-            href={'https://app.typus.ai/register'}
+            href={`https://app.typus.ai/register?language=${locale}`}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
           >
             {t('signUp')}
@@ -311,7 +311,7 @@ export function NavbarDemo() {
                 {t('login')}
               </Link>
               <Link
-                href={'https://app.typus.ai/register'}
+                href={`https://app.typus.ai/register?language=${locale}`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('signUp')}
@@ -377,7 +377,7 @@ export function NavbarDemo() {
               {t('login')}
             </NavbarButton>
             <NavbarButton
-              href={'https://app.typus.ai/register'}
+              href={`https://app.typus.ai/register?language=${locale}`}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='primary'
               className='w-full min-w-[140px] text-nowrap'
