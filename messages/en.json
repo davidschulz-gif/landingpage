@@ -321,6 +321,9 @@
     },
     "success": "You will be notified about new features."
   },
+  "BeforeYouGo": {
+    "title": "Before you leave, join our list and get 30% off your first subscription."
+  },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",
     "gpuEngine": "GPU ENGINE USED",
