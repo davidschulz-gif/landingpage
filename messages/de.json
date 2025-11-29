@@ -321,6 +321,9 @@
     },
     "success": "Sie werden über neue Features benachrichtigt."
   },
+  "BeforeYouGo": {
+    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 30% Rabatt auf Ihr erstes Abonnement."
+  },
   "TrustedBy": {
     "certifiedBy": "ZERTIFIZIERT VON",
     "gpuEngine": "VERWENDETE GPU-ENGINE",

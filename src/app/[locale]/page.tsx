@@ -94,6 +94,13 @@ const FeaturesSection = dynamic(
   }
 )
 
+const BeforeYouGoPopup = dynamic(
+  () => import('@/components/before-you-go-popup').then(mod => mod.default),
+  {
+    ssr: false,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
@@ -383,6 +390,9 @@ export default function Home() {
 
       {/* Main Content - Always Rendered */}
       <MainContent />
+
+      {/* Before You Go Popup */}
+      <BeforeYouGoPopup />
 
       {/* Splash Screen Overlay */}
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
