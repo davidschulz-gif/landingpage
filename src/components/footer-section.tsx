@@ -195,12 +195,23 @@ export function FooterSection() {
           />
         </div>
 
-        <div className='mt-12 xl:mt-24 flex justify-center'>
-          <SupportedPaymentMethods className='max-w-xl' />
+        {/* Co-Financing Section */}
+        <div className='mt-12 xl:mt-16 mb-8 max-w-4xl mx-auto'>
+          <div className='border-t border-gray-200 dark:border-gray-800 pt-8'>
+            <h3 className='text-sm md:text-base font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-4 text-center uppercase tracking-wide'>
+              {t('coFinancingTitle')}
+            </h3>
+            <p className='text-xs md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed text-center'>
+              {t('coFinancing')}
+            </p>
+          </div>
         </div>
 
-        <div className='border-t mt-10 border-gray-100 pt-8'>
-          <p className='text-xs text-center text-gray-500'>{t('copyright')}</p>
+        <div className='border-t mt-10 border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4'>
+          <div className='flex-shrink-0'>
+            <SupportedPaymentMethods className='max-w-xs' />
+          </div>
+          <p className='text-xs text-gray-500'>{t('copyright')}</p>
         </div>
       </div>
     </footer>
