@@ -93,6 +93,9 @@
     "imagesCount": "150,000+ generated images"
   },
   "Features": {
+    "introTitle": "How our platform contributes to 10 sustainable development goals",
+    "introText1": "According to Article 9(4) of Regulation (EU) 2021/1060, projects from ERDF and JTF should be supported that are in line with the United Nations' goals for sustainable development and the Paris Agreement, as well as taking into account the principle of \"avoiding significant harm\".",
+    "introText2": "The United Nations have agreed on 17 goals for sustainable development (Sustainable Development Goals - SDGs) that are to be implemented by 2030. The goals are aimed at an equally ecologically, economically and socially sustainable development.",
     "title": "POWERFUL FEATURES",
     "subtitle": "Everything you need to transform your architectural visions into stunning visualizations",
     "health": "Health and Wellbeing",
@@ -286,6 +289,8 @@
     "contact": "Contact",
     "legal": "Legal",
     "copyright": "© 2025 Typus.AI. All rights reserved.",
+    "coFinancingTitle": "On Co-Financing",
+    "coFinancing": "The project aims to develop central new features for the cloud-based AI visualization platform. This includes location-specific integration of 3D models into real environments, further processing of complete models, direct BIM integration, and AI-supported texture processing. An AI-compatible material catalog is also intended to enable the use of real materials and manufacturers. The automated conversion of 3D models into photorealistic renderings is promoted and allows intuitive editing directly in the browser. The prototype significantly improves the visualization process. For architects, this creates a new tool that enables efficient, flexible, and realistic visualizations in early design phases – including precise adjustments and location-accurate representation.",
     "links": {
       "create": "Create",
       "edit": "Edit",

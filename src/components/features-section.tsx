@@ -72,35 +72,36 @@ export const FeaturesSection = () => {
   const t = useTranslations('Features')
 
   return (
-    <section className='relative mx-auto flex max-w-[100%] md:max-w-[85%] w-full flex-col px-4 py-20 md:py-32 text-neutral-800 dark:text-neutral-200'>
+    <section className='relative mx-auto flex max-w-[100%] md:max-w-[85%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
       {/* Section Header */}
       <motion.div
-        className='mb-12 md:mb-16 text-center'
+        className='mb-8 md:mb-10 text-center'
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         viewport={{ once: true, margin: '-50px' }}
       >
         <BreathingAnimationText animationType='black-gray'>
-          <h2 className='mb-4 text-3xl md:text-4xl lg:text-5xl font-medium !leading-tight text-neutral-800 dark:text-neutral-200'>
-            <span className='text-black dark:text-white font-normal'>
-              {t('title')}
+          <h2 className='mb-3 md:mb-4 text-xl md:text-2xl font-semibold !leading-tight text-neutral-800 dark:text-neutral-200'>
+            <span className='text-black dark:text-white font-semibold'>
+              {t('introTitle')}
             </span>
           </h2>
         </BreathingAnimationText>
-        <motion.p
-          className='mx-auto text-sm md:text-base font-thin text-neutral-600 dark:text-neutral-400 md:max-w-2xl'
+        <motion.div
+          className='mx-auto text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed space-y-2 md:max-w-4xl'
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-50px' }}
         >
-          {t('subtitle')}
-        </motion.p>
+          <p>{t('introText1')}</p>
+          <p>{t('introText2')}</p>
+        </motion.div>
       </motion.div>
 
       {/* Features Grid */}
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4'>
         {features.map((feature, index) => {
           return (
             <motion.div
@@ -116,8 +117,8 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
-              {/* Image Section - Full Height */}
-              <div className='relative w-32 md:w-40 flex-shrink-0 h-full'>
+              {/* Image Section - Half Size */}
+              <div className='relative w-16 md:w-20 flex-shrink-0 h-20'>
                 <img
                   src={feature.imagePath}
                   alt={t(feature.titleKey)}
@@ -126,11 +127,11 @@ export const FeaturesSection = () => {
               </div>
 
               {/* Content Section */}
-              <div className='flex-1 p-5 md:p-6 lg:p-7 flex flex-col'>
-                <h3 className='mb-2 md:mb-3 text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
+              <div className='flex-1 p-3 md:p-4 flex flex-col'>
+                <h3 className='mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
-                <p className='text-xs md:text-sm lg:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-3'>
+                <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
                   {t(feature.descriptionKey)}
                 </p>
               </div>

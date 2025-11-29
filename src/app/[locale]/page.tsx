@@ -213,16 +213,6 @@ export default function Home() {
         <VideoShowcaseSection />
       </motion.div>
 
-      {/* Features Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FeaturesSection />
-      </motion.div>
-
       {/* Sticky Slider Section */}
       {isMobile ? (
         ''
@@ -265,6 +255,16 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <ManyChatPricingSection />
+      </motion.div>
+
+      {/* Features Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <FeaturesSection />
       </motion.div>
 
       {/* Meet Our Team Section */}
