@@ -2,12 +2,13 @@
 
 import { IconX } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 export default function BeforeYouGoPopup() {
   const t = useTranslations('BeforeYouGo')
+  const locale = useLocale()
   const tNavbar = useTranslations('Navbar')
   const tFooter = useTranslations('Footer')
   const [isOpen, setIsOpen] = useState(false)
@@ -130,7 +131,7 @@ export default function BeforeYouGoPopup() {
                   {t('title')}
                 </h2>
                 <Link
-                  href='https://app.typus.ai/register'
+                  href={`https://app.typus.ai/register?language=${locale}`}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='inline-block px-6 py-3 bg-white text-black font-medium hover:bg-white/90 transition-colors duration-200 mb-4'
