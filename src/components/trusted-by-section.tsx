@@ -3,7 +3,9 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useMemo } from 'react'
 
-const getTrustedByItems = (t: ReturnType<typeof useTranslations<'TrustedBy'>>) => [
+const getTrustedByItems = (
+  t: ReturnType<typeof useTranslations<'TrustedBy'>>
+) => [
   {
     title: t('certifiedBy'),
     logo: (
@@ -43,7 +45,7 @@ const getTrustedByItems = (t: ReturnType<typeof useTranslations<'TrustedBy'>>) =
           className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
         >
           <Image
-            src='/logo/revit_logo.avif'
+            src='/logo/revit_logo.png'
             alt='Revit'
             width={96}
             height={48}
@@ -66,7 +68,7 @@ const getTrustedByItems = (t: ReturnType<typeof useTranslations<'TrustedBy'>>) =
         </a>
         <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-32'>
           <Image
-            src='/logo/archicad_logo.avif'
+            src='/logo/archicad_logo.png'
             alt='ArchiCAD'
             width={96}
             height={48}
