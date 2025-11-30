@@ -44,7 +44,7 @@ const getTrustedByItems = (
           rel='noopener noreferrer'
           className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
         >
-          <Image
+          <img
             src='/logo/revit_logo.png'
             alt='Revit'
             width={96}
@@ -59,7 +59,7 @@ const getTrustedByItems = (
           className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-15'
         >
           <Image
-            src='/logo/rhino_logo.png'
+            src='/logo/rhino_logo.png?v=2'
             alt='Rhino'
             width={80}
             height={80}
@@ -67,8 +67,8 @@ const getTrustedByItems = (
           />
         </a>
         <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-32'>
-          <Image
-            src='/logo/archicad_logo.png'
+          <img
+            src='/logo/archicad_logo.png?v=2'
             alt='ArchiCAD'
             width={96}
             height={48}
