@@ -115,7 +115,9 @@
     "citiesMunicipalities": "Sustainable Consumption and Production",
     "citiesMunicipalitiesDesc": "The cloud-based solution reduces material consumption and enables environmentally friendly visualization of projects. This contributes to more sustainable production methods and minimizes energy consumption compared to traditional rendering processes.",
     "climateProtection": "Climate Protection",
-    "climateProtectionDesc": "By optimizing rendering processes and reducing energy consumption, the project actively contributes to climate protection. The efficient use of cloud resources and the minimization of material consumption support sustainable practices and help reduce the ecological footprint of architectural visualization."
+    "climateProtectionDesc": "By optimizing rendering processes and reducing energy consumption, the project actively contributes to climate protection. The efficient use of cloud resources and the minimization of material consumption support sustainable practices and help reduce the ecological footprint of architectural visualization.",
+    "readMore": "Read more",
+    "readLess": "Read less"
   },
   "TabVideoShowcase": {
     "title": "FROM CONCEPT TO",

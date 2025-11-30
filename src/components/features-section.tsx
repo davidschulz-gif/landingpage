@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { BreathingAnimationText } from './breathing-animation-text'
 
 interface Feature {
@@ -15,6 +15,28 @@ interface Feature {
 export const FeaturesSection = () => {
   const t = useTranslations('Features')
   const locale = useLocale()
+  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set())
+
+  const toggleExpanded = (index: number) => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(index)) {
+        newSet.delete(index)
+      } else {
+        newSet.add(index)
+      }
+      return newSet
+    })
+  }
+
+  const getFirstSentence = (text: string): string => {
+    const match = text.match(/^[^.!?]+[.!?]/)
+    return match ? match[0] : text.split('.')[0] + '.'
+  }
+
+  const getRemainingText = (text: string, firstSentence: string): string => {
+    return text.substring(firstSentence.length).trim()
+  }
 
   const features = useMemo(() => {
     return [
@@ -132,10 +154,16 @@ export const FeaturesSection = () => {
       {/* Features Grid */}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4'>
         {features.map((feature, index) => {
+          const fullText = t(feature.descriptionKey)
+          const firstSentence = getFirstSentence(fullText)
+          const remainingText = getRemainingText(fullText, firstSentence)
+          const isExpanded = expandedItems.has(index)
+          const hasMoreText = remainingText.length > 0
+
           return (
             <motion.div
               key={index}
-              className='group relative flex overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 h-full'
+              className='group relative flex flex-col sm:flex-row overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 min-h-[120px] sm:min-h-[100px] w-full'
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -146,8 +174,8 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
-              {/* Image Section - Half Size */}
-              <div className='relative w-16 md:w-20 flex-shrink-0 h-20'>
+              {/* Image Section */}
+              <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden'>
                 <img
                   src={feature.imagePath}
                   alt={t(feature.titleKey)}
@@ -156,13 +184,24 @@ export const FeaturesSection = () => {
               </div>
 
               {/* Content Section */}
-              <div className='flex-1 p-3 md:p-4 flex flex-col'>
+              <div className='flex-1 p-3 md:p-4 flex flex-col min-w-0'>
                 <h3 className='mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
-                <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
-                  {t(feature.descriptionKey)}
-                </p>
+                <div className='flex-1'>
+                  <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
+                    {firstSentence}
+                    {isExpanded && hasMoreText && <span>{remainingText}</span>}
+                  </p>
+                  {hasMoreText && (
+                    <button
+                      onClick={() => toggleExpanded(index)}
+                      className='mt-2 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200 underline'
+                    >
+                      {isExpanded ? t('readLess') : t('readMore')}
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Hover Effect Gradient */}
