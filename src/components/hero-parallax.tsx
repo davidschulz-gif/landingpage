@@ -280,8 +280,16 @@ export const Header = () => {
               </div>
               <Image
                 className='block w-auto h-10'
-                src='/eu-kofinanziert-von-der-europaeischen-union.png'
+                src={
+                  locale === 'de'
+                    ? '/eu-kofinanziert-von-der-europaeischen-union.png'
+                    : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
+                }
                 alt=''
+                style={{
+                  transform: `scale(${locale === 'en' ? '2.5' : '1'})`,
+                  padding: locale === 'en' ? '0 38px' : '0',
+                }}
                 width={200}
                 height={200}
               />

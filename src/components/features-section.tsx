@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useMemo, useState } from 'react'
 import { BreathingAnimationText } from './breathing-animation-text'
 
 interface Feature {
@@ -11,65 +12,115 @@ interface Feature {
   delay: number
 }
 
-const features: Feature[] = [
-  {
-    imagePath: '/features/3_health.png',
-    titleKey: 'health',
-    descriptionKey: 'healthDesc',
-    delay: 0.1,
-  },
-  {
-    imagePath: '/features/4_education.png',
-    titleKey: 'education',
-    descriptionKey: 'educationDesc',
-    delay: 0.2,
-  },
-  {
-    imagePath: '/features/5_equality.png',
-    titleKey: 'equality',
-    descriptionKey: 'equalityDesc',
-    delay: 0.3,
-  },
-  {
-    imagePath: '/features/7_clean_energy.png',
-    titleKey: 'cleanEnergy',
-    descriptionKey: 'cleanEnergyDesc',
-    delay: 0.4,
-  },
-  {
-    imagePath: '/features/8_decent_work.png',
-    titleKey: 'decentWork',
-    descriptionKey: 'decentWorkDesc',
-    delay: 0.5,
-  },
-  {
-    imagePath: '/features/9_industry_infrastructure.png',
-    titleKey: 'industryInfrastructure',
-    descriptionKey: 'industryInfrastructureDesc',
-    delay: 0.6,
-  },
-  {
-    imagePath: '/features/10_inequality.png',
-    titleKey: 'inequality',
-    descriptionKey: 'inequalityDesc',
-    delay: 0.7,
-  },
-  {
-    imagePath: '/features/11_cities_municipalities.png',
-    titleKey: 'citiesMunicipalities',
-    descriptionKey: 'citiesMunicipalitiesDesc',
-    delay: 0.8,
-  },
-  {
-    imagePath: '/features/13_climate_protection.png',
-    titleKey: 'climateProtection',
-    descriptionKey: 'climateProtectionDesc',
-    delay: 0.9,
-  },
-]
-
 export const FeaturesSection = () => {
   const t = useTranslations('Features')
+  const locale = useLocale()
+  const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set())
+
+  const toggleExpanded = (index: number) => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(index)) {
+        newSet.delete(index)
+      } else {
+        newSet.add(index)
+      }
+      return newSet
+    })
+  }
+
+  const getFirstSentence = (text: string): string => {
+    const match = text.match(/^[^.!?]+[.!?]/)
+    return match ? match[0] : text.split('.')[0] + '.'
+  }
+
+  const getRemainingText = (text: string, firstSentence: string): string => {
+    return text.substring(firstSentence.length).trim()
+  }
+
+  const features = useMemo(() => {
+    return [
+      {
+        imagePath:
+          locale === 'de' ? '/features/3_health.png' : '/features/en/sdg3.png',
+        titleKey: 'health',
+        descriptionKey: 'healthDesc',
+        delay: 0.1,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/4_education.png'
+            : '/features/en/sdg4.png',
+        titleKey: 'education',
+        descriptionKey: 'educationDesc',
+        delay: 0.2,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/5_equality.png'
+            : '/features/en/sdg5.png',
+        titleKey: 'equality',
+        descriptionKey: 'equalityDesc',
+        delay: 0.3,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/7_clean_energy.png'
+            : '/features/en/sdg7.png',
+        titleKey: 'cleanEnergy',
+        descriptionKey: 'cleanEnergyDesc',
+        delay: 0.4,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/8_decent_work.png'
+            : '/features/en/sdg8.png',
+        titleKey: 'decentWork',
+        descriptionKey: 'decentWorkDesc',
+        delay: 0.5,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/9_industry_infrastructure.png'
+            : '/features/en/sdg9.png',
+        titleKey: 'industryInfrastructure',
+        descriptionKey: 'industryInfrastructureDesc',
+        delay: 0.6,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/10_inequality.png'
+            : '/features/en/sdg10.png',
+        titleKey: 'inequality',
+        descriptionKey: 'inequalityDesc',
+        delay: 0.7,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/11_cities_municipalities.png'
+            : '/features/en/sdg11.png',
+        titleKey: 'citiesMunicipalities',
+        descriptionKey: 'citiesMunicipalitiesDesc',
+        delay: 0.8,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/13_climate_protection.png'
+            : '/features/en/sdg13.png',
+        titleKey: 'climateProtection',
+        descriptionKey: 'climateProtectionDesc',
+        delay: 0.9,
+      },
+    ]
+  }, [locale])
 
   return (
     <section className='relative mx-auto flex max-w-[100%] md:max-w-[70%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
@@ -103,10 +154,16 @@ export const FeaturesSection = () => {
       {/* Features Grid */}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4'>
         {features.map((feature, index) => {
+          const fullText = t(feature.descriptionKey)
+          const firstSentence = getFirstSentence(fullText)
+          const remainingText = getRemainingText(fullText, firstSentence)
+          const isExpanded = expandedItems.has(index)
+          const hasMoreText = remainingText.length > 0
+
           return (
             <motion.div
               key={index}
-              className='group relative flex overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 h-full'
+              className='group relative flex flex-col sm:flex-row overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 min-h-[120px] sm:min-h-[100px] w-full'
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -117,8 +174,8 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
-              {/* Image Section - Half Size */}
-              <div className='relative w-16 md:w-20 flex-shrink-0 h-20'>
+              {/* Image Section */}
+              <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden'>
                 <img
                   src={feature.imagePath}
                   alt={t(feature.titleKey)}
@@ -127,13 +184,24 @@ export const FeaturesSection = () => {
               </div>
 
               {/* Content Section */}
-              <div className='flex-1 p-3 md:p-4 flex flex-col'>
+              <div className='flex-1 p-3 md:p-4 flex flex-col min-w-0'>
                 <h3 className='mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
-                <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
-                  {t(feature.descriptionKey)}
-                </p>
+                <div className='flex-1'>
+                  <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
+                    {firstSentence}
+                    {isExpanded && hasMoreText && <span>{remainingText}</span>}
+                  </p>
+                  {hasMoreText && (
+                    <button
+                      onClick={() => toggleExpanded(index)}
+                      className='mt-2 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-200 underline'
+                    >
+                      {isExpanded ? t('readLess') : t('readMore')}
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Hover Effect Gradient */}
