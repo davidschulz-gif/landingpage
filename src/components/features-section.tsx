@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 import { BreathingAnimationText } from './breathing-animation-text'
 
 interface Feature {
@@ -11,65 +12,93 @@ interface Feature {
   delay: number
 }
 
-const features: Feature[] = [
-  {
-    imagePath: '/features/3_health.png',
-    titleKey: 'health',
-    descriptionKey: 'healthDesc',
-    delay: 0.1,
-  },
-  {
-    imagePath: '/features/4_education.png',
-    titleKey: 'education',
-    descriptionKey: 'educationDesc',
-    delay: 0.2,
-  },
-  {
-    imagePath: '/features/5_equality.png',
-    titleKey: 'equality',
-    descriptionKey: 'equalityDesc',
-    delay: 0.3,
-  },
-  {
-    imagePath: '/features/7_clean_energy.png',
-    titleKey: 'cleanEnergy',
-    descriptionKey: 'cleanEnergyDesc',
-    delay: 0.4,
-  },
-  {
-    imagePath: '/features/8_decent_work.png',
-    titleKey: 'decentWork',
-    descriptionKey: 'decentWorkDesc',
-    delay: 0.5,
-  },
-  {
-    imagePath: '/features/9_industry_infrastructure.png',
-    titleKey: 'industryInfrastructure',
-    descriptionKey: 'industryInfrastructureDesc',
-    delay: 0.6,
-  },
-  {
-    imagePath: '/features/10_inequality.png',
-    titleKey: 'inequality',
-    descriptionKey: 'inequalityDesc',
-    delay: 0.7,
-  },
-  {
-    imagePath: '/features/11_cities_municipalities.png',
-    titleKey: 'citiesMunicipalities',
-    descriptionKey: 'citiesMunicipalitiesDesc',
-    delay: 0.8,
-  },
-  {
-    imagePath: '/features/13_climate_protection.png',
-    titleKey: 'climateProtection',
-    descriptionKey: 'climateProtectionDesc',
-    delay: 0.9,
-  },
-]
-
 export const FeaturesSection = () => {
   const t = useTranslations('Features')
+  const locale = useLocale()
+
+  const features = useMemo(() => {
+    return [
+      {
+        imagePath:
+          locale === 'de' ? '/features/3_health.png' : '/features/en/sdg3.png',
+        titleKey: 'health',
+        descriptionKey: 'healthDesc',
+        delay: 0.1,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/4_education.png'
+            : '/features/en/sdg4.png',
+        titleKey: 'education',
+        descriptionKey: 'educationDesc',
+        delay: 0.2,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/5_equality.png'
+            : '/features/en/sdg5.png',
+        titleKey: 'equality',
+        descriptionKey: 'equalityDesc',
+        delay: 0.3,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/7_clean_energy.png'
+            : '/features/en/sdg7.png',
+        titleKey: 'cleanEnergy',
+        descriptionKey: 'cleanEnergyDesc',
+        delay: 0.4,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/8_decent_work.png'
+            : '/features/en/sdg8.png',
+        titleKey: 'decentWork',
+        descriptionKey: 'decentWorkDesc',
+        delay: 0.5,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/9_industry_infrastructure.png'
+            : '/features/en/sdg9.png',
+        titleKey: 'industryInfrastructure',
+        descriptionKey: 'industryInfrastructureDesc',
+        delay: 0.6,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/10_inequality.png'
+            : '/features/en/sdg10.png',
+        titleKey: 'inequality',
+        descriptionKey: 'inequalityDesc',
+        delay: 0.7,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/11_cities_municipalities.png'
+            : '/features/en/sdg11.png',
+        titleKey: 'citiesMunicipalities',
+        descriptionKey: 'citiesMunicipalitiesDesc',
+        delay: 0.8,
+      },
+      {
+        imagePath:
+          locale === 'de'
+            ? '/features/13_climate_protection.png'
+            : '/features/en/sdg13.png',
+        titleKey: 'climateProtection',
+        descriptionKey: 'climateProtectionDesc',
+        delay: 0.9,
+      },
+    ]
+  }, [locale])
 
   return (
     <section className='relative mx-auto flex max-w-[100%] md:max-w-[70%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>

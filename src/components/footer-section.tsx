@@ -1,6 +1,6 @@
 'use client'
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import SupportedPaymentMethods from './payment/SupportedPaymentMethods'
@@ -34,6 +34,7 @@ const socialLinks = [
 
 export function FooterSection() {
   const t = useTranslations('Footer')
+  const locale = useLocale()
 
   const footerLinks = {
     solutions: [
@@ -181,7 +182,11 @@ export function FooterSection() {
         <div className='flex flex-wrap gap-4 justify-center mt-10 w-full items-center'>
           <Image
             className='h-9 w-auto'
-            src='/eu-kofinanziert-von-der-europaeischen-union.png'
+            src={
+              locale === 'de'
+                ? '/eu-kofinanziert-von-der-europaeischen-union.png'
+                : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
+            }
             alt=''
             width={200}
             height={200}

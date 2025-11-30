@@ -258,7 +258,11 @@ export function NavbarDemo() {
                 <div className='absolute bottom-0 right-0 gap-4 flex'>
                   <Image
                     className='h-9 w-auto'
-                    src='/eu-kofinanziert-von-der-europaeischen-union.png'
+                    src={
+                      locale === 'de'
+                        ? '/eu-kofinanziert-von-der-europaeischen-union.png'
+                        : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
+                    }
                     alt=''
                     width={200}
                     height={200}
