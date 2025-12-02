@@ -187,6 +187,10 @@ export function FooterSection() {
                 ? '/eu-kofinanziert-von-der-europaeischen-union.png'
                 : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
             }
+            style={{
+              transform: `scale(${locale === 'en' ? '2.5' : '1'})`,
+              padding: locale === 'en' ? '0 38px' : '0',
+            }}
             alt=''
             width={200}
             height={200}

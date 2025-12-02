@@ -264,6 +264,10 @@ export function NavbarDemo() {
                         : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
                     }
                     alt=''
+                    style={{
+                      transform: `scale(${locale === 'en' ? '2.5' : '1'})`,
+                      padding: locale === 'en' ? '0 38px' : '0',
+                    }}
                     width={200}
                     height={200}
                   />
