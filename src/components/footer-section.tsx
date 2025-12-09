@@ -54,7 +54,7 @@ export function FooterSection() {
       { name: t('links.plugins'), href: '#plugins' },
       { name: t('links.studentAccess'), href: '#student-access' },
     ],
-    contact: [{ name: t('links.bookCall'), href: '#book-a-call' }],
+    contact: [{ name: 'hello@typus.ai', href: 'mailto:hello@typus.ai' }],
     legal: [
       { name: t('links.terms'), href: 'https://app.typus.ai/terms' },
       {
