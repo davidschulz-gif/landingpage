@@ -64,8 +64,8 @@
       },
       "contact": {
         "bookCall": {
-          "title": "Book a Call",
-          "description": "Schedule a personalized demo with our team"
+          "title": "hello@typus.ai",
+          "description": "With the PRO plan, you can book a free onboarding call."
         }
       }
     }
@@ -305,7 +305,7 @@
       "pricing": "Pricing",
       "plugins": "Plugins",
       "studentAccess": "Student Access",
-      "bookCall": "Book a Call",
+      "bookCall": "hello@typus.ai",
       "terms": "Terms",
       "dataPrivacy": "Data Privacy",
       "imprint": "Imprint"

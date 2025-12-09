@@ -114,7 +114,7 @@ export function NavbarDemo() {
           {
             title: tNav('contact.bookCall.title'),
             description: tNav('contact.bookCall.description'),
-            link: 'https://calendly.com/hello-typus-ai/call',
+            link: 'mailto:hello@typus.ai',
             target: '_blank',
           },
         ],

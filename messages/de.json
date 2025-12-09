@@ -64,8 +64,8 @@
       },
       "contact": {
         "bookCall": {
-          "title": "Anruf buchen",
-          "description": "Vereinbaren Sie eine personalisierte Demo mit unserem Team"
+          "title": "hello@typus.ai",
+          "description": "Mit dem PRO-Plan können Sie einen kostenlosen Onboarding-Call buchen."
         }
       }
     }
@@ -305,7 +305,7 @@
       "pricing": "Preise",
       "plugins": "Plugins",
       "studentAccess": "Studentenzugang",
-      "bookCall": "Anruf buchen",
+      "bookCall": "hello@typus.ai",
       "terms": "AGB",
       "dataPrivacy": "Datenschutz",
       "imprint": "Impressum"
