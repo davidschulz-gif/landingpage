@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
+import { useIsEurope } from '@/hooks/use-is-europe'
+import { formatPrice } from '@/lib/price-converter'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Check, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -161,7 +163,12 @@ export function ManyChatPricingSection() {
           name: t('plans.starter.name'),
           features: professionalPlans[0].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.starter.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('2K') ? 'resolution2k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('NO SUPPORT') ? 'noSupport' : f.text.includes('NO IMAGE EDITING') ? 'noImageEditing' : f.text.includes('NO UPSCALE') ? 'noUpscale' : 'noCreditTopUps'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.starter.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('2K') ? 'resolution2k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('NO SUPPORT') ? 'noSupport' : f.text.includes('NO IMAGE EDITING') ? 'noImageEditing' : f.text.includes('NO UPSCALE') ? 'noUpscale' : 'noCreditTopUps'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -170,7 +177,12 @@ export function ManyChatPricingSection() {
           name: t('plans.explorer.name'),
           features: professionalPlans[1].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -179,7 +191,12 @@ export function ManyChatPricingSection() {
           name: t('plans.pro.name'),
           features: professionalPlans[2].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : f.text.includes('CREDIT TOP UPS') ? 'creditTopUps' : 'onboardingCall'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : f.text.includes('CREDIT TOP UPS') ? 'creditTopUps' : 'onboardingCall'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -191,7 +208,12 @@ export function ManyChatPricingSection() {
           name: t('plans.student.name'),
           features: educationPlans[0].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -200,7 +222,12 @@ export function ManyChatPricingSection() {
           name: t('plans.educator.name'),
           features: educationPlans[1].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.educator.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.educator.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -209,7 +236,12 @@ export function ManyChatPricingSection() {
           name: t('plans.institution.name'),
           features: educationPlans[2].features.map(f => ({
             ...f,
-            text: typeof f === 'string' ? f : t(`plans.institution.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('ALL FEATURES FROM EXPLORER') ? 'allFeaturesExplorer' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`),
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                    `plans.institution.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('ALL FEATURES FROM EXPLORER') ? 'allFeaturesExplorer' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+                  ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -527,7 +559,8 @@ function PricingCard({
   isProfessional: boolean
 }) {
   const t = useTranslations('Pricing')
-  
+  const isEurope = useIsEurope()
+
   // For professional plans, show 3-monthly pricing
   const getPriceDisplay = () => {
     if (isProfessional) {
@@ -537,23 +570,25 @@ function PricingCard({
       const monthlyPrice =
         (plan as (typeof professionalPlans)[0]).monthlyPrice || ''
       return {
-        mainPrice: monthlyPrice,
+        mainPrice: formatPrice(monthlyPrice, isEurope),
         period: '/month',
-        billingInfo: `${threeMonthPrice} ${t('billedEvery3Months')}`,
+        billingInfo: `${formatPrice(threeMonthPrice, isEurope)} ${t('billedEvery3Months')}`,
       }
     } else {
       // Educational: Show yearly or monthly based on toggle
       const eduPlan = plan as (typeof educationPlans)[0]
       if (isYearly) {
         return {
-          mainPrice: eduPlan.monthlyEquivalant,
+          mainPrice: formatPrice(eduPlan.monthlyEquivalant, isEurope),
           period: '/month',
-          billingInfo: `${t('billedYearly')} (${eduPlan.yearlyPrice}/year)`,
-          saveInfo: t('saveWithAnnual', { amount: eduPlan.save }),
+          billingInfo: `${t('billedYearly')} (${formatPrice(eduPlan.yearlyPrice, isEurope)}/year)`,
+          saveInfo: t('saveWithAnnual', {
+            amount: formatPrice(eduPlan.save, isEurope),
+          }),
         }
       } else {
         return {
-          mainPrice: eduPlan.monthlyPrice,
+          mainPrice: formatPrice(eduPlan.monthlyPrice, isEurope),
           period: '/month',
           billingInfo: t('billedMonthly'),
         }
