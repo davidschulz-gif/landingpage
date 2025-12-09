@@ -147,7 +147,7 @@ export function NavbarDemo() {
           onMouseLeave={handleMenuLeave}
         >
           {doNotShowMegaMenu ? (
-            <Menu setActive={setActive}>
+            <Menu setActive={setActive} active={active}>
               {translatedNavItems.map((navItem, idx) => (
                 <MenuItem
                   key={`menu-item-${idx}`}
