@@ -280,34 +280,34 @@ export function ManyChatPricingSection() {
   // Cards sliding from behind center card - sticky until all cards visible
   const leftCardX = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 1],
+    [0, 0.1, 0.3, 1],
     ['100%', '100%', '0%', '0%']
   )
   const rightCardX = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 1],
+    [0, 0.2, 0.4, 1],
     ['-100%', '-100%', '0%', '0%']
   )
   const leftCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.5, 1],
+    [0, 0.1, 0.3, 1],
     [0, 0, 1, 1]
   )
   const rightCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.75, 1],
+    [0, 0.2, 0.4, 1],
     [0, 0, 1, 1]
   )
   const centerCardOpacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 1],
+    [0, 0.05, 1],
     [0, 1, 1]
   )
 
   return (
     <section
       ref={containerRef}
-      className='md:h-[420vh] py-10 relative'
+      className='md:h-[200vh] py-10 relative'
       style={{ backgroundColor: '#fcfcfd' }}
       id='pricing'
     >
@@ -439,7 +439,7 @@ export function ManyChatPricingSection() {
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
@@ -458,7 +458,7 @@ export function ManyChatPricingSection() {
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
@@ -478,7 +478,7 @@ export function ManyChatPricingSection() {
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
@@ -494,7 +494,7 @@ export function ManyChatPricingSection() {
               className='w-full max-w-xs z-10'
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
@@ -509,7 +509,7 @@ export function ManyChatPricingSection() {
               className='w-full max-w-xs z-30'
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
@@ -524,7 +524,7 @@ export function ManyChatPricingSection() {
               className='w-full max-w-xs z-10'
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <PricingCard
