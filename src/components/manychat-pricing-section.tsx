@@ -593,33 +593,44 @@ function PricingCard({
 
   return (
     <div
-      className='flex h-[580px] mb-4 flex-col  sm: md: p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800'
+      className='flex h-[580px] mb-4 flex-col  sm: md: p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800 relative'
       style={{
         backgroundColor: '#000000',
         color: '#ffffff',
       }}
     >
-      {/* Header Section */}
-      <div className='flex flex-col items-center text-center mb-4'>
-        {plan.popular && (
-          <div className='mb-2'>
-            <MovingBorderButton
-              duration={2000}
-              className='bg-transparent border-0 text-white  text-[10px] font-bold uppercase tracking-wide'
-              containerClassName=' !h-10 w-30'
-              borderClassName='bg-[radial-gradient(#1a1a1a_100%,#000000_100%)]'
-              borderRadius='0rem'
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-              }}
-            >
-              {t('mostPopular')}
-            </MovingBorderButton>
+      {/* Ribbon Tag */}
+      {plan.popular && (
+        <div className='absolute -top-1 left-0 z-30 origin-top-left'>
+          <div className='relative transform -rotate-12'>
+            {/* Ribbon body */}
+            <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
+              {/* Shine effect */}
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
+              {/* Left fold */}
+              <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
+              <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
+              {/* Right fold */}
+              <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
+              <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
+              {/* Text */}
+              <span
+                className='text-[10px] font-bold uppercase tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                {t('bestResults')}
+              </span>
+            </div>
+            {/* Shadow under ribbon */}
+            <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
           </div>
-        )}
+        </div>
+      )}
 
+      {/* Header Section */}
+      <div className='flex flex-col items-center text-center mb-4 relative'>
         <span
-          className='text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mb-2 block text-white'
+          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           {plan.name}
