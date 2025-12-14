@@ -191,6 +191,7 @@
     "subscribe": "Subscribe",
     "plusVat": "Plus 19% VAT",
     "billedEvery3Months": "billed every 3 months",
+    "billedEvery6Months": "billed every 6 months",
     "billedYearly": "Billed yearly",
     "billedMonthly": "Billed monthly",
     "saveWithAnnual": "Save {amount} with annual billing",

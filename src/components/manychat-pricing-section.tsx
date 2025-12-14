@@ -14,8 +14,8 @@ const professionalPlans = [
   {
     id: 'starter',
     name: 'STARTER',
-    threeMonthPrice: '€297', // €99/month * 3
-    monthlyPrice: '€99',
+    sixMonthPrice: '€199', // €199 per 6 months (€33.17/month)
+    monthlyPrice: '€33',
     planType: 'STARTER',
     features: [
       {
@@ -33,8 +33,8 @@ const professionalPlans = [
   {
     id: 'explorer',
     name: 'EXPLORER',
-    threeMonthPrice: '€495', // €165/month * 3
-    monthlyPrice: '€165',
+    sixMonthPrice: '€477', // €477 per 6 months (€79.50/month)
+    monthlyPrice: '€80',
     planType: 'EXPLORER',
     popular: true,
     features: [
@@ -42,7 +42,7 @@ const professionalPlans = [
         text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
         hasFeature: true,
       },
-      { text: '4K RESOLUTION (2 CONCURRENT JOB)', hasFeature: true },
+      { text: '2K RESOLUTION (2 CONCURRENT JOB)', hasFeature: true },
       { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'IMAGE EDITING', hasFeature: true },
@@ -53,8 +53,8 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    threeMonthPrice: '€990', // €330/month * 3
-    monthlyPrice: '€330',
+    sixMonthPrice: '€990', // €990 per 6 months (€165/month)
+    monthlyPrice: '€165',
     planType: 'PRO',
     features: [
       {
@@ -152,7 +152,7 @@ export function ManyChatPricingSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
   const [isProfessional, setIsProfessional] = useState(true)
-  // Professional plans use 3-monthly billing only, no toggle needed
+  // Professional plans use 6-monthly billing only, no toggle needed
 
   // Get translated plans
   const getTranslatedPlans = () => {
@@ -389,7 +389,7 @@ export function ManyChatPricingSection() {
               </div>
             </div>
 
-            {/* Professional Plans: No billing toggle, only 3-monthly */}
+            {/* Professional Plans: No billing toggle, only 6-monthly */}
             {isProfessional ? (
               <div className='flex flex-col items-center mb-8'>
                 <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
@@ -561,18 +561,18 @@ function PricingCard({
   const t = useTranslations('Pricing')
   const isEurope = useIsEurope()
 
-  // For professional plans, show 3-monthly pricing
+  // For professional plans, show 6-monthly pricing
   const getPriceDisplay = () => {
     if (isProfessional) {
-      // Professional: Always show 3-monthly
-      const threeMonthPrice =
-        (plan as (typeof professionalPlans)[0]).threeMonthPrice || ''
+      // Professional: Always show 6-monthly
+      const sixMonthPrice =
+        (plan as (typeof professionalPlans)[0]).sixMonthPrice || ''
       const monthlyPrice =
         (plan as (typeof professionalPlans)[0]).monthlyPrice || ''
       return {
         mainPrice: formatPrice(monthlyPrice, isEurope),
         period: '/month',
-        billingInfo: `${formatPrice(threeMonthPrice, isEurope)} ${t('billedEvery3Months')}`,
+        billingInfo: `${formatPrice(sixMonthPrice, isEurope)} ${t('billedEvery6Months')}`,
       }
     } else {
       // Educational: Show yearly or monthly based on toggle

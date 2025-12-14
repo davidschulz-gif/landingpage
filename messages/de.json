@@ -191,6 +191,7 @@
     "subscribe": "Abonnieren",
     "plusVat": "Zuzüglich 19% MwSt",
     "billedEvery3Months": "alle 3 Monate abgerechnet",
+    "billedEvery6Months": "alle 6 Monate abgerechnet",
     "billedYearly": "Jährlich abgerechnet",
     "billedMonthly": "Monatlich abgerechnet",
     "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
