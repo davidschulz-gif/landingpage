@@ -211,9 +211,9 @@
       "explorer": {
         "name": "EXPLORER",
         "features": {
+          "everythingFromStarter": "EVERYTHING FROM STARTER",
           "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
           "resolution4k": "4K RESOLUTION (2 CONCURRENT JOB)",
-          "allPlugins": "ALL PLUGIN INTEGRATIONS",
           "emailSupport": "EMAIL SUPPORT",
           "imageEditing": "IMAGE EDITING",
           "limitedUpscaling": "LIMITED UPSCALING",
@@ -223,14 +223,11 @@
       "pro": {
         "name": "PRO",
         "features": {
+          "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
           "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
           "resolution4k": "4K RESOLUTION (4 CONCURRENT JOB)",
-          "allPlugins": "ALL PLUGIN INTEGRATIONS",
-          "emailSupport": "EMAIL SUPPORT",
-          "imageEditing": "IMAGE EDITING",
           "editByChat": "EDIT BY CHAT",
           "upscale13k": "UPSCALE UP TO 13K",
-          "creditTopUps": "CREDIT TOP UPS",
           "onboardingCall": "ONBOARDING VIDEO CALL"
         }
       },
@@ -249,13 +246,9 @@
       "educator": {
         "name": "EXPLORER",
         "features": {
+          "everythingFromStarter": "EVERYTHING FROM STARTER",
           "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
-          "optCreditsTopUps": "OPT. CREDITS TOP UPS",
           "concurrentJobs2": "2 CONCURRENT JOBS",
-          "integratedRefiner": "INTEGRATED REFINER",
-          "cancelAnytime": "CANCEL ANYTIME",
-          "securePayment": "SECURE PAYMENT ON STRIPE",
-          "allPlugins": "ALL PLUGIN INTEGRATIONS",
           "resolution4k": "RESOLUTION UP TO 4K",
           "noQueue": "NO QUEUE"
         }
@@ -263,8 +256,8 @@
       "institution": {
         "name": "PRO",
         "features": {
+          "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
           "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
-          "allFeaturesExplorer": "ALL FEATURES FROM EXPLORER",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",

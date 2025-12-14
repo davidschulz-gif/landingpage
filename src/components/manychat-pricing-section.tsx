@@ -36,14 +36,13 @@ const professionalPlans = [
     sixMonthPrice: '€477', // €477 per 6 months (€79.50/month)
     monthlyPrice: '€80',
     planType: 'EXPLORER',
-    popular: true,
     features: [
+      { text: 'EVERYTHING FROM STARTER', hasFeature: true },
       {
         text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
         hasFeature: true,
       },
       { text: '2K RESOLUTION (2 CONCURRENT JOB)', hasFeature: true },
-      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'IMAGE EDITING', hasFeature: true },
       { text: 'LIMITED UPSCALING', hasFeature: true },
@@ -56,18 +55,16 @@ const professionalPlans = [
     sixMonthPrice: '€990', // €990 per 6 months (€165/month)
     monthlyPrice: '€165',
     planType: 'PRO',
+    popular: true,
     features: [
+      { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
       {
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
         hasFeature: true,
       },
       { text: '4K RESOLUTION (4 CONCURRENT JOB)', hasFeature: true },
-      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
-      { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'IMAGE EDITING', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'UPSCALE UP TO 13K', hasFeature: true },
-      { text: 'CREDIT TOP UPS', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
     ],
   },
@@ -107,18 +104,13 @@ const educationPlans = [
     period: '/month',
     yearlyPeriod: '/year',
     planType: 'EXPLORER',
-    popular: true,
     features: [
+      { text: 'EVERYTHING FROM STARTER', hasFeature: true },
       {
         text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
         hasFeature: true,
       },
-      { text: 'OPT. CREDITS TOP UPS', hasFeature: true },
       { text: '2 CONCURRENT JOBS', hasFeature: true },
-      { text: 'INTEGRATED REFINER', hasFeature: true },
-      { text: 'CANCEL ANYTIME', hasFeature: true },
-      { text: 'SECURE PAYMENT ON STRIPE', hasFeature: true },
-      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
       { text: 'RESOLUTION UP TO 4K', hasFeature: true },
       { text: 'NO QUEUE', hasFeature: true },
     ],
@@ -133,12 +125,13 @@ const educationPlans = [
     period: '/month',
     yearlyPeriod: '/year',
     planType: 'PRO',
+    popular: true,
     features: [
+      { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
       {
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
         hasFeature: true,
       },
-      { text: 'ALL FEATURES FROM EXPLORER', hasFeature: true },
       { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'PREMIUM LIVE VIDEO CALL SUPPORT', hasFeature: true },
       { text: 'INCREASED SPEED OF GENERATION', hasFeature: true },
@@ -181,7 +174,7 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
+                    `plans.explorer.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
                   ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -195,7 +188,7 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : f.text.includes('CREDIT TOP UPS') ? 'creditTopUps' : 'onboardingCall'}`
+                    `plans.pro.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
                   ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -226,7 +219,7 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.educator.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+                    `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
                   ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -240,7 +233,7 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.institution.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('ALL FEATURES FROM EXPLORER') ? 'allFeaturesExplorer' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+                    `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
                   ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -319,7 +312,7 @@ export function ManyChatPricingSection() {
       id='pricing'
     >
       <div
-        className='md:sticky top-0 md:h-[110vh] flex flex-col justify-center overflow-hidden px-4'
+        className='md:sticky top-0 flex flex-col justify-center overflow-hidden px-4'
         id='student-access'
       >
         <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
@@ -435,7 +428,7 @@ export function ManyChatPricingSection() {
             )}
           </motion.div>
 
-          <div className='relative md:flex hidden justify-center items-center h-[70vh] min-h-[600px] w-full gap-4'>
+          <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-4'>
             {/* Left Card */}
             <motion.div
               className='w-full max-w-xs z-10'

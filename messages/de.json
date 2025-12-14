@@ -211,9 +211,9 @@
       "explorer": {
         "name": "EXPLORER",
         "features": {
+          "everythingFromStarter": "ALLES VOM STARTER",
           "credits150": "150 CREDITS /Monat (z.B. 100 Basisbilder und 10 Verfeinerungen)",
           "resolution4k": "4K AUFLÖSUNG (2 GLEICHZEITIGE JOBS)",
-          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
           "emailSupport": "E-MAIL-SUPPORT",
           "imageEditing": "BILDBEARBEITUNG",
           "limitedUpscaling": "BEGRENZTE HOCHSKALIERUNG",
@@ -223,14 +223,11 @@
       "pro": {
         "name": "PRO",
         "features": {
+          "everythingFromExplorer": "ALLES VOM EXPLORER",
           "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
           "resolution4k": "4K AUFLÖSUNG (4 GLEICHZEITIGE JOBS)",
-          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
-          "emailSupport": "E-MAIL-SUPPORT",
-          "imageEditing": "BILDBEARBEITUNG",
           "editByChat": "BEARBEITUNG PER CHAT",
           "upscale13k": "HOCHSKALIERUNG BIS ZU 13K",
-          "creditTopUps": "CREDIT-AUFLADUNGEN",
           "onboardingCall": "ONBOARDING-VIDEO-ANRUF"
         }
       },
@@ -249,13 +246,9 @@
       "educator": {
         "name": "EXPLORER",
         "features": {
+          "everythingFromStarter": "ALLES VOM STARTER",
           "credits150": "150 CREDITS /Monat (z.B. 100 Basisbilder und 10 Verfeinerungen)",
-          "optCreditsTopUps": "OPT. CREDIT-AUFLADUNGEN",
           "concurrentJobs2": "2 GLEICHZEITIGE JOBS",
-          "integratedRefiner": "INTEGRIERTER REFINER",
-          "cancelAnytime": "JEDERZEIT KÜNDBAR",
-          "securePayment": "SICHERE ZAHLUNG ÜBER STRIPE",
-          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
           "resolution4k": "AUFLÖSUNG BIS ZU 4K",
           "noQueue": "KEINE WARTESCHLANGE"
         }
@@ -263,8 +256,8 @@
       "institution": {
         "name": "PRO",
         "features": {
+          "everythingFromExplorer": "ALLES VOM EXPLORER",
           "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
-          "allFeaturesExplorer": "ALLE FEATURES IM EXPLORER",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
