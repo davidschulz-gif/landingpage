@@ -34,7 +34,7 @@ const professionalPlans = [
     id: 'explorer',
     name: 'EXPLORER',
     sixMonthPrice: '€477', // €477 per 6 months (€79.50/month)
-    monthlyPrice: '€80',
+    monthlyPrice: '€79.5',
     planType: 'EXPLORER',
     features: [
       { text: 'EVERYTHING FROM STARTER', hasFeature: true },
