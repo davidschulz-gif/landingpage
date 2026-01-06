@@ -14,8 +14,10 @@ const professionalPlans = [
   {
     id: 'starter',
     name: 'STARTER',
-    sixMonthPrice: '€199', // €199 per 6 months (€33.17/month)
-    monthlyPrice: '€33',
+    threeMonthPrice: { eur: '€147', usd: '$173' }, // €147 per 3 months, $173 per 3 months
+    sixMonthPrice: { eur: '€199', usd: '$234' }, // €199 per 6 months, $234 per 6 months
+    threeMonthMonthlyPrice: { eur: '€49', usd: '$58' }, // €49/month, $58/month
+    sixMonthMonthlyPrice: { eur: '€33.17', usd: '$39' }, // €33.17/month, $39/month
     planType: 'STARTER',
     features: [
       {
@@ -33,8 +35,10 @@ const professionalPlans = [
   {
     id: 'explorer',
     name: 'EXPLORER',
-    sixMonthPrice: '€477', // €477 per 6 months (€79.50/month)
-    monthlyPrice: '€79.5',
+    threeMonthPrice: { eur: '€297', usd: '$349' }, // €297 per 3 months, $349 per 3 months
+    sixMonthPrice: { eur: '€477', usd: '$560' }, // €477 per 6 months, $560 per 6 months
+    threeMonthMonthlyPrice: { eur: '€99', usd: '$116' }, // €99/month, $116/month
+    sixMonthMonthlyPrice: { eur: '€79.5', usd: '$93' }, // €79.5/month, $93/month
     planType: 'EXPLORER',
     features: [
       { text: 'EVERYTHING FROM STARTER', hasFeature: true },
@@ -52,8 +56,10 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    sixMonthPrice: '€990', // €990 per 6 months (€165/month)
-    monthlyPrice: '€165',
+    threeMonthPrice: { eur: '€597', usd: '$701' }, // €597 per 3 months, $701 per 3 months
+    sixMonthPrice: { eur: '€990', usd: '$1162' }, // €990 per 6 months, $1162 per 6 months
+    threeMonthMonthlyPrice: { eur: '€199', usd: '$234' }, // €199/month, $234/month
+    sixMonthMonthlyPrice: { eur: '€165', usd: '$194' }, // €165/month, $194/month
     planType: 'PRO',
     popular: true,
     features: [
@@ -145,7 +151,7 @@ export function ManyChatPricingSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
   const [isProfessional, setIsProfessional] = useState(true)
-  // Professional plans use 6-monthly billing only, no toggle needed
+  const [isSixMonthly, setIsSixMonthly] = useState(true) // true = 6-monthly, false = 3-monthly
 
   // Get translated plans
   const getTranslatedPlans = () => {
@@ -382,18 +388,42 @@ export function ManyChatPricingSection() {
               </div>
             </div>
 
-            {/* Professional Plans: No billing toggle, only 6-monthly */}
+            {/* Professional Plans: Toggle between 3-monthly and 6-monthly */}
             {isProfessional ? (
-              <div className='flex flex-col items-center mb-8'>
-                <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
-                  <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
-                    <span className='font-bold text-black'>
-                      {t('freeTrial')}
-                    </span>{' '}
-                    {t('freeTrialDescription')}
-                  </p>
+              <>
+                <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
+                  <button
+                    onClick={() => setIsSixMonthly(false)}
+                    className={`px-6 py-2  text-sm font-medium transition-colors ${
+                      !isSixMonthly
+                        ? 'bg-white text-black shadow-md'
+                        : 'text-black hover:text-black'
+                    }`}
+                  >
+                    {t('threeMonthlyBilling')}
+                  </button>
+                  <button
+                    onClick={() => setIsSixMonthly(true)}
+                    className={`px-6 py-2  text-sm font-medium transition-colors ${
+                      isSixMonthly
+                        ? 'bg-white text-black shadow-md'
+                        : 'text-black hover:text-black'
+                    }`}
+                  >
+                    {t('sixMonthlyBilling')}
+                  </button>
                 </div>
-              </div>
+                <div className='flex flex-col items-center mb-8'>
+                  <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
+                    <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
+                      <span className='font-bold text-black'>
+                        {t('freeTrial')}
+                      </span>{' '}
+                      {t('freeTrialDescription')}
+                    </p>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
@@ -446,6 +476,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[0]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
 
@@ -465,6 +496,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[1]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
 
@@ -485,6 +517,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[2]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
           </div>
@@ -501,6 +534,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[0]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
 
@@ -516,6 +550,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[1]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
 
@@ -531,6 +566,7 @@ export function ManyChatPricingSection() {
                 plan={currentPlans[2]}
                 isYearly={isYearly}
                 isProfessional={isProfessional}
+                isSixMonthly={isSixMonthly}
               />
             </motion.div>
           </div>
@@ -546,26 +582,47 @@ function PricingCard({
   plan,
   isYearly,
   isProfessional,
+  isSixMonthly,
 }: {
   plan: PlanType
   isYearly: boolean
   isProfessional: boolean
+  isSixMonthly?: boolean
 }) {
   const t = useTranslations('Pricing')
   const isEurope = useIsEurope()
 
-  // For professional plans, show 6-monthly pricing
+  // For professional plans, show 3-monthly or 6-monthly pricing
   const getPriceDisplay = () => {
     if (isProfessional) {
-      // Professional: Always show 6-monthly
-      const sixMonthPrice =
-        (plan as (typeof professionalPlans)[0]).sixMonthPrice || ''
-      const monthlyPrice =
-        (plan as (typeof professionalPlans)[0]).monthlyPrice || ''
-      return {
-        mainPrice: formatPrice(monthlyPrice, isEurope),
-        period: '/month',
-        billingInfo: `${formatPrice(sixMonthPrice, isEurope)} ${t('billedEvery6Months')}`,
+      // Professional: Show 3-monthly or 6-monthly based on toggle
+      const profPlan = plan as (typeof professionalPlans)[0]
+      if (isSixMonthly) {
+        // 6-monthly billing - use exact prices, no conversion
+        const monthlyPrice = isEurope
+          ? profPlan.sixMonthMonthlyPrice?.eur || ''
+          : profPlan.sixMonthMonthlyPrice?.usd || ''
+        const cyclePrice = isEurope
+          ? profPlan.sixMonthPrice?.eur || ''
+          : profPlan.sixMonthPrice?.usd || ''
+        return {
+          mainPrice: monthlyPrice,
+          period: '/month',
+          billingInfo: `${cyclePrice} ${t('billedEvery6Months')}`,
+        }
+      } else {
+        // 3-monthly billing - use exact prices, no conversion
+        const monthlyPrice = isEurope
+          ? profPlan.threeMonthMonthlyPrice?.eur || ''
+          : profPlan.threeMonthMonthlyPrice?.usd || ''
+        const cyclePrice = isEurope
+          ? profPlan.threeMonthPrice?.eur || ''
+          : profPlan.threeMonthPrice?.usd || ''
+        return {
+          mainPrice: monthlyPrice,
+          period: '/month',
+          billingInfo: `${cyclePrice} ${t('billedEvery3Months')}`,
+        }
       }
     } else {
       // Educational: Show yearly or monthly based on toggle
