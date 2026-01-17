@@ -12,36 +12,11 @@ import { useEffect, useRef, useState } from 'react'
 
 const professionalPlans = [
   {
-    id: 'starter',
-    name: 'STARTER',
-    threeMonthPrice: { eur: '€147', usd: '$173' }, // €147 per 3 months, $173 per 3 months
-    sixMonthPrice: { eur: '€199', usd: '$234' }, // €199 per 6 months, $234 per 6 months
-    threeMonthMonthlyPrice: { eur: '€49', usd: '$58' }, // €49/month, $58/month
-    sixMonthMonthlyPrice: { eur: '€33.17', usd: '$39' }, // €33.17/month, $39/month
-    planType: 'STARTER',
-    features: [
-      {
-        text: '50 CREDITS /month (e.g. 30 base images and 10 Refinements)',
-        hasFeature: true,
-      },
-      { text: '2K RESOLUTION', hasFeature: true },
-      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
-      { text: 'NO SUPPORT', hasFeature: false },
-      { text: 'NO IMAGE EDITING', hasFeature: false },
-      { text: 'NO UPSCALE', hasFeature: false },
-      { text: 'NO CREDIT TOP UPS', hasFeature: false },
-    ],
-  },
-  {
     id: 'explorer',
     name: 'EXPLORER',
-    threeMonthPrice: { eur: '€297', usd: '$349' }, // €297 per 3 months, $349 per 3 months
-    sixMonthPrice: { eur: '€477', usd: '$560' }, // €477 per 6 months, $560 per 6 months
-    threeMonthMonthlyPrice: { eur: '€99', usd: '$116' }, // €99/month, $116/month
-    sixMonthMonthlyPrice: { eur: '€79.5', usd: '$93' }, // €79.5/month, $93/month
+    monthlyPrice: { eur: '€99', usd: '$114' }, // €99/month, $114/month
     planType: 'EXPLORER',
     features: [
-      { text: 'EVERYTHING FROM STARTER', hasFeature: true },
       {
         text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
         hasFeature: true,
@@ -56,14 +31,14 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    threeMonthPrice: { eur: '€597', usd: '$701' }, // €597 per 3 months, $701 per 3 months
-    sixMonthPrice: { eur: '€990', usd: '$1162' }, // €990 per 6 months, $1162 per 6 months
-    threeMonthMonthlyPrice: { eur: '€199', usd: '$234' }, // €199/month, $234/month
-    sixMonthMonthlyPrice: { eur: '€165', usd: '$194' }, // €165/month, $194/month
+    monthlyPrice: { eur: '€149', usd: '$172' }, // €149/month, $172/month
+    sixMonthPrice: { eur: '€549', usd: '$636' }, // €549 per 6 months, $636 per 6 months
+    yearlyPrice: { eur: '€696', usd: '$807' }, // €696/year, $807/year
+    sixMonthMonthlyPrice: { eur: '€91.5', usd: '$106' }, // €91.5/month, $106/month
+    yearlyMonthlyPrice: { eur: '€58', usd: '$67.25' }, // €58/month, $67.25/month
     planType: 'PRO',
     popular: true,
     features: [
-      { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
       {
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
         hasFeature: true,
@@ -151,55 +126,85 @@ export function ManyChatPricingSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
   const [isProfessional, setIsProfessional] = useState(true)
-  const [isSixMonthly, setIsSixMonthly] = useState(true) // true = 6-monthly, false = 3-monthly
+  // Selected plan tier: 'explorer' | 'pro' | 'enterprise'
+  const [selectedPlanTier, setSelectedPlanTier] = useState<'explorer' | 'pro' | 'enterprise'>('explorer')
 
-  // Get translated plans
+  // Get translated plans - returns only the selected plan
   const getTranslatedPlans = () => {
     if (isProfessional) {
-      return [
-        {
-          ...professionalPlans[0],
-          name: t('plans.starter.name'),
-          features: professionalPlans[0].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                    `plans.starter.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('2K') ? 'resolution2k' : f.text.includes('ALL PLUGIN') ? 'allPlugins' : f.text.includes('NO SUPPORT') ? 'noSupport' : f.text.includes('NO IMAGE EDITING') ? 'noImageEditing' : f.text.includes('NO UPSCALE') ? 'noUpscale' : 'noCreditTopUps'}`
-                  ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-        {
-          ...professionalPlans[1],
-          name: t('plans.explorer.name'),
-          features: professionalPlans[1].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                    `plans.explorer.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
-                  ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-        {
-          ...professionalPlans[2],
-          name: t('plans.pro.name'),
-          features: professionalPlans[2].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                    `plans.pro.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                  ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-      ]
+      if (selectedPlanTier === 'explorer') {
+        return [
+          {
+            ...professionalPlans[0], // EXPLORER
+            name: t('plans.explorer.name'),
+            features: professionalPlans[0].features.map(f => ({
+              ...f,
+              text:
+                typeof f === 'string'
+                  ? f
+                  : t(
+                      `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
+                    ),
+              hasFeature: typeof f === 'object' ? f.hasFeature : true,
+            })),
+          },
+        ]
+      } else if (selectedPlanTier === 'pro') {
+        // Return 3 PRO plans: monthly, 6-monthly, yearly
+        const baseProPlan = professionalPlans[1]
+        return [
+          {
+            ...baseProPlan,
+            name: t('plans.pro.name'), // PRO
+            billingCycle: 'monthly' as const,
+            features: baseProPlan.features.map(f => ({
+              ...f,
+              text:
+                typeof f === 'string'
+                  ? f
+                  : t(
+                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                    ),
+              hasFeature: typeof f === 'object' ? f.hasFeature : true,
+            })),
+          },
+          {
+            ...baseProPlan,
+            name: t('plans.proSemi.name'), // PRO SEMI
+            billingCycle: 'sixMonthly' as const,
+            popular: false,
+            features: baseProPlan.features.map(f => ({
+              ...f,
+              text:
+                typeof f === 'string'
+                  ? f
+                  : t(
+                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                    ),
+              hasFeature: typeof f === 'object' ? f.hasFeature : true,
+            })),
+          },
+          {
+            ...baseProPlan,
+            name: t('plans.proComplete.name'), // PRO COMPLETE
+            billingCycle: 'yearly' as const,
+            popular: true,
+            features: baseProPlan.features.map(f => ({
+              ...f,
+              text:
+                typeof f === 'string'
+                  ? f
+                  : t(
+                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                    ),
+              hasFeature: typeof f === 'object' ? f.hasFeature : true,
+            })),
+          },
+        ]
+      } else {
+        // ENTERPRISE - disabled
+        return []
+      }
     } else {
       return [
         {
@@ -388,31 +393,43 @@ export function ManyChatPricingSection() {
               </div>
             </div>
 
-            {/* Professional Plans: Toggle between 3-monthly and 6-monthly */}
+            {/* Professional Plans: Plan tier tabs */}
             {isProfessional ? (
               <>
-                <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
+                <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
                   <button
-                    onClick={() => setIsSixMonthly(false)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${
-                      !isSixMonthly
+                    onClick={() => setSelectedPlanTier('explorer')}
+                    className={`px-6 py-2 text-sm font-medium transition-colors ${
+                      selectedPlanTier === 'explorer'
                         ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
+                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                     }`}
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
-                    {t('threeMonthlyBilling')}
+                    {t('plans.explorer.name')}
                   </button>
                   <button
-                    onClick={() => setIsSixMonthly(true)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${
-                      isSixMonthly
+                    onClick={() => setSelectedPlanTier('pro')}
+                    className={`px-6 py-2 text-sm font-medium transition-colors ${
+                      selectedPlanTier === 'pro'
                         ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
+                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                     }`}
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
-                    {t('sixMonthlyBilling')}
+                    {t('plans.pro.name')}
+                  </button>
+                  <button
+                    onClick={() => setSelectedPlanTier('enterprise')}
+                    disabled
+                    className='px-6 py-2 text-sm font-medium transition-colors text-gray-400 bg-white/30 cursor-not-allowed opacity-50'
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {t('plans.enterprise.name')}
                   </button>
                 </div>
+
+
                 <div className='flex flex-col items-center mb-8'>
                   <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
                     <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
@@ -458,118 +475,108 @@ export function ManyChatPricingSection() {
             )}
           </motion.div>
 
-          <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-4'>
-            {/* Left Card */}
-            <motion.div
-              className='w-full max-w-xs z-10'
-              style={{
-                x: leftCardX,
-                opacity: leftCardOpacity,
-                y: cardParallaxY,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[0]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-
-            {/* Center Card */}
-            <motion.div
-              className='w-full max-w-xs z-30'
-              style={{
-                opacity: centerCardOpacity,
-                y: cardParallaxY,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[1]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-
-            {/* Right Card */}
-            <motion.div
-              className='w-full max-w-xs z-10'
-              style={{
-                x: rightCardX,
-                opacity: rightCardOpacity,
-                y: cardParallaxY,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[2]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-          </div>
-          <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-4'>
-            {/* Left Card */}
-            <motion.div
-              className='w-full max-w-xs z-10'
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[0]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-
-            {/* Center Card */}
-            <motion.div
-              className='w-full max-w-xs z-30'
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[1]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-
-            {/* Right Card */}
-            <motion.div
-              className='w-full max-w-xs z-10'
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <PricingCard
-                plan={currentPlans[2]}
-                isYearly={isYearly}
-                isProfessional={isProfessional}
-                isSixMonthly={isSixMonthly}
-              />
-            </motion.div>
-          </div>
+          {/* Show selected plan cards */}
+          {currentPlans.length > 0 && (
+            <>
+              <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-4'>
+                {currentPlans.length === 1 ? (
+                  // Single card (EXPLORER)
+                  <motion.div
+                    className='w-full max-w-xs z-30'
+                    style={{
+                      opacity: centerCardOpacity,
+                      y: cardParallaxY,
+                    }}
+                    initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
+                    viewport={{ once: true, margin: '-50px' }}
+                  >
+                  <PricingCard
+                    plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={isYearly}
+                    isProfessional={isProfessional}
+                  />
+                  </motion.div>
+                ) : (
+                  // Multiple cards (PRO plans)
+                  <>
+                    <motion.div
+                      className='w-full max-w-xs z-10'
+                      style={{
+                        x: leftCardX,
+                        opacity: leftCardOpacity,
+                        y: cardParallaxY,
+                      }}
+                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
+                      viewport={{ once: true, margin: '-50px' }}
+                    >
+                  <PricingCard
+                    plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={isYearly}
+                    isProfessional={isProfessional}
+                  />
+                    </motion.div>
+                    <motion.div
+                      className='w-full max-w-xs z-30'
+                      style={{
+                        opacity: centerCardOpacity,
+                        y: cardParallaxY,
+                      }}
+                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
+                      viewport={{ once: true, margin: '-50px' }}
+                    >
+                    <PricingCard
+                      plan={currentPlans[1] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                      isYearly={isYearly}
+                      isProfessional={isProfessional}
+                    />
+                    </motion.div>
+                    <motion.div
+                      className='w-full max-w-xs z-10'
+                      style={{
+                        x: rightCardX,
+                        opacity: rightCardOpacity,
+                        y: cardParallaxY,
+                      }}
+                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
+                      viewport={{ once: true, margin: '-50px' }}
+                    >
+                    <PricingCard
+                      plan={currentPlans[2] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                      isYearly={isYearly}
+                      isProfessional={isProfessional}
+                    />
+                    </motion.div>
+                  </>
+                )}
+              </div>
+              <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-4'>
+                {currentPlans.map((plan, index) => (
+                  <motion.div
+                    key={index}
+                    className='w-full max-w-xs z-30'
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
+                    viewport={{ once: true, margin: '-50px' }}
+                  >
+                    <PricingCard
+                      plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                      isYearly={isYearly}
+                      isProfessional={isProfessional}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -582,47 +589,75 @@ function PricingCard({
   plan,
   isYearly,
   isProfessional,
-  isSixMonthly,
 }: {
-  plan: PlanType
+  plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
   isYearly: boolean
   isProfessional: boolean
-  isSixMonthly?: boolean
 }) {
   const t = useTranslations('Pricing')
   const isEurope = useIsEurope()
 
-  // For professional plans, show 3-monthly or 6-monthly pricing
+  // For professional plans, show pricing based on plan and billing cycle
   const getPriceDisplay = () => {
     if (isProfessional) {
-      // Professional: Show 3-monthly or 6-monthly based on toggle
-      const profPlan = plan as (typeof professionalPlans)[0]
-      if (isSixMonthly) {
-        // 6-monthly billing - use exact prices, no conversion
+      const profPlan = plan as (typeof professionalPlans)[0] & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
+
+      // EXPLORER only has MONTHLY
+      if (profPlan.planType === 'EXPLORER') {
         const monthlyPrice = isEurope
-          ? profPlan.sixMonthMonthlyPrice?.eur || ''
-          : profPlan.sixMonthMonthlyPrice?.usd || ''
-        const cyclePrice = isEurope
-          ? profPlan.sixMonthPrice?.eur || ''
-          : profPlan.sixMonthPrice?.usd || ''
+          ? profPlan.monthlyPrice?.eur || ''
+          : profPlan.monthlyPrice?.usd || ''
         return {
           mainPrice: monthlyPrice,
           period: '/month',
-          billingInfo: `${cyclePrice} ${t('billedEvery6Months')}`,
+          billingInfo: t('billedMonthly'),
         }
-      } else {
-        // 3-monthly billing - use exact prices, no conversion
-        const monthlyPrice = isEurope
-          ? profPlan.threeMonthMonthlyPrice?.eur || ''
-          : profPlan.threeMonthMonthlyPrice?.usd || ''
-        const cyclePrice = isEurope
-          ? profPlan.threeMonthPrice?.eur || ''
-          : profPlan.threeMonthPrice?.usd || ''
-        return {
-          mainPrice: monthlyPrice,
-          period: '/month',
-          billingInfo: `${cyclePrice} ${t('billedEvery3Months')}`,
+      }
+
+      // PRO has MONTHLY, SIX_MONTHLY, YEARLY - use billingCycle from plan
+      if (profPlan.planType === 'PRO') {
+        const billingCycle = profPlan.billingCycle || 'yearly'
+        if (billingCycle === 'monthly') {
+          const monthlyPrice = isEurope
+            ? profPlan.monthlyPrice?.eur || ''
+            : profPlan.monthlyPrice?.usd || ''
+          return {
+            mainPrice: monthlyPrice,
+            period: '/month',
+            billingInfo: t('billedMonthly'),
+          }
+        } else if (billingCycle === 'sixMonthly') {
+          const monthlyPrice = isEurope
+            ? profPlan.sixMonthMonthlyPrice?.eur || ''
+            : profPlan.sixMonthMonthlyPrice?.usd || ''
+          const cyclePrice = isEurope
+            ? profPlan.sixMonthPrice?.eur || ''
+            : profPlan.sixMonthPrice?.usd || ''
+          return {
+            mainPrice: monthlyPrice,
+            period: '/month',
+            billingInfo: `${cyclePrice} ${t('billedEvery6Months')}`,
+          }
+        } else { // yearly
+          const monthlyPrice = isEurope
+            ? profPlan.yearlyMonthlyPrice?.eur || ''
+            : profPlan.yearlyMonthlyPrice?.usd || ''
+          const cyclePrice = isEurope
+            ? profPlan.yearlyPrice?.eur || ''
+            : profPlan.yearlyPrice?.usd || ''
+          return {
+            mainPrice: monthlyPrice,
+            period: '/month',
+            billingInfo: `${t('billedYearly')} (${cyclePrice}/year)`,
+          }
         }
+      }
+
+      // Fallback (should not happen)
+      return {
+        mainPrice: '',
+        period: '/month',
+        billingInfo: '',
       }
     } else {
       // Educational: Show yearly or monthly based on toggle
