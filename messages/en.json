@@ -234,6 +234,15 @@
           "onboardingCall": "ONBOARDING VIDEO CALL"
         }
       },
+      "proSemi": {
+        "name": "PRO SEMI"
+      },
+      "proComplete": {
+        "name": "PRO COMPLETE"
+      },
+      "enterprise": {
+        "name": "ENTERPRISE"
+      },
       "student": {
         "name": "STARTER",
         "features": {
