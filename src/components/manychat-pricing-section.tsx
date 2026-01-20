@@ -172,7 +172,7 @@ export function ManyChatPricingSection() {
             ...baseProPlan,
             name: t('plans.proSemi.name'), // PRO SEMI
             billingCycle: 'sixMonthly' as const,
-            popular: false,
+            popular: true,
             features: baseProPlan.features.map(f => ({
               ...f,
               text:

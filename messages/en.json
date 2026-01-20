@@ -188,7 +188,7 @@
     "monthlyBilling": "Monthly Billing",
     "threeMonthlyBilling": "3-Monthly Billing",
     "sixMonthlyBilling": "6-Monthly Billing",
-    "switchToYearly": "Switch to Yearly to save 75%",
+    "switchToYearly": "Switch to Yearly to save 50%",
     "mostPopular": "Most Popular",
     "bestResults": "High-End Results",
     "subscribe": "Subscribe",
@@ -330,7 +330,7 @@
     "success": "You will be notified about new features."
   },
   "BeforeYouGo": {
-    "title": "Before you leave, join our list and get 75% off your first subscription."
+    "title": "Before you leave, join our list and get 50% off your first subscription."
   },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",
