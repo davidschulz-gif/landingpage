@@ -224,7 +224,7 @@
         }
       },
       "pro": {
-        "name": "PRO",
+        "name": "PRO ONE",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
           "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
@@ -330,7 +330,7 @@
     "success": "You will be notified about new features."
   },
   "BeforeYouGo": {
-    "title": "Before you leave, join our list and get 30% off your first subscription."
+    "title": "Before you leave, join our list and get 75% off your first subscription."
   },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",

@@ -14,7 +14,7 @@ const professionalPlans = [
   {
     id: 'explorer',
     name: 'EXPLORER',
-    monthlyPrice: { eur: '€99', usd: '$114' }, // €99/month, $114/month
+    monthlyPrice: { eur: '€49', usd: '$57' },
     planType: 'EXPLORER',
     features: [
       {
@@ -127,7 +127,7 @@ export function ManyChatPricingSection() {
   const [isYearly, setIsYearly] = useState(true)
   const [isProfessional, setIsProfessional] = useState(true)
   // Selected plan tier: 'explorer' | 'pro' | 'enterprise'
-  const [selectedPlanTier, setSelectedPlanTier] = useState<'explorer' | 'pro' | 'enterprise'>('explorer')
+  const [selectedPlanTier, setSelectedPlanTier] = useState<'explorer' | 'pro' | 'enterprise'>('pro')
 
   // Get translated plans - returns only the selected plan
   const getTranslatedPlans = () => {
@@ -417,7 +417,7 @@ export function ManyChatPricingSection() {
                     }`}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
-                    {t('plans.pro.name')}
+                    PRO
                   </button>
                   <button
                     onClick={() => setSelectedPlanTier('enterprise')}
@@ -693,7 +693,7 @@ function PricingCard({
     >
       {/* Ribbon Tag */}
       {plan.popular && (
-        <div className='absolute -top-1 left-0 z-30 origin-top-left'>
+        <div className='absolute -top-2 left-0 z-30 origin-top-left'>
           <div className='relative transform -rotate-12'>
             {/* Ribbon body */}
             <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
@@ -720,7 +720,7 @@ function PricingCard({
       )}
 
       {/* Header Section */}
-      <div className='flex flex-col items-center text-center mb-4 relative'>
+      <div className={`flex flex-col items-center text-center mb-4 relative pt-3`}>
         <span
           className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
