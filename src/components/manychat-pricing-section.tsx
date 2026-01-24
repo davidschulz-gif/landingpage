@@ -288,6 +288,13 @@ export function ManyChatPricingSection() {
     }
   }, [])
 
+  // Set yearly as default when viewing educational plans (students)
+  useEffect(() => {
+    if (!isProfessional) {
+      setIsYearly(true)
+    }
+  }, [isProfessional])
+
   // Cards sliding from behind center card - sticky until all cards visible
   const leftCardX = useTransform(
     scrollYProgress,
