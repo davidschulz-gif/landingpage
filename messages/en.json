@@ -197,6 +197,12 @@
     "billedEvery6Months": "billed every 6 months",
     "billedYearly": "Billed yearly",
     "billedMonthly": "Billed monthly",
+    "firstMonthCharged": "{amount} first month charged",
+    "first6MonthsCharged": "{amount} first 6 months charged",
+    "firstYearCharged": "{amount} yearly charged",
+    "discountBadge": "-50% Save {amount}",
+    "periodDiscountBadge": "Discount {percent}%; Save {amount}",
+    "bestDealBanner": "Our best deal — for a limited time.",
     "saveWithAnnual": "Save {amount} with annual billing",
     "plans": {
       "starter": {

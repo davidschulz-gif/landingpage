@@ -31,13 +31,47 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    monthlyPrice: { eur: '€149', usd: '$172' }, // €149/month, $172/month
-    sixMonthPrice: { eur: '€549', usd: '$636' }, // €549 per 6 months, $636 per 6 months
-    yearlyPrice: { eur: '€696', usd: '$807' }, // €696/year, $807/year
-    sixMonthMonthlyPrice: { eur: '€91.5', usd: '$106' }, // €91.5/month, $106/month
-    yearlyMonthlyPrice: { eur: '€58', usd: '$67.25' }, // €58/month, $67.25/month
+    monthlyPrice: { eur: '€149', usd: '$172' },
+    sixMonthPrice: { eur: '€549', usd: '$636' },
+    yearlyPrice: { eur: '€696', usd: '$807' },
+    sixMonthMonthlyPrice: { eur: '€91.5', usd: '$106' },
+    yearlyMonthlyPrice: { eur: '€58', usd: '$67.25' },
     planType: 'PRO',
     popular: true,
+    // Discount display: original (crossed out), discounted (green), badges, intro price
+    discount: {
+      monthly: {
+        originalMonthly: { eur: '€449', usd: '$499' },
+        discountedMonthly: { eur: '€74.5', usd: '$86' },
+        discountPercent: 50,
+        saveAmount: { eur: '€74.5', usd: '$86' },
+        introFirstPeriod: { eur: '€74.5', usd: '$86' },
+        introPeriodKey: 'firstMonthCharged',
+      },
+      sixMonthly: {
+        originalMonthly: { eur: '€94.5', usd: '$110' },
+        discountedMonthly: { eur: '€46', usd: '$53' },
+        periodDiscountPercent: 39,
+        periodSaveAmount: { eur: '€345', usd: '$400' },
+        originalCycle: { eur: '€549', usd: '$636' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€274.5', usd: '$318' },
+        introFirstPeriod: { eur: '€274.5', usd: '$318' },
+        introPeriodKey: 'first6MonthsCharged',
+      },
+      yearly: {
+        originalMonthly: { eur: '€58', usd: '$67' },
+        discountedMonthly: { eur: '€29', usd: '$34' },
+        periodDiscountPercent: 61,
+        periodSaveAmount: { eur: '€1092', usd: '$1267' },
+        originalCycle: { eur: '€696', usd: '$807' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€348', usd: '$404' },
+        introFirstPeriod: { eur: '€348', usd: '$404' },
+        introPeriodKey: 'firstYearCharged',
+        bestDeal: true,
+      },
+    },
     features: [
       {
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
@@ -624,10 +658,21 @@ function PricingCard({
       // PRO has MONTHLY, SIX_MONTHLY, YEARLY - use billingCycle from plan
       if (profPlan.planType === 'PRO') {
         const billingCycle = profPlan.billingCycle || 'yearly'
+        const proWithDiscount = profPlan as (typeof professionalPlans)[1]
+        const discountData = proWithDiscount.discount?.[billingCycle]
         if (billingCycle === 'monthly') {
           const monthlyPrice = isEurope
             ? profPlan.monthlyPrice?.eur || ''
             : profPlan.monthlyPrice?.usd || ''
+          const d = discountData
+          if (d && 'saveAmount' in d) {
+            return {
+              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
+              period: '/month',
+              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
+              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmount.eur : d.saveAmount.usd },
+            }
+          }
           return {
             mainPrice: monthlyPrice,
             period: '/month',
@@ -640,18 +685,36 @@ function PricingCard({
           const cyclePrice = isEurope
             ? profPlan.sixMonthPrice?.eur || ''
             : profPlan.sixMonthPrice?.usd || ''
+          const d = discountData
+          if (d && 'originalCycle' in d) {
+            return {
+              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
+              period: '/month',
+              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
+              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd },
+            }
+          }
           return {
             mainPrice: monthlyPrice,
             period: '/month',
             billingInfo: `${cyclePrice} ${t('billedEvery6Months')}`,
           }
-        } else { // yearly
+        } else {
           const monthlyPrice = isEurope
             ? profPlan.yearlyMonthlyPrice?.eur || ''
             : profPlan.yearlyMonthlyPrice?.usd || ''
           const cyclePrice = isEurope
             ? profPlan.yearlyPrice?.eur || ''
             : profPlan.yearlyPrice?.usd || ''
+          const d = discountData
+          if (d && 'bestDeal' in d) {
+            return {
+              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
+              period: '/month',
+              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
+              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd, bestDeal: d.bestDeal },
+            }
+          }
           return {
             mainPrice: monthlyPrice,
             period: '/month',
@@ -727,7 +790,7 @@ function PricingCard({
       )}
 
       {/* Header Section */}
-      <div className={`flex flex-col items-center text-center mb-4 relative pt-3`}>
+      <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
           className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -735,24 +798,46 @@ function PricingCard({
           {plan.name}
         </span>
 
+        {/* Discount badge above price - period discount for 6-mo/yearly */}
+        {priceInfo.discount?.periodDiscountPercent != null && (
+          <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
+          </div>
+        )}
+
         {/* Pricing Section */}
         <div className='mb-3'>
-          <div className='flex items-baseline justify-center mb-1'>
-            <span
-              className='text-2xl font-bold text-white'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              {priceInfo.mainPrice}
-            </span>
-            <span
-              className='text-xs ml-1 text-white/80'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              {priceInfo.period}
-            </span>
+          <div className='flex flex-col items-center justify-center'>
+            {priceInfo.discount ? (
+              <>
+                <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {priceInfo.discount.originalPrice} {priceInfo.period}
+                </div>
+                <div className='flex items-baseline justify-center gap-1'>
+                  <span className='text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {priceInfo.mainPrice}
+                  </span>
+                  <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {priceInfo.period}
+                  </span>
+                </div>
+                <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {t('discountBadge', { percent: priceInfo.discount.discountPercent, amount: priceInfo.discount.saveAmount })}
+                </div>
+              </>
+            ) : (
+              <div className='flex items-baseline justify-center gap-1'>
+                <span className='text-2xl sm:text-3xl font-bold text-white tracking-tight' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {priceInfo.mainPrice}
+                </span>
+                <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {priceInfo.period}
+                </span>
+              </div>
+            )}
           </div>
 
-          <div className='space-y-0.5 text-[10px] text-white/80'>
+          <div className='space-y-1 text-[11px] text-white/75 mt-3 text-center'>
             <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {priceInfo.billingInfo}
             </div>
@@ -764,8 +849,8 @@ function PricingCard({
             <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {t('plusVat')}
             </div>
-            {isProfessional && (
-              <div className='text-green-400 font-semibold mt-2'>
+            {isProfessional && !priceInfo.discount && (
+              <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
             )}
