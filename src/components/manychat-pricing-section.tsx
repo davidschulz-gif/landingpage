@@ -177,8 +177,8 @@ export function ManyChatPricingSection() {
                 typeof f === 'string'
                   ? f
                   : t(
-                      `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
-                    ),
+                    `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
+                  ),
               hasFeature: typeof f === 'object' ? f.hasFeature : true,
             })),
           },
@@ -197,8 +197,8 @@ export function ManyChatPricingSection() {
                 typeof f === 'string'
                   ? f
                   : t(
-                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                    ),
+                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  ),
               hasFeature: typeof f === 'object' ? f.hasFeature : true,
             })),
           },
@@ -213,8 +213,8 @@ export function ManyChatPricingSection() {
                 typeof f === 'string'
                   ? f
                   : t(
-                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                    ),
+                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  ),
               hasFeature: typeof f === 'object' ? f.hasFeature : true,
             })),
           },
@@ -229,8 +229,8 @@ export function ManyChatPricingSection() {
                 typeof f === 'string'
                   ? f
                   : t(
-                      `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                    ),
+                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  ),
               hasFeature: typeof f === 'object' ? f.hasFeature : true,
             })),
           },
@@ -250,8 +250,8 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
-                  ),
+                  `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
+                ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -264,8 +264,8 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
-                  ),
+                  `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+                ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -278,8 +278,8 @@ export function ManyChatPricingSection() {
               typeof f === 'string'
                 ? f
                 : t(
-                    `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
-                  ),
+                  `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+                ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
@@ -440,22 +440,20 @@ export function ManyChatPricingSection() {
                 <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
                   <button
                     onClick={() => setSelectedPlanTier('explorer')}
-                    className={`px-6 py-2 text-sm font-medium transition-colors ${
-                      selectedPlanTier === 'explorer'
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                    }`}
+                    className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                      }`}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {t('plans.explorer.name')}
                   </button>
                   <button
                     onClick={() => setSelectedPlanTier('pro')}
-                    className={`px-6 py-2 text-sm font-medium transition-colors ${
-                      selectedPlanTier === 'pro'
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                    }`}
+                    className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'pro'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                      }`}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     PRO
@@ -487,21 +485,19 @@ export function ManyChatPricingSection() {
                 <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
                   <button
                     onClick={() => setIsYearly(true)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${
-                      isYearly
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
-                    }`}
+                    className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black'
+                      }`}
                   >
                     {t('yearlyBilling')}
                   </button>
                   <button
                     onClick={() => setIsYearly(false)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${
-                      !isYearly
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
-                    }`}
+                    className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black'
+                      }`}
                   >
                     {t('monthlyBilling')}
                   </button>
@@ -533,11 +529,11 @@ export function ManyChatPricingSection() {
                     transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
                     viewport={{ once: true, margin: '-50px' }}
                   >
-                  <PricingCard
-                    plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={isYearly}
-                    isProfessional={isProfessional}
-                  />
+                    <PricingCard
+                      plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                      isYearly={isYearly}
+                      isProfessional={isProfessional}
+                    />
                   </motion.div>
                 ) : (
                   // Multiple cards (PRO plans)
@@ -554,11 +550,11 @@ export function ManyChatPricingSection() {
                       transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
                       viewport={{ once: true, margin: '-50px' }}
                     >
-                  <PricingCard
-                    plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={isYearly}
-                    isProfessional={isProfessional}
-                  />
+                      <PricingCard
+                        plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                        isYearly={isYearly}
+                        isProfessional={isProfessional}
+                      />
                     </motion.div>
                     <motion.div
                       className='w-full max-w-xs z-30'
@@ -571,11 +567,11 @@ export function ManyChatPricingSection() {
                       transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
                       viewport={{ once: true, margin: '-50px' }}
                     >
-                    <PricingCard
-                      plan={currentPlans[1] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                      isYearly={isYearly}
-                      isProfessional={isProfessional}
-                    />
+                      <PricingCard
+                        plan={currentPlans[1] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                        isYearly={isYearly}
+                        isProfessional={isProfessional}
+                      />
                     </motion.div>
                     <motion.div
                       className='w-full max-w-xs z-10'
@@ -589,11 +585,11 @@ export function ManyChatPricingSection() {
                       transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
                       viewport={{ once: true, margin: '-50px' }}
                     >
-                    <PricingCard
-                      plan={currentPlans[2] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                      isYearly={isYearly}
-                      isProfessional={isProfessional}
-                    />
+                      <PricingCard
+                        plan={currentPlans[2] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                        isYearly={isYearly}
+                        isProfessional={isProfessional}
+                      />
                     </motion.div>
                   </>
                 )}
@@ -878,9 +874,8 @@ function PricingCard({
                   <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-white/50' />
                 )}
                 <span
-                  className={`leading-tight text-left flex-1 ${
-                    hasFeature ? 'text-white' : 'text-white/70'
-                  }`}
+                  className={`leading-tight text-left flex-1 ${hasFeature ? 'text-white' : 'text-white/70'
+                    }`}
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   {featureText}

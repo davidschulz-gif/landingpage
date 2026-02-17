@@ -85,6 +85,11 @@
       "welcomeGift": "GET A COUPON WELCOME GIFT"
     }
   },
+  "HeroEmailForm":{
+      "placeholder":"Enter your email",
+      "learnMore":"Learn more",
+      "description":"Learn more about the app and get notified about new features."
+  },
   "VideoShowcase": {
     "title": "TRANSFORM YOUR VISION",
     "titleSecond": "INTO REALITY",
@@ -180,6 +185,7 @@
   "Pricing": {
     "professionalPlans": "PROFESSIONAL PLANS",
     "educationPlans": "EDUCATION PLANS",
+    "bookDemo": "Book a Demo Call",
     "professional": "Professional",
     "education": "Education",
     "freeTrial": "1-day free trial",
@@ -323,12 +329,24 @@
       "imprint": "Imprint"
     }
   },
-  "HeroEmailForm": {
-    "placeholder": "Enter your email",
+  "BookingDemoClassForm": {
+    "placeholder": "Enter your Email",
+    "namePlaceholder": "Name",
+    "positionPlaceholder": "Position",
+    "companyPlaceholder": "Company Name",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Enter your Phone Number",
+    "newsletterLabel": "I would like to receive marketing emails and updates about new features",
+    "bookDemo": "Book a Demo Call",
     "learnMore": "Learn more",
     "description": "Learn more about the app and get notified about new features.",
     "errors": {
-      "required": "Email is required",
+      "required": "This field is required",
+      "nameRequired": "Name is required",
+      "positionRequired": "Position is required",
+      "companyNameRequired": "Company name is required",
+      "phoneNumberRequired": "Phone number is required",
+      "emailRequired": "Email is required",
       "invalid": "Please enter a valid email address",
       "timeout": "Request timed out. Please try again.",
       "unexpected": "An unexpected error occurred. Please try again."
@@ -455,6 +473,46 @@
     "modernSingleFamilyHouse": "Modern Single Family House",
     "morningLightSunbeams": "Morning Light Sunbeams",
     "multiFamilyHouse": "Multi-Family House"
+  },
+  "ConciergePricing": {
+    "title": "DONE FOR YOU",
+    "subtitle": "A dedicated visualizer creating AI visuals on your behalf.",
+    "yearlyBilling": "Yearly Billing",
+    "monthlyBilling": "Monthly Billing",
+    "billedYearly": "Billed yearly",
+    "billedMonthly": "Billed monthly",
+    "switchToYearly": "Switch to Yearly and save",
+    "subscribe": "Subscribe",
+    "saveWithAnnual": "Save {amount} with annual billing",
+    "plans": {
+      "basic": {
+        "name": "Basic",
+        "price": "500",
+        "yearlyPrice": "4000",
+        "features": {
+          "visualizer": "1 personal visualizer",
+          "videoCall": "1 Video Call /m",
+          "emailComm": "email communication",
+          "requests": "5 requests",
+          "inputImages": "max 3 input images per request",
+          "turnaround": "Average turnaround in 48h",
+          "feedback": "detailed feedback on workflow"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "1000",
+        "yearlyPrice": "8000",
+        "features": {
+          "visualizer": "1 personal visualizer",
+          "videoCall": "3 Video Calls /m",
+          "emailComm": "email communication",
+          "inputImages": "max 3 input images per request",
+          "turnaround": "Average turnaround in 24h",
+          "feedback": "detailed feedback on workflow"
+        }
+      }
+    }
   },
   "PaymentMethods": {
     "title": "Supported payment methods"
