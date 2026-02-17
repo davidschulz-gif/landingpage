@@ -220,13 +220,12 @@ export const Header = () => {
                     {[1, 2, 3, 4, 5].map(star => (
                       <svg
                         key={star}
-                        className={`w-5 h-5 ${
-                          star <= 4
+                        className={`w-5 h-5 ${star <= 4
                             ? 'text-yellow-400'
                             : star === 5
                               ? 'text-gray-300'
                               : 'text-gray-300'
-                        }`}
+                          }`}
                         fill={
                           star <= 4 || (star === 5 && star <= 4.5)
                             ? 'currentColor'
@@ -482,9 +481,8 @@ const InfiniteMarqueeRow = React.memo(
 
     return (
       <div
-        className={`flex ${
-          direction === 1 ? 'flex-row-reverse' : 'flex-row'
-        } ${className}`}
+        className={`flex ${direction === 1 ? 'flex-row-reverse' : 'flex-row'
+          } ${className}`}
       >
         <motion.div
           className='flex gap-5 will-change-transform'

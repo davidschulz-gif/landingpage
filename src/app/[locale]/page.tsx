@@ -55,6 +55,17 @@ const ManyChatPricingSection = dynamic(
   }
 )
 
+const ConciergePricingSection = dynamic(
+  () =>
+    import('@/components/concierge-pricing-section').then(
+      mod => mod.ConciergePricingSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 const MeetOurTeamSection = dynamic(
   () =>
     import('@/components/meet-our-team-section').then(
@@ -169,12 +180,11 @@ export default function Home() {
         const loadTime = endTime - startTime
         console.log(`✅ Resources preloaded in ${loadTime.toFixed(2)}ms`)
         console.log(
-          `📊 Performance: ${
-            loadTime < 1500
-              ? 'Excellent'
-              : loadTime < 2500
-                ? 'Good'
-                : 'Needs improvement'
+          `📊 Performance: ${loadTime < 1500
+            ? 'Excellent'
+            : loadTime < 2500
+              ? 'Good'
+              : 'Needs improvement'
           }`
         )
 
@@ -252,6 +262,16 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <CompareDemo />
+      </motion.div>
+
+      {/* Concierge Pricing Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ConciergePricingSection />
       </motion.div>
 
       {/* Pricing Section */}

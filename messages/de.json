@@ -85,6 +85,11 @@
       "welcomeGift": "WILLKOMMENSGUTSCHEIN ERHALTEN"
     }
   },
+  "HeroEmailForm":{
+     "placeholder":"Geben Sie Ihre E-Mail-Adresse ein",
+     "learnMore":"Mehr erfahren",
+     "description":"Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt."
+  },
   "VideoShowcase": {
     "title": "VERWANDELN SIE IHRE VISION",
     "titleSecond": "IN REALITÄT",
@@ -179,6 +184,7 @@
   },
   "Pricing": {
     "professionalPlans": "PROFESSIONELLE PLÄNE",
+    "bookDemo": "Demo-Anruf buchen",
     "educationPlans": "BILDUNGSPLÄNE",
     "professional": "Professionell",
     "education": "Bildung",
@@ -323,12 +329,24 @@
       "imprint": "Impressum"
     }
   },
-  "HeroEmailForm": {
+  "BookingDemoClassForm": {
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "namePlaceholder": "Name",
+    "positionPlaceholder": "Position",
+    "companyPlaceholder": "Unternehmensname",
+    "phoneLabel": "Telefonnummer",
+    "phonePlaceholder": "Geben Sie Ihre WhatsApp-Nummer ein",
+    "newsletterLabel": "Ich möchte Marketing-E-Mails und Updates zu neuen Funktionen erhalten",
+    "bookDemo": "Demo-Anruf buchen",
     "learnMore": "Mehr erfahren",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
     "errors": {
-      "required": "E-Mail ist erforderlich",
+      "required": "Dieses Feld ist erforderlich",
+      "nameRequired": "Name ist erforderlich",
+      "positionRequired": "Position ist erforderlich",
+      "companyNameRequired": "Unternehmensname ist erforderlich",
+      "phoneNumberRequired": "Telefonnummer ist erforderlich",
+      "emailRequired": "E-Mail ist erforderlich",
       "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
       "timeout": "Anfrage hat das Zeitlimit überschritten. Bitte versuchen Sie es erneut.",
       "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
@@ -455,6 +473,46 @@
     "modernSingleFamilyHouse": "Modernes Einfamilienhaus",
     "morningLightSunbeams": "Morgenlicht Sonnenstrahlen",
     "multiFamilyHouse": "Mehrfamilienhaus"
+  },
+  "ConciergePricing": {
+    "title": "FÜR DICH ERLEDIGT",
+    "subtitle": "Ein engagierter Visualisierer, der KI-Visualisierungen in Ihrem Namen erstellt.",
+    "yearlyBilling": "Jährliche Abrechnung",
+    "monthlyBilling": "Monatliche Abrechnung",
+    "billedYearly": "Jährlich abgerechnet",
+    "billedMonthly": "Monatlich abgerechnet",
+    "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie",
+    "subscribe": "Abonnieren",
+    "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
+    "plans": {
+      "basic": {
+        "name": "Basic",
+        "price": "500",
+        "yearlyPrice": "4000",
+        "features": {
+          "visualizer": "1 persönlicher Visualisierer",
+          "videoCall": "1 Video Call /m",
+          "emailComm": "email Kommunikation",
+          "requests": "5 Anfragen",
+          "inputImages": "max 3 Input Bilder pro Anfrage",
+          "turnaround": "Rücklauf im Schnitt in 48h",
+          "feedback": "detailliertes feedback zum Worklfow"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "1000",
+        "yearlyPrice": "8000",
+        "features": {
+          "visualizer": "1 persönlicher Visualisierer",
+          "videoCall": "3 Video Calls /m",
+          "emailComm": "email Kommunikation",
+          "inputImages": "max 3 Input Bilder pro Anfrage",
+          "turnaround": "Rücklauf im Schnitt in 24h",
+          "feedback": "detailliertes feedback zum Worklfow"
+        }
+      }
+    }
   },
   "PaymentMethods": {
     "title": "Unterstützte Zahlungsmethoden"
