@@ -31,9 +31,9 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    monthlyPrice: { eur: '€149', usd: '$172' },
-    sixMonthPrice: { eur: '€549', usd: '$636' },
-    yearlyPrice: { eur: '€696', usd: '$807' },
+    monthlyPrice: { eur: '€99', usd: '$172' },
+    sixMonthPrice: { eur: '€534', usd: '$636' },
+    yearlyPrice: { eur: '€468', usd: '$807' },
     sixMonthMonthlyPrice: { eur: '€91.5', usd: '$106' },
     yearlyMonthlyPrice: { eur: '€58', usd: '$67.25' },
     planType: 'PRO',
