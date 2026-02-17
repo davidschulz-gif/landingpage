@@ -47,6 +47,7 @@ const conciergePlans = [
       'plans.pro.features.visualizer',
       'plans.pro.features.videoCall',
       'plans.pro.features.emailComm',
+      'plans.pro.features.requests',
       'plans.pro.features.inputImages',
       'plans.pro.features.turnaround',
       'plans.pro.features.feedback',
@@ -138,34 +139,32 @@ export function ConciergePricingSection() {
             <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
               <button
                 onClick={() => setIsYearly(true)}
-                className={`px-6 py-2 text-sm font-medium transition-colors ${
-                  isYearly
-                    ? 'bg-white text-black shadow-md'
-                    : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                }`}
+                className={`px-6 py-2 text-sm font-medium transition-colors ${isYearly
+                  ? 'bg-white text-black shadow-md'
+                  : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                  }`}
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {t('yearlyBilling')}
               </button>
               <button
                 onClick={() => setIsYearly(false)}
-                className={`px-6 py-2 text-sm font-medium transition-colors ${
-                  !isYearly
-                    ? 'bg-white text-black shadow-md'
-                    : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                }`}
+                className={`px-6 py-2 text-sm font-medium transition-colors ${!isYearly
+                  ? 'bg-white text-black shadow-md'
+                  : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                  }`}
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {t('monthlyBilling')}
               </button>
             </div>
-             <div className='flex flex-col items-center mb-8'>
+            <div className='flex flex-col items-center mb-8'>
               <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
                 <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
                   <span className='font-bold text-black'>
                     {t('subtitle')}
-                     </span>{' '}
-                     {/* {!isYearly ? t('switchToYearly') : ''} */}
+                  </span>{' '}
+                  {/* {!isYearly ? t('switchToYearly') : ''} */}
                 </p>
               </div>
             </div>
@@ -223,33 +222,33 @@ export function ConciergePricingSection() {
               <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
             </motion.div>
           </div>
-         <div>
-          <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-8'>
-            <motion.div
-              className='w-full max-w-xs z-30'
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-               <div className='bg-white p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 w-full'>
-                <BookingDemoClassForm />
-              </div>
-            </motion.div>
-            {currentPlans.map((plan, index) => (
+          <div>
+            <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-8'>
               <motion.div
-                key={index}
                 className='w-full max-w-xs z-30'
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
+                transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
                 viewport={{ once: true, margin: '-50px' }}
               >
-                <PricingCard plan={plan} isYearly={isYearly} />
+                <div className='bg-white p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 w-full'>
+                  <BookingDemoClassForm />
+                </div>
               </motion.div>
-            ))}
-          </div>
+              {currentPlans.map((plan, index) => (
+                <motion.div
+                  key={index}
+                  className='w-full max-w-xs z-30'
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
+                  viewport={{ once: true, margin: '-50px' }}
+                >
+                  <PricingCard plan={plan} isYearly={isYearly} />
+                </motion.div>
+              ))}
             </div>
+          </div>
         </div>
       </div>
     </section>

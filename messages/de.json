@@ -85,10 +85,10 @@
       "welcomeGift": "WILLKOMMENSGUTSCHEIN ERHALTEN"
     }
   },
-  "HeroEmailForm":{
-     "placeholder":"Geben Sie Ihre E-Mail-Adresse ein",
-     "learnMore":"Mehr erfahren",
-     "description":"Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt."
+  "HeroEmailForm": {
+    "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "learnMore": "Mehr erfahren",
+    "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt."
   },
   "VideoShowcase": {
     "title": "VERWANDELN SIE IHRE VISION",
@@ -507,6 +507,7 @@
           "visualizer": "1 persönlicher Visualisierer",
           "videoCall": "3 Video Calls /m",
           "emailComm": "email Kommunikation",
+          "requests": "12 Anfragen",
           "inputImages": "max 3 Input Bilder pro Anfrage",
           "turnaround": "Rücklauf im Schnitt in 24h",
           "feedback": "detailliertes feedback zum Worklfow"
