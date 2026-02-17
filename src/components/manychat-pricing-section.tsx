@@ -441,8 +441,8 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setSelectedPlanTier('explorer')}
                     className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                       }`}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
@@ -451,8 +451,8 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setSelectedPlanTier('pro')}
                     className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'pro'
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                       }`}
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
@@ -486,8 +486,8 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setIsYearly(true)}
                     className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black'
                       }`}
                   >
                     {t('yearlyBilling')}
@@ -495,8 +495,8 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setIsYearly(false)}
                     className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
-                        ? 'bg-white text-black shadow-md'
-                        : 'text-black hover:text-black'
+                      ? 'bg-white text-black shadow-md'
+                      : 'text-black hover:text-black'
                       }`}
                   >
                     {t('monthlyBilling')}
@@ -887,9 +887,8 @@ function PricingCard({
       </div>
 
       {/* Button Section - Fixed at Bottom */}
-      {/* || 'https://app.typus.ai/register' */}
       <div className='mt-auto'>
-        <Link href={'http://localhost:5173/register'}>
+        <Link href={'https://app.typus.ai/register'}>
           <Button
             className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
             style={{
