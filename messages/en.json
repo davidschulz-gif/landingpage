@@ -85,10 +85,10 @@
       "welcomeGift": "GET A COUPON WELCOME GIFT"
     }
   },
-  "HeroEmailForm":{
-      "placeholder":"Enter your email",
-      "learnMore":"Learn more",
-      "description":"Learn more about the app and get notified about new features."
+  "HeroEmailForm": {
+    "placeholder": "Enter your email",
+    "learnMore": "Learn more",
+    "description": "Learn more about the app and get notified about new features."
   },
   "VideoShowcase": {
     "title": "TRANSFORM YOUR VISION",
@@ -507,6 +507,7 @@
           "visualizer": "1 personal visualizer",
           "videoCall": "3 Video Calls /m",
           "emailComm": "email communication",
+          "requests": "12 requests",
           "inputImages": "max 3 input images per request",
           "turnaround": "Average turnaround in 24h",
           "feedback": "detailed feedback on workflow"
