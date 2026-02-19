@@ -14,6 +14,9 @@ interface BookingDemoClassFormProps {
   showTitle?: boolean
 }
 
+// const apiUrl = 'http://localhost:3000/api/hubspot'
+const apiUrl = 'https://app.typus.ai/api/hubspot'
+
 export default function BookingDemoClassForm({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
   const tPricing = useTranslations('Pricing')
@@ -101,70 +104,74 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       setSuccessMessage(null)
       return
     }
-    return;
 
-    // if (isRequesting) return
+    if (isRequesting) return
 
-    // setIsRequesting(true)
-    // setErrorMessage(null)
-    // setSuccessMessage(null)
+    setIsRequesting(true)
+    setErrorMessage(null)
+    setSuccessMessage(null)
 
-    // const controller = new AbortController()
-    // const timeoutId = setTimeout(() => controller.abort(), 15000)
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000)
 
+    try {
+      const response = await fetch(
+        apiUrl,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            position: formData.position,
+            email: formData.email,
+            ...(formData.companyName && { company: formData.companyName }),
+            ...(formData.phoneNumber && { phone: formData.phoneNumber.startsWith('+') ? formData.phoneNumber : `+${formData.phoneNumber}` }),
+            marketingConsent: formData.newsletter
+          }),
+          signal: controller.signal,
+        }
+      )
 
-    // try {
-    //   const response = await fetch(
-    //     'https://app.typus.ai/api/bigmailer/request-verification-jwt',
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Accept: 'application/json',
-    //       },
-    //       body: JSON.stringify({ email: formData.email }),
-    //       signal: controller.signal,
-    //     }
-    //   )
+      let data: any = null
+      const contentType = response.headers.get('content-type') || ''
+      if (contentType.includes('application/json')) {
+        try {
+          data = await response.json()
+        } catch { }
+      }
 
-    //   let data: any = null
-    //   const contentType = response.headers.get('content-type') || ''
-    //   if (contentType.includes('application/json')) {
-    //     try {
-    //       data = await response.json()
-    //     } catch { }
-    //   }
+      if (!response.ok) {
+        const serverMessage =
+          data?.message || data?.error || response.statusText || t('errors.unexpected')
+        throw new Error(serverMessage)
+      }
 
-    //   if (!response.ok) {
-    //     const serverMessage =
-    //       data?.message || response.statusText || 'Request failed'
-    //     throw new Error(serverMessage)
-    //   }
-
-    //   setSuccessMessage(
-    //     data?.message || t('success')
-    //   )
-    //   setFormData({
-    //     name: '',
-    //     position: '',
-    //     email: '',
-    //     companyName: '',
-    //     phoneNumber: '',
-    //     newsletter: true,
-    //   })
-    //   setErrors({})
-    // } catch (error: any) {
-    //   if (error?.name === 'AbortError') {
-    //     setErrorMessage(t('errors.timeout'))
-    //   } else {
-    //     setErrorMessage(
-    //       error?.message || t('errors.unexpected')
-    //     )
-    //   }
-    // } finally {
-    //   clearTimeout(timeoutId)
-    //   setIsRequesting(false)
-    // }
+      setSuccessMessage(t('success'))
+      setFormData({
+        name: '',
+        position: '',
+        email: '',
+        companyName: '',
+        phoneNumber: '',
+        newsletter: true,
+      })
+      setErrors({})
+    } catch (error: any) {
+      console.error('HubSpot Submission Error:', error);
+      if (error?.name === 'AbortError') {
+        setErrorMessage(t('errors.timeout'))
+      } else {
+        setErrorMessage(
+          error?.message || t('errors.unexpected')
+        )
+      }
+    } finally {
+      clearTimeout(timeoutId)
+      setIsRequesting(false)
+    }
   }
 
   const inputClasses = 'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-60 transition-all focus:border-gray-400 shadow-sm rounded-none'
