@@ -183,25 +183,25 @@ const getTrustedByItems = (
       </a>
     ),
   },
-  {
-    title: t('memberOf'),
-    logo: (
-      <a
-        href='https://bdbau.org/mitglieder/'
-        target='_blank'
-        rel='noopener noreferrer'
-        className='relative w-18 md:w-14 lg:w-20 xl:w-24'
-      >
-        <Image
-          src='/logo/lo_bdbau_1c_rz.avif'
-          alt='Member Logo'
-          width={96}
-          height={48}
-          className='w-full h-auto'
-        />
-      </a>
-    ),
-  },
+  // {
+  //   title: t('memberOf'),
+  //   logo: (
+  //     <a
+  //       href='https://bdbau.org/mitglieder/'
+  //       target='_blank'
+  //       rel='noopener noreferrer'
+  //       className='relative w-18 md:w-14 lg:w-20 xl:w-24'
+  //     >
+  //       <Image
+  //         src='/logo/lo_bdbau_1c_rz.avif'
+  //         alt='Member Logo'
+  //         width={96}
+  //         height={48}
+  //         className='w-full h-auto'
+  //       />
+  //     </a>
+  //   ),
+  // },
 ]
 
 export const TrustedBySection = () => {
