@@ -256,6 +256,13 @@ export function NavbarDemo() {
                 </div>
 
                 <div className='absolute bottom-0 right-0 gap-4 flex'>
+                   <Image
+                    className='h-12 w-36'
+                    src='/bdbau.png'
+                    alt=''
+                    width={200}
+                    height={200}
+                  />
                   <Image
                     className='h-9 w-auto'
                     src={
@@ -270,7 +277,7 @@ export function NavbarDemo() {
                     }}
                     width={200}
                     height={200}
-                  />
+                  /> 
                   <Image
                     className='h-9 w-auto'
                     src='/Logo_MWIKE.jpg'
