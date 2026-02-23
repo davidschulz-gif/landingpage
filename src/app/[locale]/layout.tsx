@@ -186,6 +186,7 @@ export default async function RootLayout({
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
       </body>
+      <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="91T92U78hCpk9Nyg" data-version="062024"></script>
     </html>
   )
 }
