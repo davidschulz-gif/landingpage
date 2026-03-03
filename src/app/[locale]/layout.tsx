@@ -84,7 +84,7 @@ export const metadata: Metadata = {
       'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
     images: [
       {
-        url: 'https://typus.ai/og-image.jpg',
+        url: 'https://typus.ai/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Typus.ai – AI Rendering for Architects',
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     title: 'Typus.ai – AI Rendering for Architects',
     description:
       'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
-    images: ['https://typus.ai/og-image.jpg'],
+    images: ['https://typus.ai/og-image.png'],
   },
   robots: {
     index: true,
