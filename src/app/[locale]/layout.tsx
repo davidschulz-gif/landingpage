@@ -79,17 +79,16 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://typus.ai',
     siteName: 'Typus AI',
-    title:
-      'Typus AI - AI-Powered Architectural Visualization & Design Platform',
+    title: 'Typus.ai – AI Rendering for Architects',
     description:
-      'Transform your architectural designs with AI. Create photorealistic visualizations from CAD files, sketches, and 3D models while preserving structural integrity.',
+      'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://typus.ai/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Typus AI - AI-Powered Architectural Visualization',
-        type: 'image/jpeg',
+        alt: 'Typus.ai – AI Rendering for Architects',
+        type: 'image/png',
       },
     ],
   },
@@ -97,10 +96,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@TypusAI',
     creator: '@TypusAI',
-    title: 'Typus AI - AI-Powered Architectural Visualization',
+    title: 'Typus.ai – AI Rendering for Architects',
     description:
-      'Transform your architectural designs with AI. Create photorealistic visualizations from CAD files and sketches.',
-    images: ['/og-image.jpg'],
+      'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
+    images: ['https://typus.ai/og-image.png'],
   },
   robots: {
     index: true,
