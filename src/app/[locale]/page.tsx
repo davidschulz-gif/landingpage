@@ -88,6 +88,17 @@ const ArticleCarouselSection = dynamic(
   }
 )
 
+const CreatorShowcaseSection = dynamic(
+  () =>
+    import('@/components/creator-showcase-section').then(
+      mod => mod.CreatorShowcaseSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 const FooterSection = dynamic(
   () => import('@/components/footer-section').then(mod => mod.FooterSection),
   {
@@ -312,6 +323,16 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <ArticleCarouselSection />
+      </motion.div>
+
+      {/* Creator Showcase Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <CreatorShowcaseSection />
       </motion.div>
 
       {/* Reviews Section with Marquee */}
