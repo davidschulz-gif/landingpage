@@ -31,44 +31,38 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    monthlyPrice: { eur: '€99', usd: '$117.15' },
+    monthlyPrice: { eur: '€99', usd: '$117' },
     sixMonthPrice: { eur: '€354', usd: '$418' },
-    yearlyPrice: { eur: '€468', usd: '$553' },
-    sixMonthMonthlyPrice: { eur: '€59', usd: '$69.67' },
-    yearlyMonthlyPrice: { eur: '€39', usd: '$46.08' },
+    yearlyPrice: { eur: '€468', usd: '$668' },
+    sixMonthMonthlyPrice: { eur: '€59', usd: '$70' },
+    yearlyMonthlyPrice: { eur: '€39', usd: '$46' },
     planType: 'PRO',
     popular: true,
     // Discount display: original (crossed out), discounted (green), badges, intro price
     discount: {
       monthly: {
-        originalMonthly: { eur: '€449', usd: '$499' },
-        discountedMonthly: { eur: '€74.5', usd: '$86' },
-        discountPercent: 50,
-        saveAmount: { eur: '€74.5', usd: '$86' },
-        introFirstPeriod: { eur: '€74.5', usd: '$86' },
-        introPeriodKey: 'firstMonthCharged',
+        discountedMonthly: { eur: '€99', usd: '$117' },
+        introPeriodKey: 'billedMonthly',
       },
       sixMonthly: {
-        originalMonthly: { eur: '€94.5', usd: '$110' },
-        discountedMonthly: { eur: '€46', usd: '$53' },
-        periodDiscountPercent: 39,
-        periodSaveAmount: { eur: '€345', usd: '$400' },
-        originalCycle: { eur: '€549', usd: '$636' },
-        discountPercent: 50,
-        saveAmountCycle: { eur: '€274.5', usd: '$318' },
-        introFirstPeriod: { eur: '€274.5', usd: '$318' },
-        introPeriodKey: 'first6MonthsCharged',
+        discountedMonthly: { eur: '€59', usd: '$70' },
+        periodDiscountPercent: 40,
+        periodSaveAmount: { eur: '€240', usd: '$285' },
+        originalCycle: { eur: '€594', usd: '$702' },
+        discountPercent: 40,
+        saveAmountCycle: { eur: '€240', usd: '$285' },
+        introFirstPeriod: { eur: '€354', usd: '$418' },
+        introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
-        originalMonthly: { eur: '€58', usd: '$67' },
-        discountedMonthly: { eur: '€29', usd: '$34' },
+        discountedMonthly: { eur: '€39', usd: '$46' },
         periodDiscountPercent: 61,
-        periodSaveAmount: { eur: '€1092', usd: '$1267' },
-        originalCycle: { eur: '€696', usd: '$807' },
-        discountPercent: 50,
-        saveAmountCycle: { eur: '€348', usd: '$404' },
-        introFirstPeriod: { eur: '€348', usd: '$404' },
-        introPeriodKey: 'firstYearCharged',
+        periodSaveAmount: { eur: '€720', usd: '$853' },
+        originalCycle: { eur: '€1188', usd: '$1404' },
+        discountPercent: 61,
+        saveAmountCycle: { eur: '€720', usd: '$853' },
+        introFirstPeriod: { eur: '€468', usd: '$668' },
+        introPeriodKey: 'billedYearly',
         bestDeal: true,
       },
     },
@@ -661,16 +655,11 @@ function PricingCard({
             ? profPlan.monthlyPrice?.eur || ''
             : profPlan.monthlyPrice?.usd || ''
           const d = discountData
-          if (d && 'saveAmount' in d) {
-            return {
-              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
-              period: '/month',
-              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
-              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmount.eur : d.saveAmount.usd },
-            }
+          if (!d) {
+            return { mainPrice: monthlyPrice, period: '/month', billingInfo: t('billedMonthly') }
           }
           return {
-            mainPrice: monthlyPrice,
+            mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
             period: '/month',
             billingInfo: t('billedMonthly'),
           }
@@ -686,8 +675,8 @@ function PricingCard({
             return {
               mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
               period: '/month',
-              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
-              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd },
+              billingInfo: `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`,
+              discount: { originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd },
             }
           }
           return {
@@ -707,8 +696,8 @@ function PricingCard({
             return {
               mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
               period: '/month',
-              billingInfo: t(d.introPeriodKey, { amount: isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd }),
-              discount: { originalPrice: isEurope ? d.originalMonthly.eur : d.originalMonthly.usd, originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd, bestDeal: d.bestDeal },
+              billingInfo: `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`,
+              discount: { originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd, bestDeal: d.bestDeal },
             }
           }
           return {
@@ -806,9 +795,11 @@ function PricingCard({
           <div className='flex flex-col items-center justify-center'>
             {priceInfo.discount ? (
               <>
-                <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {priceInfo.discount.originalPrice} {priceInfo.period}
-                </div>
+                {'originalPrice' in priceInfo.discount && (
+                  <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period}
+                  </div>
+                )}
                 <div className='flex items-baseline justify-center gap-1'>
                   <span className='text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
