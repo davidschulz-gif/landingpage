@@ -28,7 +28,8 @@ const articleData: Article[] = [
       '"Sehr vielversprechend sieht derzeit die Anwendung Yanus aus. Wenn man dies in Zukunft mit Materialien und deren Herstellung abstimmt, wäre das ein enormer Gewinn. Auch könnte man so entsprechende Moods in Sekunden erstellen."',
     image: '/blog/blog_1.png',
     source: 'DR. DIETMAR KÖRING - ARPHENOTYPE',
-    link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
+    // link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
+    link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
   },
   {
     id: 1,
@@ -49,15 +50,15 @@ const articleData: Article[] = [
     source: 'Heinze BauNetz-Newsletter',
     link: 'https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239',
   },
-  {
-    id: 4,
-    title: 'Leading Plugin Integrations with Architectural Software',
-    excerpt:
-      'It offers seamless plugin integrations with leading architectural software solutions such as Revit, ArchiCAD, Rhino, and SketchUp for enhanced workflow efficiency.',
-    image: '/logo/addd_logo.png',
-    source: 'ADDD Platform',
-    link: 'https://addd.io/product/prai',
-  },
+  // {
+  //   id: 4,
+  //   title: 'Leading Plugin Integrations with Architectural Software',
+  //   excerpt:
+  //     'It offers seamless plugin integrations with leading architectural software solutions such as Revit, ArchiCAD, Rhino, and SketchUp for enhanced workflow efficiency.',
+  //   image: '/logo/addd_logo.png',
+  //   source: 'ADDD Platform',
+  //   link: 'https://addd.io/product/prai',
+  // },
   {
     id: 5,
     title: 'AI-Generated Architectural Precision and Visual Excellence',
@@ -65,7 +66,8 @@ const articleData: Article[] = [
       'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
     image: '/logo/dab_logo.png',
     source: 'DAB ONLINE',
-    link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
+    // link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
+    link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
   },
   {
     id: 6,
