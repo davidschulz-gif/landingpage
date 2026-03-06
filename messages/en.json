@@ -7,10 +7,16 @@
     "signUp": "SIGN UP",
     "explorePlatform": "Explore our AI-powered architectural visualization platform",
     "seePricing": "See Pricing",
+    "app": "APP",
+    "service": "SERVICE",
+    "goToApp": "Go to App",
+    "doneForYouService": "Done-For-You Service",
+    "returnToHome": "Return to Home",
     "solutions": "SOLUTIONS",
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
+
     "navigation": {
       "solutions": {
         "create": {
@@ -78,15 +84,25 @@
     "title": "AI FOR ARCHITECTS.",
     "description": "AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.",
     "getStarted": "Get Started",
+    "goToApp": "Go to App",
+    "doneForYouService": "Done-For-You Service",
     "rating": "4.5/5",
     "reviewsCount": "based on 90+ reviews",
+    "appOfferTitle": "APP OFFER",
+    "serviceOfferTitle": "SERVICE OFFER",
     "features": {
       "createAccount": "CREATE A FREE ACCOUNT",
       "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",
       "tutorial": "TUTORIAL",
       "stepByStep": "STEP BY STEP GUIDE",
       "caseStudies": "GET CASE STUDIES",
-      "welcomeGift": "GET A COUPON WELCOME GIFT"
+      "welcomeGift": "GET A COUPON WELCOME GIFT",
+      "servicePersonalVisualizer": "personal visualizer",
+      "serviceVideoCall": "Video Call",
+      "serviceEmailComm": "email communication",
+      "serviceDetailedFeedback": "detailed feedback on workflow",
+      "serviceImageRequest": "image request",
+      "serviceBookDemo": "book demo call"
     }
   },
   "HeroEmailForm": {

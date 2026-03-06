@@ -343,61 +343,127 @@ export const Header = () => {
             </span>
           </motion.div>
 
-          {/* Get Started Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
-            className='mt-8'
-          >
-            <ActionButton href='https://app.typus.ai/register'>
-              {t('getStarted')}
-            </ActionButton>
-          </motion.div>
-
-          {/* Features */}
+          {/* Offers Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-            className='mt-12 w-full'
+            className='mt-12 w-full max-w-5xl mx-auto'
           >
-            <div className='flex flex-wrap justify-center gap-2'>
-              {[
-                t('features.createAccount'),
-                t('features.downloadPlugins'),
-                t('features.tutorial'),
-                t('features.stepByStep'),
-                t('features.caseStudies'),
-                t('features.welcomeGift'),
-              ].map((feature, index) => (
-                <div
-                  key={feature}
-                  className='flex items-center space-x-2 sm:space-x-3'
-                >
-                  <div className='w-3 h-3 sm:w-4 sm:h-4  bg-black dark:bg-white flex items-center justify-center flex-shrink-0'>
-                    <svg
-                      className='w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 text-white dark:text-black'
-                      fill='currentColor'
-                      viewBox='0 0 20 20'
-                    >
-                      <path
-                        fillRule='evenodd'
-                        d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                        clipRule='evenodd'
-                      />
-                    </svg>
-                  </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              
+              {/* App Offer Card */}
+              <div className='border-2 border-black dark:border-white p-6 flex flex-col items-center justify-between min-h-[300px]'>
+                <div className='w-full'>
                   <BreathingAnimationText animationType='black-gray'>
-                    <span
-                      className='text-[8px] sm:text-[10px] md:text-xs font-medium text-black dark:text-white whitespace-nowrap'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    <h3 
+                      className='text-center uppercase font-bold text-lg mb-6'
+                      style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '0.1em' }}
                     >
-                      {feature}
-                    </span>
+                      {t('appOfferTitle') || 'APP OFFER'}
+                    </h3>
                   </BreathingAnimationText>
+                  
+                  <div className='flex flex-col gap-3 mb-8 w-full max-w-sm mx-auto'>
+                    {[
+                      t('features.createAccount'),
+                      t('features.downloadPlugins'),
+                      t('features.tutorial'),
+                       t('features.stepByStep'),
+                      t('features.caseStudies'),
+                      t('features.welcomeGift'),
+                    ].map((feature, index) => (
+                      <div
+                        key={`app-feature-${index}`}
+                        className='flex items-start space-x-3'
+                      >
+                        <div className='w-4 h-4 bg-black dark:bg-white flex items-center justify-center flex-shrink-0 mt-0.5'>
+                          <svg
+                            className='w-2.5 h-2.5 text-white dark:text-black'
+                            fill='currentColor'
+                            viewBox='0 0 20 20'
+                          >
+                            <path
+                              fillRule='evenodd'
+                              d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                              clipRule='evenodd'
+                            />
+                          </svg>
+                        </div>
+                        <BreathingAnimationText animationType='black-gray'>
+                          <span
+                            className='text-xs md:text-sm font-medium text-black dark:text-white uppercase'
+                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          >
+                            {feature}
+                          </span>
+                        </BreathingAnimationText>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+
+                <ActionButton href='https://app.typus.ai/register' className='w-full max-w-xs mt-auto'>
+                  {t('goToApp')}
+                </ActionButton>
+              </div>
+
+              {/* Service Offer Card */}
+              <div className='border-2 border-black dark:border-white p-6 flex flex-col items-center justify-between min-h-[300px]'>
+                <div className='w-full'>
+                  <BreathingAnimationText animationType='black-gray'>
+                    <h3 
+                      className='text-center uppercase font-bold text-lg mb-6'
+                      style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '0.1em' }}
+                    >
+                      {t('serviceOfferTitle') || 'SERVICE OFFER'}
+                    </h3>
+                  </BreathingAnimationText>
+
+                  <div className='flex flex-col gap-3 mb-8 w-full max-w-sm mx-auto'>
+                    {[
+                      t('features.servicePersonalVisualizer'),
+                      t('features.serviceVideoCall'),
+                      t('features.serviceEmailComm'),
+                      t('features.serviceDetailedFeedback'),
+                      t('features.serviceImageRequest'),
+                      t('features.serviceBookDemo'),
+                    ].map((feature, index) => (
+                      <div
+                        key={`service-feature-${index}`}
+                        className='flex items-start space-x-3'
+                      >
+                        <div className='w-4 h-4 bg-black dark:bg-white flex items-center justify-center flex-shrink-0 mt-0.5'>
+                          <svg
+                            className='w-2.5 h-2.5 text-white dark:text-black'
+                            fill='currentColor'
+                            viewBox='0 0 20 20'
+                          >
+                            <path
+                              fillRule='evenodd'
+                              d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                              clipRule='evenodd'
+                            />
+                          </svg>
+                        </div>
+                        <BreathingAnimationText animationType='black-gray'>
+                          <span
+                            className='text-xs md:text-sm font-medium text-black dark:text-white uppercase'
+                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          >
+                            {feature}
+                          </span>
+                        </BreathingAnimationText>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <ActionButton href='/done-for-you' className='w-full max-w-xs !bg-white !text-black border border-black dark:border-white/20 mt-auto'>
+                  {t('doneForYouService')}
+                </ActionButton>
+              </div>
+
             </div>
           </motion.div>
         </div>

@@ -1,21 +1,22 @@
 'use client'
 import {
-    MobileNav,
-    MobileNavHeader,
-    MobileNavMenu,
-    MobileNavToggle,
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
 } from '@/components/ui/resizable-navbar'
 import {
-    Navbar,
-    NavbarButton,
-    NavbarLogo,
-    NavBody,
-    NavItems,
+  Navbar,
+  NavbarButton,
+  NavbarLogo,
+  NavBody,
+  NavItems,
 } from '@/components/ui/resizable-navbar-2'
 import { Play } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
 
@@ -27,6 +28,10 @@ export function NavbarDemo() {
   const [doNotShowMegaMenu, setDoNotShowMegaMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<string | null>(null)
+
+  const [appActive, setAppActive] = useState<string | null>(null)
+  const pathname = usePathname()
+  const isDoneForYou = pathname.includes('/done-for-you')
   const locale = useLocale()
   // Get translated navigation items
   const getTranslatedNavItems = () => {
@@ -35,6 +40,7 @@ export function NavbarDemo() {
         name: t('solutions'),
         link: '#solutions',
         submenu: [
+          { title: t('app'), isSection: true },
           {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
@@ -50,6 +56,7 @@ export function NavbarDemo() {
             description: tNav('solutions.upscale.description'),
             link: '#upscale',
           },
+          { title: t('service'), isSection: true },
           {
             title: tNav('solutions.bilderFlatrate.title'),
             description: tNav('solutions.bilderFlatrate.description'),
@@ -161,15 +168,23 @@ export function NavbarDemo() {
                   item={navItem.name}
                 >
                   <div className='flex flex-col space-y-4 text-sm'>
-                    {navItem.submenu?.map((subitem, subIdx) => (
-                      <HoveredLink
-                        key={`hovered-link-${idx}-${subIdx}`}
-                        href={subitem.link}
-                        target={subitem.target}
-                      >
-                        <h1 className='font-semibold'>{subitem.title}</h1>
-                        <p>{subitem.description}</p>
-                      </HoveredLink>
+                    {navItem.submenu?.map((subitem: any, subIdx) => (
+                      subitem.isSection ? (
+                        <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
+                          <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
+                            {subitem.title}
+                          </h5>
+                        </div>
+                      ) : (
+                        <HoveredLink
+                          key={`hovered-link-${idx}-${subIdx}`}
+                          href={subitem.link}
+                          target={subitem?.target}
+                        >
+                          <h1 className='font-semibold'>{subitem.title}</h1>
+                          <p>{subitem.description}</p>
+                        </HoveredLink>
+                      )
                     ))}
                   </div>
                 </MenuItem>
@@ -181,16 +196,34 @@ export function NavbarDemo() {
         </div>
         <div className='flex items-center gap-6 h-full'>
           <Link
+            href={isDoneForYou ? '/' : '/done-for-you'}
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
+          >
+            {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
+          </Link>
+          {/* <Link
             href={'https://app.typus.ai/login'}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {t('login')}
           </Link>
           <Link
-            href={`https://app.typus.ai/register?language=${locale}`}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
+            href={'https://app.typus.ai/register'}
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {t('signUp')}
+          </Link> */}
+          {/* <ActionButton
+            href={`https://app.typus.ai/register?language=${locale}`}
+            className="!ps-4 !pe-1 transform scale-90 origin-right"
+          >
+            {t('goToApp')}
+          </ActionButton> */}
+          <Link
+            href={`https://app.typus.ai/register?language=${locale}`}
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
+          >
+            {t('goToApp')}
           </Link>
         </div>
       </NavBody>
@@ -238,22 +271,30 @@ export function NavbarDemo() {
                         <div className='w-8 h-px bg-gradient-to-r from-black to-gray-800'></div>
                       </div>
                       <div className='space-y-3'>
-                        {navItem.submenu?.map((subitem, subIdx) => (
-                          <a
-                            key={`submenu-${navIdx}-${subIdx}`}
-                            href={subitem.link}
-                            target={subitem.target ?? '_self'}
-                            className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
-                          >
-                            <div className='flex-1'>
-                              <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
+                        {navItem.submenu?.map((subitem: any, subIdx) => (
+                          subitem.isSection ? (
+                            <div key={`section-label-${navIdx}-${subIdx}`} className='pt-4 first:pt-0'>
+                              <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2'>
                                 {subitem.title}
-                              </h4>
-                              <p className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
-                                {subitem.description}
-                              </p>
+                              </h5>
                             </div>
-                          </a>
+                          ) : (
+                            <a
+                              key={`submenu-${navIdx}-${subIdx}`}
+                              href={subitem.link}
+                              target={subitem.target ?? '_self'}
+                              className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
+                            >
+                              <div className='flex-1'>
+                                <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
+                                  {subitem.title}
+                                </h4>
+                                <p className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
+                                  {subitem.description}
+                                </p>
+                              </div>
+                            </a>
+                          )
                         ))}
                       </div>
                     </div>
@@ -325,17 +366,33 @@ export function NavbarDemo() {
             </div>
             <div className='flex items-center gap-6 h-full'>
               <Link
-                href={'https://app.typus.ai/login'}
+                href={isDoneForYou ? '/' : '/done-for-you'}
+                className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
+              >
+                {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
+              </Link>
+              <Link
+                href={`https://app.typus.ai/login`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('login')}
               </Link>
-              <Link
+               <Link
                 href={`https://app.typus.ai/register?language=${locale}`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('signUp')}
               </Link>
+              {/* <div className='relative h-full flex items-center pt-2'>
+                <Menu setActive={setAppActive} active={appActive}>
+                  <MenuItem setActive={setAppActive} active={appActive} item={t('goToApp')}>
+                    <div className='flex flex-col space-y-2 p-1 min-w-[100px]'>
+                       <HoveredLink href="https://app.typus.ai/login" className="text-[13px]">{t('login')}</HoveredLink>
+                       <HoveredLink href={`https://app.typus.ai/register?language=${locale}`} className="text-[13px]">{t('signUp')}</HoveredLink>
+                    </div>
+                  </MenuItem>
+                </Menu>
+              </div> */}
             </div>
           </div>
         </div>
@@ -364,46 +421,58 @@ export function NavbarDemo() {
                 <span className='block'>{item.name}</span>
               </a>
               <div className='pl-4 space-y-2 mt-2'>
-                {item.submenu?.map((subitem, subIdx) => (
-                  <a
-                    key={`mobile-submenu-${idx}-${subIdx}`}
-                    href={subitem.link}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className='flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
-                  >
-                    {/* <div className="w-8 h-5 bg-neutral-100 dark:bg-neutral-800 overflow-hidden flex-shrink-0 mt-0.5">
-                      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                        <div className="w-2 h-2 bg-black "></div>
-                      </div>
-                    </div> */}
-                    <div>
-                      <div className='font-medium'>{subitem.title}</div>
-                      {/* <div className="text-xs opacity-75">
-                        {subitem.description}
-                      </div> */}
+                {item.submenu?.map((subitem: any, subIdx) => (
+                  subitem.isSection ? (
+                    <div key={`mobile-section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
+                      <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
+                        {subitem.title}
+                      </h5>
                     </div>
-                  </a>
+                  ) : (
+                    <a
+                      key={`mobile-submenu-${idx}-${subIdx}`}
+                      href={subitem.link}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className='flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
+                    >
+                      <div>
+                        <div className='font-medium'>{subitem.title}</div>
+                      </div>
+                    </a>
+                  )
                 ))}
               </div>
             </div>
           ))}
           <div className='flex w-full flex-col gap-4'>
             <NavbarButton
-              href={'https://app.typus.ai/login'}
+              href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
               className='w-full min-w-[140px] text-nowrap'
             >
-              {t('login')}
+              {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
             </NavbarButton>
-            <NavbarButton
-              href={`https://app.typus.ai/register?language=${locale}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant='primary'
-              className='w-full min-w-[140px] text-nowrap'
-            >
-              {t('signUp')}
-            </NavbarButton>
+            <div className='flex flex-col gap-2 border-t pt-2'>
+              <div className='flex gap-2'>
+                <NavbarButton
+                  href={'https://app.typus.ai/login'}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant='secondary'
+                  className='w-full text-nowrap'
+                >
+                  {t('login')}
+                </NavbarButton>
+                <NavbarButton
+                  href={`https://app.typus.ai/register?language=${locale}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant='dark'
+                  className='w-full text-nowrap'
+                >
+                  {t('goToApp')}
+                </NavbarButton>
+              </div>
+            </div>
           </div>
         </MobileNavMenu>
       </MobileNav>

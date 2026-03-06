@@ -200,3 +200,15 @@ export const HoveredLink = ({ children, ...rest }: any) => {
     </a>
   )
 }
+
+
+// export const HoveredLinkWITHOUTANC = ({ children, ...rest }: any) => {
+//   return (
+//     <div
+//       {...rest}
+//       className='text-neutral-700 dark:text-neutral-200 hover:text-black '
+//     >
+//       {children}
+//     </div>
+//   )
+// }

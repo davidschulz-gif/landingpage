@@ -7,10 +7,16 @@
     "signUp": "REGISTRIEREN",
     "explorePlatform": "Entdecken Sie unsere KI-gestützte Architekturvisualisierungsplattform",
     "seePricing": "Preise ansehen",
+    "app": "APP",
+    "service": "SERVICE",
+    "goToApp": "Go to App",
+    "doneForYouService": "Done-For-You Service",
+    "returnToHome": "Zurück zur Startseite",
     "solutions": "LÖSUNGEN",
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
+
     "navigation": {
       "solutions": {
         "create": {
@@ -78,15 +84,25 @@
     "title": "KI FÜR ARCHITEKTEN.",
     "description": "KI erhält die Struktur Ihrer architektonischen Eingabe vollständig bei, während sie atemberaubende KI-gestützte Visualisierungen erstellt. Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
     "getStarted": "Loslegen",
+    "goToApp": "Go to App",
+    "doneForYouService": "Done-For-You Service",
     "rating": "4.5/5",
     "reviewsCount": "basierend auf 90+ Bewertungen",
+    "appOfferTitle": "APP ANGEBOT",
+    "serviceOfferTitle": "SERVICE ANGEBOT",
     "features": {
       "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
       "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
       "tutorial": "TUTORIAL",
       "stepByStep": "SCHRITT-FÜR-SCHRITT-ANLEITUNG",
       "caseStudies": "FALLSTUDIEN ERHALTEN",
-      "welcomeGift": "WILLKOMMENSGUTSCHEIN ERHALTEN"
+      "welcomeGift": "WILLKOMMENSGUTSCHEIN ERHALTEN",
+      "servicePersonalVisualizer": "persönlicher Visualisierer",
+      "serviceVideoCall": "Video Call",
+      "serviceEmailComm": "E-Mail-Kommunikation",
+      "serviceDetailedFeedback": "detailliertes Feedback zum Workflow",
+      "serviceImageRequest": "Bildanfrage",
+      "serviceBookDemo": "Demo-Anruf buchen"
     }
   },
   "HeroEmailForm": {
