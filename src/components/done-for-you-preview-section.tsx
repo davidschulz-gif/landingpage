@@ -9,18 +9,18 @@ import { BreathingAnimationText } from './breathing-animation-text'
 export const DoneForYouPreviewSection = () => {
   const t = useTranslations('BilderFlatrate.preview')
   return (
-    <section className='relative w-full overflow-hidden bg-neutral-50 dark:bg-neutral-900 py-16 md:py-24 border-y border-neutral-200 dark:border-neutral-800 my-10'>
+    <section className='relative w-full overflow-hidden bg-neutral-50 dark:bg-black py-16 md:py-24 border-y border-neutral-200 dark:border-neutral-800 my-10'>
       <div className='relative mx-auto max-w-7xl px-4 md:px-6 z-10'>
         <div className='flex flex-collg:flex-row items-center justify-between gap-10 lg:gap-20'>
           
           <motion.div 
-            className='flex-1 text-center md:text-left space-y-6 max-w-3xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 p-8 md:p-12 shadow-sm mx-auto'
+            className='flex-1 text-center md:text-left space-y-6 max-w-3xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-black p-8 md:p-12 shadow-sm mx-auto'
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, margin: '-50px' }}
           >
-            <div className='inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-600 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-400'>
+            <div className='inline-flex items-center rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-600 dark:border-neutral-800 dark:bg-black dark:text-neutral-400'>
               {t('badge')}
             </div>
             

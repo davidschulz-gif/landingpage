@@ -7,7 +7,7 @@ import { Check } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import BookingDemoClassForm from './demo-class-boooking-form'
+
 
 
 
@@ -92,22 +92,21 @@ export function ConciergePricingSection() {
     [0, 0, 1, 1]
   )
 
-  const formX = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.25, 1],
-    ['-100%', '-100%', '0%', '0%']
-  )
-  const formOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.25, 1],
-    [0, 0, 1, 1]
-  )
 
-  const currentPlans = conciergePlans.map(plan => ({
-    ...plan,
-    name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
-    features: plan.features.map(f => t(f)),
-  }))
+
+  const currentPlans = conciergePlans.map(plan => {
+    // Filter out requests and add conditional features
+    const baseFeatures = plan.features.filter(f => !f.includes('.requests'))
+    const dynamicFeatures = isYearly 
+      ? [...baseFeatures.slice(0, 3), `plans.${plan.id}.features.pauseYearly`, ...baseFeatures.slice(3)]
+      : [...baseFeatures.slice(0, 3), `plans.${plan.id}.features.cancelMonthly`, ...baseFeatures.slice(3)]
+
+    return {
+      ...plan,
+      name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
+      features: dynamicFeatures.map(f => t(f)),
+    }
+  })
 
   return (
     <section
@@ -178,22 +177,6 @@ export function ConciergePricingSection() {
 
           <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-6 px-4'>
             <motion.div
-              className='w-full max-w-sm z-10'
-              style={{
-                x: formX,
-                opacity: formOpacity,
-                y: cardParallaxY,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              <div className='bg-white p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 h-full flex flex-col justify-center'>
-                <BookingDemoClassForm />
-              </div>
-            </motion.div>
-            <motion.div
               className='w-full max-w-xs z-10'
               style={{
                 x: leftCardX,
@@ -224,17 +207,6 @@ export function ConciergePricingSection() {
           </div>
           <div>
             <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-8'>
-              <motion.div
-                className='w-full max-w-xs z-30'
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-                viewport={{ once: true, margin: '-50px' }}
-              >
-                <div className='bg-white p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 w-full'>
-                  <BookingDemoClassForm />
-                </div>
-              </motion.div>
               {currentPlans.map((plan, index) => (
                 <motion.div
                   key={index}

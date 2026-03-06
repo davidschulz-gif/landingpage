@@ -102,7 +102,7 @@
       "serviceEmailComm": "E-Mail-Kommunikation",
       "serviceDetailedFeedback": "detailliertes Feedback zum Workflow",
       "serviceImageRequest": "Bildanfrage",
-      "serviceBookDemo": "Demo-Anruf buchen"
+      "serviceBookDemo": "kostenlose & unverbindliche Demo und Bedarfsanalyse"
     }
   },
   "HeroEmailForm": {
@@ -203,9 +203,9 @@
     "descriptionText": "Transformieren Sie Ihre architektonischen Zeichnungen in atemberaubende fotorealistische Visualisierungen mit KI-Präzision."
   },
   "Pricing": {
-    "professionalPlans": "PROFESSIONELLE PLÄNE",
+    "professionalPlans": "PLÄNE für die App",
     "bookDemo": "Demo-Anruf buchen",
-    "educationPlans": "BILDUNGSPLÄNE",
+    "educationPlans": "PLÄNE für die App",
     "professional": "Professionell",
     "education": "Bildung",
     "freeTrial": "1-tägige kostenlose Testversion",
@@ -516,9 +516,11 @@
         "yearlyPrice": "4000",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
-          "videoCall": "1 Video Call /m",
+          "videoCall": "1 Video Call pro Monat",
           "emailComm": "email Kommunikation",
           "requests": "5 Anfragen",
+          "pauseYearly": "jederzeit pausieren - bis zu 3 mal im Jahr. keine Kosten für Leerlauf.",
+          "cancelMonthly": "monatl. kündbar.",
           "inputImages": "max 3 Input Bilder pro Anfrage",
           "turnaround": "Rücklauf im Schnitt in 48h",
           "feedback": "detailliertes feedback zum Worklfow"
@@ -530,9 +532,11 @@
         "yearlyPrice": "8000",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
-          "videoCall": "3 Video Calls /m",
+          "videoCall": "3 Video Calls pro Monat",
           "emailComm": "email Kommunikation",
           "requests": "12 Anfragen",
+          "pauseYearly": "jederzeit pausieren - bis zu 5 mal im Jahr. keine Kosten für Leerlauf.",
+          "cancelMonthly": "monatl. kündbar.",
           "inputImages": "max 3 Input Bilder pro Anfrage",
           "turnaround": "Rücklauf im Schnitt in 24h",
           "feedback": "detailliertes feedback zum Worklfow"
@@ -577,13 +581,20 @@
       "subtitle": "Mit Typus erhalten Sie Visualisierungen im Abo statt pro Projekt. Statt jedes Bild einzeln zu bezahlen, können Sie so viele Visualisierungen anfragen wie Sie möchten. Ein persönlicher Visualisierungs-Spezialist erstellt die Bilder für Sie.",
       "step1Title": "Sie senden Ihre Referenzbilder",
       "step1Desc": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben.",
-      "step2Title": "Wir erstellen die Visualisierung",
+      "step2Title": "Wir erstellen die Bilder mit KI",
       "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit.",
       "step3Title": "Sie erhalten Ihr Bild",
       "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück.",
       "tag1": "Einfach",
       "tag2": "Schnell",
       "tag3": "Planbar"
+    },
+    "howItsPossible": {
+      "title": "Wie ist das möglich?",
+      "p1": "Wir arbeiten nicht mit klassischen Rendering-Pipelines, die oft zeitaufwendig und teuer sind. Stattdessen nutzen wir die neuesten Möglichkeiten KI-gestützter Visualisierungstechnologie, um Architektur in kürzester Zeit präzise und atmosphärisch darzustellen.",
+      "p2": "Unsere Visualisierungen werden dabei nicht automatisch generiert, sondern von erfahrenen Visualisierer:innen erstellt – alle mit Hintergrund in Architektur und architektonischer Darstellung. So verbinden wir die Geschwindigkeit moderner KI mit dem gestalterischen Verständnis von Architekt:innen.",
+      "p3": "Das Ergebnis:",
+      "p4": "Hochwertige Architekturvisualisierungen – schneller, flexibler und deutlich effizienter."
     },
     "benefits": {
       "title": "Wie ein externer Mitarbeiter für Visualisierungen",

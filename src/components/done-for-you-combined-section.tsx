@@ -87,7 +87,7 @@ export const DoneForYouCombinedSection = () => {
                 {tPricing('bookDemo')}
               </h4>
               
-              <div className='bg-white dark:bg-neutral-950 w-full p-6 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.02)] border border-neutral-100 dark:border-neutral-900 rounded-none'>
+              <div className='bg-white dark:bg-black w-full p-6 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.02)] border border-neutral-100 dark:border-neutral-900 rounded-none'>
                  <BookingDemoClassForm showTitle={false} />
               </div>
             </div>

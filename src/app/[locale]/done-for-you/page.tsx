@@ -1,6 +1,7 @@
 'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import BookingDemoClassForm from '@/components/demo-class-boooking-form'
 import { FooterSection } from '@/components/footer-section'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Clock, MessageSquare, MonitorPlay, Users } from 'lucide-react'
@@ -59,7 +60,7 @@ export default function DoneForYouPage() {
                 <strong dangerouslySetInnerHTML={{ __html: t.raw('hero.description3') }} />
               </p>
               
-              <Link href='mailto:hello@typus.ai'>
+              <Link href='#booking-form'>
                 <button className='group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-black px-8 py-4 text-lg font-medium text-white transition-all hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 shadow-xl'>
                   <span className='relative z-10'>{t('hero.cta')}</span>
                   <ArrowRight className='relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1' />
@@ -70,7 +71,7 @@ export default function DoneForYouPage() {
         </section>
 
         {/* Problem Section */}
-        <section className='py-20 bg-neutral-50 dark:bg-neutral-900 px-4 border-y border-neutral-200 dark:border-neutral-800'>
+        <section className='py-20 bg-neutral-50 dark:bg-black px-4 border-y border-neutral-200 dark:border-neutral-800'>
           <div className='max-w-5xl mx-auto'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-16 items-center'>
               <motion.div
@@ -115,7 +116,7 @@ export default function DoneForYouPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className='bg-white dark:bg-neutral-950 p-8 md:p-10 shadow-sm border border-neutral-200 dark:border-neutral-800'
+                className='bg-white dark:bg-black p-8 md:p-10 shadow-sm border border-neutral-200 dark:border-neutral-800'
               >
                 <h3 className='text-xl font-bold mb-6 text-neutral-900 dark:text-white'>{t('problem.meaningTitle')}</h3>
                 <div className='space-y-6'>
@@ -148,11 +149,39 @@ export default function DoneForYouPage() {
                   </div>
                 </div>
                 
-                <div className='mt-8 p-4 bg-neutral-100 dark:bg-neutral-900 text-center font-medium text-neutral-800 dark:text-neutral-200'>
+                <div className='mt-8 p-4 bg-neutral-100 dark:bg-black text-center font-medium text-neutral-800 dark:text-neutral-200'>
                   {t('problem.finalConclusion')}
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* How It's Possible Section */}
+        <section className='py-24 bg-white dark:bg-neutral-950 px-4'>
+          <div className='max-w-4xl mx-auto'>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className='text-center'
+            >
+              <h2 className='text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-10'>
+                {t('howItsPossible.title')}
+              </h2>
+              
+              <div className='space-y-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium'>
+                <p>{t('howItsPossible.p1')}</p>
+                <p>{t('howItsPossible.p2')}</p>
+                <p>
+                  <span className='font-bold text-neutral-900 dark:text-white block mb-2'>
+                    {t('howItsPossible.p3')}
+                  </span>
+                  {t('howItsPossible.p4')}
+                </p>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -184,7 +213,7 @@ export default function DoneForYouPage() {
               {/* Connecting line for desktop */}
               <div className='hidden md:block absolute top-[45px] left-[15%] right-[15%] h-0.5 bg-neutral-200 dark:bg-neutral-800 -z-10' />
 
-              <div className='bg-white dark:bg-neutral-950 p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
+              <div className='bg-white dark:bg-black p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
                 <div className='w-12 h-12 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xl mb-6'>
                   1
                 </div>
@@ -192,7 +221,7 @@ export default function DoneForYouPage() {
                 <p className='text-neutral-600 dark:text-neutral-400'>{t('solution.step1Desc')}</p>
               </div>
 
-              <div className='bg-white dark:bg-neutral-950 p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
+              <div className='bg-white dark:bg-black p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
                 <div className='w-12 h-12 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xl mb-6'>
                   2
                 </div>
@@ -200,7 +229,7 @@ export default function DoneForYouPage() {
                 <p className='text-neutral-600 dark:text-neutral-400'>{t('solution.step2Desc')}</p>
               </div>
 
-              <div className='bg-white dark:bg-neutral-950 p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
+              <div className='bg-white dark:bg-black p-8 border border-neutral-200 dark:border-neutral-800 relative shadow-sm'>
                 <div className='w-12 h-12 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xl mb-6'>
                   3
                 </div>
@@ -220,7 +249,7 @@ export default function DoneForYouPage() {
         </section>
 
         {/* Benefits Section */}
-        <section className='py-20 bg-neutral-900 text-white px-4'>
+        <section className='py-20 bg-black text-white px-4'>
           <div className='max-w-4xl mx-auto'>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -239,7 +268,7 @@ export default function DoneForYouPage() {
             </motion.div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-              <div className='bg-neutral-800 p-8 border border-neutral-700'>
+              <div className='bg-black p-8 border border-neutral-700'>
                 <ul className='space-y-6'>
                   <li className='flex items-start gap-4'>
                     <CheckCircle2 className='w-6 h-6 text-neutral-300 shrink-0 mt-0.5' />
@@ -264,7 +293,7 @@ export default function DoneForYouPage() {
                   </li>
                 </ul>
               </div>
-              <div className='flex items-center justify-center p-8 bg-neutral-800/50 border border-neutral-700 text-center'>
+              <div className='flex items-center justify-center p-8 bg-black border border-neutral-700 text-center'>
                 <p className='text-xl md:text-2xl font-medium leading-relaxed'>
                   {t('benefits.summary1')} <br/>
                   <span className='font-bold text-white'>{t('benefits.summary2')}</span>
@@ -291,7 +320,7 @@ export default function DoneForYouPage() {
               </p>
               
               <div className='grid grid-cols-1 md:grid-cols-2 gap-8 text-left'>
-                <div className='p-8 border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900'>
+                <div className='p-8 border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-black'>
                   <h3 className='text-xl font-bold mb-6 text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-4'>{t('pricing.marketTitle')}</h3>
                   <ul className='space-y-4'>
                     <li className='flex justify-between items-center'>
@@ -327,7 +356,7 @@ export default function DoneForYouPage() {
                        {t('pricing.flatPerMonth')}
                     </div>
                   </div>
-                  <div className='mt-8 p-4 bg-neutral-100 dark:bg-neutral-900 text-center flex flex-col items-center justify-center'>
+                  <div className='mt-8 p-4 bg-neutral-100 dark:bg-black text-center flex flex-col items-center justify-center'>
                     <p className='font-bold text-neutral-900 dark:text-white text-center' dangerouslySetInnerHTML={{ __html: t.raw('pricing.flatNote') }}/>
                   </div>
                 </div>
@@ -347,17 +376,33 @@ export default function DoneForYouPage() {
         </motion.div>
 
         {/* Final CTA */}
-        <section className='py-24 px-4 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800'>
-          <div className='max-w-3xl mx-auto text-center'>
-            <h2 className='text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-8'>
-              {t('cta.title')}
-            </h2>
-            <Link href='mailto:hello@typus.ai'>
-              <button className='group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-black px-10 py-5 text-lg font-medium text-white transition-all hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 shadow-xl'>
-                <span className='relative z-10'>{t('cta.button')}</span>
-                <ArrowRight className='relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1' />
-              </button>
-            </Link>
+        <section id='booking-form' className='py-24 px-4 bg-neutral-50 dark:bg-black border-t border-neutral-200 dark:border-neutral-800'>
+          <div className='max-w-6xl mx-auto'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center'>
+              <div className='text-center lg:text-left'>
+                <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white mb-8 leading-[1.2]'>
+                  {t('cta.title')}
+                </h2>
+                <Link href='#booking-form'>
+                  <button className='group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-black px-10 py-5 text-lg font-medium text-white transition-all hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 shadow-xl'>
+                    <span className='relative z-10'>{t('cta.button')}</span>
+                    <ArrowRight className='relative z-10 w-5 h-5 transition-transform group-hover:translate-x-1' />
+                  </button>
+                </Link>
+              </div>
+              
+              <motion.div
+                className='w-full max-w-lg mx-auto lg:ml-auto lg:mr-0'
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true, margin: '-50px' }}
+              >
+                <div className='bg-white dark:bg-black w-full p-6 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-neutral-100 dark:border-neutral-900 rounded-none'>
+                  <BookingDemoClassForm />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>

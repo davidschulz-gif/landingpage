@@ -1,10 +1,10 @@
 'use client'
 import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue,
+    motion,
+    useScroll,
+    useSpring,
+    useTransform,
+    type MotionValue,
 } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
@@ -459,7 +459,7 @@ export const Header = () => {
                   </div>
                 </div>
 
-                <ActionButton href='/done-for-you' className='w-full max-w-xs !bg-white !text-black border border-black dark:border-white/20 mt-auto'>
+                <ActionButton href='/done-for-you' className='w-full max-w-xs mt-auto'>
                   {t('doneForYouService')}
                 </ActionButton>
               </div>

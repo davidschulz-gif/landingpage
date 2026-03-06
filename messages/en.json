@@ -102,7 +102,7 @@
       "serviceEmailComm": "email communication",
       "serviceDetailedFeedback": "detailed feedback on workflow",
       "serviceImageRequest": "image request",
-      "serviceBookDemo": "book demo call"
+      "serviceBookDemo": "Free & non-binding demo and needs analysis"
     }
   },
   "HeroEmailForm": {
@@ -203,8 +203,8 @@
     "descriptionText": "Transform your architectural drawings into stunning photorealistic visualizations with AI precision."
   },
   "Pricing": {
-    "professionalPlans": "PROFESSIONAL PLANS",
-    "educationPlans": "EDUCATION PLANS",
+    "professionalPlans": "PLANS for the App",
+    "educationPlans": "PLANS for the App",
     "bookDemo": "Book a Demo Call",
     "professional": "Professional",
     "education": "Education",
@@ -516,9 +516,11 @@
         "yearlyPrice": "4000",
         "features": {
           "visualizer": "1 personal visualizer",
-          "videoCall": "1 Video Call /m",
+          "videoCall": "1 Video Call pro Monat",
           "emailComm": "email communication",
           "requests": "5 requests",
+          "pauseYearly": "pause anytime - up to 3 times a year. no costs for idle time.",
+          "cancelMonthly": "cancel monthly.",
           "inputImages": "max 3 input images per request",
           "turnaround": "Average turnaround in 48h",
           "feedback": "detailed feedback on workflow"
@@ -530,9 +532,11 @@
         "yearlyPrice": "8000",
         "features": {
           "visualizer": "1 personal visualizer",
-          "videoCall": "3 Video Calls /m",
+          "videoCall": "3 Video Calls pro Monat",
           "emailComm": "email communication",
           "requests": "12 requests",
+          "pauseYearly": "pause anytime - up to 5 times a year. no costs for idle time.",
+          "cancelMonthly": "cancel monthly.",
           "inputImages": "max 3 input images per request",
           "turnaround": "Average turnaround in 24h",
           "feedback": "detailed feedback on workflow"
@@ -577,13 +581,20 @@
       "subtitle": "With Typus, you get visualizations by subscription instead of per project. Instead of paying for each image individually, you can request as many visualizations as you want. A personal visualization specialist creates the images for you.",
       "step1Title": "You send your reference images",
       "step1Desc": "Sketches, mockups, or 3D models - send us what you have.",
-      "step2Title": "We create the visualization",
+      "step2Title": "Wir erstellen die Bilder mit KI",
       "step2Desc": "Your personal specialist takes over the work.",
       "step3Title": "You receive your image",
       "step3Desc": "You will receive convincing results back in a very short time.",
       "tag1": "Simple",
       "tag2": "Fast",
-      "tag3": "Predictable"
+      "tag3": "Planable"
+    },
+    "howItsPossible": {
+      "title": "How is this possible?",
+      "p1": "We do not work with classic rendering pipelines, which are often time-consuming and expensive. Instead, we use the latest possibilities of AI-supported visualization technology to present architecture precisely and atmospherically in the shortest possible time.",
+      "p2": "Our visualizations are not generated automatically, but are created by experienced visualizers - all with a background in architecture and architectural representation. In this way, we combine the speed of modern AI with the design understanding of architects.",
+      "p3": "The result:",
+      "p4": "High-quality architectural visualizations – faster, more flexible and significantly more efficient."
     },
     "benefits": {
       "title": "Like an external employee for visualizations",
