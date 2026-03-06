@@ -55,10 +55,10 @@ const ManyChatPricingSection = dynamic(
   }
 )
 
-const ConciergePricingSection = dynamic(
+const DemoBookingSection = dynamic(
   () =>
-    import('@/components/concierge-pricing-section').then(
-      mod => mod.ConciergePricingSection
+    import('@/components/demo-booking-section').then(
+      mod => mod.DemoBookingSection
     ),
   {
     ssr: false,
@@ -120,6 +120,14 @@ const BeforeYouGoPopup = dynamic(
   () => import('@/components/before-you-go-popup').then(mod => mod.default),
   {
     ssr: false,
+  }
+)
+
+const DoneForYouPreviewSection = dynamic(
+  () => import('@/components/done-for-you-preview-section').then(mod => mod.DoneForYouPreviewSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
 
@@ -275,14 +283,24 @@ export default function Home() {
         <CompareDemo />
       </motion.div>
 
-      {/* Concierge Pricing Section */}
+      {/* Done For You Preview Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         viewport={{ once: true, margin: '-100px' }}
       >
-        <ConciergePricingSection />
+        <DoneForYouPreviewSection />
+      </motion.div>
+
+      {/* Demo Booking Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <DemoBookingSection />
       </motion.div>
 
       {/* Pricing Section */}

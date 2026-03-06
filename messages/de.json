@@ -24,6 +24,10 @@
         "upscale": {
           "title": "Hochskalieren",
           "description": "Verbessern Sie Bildauflösung und Qualität mit KI-gestützter Hochskalierung"
+        },
+        "bilderFlatrate": {
+          "title": "Bilder-Flatrate",
+          "description": "Persönliche Visualisierungs-Flat für Architektur"
         }
       },
       "community": {
@@ -330,7 +334,8 @@
       "bookCall": "hello@typus.ai",
       "terms": "AGB",
       "dataPrivacy": "Datenschutz",
-      "imprint": "Impressum"
+      "imprint": "Impressum",
+      "bilderFlatrate": "Bilder-Flatrate"
     }
   },
   "BookingDemoClassForm": {
@@ -521,5 +526,90 @@
   },
   "PaymentMethods": {
     "title": "Unterstützte Zahlungsmethoden"
+  },
+  "BilderFlatrate": {
+    "hero": {
+      "badge": "Done For You Offer",
+      "title1": "Die Bilder-Flat für",
+      "title2": "Architekturbüros.",
+      "subtitle1": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis.",
+      "subtitle2": "Ihr persönlicher Visualisierungs-Partner für Architektur.",
+      "description1": "Architekturbüros erhalten einen persönlichen Visualisierungs-Spezialisten, der ihre Bilder erstellt.",
+      "description2": "Keine komplizierten Renderprogramme. Keine Projektpreise.",
+      "description3": "Einfach Bilder anfragen — wir erstellen sie für Sie.",
+      "cta": "Kostenlose Demo und Erstgespräch anfragen"
+    },
+    "problem": {
+      "title1": "Architektur-Visualisierungen",
+      "title2": "sind teuer und langsam.",
+      "subtitle": "Die Realität in der Branche:",
+      "point1": "500 € pro Bild – absolutes Minimum",
+      "point2": "1.500 € durchschnittlicher Marktpreis",
+      "point3": "2.000–3.000 € für hochwertige Renderings",
+      "conclusion": "Und jedes Bild wird einzeln abgerechnet.",
+      "meaningTitle": "Das bedeutet:",
+      "meaning1Title": "lange Wartezeiten",
+      "meaning1Desc": "Tage oder Wochen bis zum ersten Entwurf.",
+      "meaning2Title": "komplizierte Abstimmungen",
+      "meaning2Desc": "Mühsame Feedback-Schleifen über externe Portale.",
+      "meaning3Title": "hohe Projektkosten",
+      "meaning3Desc": "Budgets werden schnell überschritten.",
+      "finalConclusion": "Für viele Architekturbüros ist das zu teuer und zu unflexibel."
+    },
+    "solution": {
+      "title": "Die Bilder-Flat für Architekturvisualisierungen",
+      "subtitle": "Mit Typus erhalten Sie Visualisierungen im Abo statt pro Projekt. Statt jedes Bild einzeln zu bezahlen, können Sie so viele Visualisierungen anfragen wie Sie möchten. Ein persönlicher Visualisierungs-Spezialist erstellt die Bilder für Sie.",
+      "step1Title": "Sie senden Ihre Referenzbilder",
+      "step1Desc": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben.",
+      "step2Title": "Wir erstellen die Visualisierung",
+      "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit.",
+      "step3Title": "Sie erhalten Ihr Bild",
+      "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück.",
+      "tag1": "Einfach",
+      "tag2": "Schnell",
+      "tag3": "Planbar"
+    },
+    "benefits": {
+      "title": "Wie ein externer Mitarbeiter für Visualisierungen",
+      "subtitle": "Jedes Büro bekommt eine reale Person, die die Visualisierungen erstellt.",
+      "benefit1Title": "persönliche Kommunikation",
+      "benefit1Desc": "Direkter Draht zu Ihrem Spezialisten, keine Ticketsysteme.",
+      "benefit2Title": "Verständnis für Ihre Architektur",
+      "benefit2Desc": "Wir lernen Ihren Stil kennen und setzen ihn um.",
+      "benefit3Title": "konsistente Bildsprache",
+      "benefit3Desc": "Einheitlicher Look für all Ihre Projekte und Wettbewerbe.",
+      "summary1": "Sie arbeiten nicht mit einer anonymen Plattform – ",
+      "summary2": "sondern mit einem dedizierten Visualisierungs-Partner."
+    },
+    "pricing": {
+      "title1": "Ein Bild kostet normalerweise",
+      "title2": "500 - 3000 €",
+      "subtitle": "Bei Typus erhalten Sie eine ganze Flat für weniger als den Preis eines einzelnen Renderings.",
+      "marketTitle": "Typische Marktpreise:",
+      "marketMin": "Minimum",
+      "marketMinPrice": "500 €",
+      "marketAvg": "Durchschnitt",
+      "marketAvgPrice": "1.500 €",
+      "marketHigh": "High-End",
+      "marketHighPrice": "3.000 €",
+      "marketNote": "Pro EINZELNEM Bild",
+      "flatBadge": "Mit Typus",
+      "flatTitle": "Die Bilder-Flat:",
+      "flatPrice1": "500 €",
+      "flatOr": "oder",
+      "flatPrice2": "1000 €",
+      "flatPerMonth": " / Monat",
+      "flatNote": "Und Sie erhalten unbegrenzt Visualisierungen <br/> – nicht nur eine."
+    },
+    "cta": {
+      "title": "Bereit für Ihren persönlichen Visualisierungs-Spezialisten?",
+      "button": "Kostenlose Demo und Erstgespräch anfragen"
+    },
+    "preview": {
+      "badge": "NEU: Done For You",
+      "title": "Die Bilder-Flat für Architekturbüros.",
+      "subtitle": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis. Ihr persönlicher Visualisierungs-Partner für Architektur.",
+      "button": "Learn More"
+    }
   }
 }

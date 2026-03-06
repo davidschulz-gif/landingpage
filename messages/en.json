@@ -24,6 +24,10 @@
         "upscale": {
           "title": "Upscale",
           "description": "Enhance image resolution and quality with AI-powered upscaling"
+        },
+        "bilderFlatrate": {
+          "title": "Image Flat Rate",
+          "description": "Personal visualization flat rate for architecture"
         }
       },
       "community": {
@@ -330,7 +334,8 @@
       "bookCall": "hello@typus.ai",
       "terms": "Terms",
       "dataPrivacy": "Data Privacy",
-      "imprint": "Imprint"
+      "imprint": "Imprint",
+      "bilderFlatrate": "Image Flat Rate"
     }
   },
   "BookingDemoClassForm": {
@@ -521,5 +526,90 @@
   },
   "PaymentMethods": {
     "title": "Supported payment methods"
+  },
+  "BilderFlatrate": {
+    "hero": {
+      "badge": "Done For You Offer",
+      "title1": "The Image Flat Rate for",
+      "title2": "Architecture Firms.",
+      "subtitle1": "Architecture visualizations. Fast. Personal. For a fixed price.",
+      "subtitle2": "Your personal visualization partner for architecture.",
+      "description1": "Architecture firms get a personal visualization specialist to create their images.",
+      "description2": "No complicated render programs. No project pricing.",
+      "description3": "Simply request images — we create them for you.",
+      "cta": "Request a Free Demo and Initial Consultation"
+    },
+    "problem": {
+      "title1": "Architecture Visualizations",
+      "title2": "are expensive and slow.",
+      "subtitle": "The reality in the industry:",
+      "point1": "€500 per image – absolute minimum",
+      "point2": "€1,500 average market price",
+      "point3": "€2,000–3,000 for high-quality renderings",
+      "conclusion": "And every image is billed individually.",
+      "meaningTitle": "This means:",
+      "meaning1Title": "long wait times",
+      "meaning1Desc": "Days or weeks until the first draft.",
+      "meaning2Title": "complicated coordination",
+      "meaning2Desc": "Tedious feedback loops via external portals.",
+      "meaning3Title": "high project costs",
+      "meaning3Desc": "Budgets are quickly exceeded.",
+      "finalConclusion": "For many architecture firms, this is too expensive and inflexible."
+    },
+    "solution": {
+      "title": "The Image Flat Rate for Architecture Visualizations",
+      "subtitle": "With Typus, you get visualizations by subscription instead of per project. Instead of paying for each image individually, you can request as many visualizations as you want. A personal visualization specialist creates the images for you.",
+      "step1Title": "You send your reference images",
+      "step1Desc": "Sketches, mockups, or 3D models - send us what you have.",
+      "step2Title": "We create the visualization",
+      "step2Desc": "Your personal specialist takes over the work.",
+      "step3Title": "You receive your image",
+      "step3Desc": "You will receive convincing results back in a very short time.",
+      "tag1": "Simple",
+      "tag2": "Fast",
+      "tag3": "Predictable"
+    },
+    "benefits": {
+      "title": "Like an external employee for visualizations",
+      "subtitle": "Every firm gets a real person who creates the visualizations.",
+      "benefit1Title": "personal communication",
+      "benefit1Desc": "Direct line to your specialist, no ticket systems.",
+      "benefit2Title": "understanding of your architecture",
+      "benefit2Desc": "We get to know your style and implement it.",
+      "benefit3Title": "consistent visual language",
+      "benefit3Desc": "Uniform look for all your projects and competitions.",
+      "summary1": "You dont work with an anonymous platform – ",
+      "summary2": "but with a dedicated visualization partner."
+    },
+    "pricing": {
+      "title1": "An image normally costs",
+      "title2": "€500 - €3000",
+      "subtitle": "At Typus, you get an entire flat rate for less than the price of a single rendering.",
+      "marketTitle": "Typical market prices:",
+      "marketMin": "Minimum",
+      "marketMinPrice": "€500",
+      "marketAvg": "Average",
+      "marketAvgPrice": "€1,500",
+      "marketHigh": "High-End",
+      "marketHighPrice": "€3,000",
+      "marketNote": "Per SINGLE image",
+      "flatBadge": "With Typus",
+      "flatTitle": "The Image Flat Rate:",
+      "flatPrice1": "€500",
+      "flatOr": "or",
+      "flatPrice2": "€1000",
+      "flatPerMonth": " / Month",
+      "flatNote": "And you get unlimited visualizations <br/> – not just one."
+    },
+    "cta": {
+      "title": "Ready for your personal visualization specialist?",
+      "button": "Request a Free Demo and Initial Consultation"
+    },
+    "preview": {
+      "badge": "NEW: Done For You",
+      "title": "The Image Flat Rate for Architecture Firms.",
+      "subtitle": "Architecture visualizations. Fast. Personal. For a fixed price. Your personal visualization partner for architecture.",
+      "button": "Learn More"
+    }
   }
 }

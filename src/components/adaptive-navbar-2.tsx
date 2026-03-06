@@ -1,16 +1,16 @@
 'use client'
 import {
-  MobileNav,
-  MobileNavHeader,
-  MobileNavMenu,
-  MobileNavToggle,
+    MobileNav,
+    MobileNavHeader,
+    MobileNavMenu,
+    MobileNavToggle,
 } from '@/components/ui/resizable-navbar'
 import {
-  Navbar,
-  NavbarButton,
-  NavbarLogo,
-  NavBody,
-  NavItems,
+    Navbar,
+    NavbarButton,
+    NavbarLogo,
+    NavBody,
+    NavItems,
 } from '@/components/ui/resizable-navbar-2'
 import { Play } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -49,6 +49,11 @@ export function NavbarDemo() {
             title: tNav('solutions.upscale.title'),
             description: tNav('solutions.upscale.description'),
             link: '#upscale',
+          },
+          {
+            title: tNav('solutions.bilderFlatrate.title'),
+            description: tNav('solutions.bilderFlatrate.description'),
+            link: '/done-for-you',
           },
         ],
       },
