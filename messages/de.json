@@ -562,7 +562,7 @@
     "problem": {
       "title1": "Architektur-Visualisierungen",
       "title2": "sind teuer und langsam.",
-      "subtitle": "Die Realität in der Branche:",
+      "subtitle": "Die Realität in der Branche - typische Marktpreise:",
       "point1": "500 € pro Bild – absolutes Minimum",
       "point2": "1.500 € durchschnittlicher Marktpreis",
       "point3": "2.000–3.000 € für hochwertige Renderings",
@@ -583,8 +583,10 @@
       "step1Desc": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben.",
       "step2Title": "Wir erstellen die Bilder mit KI",
       "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit.",
+      "step2Badge": "Rücklauf 24-48h",
       "step3Title": "Sie erhalten Ihr Bild",
       "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück.",
+      "step3Badge": "Wie ein externer Mitarbeiter:in",
       "tag1": "Einfach",
       "tag2": "Schnell",
       "tag3": "Planbar"

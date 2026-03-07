@@ -562,7 +562,7 @@
     "problem": {
       "title1": "Architecture Visualizations",
       "title2": "are expensive and slow.",
-      "subtitle": "The reality in the industry:",
+      "subtitle": "The reality in the industry – typical market prices:",
       "point1": "€500 per image – absolute minimum",
       "point2": "€1,500 average market price",
       "point3": "€2,000–3,000 for high-quality renderings",
@@ -583,8 +583,10 @@
       "step1Desc": "Sketches, mockups, or 3D models - send us what you have.",
       "step2Title": "Wir erstellen die Bilder mit KI",
       "step2Desc": "Your personal specialist takes over the work.",
+      "step2Badge": "Turnaround 24-48h",
       "step3Title": "You receive your image",
       "step3Desc": "You will receive convincing results back in a very short time.",
+      "step3Badge": "Like an external employee",
       "tag1": "Simple",
       "tag2": "Fast",
       "tag3": "Planable"

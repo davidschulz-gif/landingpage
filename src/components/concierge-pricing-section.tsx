@@ -105,6 +105,7 @@ export function ConciergePricingSection() {
       ...plan,
       name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
       features: dynamicFeatures.map(f => t(f)),
+      ...(plan.popular ? { topBadges: [tPricing('bestResults')] } : {}),
     }
   })
 
@@ -175,13 +176,11 @@ export function ConciergePricingSection() {
             </p> */}
           </motion.div>
 
-          <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-6 px-4'>
+          <div className='relative md:flex hidden justify-center items-stretch h-auto min-h-[80vh] w-full max-w-7xl mx-auto gap-8 px-4'>
             <motion.div
-              className='w-full max-w-xs z-10'
+              className='w-80 flex h-full self-stretch z-10'
               style={{
-                x: leftCardX,
                 opacity: leftCardOpacity,
-                y: cardParallaxY,
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -191,11 +190,9 @@ export function ConciergePricingSection() {
               <PricingCard plan={currentPlans[0]} isYearly={isYearly} />
             </motion.div>
             <motion.div
-              className='w-full max-w-xs z-10'
+              className='w-80 flex h-full self-stretch z-10'
               style={{
-                x: rightCardX,
                 opacity: rightCardOpacity,
-                y: cardParallaxY,
               }}
               initial={{ opacity: 0, y: 100, scale: 0.8 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -227,7 +224,7 @@ export function ConciergePricingSection() {
   )
 }
 
-function PricingCard({ plan, isYearly }: { plan: any; isYearly: boolean }) {
+function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] }; isYearly: boolean }) {
   const t = useTranslations('ConciergePricing')
   const tPricing = useTranslations('Pricing')
   const isEurope = true
@@ -256,55 +253,48 @@ function PricingCard({ plan, isYearly }: { plan: any; isYearly: boolean }) {
 
   return (
     <div
-      className='flex h-[580px] mb-4 flex-col p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800 relative'
-      style={{
-        backgroundColor: '#000000',
-        color: '#ffffff',
-      }}
+      className={`flex h-full min-h-[650px] flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${
+        plan.popular 
+          ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10' 
+          : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
+      }`}
     >
-      {/* Ribbon Tag */}
-      {plan.popular && (
-        <div className='absolute -top-2 left-0 z-30 origin-top-left'>
-          <div className='relative transform -rotate-12'>
-            <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
-              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
-              <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
-              <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
-              <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
-              <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
-              <span
-                className='text-[10px] font-bold uppercase tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                {tPricing('bestResults')}
-              </span>
-            </div>
-            <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
-          </div>
+      {/* Ribbon Tag / Badges */}
+      {plan.topBadges && plan.topBadges.length > 0 && (
+        <div className='absolute -top-4 right-4 z-30 flex flex-col items-end gap-1.5'>
+          {plan.topBadges.map((badge: string, i: number) => (
+             <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
+               <span className='text-[9px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                 {badge}
+               </span>
+             </div>
+          ))}
         </div>
       )}
 
       {/* Header Section */}
-      <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
-        <span
-          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
-          {plan.name}
-        </span>
+      <div className='flex flex-col mb-6 relative pt-2'>
+        <div className='flex items-center justify-between mb-4'>
+          <span
+            className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white'
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            {plan.name}
+          </span>
+        </div>
 
         {/* Pricing Section */}
-        <div className='mb-3'>
-          <div className='flex flex-col items-center justify-center'>
-            <div className='flex items-baseline justify-center gap-1'>
+        <div className='mb-4'>
+          <div className='flex flex-col items-start justify-start'>
+            <div className='flex items-end gap-1 mb-1'>
               <span
-                className='text-2xl sm:text-3xl font-bold text-white tracking-tight'
+                className='text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white tracking-tight'
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {priceInfo.mainPrice}
               </span>
               <span
-                className='text-xs sm:text-sm text-white/70'
+                className='text-sm text-neutral-500 dark:text-neutral-400 pb-1'
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {priceInfo.period}
@@ -312,42 +302,39 @@ function PricingCard({ plan, isYearly }: { plan: any; isYearly: boolean }) {
             </div>
           </div>
 
-          <div className='space-y-1 text-[11px] text-white/75 mt-3 text-center'>
+          <div className='space-y-1 text-sm text-neutral-500 dark:text-neutral-400 mt-2 text-left'>
             <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {priceInfo.billingInfo}
             </div>
             {priceInfo.saveInfo && (
-              <div
-                className='text-emerald-400 font-semibold'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 {priceInfo.saveInfo}
               </div>
             )}
             <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {tPricing('plusVat')}
             </div>
-            {/* <div
-              className='text-emerald-400 font-semibold mt-1.5'
+            <div
+              className='text-emerald-600 dark:text-emerald-400 font-bold mt-2'
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               {tPricing('freeTrial')}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className='flex-1 mb-3 overflow-y-auto px-2 custom-scrollbar'>
+      <div className='flex-grow mb-3 overflow-y-auto px-1 custom-scrollbar'>
         <ul className='space-y-1.5'>
           {plan.features.map((feature: string, index: number) => (
             <li
               key={index}
-              className='flex items-start text-xs font-medium py-1.5 border-b border-gray-800 last:border-b-0'
+              className={`flex items-start text-xs font-medium py-2.5 ${index !== plan.features.length - 1 ? 'border-b border-neutral-100 dark:border-neutral-900' : ''}`}
             >
-              <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-white' />
+              <Check className='w-4 h-4 flex-shrink-0 mt-0.5 mr-3 text-orange-500' />
               <span
-                className='leading-tight text-left flex-1 text-white'
+                className='leading-relaxed text-left flex-1 text-neutral-700 dark:text-neutral-300'
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {feature}
@@ -358,10 +345,10 @@ function PricingCard({ plan, isYearly }: { plan: any; isYearly: boolean }) {
       </div>
 
       {/* Button Section */}
-      <div className='mt-auto pt-4'>
+      <div className='mt-auto pt-6'>
         <Link href={'https://app.typus.ai/register'}>
           <Button
-            className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
+            className='bg-black text-white dark:bg-white dark:text-black cursor-pointer w-full px-4 py-6 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200'
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
             }}

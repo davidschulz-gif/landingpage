@@ -1,10 +1,10 @@
 'use client'
 import {
-    motion,
-    useScroll,
-    useSpring,
-    useTransform,
-    type MotionValue,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
 } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
@@ -119,7 +119,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-[200vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
+      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-[260vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
     >
       <Header />
       <motion.div
@@ -348,121 +348,89 @@ export const Header = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-            className='mt-12 w-full max-w-5xl mx-auto'
+            className='mt-10 w-full max-w-3xl mx-auto'
           >
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              
-              {/* App Offer Card */}
-              <div className='border-2 border-black dark:border-white p-6 flex flex-col items-center justify-between min-h-[300px]'>
-                <div className='w-full'>
-                  <BreathingAnimationText animationType='black-gray'>
-                    <h3 
-                      className='text-center uppercase font-bold text-lg mb-6'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '0.1em' }}
-                    >
-                      {t('appOfferTitle') || 'APP OFFER'}
-                    </h3>
-                  </BreathingAnimationText>
-                  
-                  <div className='flex flex-col gap-3 mb-8 w-full max-w-sm mx-auto'>
-                    {[
-                      t('features.createAccount'),
-                      t('features.downloadPlugins'),
-                      t('features.tutorial'),
-                       t('features.stepByStep'),
-                      t('features.caseStudies'),
-                      t('features.welcomeGift'),
-                    ].map((feature, index) => (
-                      <div
-                        key={`app-feature-${index}`}
-                        className='flex items-start space-x-3'
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+
+              {([
+                {
+                  title: t('appOfferTitle') || 'APP OFFER',
+                  features: [
+                    t('features.createAccount'),
+                    t('features.downloadPlugins'),
+                    t('features.tutorial'),
+                    t('features.stepByStep'),
+                    t('features.caseStudies'),
+                    t('features.welcomeGift'),
+                  ],
+                  href: 'https://app.typus.ai/register',
+                  label: t('goToApp'),
+                  cardKey: 'app',
+                },
+                {
+                  title: t('serviceOfferTitle') || 'SERVICE OFFER',
+                  features: [
+                    t('features.servicePersonalVisualizer'),
+                    t('features.serviceVideoCall'),
+                    t('features.serviceEmailComm'),
+                    t('features.serviceDetailedFeedback'),
+                    t('features.serviceImageRequest'),
+                    t('features.serviceBookDemo'),
+                  ],
+                  href: '/done-for-you',
+                  label: t('doneForYouService'),
+                  cardKey: 'service',
+                },
+              ] as const).map((card, cardIdx) => (
+                <motion.div
+                  key={card.cardKey}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 + cardIdx * 0.15, ease: 'easeOut' }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className='border border-black dark:border-white p-4 flex flex-col gap-3'
+                >
+                  {/* Title */}
+                  <h3
+                    className='text-center uppercase font-bold text-[11px] tracking-[0.18em] text-black dark:text-white pb-2.5 border-b border-black/10 dark:border-white/10'
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {card.title}
+                  </h3>
+
+                  {/* Features */}
+                  <div className='flex flex-col gap-1.5'>
+                    {card.features.map((feature, i) => (
+                      <motion.div
+                        key={`${card.cardKey}-feat-${i}`}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 1.0 + cardIdx * 0.12 + i * 0.055, ease: 'easeOut' }}
+                        className='flex items-start gap-2'
                       >
-                        <div className='w-4 h-4 bg-black dark:bg-white flex items-center justify-center flex-shrink-0 mt-0.5'>
-                          <svg
-                            className='w-2.5 h-2.5 text-white dark:text-black'
-                            fill='currentColor'
-                            viewBox='0 0 20 20'
-                          >
-                            <path
-                              fillRule='evenodd'
-                              d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                              clipRule='evenodd'
-                            />
+                        <div className='w-3.5 h-3.5 bg-black dark:bg-white flex items-center justify-center flex-shrink-0 mt-0.5'>
+                          <svg className='w-2 h-2 text-white dark:text-black' fill='currentColor' viewBox='0 0 20 20'>
+                            <path fillRule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clipRule='evenodd' />
                           </svg>
                         </div>
-                        <BreathingAnimationText animationType='black-gray'>
-                          <span
-                            className='text-xs md:text-sm font-medium text-black dark:text-white uppercase'
-                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                          >
-                            {feature}
-                          </span>
-                        </BreathingAnimationText>
-                      </div>
+                        <span
+                          className='text-[10px] font-medium text-black dark:text-white uppercase leading-tight'
+                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
+                          {feature}
+                        </span>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
 
-                <ActionButton href='https://app.typus.ai/register' className='w-full max-w-xs mt-auto'>
-                  {t('goToApp')}
-                </ActionButton>
-              </div>
-
-              {/* Service Offer Card */}
-              <div className='border-2 border-black dark:border-white p-6 flex flex-col items-center justify-between min-h-[300px]'>
-                <div className='w-full'>
-                  <BreathingAnimationText animationType='black-gray'>
-                    <h3 
-                      className='text-center uppercase font-bold text-lg mb-6'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: '0.1em' }}
-                    >
-                      {t('serviceOfferTitle') || 'SERVICE OFFER'}
-                    </h3>
-                  </BreathingAnimationText>
-
-                  <div className='flex flex-col gap-3 mb-8 w-full max-w-sm mx-auto'>
-                    {[
-                      t('features.servicePersonalVisualizer'),
-                      t('features.serviceVideoCall'),
-                      t('features.serviceEmailComm'),
-                      t('features.serviceDetailedFeedback'),
-                      t('features.serviceImageRequest'),
-                      t('features.serviceBookDemo'),
-                    ].map((feature, index) => (
-                      <div
-                        key={`service-feature-${index}`}
-                        className='flex items-start space-x-3'
-                      >
-                        <div className='w-4 h-4 bg-black dark:bg-white flex items-center justify-center flex-shrink-0 mt-0.5'>
-                          <svg
-                            className='w-2.5 h-2.5 text-white dark:text-black'
-                            fill='currentColor'
-                            viewBox='0 0 20 20'
-                          >
-                            <path
-                              fillRule='evenodd'
-                              d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                              clipRule='evenodd'
-                            />
-                          </svg>
-                        </div>
-                        <BreathingAnimationText animationType='black-gray'>
-                          <span
-                            className='text-xs md:text-sm font-medium text-black dark:text-white uppercase'
-                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                          >
-                            {feature}
-                          </span>
-                        </BreathingAnimationText>
-                      </div>
-                    ))}
+                  {/* Button */}
+                  <div className='mt-1'>
+                    <ActionButton href={card.href} className='w-full'>
+                      {card.label}
+                    </ActionButton>
                   </div>
-                </div>
-
-                <ActionButton href='/done-for-you' className='w-full max-w-xs mt-auto'>
-                  {t('doneForYouService')}
-                </ActionButton>
-              </div>
+                </motion.div>
+              ))}
 
             </div>
           </motion.div>
