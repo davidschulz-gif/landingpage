@@ -119,7 +119,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-[260vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
+      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-[220vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
     >
       <Header />
       <motion.div

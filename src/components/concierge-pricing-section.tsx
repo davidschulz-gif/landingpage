@@ -105,7 +105,7 @@ export function ConciergePricingSection() {
       ...plan,
       name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
       features: dynamicFeatures.map(f => t(f)),
-      ...(plan.popular ? { topBadges: [tPricing('bestResults')] } : {}),
+      ...(plan.popular ? { topBadges: [tPricing('bestResultsForDFY')] } : {}),
     }
   })
 
@@ -264,7 +264,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
         <div className='absolute -top-4 right-4 z-30 flex flex-col items-end gap-1.5'>
           {plan.topBadges.map((badge: string, i: number) => (
              <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
-               <span className='text-[9px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+               <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                  {badge}
                </span>
              </div>

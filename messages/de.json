@@ -217,6 +217,7 @@
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 50%",
     "mostPopular": "Am beliebtesten",
     "bestResults": "High-End Ergebnisse",
+    "bestResultsForDFY": "Schneller Rücklauf",
     "subscribe": "Abonnieren",
     "plusVat": "Zuzüglich 19% MwSt",
     "billedEvery3Months": "alle 3 Monate abgerechnet",
@@ -550,6 +551,7 @@
   "BilderFlatrate": {
     "hero": {
       "badge": "Done For You Offer",
+      "innovativeBadge": "innovative Dienstleistung",
       "title1": "Die Bilder-Flat für",
       "title2": "Architekturbüros.",
       "subtitle1": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis.",
@@ -582,11 +584,10 @@
       "step1Title": "Sie senden Ihre Referenzbilder",
       "step1Desc": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben.",
       "step2Title": "Wir erstellen die Bilder mit KI",
-      "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit.",
+      "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit. Wie ein externer Mitarbeiter:in",
       "step2Badge": "Rücklauf 24-48h",
       "step3Title": "Sie erhalten Ihr Bild",
       "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück.",
-      "step3Badge": "Wie ein externer Mitarbeiter:in",
       "tag1": "Einfach",
       "tag2": "Schnell",
       "tag3": "Planbar"
@@ -599,8 +600,8 @@
       "p4": "Hochwertige Architekturvisualisierungen – schneller, flexibler und deutlich effizienter."
     },
     "benefits": {
-      "title": "Wie ein externer Mitarbeiter für Visualisierungen",
-      "subtitle": "Jedes Büro bekommt eine reale Person, die die Visualisierungen erstellt.",
+      "title": "Sie erhalten ein externes Teammitglied für Visualisierungen",
+      "subtitle": "Jedes Büro bekommt eine reale Person zugewiesen, welche die Visualisierungen mithilfe von KI für das Büro erstellt.",
       "benefit1Title": "persönliche Kommunikation",
       "benefit1Desc": "Direkter Draht zu Ihrem Spezialisten, keine Ticketsysteme.",
       "benefit2Title": "Verständnis für Ihre Architektur",
@@ -632,7 +633,10 @@
     },
     "cta": {
       "title": "Bereit für Ihren persönlichen Visualisierungs-Spezialisten?",
-      "button": "Kostenlose Demo und Erstgespräch anfragen"
+      "button": "Kostenlose Demo und Erstgespräch anfragen",
+      "point1": "kostenloser Test des Services mit einem individuellen Input das Sie uns schicken",
+      "point2": "kostenlose Bedarfsanalyse",
+      "point3": "kostenlose & unverbindliche Erstberatung"
     },
     "preview": {
       "badge": "NEU: Done For You",

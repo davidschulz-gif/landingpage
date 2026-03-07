@@ -46,8 +46,21 @@ export default function DoneForYouPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' as const }}
             >
-              <div className='inline-flex items-center rounded-none border border-neutral-200 bg-neutral-50 px-3 py-1 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500 font-space-grotesk'>
-                {t('hero.badge')}
+              <div className='inline-flex items-center gap-3 mb-8'>
+                <div className='inline-flex gap-2 items-center rounded-none border border-neutral-200 bg-neutral-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500 font-space-grotesk'>
+                <span className='font-bold text-sm'>{t('hero.badge')}</span>
+                
+                <div className='relative inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] overflow-hidden font-space-grotesk rounded-none'
+                  style={{
+                    background: 'linear-gradient(135deg, #b8860b 0%, #ffd700 35%, #fffacd 55%, #ffd700 75%, #b8860b 100%)',
+                    color: '#5a3a00',
+                    boxShadow: '0 0 12px rgba(255,215,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4)',
+                  }}
+                >
+                  <span className='relative z-10'>{t('hero.innovativeBadge')}</span>
+                  <span className='absolute inset-0 animate-shine' style={{ background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%)', backgroundSize: '200% 100%' }} />
+                </div>
+                </div>
               </div>
               
               <BreathingAnimationText animationType='black-gray'>
@@ -56,7 +69,7 @@ export default function DoneForYouPage() {
                 </h1>
               </BreathingAnimationText>
               
-              <p className='text-lg md:text-xl text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal mb-10 max-w-2xl mx-auto'>
+              <p className='text-xl md:text-2xl text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal mb-10 max-w-2xl mx-auto'>
                 {t('hero.subtitle1')} {t('hero.subtitle2')}
               </p>
             </motion.div>
@@ -159,7 +172,7 @@ export default function DoneForYouPage() {
               {[
                 { step: 1, icon: FileText, badgeKey: null },
                 { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
-                { step: 3, icon: Image, badgeKey: 'solution.step3Badge' },
+                { step: 3, icon: Image, badgeKey: null },
               ].map(({ step, icon: Icon, badgeKey }) => (
                 <motion.div
                   key={step}
@@ -197,7 +210,7 @@ export default function DoneForYouPage() {
                   <h3 className='text-sm font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-white mb-3'>
                     {t(`solution.step${step}Title` as any)}
                   </h3>
-                  <p className='text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed'>
+                  <p className='text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed'>
                     {t(`solution.step${step}Desc` as any)}
                   </p>
                 </motion.div>
@@ -253,6 +266,11 @@ export default function DoneForYouPage() {
                   <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
                 </p>
               </motion.div>
+            </div>
+            <div className='mt-16 flex justify-center'>
+              <ActionButton className='border-2' href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
+                {t('cta.button')}
+              </ActionButton>
             </div>
           </div>
         </section>
@@ -320,6 +338,11 @@ export default function DoneForYouPage() {
                   <p>{t('howItsPossible.p4')}</p>
                 </div>
               </div>
+              <div className='mt-16 flex justify-center'>
+                <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
+                  {t('cta.button')}
+                </ActionButton>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -342,10 +365,21 @@ export default function DoneForYouPage() {
                   </h2>
                 </BreathingAnimationText>
                 
-                <div className='flex justify-center lg:justify-start'>
-                  <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
-                    {t('cta.button')}
-                  </ActionButton>
+                <div className='flex flex-col items-center lg:items-start gap-12'>
+                  {/* <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
+                    {t('cta.button')} 
+                  </ActionButton> */}
+
+                  <ul className='space-y-4 text-left max-w-sm'>
+                    {[1, 2, 3].map((i) => (
+                      <li key={i} className='flex items-start gap-3'>
+                        <div className='w-1.5 h-1.5 rounded-full bg-black dark:bg-white shrink-0 mt-1.5 shadow-[0_0_8px_rgba(239,68,68,0.4)]' />
+                        <span className='text-sm font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
+                          {t(`cta.point${i}` as any)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
               

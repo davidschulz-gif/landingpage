@@ -439,3 +439,18 @@
 .animate-scroll-right {
   animation: scroll-right 20s linear infinite;
 }
+
+/* Gold shine sweep animation for tags/badges */
+@keyframes shine-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shine {
+  animation: shine-sweep 2.4s linear infinite;
+  background-size: 200% 100%;
+}

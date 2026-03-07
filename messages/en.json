@@ -217,6 +217,7 @@
     "switchToYearly": "Switch to Yearly to save 50%",
     "mostPopular": "Most Popular",
     "bestResults": "High-End Results",
+    "bestResultsForDFY": "Fast Turnaround",
     "subscribe": "Subscribe",
     "plusVat": "Plus 19% VAT",
     "billedEvery3Months": "billed every 3 months",
@@ -550,6 +551,7 @@
   "BilderFlatrate": {
     "hero": {
       "badge": "Done For You Offer",
+      "innovativeBadge": "innovative service",
       "title1": "The Image Flat Rate for",
       "title2": "Architecture Firms.",
       "subtitle1": "Architecture visualizations. Fast. Personal. For a fixed price.",
@@ -582,11 +584,10 @@
       "step1Title": "You send your reference images",
       "step1Desc": "Sketches, mockups, or 3D models - send us what you have.",
       "step2Title": "Wir erstellen die Bilder mit KI",
-      "step2Desc": "Your personal specialist takes over the work.",
+      "step2Desc": "Your personal specialist takes over the work. Like an external employee",
       "step2Badge": "Turnaround 24-48h",
       "step3Title": "You receive your image",
       "step3Desc": "You will receive convincing results back in a very short time.",
-      "step3Badge": "Like an external employee",
       "tag1": "Simple",
       "tag2": "Fast",
       "tag3": "Planable"
@@ -599,8 +600,8 @@
       "p4": "High-quality architectural visualizations – faster, more flexible and significantly more efficient."
     },
     "benefits": {
-      "title": "Like an external employee for visualizations",
-      "subtitle": "Every firm gets a real person who creates the visualizations.",
+      "title": "You get an external team member for visualizations",
+      "subtitle": "Every office is assigned a real person who creates the visualizations for the office using AI.",
       "benefit1Title": "personal communication",
       "benefit1Desc": "Direct line to your specialist, no ticket systems.",
       "benefit2Title": "understanding of your architecture",
@@ -632,7 +633,10 @@
     },
     "cta": {
       "title": "Ready for your personal visualization specialist?",
-      "button": "Request a Free Demo and Initial Consultation"
+      "button": "Request a Free Demo and Initial Consultation",
+      "point1": "free trial of the service with individual input that you send us",
+      "point2": "free needs analysis",
+      "point3": "free & non-binding initial consultation"
     },
     "preview": {
       "badge": "NEW: Done For You",
