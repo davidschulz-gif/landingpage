@@ -217,7 +217,7 @@
     "switchToYearly": "Switch to Yearly to save 50%",
     "mostPopular": "Most Popular",
     "bestResults": "High-End Results",
-    "bestResultsForDFY": "Fast Turnaround",
+    "bestResultsForDFY": "Fast Return",
     "subscribe": "Subscribe",
     "plusVat": "Plus 19% VAT",
     "billedEvery3Months": "billed every 3 months",
@@ -380,7 +380,7 @@
     "success": "You will be notified about new features."
   },
   "BeforeYouGo": {
-    "title": "Before you leave, join our list and get 50% off your first subscription."
+    "title": "Before you leave, join our list and get 70$ off your first subscription."
   },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",
@@ -583,11 +583,11 @@
       "subtitle": "With Typus, you get visualizations by subscription instead of per project. Instead of paying for each image individually, you can request as many visualizations as you want. A personal visualization specialist creates the images for you.",
       "step1Title": "You send your reference images",
       "step1Desc": "Sketches, mockups, or 3D models - send us what you have.",
-      "step2Title": "Wir erstellen die Bilder mit KI",
+      "step2Title": "We create the images with AI",
       "step2Desc": "Your personal specialist takes over the work. Like an external employee",
       "step2Badge": "Turnaround 24-48h",
       "step3Title": "You receive your image",
-      "step3Desc": "You will receive convincing results back in a very short time.",
+      "step3Desc": "You will receive convincing results back in a very short time. You receive feedback on the AI workflow.",
       "tag1": "Simple",
       "tag2": "Fast",
       "tag3": "Planable"
@@ -609,7 +609,10 @@
       "benefit3Title": "consistent visual language",
       "benefit3Desc": "Uniform look for all your projects and competitions.",
       "summary1": "You dont work with an anonymous platform – ",
-      "summary2": "but with a dedicated visualization partner."
+      "summary2": "but with a dedicated visualization partner.",
+      "visualizerName": "Christian Brehmer",
+      "visualizerRole": "Architectural Visualizer · Germany",
+      "visualizerBio": "My Name is Chris, architectural designer & 3D visualizer from Germany with 7+ years experience in architectural visualization."
     },
     "pricing": {
       "title1": "An image normally costs",

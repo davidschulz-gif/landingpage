@@ -380,7 +380,7 @@
     "success": "Sie werden über neue Features benachrichtigt."
   },
   "BeforeYouGo": {
-    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 50% Rabatt auf Ihr erstes Abonnement."
+    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 70€ Rabatt auf Ihr erstes Abonnement."
   },
   "TrustedBy": {
     "certifiedBy": "ZERTIFIZIERT VON",
@@ -587,7 +587,7 @@
       "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit. Wie ein externer Mitarbeiter:in",
       "step2Badge": "Rücklauf 24-48h",
       "step3Title": "Sie erhalten Ihr Bild",
-      "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück.",
+      "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück. Sie erhalten feedback zum KI-Workflow",
       "tag1": "Einfach",
       "tag2": "Schnell",
       "tag3": "Planbar"
@@ -609,7 +609,10 @@
       "benefit3Title": "konsistente Bildsprache",
       "benefit3Desc": "Einheitlicher Look für all Ihre Projekte und Wettbewerbe.",
       "summary1": "Sie arbeiten nicht mit einer anonymen Plattform – ",
-      "summary2": "sondern mit einem dedizierten Visualisierungs-Partner."
+      "summary2": "sondern mit einem dedizierten Visualisierungs-Partner.",
+      "visualizerName": "Christian Brehmer",
+      "visualizerRole": "Architekturvisualisierung · Deutschland",
+      "visualizerBio": "Mein Name ist Chris, Architekt und 3D-Visualisierer aus Deutschland mit über 7 Jahren Erfahrung in der Architekturvisualisierung."
     },
     "pricing": {
       "title1": "Ein Bild kostet normalerweise",

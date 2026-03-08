@@ -6,7 +6,7 @@ import { BreathingAnimationText } from '@/components/breathing-animation-text'
 import BookingDemoClassForm from '@/components/demo-class-boooking-form'
 import { FooterSection } from '@/components/footer-section'
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Clock, FileText, Image, MessageSquare, MonitorPlay, Users } from 'lucide-react'
+import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Users } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 
@@ -47,8 +47,8 @@ export default function DoneForYouPage() {
               transition={{ duration: 0.8, ease: 'easeOut' as const }}
             >
               <div className='inline-flex items-center gap-3 mb-8'>
-                <div className='inline-flex gap-2 items-center rounded-none border border-neutral-200 bg-neutral-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500 font-space-grotesk'>
-                <span className='font-bold text-sm'>{t('hero.badge')}</span>
+                <div className='inline-flex gap-2 items-center rounded-none border border-black bg-neutral-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:border-neutral-800 dark:bg-neutral-800 dark:text-neutral-500 font-space-grotesk'>
+                <span className='font-bold text-black text-sm'>{t('hero.badge')}</span>
                 
                 <div className='relative inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] overflow-hidden font-space-grotesk rounded-none'
                   style={{
@@ -109,8 +109,8 @@ export default function DoneForYouPage() {
                   <ul className='space-y-4 mt-6'>
                     {[t('problem.point1'), t('problem.point2'), t('problem.point3')].map((point, i) => (
                       <li key={i} className='flex items-center gap-4'>
-                        <div className='w-5 h-5 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
-                           <span className='text-[10px]'>✕</span>
+                        <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
+                           <span className='text-[12px] text-red-600'>✕</span>
                         </div>
                         <span className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
                       </li>
@@ -132,15 +132,15 @@ export default function DoneForYouPage() {
                   {[
                     { icon: Clock, title: t('problem.meaning1Title'), desc: t('problem.meaning1Desc') },
                     { icon: MessageSquare, title: t('problem.meaning2Title'), desc: t('problem.meaning2Desc') },
-                    { icon: MonitorPlay, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
+                    { icon: BanknoteIcon, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
                   ].map((item, i) => (
                     <div key={i} className='flex gap-5'>
-                      <div className='mt-1 text-black dark:text-white'>
-                        <item.icon className='w-5 h-5 opacity-60' />
+                      <div className='mt-1 text-red-600 dark:text-red-500'>
+                        <item.icon className='w-5 h-5' />
                       </div>
                       <div>
-                        <h4 className='font-bold text-sm text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
-                        <p className='text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed'>{item.desc}</p>
+                        <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
+                        <p className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -163,7 +163,7 @@ export default function DoneForYouPage() {
                   {t('solution.title')}
                 </h2>
               </BreathingAnimationText>
-              <p className='text-sm md:text-base text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto'>
+              <p className='text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto'>
                 {t('solution.subtitle')}
               </p>
             </motion.div>
@@ -210,14 +210,14 @@ export default function DoneForYouPage() {
                   <h3 className='text-sm font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-white mb-3'>
                     {t(`solution.step${step}Title` as any)}
                   </h3>
-                  <p className='text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed'>
+                  <p className='text-base text-neutral-500 dark:text-neutral-400 leading-relaxed'>
                     {t(`solution.step${step}Desc` as any)}
                   </p>
                 </motion.div>
               ))}
             </div>
             
-            <div className='mt-20 flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400'>
+            <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-black'>
               <span>{t('solution.tag1')}</span>
               <span className='opacity-30'>/</span>
               <span>{t('solution.tag2')}</span>
@@ -259,18 +259,38 @@ export default function DoneForYouPage() {
               <motion.div 
                 {...motionProps} 
                 transition={{ ...motionProps.transition, delay: 0.2, ease: 'easeOut' as const }}
-                className='flex items-center justify-center p-8 md:p-12 border border-neutral-800 text-center bg-white/5'
+                className='flex flex-col items-center justify-between gap-8 p-8 md:p-12 border border-neutral-800 text-center bg-white/5'
               >
                 <p className='text-lg md:text-xl font-normal leading-relaxed text-neutral-300'>
                   {t('benefits.summary1')} <br/>
                   <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
                 </p>
+
+                {/* Visualizer Profile Card */}
+                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full max-w-xs text-left'>
+                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
+                    <img
+                      src='/Christian-Brehmer.png'
+                      alt={t('benefits.visualizerName')}
+                      className='w-full h-full object-cover object-top'
+                    />
+                  </div>
+                  <div>
+                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
+                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
+                    <p className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3'>
+                      {t('benefits.visualizerBio')}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </div>
             <div className='mt-16 flex justify-center'>
+              <div>
               <ActionButton className='border-2' href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
                 {t('cta.button')}
               </ActionButton>
+              </div>
             </div>
           </div>
         </section>
@@ -374,7 +394,7 @@ export default function DoneForYouPage() {
                     {[1, 2, 3].map((i) => (
                       <li key={i} className='flex items-start gap-3'>
                         <div className='w-1.5 h-1.5 rounded-full bg-black dark:bg-white shrink-0 mt-1.5 shadow-[0_0_8px_rgba(239,68,68,0.4)]' />
-                        <span className='text-sm font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
+                        <span className='text-md font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
                           {t(`cta.point${i}` as any)}
                         </span>
                       </li>
