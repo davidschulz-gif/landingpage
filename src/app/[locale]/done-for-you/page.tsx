@@ -6,7 +6,7 @@ import { BreathingAnimationText } from '@/components/breathing-animation-text'
 import BookingDemoClassForm from '@/components/demo-class-boooking-form'
 import { FooterSection } from '@/components/footer-section'
 import { motion } from 'framer-motion'
-import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Users } from 'lucide-react'
+import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Sparkles, Users } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 
@@ -278,7 +278,7 @@ export default function DoneForYouPage() {
                   <div>
                     <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
                     <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
-                    <p className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3'>
+                    <p className='text-neutral-400 text-[11px] leading-relaxed '>
                       {t('benefits.visualizerBio')}
                     </p>
                   </div>
@@ -319,12 +319,16 @@ export default function DoneForYouPage() {
                   <div className='space-y-4 flex-1 flex flex-col justify-center'>
                     <div className='flex flex-col items-center gap-2'>
                       <div className='flex items-end gap-2'>
-                        <span className='font-normal text-4xl text-neutral-900 dark:text-white'>{t('pricing.flatPrice1')}</span>
-                        <span className='text-neutral-400 font-light text-sm pb-1 uppercase tracking-widest'>{t('pricing.flatOr')}</span>
-                        <span className='font-normal text-4xl text-neutral-900 dark:text-white'>{t('pricing.flatPrice2')}</span>
+                        <span className='text-neutral-400 font-light text-sm pb-1 pr-2 uppercase tracking-widest'>{t('pricing.flatFrom')}</span>
+                        <span className='font-normal text-4xl text-neutral-900 dark:text-white'>{t('pricing.flatPrice')}</span>
                       </div>
-                      <div className='text-[10px] text-neutral-400 uppercase tracking-[0.2em] font-bold mt-2'>
-                        {t('pricing.flatPerMonth')}
+                      <div className='flex flex-col items-center text-center mt-2'>
+                        <div className='text-[10px] text-neutral-400 uppercase tracking-[0.2em] font-bold'>
+                          {t('pricing.flatPerMonth')}
+                        </div>
+                        <div className='text-[10px] text-neutral-500 font-normal mt-1'>
+                          {t('pricing.flatBillingNote')}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -350,6 +354,46 @@ export default function DoneForYouPage() {
               
               <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-3xl mx-auto'>
                 <p>{t('howItsPossible.p1')}</p>
+                
+                <div className='flex justify-center py-8'>
+                  <motion.div
+                    className='relative flex items-center justify-center w-14 h-14 rounded-full'
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(184,134,11,0.1) 100%)',
+                      boxShadow: '0 0 20px rgba(255,215,0,0.15), inset 0 0 10px rgba(255,215,0,0.1)',
+                    }}
+                  >
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+                    >
+                      <Sparkles 
+                        className='w-6 h-6' 
+                        style={{ 
+                          color: '#b8860b',
+                          filter: 'drop-shadow(0 0 8px rgba(255,215,0,0.6))'
+                        }} 
+                      />
+                    </motion.div>
+                    
+                    {/* Inner glowing pulse */}
+                    <motion.div
+                      className='absolute inset-0 rounded-full'
+                      style={{ border: '1px solid rgba(255,215,0,0.3)' }}
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.8, 0, 0.8] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    
+                    {/* Outer glowing pulse */}
+                    <motion.div
+                      className='absolute inset-0 rounded-full'
+                      style={{ border: '1px solid rgba(184,134,11,0.2)' }}
+                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                    />
+                  </motion.div>
+                </div>
+
                 <p>{t('howItsPossible.p2')}</p>
                 <div className='pt-4'>
                   <span className='font-bold text-neutral-900 dark:text-white uppercase tracking-widest text-xs block mb-3'>
