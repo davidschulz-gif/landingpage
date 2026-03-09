@@ -146,7 +146,7 @@ export default function HeroEmailForm() {
         <IconMail size={14} className='text-gray-600' />
         <span
           className='text-[11px] text-gray-600 dark:text-gray-300'
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
           {t('description')}
         </span>

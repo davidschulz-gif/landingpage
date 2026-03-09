@@ -113,7 +113,7 @@ export function ArticleCarouselSection() {
           <BreathingAnimationText animationType='black-gray'>
             <motion.h2
               className='text-[30px] font-normal text-black mb-4'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -194,7 +194,7 @@ export function ArticleCarouselSection() {
                           <h3
                             className='text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2'
                             style={{
-                              fontFamily: "'Space Grotesk', sans-serif",
+                              fontFamily: "'Soyuz Grotesk', sans-serif",
                             }}
                           >
                             {article.title}
@@ -275,7 +275,7 @@ export function ArticleCarouselSection() {
                             rel='noopener noreferrer'
                             className='inline-flex items-center text-sm font-medium text-black hover:text-gray-700 transition-colors'
                             style={{
-                              fontFamily: "'Space Grotesk', sans-serif",
+                              fontFamily: "'Soyuz Grotesk', sans-serif",
                             }}
                           >
                             {t('readFullArticle')}

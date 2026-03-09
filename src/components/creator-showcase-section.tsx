@@ -56,7 +56,7 @@ export function CreatorShowcaseSection() {
                     <BreathingAnimationText animationType='black-gray'>
                         <motion.h2
                             className='text-2xl md:text-[30px] font-normal text-black mb-4'
-                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}

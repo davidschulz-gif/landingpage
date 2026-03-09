@@ -197,7 +197,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       )}
     >
       {showTitle && (
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-left" style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
           {tPricing('bookDemo')}
         </h2>
       )}
@@ -286,7 +286,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
         <button
           type='submit'
           className='w-full py-4 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
-          style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
           disabled={isRequesting}
         >
           <span>{tPricing('bookDemo')}</span>
@@ -316,7 +316,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
         <IconMail size={16} className='text-gray-400 mt-0.5' />
         <span
           className='text-xs text-gray-500 leading-relaxed'
-          style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
         >
           {t('description')}
         </span>

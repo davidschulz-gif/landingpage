@@ -71,7 +71,7 @@ export function FeaturedTestimonialSection() {
           <BreathingAnimationText animationType='black-gray'>
             <h2
               className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-4'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               WHAT EXPERTS SAY
             </h2>
@@ -123,7 +123,7 @@ export function FeaturedTestimonialSection() {
               <BreathingAnimationText animationType='black-gray'>
                 <h3
                   className='text-[18px] font-bold text-neutral-800 mb-1'
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
                   DR. DIETMAR KÖRING
                 </h3>
@@ -166,7 +166,7 @@ export function FeaturedTestimonialSection() {
 
                 <Button
                   className='animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2  text-sm font-medium transition-all duration-300 hover:scale-105'
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
                   Read full article
                   <ArrowRight className='ml-2 w-4 h-4' />

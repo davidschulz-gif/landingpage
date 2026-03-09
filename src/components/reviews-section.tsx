@@ -41,7 +41,7 @@ export function ReviewsSection() {
             <h2
               className='text-[30px] font-normal text-black mb-6'
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Soyuz Grotesk', sans-serif",
               }}
             >
               {t('title')}

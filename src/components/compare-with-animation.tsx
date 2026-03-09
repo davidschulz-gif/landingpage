@@ -60,7 +60,7 @@ export const CompareWithAnimation = ({
             className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-black mb-6"
             style={{
               fontFamily:
-                "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
             }}
           >
             {t('title')}
@@ -69,7 +69,7 @@ export const CompareWithAnimation = ({
         <BreathingAnimationText animationType="black-gray">
           <p
             className="text-gray-600 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
             {t('description')}
           </p>

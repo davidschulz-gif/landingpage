@@ -23,7 +23,7 @@ export function DemoBookingSection() {
         >
           <h2
             className='text-[30px] sm:text-4xl font-normal text-black mb-6'
-            style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
           >
             {t('title')}
           </h2>

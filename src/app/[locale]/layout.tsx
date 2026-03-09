@@ -4,21 +4,22 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import type { Metadata, Viewport } from 'next'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
-import { Source_Serif_4, Space_Grotesk } from 'next/font/google'
+
+import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-})
 
-const sourceSerif4 = Source_Serif_4({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-source-serif-4',
-  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+
+const soyuzGrotesk = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/soyuz-grotesk/Soyuz Grotesk Bold.woff',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-soyuz-grotesk',
 })
 
 export const metadata: Metadata = {
@@ -147,7 +148,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${spaceGrotesk.variable} ${sourceSerif4.variable} antialiased`}
+      className={`${soyuzGrotesk.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>

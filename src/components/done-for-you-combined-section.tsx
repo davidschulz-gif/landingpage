@@ -21,7 +21,7 @@ export const DoneForYouCombinedSection = () => {
           <BreathingAnimationText animationType='black-gray' className='font-space-grotesk'>
             <h2 
               className='text-[20px] md:text-[26px] lg:text-[30px] font-normal text-black dark:text-white uppercase tracking-[0.2em]'
-              style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             >
               {tBooking('title')}
             </h2>
@@ -29,7 +29,7 @@ export const DoneForYouCombinedSection = () => {
           <BreathingAnimationText animationType='black-gray'>
             <p 
               className='text-neutral-500 max-w-2xl mx-auto text-sm md:text-base font-space-grotesk'
-              style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             >
               {tBooking('subtitle')}
             </p>

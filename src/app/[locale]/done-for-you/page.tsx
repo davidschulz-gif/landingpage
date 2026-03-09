@@ -35,7 +35,7 @@ export default function DoneForYouPage() {
   }
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}>
+    <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
       {/* Navbar */}
       <NavbarDemo />
 
@@ -66,7 +66,7 @@ export default function DoneForYouPage() {
               </div>
               
               <BreathingAnimationText animationType='black-gray'>
-                <h1 className='text-[32px] md:text-[50px] lg:text-[64px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] mb-6' style={{ fontFamily: "var(--font-space-grotesk), sans-serif" }}>
+                <h1 className='text-[32px] md:text-[50px] lg:text-[64px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] mb-6' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
                   {t('hero.title1')} <br className='hidden md:block' /> {t('hero.title2')}
                 </h1>
               </BreathingAnimationText>

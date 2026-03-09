@@ -227,7 +227,7 @@ export const TrustedBySection = () => {
               <div
                 className='text-xs font-bold text-center uppercase md:mb-3 mb-1 md:h-[24px]'
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Soyuz Grotesk', sans-serif",
                   fontSize: '12px',
                   fontWeight: 700,
                   letterSpacing: '1px',
@@ -264,7 +264,7 @@ export const TrustedBySection = () => {
                 <div
                   className='text-xs text-nowrap font-bold text-center uppercase mb-1'
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Soyuz Grotesk', sans-serif",
                     fontWeight: 700,
                     letterSpacing: '1px',
                     fontSize: '8px',
@@ -299,7 +299,7 @@ export const TrustedBySection = () => {
                 <div
                   className='text-xs text-nowrap font-bold text-center uppercase mb-1'
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Soyuz Grotesk', sans-serif",
                     fontSize: '8px',
                     fontWeight: 700,
                     letterSpacing: '1px',

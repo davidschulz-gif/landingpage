@@ -374,7 +374,7 @@ export function ManyChatPricingSection() {
               className='text-[30px] font-normal text-black mb-2'
               style={{
                 fontFamily:
-                  "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
               }}
             >
               {isProfessional ? t('professionalPlans') : t('educationPlans')}
@@ -391,7 +391,7 @@ export function ManyChatPricingSection() {
                     borderClassName='bg-[radial-gradient(#1a1a1a_40%,#000000_60%)] opacity-80'
                     borderRadius='0rem'
                     onClick={() => setIsProfessional(true)}
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('professional')}
                   </MovingBorderButton>
@@ -399,7 +399,7 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setIsProfessional(true)}
                     className='px-4 py-2  text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70'
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('professional')}
                   </button>
@@ -412,7 +412,7 @@ export function ManyChatPricingSection() {
                     borderClassName='bg-[radial-gradient(#1a1a1a_100%,#000000_100%)] opacity-80'
                     borderRadius='0rem'
                     onClick={() => setIsProfessional(false)}
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('education')}
                   </MovingBorderButton>
@@ -420,7 +420,7 @@ export function ManyChatPricingSection() {
                   <button
                     onClick={() => setIsProfessional(false)}
                     className='px-4 py-2  text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70'
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('education')}
                   </button>
@@ -438,7 +438,7 @@ export function ManyChatPricingSection() {
                       ? 'bg-white text-black shadow-md'
                       : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                       }`}
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('plans.explorer.name')}
                   </button>
@@ -448,7 +448,7 @@ export function ManyChatPricingSection() {
                       ? 'bg-white text-black shadow-md'
                       : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                       }`}
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     PRO
                   </button>
@@ -456,7 +456,7 @@ export function ManyChatPricingSection() {
                     onClick={() => setSelectedPlanTier('enterprise')}
                     disabled
                     className='px-6 py-2 text-sm font-medium transition-colors text-gray-400 bg-white/30 cursor-not-allowed opacity-50'
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('plans.enterprise.name')}
                   </button>
@@ -498,7 +498,7 @@ export function ManyChatPricingSection() {
                 </div>
                 <p
                   className='text-black pb-0 mb-8'
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('switchToYearly')}
                 </p>
@@ -763,7 +763,7 @@ function PricingCard({
               {/* Text */}
               <span
                 className='text-[10px] font-bold uppercase tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {t('bestResults')}
               </span>
@@ -778,14 +778,14 @@ function PricingCard({
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
           className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
           {plan.name}
         </span>
 
         {/* Discount badge above price - period discount for 6-mo/yearly */}
         {priceInfo.discount?.periodDiscountPercent != null && (
-          <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
         )}
@@ -796,28 +796,28 @@ function PricingCard({
             {priceInfo.discount ? (
               <>
                 {'originalPrice' in priceInfo.discount && (
-                  <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period}
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className='text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <span className='text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
-                  <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.period}
                   </span>
                 </div>
-                <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {t('discountBadge', { percent: priceInfo.discount.discountPercent, amount: priceInfo.discount.saveAmount })}
                 </div>
               </>
             ) : (
               <div className='flex items-baseline justify-center gap-1'>
-                <span className='text-2xl sm:text-3xl font-bold text-white tracking-tight' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <span className='text-2xl sm:text-3xl font-bold text-white tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {priceInfo.mainPrice}
                 </span>
-                <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {priceInfo.period}
                 </span>
               </div>
@@ -825,19 +825,19 @@ function PricingCard({
           </div>
 
           <div className='space-y-1 text-[11px] text-white/75 mt-3 text-center'>
-            <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {priceInfo.billingInfo}
             </div>
             {priceInfo.saveInfo && (
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {priceInfo.saveInfo}
               </div>
             )}
-            <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {t('plusVat')}
             </div>
             {isProfessional && !priceInfo.discount && (
-              <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
             )}
@@ -867,7 +867,7 @@ function PricingCard({
                 <span
                   className={`leading-tight text-left flex-1 ${hasFeature ? 'text-white' : 'text-white/70'
                     }`}
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
                   {featureText}
                 </span>
@@ -883,7 +883,7 @@ function PricingCard({
           <Button
             className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Soyuz Grotesk', sans-serif",
             }}
           >
             {t('subscribe')}

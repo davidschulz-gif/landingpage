@@ -192,7 +192,7 @@ export const Header = () => {
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
                 className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -330,7 +330,7 @@ export const Header = () => {
               className='text-center uppercase'
               style={{
                 fontFamily:
-                  "var(--font-source-serif-4), 'Source Serif 4', serif",
+                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
                 fontSize: '18px',
                 fontWeight: 300,
                 letterSpacing: '2.5px',
@@ -393,7 +393,7 @@ export const Header = () => {
                   {/* Title */}
                   <h3
                     className='text-center uppercase font-bold text-[11px] tracking-[0.18em] text-black dark:text-white pb-2.5 border-b border-black/10 dark:border-white/10'
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {card.title}
                   </h3>
@@ -415,7 +415,7 @@ export const Header = () => {
                         </div>
                         <span
                           className='text-[10px] font-medium text-black dark:text-white uppercase leading-tight'
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                         >
                           {feature}
                         </span>
@@ -615,7 +615,7 @@ export const ProductCard = React.memo(
             <div className='bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5'>
               <span
                 className='text-white font-medium text-sm leading-tight'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {product.title}
               </span>

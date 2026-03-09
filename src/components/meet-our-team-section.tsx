@@ -41,7 +41,7 @@ export function MeetOurTeamSection() {
           <BreathingAnimationText animationType='black-gray'>
             <motion.h2
               className='text-[30px] text-gray-900 mb-3 font-normal'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -90,7 +90,7 @@ export function MeetOurTeamSection() {
                   <BreathingAnimationText animationType='black-gray'>
                     <h3
                       className='text-lg font-bold text-gray-900 mb-2'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     >
                       {member.name}
                     </h3>
@@ -100,7 +100,7 @@ export function MeetOurTeamSection() {
                   <BreathingAnimationText animationType='black-gray'>
                     <p
                       className='text-sm text-gray-600 mb-6'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     >
                       {member.role}
                     </p>

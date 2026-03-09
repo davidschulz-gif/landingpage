@@ -130,7 +130,7 @@ export function ConciergePricingSection() {
               className='text-[30px] font-normal text-black mb-12'
               style={{
                 fontFamily:
-                  "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
               }}
             >
               {t('title')}
@@ -143,7 +143,7 @@ export function ConciergePricingSection() {
                   ? 'bg-white text-black shadow-md'
                   : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                   }`}
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {t('yearlyBilling')}
               </button>
@@ -153,7 +153,7 @@ export function ConciergePricingSection() {
                   ? 'bg-white text-black shadow-md'
                   : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
                   }`}
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {t('monthlyBilling')}
               </button>
@@ -170,7 +170,7 @@ export function ConciergePricingSection() {
             </div>
             {/* <p
               className='text-black pb-0 mb-8'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {t('subtitle')}
             </p> */}
@@ -264,7 +264,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
         <div className='absolute -top-4 right-4 z-30 flex flex-col items-end gap-1.5'>
           {plan.topBadges.map((badge: string, i: number) => (
              <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
-               <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+               <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                  {badge}
                </span>
              </div>
@@ -277,7 +277,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
         <div className='flex items-center justify-between mb-4'>
           <span
             className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white'
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
             {plan.name}
           </span>
@@ -289,13 +289,13 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
             <div className='flex items-end gap-1 mb-1'>
               <span
                 className='text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white tracking-tight'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {priceInfo.mainPrice}
               </span>
               <span
                 className='text-sm text-neutral-500 dark:text-neutral-400 pb-1'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {priceInfo.period}
               </span>
@@ -303,20 +303,20 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
           </div>
 
           <div className='space-y-1 text-sm text-neutral-500 dark:text-neutral-400 mt-2 text-left'>
-            <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {priceInfo.billingInfo}
             </div>
             {priceInfo.saveInfo && (
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {priceInfo.saveInfo}
               </div>
             )}
-            <div style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {tPricing('plusVat')}
             </div>
             <div
               className='text-emerald-600 dark:text-emerald-400 font-bold mt-2'
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {tPricing('freeTrial')}
             </div>
@@ -335,7 +335,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
               <Check className='w-4 h-4 flex-shrink-0 mt-0.5 mr-3 text-orange-500' />
               <span
                 className='leading-relaxed text-left flex-1 text-neutral-700 dark:text-neutral-300'
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {feature}
               </span>
@@ -350,7 +350,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
           <Button
             className='bg-black text-white dark:bg-white dark:text-black cursor-pointer w-full px-4 py-6 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200'
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Soyuz Grotesk', sans-serif",
             }}
           >
             {t('subscribe')}

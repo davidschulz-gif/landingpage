@@ -119,6 +119,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --font-sans: var(--font-soyuz-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-soyuz-grotesk), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @layer base {
@@ -174,8 +176,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-space-grotesk), 'Helvetica Neue', Arial, sans-serif;
-    /* zoom: 0.75;  ` */
+    font-family: var(--font-soyuz-grotesk), 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
