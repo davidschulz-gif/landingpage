@@ -6,10 +6,12 @@ import { BreathingAnimationText } from '@/components/breathing-animation-text'
 import BookingDemoClassForm from '@/components/demo-class-boooking-form'
 import { FooterSection } from '@/components/footer-section'
 import { motion } from 'framer-motion'
-import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Users } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
+import aiPulseAnimation from '../../../../public/lottie/ai-pulse.json'
 
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 const ConciergePricingSection = dynamic(
   () =>
     import('@/components/concierge-pricing-section').then(
@@ -355,43 +357,14 @@ export default function DoneForYouPage() {
               <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-3xl mx-auto'>
                 <p>{t('howItsPossible.p1')}</p>
                 
-                <div className='flex justify-center py-8'>
-                  <motion.div
-                    className='relative flex items-center justify-center w-14 h-14 rounded-full'
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(184,134,11,0.1) 100%)',
-                      boxShadow: '0 0 20px rgba(255,215,0,0.15), inset 0 0 10px rgba(255,215,0,0.1)',
-                    }}
-                  >
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                    >
-                      <Sparkles 
-                        className='w-6 h-6' 
-                        style={{ 
-                          color: '#b8860b',
-                          filter: 'drop-shadow(0 0 8px rgba(255,215,0,0.6))'
-                        }} 
-                      />
-                    </motion.div>
-                    
-                    {/* Inner glowing pulse */}
-                    <motion.div
-                      className='absolute inset-0 rounded-full'
-                      style={{ border: '1px solid rgba(255,215,0,0.3)' }}
-                      animate={{ scale: [1, 1.2, 1], opacity: [0.8, 0, 0.8] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                <div className='flex justify-center py-6'>
+                  <div className='w-24 h-24 sm:w-32 sm:h-32 -my-4 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
+                    <Lottie 
+                      animationData={aiPulseAnimation} 
+                      loop={true}
+                      style={{ width: '100%', height: '100%' }}
                     />
-                    
-                    {/* Outer glowing pulse */}
-                    <motion.div
-                      className='absolute inset-0 rounded-full'
-                      style={{ border: '1px solid rgba(184,134,11,0.2)' }}
-                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                    />
-                  </motion.div>
+                  </div>
                 </div>
 
                 <p>{t('howItsPossible.p2')}</p>
