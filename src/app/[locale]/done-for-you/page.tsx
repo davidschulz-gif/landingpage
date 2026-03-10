@@ -87,16 +87,19 @@ export default function DoneForYouPage() {
                 <p>{t('hero.description2')}</p>
                 <p className='font-bold text-neutral-900 dark:text-white pt-2' dangerouslySetInnerHTML={{ __html: t.raw('hero.description3') }} />
               </div>
-              
-              <ActionButton href='#booking-form'>
+              <div>
+             
+             <div className=''> <ActionButton href='#booking-form'>
                 {t('hero.cta')}
               </ActionButton>
+              </div>
+              </div>
             </motion.div>
           </div>
         </section>
 
         {/* Problem Section */}
-        <section className='py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
+         <section className='py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
           <div className='max-w-5xl mx-auto'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center'>
               <motion.div {...motionProps}>
@@ -376,9 +379,11 @@ export default function DoneForYouPage() {
                 </div>
               </div>
               <div className='mt-16 flex justify-center'>
+                <div>
                 <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
                   {t('cta.button')}
                 </ActionButton>
+                </div>
               </div>
             </motion.div>
           </div>

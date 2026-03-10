@@ -180,32 +180,34 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className='flex flex-wrap gap-4 justify-center mt-10 w-full items-center'>
-            <Image
-            className='h-16  w-36'
-            // src='/logo/lo_bdbau_1c_rz.avif'
-              src='/bdbau.png'
-              alt=''
-            width={200}
-            height={200}
-          />
+        <div className='flex flex-wrap gap-4 md:gap-8 justify-center mt-10 w-full items-center px-4'>
           <Image
-            className='h-9 w-auto'
-            src={
-              locale === 'de'
-                ? '/eu-kofinanziert-von-der-europaeischen-union.png'
-                : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
-            }
-            style={{
-              transform: `scale(${locale === 'en' ? '2.5' : '1'})`,
-              padding: locale === 'en' ? '0 38px' : '0',
-            }}
+            className='h-12 w-auto md:h-16 md:w-36'
+            // src='/logo/lo_bdbau_1c_rz.avif'
+            src='/bdbau.png'
             alt=''
             width={200}
             height={200}
           />
+          <div
+            className={`flex items-center justify-center transition-transform ${
+              locale === 'en' ? 'scale-[1.6] sm:scale-[2.5] px-6 sm:px-10' : ''
+            }`}
+          >
+            <Image
+              className='h-7 w-auto md:h-9'
+              src={
+                locale === 'de'
+                  ? '/eu-kofinanziert-von-der-europaeischen-union.png'
+                  : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
+              }
+              alt=''
+              width={200}
+              height={200}
+            />
+          </div>
           <Image
-            className='h-9 w-auto'
+            className='h-7 w-auto md:h-9'
             src='/Logo_MWIKE.jpg'
             alt=''
             width={200}
