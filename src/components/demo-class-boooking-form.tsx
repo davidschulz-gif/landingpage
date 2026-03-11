@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils'
 import {
-  IconAlertCircle,
-  IconCheck,
-  IconLoader2
+    IconAlertCircle,
+    IconCheck,
+    IconLoader2
 } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -14,7 +14,7 @@ interface BookingDemoClassFormProps {
   showTitle?: boolean
 }
 
-const apiUrl = '/api/hubspot'
+const apiUrl = 'https://app.typus.ai/api/hubspot'
 
 export default function BookingDemoClassForm({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
