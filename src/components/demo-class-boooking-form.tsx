@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils'
 import {
-    IconAlertCircle,
-    IconCheck,
-    IconLoader2
+  IconAlertCircle,
+  IconCheck,
+  IconLoader2
 } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -113,6 +113,10 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 15000)
 
+    const formattedPhoneNumber = formData.phoneNumber.trim()
+      ? (formData.phoneNumber.startsWith('+') ? formData.phoneNumber : `+${formData.phoneNumber}`)
+      : ''
+
     try {
       const response = await fetch(
         apiUrl,
@@ -127,7 +131,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
             position: formData.position,
             email: formData.email,
             ...(formData.companyName && { company: formData.companyName }),
-            ...(formData.phoneNumber && { phone: formData.phoneNumber.startsWith('+') ? formData.phoneNumber : `+${formData.phoneNumber}` }),
+            ...(formData.phoneNumber && { phone: formattedPhoneNumber }),
             marketingConsent: formData.newsletter
           }),
           signal: controller.signal,
@@ -149,6 +153,18 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       }
 
       setSuccessMessage(t('success'))
+
+      // GTM: fire generate_lead conversion event (picked up by Google Ads & Meta tags in GTM)
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'generate_lead',
+          form_name: 'book_demo_call',
+          lead_email: formData.email,
+          lead_name: formData.name,
+          lead_company: formData.companyName,
+          lead_phone: formattedPhoneNumber,
+        })
+      }
       setFormData({
         name: '',
         position: '',
