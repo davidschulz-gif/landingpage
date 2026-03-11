@@ -175,8 +175,8 @@ export default async function RootLayout({
           gtmId='GTM-W2MLJGLN'
           gtmScriptUrl='https://metrics.typus.ai/gtm.js'
         />
-        <noscript><iframe src="https://metrics.typus.ai/ns.html?id=GTM-W2MLJGLN" height="0" width="0"
-          style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
+        {/* <noscript><iframe src="https://metrics.typus.ai/ns.html?id=GTM-W2MLJGLN" height="0" width="0"
+          style={{ display: "none", visibility: "hidden" }}></iframe></noscript> */}
       </head>
       <body className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'>
         <ThemeProvider
