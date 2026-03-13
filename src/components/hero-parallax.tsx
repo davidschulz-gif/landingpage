@@ -1,5 +1,6 @@
 'use client'
 import {
+  AnimatePresence,
   motion,
   useScroll,
   useSpring,
@@ -9,7 +10,7 @@ import {
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { ActionButton } from './action-button'
 import { BreathingAnimationText } from './breathing-animation-text'
 import HeroEmailForm from './hero-email-form'
@@ -177,10 +178,20 @@ export const HeroParallax = ({
 export const Header = () => {
   const t = useTranslations('Hero')
   const locale = useLocale()
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Get video source based on locale
+  const titles = t.raw('titles') as string[]
+  const descriptions = t.raw('descriptions') as string[]
+
   const videoSource =
     locale === 'de' ? '/hero-videos/german.webm' : '/hero-videos/english.webm'
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % titles.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [titles.length])
 
   return (
     <div className='max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-6 md:px-0 w-full'>
@@ -191,22 +202,46 @@ export const Header = () => {
           <div className='relative max-w-lg flex-1'>
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
-                className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6 uppercase'
+                className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[75px]'
                 style={{ fontFamily: "var(--font-soyuz-grotesk),'Soyuz Grotesk', sans-serif" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
               >
-                <span className='text-black dark:text-white'>{t('title')}</span>
+                <AnimatePresence mode='wait'>
+                  <motion.span
+                    key={currentIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className='text-black dark:text-white absolute left-0'
+                  >
+                    {titles[currentIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </motion.h1>
             </BreathingAnimationText>
 
-            <BreathingAnimationText
-              animationType='black-gray'
-              className='z-999 text-[14px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4'
-            >
-              {t('description')}
-            </BreathingAnimationText>
+            <div className='h-[72px] relative overflow-hidden mb-6'>
+              <AnimatePresence mode='wait'>
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className='absolute inset-0'
+                >
+                  <BreathingAnimationText
+                    animationType='black-gray'
+                    className='z-999 text-[14px] leading-relaxed text-gray-700 dark:text-gray-300'
+                  >
+                    {descriptions[currentIndex]}
+                  </BreathingAnimationText>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             <div className='flex items-start gap-6 flex-col md:flex-row md:items-center'>
               <div className='w-auto'>

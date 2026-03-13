@@ -106,6 +106,38 @@ const CreatorShowcaseSection = dynamic(
   }
 )
 
+const RightsSection = dynamic(
+  () => import('@/components/rights-section').then(mod => mod.RightsSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const DetailedFeaturesSection = dynamic(
+  () => import('@/components/detailed-features-section').then(mod => mod.DetailedFeaturesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const IndustrySection = dynamic(
+  () => import('@/components/industry-section').then(mod => mod.IndustrySection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const FAQSection = dynamic(
+  () => import('@/components/faq-section').then(mod => mod.FAQSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 const FooterSection = dynamic(
   () => import('@/components/footer-section').then(mod => mod.FooterSection),
   {
@@ -263,6 +295,42 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <UseCasesSection />
+      </motion.div>
+
+      {/* Rights Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <RightsSection />
+      </motion.div>
+
+      {/* Detailed Feature Comparison Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <DetailedFeaturesSection />
+      </motion.div>
+
+      {/* Industry Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <IndustrySection />
+      </motion.div>
+
+      {/* FAQ Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <FAQSection />
       </motion.div>
       {/* Video Showcase Section */}
       <motion.div

@@ -166,7 +166,7 @@ export const ComparisonSection = () => {
                 ))}
               </tbody>
             </table>
-            <p className="text-center text-gray-300 text-xs mt-8">
+            <p className="text-center text-gray-800 text-sm mt-8">
               {t('marketPrices')}
             </p>
           </div>

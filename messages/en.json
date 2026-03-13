@@ -81,8 +81,18 @@
     }
   },
   "Hero": {
-    "title": "AI FOR ARCHITECTS.",
-    "description": "AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.",
+    "titles": [
+      "AI FOR ARCHITECTS.",
+      "THE CHATGPT FOR ARCHITECTS.",
+      "THE GERMAN AI VISUALIZATION APP",
+      "VISUALIZATIONS 90% CHEAPER"
+    ],
+    "descriptions": [
+      "AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.",
+      "What ChatGPT is for text is typus.ai for architecture visualization. Sketch in, presentation picture out — in minutes.",
+      "From sketch, CAD plan or 3D model to presentation images in minutes. Material and facade variants, interior & exterior, animations – all in a visualization app.",
+      "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 99."
+    ],
     "getStarted": "Get Started",
     "goToApp": "Go to App",
     "doneForYouService": "Done-For-You Service",
@@ -652,7 +662,7 @@
     "badge": "Cost comparison",
     "title": "Days of work.\nOr 5 minutes.",
     "subtitle": "See what typus.ai means compared to traditional visualization.",
-    "marketPrices": "Market prices for professional architecture visualization in Switzerland (2024/2025).",
+    "marketPrices": "Market prices for professional architecture visualization in Germany (2024/2025).",
     "columns": {
       "task": "Task",
       "traditional": "Traditional",
@@ -720,12 +730,195 @@
     "students": {
       "title": "Students",
       "description": "Professional visualizations for portfolios and final projects at half price.",
-      "benefit": "90% student discount"
+      "benefit": "75% student discount"
     },
     "companies": {
       "title": "Companies",
       "description": "Scalable workflows, custom models, API integration and priority support.",
       "benefit": "ROI in < 2 months"
+    }
+  },
+  "Rights": {
+    "badge": "YOUR RIGHTS",
+    "title": "Your Images. Your Right.",
+    "cards": {
+      "ownership": {
+        "title": "Ownership",
+        "subtitle": "Full Ownership",
+        "description": "All generated images belong to you. Use, sell, modify — without restrictions."
+      },
+      "dataPrivacy": {
+        "title": "Data Protection",
+        "subtitle": "No Training",
+        "description": "Your inputs and outputs are never used for training. Not now, not later. Guaranteed."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "subtitle": "Not Public",
+        "description": "Typus does not publish user images. Your work remains private and is not shared."
+      },
+      "commercial": {
+        "title": "Commercial",
+        "subtitle": "Full Usage",
+        "description": "Use Typus images for real estate projects, portfolios — without restrictions."
+      }
+    },
+    "banner": {
+      "privacy": "Privacy is non-negotiable.",
+      "hosting": "Hosting",
+      "hostingDetails": "AWS S3 EU — Migration to Zurich in preparation"
+    }
+  },
+  "DetailedComparison": {
+    "title": "Detailed Feature Comparison",
+    "subtitle": "All features at a glance — choose the plan that suits you.",
+    "columns": {
+      "function": "Function",
+      "typus": "typus.ai",
+      "traditional": "Traditional"
+    },
+    "rows": {
+      "time": {
+        "label": "Time to first result",
+        "typus": "Minutes – instant AI generation",
+        "traditional": "Hours to days – manual rendering process"
+      },
+      "cost": {
+        "label": "Cost per image",
+        "typus": "Low – Pay-per-Use, no upfront investment",
+        "traditional": "High – expensive licenses and hardware"
+      },
+      "iterations": {
+        "label": "Iterations & Variations",
+        "typus": "Unlimited – test ideas instantly",
+        "traditional": "Limited – every change requires re-rendering"
+      },
+      "learningCurve": {
+        "label": "Learning Curve",
+        "typus": "Minimal – intuitive interface, quick start",
+        "traditional": "Steep – complex tools, months of training"
+      },
+      "outputQuality": {
+        "label": "Output Quality",
+        "typus": "Professional – optimized for architecture",
+        "traditional": "Professional – but requires expertise"
+      },
+      "hardware": {
+        "label": "Hardware Requirements",
+        "typus": "None – cloud-based, works on any device",
+        "traditional": "High-end GPU required – expensive workstations"
+      },
+      "updates": {
+        "label": "Model Updates",
+        "typus": "Automatic – latest AI models within 24 hours",
+        "traditional": "Manual – ongoing tool updates & version management"
+      },
+      "setup": {
+        "label": "App Setup",
+        "typus": "None – browser-based, instant access",
+        "traditional": "Complex – installation, configuration, plugins"
+      },
+      "control": {
+        "label": "Creative Control",
+        "typus": "Complete – AI supported, you decide",
+        "traditional": "Complete – full manual control"
+      },
+      "scalability": {
+        "label": "Scalability",
+        "typus": "Unlimited – scale up instantly",
+        "traditional": "Limited – hardware constraints"
+      },
+      "hybrid": {
+        "label": "Hybrid Workflow",
+        "typus": "Yes – combine AI with traditional methods",
+        "traditional": "No – traditional only"
+      }
+    },
+    "footer": "* Time and cost are approximate averages based on industry standards. Results may vary depending on project complexity and requirements."
+  },
+  "Industry": {
+    "title": "typus.ai for your Industry",
+    "subtitle": "typus.ai is for everyone who visualizes professionally — from architecture firms to craft businesses.",
+    "viewAll": "View all industries",
+    "cards": {
+      "architects": {
+        "title": "AI for Architects",
+        "description": "From sketch to final rendering. Competitions, variant studies, and client presentations."
+      },
+      "interiorArchitects": {
+        "title": "AI for Interior Designers",
+        "description": "Interior visualizations, furnishing variants, and material studies in minutes."
+      },
+      "carpenters": {
+        "title": "AI for Carpenters",
+        "description": "Visualize furniture designs and interior construction projects photorealistically."
+      },
+      "kitchenBuilders": {
+        "title": "AI for Kitchen Builders",
+        "description": "Transform kitchen plans into convincing visualizations."
+      },
+      "painters": {
+        "title": "AI for Painters",
+        "description": "Visualize color designs and facade coatings in advance."
+      },
+      "furnitureMakers": {
+        "title": "AI for Furniture Makers",
+        "description": "Display furniture designs photorealistically and convince customers."
+      },
+      "developers": {
+        "title": "AI for Developers",
+        "description": "Understand, visualize, and communicate construction projects better."
+      },
+      "realEstate": {
+        "title": "AI for Real Estate Developers",
+        "description": "Marketing renderings, exposé images, and marketing visuals for new construction projects."
+      }
+    }
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know",
+    "questions": {
+      "setupTime": {
+        "question": "How long does setup take?",
+        "answer": "You can start immediately. No installation, no complex configuration – just sign up and start."
+      },
+      "freeImages": {
+        "question": "What happens after 10 free images?",
+        "answer": "After your 10 free images, you can choose a plan that suits your needs to continue generating stunning visualizations."
+      },
+      "technicalKnowledge": {
+        "question": "Do I need technical knowledge?",
+        "answer": "No technical knowledge is required. Our platform is designed to be intuitive and easy to use for everyone."
+      },
+      "cancellation": {
+        "question": "Can I cancel monthly?",
+        "answer": "Yes, you can cancel your subscription at any time. We offer flexible plans to fit your workflow."
+      },
+      "customModels": {
+        "question": "What are Custom AI Models?",
+        "answer": "Custom AI Models are tailored to your specific architectural style or project requirements, providing even more precise results."
+      },
+      "dataSecurity": {
+        "question": "What happens to my data?",
+        "answer": "Your data is safe and secure. We follow strict privacy protocols and never use your data to train public models."
+      },
+      "ownModels": {
+        "question": "Can I train my own models?",
+        "answer": "Yes, with our Pro and Enterprise plans, you can train AI models on your own architectural style and library."
+      },
+      "studentDiscount": {
+        "question": "Is there a student discount?",
+        "answer": "Yes, we offer special discounted rates for students and educators to support the next generation of architects."
+      },
+      "germanSupport": {
+        "question": "Is there support in German?",
+        "answer": "Yes, we provide full support in both German and English to assist you with any questions."
+      },
+      "fileFormats": {
+        "question": "Which file formats are supported?",
+        "answer": "We support a wide range of formats, including CAD files, sketches, and common image formats like JPG and PNG."
+      }
     }
   }
 }

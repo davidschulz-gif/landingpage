@@ -81,8 +81,18 @@
     }
   },
   "Hero": {
-    "title": "KI FÜR ARCHITEKTEN.",
-    "description": "KI erhält die Struktur Ihrer architektonischen Eingabe vollständig bei, während sie atemberaubende KI-gestützte Visualisierungen erstellt. Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
+    "titles": [
+      "KI FÜR ARCHITEKTEN.",
+      "DAS CHATGPT FÜR ARCHITEKTEN.",
+      "DIE DEUTSCHE KI-VISUALISIERUNGS-APP",
+      "VISUALISIERUNGEN 90% GÜNSTIGER"
+    ],
+    "descriptions": [
+      "KI erhält die Struktur Ihrer architektonischen Eingabe vollständig bei, während sie atemberaubende KI-gestützte Visualisierungen erstellt. Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
+      "Was ChatGPT für Text ist, ist typus.ai für die Architekturvisualisierung. Skizze rein, Präsentationsbild raus – in Minuten.",
+      "Von der Skizze, dem CAD-Plan oder dem 3D-Modell in wenigen Minuten zu Präsentationsbildern. Material- und Fassadenvarianten, Innen- & Außenbereich, Animationen – alles in einer Visualisierungs-App.",
+      "Eine externe Visualisierung kostet 500–1500 USD. Mit typus.ai erstellen Sie hunderte Varianten pro Monat — ab 99 USD."
+    ],
     "getStarted": "Loslegen",
     "goToApp": "Go to App",
     "doneForYouService": "Done-For-You Service",
@@ -652,7 +662,7 @@
     "badge": "Kostenvergleich",
     "title": "Tage Arbeit.\nOder 5 Minuten.",
     "subtitle": "Sehen Sie, was typus.ai im Vergleich zur traditionellen Visualisierung bedeutet.",
-    "marketPrices": "Marktpreise für professionelle Architekturvisualisierung in der Schweiz (2024/2025).",
+    "marketPrices": "Marktpreise für professionelle Architekturvisualisierung in Deutschland (2024/2025).",
     "columns": {
       "task": "Aufgabe",
       "traditional": "Traditionell",
@@ -719,12 +729,195 @@
     "students": {
       "title": "Studierende",
       "description": "Professionelle Visualisierungen für Portfolio und Abschlussprojekte zum halben Preis.",
-      "benefit": "90% Studenten-Rabatt"
+      "benefit": "75% Studenten-Rabatt"
     },
     "companies": {
       "title": "Unternehmen",
       "description": "Skalierbare Workflows, Custom Models, API-Integration und Priority Support.",
       "benefit": "ROI in < 2 Monaten"
+    }
+  },
+  "Rights": {
+    "badge": "IHRE RECHTE",
+    "title": "Ihre Bilder. Ihr Recht.",
+    "cards": {
+      "ownership": {
+        "title": "Eigentum",
+        "subtitle": "Volles Eigentum",
+        "description": "Alle generierten Bilder gehören Ihnen. Verwenden, verkaufen, modifizieren — ohne Einschränkungen."
+      },
+      "dataPrivacy": {
+        "title": "Datenschutz",
+        "subtitle": "Kein Training",
+        "description": "Ihre Eingaben und Outputs werden nie zum Training verwendet. Nicht jetzt, nicht später. Garantiert."
+      },
+      "privacy": {
+        "title": "Privatsphäre",
+        "subtitle": "Nicht öffentlich",
+        "description": "Typus veröffentlicht keine Nutzer-Bilder. Ihre Arbeit bleibt privat und wird nicht geteilt."
+      },
+      "commercial": {
+        "title": "Kommerziell",
+        "subtitle": "Volle Nutzung",
+        "description": "Verwenden Sie Typus-Bilder für Immobilienprojekte, Portfolios — ohne Einschränkung."
+      }
+    },
+    "banner": {
+      "privacy": "Datenschutz ist nicht verhandelbar.",
+      "hosting": "Hosting",
+      "hostingDetails": "AWS S3 EU — Migration nach Zürich in Vorbereitung"
+    }
+  },
+  "DetailedComparison": {
+    "title": "Detaillierter Funktionsvergleich",
+    "subtitle": "Alle Features im Überblick – wählen Sie den Plan, der zu Ihnen passt.",
+    "columns": {
+      "function": "Funktion",
+      "typus": "typus.ai",
+      "traditional": "Traditionell"
+    },
+    "rows": {
+      "time": {
+        "label": "Zeit bis zum ersten Ergebnis",
+        "typus": "Minuten – sofortige KI-Generierung",
+        "traditional": "Stunden bis Tage – manueller Rendering-Prozess"
+      },
+      "cost": {
+        "label": "Kosten pro Bild",
+        "typus": "Niedrig – Pay-per-Use, keine Vorabinvestition",
+        "traditional": "Hoch – teure Lizenzen und Hardware"
+      },
+      "iterations": {
+        "label": "Iterationen & Variationen",
+        "typus": "Unbegrenzt – Ideen sofort testen",
+        "traditional": "Begrenzt – jede Änderung erfordert Neu-Rendering"
+      },
+      "learningCurve": {
+        "label": "Lernkurve",
+        "typus": "Minimal – intuitive Oberfläche, schneller Start",
+        "traditional": "Steil – komplexe Tools, Monate Training"
+      },
+      "outputQuality": {
+        "label": "Ausgabequalität",
+        "typus": "Professionell – optimiert für Architektur",
+        "traditional": "Professionell – erfordert jedoch Expertise"
+      },
+      "hardware": {
+        "label": "Hardware-Anforderungen",
+        "typus": "Keine – cloudbasiert, funktioniert auf jedem Gerät",
+        "traditional": "High-End-GPU erforderlich – teure Workstations"
+      },
+      "updates": {
+        "label": "Modell-Updates",
+        "typus": "Automatisch – neueste KI-Modelle innerhalb von 24 Stunden",
+        "traditional": "Manuell – laufende Tool-Updates & Versionsverwaltung"
+      },
+      "setup": {
+        "label": "App-Einrichtung",
+        "typus": "Keine – browserbasiert, sofortiger Zugriff",
+        "traditional": "Komplex – Installation, Konfiguration, Plugins"
+      },
+      "control": {
+        "label": "Kreative Kontrolle",
+        "typus": "Vollständig – KI unterstützt, Sie entscheiden",
+        "traditional": "Vollständig – vollständige manuelle Kontrolle"
+      },
+      "scalability": {
+        "label": "Skalierbarkeit",
+        "typus": "Unbegrenzt – sofort hochskalieren",
+        "traditional": "Begrenzt – Hardware-Beschränkungen"
+      },
+      "hybrid": {
+        "label": "Hybrid-Workflow",
+        "typus": "Ja – KI mit traditionellen Methoden kombinieren",
+        "traditional": "Nein – nur traditionell"
+      }
+    },
+    "footer": "* Zeiten und Kosten sind ungefähre Durchschnittswerte basierend auf Branchenstandards. Ergebnisse können je nach Projektkomplexität und Anforderungen variieren."
+  },
+  "Industry": {
+    "title": "typus.ai für Ihre Branche",
+    "subtitle": "typus.ai ist für alle, die professionell visualisieren — vom Architekturbüro bis zum Handwerksbetrieb.",
+    "viewAll": "Alle Branchen ansehen",
+    "cards": {
+      "architects": {
+        "title": "KI für Architekten",
+        "description": "Von der Skizze zum finalen Rendering. Wettbewerbe, Variantenstudien und Kundenpräsentationen."
+      },
+      "interiorArchitects": {
+        "title": "KI für Innenarchitekten",
+        "description": "Interior-Visualisierungen, Möblierungsvarianten und Materialstudien in Minuten."
+      },
+      "carpenters": {
+        "title": "KI für Schreiner",
+        "description": "Möbelentwürfe und Innenausbauprojekte fotorealistisch visualisieren."
+      },
+      "kitchenBuilders": {
+        "title": "KI für Küchenbauer",
+        "description": "Küchenplanungen in überzeugende Visualisierungen verwandeln."
+      },
+      "painters": {
+        "title": "KI für Maler",
+        "description": "Farbgestaltungen und Fassadenanstriche vorab visualisieren."
+      },
+      "furnitureMakers": {
+        "title": "KI für Möbelmacher",
+        "description": "Möbeldesigns fotorealistisch darstellen und Kunden überzeugen."
+      },
+      "developers": {
+        "title": "KI für Bauherren",
+        "description": "Bauprojekte verstehen, visualisieren und besser kommunizieren."
+      },
+      "realEstate": {
+        "title": "KI für Immobilienentwickler",
+        "description": "Marketing-Renderings, Exposé-Bilder und Vermarktungsvisuals für Neubauprojekte."
+      }
+    }
+  },
+  "FAQ": {
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Alles, was Sie wissen müssen",
+    "questions": {
+      "setupTime": {
+        "question": "Wie lange dauert die Einrichtung?",
+        "answer": "Sie können sofort loslegen. Keine Installation, keine komplexe Konfiguration – einfach anmelden und starten."
+      },
+      "freeImages": {
+        "question": "Was passiert nach 10 kostenlosen Bildern?",
+        "answer": "Nach Ihren 10 kostenlosen Bildern können Sie einen Plan wählen, der zu Ihren Bedürfnissen passt, um weiterhin atemberaubende Visualisierungen zu erstellen."
+      },
+      "technicalKnowledge": {
+        "question": "Brauche ich technisches Wissen?",
+        "answer": "Es ist kein technisches Wissen erforderlich. Unsere Plattform ist so konzipiert, dass sie für jeden intuitiv und einfach zu bedienen ist."
+      },
+      "cancellation": {
+        "question": "Kann ich monatlich kündigen?",
+        "answer": "Ja, Sie können Ihr Abonnement jederzeit kündigen. Wir bieten flexible Pläne an, die zu Ihrem Workflow passen."
+      },
+      "customModels": {
+        "question": "Was sind Custom AI Models?",
+        "answer": "Custom AI Models sind auf Ihren spezifischen Architekturstil oder Ihre Projektanforderungen zugeschnitten und liefern noch präzisere Ergebnisse."
+      },
+      "dataSecurity": {
+        "question": "Was passiert mit meinen Daten?",
+        "answer": "Ihre Daten sind sicher und geschützt. Wir befolgen strenge Datenschutzprotokolle und verwenden Ihre Daten niemals zum Trainieren öffentlicher Modelle."
+      },
+      "ownModels": {
+        "question": "Kann ich eigene Modelle trainieren?",
+        "answer": "Ja, mit unseren Pro- und Enterprise-Plänen können Sie KI-Modelle auf Ihren eigenen Architekturstil und Ihre Bibliothek trainieren."
+      },
+      "studentDiscount": {
+        "question": "Gibt es einen Studentenrabatt?",
+        "answer": "Ja, wir bieten spezielle ermäßigte Tarife für Studenten und Pädagogen an, um die nächste Generation von Architekten zu unterstützen."
+      },
+      "germanSupport": {
+        "question": "Gibt es Support auf Deutsch?",
+        "answer": "Ja, wir bieten vollen Support in Deutsch und Englisch an, um Ihnen bei allen Fragen zu helfen."
+      },
+      "fileFormats": {
+        "question": "Welche Dateiformate werden unterstützt?",
+        "answer": "Wir unterstützen eine Vielzahl von Formaten, darunter CAD-Dateien, Skizzen und gängige Bildformate wie JPG und PNG."
+      }
     }
   }
 }
