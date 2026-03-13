@@ -29,6 +29,24 @@ export const DetailedFeaturesSection = () => {
     traditional: t(`rows.${key}.traditional`),
   }))
 
+  const formatText = (text: string) => {
+    if (!text) return null;
+    const separatorMatch = text.match(/ (\-|–) /);
+    if (!separatorMatch) return <span className="font-bold">{text}</span>;
+    
+    const separator = separatorMatch[0];
+    const parts = text.split(separator);
+    const firstPart = parts[0];
+    const restPart = parts.slice(1).join(separator);
+    
+    return (
+      <span>
+        <span className="font-bold">{firstPart}</span>
+        <span   style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className="text-sm font-normal">{separator}{restPart}</span>
+      </span>
+    );
+  };
+
   return (
     <section className="py-24 px-6 bg-white relative overflow-hidden">
       {/* Background Grid Pattern (Optional, based on image) */}
@@ -75,11 +93,11 @@ export const DetailedFeaturesSection = () => {
                 <div className="space-y-4">
                   <div>
                     <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">{t('columns.typus')}</span>
-                    <p className="font-bold text-gray-900 mt-1">{row.typus}</p>
+                    <p className="text-gray-900 mt-1">{formatText(row.typus)}</p>
                   </div>
                   <div className="pt-4 border-t border-gray-100">
-                    <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">{t('columns.traditional')}</span>
-                    <p className="text-gray-900 mt-1">{row.traditional}</p>
+                    <span className="text-xs font-bold text-red-700 uppercase tracking-wider">{t('columns.traditional')}</span>
+                    <p className="text-red-500 mt-1">{formatText(row.traditional)}</p>
                   </div>
                 </div>
               </motion.div>
@@ -96,7 +114,7 @@ export const DetailedFeaturesSection = () => {
                   <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
                     {t('columns.typus')}
                   </th>
-                  <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
+                  <th className="py-6 px-8 text-left text-sm font-bold text-red-700 uppercase tracking-wider w-[37.5%]">
                     {t('columns.traditional')}
                   </th>
                 </tr>
@@ -114,11 +132,11 @@ export const DetailedFeaturesSection = () => {
                     <td className="py-5 px-8 font-bold text-gray-900">
                       {row.label}
                     </td>
-                    <td className="py-5 px-8 font-bold text-gray-900">
-                      {row.typus}
-                    </td>
                     <td className="py-5 px-8 text-gray-900">
-                      {row.traditional}
+                      {formatText(row.typus)}
+                    </td>
+                    <td className="py-5 px-8 text-red-500">
+                      {formatText(row.traditional)}
                     </td>
                   </motion.tr>
                 ))}

@@ -306,15 +306,7 @@ export default function Home() {
         <RightsSection />
       </motion.div>
 
-      {/* Detailed Feature Comparison Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <DetailedFeaturesSection />
-      </motion.div>
-
+    
       {/* Industry Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -324,14 +316,7 @@ export default function Home() {
         <IndustrySection />
       </motion.div>
 
-      {/* FAQ Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FAQSection />
-      </motion.div>
+      
       {/* Video Showcase Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -405,6 +390,16 @@ export default function Home() {
         <ManyChatPricingSection />
       </motion.div>
 
+        {/* Detailed Feature Comparison Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <DetailedFeaturesSection />
+      </motion.div>
+
+
       {/* Features Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -453,6 +448,15 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <ReviewsSection />
+      </motion.div>
+
+      {/* FAQ Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <FAQSection />
       </motion.div>
 
       {/* Enhanced Footer */}
