@@ -87,9 +87,9 @@
       "VISUALIZATIONS 90% CHEAPER"
     ],
     "descriptions": [
-      "AI fully preserves the structure of your architectural input while creating stunning AI-powered visualizations. Transform your CAD files and sketches into photorealistic renders.",
+      "Transform your CAD files and sketches into photorealistic renders.",
       "What ChatGPT is for text is typus.ai for architecture visualization. Sketch in, presentation picture out — in minutes.",
-      "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 99."
+      "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 117."
     ],
     "getStarted": "Get Started",
     "goToApp": "Go to App",
@@ -738,7 +738,7 @@
   },
   "Rights": {
     "badge": "YOUR RIGHTS",
-    "title": "Your Images. Your Rules.",
+    "title": "Your images. EU AI Act compliant.",
     "cards": {
       "ownership": {
         "title": "Ownership",
@@ -891,7 +891,7 @@
       },
       "cancellation": {
         "question": "Can I cancel on a monthly basis?",
-        "answer": "Absolutely, cancel whenever it suits you. Our flexible pricing adapts to your schedule."
+        "answer": "Yes, you can cancel the Pro-One subscription monthly. We offer the annual subscription at a significantly reduced rate."
       },
       "customModels": {
         "question": "What exactly are Custom AI Models?",

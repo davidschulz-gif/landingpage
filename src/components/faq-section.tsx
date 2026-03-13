@@ -51,12 +51,12 @@ export const FAQSection = () => {
 
   const questionKeys = [
     'setupTime',
-    'freeImages',
+    // 'freeImages',
     'technicalKnowledge',
     'cancellation',
-    'customModels',
+    // // 'customModels',
     'dataSecurity',
-    'ownModels',
+    // // 'ownModels',
     'studentDiscount',
     'germanSupport',
     'fileFormats',

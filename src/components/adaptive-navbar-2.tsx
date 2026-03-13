@@ -289,7 +289,7 @@ export function NavbarDemo() {
                                 <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
                                   {subitem.title}
                                 </h4>
-                                <p className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
+                                <p style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
                                   {subitem.description}
                                 </p>
                               </div>

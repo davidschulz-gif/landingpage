@@ -808,9 +808,9 @@ function PricingCard({
                     {priceInfo.period}
                   </span>
                 </div>
-                <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {/* <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {t('discountBadge', { percent: priceInfo.discount.discountPercent, amount: priceInfo.discount.saveAmount })}
-                </div>
+                </div> */}
               </>
             ) : (
               <div className='flex items-baseline justify-center gap-1'>

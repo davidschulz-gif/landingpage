@@ -42,7 +42,7 @@ export const DetailedFeaturesSection = () => {
     return (
       <span>
         <span className="font-bold">{firstPart}</span>
-        <span   style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className="text-sm font-normal">{separator}{restPart}</span>
+        <span style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className="text-sm font-normal">{separator}{restPart}</span>
       </span>
     );
   };
@@ -96,8 +96,8 @@ export const DetailedFeaturesSection = () => {
                     <p className="text-gray-900 mt-1">{formatText(row.typus)}</p>
                   </div>
                   <div className="pt-4 border-t border-gray-100">
-                    <span className="text-xs font-bold text-red-700 uppercase tracking-wider">{t('columns.traditional')}</span>
-                    <p className="text-red-500 mt-1">{formatText(row.traditional)}</p>
+                    <span className="text-xs font-bold text-gray-900 uppercase tracking-wider">{t('columns.traditional')}</span>
+                    <p className="text-gray-900 mt-1">{formatText(row.traditional)}</p>
                   </div>
                 </div>
               </motion.div>
@@ -114,7 +114,7 @@ export const DetailedFeaturesSection = () => {
                   <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
                     {t('columns.typus')}
                   </th>
-                  <th className="py-6 px-8 text-left text-sm font-bold text-red-700 uppercase tracking-wider w-[37.5%]">
+                  <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
                     {t('columns.traditional')}
                   </th>
                 </tr>
@@ -135,7 +135,7 @@ export const DetailedFeaturesSection = () => {
                     <td className="py-5 px-8 text-gray-900">
                       {formatText(row.typus)}
                     </td>
-                    <td className="py-5 px-8 text-red-500">
+                    <td className="py-5 px-8 text-gray-900">
                       {formatText(row.traditional)}
                     </td>
                   </motion.tr>

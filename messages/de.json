@@ -87,9 +87,9 @@
       "VISUALISIERUNGEN 90% GÜNSTIGER"
     ],
     "descriptions": [
-      "KI erhält die Struktur Ihrer architektonischen Eingabe vollständig bei, während sie atemberaubende KI-gestützte Visualisierungen erstellt. Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
+      "Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
       "Was ChatGPT für Text ist, ist typus.ai für die Architekturvisualisierung. Skizze rein, Präsentationsbild raus – in Minuten.",
-      "Eine externe Visualisierung kostet 500–1500 USD. Mit typus.ai erstellen Sie hunderte Varianten pro Monat — ab 99 USD."
+      "Eine externe Visualisierung kostet 500–1500 EURO. Mit typus.ai erstellen Sie hunderte Varianten pro Monat — ab 99 EURO."
     ],
     "getStarted": "Loslegen",
     "goToApp": "Go to App",
@@ -737,7 +737,7 @@
   },
   "Rights": {
     "badge": "IHRE RECHTE",
-    "title": "Ihre Bilder. Ihre Regeln.",
+    "title": "Ihre Bilder. EU-AI-Act-konform",
     "cards": {
       "ownership": {
         "title": "Eigentum",
@@ -890,7 +890,7 @@
       },
       "cancellation": {
         "question": "Kann ich monatlich kündigen?",
-        "answer": "Selbstverständlich, kündigen Sie wann immer es passt. Unsere flexible Preisgestaltung richtet sich nach Ihrem Rhythmus."
+        "answer": "Ja, im Pro-One-Abo können Sie flexibel kündigen. Das Jahresabo bieten wir stark vergünstigt an."
       },
       "customModels": {
         "question": "Was genau sind Custom AI Models?",
