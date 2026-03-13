@@ -647,5 +647,84 @@
       "subtitle": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis. Ihr persönlicher Visualisierungs-Partner für Architektur.",
       "button": "Learn More"
     }
+  },
+  "Comparison": {
+    "badge": "Kostenvergleich",
+    "title": "Tage Arbeit.\nOder 5 Minuten.",
+    "subtitle": "Sehen Sie, was typus.ai im Vergleich zur traditionellen Visualisierung bedeutet.",
+    "marketPrices": "Marktpreise für professionelle Architekturvisualisierung in der Schweiz (2024/2025).",
+    "columns": {
+      "task": "Aufgabe",
+      "traditional": "Traditionell",
+      "typus": "Mit typus.ai"
+    },
+    "rows": {
+      "outside": {
+        "task": "Außenvisualisierung",
+        "traditional": "500–1.500 € pro Bild, Wartezeit über Tage",
+        "typus": "200+ Bilder im Basis-Abo – Sie wählen das Beste aus"
+      },
+      "interior": {
+        "task": "Innenvisualisierung",
+        "traditional": "300–1.000 € pro Bild, lange Abstimmung",
+        "typus": "Unbegrenzte Varianten in Minuten erstellen"
+      },
+      "facade": {
+        "task": "Fassadenmaterial ändern",
+        "traditional": "Stunden mit Rendering-Software oder Photoshop",
+        "typus": "In wenigen Minuten erledigt"
+      },
+      "redesign": {
+        "task": "Innenraum-Umgestaltung",
+        "traditional": "Stunden mit Rendering-Software oder Photoshop",
+        "typus": "In wenigen Minuten erledigt"
+      },
+      "variants": {
+        "task": "Varianten für den Kunden zeigen",
+        "traditional": "Tage mit traditionellem Rendering",
+        "typus": "Minuten mit typus – direkt im Kundengespräch"
+      },
+      "pitch": {
+        "task": "Projekt-Pitch & Moodboard",
+        "traditional": "Generische Pinterest-Boards – austauschbar und unpersönlich",
+        "typus": "Einzigartiges Moodboard mit Ihrem Projekt – exakt Ihre Vision"
+      }
+    }
+  },
+  "UseCases": {
+    "title": "Massgeschneidert für alle Rollen in Architektur & Immobilien",
+    "subtitle": "Messbare Vorteile für Architekten, Innenarchitekten, Entwickler, Immobilien und Unternehmen. Weniger manuelles Rendering, mehr Varianten und bis zu 80% niedrigere Visualisierungskosten mit der typus AI App.",
+    "badge": "USE CASE",
+    "button": "Mehr erfahren",
+    "architects": {
+      "title": "Architekten",
+      "description": "Von der ersten Skizze bis zur finalen Visualisierung – in einem Bruchteil der Zeit.",
+      "benefit": "50-100 Stunden pro Projekt sparen"
+    },
+    "interiorArchitects": {
+      "title": "Innenarchitekten",
+      "description": "Material- und Farbvarianten in Sekunden. Kunden überzeugen mit präzisen Visualisierungen.",
+      "benefit": "3-5x schnellere Iterationen"
+    },
+    "realEstate": {
+      "title": "Immobilien",
+      "description": "Professionelle Marketing-Visualisierungen und Videos vor Baubeginn.",
+      "benefit": "80% niedrigere Visualisierungskosten"
+    },
+    "developers": {
+      "title": "Bauherren",
+      "description": "Projektvisualisierungen für Investoren und Stakeholder in kürzester Zeit.",
+      "benefit": "Schnellere Projektgenehmigungen"
+    },
+    "students": {
+      "title": "Studierende",
+      "description": "Professionelle Visualisierungen für Portfolio und Abschlussprojekte zum halben Preis.",
+      "benefit": "90% Studenten-Rabatt"
+    },
+    "companies": {
+      "title": "Unternehmen",
+      "description": "Skalierbare Workflows, Custom Models, API-Integration und Priority Support.",
+      "benefit": "ROI in < 2 Monaten"
+    }
   }
 }

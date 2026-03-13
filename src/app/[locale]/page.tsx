@@ -27,6 +27,22 @@ const StickySliderSection = dynamic(
   }
 )
 
+const ComparisonSection = dynamic(
+  () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const UseCasesSection = dynamic(
+  () => import('@/components/use-cases-section').then(mod => mod.UseCasesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 const TabVideoShowcase = dynamic(
   () =>
     import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase),
@@ -230,6 +246,24 @@ export default function Home() {
         row123Products={translatedRow123Products}
         row4Products={translatedRow4Products}
       />
+
+      {/* Comparison Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ComparisonSection />
+      </motion.div>
+
+      {/* Use Cases Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <UseCasesSection />
+      </motion.div>
       {/* Video Showcase Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -273,6 +307,15 @@ export default function Home() {
       >
         <CompareDemo />
       </motion.div>
+      {/* Comparison Section
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ComparisonSection />
+      </motion.div> */}
 
       {/* Done For You Combined Section */}
       <motion.div

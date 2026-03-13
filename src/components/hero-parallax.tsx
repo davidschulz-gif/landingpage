@@ -191,8 +191,8 @@ export const Header = () => {
           <div className='relative max-w-lg flex-1'>
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
-                className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-6 uppercase'
+                style={{ fontFamily: "var(--font-soyuz-grotesk),'Soyuz Grotesk', sans-serif" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -436,6 +436,16 @@ export const Header = () => {
           </motion.div>
         </div>
       </div>
+
+
+      {/* Comparison Section
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ComparisonSection />
+      </motion.div> */}
 
       {/* Floating elements */}
       <motion.div

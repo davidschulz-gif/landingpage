@@ -33,9 +33,9 @@ const SlideContent = memo(
       <BreathingAnimationText animationType='black-gray'>
         <div className='space-y-4'>
           <motion.h1
-            className='text-[30px] font-normal leading-[0.9] text-black'
+            className='text-[30px] font-normal leading-[0.9] text-black uppercase tracking-[0.2em]'
             style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
+              fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
             }}
             initial={{
               y: scrollDirection === 'down' ? 30 : -30,
