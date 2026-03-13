@@ -306,16 +306,6 @@ export default function Home() {
         <RightsSection />
       </motion.div>
 
-    
-      {/* Industry Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <IndustrySection />
-      </motion.div>
-
       
       {/* Video Showcase Section */}
       <motion.div
@@ -378,6 +368,15 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <DoneForYouCombinedSection />
+      </motion.div>
+
+       {/* Industry Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <IndustrySection />
       </motion.div>
 
       {/* Pricing Section */}
