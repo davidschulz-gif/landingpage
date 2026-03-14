@@ -11,6 +11,15 @@ import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import aiPulseAnimation from '../../../../public/lottie/ai-pulse.json'
 
+// Carousel imports
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
+
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 const ConciergePricingSection = dynamic(
   () =>
@@ -271,22 +280,55 @@ export default function DoneForYouPage() {
                   <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
                 </p>
 
-                {/* Visualizer Profile Card */}
-                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full max-w-xs text-left'>
-                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
-                    <img
-                      src='/Christian-Brehmer.png'
-                      alt={t('benefits.visualizerName')}
-                      className='w-full h-full object-cover object-top'
-                    />
-                  </div>
-                  <div>
-                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
-                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
-                    <p className='text-neutral-400 text-[11px] leading-relaxed '>
-                      {t('benefits.visualizerBio')}
-                    </p>
-                  </div>
+                {/* Visualizer Profile Card Slider */}
+                <div className='w-full max-w-sm px-10 relative'>
+                  <Carousel className='w-full'>
+                    <CarouselContent>
+                      {/* Christian Brehmer */}
+                      <CarouselItem>
+                        <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
+                          <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
+                            <img
+                              src='/Christian-Brehmer.png'
+                              alt={t('benefits.visualizerName')}
+                              className='w-full h-full object-cover object-top'
+                            />
+                          </div>
+                          <div>
+                            <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
+                            <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
+                            <p className='text-neutral-400 text-[11px] leading-relaxed '>
+                              {t('benefits.visualizerBio')}
+                            </p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                      
+                      {/* Bjarne Weber */}
+                      <CarouselItem>
+                        <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
+                          <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
+                            <img
+                              src='/BjarneWeber.webp'
+                              alt={t('benefits.visualizer2Name')}
+                              className='w-full h-full object-cover object-top'
+                            />
+                          </div>
+                          <div>
+                            <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizer2Name')}</p>
+                            <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizer2Role')}</p>
+                            <p className='text-neutral-400 text-[11px] leading-relaxed '>
+                              {t('benefits.visualizer2Bio')}
+                            </p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    </CarouselContent>
+                    
+                    {/* Navigation Buttons */}
+                    <CarouselPrevious className='-left-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
+                    <CarouselNext className='-right-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
+                  </Carousel>
                 </div>
               </motion.div>
             </div>

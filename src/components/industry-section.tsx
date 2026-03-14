@@ -39,7 +39,7 @@ const IndustryCard = ({
       </div>
 
       <h3 className="text-lg font-bold mb-3 text-gray-900">{title}</h3>
-      <p className="text-gray-700 text-sm leading-relaxed flex-grow">
+      <p style={{fontFamily:'sans-serif'}} className="text-gray-700 text-sm leading-relaxed flex-grow">
         {description}
       </p>
     </motion.div>
