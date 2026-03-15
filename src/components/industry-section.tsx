@@ -1,10 +1,10 @@
 'use client'
 
+import { Link } from '@/i18n/navigation'
 import { motion } from 'framer-motion'
 import {
   Building2,
   Car,
-  ChevronRight,
   Hammer,
   Home,
   Paintbrush,
@@ -133,16 +133,17 @@ export const IndustrySection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((industry) => (
-            <IndustryCard
-              key={industry.id}
-              icon={industry.icon}
-              title={industry.title}
-              description={industry.description}
-            />
+            <Link key={industry.id} href={`/industry/${industry.id}`} className="block h-full">
+              <IndustryCard
+                icon={industry.icon}
+                title={industry.title}
+                description={industry.description}
+              />
+            </Link>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <motion.button
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +153,7 @@ export const IndustrySection = () => {
             {t('viewAll')}
             <ChevronRight size={16} />
           </motion.button>
-        </div>
+        </div> */}
       </div>
     </section>
   )

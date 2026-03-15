@@ -16,7 +16,6 @@
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
-
     "navigation": {
       "solutions": {
         "create": {
@@ -701,8 +700,7 @@
         "typus": "Custom concept board for your project — true to your idea"
       }
     }
-  }
-  ,
+  },
   "UseCases": {
     "title": "Built for every role in Architecture & Real Estate",
     "subtitle": "Tangible results for architects, interior designers, developers, real estate firms and enterprises. Reduced manual rendering, more design variants and up to 80% savings on visualization with the typus AI App.",
@@ -836,6 +834,1257 @@
       }
     },
     "footer": "* Time and cost figures are approximate estimates based on common industry benchmarks. Actual results will vary by project scope and complexity."
+  },
+  "IndustrySlugPages": {
+    "back": "Back",
+    "architects": {
+      "Hero": {
+        "badge": "Typus.ai for Architects",
+        "title": "AI Visualization for Architects",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of architectural firms.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic architectural visualizations",
+            "description": "Show builders in seconds what the building looks like with different materials."
+          },
+          "feature2": {
+            "title": "Compare design variants immediately",
+            "description": "Compare facades, windows and roof shapes digitally - without physical models."
+          },
+          "feature3": {
+            "title": "Satisfied customers, fewer revisions",
+            "description": "Customers decide based on realistic images. No expensive late changes."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for architects",
+        "cards": {
+          "feature1": {
+            "title": "Visualize facades",
+            "description": "Test different facade materials and forms photorealistic."
+          },
+          "feature2": {
+            "title": "Test interior spaces",
+            "description": "Visualize room layouts, materials and lighting in planned rooms."
+          },
+          "feature3": {
+            "title": "Materials and textures",
+            "description": "See different materials like wood, concrete and glass in context."
+          },
+          "feature4": {
+            "title": "Design variants",
+            "description": "Quickly generate variations of your architectural concepts."
+          },
+          "feature5": {
+            "title": "Adjust light and shadow",
+            "description": "Simulate daylight and artificial lighting accurately."
+          },
+          "feature6": {
+            "title": "High-resolution renders",
+            "description": "Ready-to-print images for competitions and client presentations."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Concept development",
+          "item2": "Client presentations",
+          "item3": "Architectural competitions",
+          "item4": "Material selection",
+          "item5": "Urban planning approvals",
+          "item6": "Variant studies"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how architects use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Concept visualizations",
+            "description": "Bring your architectural ideas to life instantly."
+          },
+          "feature2": {
+            "title": "Material studies",
+            "description": "Test different facades and materials photorealistically."
+          },
+          "feature3": {
+            "title": "Competition entries",
+            "description": "Convincing renders for juries and investors."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why architects use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Rapid iteration",
+            "description": "Test design variations in seconds, not days."
+          },
+          "feature2": {
+            "title": "Winning competitions",
+            "description": "High-end visualizations that convince juries."
+          },
+          "feature3": {
+            "title": "Cost efficiency",
+            "description": "Reduce expensive external 3D rendering costs."
+          },
+          "feature4": {
+            "title": "Client alignment",
+            "description": "Ensure everyone visualizes the same end result."
+          },
+          "feature5": {
+            "title": "Material exploration",
+            "description": "Effortlessly explore different facade and interior materials."
+          },
+          "feature6": {
+            "title": "Marketing edge",
+            "description": "Showcase your portfolio with stunning generated imagery."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of architects.",
+        "faqs": {
+          "faq1": {
+            "question": "Can typus.ai replace traditional rendering?",
+            "answer": "For many stages of design, yes. It provides instant, high-quality visualizations at a fraction of the cost."
+          },
+          "faq2": {
+            "question": "Does it work with structural plans?",
+            "answer": "You can upload basic sketches or wireframes to instantly generate photorealistic structures."
+          },
+          "faq3": {
+            "question": "Can I test different facade materials?",
+            "answer": "Yes, easily switch between brick, concrete, wood, and glass to evaluate aesthetics."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, our interface is intuitive. It works perfectly alongside your existing architectural software."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for architectural firms?",
+            "answer": "We offer scalable plans for freelance architects to large firms. See our pricing page."
+          }
+        }
+      }
+    },
+    "interiorArchitects": {
+      "Hero": {
+        "badge": "Typus.ai for Interior Architects",
+        "title": "AI Visualization for Interior Architects",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of interior designers.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic room visualizations",
+            "description": "Show clients in seconds what the room looks like with different layouts."
+          },
+          "feature2": {
+            "title": "Compare material variants immediately",
+            "description": "Compare floors, wallpapers and furniture digitally - without physical samples."
+          },
+          "feature3": {
+            "title": "Satisfied customers, fewer revisions",
+            "description": "Customers decide based on realistic images. No expensive late changes."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for interior architects",
+        "cards": {
+          "feature1": {
+            "title": "Visualize room layouts",
+            "description": "Test different furniture layouts and room configurations."
+          },
+          "feature2": {
+            "title": "Test materials & fabrics",
+            "description": "Visualize floors, walls, and textiles in existing rooms."
+          },
+          "feature3": {
+            "title": "Furniture placement",
+            "description": "See how different furniture styles fit into the space."
+          },
+          "feature4": {
+            "title": "Color palettes",
+            "description": "Test harmonious color schemes across the entire interior."
+          },
+          "feature5": {
+            "title": "Adjust lighting design",
+            "description": "Assess interior moods with different lighting fixtures."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for mood boards and client pitches."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Room layouts",
+          "item2": "Furniture selection",
+          "item3": "Material & texture combination",
+          "item4": "Lighting design variants",
+          "item5": "Client pitches",
+          "item6": "Refurbishment planning"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how interior architects use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Room planning",
+            "description": "Visualize furniture layouts and spatial concepts."
+          },
+          "feature2": {
+            "title": "Mood generation",
+            "description": "Test lighting and color combinations effortlessly."
+          },
+          "feature3": {
+            "title": "Client pitches",
+            "description": "Stunning images for your design presentations."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why interior architects use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Instant moodboards",
+            "description": "Generate complete room vibes from simple sketches."
+          },
+          "feature2": {
+            "title": "Client confidence",
+            "description": "Provide photorealistic previews before any purchase is made."
+          },
+          "feature3": {
+            "title": "Endless libraries",
+            "description": "Access unlimited furniture styles and material combinations."
+          },
+          "feature4": {
+            "title": "Faster decisions",
+            "description": "Visual clarity leads to quicker client sign-offs."
+          },
+          "feature5": {
+            "title": "Lighting visualization",
+            "description": "Perfectly demonstrate how light interacts with your design."
+          },
+          "feature6": {
+            "title": "Upselling potential",
+            "description": "Easily present premium options with a single click."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of interior architects.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I visualize entire room concepts?",
+            "answer": "Yes, from empty spaces to fully furnished and styled rooms in seconds."
+          },
+          "faq2": {
+            "question": "Does it handle different lighting conditions?",
+            "answer": "You can simulate natural daylight, warm ambient lighting, or precise spotlights."
+          },
+          "faq3": {
+            "question": "Can I show clients different layout options?",
+            "answer": "Easily generate multiple arrangements of furniture and decor for presentation."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, it's designed specifically for rapid ideation without complex 3D rendering skills."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for interior studios?",
+            "answer": "We offer individual and team plans suited for interior design workflows."
+          }
+        }
+      }
+    },
+    "carpenters": {
+      "Hero": {
+        "badge": "Typus.ai for Carpenters",
+        "title": "AI Visualization for Carpenters",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of carpenters.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic woodwork visualizations",
+            "description": "Show customers in seconds what the built-in furniture or interior looks like in different woods."
+          },
+          "feature2": {
+            "title": "Compare material variants immediately",
+            "description": "Compare wood types, finishes and surfaces digitally - without physical samples."
+          },
+          "feature3": {
+            "title": "Satisfied customers, no misunderstandings",
+            "description": "Customers decide based on realistic images. No expensive subsequent adjustments."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for carpenters",
+        "cards": {
+          "feature1": {
+            "title": "Visualize custom furniture",
+            "description": "Test different cabinet designs and built-in furniture."
+          },
+          "feature2": {
+            "title": "Test wood types",
+            "description": "Visualize different wood grains, veneers, and finishes."
+          },
+          "feature3": {
+            "title": "Details and fittings",
+            "description": "See how different handles and fittings look on the product."
+          },
+          "feature4": {
+            "title": "Room integration",
+            "description": "Show how the custom woodwork fits into the customer's room."
+          },
+          "feature5": {
+            "title": "Adjust surface gloss",
+            "description": "Assess matte vs. glossy finishes under lighting."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for quotations and workshop planning."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Custom furniture design",
+          "item2": "Kitchen renovations",
+          "item3": "Built-in wardrobes",
+          "item4": "Material & veneer selection",
+          "item5": "Workshop presentations",
+          "item6": "Customer consultations"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how carpenters use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Custom cabinetry",
+            "description": "Visualize built-in wardrobes and custom furniture."
+          },
+          "feature2": {
+            "title": "Wood variants",
+            "description": "Show different wood grains and finishes."
+          },
+          "feature3": {
+            "title": "Workshop quotes",
+            "description": "Professional images for compelling customer offers."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why carpenters use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Clear communication",
+            "description": "Show exactly how the finished piece will look."
+          },
+          "feature2": {
+            "title": "Material visualization",
+            "description": "Help clients choose wood grains and finishes confidently."
+          },
+          "feature3": {
+            "title": "Higher closing rates",
+            "description": "Visual quotes perform significantly better than standard ones."
+          },
+          "feature4": {
+            "title": "Reduced revisions",
+            "description": "Avoid misunderstandings before the first cut is made."
+          },
+          "feature5": {
+            "title": "Contextual view",
+            "description": "Show the custom built-in exactly inside the client's home."
+          },
+          "feature6": {
+            "title": "Premium branding",
+            "description": "Position yourself as an innovative, modern craftsmanship business."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of carpenters.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I visualize custom built-in cabinets?",
+            "answer": "Yes, you can show clients exactly how the custom piece fits their specific room."
+          },
+          "faq2": {
+            "question": "Does it show different wood grains?",
+            "answer": "Absolutely. You can accurately display oak, walnut, pine, and various clear coat finishes."
+          },
+          "faq3": {
+            "question": "Can I use it for customer quotes?",
+            "answer": "Many carpenters attach our visualizations to their quotes to instantly win more bids."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, no complex CAD experience is needed. Upload a sketch and start visualizing."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for carpentry workshops?",
+            "answer": "We provide highly affordable plans specifically for workshops of all sizes."
+          }
+        }
+      }
+    },
+    "kitchenBuilders": {
+      "Hero": {
+        "badge": "Typus.ai for Kitchen Builders",
+        "title": "AI Visualization for Kitchen Builders",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of kitchen builders.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic kitchen visualizations",
+            "description": "Show customers in seconds what the kitchen looks like with different fronts and countertops."
+          },
+          "feature2": {
+            "title": "Compare design variants immediately",
+            "description": "Compare materials, colors and layouts digitally - without physical samples."
+          },
+          "feature3": {
+            "title": "Satisfied customers, clear expectations",
+            "description": "Customers decide based on realistic images. No expensive surprises after installation."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for kitchen builders",
+        "cards": {
+          "feature1": {
+            "title": "Visualize kitchen layouts",
+            "description": "Test island, L-shape, or U-shape configurations."
+          },
+          "feature2": {
+            "title": "Test cabinet fronts",
+            "description": "Visualize different materials, colors, and styles for cabinets."
+          },
+          "feature3": {
+            "title": "Countertops and splashbacks",
+            "description": "See different stone, wood, or glass surfaces in context."
+          },
+          "feature4": {
+            "title": "Appliance integration",
+            "description": "Test how different appliances look within the kitchen design."
+          },
+          "feature5": {
+            "title": "Adjust lighting mood",
+            "description": "Assess under-cabinet lighting and general kitchen illumination."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for final client approval."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Initial design concepts",
+          "item2": "Front & countertop selection",
+          "item3": "Appliance integration",
+          "item4": "Final client approvals",
+          "item5": "Layout optimizations",
+          "item6": "Lighting visualizations"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how kitchen builders use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Kitchen layouts",
+            "description": "Visualize island, L-shape, or U-shape kitchens."
+          },
+          "feature2": {
+            "title": "Material choices",
+            "description": "Test different countertops and cabinet fronts."
+          },
+          "feature3": {
+            "title": "Client approval",
+            "description": "Realistic images for clear customer expectations."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why kitchen builders use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Instant rendering",
+            "description": "No more waiting for slow CAD software renders."
+          },
+          "feature2": {
+            "title": "Appliance integration",
+            "description": "Seamlessly visualize high-end appliances in context."
+          },
+          "feature3": {
+            "title": "Easy variation",
+            "description": "Switch from modern handleless to classic shaker in seconds."
+          },
+          "feature4": {
+            "title": "Client satisfaction",
+            "description": "Clients know exactly what they are investing in."
+          },
+          "feature5": {
+            "title": "Surface combinations",
+            "description": "Test different countertops and backsplashes effortlessly."
+          },
+          "feature6": {
+            "title": "Sales acceleration",
+            "description": "Close deals faster with stunning emotional imagery."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of kitchen builders.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I visualize complete kitchen layouts?",
+            "answer": "Yes, generate photorealistic images of islands, U-shapes, and galley kitchens effortlessly."
+          },
+          "faq2": {
+            "question": "Does it show different cabinet materials?",
+            "answer": "Easily swap out matte, high-gloss, wood veneer, and different countertop stones."
+          },
+          "faq3": {
+            "question": "Can I show clients variations quickly?",
+            "answer": "Provide instant options for backsplashes and lighting directly during client meetings."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, the tool simplifies the visualization process. Perfect for sales teams."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for kitchen planners?",
+            "answer": "Our pricing scales with your business needs, offering excellent ROI on closed sales."
+          }
+        }
+      }
+    },
+    "painters": {
+      "Hero": {
+        "badge": "Typus.ai for Painters",
+        "title": "AI Visualization for Painters",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of painting companies.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic color visualizations",
+            "description": "Show customers in seconds what the facade or the room looks like in different colors."
+          },
+          "feature2": {
+            "title": "Compare color variants immediately",
+            "description": "Compare colors, wallpaper and surfaces digitally - without physical patterns."
+          },
+          "feature3": {
+            "title": "Satisfied customers, no improvements",
+            "description": "Customers decide based on realistic images. No expensive improvements."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for painters",
+        "cards": {
+          "feature1": {
+            "title": "Visualize facade colors",
+            "description": "Test different facade colors and paints photorealistic."
+          },
+          "feature2": {
+            "title": "Test interior colours",
+            "description": "Visualize wall colours, wallpapers and decorations in existing rooms."
+          },
+          "feature3": {
+            "title": "Wallpapers and textures",
+            "description": "See different wallpaper patterns and wall textures in context."
+          },
+          "feature4": {
+            "title": "Color combinations",
+            "description": "Test harmonious color schemes for walls, ceilings and accents."
+          },
+          "feature5": {
+            "title": "Adjust light mood",
+            "description": "Assess colors in different lighting conditions."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for quotations and customer presentations."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Facade painting",
+          "item2": "Interior design",
+          "item3": "Create customer presentations",
+          "item4": "Compare colour variants",
+          "item5": "Renovation projects",
+          "item6": "Customer advice on site"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how painters use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Facade design",
+            "description": "Visualize facades in different colors and styles."
+          },
+          "feature2": {
+            "title": "Interior visualization",
+            "description": "See rooms with different wall colors and wallpapers."
+          },
+          "feature3": {
+            "title": "Customer presentations",
+            "description": "Convincing images for the customer conversation."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why painters use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Time savings",
+            "description": "Create color suggestions in minutes instead of hours."
+          },
+          "feature2": {
+            "title": "Faster orders",
+            "description": "Visual offers convince faster than color fans."
+          },
+          "feature3": {
+            "title": "Less material cost",
+            "description": "Digital color patterns instead of physical sample paints."
+          },
+          "feature4": {
+            "title": "More satisfied customers",
+            "description": "Customers see the result in advance - no surprises."
+          },
+          "feature5": {
+            "title": "Precision",
+            "description": "Photorealistic color visualizations for an exact presentation of the result."
+          },
+          "feature6": {
+            "title": "Professional appearance",
+            "description": "Stand out from the competition with visual offers."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of painters.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I visualize facade paints?",
+            "answer": "Yes, upload a photo of the facade and test different color combinations in seconds."
+          },
+          "faq2": {
+            "question": "Does typus.ai work for indoors?",
+            "answer": "Absolutely. You can visualize wall colors, wallpapers, and textures in any interior space."
+          },
+          "faq3": {
+            "question": "Can I show customers different variations?",
+            "answer": "Yes, you can easily generate and compare multiple color schemes to help clients decide."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, our AI is very easy and intuitive to use. No CAD or 3D modeling skills required."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for painting companies?",
+            "answer": "We offer flexible plans tailored to your needs. Check out our pricing page for details."
+          }
+        }
+      }
+    },
+    "furnitureMakers": {
+      "Hero": {
+        "badge": "Typus.ai for Furniture Makers",
+        "title": "AI Visualization for Furniture Makers",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of furniture makers.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic furniture visualizations",
+            "description": "Show customers in seconds what the custom furniture looks like in different materials."
+          },
+          "feature2": {
+            "title": "Compare material variants immediately",
+            "description": "Compare fabrics, woods and metals digitally - without physical prototypes."
+          },
+          "feature3": {
+            "title": "Satisfied customers, fewer prototypes",
+            "description": "Customers decide based on realistic images. No expensive trial constructions."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for furniture makers",
+        "cards": {
+          "feature1": {
+            "title": "Visualize furniture designs",
+            "description": "Test different shapes, sizes, and styles of furniture."
+          },
+          "feature2": {
+            "title": "Test upholstery & fabrics",
+            "description": "Visualize different textiles, leathers, and patterns."
+          },
+          "feature3": {
+            "title": "Materials and finishes",
+            "description": "See different wood, metal, or painted finishes in context."
+          },
+          "feature4": {
+            "title": "Color variations",
+            "description": "Quickly generate the entire color catalog for a product line."
+          },
+          "feature5": {
+            "title": "Studio lighting",
+            "description": "Assess products under perfect studio lighting conditions."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for e-commerce and product catalogs."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Product catalogs",
+          "item2": "E-commerce imagery",
+          "item3": "Material variations",
+          "item4": "Upholstery options",
+          "item5": "Marketing campaigns",
+          "item6": "Custom client requests"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how furniture makers use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Product prototyping",
+            "description": "Visualize new furniture designs before building."
+          },
+          "feature2": {
+            "title": "Fabric & finishes",
+            "description": "Test different upholstery and surface variations."
+          },
+          "feature3": {
+            "title": "Catalog creation",
+            "description": "High-quality images for e-commerce and marketing."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why furniture makers use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Virtual photoshoots",
+            "description": "Save thousands on physical staging and photography."
+          },
+          "feature2": {
+            "title": "Endless variants",
+            "description": "Generate every color and fabric option automatically."
+          },
+          "feature3": {
+            "title": "Faster time-to-market",
+            "description": "Market products before physical prototypes are built."
+          },
+          "feature4": {
+            "title": "E-commerce ready",
+            "description": "High-resolution clean backgrounds for online stores."
+          },
+          "feature5": {
+            "title": "Lifestyle context",
+            "description": "Showcase standalone furniture in beautiful, aspirational rooms."
+          },
+          "feature6": {
+            "title": "Design flexibility",
+            "description": "Experiment with new shapes and materials cost-free."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of furniture makers.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I generate e-commerce product shots?",
+            "answer": "Yes, generate high-quality product images with clean backgrounds or lifestyle contexts."
+          },
+          "faq2": {
+            "question": "Does it handle different fabrics and patterns?",
+            "answer": "You can easily apply different leathers, velvets, and complex patterns to your upholstered pieces."
+          },
+          "faq3": {
+            "question": "Can I preview unbuilt prototypes?",
+            "answer": "Test new designs before investing in physical manufacturing."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No studio photography or advanced 3D skills are necessary."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for furniture brands?",
+            "answer": "Significantly less than physical photoshoots. See our pricing tailored to your catalog size."
+          }
+        }
+      }
+    },
+    "realEstate": {
+      "Hero": {
+        "badge": "Typus.ai for Real Estate",
+        "title": "AI Visualization for Real Estate",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of real estate agents.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic property visualizations",
+            "description": "Show buyers in seconds the potential of an empty or outdated property."
+          },
+          "feature2": {
+            "title": "Compare staging variants immediately",
+            "description": "Compare different furnishing styles digitally - without physical staging."
+          },
+          "feature3": {
+            "title": "Satisfied buyers, faster sales",
+            "description": "Buyers decide based on realistic possibilities. Faster transactions."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for real estate",
+        "cards": {
+          "feature1": {
+            "title": "Virtual staging",
+            "description": "Furnish empty rooms photorealistically in seconds."
+          },
+          "feature2": {
+            "title": "Virtual renovation",
+            "description": "Show the potential of outdated properties with modern updates."
+          },
+          "feature3": {
+            "title": "Exterior enhancements",
+            "description": "Visualize landscaping, new paint, or updated facades."
+          },
+          "feature4": {
+            "title": "Different interior styles",
+            "description": "Show the same property in modern, classic, or industrial styles."
+          },
+          "feature5": {
+            "title": "Adjust lighting",
+            "description": "Turn dark, unappealing photos into bright, inviting spaces."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for listings and brochures."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Virtual staging of empty rooms",
+          "item2": "Renovation potential visualization",
+          "item3": "Property listings",
+          "item4": "Marketing brochures",
+          "item5": "Social media content",
+          "item6": "Off-plan sales"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how real estate professionals use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Virtual staging",
+            "description": "Furnish empty properties photorealistically."
+          },
+          "feature2": {
+            "title": "Renovation vision",
+            "description": "Show the potential of outdated homes."
+          },
+          "feature3": {
+            "title": "Property marketing",
+            "description": "Attractive images for listings and exposés."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why real estate agents use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Higher sale prices",
+            "description": "Staged homes consistently sell for higher margins."
+          },
+          "feature2": {
+            "title": "Faster turnarounds",
+            "description": "Properties with visual potential spend fewer days on market."
+          },
+          "feature3": {
+            "title": "Cost effective",
+            "description": "A fraction of the cost of physical home staging."
+          },
+          "feature4": {
+            "title": "Wider appeal",
+            "description": "Show the same property in various styles to attract more buyers."
+          },
+          "feature5": {
+            "title": "Renovation vision",
+            "description": "Help buyers see past outdated decor and unappealing rooms."
+          },
+          "feature6": {
+            "title": "Standout listings",
+            "description": "Stop the scroll with striking, high-quality cover images."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of real estate agents.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I virtually stage empty properties?",
+            "answer": "Yes, furnish any empty room photorealistically in seconds to attract more buyers."
+          },
+          "faq2": {
+            "question": "Does it work for renovation projects?",
+            "answer": "Showcase the true potential of outdated homes with modernized virtual designs."
+          },
+          "faq3": {
+            "question": "Can I generate variations of one room?",
+            "answer": "Generate modern, traditional, or minimalist staging for the exact same property."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No, simply upload an existing photo from your phone and let the AI do the rest."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for agents?",
+            "answer": "It's massively cheaper than physical staging. Check out our affordable monthly plans."
+          }
+        }
+      }
+    },
+    "developers": {
+      "Hero": {
+        "badge": "Typus.ai for Developers",
+        "title": "AI Visualization for Developers",
+        "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryChallenges": {
+        "title": "Do you know that?",
+        "subtitle": "Many architectural firms know these challenges - typus.ai solves them.",
+        "cards": {
+          "time": {
+            "title": "Long waits for renderings",
+            "description": "External rendering service providers take days or weeks. There is no time for fast variant studies in the design."
+          },
+          "cost": {
+            "title": "High cost of visualizations",
+            "description": "Professional 3D visualizations quickly cost thousands of francs - for every single perspective."
+          },
+          "earlyStages": {
+            "title": "Missing images in early stages",
+            "description": "In early stages, convincing images for builders and competition juries are often lacking."
+          }
+        }
+      },
+      "IndustrySolutions": {
+        "title": "With typus.ai",
+        "subtitle": "This is how typus.ai solves the challenges of developers.",
+        "cards": {
+          "feature1": {
+            "title": "Photorealistic project visualizations",
+            "description": "Show investors in seconds what the planned development will look like."
+          },
+          "feature2": {
+            "title": "Compare material variants immediately",
+            "description": "Compare surfaces, surroundings and volumes digitally - without physical models."
+          },
+          "feature3": {
+            "title": "Satisfied stakeholders, rapid approvals",
+            "description": "Stakeholders decide based on realistic images. No expensive delays."
+          }
+        }
+      },
+      "IndustryFunctions": {
+        "title": "Functions for developers",
+        "cards": {
+          "feature1": {
+            "title": "Visualize developments",
+            "description": "Test different architectural concepts and massing."
+          },
+          "feature2": {
+            "title": "Test exterior materials",
+            "description": "Visualize brick, render, or cladding options efficiently."
+          },
+          "feature3": {
+            "title": "Site integration",
+            "description": "See how the new building fits into the existing neighborhood."
+          },
+          "feature4": {
+            "title": "Interior mood boards",
+            "description": "Quickly generate interior visions to attract early investors."
+          },
+          "feature5": {
+            "title": "Day/Night views",
+            "description": "Assess the project's appearance at different times of day."
+          },
+          "feature6": {
+            "title": "High-resolution",
+            "description": "Ready-to-print images for marketing and planning applications."
+          }
+        }
+      },
+      "IndustryApplications": {
+        "title": "Typical applications",
+        "items": {
+          "item1": "Project marketing",
+          "item2": "Investor presentations",
+          "item3": "Stakeholder approvals",
+          "item4": "Material & finish comparisons",
+          "item5": "Neighborhood integration",
+          "item6": "Pre-sales campaigns"
+        }
+      },
+      "IndustryPopularApplications": {
+        "title": "Popular applications",
+        "subtitle": "Discover how developers use typus.ai.",
+        "cards": {
+          "feature1": {
+            "title": "Project visualization",
+            "description": "Showcase entire building developments accurately."
+          },
+          "feature2": {
+            "title": "Neighborhood context",
+            "description": "See how the project fits into the surroundings."
+          },
+          "feature3": {
+            "title": "Investor relations",
+            "description": "High-end visuals to secure funding and approvals."
+          }
+        }
+      },
+      "IndustryWhyUse": {
+        "title": "Why developers use typus.ai",
+        "cards": {
+          "feature1": {
+            "title": "Off-plan selling",
+            "description": "Sell units months before construction is finished."
+          },
+          "feature2": {
+            "title": "Investor attraction",
+            "description": "Communicate project value instantly with stunning visuals."
+          },
+          "feature3": {
+            "title": "Rapid feasibility",
+            "description": "Test massing, materials, and context in early stages."
+          },
+          "feature4": {
+            "title": "Marketing collateral",
+            "description": "Generate complete brochures and website imagery instantly."
+          },
+          "feature5": {
+            "title": "Approval acceleration",
+            "description": "Provide clear, beautiful visions to planning committees."
+          },
+          "feature6": {
+            "title": "Cost avoidance",
+            "description": "Reduce dependency on slow, expensive rendering agencies."
+          }
+        }
+      },
+      "IndustryFAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Answers to the most important questions of developers.",
+        "faqs": {
+          "faq1": {
+            "question": "Can I visualize massive building projects?",
+            "answer": "Yes, generate striking exterior visualizations for projects of any scale."
+          },
+          "faq2": {
+            "question": "Does it help with early investor funding?",
+            "answer": "Provide breathtaking concept art before expensive masterplans are finalized."
+          },
+          "faq3": {
+            "question": "Can I integrate context and surroundings?",
+            "answer": "Showcase how new developments blend beautifully with the existing neighborhood."
+          },
+          "faq4": {
+            "question": "Do I need technical knowledge?",
+            "answer": "No heavy expertise is required to turn basic massing models into high-end renders."
+          },
+          "faq5": {
+            "question": "What does typus.ai cost for development firms?",
+            "answer": "Save heavily on external rendering pipelines. Contact us or view our enterprise tiers."
+          }
+        }
+      }
+    }
   },
   "Industry": {
     "title": "typus.ai across Industries",
