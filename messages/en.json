@@ -836,6 +836,7 @@
     "footer": "* Time and cost figures are approximate estimates based on common industry benchmarks. Actual results will vary by project scope and complexity."
   },
   "IndustrySlugPages": {
+    "back": "Back",
     "architects": {
       "Hero": {
         "badge": "Typus.ai for Architects",

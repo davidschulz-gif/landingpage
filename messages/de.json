@@ -836,6 +836,7 @@
     "footer": "* Zeiten und Kosten sind Schätzwerte auf Basis gängiger Branchen-Benchmarks. Tatsächliche Ergebnisse hängen von Umfang und Komplexität des Projekts ab."
   },
   "IndustrySlugPages": {
+    "back": "Zurück",
     "architects": {
       "Hero": {
         "badge": "typus.ai für Architekten",
