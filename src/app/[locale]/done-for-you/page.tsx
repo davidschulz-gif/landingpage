@@ -12,13 +12,6 @@ import dynamic from 'next/dynamic'
 import aiPulseAnimation from '../../../../public/lottie/ai-pulse.json'
 
 // Carousel imports
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 const ConciergePricingSection = dynamic(
@@ -281,11 +274,11 @@ export default function DoneForYouPage() {
                 </p>
 
                 {/* Visualizer Profile Card Slider */}
-                <div className='w-full max-w-sm px-10 relative'>
-                  <Carousel className='w-full'>
-                    <CarouselContent>
+                <div className='w-full px-1 space-y-2 relative'>
+                  {/* <Carousel className='w-full'>
+                    <CarouselContent> */}
                       {/* Christian Brehmer */}
-                      <CarouselItem>
+                      {/* <CarouselItem> */}
                         <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
                           <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
                             <img
@@ -302,10 +295,10 @@ export default function DoneForYouPage() {
                             </p>
                           </div>
                         </div>
-                      </CarouselItem>
+                      {/* </CarouselItem> */}
                       
                       {/* Bjarne Weber */}
-                      <CarouselItem>
+                      {/* <CarouselItem> */}
                         <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
                           <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
                             <img
@@ -322,13 +315,13 @@ export default function DoneForYouPage() {
                             </p>
                           </div>
                         </div>
-                      </CarouselItem>
-                    </CarouselContent>
+                      {/* </CarouselItem>
+                    </CarouselContent> */}
                     
                     {/* Navigation Buttons */}
-                    <CarouselPrevious className='-left-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
+                    {/* <CarouselPrevious className='-left-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
                     <CarouselNext className='-right-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
-                  </Carousel>
+                  </Carousel> */}
                 </div>
               </motion.div>
             </div>
