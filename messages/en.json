@@ -619,7 +619,10 @@
       "summary2": "but with a dedicated visualization partner.",
       "visualizerName": "Christian Brehmer",
       "visualizerRole": "Architectural Visualizer · Germany",
-      "visualizerBio": "My Name is Chris, architectural designer & 3D visualizer from Germany with 7+ years experience in architectural visualization."
+      "visualizerBio": "My Name is Chris, architectural designer & 3D visualizer from Germany with 7+ years experience in architectural visualization.",
+      "visualizer2Name": "Bjarne Weber",
+      "visualizer2Role": "Architectural Visualizer · Germany",
+      "visualizer2Bio": "My Name is Bjarne, architectural designer & 3D visualizer from Germany with years of experience in architectural visualization."
     },
     "pricing": {
       "title1": "An image normally costs",
