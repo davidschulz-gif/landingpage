@@ -178,7 +178,7 @@ export default function DoneForYouPage() {
                         <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
                            <span className='text-[12px] text-red-600'>✕</span>
                         </div>
-                        <span className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
+                        <span style={{fontFamily:'sans-serif'}} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
                       </li>
                     ))}
                   </ul>
@@ -206,7 +206,7 @@ export default function DoneForYouPage() {
                       </div>
                       <div>
                         <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
-                        <p className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
+                        <p style={{fontFamily:'sans-serif'}} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -237,7 +237,7 @@ export default function DoneForYouPage() {
                   {t('solution.title')}
                 </h2>
               </BreathingAnimationText>
-              <p className='text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto'>
+              <p style={{fontFamily:'sans-serif'}} className='text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto'>
                 {t('solution.subtitle')}
               </p>
             </motion.div>
@@ -471,7 +471,7 @@ export default function DoneForYouPage() {
               </BreathingAnimationText>
               
               <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-3xl mx-auto'>
-                <p>{t('howItsPossible.p1')}</p>
+                <p style={{fontFamily:'sans-serif'}} >{t('howItsPossible.p1')}</p>
                 
                 <div className='flex justify-center py-6'>
                   <div className='w-24 h-24 sm:w-32 sm:h-32 -my-4 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
@@ -483,7 +483,7 @@ export default function DoneForYouPage() {
                   </div>
                 </div>
 
-                <p>{t('howItsPossible.p2')}</p>
+                <p style={{fontFamily:'sans-serif'}} >{t('howItsPossible.p2')}</p>
                 <div className='pt-4'>
                   <span className='font-bold text-neutral-900 dark:text-white uppercase tracking-widest text-xs block mb-3'>
                     {t('howItsPossible.p3')}
@@ -539,7 +539,7 @@ export default function DoneForYouPage() {
                         <div className='flex-1'>
                           <p className='text-black dark:text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.advisorName')}</p>
                           <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
-                          <p className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3' title={t('benefits.advisorBio')}>
+                          <p style={{fontFamily: 'sans-serif'}} className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3' title={t('benefits.advisorBio')}>
                             {t('benefits.advisorBio')}
                           </p>
                         </div>
@@ -564,7 +564,7 @@ export default function DoneForYouPage() {
                           <div className='w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-200 dark:border-neutral-700 shadow-sm'>
                             <Icon className='w-5 h-5 text-black dark:text-white' strokeWidth={1.5} />
                           </div>
-                          <span className='text-[15px] font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
+                          <span style={{fontFamily:'sans-serif'}} className='text-[15px] font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
                             {t(`cta.point${i + 1}` as any)}
                           </span>
                         </li>

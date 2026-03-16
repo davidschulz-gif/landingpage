@@ -19,6 +19,8 @@ const conciergePlans = [
     yearlyPrice: '€4000',
     monthlyEquivalant: '€333',
     save: '€2000',
+    monthlyPaymentLink: 'https://buy.stripe.com/9B65kE5lfadm56E8OPbo408',
+    yearlyPaymentLink: 'https://buy.stripe.com/dRmbJ28xr71aaqYghhbo40a',
     period: '/month',
     yearlyPeriod: '/year',
     planType: 'BASIC',
@@ -39,6 +41,8 @@ const conciergePlans = [
     yearlyPrice: '€8000',
     monthlyEquivalant: '€667',
     save: '€4000',
+    monthlyPaymentLink: 'https://buy.stripe.com/5kQcN6dRLgBK0Qo1mnbo409',
+    yearlyPaymentLink: 'https://buy.stripe.com/5kQ4gA8xr99i2Yw1mnbo40b',
     period: '/month',
     yearlyPeriod: '/year',
     planType: 'PRO',
@@ -314,12 +318,12 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {tPricing('plusVat')}
             </div>
-            <div
+            {/* <div
               className='text-emerald-600 dark:text-emerald-400 font-bold mt-2'
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {tPricing('freeTrial')}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -346,7 +350,9 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
       {/* Button Section */}
       <div className='mt-auto pt-6'>
-        <Link href={'https://app.typus.ai/register'}>
+        <Link 
+          href={(isYearly ? plan.yearlyPaymentLink : plan.monthlyPaymentLink) || 'https://app.typus.ai/register'}
+        >
           <Button
             className='bg-black text-white dark:bg-white dark:text-black cursor-pointer w-full px-4 py-6 rounded-md text-xs font-bold uppercase tracking-widest hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200'
             style={{
