@@ -305,7 +305,7 @@ export default function DoneForYouPage() {
         <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
           <div className='max-w-4xl mx-auto'>
             <motion.div {...motionProps} className='text-center mb-20'>
-              <div className='w-72 h-72 mx-auto mb-8 flex items-center justify-center'>
+              <div className='w-96 h-96 mx-auto mb-8 flex items-center justify-center'>
                 <Lottie 
                   animationData={designerAnimation} 
                   loop={true}
