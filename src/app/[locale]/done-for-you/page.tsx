@@ -282,7 +282,7 @@ export default function DoneForYouPage() {
                       <CheckCircle2 className='w-5 h-5 text-neutral-400 shrink-0 mt-0.5' />
                       <div>
                         <h4 className='font-bold text-xs uppercase tracking-widest mb-2'>{t(`benefits.benefit${i}Title` as any)}</h4>
-                        <p className='text-neutral-500 text-xs leading-relaxed'>{t(`benefits.benefit${i}Desc` as any)}</p>
+                        <p style={{fontFamily:'sans-serif'}} className='text-white text-xs leading-relaxed'>{t(`benefits.benefit${i}Desc` as any)}</p>
                       </div>
                     </li>
                   ))}
@@ -315,7 +315,7 @@ export default function DoneForYouPage() {
                           <div>
                             <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
                             <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
-                            <p className='text-neutral-400 text-[11px] leading-relaxed '>
+                            <p  style={{fontFamily:'sans-serif'}} className='text-white text-[11px] leading-relaxed '>
                               {t('benefits.visualizerBio')}
                             </p>
                           </div>
@@ -335,7 +335,7 @@ export default function DoneForYouPage() {
                           <div>
                             <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizer2Name')}</p>
                             <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizer2Role')}</p>
-                            <p className='text-neutral-400 text-[11px] leading-relaxed '>
+                              <p  style={{fontFamily:'sans-serif'}} className='text-white text-[11px] leading-relaxed '>
                               {t('benefits.visualizer2Bio')}
                             </p>
                           </div>
