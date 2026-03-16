@@ -33,6 +33,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
     email: '',
     companyName: '',
     phoneNumber: '',
+    privacy: true,
     newsletter: true,
   })
 
@@ -176,6 +177,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
         companyName: '',
         phoneNumber: '',
         newsletter: true,
+        privacy: true,
       })
       setErrors({})
     } catch (error: any) {
@@ -320,6 +322,23 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
               />
               <label htmlFor='newsletter' className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
                 {t('newsletterLabel')}
+              </label>
+            </div>
+          </div>
+
+            <div className="pt-2">
+            <div className='flex items-start gap-3 px-1'>
+              <input
+                type='checkbox'
+                id='privacy'
+                name='privacy'
+                className='mt-1 size-4 border-gray-300 accent-black cursor-pointer rounded-sm'
+                checked={formData.privacy}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <label htmlFor='privacy' onClick={() => window.open('https://app.typus.ai/data-privacy', '_blank')} className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
+                {t('privacyLabel')}
               </label>
             </div>
           </div>
