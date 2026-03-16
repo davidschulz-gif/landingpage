@@ -7,10 +7,11 @@ import BookingDemoClassForm from '@/components/demo-class-boooking-form'
 import { FloatingCollage } from '@/components/done-for-you-hero-images'
 import { FloatingBuzzer } from '@/components/floating-buzzer'
 import { FooterSection } from '@/components/footer-section'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, BanknoteIcon, BarChart3, CheckCircle2, Clock, FileText, Image, MessageSquare, PhoneCall } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
+import { useEffect, useRef, useState } from 'react'
 import aiPulseAnimation from '../../../../public/lottie/ai-pulse.json'
 import designerAnimation from '../../../../public/lottie/Designer.json'
 
@@ -31,6 +32,17 @@ const ConciergePricingSection = dynamic(
 export default function DoneForYouPage() {
   const t = useTranslations('BilderFlatrate')
   const tPricing = useTranslations('Pricing')
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const titles = t.raw('hero.titles') as string[]
+  const subtitles = t.raw('hero.subtitles') as string[]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % titles.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [titles.length])
   
   const motionProps = {
     initial: { opacity: 0, y: 60 },
@@ -38,6 +50,16 @@ export default function DoneForYouPage() {
     transition: { duration: 0.5, ease: 'easeOut' as const },
     viewport: { once: true, margin: '-100px' }
   }
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  // Solution section animations
+  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6], [1, 0.9])
+  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0.5])
+  const solutionY = useTransform(scrollYProgress, [0.4, 0.6], [0, -50])
 
   return (
     <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
@@ -74,14 +96,37 @@ export default function DoneForYouPage() {
               </div>
               
               <BreathingAnimationText animationType='black-gray'>
-                <h1 className='text-[32px] md:text-[50px] lg:text-[64px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] mb-6' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
-                  {t('hero.title1')} <br className='hidden md:block' /> {t('hero.title2')}
-                </h1>
+                <div className='h-[120px] md:h-[180px] lg:h-[220px] relative overflow-visible flex items-center justify-center'>
+                  <AnimatePresence mode='wait'>
+                    <motion.h1
+                      key={currentIndex}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={{ duration: 0.6, ease: 'easeOut' }}
+                      className='text-[32px] md:text-[50px] lg:text-[64px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] absolute w-full'
+                      style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
+                    >
+                      {titles[currentIndex]}
+                    </motion.h1>
+                  </AnimatePresence>
+                </div>
               </BreathingAnimationText>
               
-              <p className='text-xl md:text-2xl text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal mb-10 max-w-2xl mx-auto'>
-                {t('hero.subtitle1')} {t('hero.subtitle2')}
-              </p>
+              <div className='h-[80px] md:h-[100px] relative overflow-visible flex items-center justify-center mb-10'>
+                <AnimatePresence mode='wait'>
+                  <motion.p
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    className='text-xl md:text-2xl text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-2xl absolute w-full'
+                  >
+                    {subtitles[currentIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             <motion.div
@@ -90,11 +135,6 @@ export default function DoneForYouPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' as const }}
               className='flex flex-col items-center gap-8'
             >
-              <div className='text-sm md:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl space-y-2 relative z-10'>
-                <p>{t('hero.description1')}</p>
-                <p>{t('hero.description2')}</p>
-                <p className='font-bold text-neutral-900 dark:text-white pt-2' dangerouslySetInnerHTML={{ __html: t.raw('hero.description3') }} />
-              </div>
               <div className="relative z-10">
               
               <div className=''> <ActionButton href='#booking-form'>
@@ -180,8 +220,16 @@ export default function DoneForYouPage() {
           </div>
         </section>
 
-        {/* Solution Section */}
-        <section className='relative z-20 py-24 lg:py-32 px-4 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-900'>
+        <div ref={containerRef} className="relative">
+          {/* Solution Section */}
+          <motion.section 
+            style={{ 
+              scale: solutionScale,
+              opacity: solutionOpacity,
+              y: solutionY
+            }}
+            className='sticky top-0 z-10 py-24 lg:py-32 px-4 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-900'
+          >
           <div className='max-w-5xl mx-auto text-center'>
             <motion.div {...motionProps} className='mb-20'>
               <BreathingAnimationText animationType='black-gray'>
@@ -236,7 +284,7 @@ export default function DoneForYouPage() {
                   <h3 className='text-sm font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-white mb-3'>
                     {t(`solution.step${step}Title` as any)}
                   </h3>
-                  <p className='text-base text-neutral-500 dark:text-neutral-400 leading-relaxed'>
+                  <p style={{fontFamily:'sans-serif'}} className='text-base text-neutral-700 dark:text-neutral-400 leading-relaxed'>
                     {t(`solution.step${step}Desc` as any)}
                   </p>
                 </motion.div>
@@ -251,20 +299,24 @@ export default function DoneForYouPage() {
               <span>{t('solution.tag3')}</span>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Benefits Section */}
-        <section className='py-24 lg:py-32 bg-black text-white px-4 overflow-hidden'>
+        <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
           <div className='max-w-4xl mx-auto'>
             <motion.div {...motionProps} className='text-center mb-20'>
-              <div className='w-32 h-32 mx-auto mb-8 flex items-center justify-center'>
+              <div className='w-72 h-72 mx-auto mb-8 flex items-center justify-center'>
                 <Lottie 
                   animationData={designerAnimation} 
                   loop={true}
                   style={{ width: '100%', height: '100%' }}
+                  // height={50}
+                  // width={100}
                 />
               </div>
-              {/* <BreathingAnimationText animationType='black-gray'> */}
+                <h3 className='text-[28px] md:text-[42px] font-normal uppercase tracking-[0.3em] text-white mb-6'>
+                  {t('benefits.solutionHeader')}
+                </h3>
                 <h2 className='text-[28px] md:text-[42px] font-normal mb-6 tracking-tight'>
                   {t('benefits.title')}
                 </h2>
@@ -359,6 +411,7 @@ export default function DoneForYouPage() {
             </div>
           </div>
         </section>
+      </div>
 
         {/* Pricing Comparison */}
         <section className='py-24 lg:py-32 bg-[#fcfcfd] dark:bg-[#0d0e12] px-4'>

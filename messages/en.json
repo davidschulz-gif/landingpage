@@ -563,13 +563,14 @@
     "hero": {
       "badge": "Done For You Offer",
       "innovativeBadge": "innovative service",
-      "title1": "The Image Flat Rate for",
-      "title2": "Architecture Firms.",
-      "subtitle1": "Architecture visualizations. Fast. Personal. For a fixed price.",
-      "subtitle2": "Your personal visualization partner for architecture.",
-      "description1": "Architecture firms get a personal visualization specialist to create their images.",
-      "description2": "No complicated render programs. No project pricing.",
-      "description3": "Simply request images — we create them for you.",
+      "titles": [
+        "The Image Flat Rate for Architecture Firms.",
+        "Your personal visualization specialist"
+      ],
+      "subtitles": [
+        "Architecture visualizations. Fast. Personal. For a fixed price.",
+        "Simply request images — we create them for you."
+      ],
       "cta": "Request a Free Demo and Initial Consultation"
     },
     "problem": {
@@ -612,6 +613,7 @@
       "p4": "High-quality architectural visualizations – faster, more flexible and significantly more efficient."
     },
     "benefits": {
+      "solutionHeader": "THE SOLUTION",
       "title": "You get an external team member for visualizations",
       "subtitle": "Every office is assigned a real person who creates the visualizations for the office using AI.",
       "benefit1Title": "personal communication",

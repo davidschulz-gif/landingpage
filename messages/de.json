@@ -563,13 +563,14 @@
     "hero": {
       "badge": "Done For You Offer",
       "innovativeBadge": "innovative Dienstleistung",
-      "title1": "Die Bilder-Flat für",
-      "title2": "Architekturbüros.",
-      "subtitle1": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis.",
-      "subtitle2": "Ihr persönlicher Visualisierungs-Partner für Architektur.",
-      "description1": "Architekturbüros erhalten einen persönlichen Visualisierungs-Spezialisten, der ihre Bilder erstellt.",
-      "description2": "Keine komplizierten Renderprogramme. Keine Projektpreise.",
-      "description3": "Einfach Bilder anfragen — wir erstellen sie für Sie.",
+      "titles": [
+        "Die Bilder-Flat für Architekturbüros.",
+        "Ihr persönlicher Visualisierungs-Spezialist"
+      ],
+      "subtitles": [
+        "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis.",
+        "Einfach Bilder anfragen — wir erstellen sie für Sie."
+      ],
       "cta": "Kostenlose Demo und Erstgespräch anfragen"
     },
     "problem": {
@@ -612,6 +613,7 @@
       "p4": "Hochwertige Architekturvisualisierungen – schneller, flexibler und deutlich effizienter."
     },
     "benefits": {
+      "solutionHeader": "DIE LÖSUNG",
       "title": "Sie erhalten ein externes Teammitglied für Visualisierungen",
       "subtitle": "Jedes Büro bekommt eine reale Person zugewiesen, welche die Visualisierungen mithilfe von KI für das Büro erstellt.",
       "benefit1Title": "persönliche Kommunikation",
