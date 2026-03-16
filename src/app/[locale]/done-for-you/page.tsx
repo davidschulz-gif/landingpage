@@ -96,7 +96,7 @@ export default function DoneForYouPage() {
               </div>
               
               <BreathingAnimationText animationType='black-gray'>
-                <div className='h-[120px] md:h-[180px] lg:h-[220px] relative overflow-visible flex items-center justify-center'>
+                <div className='h-[120px] md:h-[180px] lg:h-[275px] relative overflow-visible flex items-center justify-center'>
                   <AnimatePresence mode='wait'>
                     <motion.h1
                       key={currentIndex}
@@ -147,7 +147,7 @@ export default function DoneForYouPage() {
         </section>
 
         {/* Solution Section */}
-
+   <div ref={containerRef} className="relative">
         {/* Problem Section */}
          <section className='relative z-20 py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
           <div className='max-w-5xl mx-auto'>
@@ -220,8 +220,9 @@ export default function DoneForYouPage() {
           </div>
         </section>
 
-        <div ref={containerRef} className="relative">
-          {/* Solution Section */}
+        {/* Solution Section */}
+     
+{/*           
           <motion.section 
             style={{ 
               scale: solutionScale,
@@ -241,65 +242,8 @@ export default function DoneForYouPage() {
                 {t('solution.subtitle')}
               </p>
             </motion.div>
-
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
-              {[
-                { step: 1, icon: FileText, badgeKey: null },
-                { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
-                { step: 3, icon: Image, badgeKey: null },
-              ].map(({ step, icon: Icon, badgeKey }) => (
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -4, boxShadow: '0 20px 60px rgba(0,0,0,0.08)' }}
-                  transition={{ duration: 0.5, delay: step * 0.12, ease: 'easeOut' }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  className='bg-[#fcfcfd] dark:bg-neutral-900/30 p-8 md:p-10 border border-neutral-100 dark:border-neutral-800 text-left shadow-[0_10px_40px_rgba(0,0,0,0.01)] relative overflow-visible'
-                >
-                  {/* Icon — top right */}
-                  <div className='absolute top-6 right-6 text-black dark:text-white'>
-                    <Icon className='w-10 h-10' strokeWidth={1} />
-                  </div>
-
-                  {/* Step number */}
-                  <div className='w-10 h-10 bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-sm flex-shrink-0 mb-6'>
-                    {step}
-                  </div>
-
-                  {/* Green badge — top-left corner */}
-                  {badgeKey && (
-                    <motion.div
-                      initial={{ opacity: 0, rotate: -8, scale: 0.75, y: 6 }}
-                      whileInView={{ opacity: 1, rotate: -2, scale: 1, y: 0 }}
-                      transition={{ type: 'spring', stiffness: 280, damping: 16, delay: step * 0.12 + 0.25 }}
-                      viewport={{ once: true }}
-                      className='absolute -top-3 left-6 inline-flex items-center bg-[#16a34a] text-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] shadow-[2px_2px_0px_rgba(0,0,0,0.25)] z-10'
-                      style={{ transform: 'rotate(-2deg)' }}
-                    >
-                      {t(badgeKey as any)}
-                    </motion.div>
-                  )}
-
-                  <h3 className='text-sm font-bold uppercase tracking-[0.2em] text-neutral-900 dark:text-white mb-3'>
-                    {t(`solution.step${step}Title` as any)}
-                  </h3>
-                  <p style={{fontFamily:'sans-serif'}} className='text-base text-neutral-700 dark:text-neutral-400 leading-relaxed'>
-                    {t(`solution.step${step}Desc` as any)}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-black'>
-              <span>{t('solution.tag1')}</span>
-              <span className='opacity-30'>/</span>
-              <span>{t('solution.tag2')}</span>
-              <span className='opacity-30'>/</span>
-              <span>{t('solution.tag3')}</span>
-            </div>
           </div>
-        </motion.section>
+        </motion.section> */}
 
         {/* Benefits Section */}
         <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
@@ -408,6 +352,63 @@ export default function DoneForYouPage() {
                 {t('cta.button')}
               </ActionButton>
               </div>
+            </div>
+
+             <div className='mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
+              {[
+                { step: 1, icon: FileText, badgeKey: null },
+                { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
+                { step: 3, icon: Image, badgeKey: null },
+              ].map(({ step, icon: Icon, badgeKey }) => (
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -4, boxShadow: '0 20px 60px rgba(0,0,0,0.08)' }}
+                  transition={{ duration: 0.5, delay: step * 0.12, ease: 'easeOut' }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  className='dark:bg-[#fcfcfd] bg-neutral-900/30 p-8 md:p-10 border border-neutral-900 dark:border-neutral-800 text-left shadow-[0_10px_40px_rgba(0,0,0,0.01)] relative overflow-visible'
+                >
+                  {/* Icon — top right */}
+                  <div className='absolute top-6 right-6 dark:text-black text-white'>
+                    <Icon className='w-10 h-10' strokeWidth={1} />
+                  </div>
+
+                  {/* Step number */}
+                  <div className='w-10 h-10 dark:bg-black bg-neutral-300 dark:text-white text-black flex items-center justify-center font-bold text-sm flex-shrink-0 mb-6'>
+                    {step}
+                  </div>
+
+                  {/* Green badge — top-left corner */}
+                  {badgeKey && (
+                    <motion.div
+                      initial={{ opacity: 0, rotate: -8, scale: 0.75, y: 6 }}
+                      whileInView={{ opacity: 1, rotate: -2, scale: 1, y: 0 }}
+                      transition={{ type: 'spring', stiffness: 280, damping: 16, delay: step * 0.12 + 0.25 }}
+                      viewport={{ once: true }}
+                      className='absolute -top-3 left-6 inline-flex items-center bg-[#16a34a] text-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] shadow-[2px_2px_0px_rgba(0,0,0,0.25)] z-10'
+                      style={{ transform: 'rotate(-2deg)' }}
+                    >
+                      {t(badgeKey as any)}
+                    </motion.div>
+                  )}
+
+                  <h3 className='text-sm font-bold uppercase tracking-[0.2em] dark:text-neutral-900 text-white mb-3'>
+                    {t(`solution.step${step}Title` as any)}
+                  </h3>
+                  <p style={{fontFamily:'sans-serif'}} className='text-base dark:text-neutral-700 text-neutral-100 leading-relaxed'>
+                    {t(`solution.step${step}Desc` as any)}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-white'>
+              <span>{t('solution.tag1')}</span>
+              <span className='opacity-30'>/</span>
+              <span>{t('solution.tag2')}</span>
+              <span className='opacity-30'>/</span>
+              <span>{t('solution.tag3')}</span>
             </div>
           </div>
         </section>
