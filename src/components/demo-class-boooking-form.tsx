@@ -1,8 +1,9 @@
 import { cn } from '@/lib/utils'
 import {
-    IconAlertCircle,
-    IconCheck,
-    IconLoader2
+  IconAlertCircle,
+  IconArrowLeft,
+  IconCheck,
+  IconLoader2
 } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -14,7 +15,8 @@ interface BookingDemoClassFormProps {
   showTitle?: boolean
 }
 
-const apiUrl = 'https://app.typus.ai/api/hubspot'
+const apiUrl = 'http://localhost:3000/api/hubspot'
+// const apiUrl = 'https://app.typus.ai/api/hubspot'
 
 export default function BookingDemoClassForm({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
@@ -22,6 +24,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isRequesting, setIsRequesting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string | null>>({})
 
   const [formData, setFormData] = useState({
@@ -153,6 +156,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       }
 
       setSuccessMessage(t('success'))
+      setIsSubmitted(true)
 
       // GTM: fire generate_lead conversion event (picked up by Google Ads & Meta tags in GTM)
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
@@ -217,98 +221,120 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
           {tPricing('bookDemo')}
         </h2>
       )}
-      <form onSubmit={handleSubmit} className='space-y-4' noValidate>
-        {/* <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'> */}
-        <div className='flex flex-col'>
-          <input
-            type='text'
-            name='name'
-            placeholder={t('namePlaceholder')}
-            className={cn(inputClasses, errors.name && errorClasses)}
-            value={formData.name}
-            onChange={handleChange}
-            disabled={isRequesting}
-          />
-          <ErrorMessage error={errors.name} />
-        </div>
-        <div className='flex flex-col'>
-          <input
-            type='text'
-            name='position'
-            placeholder={t('positionPlaceholder')}
-            className={cn(inputClasses, errors.position && errorClasses)}
-            value={formData.position}
-            onChange={handleChange}
-            disabled={isRequesting}
-          />
-          <ErrorMessage error={errors.position} />
-        </div>
-        {/* </div> */}
-
-        {/* <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'> */}
-        <div className='flex flex-col'>
-          <input
-            type='email'
-            name='email'
-            placeholder={t('placeholder')}
-            className={cn(inputClasses, errors.email && errorClasses)}
-            value={formData.email}
-            onChange={handleChange}
-            disabled={isRequesting}
-          />
-          <ErrorMessage error={errors.email} />
-        </div>
-        <div className='flex flex-col'>
-          <input
-            type='text'
-            name='companyName'
-            placeholder={t('companyPlaceholder')}
-            className={cn(inputClasses, errors.companyName && errorClasses)}
-            value={formData.companyName}
-            onChange={handleChange}
-            disabled={isRequesting}
-          />
-          <ErrorMessage error={errors.companyName} />
-        </div>
-        {/* </div> */}
-
-        <FormPhoneInput
-          name="phoneNumber"
-          label={t('phoneLabel')}
-          placeholder={t('phonePlaceholder')}
-          value={formData.phoneNumber}
-          onChange={handlePhoneChange}
-          error={errors.phoneNumber}
-          disabled={isRequesting}
-        />
-
-        <div className="pt-2">
-          <div className='flex items-start gap-3 px-1'>
+      {isSubmitted ? (
+        <motion.div
+           initial={{ opacity: 0, scale: 0.95 }}
+           animate={{ opacity: 1, scale: 1 }}
+           className="w-full space-y-4"
+        >
+          <button
+            onClick={() => setIsSubmitted(false)}
+            className="flex items-center gap-2 text-xs font-medium text-gray-500 hover:text-black transition-colors group mb-2"
+          >
+            <IconArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
+            <span>{t('backAction')}</span>
+          </button>
+          <div className="w-full h-[600px] overflow-hidden rounded-none border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
+            <iframe
+              src="https://calendar.app.google/xqJnfe5qbCgXBBBF7"
+              width="100%"
+              height="100%"
+              className="w-full h-full border-none"
+              title="Google Calendar Booking"
+            />
+          </div>
+        </motion.div>
+      ) : (
+        <form onSubmit={handleSubmit} className='space-y-4' noValidate>
+          {/* ... existing form fields ... */}
+          <div className='flex flex-col'>
             <input
-              type='checkbox'
-              id='newsletter'
-              name='newsletter'
-              className='mt-1 size-4 border-gray-300 accent-black cursor-pointer rounded-sm'
-              checked={formData.newsletter}
+              type='text'
+              name='name'
+              placeholder={t('namePlaceholder')}
+              className={cn(inputClasses, errors.name && errorClasses)}
+              value={formData.name}
               onChange={handleChange}
               disabled={isRequesting}
             />
-            <label htmlFor='newsletter' className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
-              {t('newsletterLabel')}
-            </label>
+            <ErrorMessage error={errors.name} />
           </div>
-        </div>
+          <div className='flex flex-col'>
+            <input
+              type='text'
+              name='position'
+              placeholder={t('positionPlaceholder')}
+              className={cn(inputClasses, errors.position && errorClasses)}
+              value={formData.position}
+              onChange={handleChange}
+              disabled={isRequesting}
+            />
+            <ErrorMessage error={errors.position} />
+          </div>
 
-        <button
-          type='submit'
-          className='w-full py-4 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
-          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-          disabled={isRequesting}
-        >
-          <span>{tPricing('bookDemo')}</span>
-          {isRequesting && <IconLoader2 className='animate-spin size-4' />}
-        </button>
-      </form>
+          <div className='flex flex-col'>
+            <input
+              type='email'
+              name='email'
+              placeholder={t('placeholder')}
+              className={cn(inputClasses, errors.email && errorClasses)}
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isRequesting}
+            />
+            <ErrorMessage error={errors.email} />
+          </div>
+          <div className='flex flex-col'>
+            <input
+              type='text'
+              name='companyName'
+              placeholder={t('companyPlaceholder')}
+              className={cn(inputClasses, errors.companyName && errorClasses)}
+              value={formData.companyName}
+              onChange={handleChange}
+              disabled={isRequesting}
+            />
+            <ErrorMessage error={errors.companyName} />
+          </div>
+
+          <FormPhoneInput
+            name="phoneNumber"
+            label={t('phoneLabel')}
+            placeholder={t('phonePlaceholder')}
+            value={formData.phoneNumber}
+            onChange={handlePhoneChange}
+            error={errors.phoneNumber}
+            disabled={isRequesting}
+          />
+
+          <div className="pt-2">
+            <div className='flex items-start gap-3 px-1'>
+              <input
+                type='checkbox'
+                id='newsletter'
+                name='newsletter'
+                className='mt-1 size-4 border-gray-300 accent-black cursor-pointer rounded-sm'
+                checked={formData.newsletter}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <label htmlFor='newsletter' className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
+                {t('newsletterLabel')}
+              </label>
+            </div>
+          </div>
+
+          <button
+            type='submit'
+            className='w-full py-4 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
+            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+            disabled={isRequesting}
+          >
+            <span>{tPricing('bookDemo')}</span>
+            {isRequesting && <IconLoader2 className='animate-spin size-4' />}
+          </button>
+        </form>
+      )}
 
       {errorMessage && (
         <div

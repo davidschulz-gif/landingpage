@@ -384,10 +384,14 @@
       "timeout": "Anfrage hat das Zeitlimit überschritten. Bitte versuchen Sie es erneut.",
       "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
     },
-    "success": "Sie werden über neue Features benachrichtigt."
+    "success": "Sie werden über neue Funktionen benachrichtigt.",
+    "backAction": "Zurück zum Formular"
   },
   "BeforeYouGo": {
     "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 70€ Rabatt auf Ihr erstes Abonnement."
+  },
+  "FloatingBuzzer": {
+    "text": "Kostenlose Demo und Erstgespräch anfragen"
   },
   "TrustedBy": {
     "certifiedBy": "ZERTIFIZIERT VON",
@@ -576,6 +580,7 @@
       "point2": "1.500 € durchschnittlicher Marktpreis",
       "point3": "2.000–3.000 € für hochwertige Renderings",
       "conclusion": "Und jedes Bild wird einzeln abgerechnet.",
+      "statusQuoHeader": "Der problematische Status quo im Markt",
       "meaningTitle": "Das bedeutet:",
       "meaning1Title": "lange Wartezeiten",
       "meaning1Desc": "Tage oder Wochen bis zum ersten Entwurf.",
@@ -622,7 +627,11 @@
       "visualizerBio": "Mein Name ist Chris, Architekt und 3D-Visualisierer aus Deutschland mit über 7 Jahren Erfahrung in der Architekturvisualisierung.",
       "visualizer2Name": "Bjarne Weber",
       "visualizer2Role": "Architekturvisualisierung · Deutschland",
-      "visualizer2Bio": "Mein Name ist Bjarne, Architekt und 3D-Visualisierer aus Deutschland mit jahrelanger Erfahrung in der Architekturvisualisierung."
+      "visualizer2Bio": "Mein Name ist Bjarne, Architekt und 3D-Visualisierer aus Deutschland mit jahrelanger Erfahrung in der Architekturvisualisierung.",
+      "advisorName": "Esra",
+      "advisorRole": "Strategy Advisor · Deutschland",
+      "advisorBio": "Strategy advisor focused on market expansion and commercial strategy for… · Berufserfahrung: MEBÚ · Ort: Deutschland · 500+ Kontakte auf LinkedIn. Sehen Sie sich das Profil von Esra A. Esra A. auf LinkedIn, einer professionellen Community mit mehr als 1 Milliarde Mitgliedern, an.",
+      "advisorLinkedIn": "https://www.linkedin.com/in/esra-aslan/"
     },
     "pricing": {
       "title1": "Ein Bild kostet normalerweise",

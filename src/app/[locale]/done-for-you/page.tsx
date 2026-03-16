@@ -4,12 +4,15 @@ import { ActionButton } from '@/components/action-button'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { BreathingAnimationText } from '@/components/breathing-animation-text'
 import BookingDemoClassForm from '@/components/demo-class-boooking-form'
+import { FloatingCollage } from '@/components/done-for-you-hero-images'
+import { FloatingBuzzer } from '@/components/floating-buzzer'
 import { FooterSection } from '@/components/footer-section'
 import { motion } from 'framer-motion'
-import { ArrowRight, BanknoteIcon, CheckCircle2, Clock, FileText, Image, MessageSquare, Users } from 'lucide-react'
+import { ArrowRight, BanknoteIcon, BarChart3, CheckCircle2, Clock, FileText, Image, MessageSquare, PhoneCall } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import aiPulseAnimation from '../../../../public/lottie/ai-pulse.json'
+import designerAnimation from '../../../../public/lottie/Designer.json'
 
 // Carousel imports
 
@@ -43,8 +46,11 @@ export default function DoneForYouPage() {
 
       <main className='flex flex-col w-full pb-20'>
         {/* Hero Section */}
-        <section className='relative pt-32 pb-20 md:pt-48 md:pb-32 px-4'>
-          <div className='max-w-4xl mx-auto text-center space-y-8'>
+        <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
+          {/* Floating Images Background */}
+          <FloatingCollage />
+          
+          <div className='max-w-4xl mx-auto text-center space-y-8 relative z-20'>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -84,25 +90,38 @@ export default function DoneForYouPage() {
               transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' as const }}
               className='flex flex-col items-center gap-8'
             >
-              <div className='text-sm md:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl space-y-2'>
+              <div className='text-sm md:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl space-y-2 relative z-10'>
                 <p>{t('hero.description1')}</p>
                 <p>{t('hero.description2')}</p>
                 <p className='font-bold text-neutral-900 dark:text-white pt-2' dangerouslySetInnerHTML={{ __html: t.raw('hero.description3') }} />
               </div>
-              <div>
-             
-             <div className=''> <ActionButton href='#booking-form'>
-                {t('hero.cta')}
-              </ActionButton>
-              </div>
+              <div className="relative z-10">
+              
+              <div className=''> <ActionButton href='#booking-form'>
+                 {t('hero.cta')}
+               </ActionButton>
+               </div>
               </div>
             </motion.div>
           </div>
         </section>
 
+        {/* Solution Section */}
+
         {/* Problem Section */}
-         <section className='py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
+         <section className='relative z-20 py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
           <div className='max-w-5xl mx-auto'>
+            <motion.div {...motionProps} className='mb-16 md:mb-24 text-center'>
+              <BreathingAnimationText animationType='black-gray'>
+                <h2 
+                  className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white leading-[1.1] mb-6'
+                  style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
+                >
+                  {t('problem.statusQuoHeader')}
+                </h2>
+              </BreathingAnimationText>
+            </motion.div>
+
             <div className='grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center'>
               <motion.div {...motionProps}>
                 <BreathingAnimationText animationType='black-gray'>
@@ -162,7 +181,7 @@ export default function DoneForYouPage() {
         </section>
 
         {/* Solution Section */}
-        <section className='py-24 lg:py-32 px-4 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-900'>
+        <section className='relative z-20 py-24 lg:py-32 px-4 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-900'>
           <div className='max-w-5xl mx-auto text-center'>
             <motion.div {...motionProps} className='mb-20'>
               <BreathingAnimationText animationType='black-gray'>
@@ -238,7 +257,13 @@ export default function DoneForYouPage() {
         <section className='py-24 lg:py-32 bg-black text-white px-4 overflow-hidden'>
           <div className='max-w-4xl mx-auto'>
             <motion.div {...motionProps} className='text-center mb-20'>
-              <Users className='w-12 h-12 mx-auto mb-8' />
+              <div className='w-32 h-32 mx-auto mb-8 flex items-center justify-center'>
+                <Lottie 
+                  animationData={designerAnimation} 
+                  loop={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
               {/* <BreathingAnimationText animationType='black-gray'> */}
                 <h2 className='text-[28px] md:text-[42px] font-normal mb-6 tracking-tight'>
                   {t('benefits.title')}
@@ -352,28 +377,28 @@ export default function DoneForYouPage() {
                   transition={{ ...motionProps.transition, delay: 0.2, ease: 'easeOut' as const }}
                   className='p-8 md:p-10 border-2 border-black dark:border-white bg-white dark:bg-black shadow-[0_15px_50px_rgba(0,0,0,0.08)] relative flex flex-col'
                 >
-                  <div className='absolute -top-3 left-1/2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-[9px] font-bold uppercase tracking-[0.2em]'>
+                  <div className='absolute -top-3 left-1/2 -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-base font-bold uppercase tracking-[0.2em]'>
                     {t('pricing.flatBadge')}
                   </div>
-                  <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-900 dark:text-white border-b border-neutral-100 dark:border-neutral-900 pb-4'>{t('pricing.flatTitle')}</h3>
+                  <h3 className='text-lg font-bold uppercase tracking-[0.2em] mb-8 text-neutral-900 dark:text-white border-b border-neutral-100 dark:border-neutral-900 pb-4'>{t('pricing.flatTitle')}</h3>
                   <div className='space-y-4 flex-1 flex flex-col justify-center'>
                     <div className='flex flex-col items-center gap-2'>
                       <div className='flex items-end gap-2'>
-                        <span className='text-neutral-400 font-light text-sm pb-1 pr-2 uppercase tracking-widest'>{t('pricing.flatFrom')}</span>
-                        <span className='font-normal text-4xl text-neutral-900 dark:text-white'>{t('pricing.flatPrice')}</span>
+                        <span className='text-neutral-400 font-light text-lg pb-1 pr-2 uppercase tracking-widest'>{t('pricing.flatFrom')}</span>
+                        <span className='font-normal text-5xl text-neutral-900 dark:text-white'>{t('pricing.flatPrice')}</span>
                       </div>
                       <div className='flex flex-col items-center text-center mt-2'>
-                        <div className='text-[10px] text-neutral-400 uppercase tracking-[0.2em] font-bold'>
+                        <div className='text-base text-neutral-400 uppercase tracking-[0.2em] font-bold'>
                           {t('pricing.flatPerMonth')}
                         </div>
-                        <div className='text-[10px] text-neutral-500 font-normal mt-1'>
+                        <div className='text-base text-neutral-500 font-normal mt-1'>
                           {t('pricing.flatBillingNote')}
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className='mt-8 p-4 bg-neutral-50 dark:bg-neutral-950 text-center'>
-                    <p className='text-[10px] font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider leading-relaxed' dangerouslySetInnerHTML={{ __html: t.raw('pricing.flatNote') }}/>
+                    <p className='text-[15px] font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider leading-relaxed' dangerouslySetInnerHTML={{ __html: t.raw('pricing.flatNote') }}/>
                   </div>
                 </motion.div>
               </div>
@@ -441,22 +466,60 @@ export default function DoneForYouPage() {
                     {t('cta.title')}
                   </h2>
                 </BreathingAnimationText>
+
+                {/* Esra Aslan Profile Card */}
+                  <div className='w-full max-w-sm mt-8'>
+                    <a 
+                      href={t('benefits.advisorLinkedIn')}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='block group transition-transform duration-300 hover:scale-[1.02]'
+                    >
+                      <div className='flex items-center gap-4 bg-[#fcfcfd] dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+                        <div className='w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+                          <img
+                            src='/EsraAslan.PNG'
+                            alt={t('benefits.advisorName')}
+                            className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
+                          />
+                        </div>
+                        <div className='flex-1'>
+                          <p className='text-black dark:text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.advisorName')}</p>
+                          <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
+                          <p className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3' title={t('benefits.advisorBio')}>
+                            {t('benefits.advisorBio')}
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                 
                 <div className='flex flex-col items-center lg:items-start gap-12'>
                   {/* <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
                     {t('cta.button')} 
                   </ActionButton> */}
 
-                  <ul className='space-y-4 text-left max-w-sm'>
-                    {[1, 2, 3].map((i) => (
-                      <li key={i} className='flex items-start gap-3'>
-                        <div className='w-1.5 h-1.5 rounded-full bg-black dark:bg-white shrink-0 mt-1.5 shadow-[0_0_8px_rgba(239,68,68,0.4)]' />
-                        <span className='text-md font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
-                          {t(`cta.point${i}` as any)}
-                        </span>
-                      </li>
-                    ))}
+                  <ul className='space-y-6 text-left max-w-sm'>
+                    {[
+                      { icon: Image, key: 'point1' },
+                      { icon: BarChart3, key: 'point2' },
+                      { icon: PhoneCall, key: 'point3' }
+                    ].map((item, i) => {
+                      const Icon = item.icon
+                      return (
+                        <li key={i} className='flex items-center gap-4'>
+                          <div className='w-10 h-10 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-200 dark:border-neutral-700 shadow-sm'>
+                            <Icon className='w-5 h-5 text-black dark:text-white' strokeWidth={1.5} />
+                          </div>
+                          <span className='text-[15px] font-medium text-neutral-600 dark:text-neutral-400 leading-relaxed italic'>
+                            {t(`cta.point${i + 1}` as any)}
+                          </span>
+                        </li>
+                      )
+                    })}
                   </ul>
+
+                  
                 </div>
               </motion.div>
               
@@ -479,6 +542,9 @@ export default function DoneForYouPage() {
 
       {/* Footer */}
       <FooterSection />
+
+      {/* Floating Buzzer */}
+      <FloatingBuzzer />
     </div>
   )
 }

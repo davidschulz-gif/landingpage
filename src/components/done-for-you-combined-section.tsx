@@ -61,6 +61,33 @@ export const DoneForYouCombinedSection = () => {
             <p className='text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-lg mx-auto lg:mx-0 font-space-grotesk'>
               {tPreview('subtitle')}
             </p>
+
+              {/* Esra Aslan Profile Card */}
+            <div className='w-full max-w-sm mt-8 mx-auto lg:mx-0'>
+              <a 
+                href={useTranslations('BilderFlatrate.benefits')('advisorLinkedIn')}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='block group transition-transform duration-300 hover:scale-[1.02]'
+              >
+                <div className='flex items-center gap-4 bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+                  <div className='w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+                    <img
+                      src='/EsraAslan.PNG'
+                      alt={useTranslations('BilderFlatrate.benefits')('advisorName')}
+                      className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
+                    />
+                  </div>
+                  <div className='flex-1'>
+                    <p className='text-black dark:text-white font-bold text-[10px] md:text-xs uppercase tracking-widest'>{useTranslations('BilderFlatrate.benefits')('advisorName')}</p>
+                    <p className='text-neutral-500 text-[9px] md:text-[10px] uppercase tracking-wider mb-1'>{useTranslations('BilderFlatrate.benefits')('advisorRole')}</p>
+                    <p className='text-neutral-400 text-[10px] md:text-[11px] leading-relaxed line-clamp-3' title={useTranslations('BilderFlatrate.benefits')('advisorBio')}>
+                      {useTranslations('BilderFlatrate.benefits')('advisorBio')}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
             
             <div className='pt-6 flex justify-center lg:justify-start'>
               <ActionButton 
@@ -70,6 +97,8 @@ export const DoneForYouCombinedSection = () => {
                 {tPreview('button')}
               </ActionButton>
             </div>
+
+          
           </motion.div>
 
           {/* Right Side - Booking Form */}

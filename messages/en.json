@@ -384,10 +384,14 @@
       "timeout": "Request timed out. Please try again.",
       "unexpected": "An unexpected error occurred. Please try again."
     },
-    "success": "You will be notified about new features."
+    "success": "You will be notified about new features.",
+    "backAction": "Back to form"
   },
   "BeforeYouGo": {
     "title": "Before you leave, join our list and get 70$ off your first subscription."
+  },
+  "FloatingBuzzer": {
+    "text": "Request a Free Demo and Initial Consultation"
   },
   "TrustedBy": {
     "certifiedBy": "CERTIFIED BY",
@@ -576,6 +580,7 @@
       "point2": "€1,500 average market price",
       "point3": "€2,000–3,000 for high-quality renderings",
       "conclusion": "And every image is billed individually.",
+      "statusQuoHeader": "The problematic status quo in the market",
       "meaningTitle": "This means:",
       "meaning1Title": "long wait times",
       "meaning1Desc": "Days or weeks until the first draft.",
@@ -622,7 +627,11 @@
       "visualizerBio": "My Name is Chris, architectural designer & 3D visualizer from Germany with 7+ years experience in architectural visualization.",
       "visualizer2Name": "Bjarne Weber",
       "visualizer2Role": "Architectural Visualizer · Germany",
-      "visualizer2Bio": "My Name is Bjarne, architectural designer & 3D visualizer from Germany with years of experience in architectural visualization."
+      "visualizer2Bio": "My Name is Bjarne, architectural designer & 3D visualizer from Germany with years of experience in architectural visualization.",
+      "advisorName": "Esra",
+      "advisorRole": "Strategy Advisor · Germany",
+      "advisorBio": "Strategy advisor focused on market expansion and commercial strategy for… · Professional Experience: MEBÚ · Location: Germany · 500+ contacts on LinkedIn. See the profile of Esra A. Esra A. on LinkedIn, a professional community with more than 1 billion members.",
+      "advisorLinkedIn": "https://www.linkedin.com/in/esra-aslan/"
     },
     "pricing": {
       "title1": "An image normally costs",
