@@ -15,8 +15,8 @@ interface BookingDemoClassFormProps {
   showTitle?: boolean
 }
 
-const apiUrl = 'http://localhost:3000/api/hubspot'
-// const apiUrl = 'https://app.typus.ai/api/hubspot'
+// const apiUrl = 'http://localhost:3000/api/hubspot'
+const apiUrl = 'https://app.typus.ai/api/hubspot'
 
 export default function BookingDemoClassForm({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
