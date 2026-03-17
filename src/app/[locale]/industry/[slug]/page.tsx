@@ -4,6 +4,7 @@ import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
 import { IndustryApplicationsSection } from '@/components/industry-applications-section'
 import { IndustryChallengesSection } from '@/components/industry-challenges-section'
+import { IndustryExamplesSection } from '@/components/industry-examples-section'
 import { IndustryFaqSection } from '@/components/industry-faq-section'
 import { IndustryFunctionsSection } from '@/components/industry-functions-section'
 import { IndustryPopularApplicationsSection } from '@/components/industry-popular-applications-section'
@@ -64,6 +65,9 @@ export default function IndustryPage({ params }: { params: Promise<{ slug: strin
             </motion.div>
           </div>
         </section>
+
+        {/* Industry Examples Section */}
+        <IndustryExamplesSection slug={slug} />
 
         {/* Industry Challenges Section */}
         <IndustryChallengesSection slug={slug} />

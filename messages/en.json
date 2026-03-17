@@ -1003,6 +1003,20 @@
             "answer": "We offer scalable plans for freelance architects to large firms. See our pricing page."
           }
         }
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Sketch to Render"
+          },
+          "example2": {
+            "title": "Application Example 2 : CAD to Photorealistic"
+          },
+          "example3": {
+            "title": "Application Example 3 : Site Model Visualization"
+          }
+        }
       }
     },
     "interiorArchitects": {
@@ -1157,6 +1171,20 @@
           "faq5": {
             "question": "What does typus.ai cost for interior studios?",
             "answer": "We offer individual and team plans suited for interior design workflows."
+          }
+        }
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Concept to Interior Render"
+          },
+          "example2": {
+            "title": "Application Example 2 : Colormap Design Study"
+          },
+          "example3": {
+            "title": "Application Example 3 : Design Sketch to Reality"
           }
         }
       }
@@ -1315,6 +1343,20 @@
             "answer": "We provide highly affordable plans specifically for workshops of all sizes."
           }
         }
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Woodwork Sketch to Render"
+          },
+          "example2": {
+            "title": "Application Example 2 : Technical CAD Transform"
+          },
+          "example3": {
+            "title": "Application Example 3 : Material Concept Study"
+          }
+        }
       }
     },
     "kitchenBuilders": {
@@ -1471,6 +1513,20 @@
             "answer": "Our pricing scales with your business needs, offering excellent ROI on closed sales."
           }
         }
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Kitchen Design Concept"
+          },
+          "example2": {
+            "title": "Application Example 2 : Layout Sketch to Render"
+          },
+          "example3": {
+            "title": "Application Example 3 : Material & Color Preview"
+          }
+        }
       }
     },
     "painters": {
@@ -1602,6 +1658,20 @@
           }
         }
       },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Colormap Color Testing"
+          },
+          "example2": {
+            "title": "Application Example 2 : Interior Mood Transition"
+          },
+          "example3": {
+            "title": "Application Example 3 : Wall Texture Sketch to Final"
+          }
+        }
+      },
       "IndustryFAQ": {
         "title": "Frequently Asked Questions",
         "subtitle": "Answers to the most important questions of painters.",
@@ -1634,6 +1704,23 @@
         "badge": "Typus.ai for Furniture Makers",
         "title": "AI Visualization for Furniture Makers",
         "subtitle": "Typus.ai supports professionals in architecture, interior design, real estate, crafts, and construction with AI-supported visualization. Find the right solution for your industry."
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Design Concept to Render"
+          },
+          "example2": {
+            "title": "Application Example 2 : Hand Sketch to Reality"
+          },
+          "example3": {
+            "title": "Application Example 3 : 3D Model Visualization"
+          },
+          "example4": {
+            "title": "Application Example 4 : Technical CAD Transform"
+          }
+        }
       },
       "IndustryChallenges": {
         "title": "Do you know that?",
@@ -1939,6 +2026,20 @@
             "answer": "It's massively cheaper than physical staging. Check out our affordable monthly plans."
           }
         }
+      },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Site Potential Visualization"
+          },
+          "example2": {
+            "title": "Application Example 2 : Exterior 3D Rendering"
+          },
+          "example3": {
+            "title": "Application Example 3 : Lifestyle Interior Preview"
+          }
+        }
       }
     },
     "developers": {
@@ -2070,6 +2171,20 @@
           }
         }
       },
+      "IndustryExamples": {
+        "title": "Application examples",
+        "examples": {
+          "example1": {
+            "title": "Application Example 1 : Site Model to Reality"
+          },
+          "example2": {
+            "title": "Application Example 2 : Major Project 3D View"
+          },
+          "example3": {
+            "title": "Application Example 3 : Technical Drawing to Render"
+          }
+        }
+      },
       "IndustryFAQ": {
         "title": "Frequently Asked Questions",
         "subtitle": "Answers to the most important questions of developers.",
@@ -2182,5 +2297,11 @@
         "answer": "We handle many different formats, from CAD drawings and hand sketches to standard image files like JPG and PNG."
       }
     }
+  },
+  "ThankYou": {
+    "title": "Thank You!",
+    "message": "Your purchase was successful. We will be in touch shortly.",
+    "orderReference": "Order reference",
+    "backToHome": "Return to Home"
   }
 }

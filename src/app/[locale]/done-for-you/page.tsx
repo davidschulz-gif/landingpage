@@ -182,7 +182,7 @@ export default function DoneForYouPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className='mt-8 pt-6 border-t border-neutral-100 dark:border-neutral-900'>
+                  <p className='mt-8 pt-6 border-t text-xl border-neutral-100 dark:border-neutral-900'>
                     {t('problem.conclusion')}
                   </p>
                 </div>
@@ -212,7 +212,7 @@ export default function DoneForYouPage() {
                   ))}
                 </div>
                 
-                <div className='mt-10 p-4 border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-black text-center text-xs font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
+                <div className='mt-10 p-4 border border-neutral-100 text-lg dark:border-neutral-800 bg-white dark:bg-black text-center  font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
                   {t('problem.finalConclusion')}
                 </div>
               </motion.div>
@@ -522,7 +522,7 @@ export default function DoneForYouPage() {
                 </BreathingAnimationText>
 
                 {/* Esra Aslan Profile Card */}
-                  <div className='w-full max-w-sm mt-8'>
+                  <div className='w-full mt-8'>
                     <a 
                       href={t('benefits.advisorLinkedIn')}
                       target='_blank'
@@ -538,9 +538,9 @@ export default function DoneForYouPage() {
                           />
                         </div>
                         <div className='flex-1'>
-                          <p className='text-black dark:text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.advisorName')}</p>
-                          <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
-                          <p style={{fontFamily: 'sans-serif'}} className='text-neutral-400 text-[11px] leading-relaxed line-clamp-3' title={t('benefits.advisorBio')}>
+                          <p className='text-black dark:text-white font-bold text-xl uppercase tracking-widest'>{t('benefits.advisorName')}</p>
+                          <p className='text-neutral-500 text-md uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
+                          <p style={{fontFamily: 'sans-serif'}} className='text-neutral-400 text-md leading-relaxed' title={t('benefits.advisorBio')}>
                             {t('benefits.advisorBio')}
                           </p>
                         </div>
