@@ -2302,6 +2302,13 @@
     "title": "Vielen Dank!",
     "message": "Ihr Kauf war erfolgreich. Wir werden uns in Kürze bei Ihnen melden.",
     "orderReference": "Bestellreferenz",
-    "backToHome": "Zurück zur Startseite"
+    "backToHome": "Zurück zur Startseite",
+    "detailsTitle": "Kaufdetails",
+    "name": "Name",
+    "email": "E-Mail",
+    "transactionId": "Transaktions-ID",
+    "amount": "Betrag",
+    "currency": "Währung",
+    "plan": "Plan"
   }
 }

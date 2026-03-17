@@ -1,26 +1,129 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { sendGTMEvent } from '@next/third-parties/google'
 import { CheckCircle } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
 function ThankYouContent() {
   const t = useTranslations('ThankYou')
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
-  
-  useEffect(() => {
-    if (sessionId) {
-    // alert(sessionId)
-      // Send the GTM event for the Stripe purchase tracking
-      // We push the event and the session_id so that GTM can capture it
-      sendGTMEvent({ event: 'stripe_purchase', session_id: sessionId })
+  const [user, setUser] = useState<any>();
+
+
+  const fetchCheckoutSession = async (sessionId: string) => {
+    try {
+      // const res = await fetch(
+      //   `http://localhost:3000/api/subscription/checkout/retrieve/${sessionId}`
+      // );
+
+       const res = await fetch(
+        `https://app.typus.ai/api/subscription/checkout/retrieve/${sessionId}`
+      );
+
+      if (!res.ok) throw new Error('Failed to fetch session');
+
+      const data = await res.json();
+      if (data && data.session_details) {
+        const s = data.session_details;
+        setUser({
+          name: s?.customer_details?.name,
+          email: s?.customer_details?.email,
+          payment_status:s?.payment_status,
+          id: sessionId, // session id is often the transaction id
+          transaction_id: sessionId,
+          amount: (s?.item?.price || 0) / 100,
+          currency: s?.item?.currency?.toUpperCase(),
+          item:{item_name: s?.item?.name,
+          item_id: s?.item?.product_id,
+          price: s?.item?.price / 100,
+          quantity: s?.item?.quantity}
+         });
+
+      }
+      return data;
+    } catch (error) {
+      console.error('❌ Fetch session error:', error);
+      return null;
     }
-  }, [sessionId])
+  };
+
+  const pushPurchaseToDataLayer = (data: any) => {
+    try {
+     
+      if (!user || user?.payment_status !== 'paid') {
+        alert('❌ Payment not completed');
+        return;
+      }
+
+     
+
+      //  setUser({name:session?.user?.name,email:session?.user?.email,id:session?.user?.id,transaction_id:session?.id,amount:session?.amount_total/100,currency:session?.currency?.toUpperCase(),plan:session?.user?.plan})
+  console.log("GTM PAYLOAD" , {ecommerce: {
+            transaction_id: user?.id,
+            value: user?.amount,
+            currency: user?.currency?.toUpperCase() || 'EUR',
+            items: [user?.item]
+          }},)
+      // ✅ Direct GTM push (your preferred method)
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'purchase',
+          ecommerce: {
+            transaction_id: user?.id,
+            value: user?.amount,
+            currency: user?.currency?.toUpperCase() || 'EUR',
+            items: [user?.item]
+          },
+        });
+
+        console.log('✅ GTM Purchase Event Pushed');
+      } else {
+        console.warn('❌ dataLayer not found');
+      }
+
+    } catch (error) {
+      console.error('❌ GTM push error:', error);
+    }
+  };
+
+
+  // useEffect(() => {
+  //   if (sessionId) {
+  //     alert(sessionId)
+  //     // Send the GTM event for the Stripe purchase tracking
+  //     // We push the event and the session_id so that GTM can capture it
+  //     sendGTMEvent({ event: 'stripe_purchase', session_id: sessionId })
+  //   }
+  // }, [sessionId])
+
+  useEffect(() => {
+    const handleTracking = async () => {
+      if (!sessionId) return;
+
+      // ❌ remove alert in production
+      console.log('Session ID:', sessionId);
+
+      const session = await fetchCheckoutSession(sessionId);
+
+
+      // if (session) {
+      //   pushPurchaseToDataLayer(session);
+      // }
+    };
+
+    handleTracking();
+  }, [sessionId]);
+
+  useEffect(()=>{
+    if(user){
+      console.log("Hitting gtm layer")
+      pushPurchaseToDataLayer(user);
+    }
+  },[user])
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4">
@@ -28,7 +131,7 @@ function ThankYouContent() {
         <div className="flex justify-center">
           <CheckCircle className="w-20 h-20 text-green-500" />
         </div>
-        <h1 
+        <h1
           className="text-4xl font-bold text-black"
           style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
         >
@@ -37,16 +140,50 @@ function ThankYouContent() {
         <p className="text-lg text-gray-600">
           {t('message')}
         </p>
-        
-        {sessionId && (
-          <p className="text-sm text-gray-400">
-            {t('orderReference')}: {sessionId.substring(0, 10)}...
-          </p>
+
+        {user && (
+          <div className="bg-gray-50 p-6 rounded-lg text-left space-y-4 border border-gray-100 shadow-sm">
+            <h2 className="text-xl font-bold text-black border-b border-gray-200 pb-2" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+              {t('detailsTitle')}
+            </h2>
+            <div className="grid grid-cols-1 gap-y-3 text-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">{t('name')}</span>
+                <span className="text-black font-semibold">{user?.name}</span>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">{t('email')}</span>
+                <span className="text-black font-semibold">{user?.email}</span>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">{t('transactionId')}</span>
+                <span className="text-black font-mono text-xs opacity-70" title={user?.transaction_id}>
+                  {user?.transaction_id?.substring(0, 15)}...
+                </span>
+              </div>
+              
+              <div className="border-t border-gray-200 pt-3 mt-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-500 font-medium">{t('plan')}</span>
+                  <span className="text-black font-bold uppercase tracking-wider">{user?.plan}</span>
+                </div>
+                
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-black font-bold text-lg">{t('amount')}</span>
+                  <span className="text-black font-bold text-xl">
+                    {user?.amount} {user?.currency}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
 
         <div className="pt-8">
           <Link href="/">
-            <Button 
+            <Button
               className="bg-black cursor-pointer text-white hover:bg-gray-800 px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >

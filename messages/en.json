@@ -2302,6 +2302,13 @@
     "title": "Thank You!",
     "message": "Your purchase was successful. We will be in touch shortly.",
     "orderReference": "Order reference",
-    "backToHome": "Return to Home"
+    "backToHome": "Return to Home",
+    "detailsTitle": "Purchase Details",
+    "name": "Name",
+    "email": "Email",
+    "transactionId": "Transaction ID",
+    "amount": "Amount",
+    "currency": "Currency",
+    "plan": "Plan"
   }
 }
