@@ -79,6 +79,10 @@
       }
     }
   },
+  "ImageTemplates": {
+    "title": "Image Templates",
+    "subtitle": "Explore architectural styles and jumpstart your project."
+  },
   "Hero": {
     "titles": [
       "AI FOR ARCHITECTS.",
@@ -2310,5 +2314,204 @@
     "amount": "Amount",
     "currency": "Currency",
     "plan": "Plan"
+  },
+  "FeatureShowcase": {
+    "title": "Beyond Generation",
+    "subtitle": "Refine and perfect your architectural visualizations with our specialized editing and upscaling tools.",
+    "features": {
+      "edit": {
+        "title": "Intelligent Editing",
+        "subtitle": "Change materials, swap furniture, or redesign entire rooms with precision masking.",
+        "cta": "Try Editing",
+        "badge": "Edit"
+      },
+      "upscale": {
+        "title": "HD Clarity",
+        "subtitle": "Enhance renders to 4K quality while preserving architectural integrity.",
+        "cta": "Upscale",
+        "badge": "Upscale"
+      },
+      "video": {
+        "title": "AI Video Motion",
+        "subtitle": "Transform static renders into cinematic drone flyovers.",
+        "cta": "Create Video",
+        "badge": "Video"
+      },
+      "workflow": {
+        "title": "Professional Workflow",
+        "subtitle": "A complete suite designed for the modern architectural pipeline.",
+        "cta": "Explore Tools",
+        "badge": "Workflow"
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "How it Works",
+    "subtitle": "Transform your architectural concepts into reality in three simple steps.",
+    "steps": {
+      "step1": {
+        "title": "1. Input Your Vision",
+        "description": "Upload a simple hand sketch, a 3D model, or just type a descriptive text prompt."
+      },
+      "step2": {
+        "title": "2. AI Transformation",
+        "description": "Our advanced AI models analyze your input and generate photorealistic architectural visualizations."
+      },
+      "step3": {
+        "title": "3. Premium Results",
+        "description": "Download high-quality renders ready for client presentations or marketing materials."
+      }
+    },
+    "visualization": {
+      "prompt": "Create a photorealistic modern villa with floor-to-ceiling glass walls, nestled in a lush green forest at sunset with cinematic lighting.",
+      "generating": "Generating architectural details...",
+      "aiPromptBadge": "AI Prompt",
+      "inputTypeBadge": "Input Type",
+      "inputTypeValue": "Hand Sketch (Uploaded)"
+    }
+  },
+   "VideoGenerate": {
+    
+    "templates": {
+      "title": "Video Templates",
+      "ariaLabel": "Open Video Templates",
+      "description": "Select a template to get started",
+      "select": "Select",
+      "noTemplates": "No templates available",
+      "items": {
+        "timelapse": {
+          "title": "Timelapse",
+          "description": "Seasonal change or day-to-night transitions"
+        },
+        "droneFlyover": {
+          "title": "Drone Flyover",
+          "description": "Bird’s-eye aerial video"
+        },
+        "constructionTimelapse": {
+          "title": "Construction Timelapse",
+          "description": "Empty site → Finished building"
+        },
+        "animatedRender": {
+          "title": "Animated Render",
+          "description": "Render → Real building transition"
+        },
+        "buildingAssembly": {
+          "title": "Building Assembly",
+          "description": "Break apart and snap back together"
+        },
+        "unveiling": {
+          "title": "Unveiling",
+          "description": "Red-curtain reveal"
+        },
+        "balloonHouse": {
+          "title": "Balloon House",
+          "description": "Building flying in with balloons"
+        },
+        "sunCycle": {
+          "title": "Sun Cycle",
+          "description": "24h light change in seconds"
+        },
+        "walkthrough": {
+          "title": "Architectural Walkthrough",
+          "description": "Smooth interior gimbal tour"
+        },
+        "natureOvergrowth": {
+          "title": "Nature Overgrowth",
+          "description": "Buildings reclaimed by nature"
+        },
+        "constructionProgressReveal": {
+          "title": "Construction Progress Reveal",
+          "description": "Blueprint → Structure Frame → Completed Building"
+        },
+        "dayToNightTransition": {
+          "title": "Day to Night Architectural Transition",
+          "description": "Same building → Daylight → Sunset → Night with interior lights ON"
+        },
+        "droneCinematicFlyover": {
+          "title": "Drone Cinematic Flyover",
+          "description": "Slow cinematic drone movement around luxury building"
+        },
+        "buildingAssemblyAnimation": {
+          "title": "Building Assembly Animation (Exploded View)",
+          "description": "Building parts assemble in air → Final structure"
+        },
+        "beforeAfterRenovation": {
+          "title": "Before / After Renovation",
+          "description": "Old building → Transition wipe → Modern renovation"
+        },
+        "realEstatePromo": {
+          "title": "Real Estate Promo Style",
+          "description": "Luxury intro cinematic promo"
+        },
+        "blueprintToReality": {
+          "title": "Blueprint to Reality",
+          "description": "2D floor plan → 3D structure → Real building"
+        },
+        "skeletonToStructure": {
+          "title": "Skeleton to Structure",
+          "description": "Steel frame rising with cranes"
+        },
+        "emptyToLuxury": {
+          "title": "Empty Interior to Luxury Space",
+          "description": "Raw Concrete Room → Furniture Appears → Lighting Turns On"
+        },
+        "luxuryVillaReveal": {
+          "title": "Luxury Villa Reveal",
+          "description": "Hidden behind wall → Camera slides → Full Villa Reveal"
+        },
+        "urbanLandToMegaProject": {
+          "title": "Urban Land to Mega Project",
+          "description": "Empty Land → Roads Draw → Buildings Rise → City Complete"
+        },
+        "concreteFoundationTimelapse": {
+          "title": "Concrete Foundation Timelapse",
+          "description": "Digging → Rebar Setup → Concrete Pour → Solid Foundation"
+        },
+        "glassFacadeShowcase": {
+          "title": "Glass Facade Showcase",
+          "description": "Close-up Glass → Reflection Reveal → Full Building Pullback"
+        },
+        "megaProjectScaleReveal": {
+          "title": "Mega Project Scale Reveal",
+          "description": "Wide Drone Shot → Zoom Out → Full Complex Reveal"
+        },
+        "smartBuildingHighlight": {
+          "title": "Smart Building Highlight",
+          "description": "Normal Building → Tech Overlay Appears → Smart Features Glow"
+        },
+        "greenArchitectureEvolution": {
+          "title": "Green Architecture Evolution",
+          "description": "Standard Building → Green Roof → Solar Panels → Vertical Gardens"
+        },
+        "nightConstructionSite": {
+          "title": "Night Construction Site",
+          "description": "Day Site → Sunset → Night with Artificial Lights"
+        },
+        "skyscraperVerticalGrowth": {
+          "title": "Skyscraper Vertical Growth",
+          "description": "Ground Level → Floors Add One by One → Skyline Completed"
+        },
+        "architecturalDetailMacro": {
+          "title": "Architectural Detail Macro",
+          "description": "Extreme Close-up → Material Detail → Pull Back to Building"
+        },
+        "resortDevelopmentReveal": {
+          "title": "Resort Development Reveal",
+          "description": "Construction Site → Finished Luxury Resort"
+        }
+      }
+    },
+    "errors": {
+      "promptRequired": "Please enter a prompt",
+      "generationFailed": "Failed to generate video",
+      "unexpectedError": "An unexpected error occurred"
+    },
+    "success": {
+      "generationStarted": "Video generation started successfully"
+    },
+    "video": {
+      "noVideoAvailable": "No video available",
+      "today": "Today"
+    }
   }
 }

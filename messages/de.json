@@ -79,6 +79,10 @@
       }
     }
   },
+  "ImageTemplates": {
+    "title": "Bildvorlagen",
+    "subtitle": "Entdecken Sie Architekturstile und starten Sie Ihr Projekt."
+  },
   "Hero": {
     "titles": [
       "KI FÜR ARCHITEKTEN.",
@@ -2310,5 +2314,205 @@
     "amount": "Betrag",
     "currency": "Währung",
     "plan": "Plan"
+  },
+  "FeatureShowcase": {
+    "title": "Über die Generierung hinaus",
+    "subtitle": "Verfeinern und perfektionieren Sie Ihre Architekturvisualisierungen mit unseren spezialisierten Bearbeitungs- und Upscaling-Tools.",
+    "features": {
+      "edit": {
+        "title": "Intelligente Bearbeitung",
+        "subtitle": "Ändern Sie Materialien, tauschen Sie Möbel aus oder gestalten Sie ganze Räume mit präziser Maskierung neu.",
+        "cta": "Bearbeitung testen",
+        "badge": "Bearbeiten"
+      },
+      "upscale": {
+        "title": "HD Klarheit",
+        "subtitle": "Verbessern Sie Renderings auf 4K-Qualität, während die architektonische Integrität gewahrt bleibt.",
+        "cta": "Hochskalieren",
+        "badge": "Upscaling"
+      },
+      "video": {
+        "title": "KI-Video-Animation",
+        "subtitle": "Verwandeln Sie statische Renderings in filmische Drohnenflüge.",
+        "cta": "Video erstellen",
+        "badge": "Video"
+      },
+      "workflow": {
+        "title": "Professioneller Workflow",
+        "subtitle": "Eine komplette Suite, entwickelt für die moderne Architektur-Pipeline.",
+        "cta": "Tools entdecken",
+        "badge": "Workflow"
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "So funktioniert es",
+    "subtitle": "Verwandeln Sie Ihre Architekturkonzepte in drei einfachen Schritten in die Realität.",
+    "steps": {
+      "step1": {
+        "title": "1. Geben Sie Ihre Vision ein",
+        "description": "Laden Sie eine einfache Handskizze, ein 3D-Modell hoch oder geben Sie einfach einen beschreibenden Text-Prompt ein."
+      },
+      "step2": {
+        "title": "2. KI-Transformation",
+        "description": "Unsere fortschrittlichen KI-Modelle analysieren Ihre Eingabe und erstellen fotorealistische Architekturvisualisierungen."
+      },
+      "step3": {
+        "title": "3. Premium-Ergebnisse",
+        "description": "Laden Sie hochwertige Renderings herunter, die bereit für Kundenpräsentationen oder Marketingmaterialien sind."
+      }
+    },
+    "visualization": {
+      "prompt": "Erstellen Sie eine fotorealistische moderne Villa mit raumhohen Glaswänden, eingebettet in einen üppigen grünen Wald bei Sonnenuntergang mit filmischer Beleuchtung.",
+      "generating": "Architektonische Details werden generiert...",
+      "aiPromptBadge": "KI-Prompt",
+      "inputTypeBadge": "Eingabetyp",
+      "inputTypeValue": "Handskizze (Hochgeladen)"
+    }
+  },
+  "VideoGenerate": {
+    "templates": {
+      "title": "Video-Vorlagen",
+      "ariaLabel": "Video-Vorlagen öffnen",
+      "description": "Wählen Sie eine Vorlage aus, um zu beginnen",
+      "select": "Auswählen",
+      "noTemplates": "Keine Vorlagen verfügbar",
+      "items": {
+        "timelapse": {
+          "title": "Zeitraffer",
+          "description": "Saisonale Veränderungen oder Tag-Nacht-Übergänge"
+        },
+        "droneFlyover": {
+          "title": "Drohnenüberflug",
+          "description": "Aerial-Video aus der Vogelperspektive"
+        },
+        "constructionTimelapse": {
+          "title": "Bau-Zeitraffer",
+          "description": "Baustelle → Fertiges Gebäude"
+        },
+        "animatedRender": {
+          "title": "Animiertes Rendering",
+          "description": "Rendering → Übergang zum realen Gebäude"
+        },
+        "buildingAssembly": {
+          "title": "Gebäudemontage",
+          "description": "Auseinanderbrechen und wieder zusammenfügen"
+        },
+        "unveiling": {
+          "title": "Enthüllung",
+          "description": "Roter Vorhang-Enthüllung"
+        },
+        "balloonHouse": {
+          "title": "Ballonhaus",
+          "description": "Gebäude, das mit Ballons hereinfliegt"
+        },
+        "sunCycle": {
+          "title": "Sonnenzyklus",
+          "description": "24-Stunden-Lichtwechsel in Sekunden"
+        },
+        "walkthrough": {
+          "title": "Architektonischer Rundgang",
+          "description": "Sanfte Gimbal-Tour im Innenraum"
+        },
+        "natureOvergrowth": {
+          "title": "Naturüberwucherung",
+          "description": "Gebäude, die von der Natur zurückerobert werden"
+        },
+        "constructionProgressReveal": {
+          "title": "Enthüllung des Baufortschritts",
+          "description": "Blueprint → Strukturrahmen → Fertiges Gebäude"
+        },
+        "dayToNightTransition": {
+          "title": "Architektonischer Tag-Nacht-Übergang",
+          "description": "Gleiches Gebäude → Tageslicht → Sonnenuntergang → Nacht mit eingeschaltetem Innenlicht"
+        },
+        "droneCinematicFlyover": {
+          "title": "Kinematische Drohnen-Überflug",
+          "description": "Langsame kinematische Drohnenbewegung um ein Luxusgebäude"
+        },
+        "buildingAssemblyAnimation": {
+          "title": "Gebäudemontage-Animation (Explosionsdarstellung)",
+          "description": "Gebäudeteile setzen sich in der Luft zusammen → Endgültige Struktur"
+        },
+        "beforeAfterRenovation": {
+          "title": "Vor / Nach der Renovierung",
+          "description": "Altes Gebäude → Übergangswisch → Moderne Renovierung"
+        },
+        "realEstatePromo": {
+          "title": "Immobilien-Promo-Stil",
+          "description": "Luxuriöse kinematische Intro-Promo"
+        },
+        "blueprintToReality": {
+          "title": "Vom Blueprint zur Realität",
+          "description": "2D-Grundriss → 3D-Struktur → Reales Gebäude"
+        },
+        "skeletonToStructure": {
+          "title": "Skelett zu Struktur",
+          "description": "Stahlrahmen erhebt sich mit Kränen"
+        },
+        "emptyToLuxury": {
+          "title": "Vom leeren Innenraum zum Luxusraum",
+          "description": "Rohbetonraum → Möbel erscheinen → Licht schaltet sich ein"
+        },
+        "luxuryVillaReveal": {
+          "title": "Enthüllung der Luxusvilla",
+          "description": "Hinter einer Wand versteckt → Kamera gleitet → Vollständige Villa-Enthüllung"
+        },
+        "urbanLandToMegaProject": {
+          "title": "Vom Stadtland zum Megaprojekt",
+          "description": "Leeres Land → Straßen zeichnen sich → Gebäude entstehen → Stadt komplett"
+        },
+        "concreteFoundationTimelapse": {
+          "title": "Zeitlupe des Betonfundaments",
+          "description": "Graben → Bewehrung → Beton gießen → Solides Fundament"
+        },
+        "glassFacadeShowcase": {
+          "title": "Glasfassaden-Showcase",
+          "description": "Nahaufnahme Glas → Reflexions-Enthüllung → Vollständiger Rückzug vom Gebäude"
+        },
+        "megaProjectScaleReveal": {
+          "title": "Enthüllung des Megaprojekts",
+          "description": "Breite Drohnenaufnahme → Herauszoomen → Enthüllung des gesamten Komplexes"
+        },
+        "smartBuildingHighlight": {
+          "title": "Highlight des Smart Buildings",
+          "description": "Normales Gebäude → Tech-Overlay erscheint → Smart-Features leuchten"
+        },
+        "greenArchitectureEvolution": {
+          "title": "Evolution der grünen Architektur",
+          "description": "Standardgebäude → Gründach → Sonnenkollektoren → Vertikale Gärten"
+        },
+        "nightConstructionSite": {
+          "title": "Nachtbaustelle",
+          "description": "Tagesbaustelle → Sonnenuntergang → Nacht mit künstlichem Licht"
+        },
+        "skyscraperVerticalGrowth": {
+          "title": "Vertikales Wachstum des Wolkenkratzers",
+          "description": "Bodenniveau → Etagen werden nacheinander hinzugefügt → Skyline vervollständigt"
+        },
+        "architecturalDetailMacro": {
+          "title": "Architektonisches Detail-Makro",
+          "description": "Extreme Nahaufnahme → Materialdetail → Rückzug zum Gebäude"
+        },
+        "resortDevelopmentReveal": {
+          "title": "Enthüllung der Resort-Entwicklung",
+          "description": "Baustelle → Fertiges Luxus-Resort"
+        }
+      }
+    },
+    "removeStartFrame": "Startbild entfernen",
+    "removeEndFrame": "Endbild entfernen",
+    "errors": {
+      "promptRequired": "Bitte geben Sie eine Eingabeaufforderung ein",
+      "generationFailed": "Videogenerierung fehlgeschlagen",
+      "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten"
+    },
+    "success": {
+      "generationStarted": "Videogenerierung erfolgreich gestartet"
+    },
+    "video": {
+      "noVideoAvailable": "Kein Video verfügbar",
+      "today": "Heute"
+    }
   }
 }

@@ -170,6 +170,38 @@ const DoneForYouCombinedSection = dynamic(
   }
 )
 
+const HowItWorks = dynamic(
+  () => import('@/components/how-it-works').then(mod => mod.HowItWorks),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const ImageTemplates = dynamic(
+  () => import('@/components/image-templates').then(mod => mod.ImageTemplates),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+// const VideoTemplates = dynamic(
+//   () => import('@/components/video-templates').then(mod => mod.VideoTemplates),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
+
+const FeatureShowcase = dynamic(
+  () => import('@/components/feature').then(mod => mod.FeatureShowcase),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
@@ -288,6 +320,24 @@ export default function Home() {
         <ComparisonSection />
       </motion.div>
 
+      {/* Image Templates */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ImageTemplates />
+      </motion.div>
+
+      {/* Video Templates */}
+      {/* <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <VideoTemplates />
+      </motion.div> */}
+
       {/* Use Cases Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -295,6 +345,15 @@ export default function Home() {
         viewport={{ once: true, margin: '-100px' }}
       >
         <UseCasesSection />
+      </motion.div>
+
+      {/* Feature Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <FeatureShowcase />
       </motion.div>
 
       {/* Rights Section */}
@@ -306,7 +365,16 @@ export default function Home() {
         <RightsSection />
       </motion.div>
 
-      
+      {/* How It Works Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <HowItWorks />
+      </motion.div>
+
+
       {/* Video Showcase Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -370,7 +438,7 @@ export default function Home() {
         <DoneForYouCombinedSection />
       </motion.div>
 
-       {/* Industry Section */}
+      {/* Industry Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -389,7 +457,7 @@ export default function Home() {
         <ManyChatPricingSection />
       </motion.div>
 
-        {/* Detailed Feature Comparison Section */}
+      {/* Detailed Feature Comparison Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
