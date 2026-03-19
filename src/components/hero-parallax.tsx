@@ -16,6 +16,7 @@ import { BreathingAnimationText } from './breathing-animation-text'
 import HeroEmailForm from './hero-email-form'
 import { HeroVideoPlayer } from './hero-video-player'
 import { GoogleLogo } from './icons/google-logo'
+import { appUrl } from '@/lib/constants'
 
 export const HeroParallax = ({
   row123Products,
@@ -256,10 +257,10 @@ export const Header = () => {
                       <svg
                         key={star}
                         className={`w-5 h-5 ${star <= 4
-                            ? 'text-yellow-400'
-                            : star === 5
-                              ? 'text-gray-300'
-                              : 'text-gray-300'
+                          ? 'text-yellow-400'
+                          : star === 5
+                            ? 'text-gray-300'
+                            : 'text-gray-300'
                           }`}
                         fill={
                           star <= 4 || (star === 5 && star <= 4.5)
@@ -398,7 +399,7 @@ export const Header = () => {
                     t('features.caseStudies'),
                     t('features.welcomeGift'),
                   ],
-                  href: 'https://app.typus.ai/register',
+                  href: `${appUrl}`,
                   label: t('goToApp'),
                   cardKey: 'app',
                 },

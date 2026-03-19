@@ -9,14 +9,13 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import FormPhoneInput from './form/FormPhoneInput'
+import { apiUrl } from '@/lib/constants'
 
 interface BookingDemoClassFormProps {
   className?: string
   showTitle?: boolean
 }
 
-// const apiUrl = 'http://localhost:3000/api/hubspot'
-const apiUrl = 'https://app.typus.ai/api/hubspot'
 
 export default function BookingDemoClassForm({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
@@ -123,7 +122,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
 
     try {
       const response = await fetch(
-        apiUrl,
+        `${apiUrl}/api/hubspot`,
         {
           method: 'POST',
           headers: {
@@ -225,9 +224,9 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       )}
       {isSubmitted ? (
         <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="w-full space-y-4"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full space-y-4"
         >
           <button
             onClick={() => setIsSubmitted(false)}
@@ -326,7 +325,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
             </div>
           </div>
 
-            <div className="pt-2">
+          <div className="pt-2">
             <div className='flex items-start gap-3 px-1'>
               <input
                 type='checkbox'

@@ -19,10 +19,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
+import { appUrl } from '@/lib/constants'
 
 export function NavbarDemo() {
   const t = useTranslations('Navbar')
   const tNav = useTranslations('Navbar.navigation')
+  const tPricing = useTranslations('Pricing')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [doNotShowMegaMenu, setDoNotShowMegaMenu] = useState(false)
@@ -105,7 +107,7 @@ export function NavbarDemo() {
           {
             title: tNav('licenses.pricing.title'),
             description: tNav('licenses.pricing.description'),
-            link: '#pricing',
+            link: '/pricing',
           },
           {
             title: tNav('licenses.plugins.title'),
@@ -196,6 +198,12 @@ export function NavbarDemo() {
         </div>
         <div className='flex items-center gap-6 h-full'>
           <Link
+            href={`/pricing`}
+            className='bg-black text-white px-4 py-2 text-[13px] font-medium hover:bg-gray-800 transition-colors duration-200'
+          >
+            {tPricing('selectPlanCTA')}
+          </Link>
+          <Link
             href={isDoneForYou ? '/' : '/done-for-you'}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
@@ -219,8 +227,9 @@ export function NavbarDemo() {
           >
             {t('goToApp')}
           </ActionButton> */}
+
           <Link
-            href={`https://app.typus.ai/register?language=${locale}`}
+            href={`${appUrl}`}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {t('goToApp')}
@@ -230,11 +239,10 @@ export function NavbarDemo() {
       {!doNotShowMegaMenu && (
         <div
           ref={menuRef}
-          className={`fixed left-0 right-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[1002] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-            isMenuOpen
-              ? 'opacity-100 visible translate-y-0'
-              : 'opacity-0 invisible -translate-y-2'
-          }`}
+          className={`fixed left-0 right-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[1002] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
+            ? 'opacity-100 visible translate-y-0'
+            : 'opacity-0 invisible -translate-y-2'
+            }`}
           style={{ top: `0px` }}
           onMouseEnter={handleMenuEnter}
           onMouseLeave={handleMenuLeave}
@@ -253,11 +261,10 @@ export function NavbarDemo() {
                   {translatedNavItems.map((navItem, navIdx) => (
                     <div
                       key={`section-${navIdx}`}
-                      className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                        isMenuOpen
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-3'
-                      }`}
+                      className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-3'
+                        }`}
                       style={{
                         transitionDelay: isMenuOpen
                           ? `${navIdx * 50}ms`
@@ -302,7 +309,7 @@ export function NavbarDemo() {
                 </div>
 
                 <div className='absolute bottom-0 right-0 gap-4 flex'>
-                   <Image
+                  <Image
                     className='h-12 w-36'
                     src='/bdbau.png'
                     alt=''
@@ -323,7 +330,7 @@ export function NavbarDemo() {
                     }}
                     width={200}
                     height={200}
-                  /> 
+                  />
                   <Image
                     className='h-9 w-auto'
                     src='/Logo_MWIKE.jpg'
@@ -355,7 +362,7 @@ export function NavbarDemo() {
                       {t('explorePlatform')}
                     </Link>
                     <a
-                      href='#pricing'
+                      href='/pricing'
                       className='text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5  hover:bg-gray-100/60 transition-all duration-200'
                     >
                       {t('seePricing')}
@@ -372,17 +379,17 @@ export function NavbarDemo() {
                 {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
               </Link>
               <Link
-                href={`https://app.typus.ai/login`}
+                href={`${appUrl}/login`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('login')}
               </Link>
-               <Link
+              {/* <Link
                 href={`https://app.typus.ai/register?language=${locale}`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('signUp')}
-              </Link>
+              </Link> */}
               {/* <div className='relative h-full flex items-center pt-2'>
                 <Menu setActive={setAppActive} active={appActive}>
                   <MenuItem setActive={setAppActive} active={appActive} item={t('goToApp')}>
@@ -446,6 +453,14 @@ export function NavbarDemo() {
           ))}
           <div className='flex w-full flex-col gap-4'>
             <NavbarButton
+              href={`/pricing`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant='dark'
+              className='w-full text-nowrap'
+            >
+              {tPricing('selectPlanCTA')}
+            </NavbarButton>
+            <NavbarButton
               href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
@@ -455,18 +470,18 @@ export function NavbarDemo() {
             </NavbarButton>
             <div className='flex flex-col gap-2 border-t pt-2'>
               <div className='flex gap-2'>
-                <NavbarButton
+                {/* <NavbarButton
                   href={'https://app.typus.ai/login'}
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant='secondary'
                   className='w-full text-nowrap'
                 >
                   {t('login')}
-                </NavbarButton>
+                </NavbarButton> */}
                 <NavbarButton
-                  href={`https://app.typus.ai/register?language=${locale}`}
+                  href={`${appUrl}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  variant='dark'
+                  variant='secondary'
                   className='w-full text-nowrap'
                 >
                   {t('goToApp')}

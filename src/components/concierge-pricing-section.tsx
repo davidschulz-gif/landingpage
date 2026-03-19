@@ -101,7 +101,7 @@ export function ConciergePricingSection() {
   const currentPlans = conciergePlans.map(plan => {
     // Filter out requests and add conditional features
     const baseFeatures = plan.features.filter(f => !f.includes('.requests'))
-    const dynamicFeatures = isYearly 
+    const dynamicFeatures = isYearly
       ? [...baseFeatures.slice(0, 3), `plans.${plan.id}.features.pauseYearly`, ...baseFeatures.slice(3)]
       : [...baseFeatures.slice(0, 3), `plans.${plan.id}.features.cancelMonthly`, ...baseFeatures.slice(3)]
 
@@ -257,21 +257,20 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
   return (
     <div
-      className={`flex h-full min-h-[650px] flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${
-        plan.popular 
-          ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10' 
+      className={`flex h-full min-h-[650px] flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${plan.popular
+          ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10'
           : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
-      }`}
+        }`}
     >
       {/* Ribbon Tag / Badges */}
       {plan.topBadges && plan.topBadges.length > 0 && (
         <div className='absolute -top-4 right-4 z-30 flex flex-col items-end gap-1.5'>
           {plan.topBadges.map((badge: string, i: number) => (
-             <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
-               <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                 {badge}
-               </span>
-             </div>
+            <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
+              <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {badge}
+              </span>
+            </div>
           ))}
         </div>
       )}
@@ -350,7 +349,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
       {/* Button Section */}
       <div className='mt-auto pt-6'>
-        <Link 
+        <Link
           href={(isYearly ? plan.yearlyPaymentLink : plan.monthlyPaymentLink) || 'https://app.typus.ai/register'}
         >
           <Button

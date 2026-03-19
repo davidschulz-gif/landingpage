@@ -1,6 +1,7 @@
 'use client'
 
 import { useIsMobile } from '@/hooks/use-mobile'
+import { appUrl } from '@/lib/constants'
 import { motion } from 'framer-motion'
 import { Check, TrendingUp, X, Zap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -30,7 +31,7 @@ export const ComparisonSection = () => {
         heroT('features.caseStudies'),
         heroT('features.welcomeGift'),
       ],
-      href: 'https://app.typus.ai/register',
+      href: `${appUrl}`,
       label: heroT('goToApp'),
       cardKey: 'app',
     },
@@ -54,7 +55,7 @@ export const ComparisonSection = () => {
     <section className="py-20 px-6 max-w-7xl mx-auto overflow-hidden">
       {/* Header section */}
       <div className="mb-12">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,8 +64,8 @@ export const ComparisonSection = () => {
           <TrendingUp size={16} />
           {t('badge')}
         </motion.div>
-        
-        <motion.h2 
+
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -75,8 +76,8 @@ export const ComparisonSection = () => {
             <span key={i} className="block">{line}</span>
           ))}
         </motion.h2>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -92,7 +93,7 @@ export const ComparisonSection = () => {
         {isMobile ? (
           <div className="space-y-4">
             {rows.map((row, i) => (
-              <motion.div 
+              <motion.div
                 key={row.id}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -132,10 +133,10 @@ export const ComparisonSection = () => {
                   <th className="py-6 font-bold text-gray-700 w-1/3">{t('columns.task')}</th>
                   <th className="py-6 px-6 font-bold text-gray-700 w-1/3">
                     <div className="flex items-center gap-2">
-                       <span className="w-5 h-5 flex items-center justify-center border border-red-500 rounded-full">
-                         <X size={12} className="text-red-500" />
-                       </span>
-                       {t('columns.traditional')}
+                      <span className="w-5 h-5 flex items-center justify-center border border-red-500 rounded-full">
+                        <X size={12} className="text-red-500" />
+                      </span>
+                      {t('columns.traditional')}
                     </div>
                   </th>
                   <th className="py-6 px-6 font-bold text-gray-800 w-1/3 bg-[#F8F9F9] rounded-t-2xl">

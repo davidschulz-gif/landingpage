@@ -3,12 +3,21 @@
 import { Button } from '@/components/ui/button'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
 import { useIsEurope } from '@/hooks/use-is-europe'
+import { apiUrl } from '@/lib/constants'
 import { formatPrice } from '@/lib/price-converter'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import {
+  IconAlertCircle,
+  IconLoader2,
+  IconMail,
+  IconX,
+} from '@tabler/icons-react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Check, X } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 
 const professionalPlans = [
   {
@@ -149,563 +158,895 @@ const educationPlans = [
   },
 ]
 
-export function ManyChatPricingSection() {
+const apiBaseUrl = `${apiUrl}/api/subscription/public/`
+// const apiBaseUrl = 'https://app.typus.ai/api/subscription/public/'
+
+export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?: boolean }) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
-  const [isProfessional, setIsProfessional] = useState(true)
   // Selected plan tier: 'explorer' | 'pro' | 'enterprise'
   const [selectedPlanTier, setSelectedPlanTier] = useState<'explorer' | 'pro' | 'enterprise'>('pro')
+  const locale = useLocale();
+  const [plans, setPlans] = useState<any>();
+  const [educationalPlans, setEducationalPlans] = useState<any>();
+  const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('usd');
 
-  // Get translated plans - returns only the selected plan
-  const getTranslatedPlans = () => {
-    if (isProfessional) {
-      if (selectedPlanTier === 'explorer') {
-        return [
-          {
-            ...professionalPlans[0], // EXPLORER
-            name: t('plans.explorer.name'),
-            features: professionalPlans[0].features.map(f => ({
-              ...f,
-              text:
-                typeof f === 'string'
-                  ? f
-                  : t(
-                    `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
-                  ),
-              hasFeature: typeof f === 'object' ? f.hasFeature : true,
-            })),
-          },
-        ]
-      } else if (selectedPlanTier === 'pro') {
-        // Return 3 PRO plans: monthly, 6-monthly, yearly
-        const baseProPlan = professionalPlans[1]
-        return [
-          {
-            ...baseProPlan,
-            name: t('plans.pro.name'), // PRO
-            billingCycle: 'monthly' as const,
-            features: baseProPlan.features.map(f => ({
-              ...f,
-              text:
-                typeof f === 'string'
-                  ? f
-                  : t(
-                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                  ),
-              hasFeature: typeof f === 'object' ? f.hasFeature : true,
-            })),
-          },
-          {
-            ...baseProPlan,
-            name: t('plans.proSemi.name'), // PRO SEMI
-            billingCycle: 'sixMonthly' as const,
-            popular: true,
-            features: baseProPlan.features.map(f => ({
-              ...f,
-              text:
-                typeof f === 'string'
-                  ? f
-                  : t(
-                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                  ),
-              hasFeature: typeof f === 'object' ? f.hasFeature : true,
-            })),
-          },
-          {
-            ...baseProPlan,
-            name: t('plans.proComplete.name'), // PRO COMPLETE
-            billingCycle: 'yearly' as const,
-            popular: true,
-            features: baseProPlan.features.map(f => ({
-              ...f,
-              text:
-                typeof f === 'string'
-                  ? f
-                  : t(
-                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
-                  ),
-              hasFeature: typeof f === 'object' ? f.hasFeature : true,
-            })),
-          },
-        ]
-      } else {
-        // ENTERPRISE - disabled
-        return []
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [userEmail, setUserEmail] = useState('')
+  const [selectedPlanForModal, setSelectedPlanForModal] = useState<any>(null)
+  const [isRedirecting, setIsRedirecting] = useState(false)
+  const [modalError, setModalError] = useState<string | null>(null)
+  const [promoCode, setPromoCode] = useState('')
+  const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
+  const [promoDiscount, setPromoDiscount] = useState<any>(null)
+  const [promoError, setPromoError] = useState<string | null>(null)
+  const [promoSuccess, setPromoSuccess] = useState<string | null>(null)
+
+  const [showTrialWarning, setShowTrialWarning] = useState(false)
+
+  const router = useRouter()
+  const tModal = useTranslations('SubscriptionModal')
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.get('canceled') === 'true') {
+      toast.error(tModal('canceled'))
+      // Clear the canceled param from URL
+      const newUrl = window.location.pathname
+      window.history.replaceState({}, '', newUrl)
+    }
+  }, [tModal])
+
+  const handleSubscribe = (plan: any, priceInfo: any, isEdu: boolean) => {
+    setSelectedPlanForModal({
+      planType: plan.planType,
+      billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
+      priceId: priceInfo.stripePriceId,
+      isEducational: isEdu
+    })
+    setIsModalOpen(true)
+    setModalError(null)
+    const searchParams = new URL(window.location.href).searchParams
+    const urlPromoCode = searchParams.get('promoCode')
+    setPromoCode(urlPromoCode || '')
+    setPromoDiscount(null)
+    setPromoError(null)
+    setPromoSuccess(null)
+    setShowTrialWarning(false)
+  }
+
+  const handleVerifyPromoCode = useCallback(async () => {
+    if (!promoCode.trim()) return
+
+    setIsVerifyingPromo(true)
+    setPromoError(null)
+    setPromoSuccess(null)
+    setPromoDiscount(null)
+
+    try {
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
       }
-    } else {
+      const mappedBillingCycle = selectedPlanForModal ? (billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()) : 'MONTHLY'
+
+      const response = await fetch(`${apiBaseUrl}validate-promo-code`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          promoCode: promoCode.trim(),
+          billingCycle: mappedBillingCycle,
+          planType: selectedPlanForModal?.planType,
+          isEducational: selectedPlanForModal?.isEducational,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.valid) {
+        setPromoDiscount(data.discount)
+        setPromoSuccess(tModal('promoCodeSuccess'))
+      } else {
+        setPromoError(data.message || tModal('promoCodeError'))
+      }
+    } catch (error) {
+      setPromoError(tModal('promoCodeError'))
+    } finally {
+      setIsVerifyingPromo(false)
+    }
+  }, [promoCode, selectedPlanForModal, tModal])
+
+  useEffect(() => {
+    if (isModalOpen && promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
+      handleVerifyPromoCode()
+    }
+  }, [isModalOpen, promoCode, promoDiscount, promoError, isVerifyingPromo, handleVerifyPromoCode])
+
+  const handleContinue = async (ignoreTrialWarning = false) => {
+    if (!userEmail || !userEmail.trim()) {
+      setModalError(tModal('errorRequired'))
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(userEmail.trim())) {
+      setModalError(tModal('errorInvalidEmail'))
+      return
+    }
+
+    console.log('--- Handle Continue ---')
+    console.log('Email:', userEmail.trim())
+    console.log('Selected Plan:', selectedPlanForModal)
+
+    setIsRedirecting(true)
+    setModalError(null)
+
+    try {
+      // 1. Verify Email Type
+      const verifyResponse = await fetch(`${apiBaseUrl}verify-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: userEmail.trim() }),
+      })
+      const verifyData = await verifyResponse.json()
+      console.log('Verify Data:', verifyData)
+
+      if (selectedPlanForModal.isEducational && !verifyData.isUniversity) {
+        setModalError(tModal('errorNotStudentEmail'))
+        setIsRedirecting(false)
+        return
+      }
+
+      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !promoDiscount) {
+        console.log('Showing Trial Warning Modal')
+        setShowTrialWarning(true)
+        setIsModalOpen(false) // Close the main modal to show warning
+        setIsRedirecting(false)
+        return
+      }
+
+      // 2. Proceed to Checkout
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
+      }
+      const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
+
+      const response = await fetch(`${apiBaseUrl}checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail.trim(),
+          planType: selectedPlanForModal.planType,
+          billingCycle: mappedBillingCycle,
+          isEducational: selectedPlanForModal.isEducational,
+          promoCode: promoDiscount ? promoCode.trim() : null,
+          currency: planCurrency,
+          cancelUrl: window.location.href,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to create checkout session')
+      }
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error('No checkout URL received')
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error)
+      const errorMessage = error.message || 'An unexpected error occurred'
+
+      // Check for specific student email error to show translated message
+      if (errorMessage.toLowerCase().includes('student email')) {
+        setModalError(tModal('errorNotStudentEmail'))
+      } else {
+        setModalError(errorMessage)
+      }
+
+      toast.error(errorMessage)
+      setIsRedirecting(false)
+    }
+  }
+
+  // Helper to find fetched plan data
+  const findFetchedPlan = (planType: string, isEdu: boolean) => {
+    const source = isEdu ? educationalPlans : plans
+    return source?.find((p: any) => p.planType === planType)
+  }
+
+  // Get translated Professional plans
+  const getProfessionalPlans = () => {
+    if (selectedPlanTier === 'explorer') {
+      const fetchedPlan = findFetchedPlan('EXPLORER', false)
       return [
         {
-          ...educationPlans[0],
-          name: t('plans.student.name'),
-          features: educationPlans[0].features.map(f => ({
+          ...professionalPlans[0], // EXPLORER
+          name: t('plans.explorer.name'),
+          fetchedData: fetchedPlan,
+          features: professionalPlans[0].features.map(f => ({
             ...f,
             text:
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-        {
-          ...educationPlans[1],
-          name: t('plans.educator.name'),
-          features: educationPlans[1].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-        {
-          ...educationPlans[2],
-          name: t('plans.institution.name'),
-          features: educationPlans[2].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+                  `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
         },
       ]
+    } else if (selectedPlanTier === 'pro') {
+      // Return 3 PRO plans: monthly, 6-monthly, yearly
+      const baseProPlan = professionalPlans[1]
+      const fetchedPlan = findFetchedPlan('PRO', false)
+      return [
+        {
+          ...baseProPlan,
+          name: t('plans.pro.name'), // PRO
+          billingCycle: 'monthly' as const,
+          fetchedData: fetchedPlan,
+          features: baseProPlan.features.map(f => ({
+            ...f,
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                ),
+            hasFeature: typeof f === 'object' ? f.hasFeature : true,
+          })),
+        },
+        {
+          ...baseProPlan,
+          name: t('plans.proSemi.name'), // PRO SEMI
+          billingCycle: 'sixMonthly' as const,
+          popular: true,
+          fetchedData: fetchedPlan,
+          features: baseProPlan.features.map(f => ({
+            ...f,
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                ),
+            hasFeature: typeof f === 'object' ? f.hasFeature : true,
+          })),
+        },
+        {
+          ...baseProPlan,
+          name: t('plans.proComplete.name'), // PRO COMPLETE
+          billingCycle: 'yearly' as const,
+          popular: true,
+          fetchedData: fetchedPlan,
+          features: baseProPlan.features.map(f => ({
+            ...f,
+            text:
+              typeof f === 'string'
+                ? f
+                : t(
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                ),
+            hasFeature: typeof f === 'object' ? f.hasFeature : true,
+          })),
+        },
+      ]
+    } else {
+      // ENTERPRISE - disabled
+      return []
     }
   }
 
-  const currentPlans = getTranslatedPlans()
+  // Get translated Education plans
+  const getEducationPlans = () => {
+    return [
+      {
+        ...educationPlans[0],
+        name: t('plans.student.name'),
+        fetchedData: findFetchedPlan('STARTER', true),
+        features: educationPlans[0].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+      {
+        ...educationPlans[1],
+        name: t('plans.educator.name'),
+        fetchedData: findFetchedPlan('EXPLORER', true),
+        features: educationPlans[1].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+      {
+        ...educationPlans[2],
+        name: t('plans.institution.name'),
+        fetchedData: findFetchedPlan('PRO', true),
+        features: educationPlans[2].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+    ]
+  }
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end start'],
-  })
-
-  // Multi-layer parallax effects
-  const headerY = useTransform(scrollYProgress, [0, 1], [0, -20])
-
-  const cardParallaxY = useTransform(scrollYProgress, [0, 1], [0, -20])
+  const currentProfPlans = getProfessionalPlans()
+  const currentEduPlans = getEducationPlans()
 
   useEffect(() => {
-    const checkUrlHash = () => {
-      if (window.location.hash === '#student-access') {
-        setIsProfessional(false)
-      }
+    fetchPlans();
+  }, []);
+
+  console.log(locale, "locale")
+
+
+  const fetchPlans = async () => {
+    try {
+      const response = await fetch(`${apiBaseUrl}plans?currency=${locale === 'en' ? 'usd' : 'eur'}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+
+        });
+      const plansData = await response.json();
+
+      setPlans(plansData?.regularPlans);
+      setEducationalPlans(plansData?.educationalPlans);
+      setPlanCurrency(plansData?.currency)
+      // Use currency from backend
+      // const detectedCurrency = ;
+      // setCurrency(detectedCurrency);
+      // console.log(`💰 Setting currency: ${detectedCurrency} (from backend: ${plansData.currency})`);
+      // setIsProfessional(plansData.isProfessional);
+      // setIsEligibleForTrial(plansData.isEligibleForTrial);
+    } catch (error) {
+      console.error('Failed to fetch plans:', error);
+      // toast.error(t.failedToLoadPlans);
+    } finally {
+      // setLoading(false);
     }
+  };
 
-    // Check on mount
-    checkUrlHash()
-
-    // Listen for hash changes
-    const handleHashChange = () => {
-      checkUrlHash()
-    }
-
-    window.addEventListener('hashchange', handleHashChange)
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange)
-    }
-  }, [])
-
-  // Set yearly as default when viewing educational plans (students)
-  useEffect(() => {
-    if (!isProfessional) {
-      setIsYearly(true)
-    }
-  }, [isProfessional])
-
-  // Cards sliding from behind center card - sticky until all cards visible
-  const leftCardX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.3, 1],
-    ['100%', '100%', '0%', '0%']
-  )
-  const rightCardX = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.4, 1],
-    ['-100%', '-100%', '0%', '0%']
-  )
-  const leftCardOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.3, 1],
-    [0, 0, 1, 1]
-  )
-  const rightCardOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.4, 1],
-    [0, 0, 1, 1]
-  )
-  const centerCardOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.05, 1],
-    [0, 1, 1]
-  )
 
   return (
     <section
       ref={containerRef}
-      className='md:h-[200vh] py-10 relative'
+      className='min-h-screen py-20 relative'
       style={{ backgroundColor: '#fcfcfd' }}
       id='pricing'
     >
-      <div
-        className='md:sticky top-0 flex flex-col justify-center overflow-hidden px-4'
-        id='student-access'
-      >
-        <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
-          <motion.div
-            className='text-center mb-0 relative z-40'
-            style={{ y: headerY }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true, margin: '100px' }}
+      <div className='w-full max-w-7xl mx-auto px-4 relative z-10'>
+        {/* Professional Section */}
+        <div className='text-center mb-12 relative z-40'>
+          <h2
+            className='text-[30px] font-normal text-black mb-6'
+            style={{
+              fontFamily:
+                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+            }}
           >
-            <h2
-              className='text-[30px] font-normal text-black mb-2'
-              style={{
-                fontFamily:
-                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-              }}
+            {t('professionalPlans')}
+          </h2>
+
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
+            <button
+              onClick={() => setSelectedPlanTier('explorer')}
+              className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                }`}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
-              {isProfessional ? t('professionalPlans') : t('educationPlans')}
-            </h2>
+              {t('plans.explorer.name')}
+            </button>
+            <button
+              onClick={() => setSelectedPlanTier('pro')}
+              className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'pro'
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                }`}
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              PRO
+            </button>
+            <button
+              onClick={() => setSelectedPlanTier('enterprise')}
+              disabled
+              className='px-6 py-2 text-sm font-medium transition-colors text-gray-400 bg-white/30 cursor-not-allowed opacity-50'
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              {t('plans.enterprise.name')}
+            </button>
+          </div>
 
-            {/* Plan Type Toggle Switch */}
-            <div className='flex items-center justify-center mb-6'>
-              <div className='flex items-center bg-transparent  p-1'>
-                {isProfessional ? (
-                  <MovingBorderButton
-                    duration={3000}
-                    className='bg-white border-0 text-black  text-sm font-medium transition-all duration-300 shadow-sm'
-                    containerClassName=' !h-10 w-30 mr-2'
-                    borderClassName='bg-[radial-gradient(#1a1a1a_40%,#000000_60%)] opacity-80'
-                    borderRadius='0rem'
-                    onClick={() => setIsProfessional(true)}
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('professional')}
-                  </MovingBorderButton>
-                ) : (
-                  <button
-                    onClick={() => setIsProfessional(true)}
-                    className='px-4 py-2  text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('professional')}
-                  </button>
-                )}
-                {!isProfessional ? (
-                  <MovingBorderButton
-                    duration={3000}
-                    className='bg-white border-0 text-black  text-sm font-medium transition-all duration-300 shadow-sm'
-                    containerClassName=' !h-10 w-30 ml-2'
-                    borderClassName='bg-[radial-gradient(#1a1a1a_100%,#000000_100%)] opacity-80'
-                    borderRadius='0rem'
-                    onClick={() => setIsProfessional(false)}
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('education')}
-                  </MovingBorderButton>
-                ) : (
-                  <button
-                    onClick={() => setIsProfessional(false)}
-                    className='px-4 py-2  text-sm font-medium transition-all duration-300 text-gray-600 hover:text-gray-800 bg-white/50 hover:bg-white/70'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('education')}
-                  </button>
-                )}
-              </div>
+          <div className='flex flex-col items-center mb-8'>
+            <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
+              <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
+                <span className='font-bold text-black'>
+                  {t('freeTrial')}
+                </span>{' '}
+                {t('freeTrialDescription')}
+              </p>
             </div>
+          </div>
+        </div>
 
-            {/* Professional Plans: Plan tier tabs */}
-            {isProfessional ? (
-              <>
-                <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
-                  <button
-                    onClick={() => setSelectedPlanTier('explorer')}
-                    className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
-                      ? 'bg-white text-black shadow-md'
-                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                      }`}
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('plans.explorer.name')}
-                  </button>
-                  <button
-                    onClick={() => setSelectedPlanTier('pro')}
-                    className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'pro'
-                      ? 'bg-white text-black shadow-md'
-                      : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
-                      }`}
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    PRO
-                  </button>
-                  <button
-                    onClick={() => setSelectedPlanTier('enterprise')}
-                    disabled
-                    className='px-6 py-2 text-sm font-medium transition-colors text-gray-400 bg-white/30 cursor-not-allowed opacity-50'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('plans.enterprise.name')}
-                  </button>
-                </div>
-
-
-                <div className='flex flex-col items-center mb-8'>
-                  <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
-                    <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
-                      <span className='font-bold text-black'>
-                        {t('freeTrial')}
-                      </span>{' '}
-                      {t('freeTrialDescription')}
-                    </p>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
-                  <button
-                    onClick={() => setIsYearly(true)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
-                      ? 'bg-white text-black shadow-md'
-                      : 'text-black hover:text-black'
-                      }`}
-                  >
-                    {t('yearlyBilling')}
-                  </button>
-                  <button
-                    onClick={() => setIsYearly(false)}
-                    className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
-                      ? 'bg-white text-black shadow-md'
-                      : 'text-black hover:text-black'
-                      }`}
-                  >
-                    {t('monthlyBilling')}
-                  </button>
-                </div>
-                <p
-                  className='text-black pb-0 mb-8'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  {t('switchToYearly')}
-                </p>
-              </>
-            )}
-          </motion.div>
-
-          {/* Show selected plan cards */}
-          {currentPlans.length > 0 && (
-            <>
-              <div className='relative md:flex hidden justify-center items-center h-[80vh] w-full gap-4'>
-                {currentPlans.length === 1 ? (
-                  // Single card (EXPLORER)
-                  <motion.div
-                    className='w-full max-w-xs z-30'
-                    style={{
-                      opacity: centerCardOpacity,
-                      y: cardParallaxY,
-                    }}
-                    initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
-                    viewport={{ once: true, margin: '-50px' }}
-                  >
-                    <PricingCard
-                      plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                      isYearly={isYearly}
-                      isProfessional={isProfessional}
-                    />
-                  </motion.div>
-                ) : (
-                  // Multiple cards (PRO plans)
-                  <>
-                    <motion.div
-                      className='w-full max-w-xs z-10'
-                      style={{
-                        x: leftCardX,
-                        opacity: leftCardOpacity,
-                        y: cardParallaxY,
-                      }}
-                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0, ease: 'easeOut' }}
-                      viewport={{ once: true, margin: '-50px' }}
-                    >
-                      <PricingCard
-                        plan={currentPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                        isYearly={isYearly}
-                        isProfessional={isProfessional}
-                      />
-                    </motion.div>
-                    <motion.div
-                      className='w-full max-w-xs z-30'
-                      style={{
-                        opacity: centerCardOpacity,
-                        y: cardParallaxY,
-                      }}
-                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.05, ease: 'easeOut' }}
-                      viewport={{ once: true, margin: '-50px' }}
-                    >
-                      <PricingCard
-                        plan={currentPlans[1] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                        isYearly={isYearly}
-                        isProfessional={isProfessional}
-                      />
-                    </motion.div>
-                    <motion.div
-                      className='w-full max-w-xs z-10'
-                      style={{
-                        x: rightCardX,
-                        opacity: rightCardOpacity,
-                        y: cardParallaxY,
-                      }}
-                      initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
-                      viewport={{ once: true, margin: '-50px' }}
-                    >
-                      <PricingCard
-                        plan={currentPlans[2] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                        isYearly={isYearly}
-                        isProfessional={isProfessional}
-                      />
-                    </motion.div>
-                  </>
-                )}
+        {/* Professional Plans Cards */}
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-32'>
+          {currentProfPlans.length === 1 ? (
+            <div className='w-full max-w-xs z-30'>
+              <PricingCard
+                plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                isYearly={isYearly}
+                isProfessional={true}
+                isEurope={locale === 'de'}
+                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+              />
+            </div>
+          ) : (
+            currentProfPlans.map((plan, index) => (
+              <div key={index} className='w-full max-w-xs z-10'>
+                <PricingCard
+                  plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                  isYearly={isYearly}
+                  isProfessional={true}
+                  isEurope={locale === 'de'}
+                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                  onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                />
               </div>
-              <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-4'>
-                {currentPlans.map((plan, index) => (
-                  <motion.div
-                    key={index}
-                    className='w-full max-w-xs z-30'
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
-                    viewport={{ once: true, margin: '-50px' }}
-                  >
-                    <PricingCard
-                      plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                      isYearly={isYearly}
-                      isProfessional={isProfessional}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </>
+            ))
           )}
         </div>
+
+        {/* Education Section */}
+        <div className='text-center mb-12 relative z-40'>
+          <h2
+            className='text-[30px] font-normal text-black mt-20 mb-6'
+            style={{
+              fontFamily:
+                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            {t('educationPlans')}
+          </h2>
+
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
+            <button
+              onClick={() => setIsYearly(true)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black'
+                }`}
+            >
+              {t('yearlyBilling')}
+            </button>
+            <button
+              onClick={() => setIsYearly(false)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black'
+                }`}
+            >
+              {t('monthlyBilling')}
+            </button>
+          </div>
+          <p
+            className='text-black pb-0 mb-8'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            {t('switchToYearly')}
+          </p>
+        </div>
+
+        {/* Education Plans Cards */}
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-20'>
+          {currentEduPlans.map((plan, index) => (
+            <div key={index} className='w-full max-w-xs z-30'>
+              <PricingCard
+                plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                isYearly={isYearly}
+                isProfessional={false}
+                isEurope={locale === 'de'}
+                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* Status Indicators */}
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12'>
+        <div className='flex flex-wrap justify-center items-center gap-6 text-gray-400'>
+          <div className='flex items-center gap-2'>
+            <Check className='w-4 h-4 text-emerald-500' />
+            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>Safe & Secure Checkout</span>
+          </div>
+          <div className='flex items-center gap-2'>
+            <Check className='w-4 h-4 text-emerald-500' />
+            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>Cancel Anytime</span>
+          </div>
+          <div className='flex items-center gap-2'>
+            <Check className='w-4 h-4 text-emerald-500' />
+            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>No Setup Fee</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Subscription Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className='bg-neutral-900 border border-white/10 p-8 shadow-2xl flex flex-col gap-6 max-w-md w-full relative'
+            >
+              <button
+                className='absolute top-4 right-4 text-gray-400 hover:text-white transition-colors'
+                onClick={() => setIsModalOpen(false)}
+              >
+                <IconX size={20} />
+              </button>
+
+              <div className='flex flex-col gap-2'>
+                <h3
+                  className='text-xl font-bold text-white uppercase tracking-wider'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  {tModal('title')}
+                </h3>
+                <p className='text-sm text-gray-400'>
+                  {tModal('description')}
+                </p>
+              </div>
+
+              <div className='space-y-4'>
+                <div className='relative'>
+                  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                    <IconMail className='h-5 w-5 text-gray-500' />
+                  </div>
+                  <input
+                    type='email'
+                    className='block w-full pl-10 pr-3 py-3 border border-white/10 bg-white/5 text-white text-sm focus:outline-none focus:ring-1 focus:ring-white/20 transition-all'
+                    placeholder={tModal('placeholder')}
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
+                    disabled={isRedirecting}
+                  />
+                </div>
+
+                {modalError && (
+                  <div className='flex items-center gap-2 text-red-500 text-xs mt-1'>
+                    <IconAlertCircle size={14} />
+                    <span>{modalError}</span>
+                  </div>
+                )}
+
+                {/* Promo Code Input */}
+                <div className='mt-4 pt-4 border-t border-white/5'>
+                  <div className='flex gap-2'>
+                    <input
+                      type='text'
+                      className='block flex-1 px-3 py-2 border border-white/10 bg-white/5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-white/20 transition-all uppercase placeholder:normal-case'
+                      placeholder={tModal('promoCodePlaceholder')}
+                      value={promoCode}
+                      onChange={(e) => {
+                        setPromoCode(e.target.value)
+                        setPromoError(null)
+                        setPromoSuccess(null)
+                        setPromoDiscount(null)
+                      }}
+                      disabled={isRedirecting || isVerifyingPromo}
+                    />
+                    <Button
+                      onClick={handleVerifyPromoCode}
+                      disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
+                      className='bg-white/10 text-white hover:bg-white/20 px-4 py-2 text-[10px] uppercase font-bold tracking-wider transition-all'
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+                    </Button>
+                  </div>
+                  {promoError && (
+                    <div className='flex items-center gap-2 text-red-500 text-[10px] mt-1'>
+                      <IconAlertCircle size={12} />
+                      <span>{promoError}</span>
+                    </div>
+                  )}
+                  {promoSuccess && (
+                    <div className='flex items-center gap-2 text-emerald-500 text-[10px] mt-1'>
+                      <Check size={12} />
+                      <span>{promoSuccess}</span>
+                    </div>
+                  )}
+                  {promoDiscount && (
+                    <div className='mt-2 p-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px]'>
+                      <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
+                    </div>
+                  )}
+                </div>
+
+                <div className='flex flex-col gap-3 mt-4'>
+                  <Button
+                    onClick={() => handleContinue()}
+                    disabled={isRedirecting}
+                    className='bg-white text-black hover:bg-gray-200 w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50'
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {isRedirecting ? (
+                      <IconLoader2 className='animate-spin mr-2' size={16} />
+                    ) : null}
+                    {tModal('continue')}
+                  </Button>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className='text-gray-500 hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {tModal('cancel')}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Trial Warning Modal */}
+      <AnimatePresence>
+        {showTrialWarning && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm'
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className='bg-white p-8 shadow-2xl flex flex-col gap-6 max-w-sm w-full relative'
+            >
+              <button
+                className='absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors'
+                onClick={() => setShowTrialWarning(false)}
+              >
+                <IconX size={20} />
+              </button>
+
+              <div className='flex flex-col gap-2'>
+                <h3
+                  className='text-xl font-bold text-black uppercase tracking-wider'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  {tModal('TrialWarningModal.title')}
+                </h3>
+                <p className='text-sm text-gray-600'>
+                  {tModal('TrialWarningModal.description')}
+                </p>
+              </div>
+
+              <div className='flex gap-3 mt-4'>
+                <Button
+                  onClick={() => {
+                    setShowTrialWarning(false)
+                    setIsModalOpen(true)
+                  }}
+                  className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px] font-bold tracking-wider py-3'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  {tModal('TrialWarningModal.cancel')}
+                </Button>
+                <Button
+                  onClick={() => handleContinue(true)}
+                  className='flex-1 bg-black text-white hover:bg-neutral-800 uppercase text-[10px] font-bold tracking-wider py-3'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  {tModal('TrialWarningModal.proceed')}
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
 
-type PlanType = (typeof professionalPlans)[0] | (typeof educationPlans)[0]
+type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
+  fetchedData?: any
+}
+
+interface PricingCardProps {
+  plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
+  isYearly: boolean
+  isProfessional: boolean
+  isEurope: boolean
+  currencySymbol: string
+  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
+}
 
 function PricingCard({
   plan,
   isYearly,
   isProfessional,
-}: {
-  plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
-  isYearly: boolean
-  isProfessional: boolean
-}) {
+  isEurope,
+  currencySymbol,
+  onSubscribe,
+}: PricingCardProps) {
   const t = useTranslations('Pricing')
-  const isEurope = useIsEurope()
 
   // For professional plans, show pricing based on plan and billing cycle
   const getPriceDisplay = () => {
+    const fetchedData = plan.fetchedData
+    // const isUsd = (fetchedData?.currency || (isEurope ? 'eur' : 'usd')) === 'usd'
+    // const currencySymbol = isUsd ? '$' : '€' // Now passed as prop
+
     if (isProfessional) {
-      const profPlan = plan as (typeof professionalPlans)[0] & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
+      const profPlan = plan as (typeof professionalPlans)[0] & {
+        billingCycle?: 'monthly' | 'sixMonthly' | 'yearly'
+        fetchedData?: any
+      }
 
       // EXPLORER only has MONTHLY
       if (profPlan.planType === 'EXPLORER') {
-        const monthlyPrice = isEurope
+        let monthlyPrice = isEurope
           ? profPlan.monthlyPrice?.eur || ''
           : profPlan.monthlyPrice?.usd || ''
+
+        let stripePriceId = ''
+
+        if (fetchedData) {
+          const price = fetchedData.prices?.monthly
+          if (price) {
+            monthlyPrice = `${currencySymbol}${price / 100}`
+          }
+          stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
+        }
+
         return {
           mainPrice: monthlyPrice,
           period: '/month',
           billingInfo: t('billedMonthly'),
+          stripePriceId,
         }
       }
 
       // PRO has MONTHLY, SIX_MONTHLY, YEARLY - use billingCycle from plan
       if (profPlan.planType === 'PRO') {
         const billingCycle = profPlan.billingCycle || 'yearly'
-        const proWithDiscount = profPlan as (typeof professionalPlans)[1]
+        const proWithDiscount = profPlan as (typeof professionalPlans)[1] & {
+          fetchedData?: any
+        }
         const discountData = proWithDiscount.discount?.[billingCycle]
+
+        let mainPrice = ''
+        let billingInfo = ''
+        let stripePriceId = ''
+        let discount = undefined
+
         if (billingCycle === 'monthly') {
-          const monthlyPrice = isEurope
+          mainPrice = isEurope
             ? profPlan.monthlyPrice?.eur || ''
             : profPlan.monthlyPrice?.usd || ''
-          const d = discountData
-          if (!d) {
-            return { mainPrice: monthlyPrice, period: '/month', billingInfo: t('billedMonthly') }
+          billingInfo = t('billedMonthly')
+
+          if (fetchedData) {
+            const price = fetchedData.prices?.monthly
+            if (price) mainPrice = `${currencySymbol}${price / 100}`
+            stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
           }
-          return {
-            mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
-            period: '/month',
-            billingInfo: t('billedMonthly'),
+
+          const d = discountData
+          if (d) {
+            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
           }
         } else if (billingCycle === 'sixMonthly') {
-          const monthlyPrice = isEurope
+          mainPrice = isEurope
             ? profPlan.sixMonthMonthlyPrice?.eur || ''
             : profPlan.sixMonthMonthlyPrice?.usd || ''
           const cyclePrice = isEurope
             ? profPlan.sixMonthPrice?.eur || ''
             : profPlan.sixMonthPrice?.usd || ''
+          billingInfo = `${cyclePrice} ${t('billedEvery6Months')}`
+
+          if (fetchedData) {
+            const mPrice = fetchedData.prices?.sixMonthly ? Math.round(fetchedData.prices.sixMonthly / 6) / 100 : null
+            const cPrice = fetchedData.prices?.sixMonthly ? fetchedData.prices.sixMonthly / 100 : null
+            if (mPrice) mainPrice = `${currencySymbol}${mPrice}`
+            if (cPrice) billingInfo = `${currencySymbol}${cPrice} ${t('billedEvery6Months')}`
+            stripePriceId = fetchedData.stripePrices?.SIX_MONTHLY || ''
+          }
+
           const d = discountData
           if (d && 'originalCycle' in d) {
-            return {
-              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
-              period: '/month',
-              billingInfo: `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`,
-              discount: { originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd },
+            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+            billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`
+            discount = {
+              originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
+              discountPercent: d.discountPercent,
+              saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd,
+              periodDiscountPercent: d.periodDiscountPercent,
+              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
             }
           }
-          return {
-            mainPrice: monthlyPrice,
-            period: '/month',
-            billingInfo: `${cyclePrice} ${t('billedEvery6Months')}`,
-          }
         } else {
-          const monthlyPrice = isEurope
+          mainPrice = isEurope
             ? profPlan.yearlyMonthlyPrice?.eur || ''
             : profPlan.yearlyMonthlyPrice?.usd || ''
           const cyclePrice = isEurope
             ? profPlan.yearlyPrice?.eur || ''
             : profPlan.yearlyPrice?.usd || ''
+          billingInfo = `${t('billedYearly')} (${cyclePrice}/year)`
+
+          if (fetchedData) {
+            const mPrice = fetchedData.prices?.yearly ? Math.round(fetchedData.prices.yearly / 12) / 100 : null
+            const cPrice = fetchedData.prices?.yearly ? fetchedData.prices.yearly / 100 : null
+            if (mPrice) mainPrice = `${currencySymbol}${mPrice}`
+            if (cPrice) billingInfo = `${t('billedYearly')} (${currencySymbol}${cPrice}/year)`
+            stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+          }
+
           const d = discountData
           if (d && 'bestDeal' in d) {
-            return {
-              mainPrice: isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd,
-              period: '/month',
-              billingInfo: `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`,
-              discount: { originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd, discountPercent: d.discountPercent, saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd, periodDiscountPercent: d.periodDiscountPercent, periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd, bestDeal: d.bestDeal },
+            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+            billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`
+            discount = {
+              originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
+              discountPercent: d.discountPercent,
+              saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd,
+              periodDiscountPercent: d.periodDiscountPercent,
+              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
+              bestDeal: d.bestDeal,
             }
           }
-          return {
-            mainPrice: monthlyPrice,
-            period: '/month',
-            billingInfo: `${t('billedYearly')} (${cyclePrice}/year)`,
-          }
         }
+
+        return { mainPrice, period: '/month', billingInfo, discount, stripePriceId }
       }
 
       // Fallback (should not happen)
@@ -716,23 +1057,39 @@ function PricingCard({
       }
     } else {
       // Educational: Show yearly or monthly based on toggle
-      const eduPlan = plan as (typeof educationPlans)[0]
+      const eduPlan = plan as (typeof educationPlans)[0] & { fetchedData?: any }
+      let mainPrice = ''
+      let billingInfo = ''
+      let saveInfo = ''
+      let stripePriceId = ''
+
       if (isYearly) {
-        return {
-          mainPrice: formatPrice(eduPlan.monthlyEquivalant, isEurope),
-          period: '/month',
-          billingInfo: `${t('billedYearly')} (${formatPrice(eduPlan.yearlyPrice, isEurope)}/year)`,
-          saveInfo: t('saveWithAnnual', {
-            amount: formatPrice(eduPlan.save, isEurope),
-          }),
+        mainPrice = formatPrice(eduPlan.monthlyEquivalant, isEurope)
+        billingInfo = `${t('billedYearly')} (${formatPrice(eduPlan.yearlyPrice, isEurope)}/year)`
+        saveInfo = t('saveWithAnnual', {
+          amount: formatPrice(eduPlan.save, isEurope),
+        })
+
+        if (fetchedData) {
+          const yPrice = fetchedData.prices?.yearly
+          if (yPrice) {
+            mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
+            billingInfo = `${t('billedYearly')} (${currencySymbol}${yPrice / 100}/year)`
+          }
+          stripePriceId = fetchedData.stripePrices?.YEARLY || ''
         }
       } else {
-        return {
-          mainPrice: formatPrice(eduPlan.monthlyPrice, isEurope),
-          period: '/month',
-          billingInfo: t('billedMonthly'),
+        mainPrice = formatPrice(eduPlan.monthlyPrice, isEurope)
+        billingInfo = t('billedMonthly')
+
+        if (fetchedData) {
+          const mPrice = fetchedData.prices?.monthly
+          if (mPrice) mainPrice = `${currencySymbol}${mPrice / 100}`
+          stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
         }
       }
+
+      return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId }
     }
   }
 
@@ -879,16 +1236,15 @@ function PricingCard({
 
       {/* Button Section - Fixed at Bottom */}
       <div className='mt-auto'>
-        <Link href={'https://app.typus.ai/register'}>
-          <Button
-            className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
-            style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
-            }}
-          >
-            {t('subscribe')}
-          </Button>
-        </Link>
+        <Button
+          onClick={() => onSubscribe(plan, priceInfo)}
+          className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
+          style={{
+            fontFamily: "'Soyuz Grotesk', sans-serif",
+          }}
+        >
+          {t('subscribe')}
+        </Button>
       </div>
     </div>
   )

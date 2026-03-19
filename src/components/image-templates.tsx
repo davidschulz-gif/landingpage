@@ -1,8 +1,7 @@
 'use client'
+import { apiUrl } from '@/lib/constants';
 import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
-const apiUrl = 'https://app.typus.ai/api/customization/templates'
-// const apiUrl = 'http://localhost:3000/api/customization/templates'
 
 export const ImageTemplates: React.FC = () => {
     const t = useTranslations('ImageTemplates');
@@ -15,7 +14,7 @@ export const ImageTemplates: React.FC = () => {
             try {
 
                 const response = await fetch(
-                    apiUrl,
+                    `${apiUrl}/api/customization/templates`,
                     {
                         method: 'GET',
                         headers: {

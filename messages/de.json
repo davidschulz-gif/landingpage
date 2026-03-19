@@ -16,6 +16,8 @@
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
+    "dataPrivacy": "DATENSCHUTZ",
+    "imprint": "IMPRESSUM",
     "navigation": {
       "solutions": {
         "create": {
@@ -214,9 +216,10 @@
     "descriptionText": "Transformieren Sie Ihre architektonischen Zeichnungen in atemberaubende fotorealistische Visualisierungen mit KI-Präzision."
   },
   "Pricing": {
-    "professionalPlans": "PLÄNE für die App",
+    "selectPlanCTA": "Abo auswählen & loslegen",
+    "professionalPlans": "PROFESSIONELLE PLÄNE",
     "bookDemo": "Demo-Anruf buchen",
-    "educationPlans": "PLÄNE für die App",
+    "educationPlans": "BILDUNGSPLÄNE",
     "professional": "Professionell",
     "education": "Bildung",
     "freeTrial": "1-tägige kostenlose Testversion",
@@ -322,6 +325,34 @@
       }
     }
   },
+  "SubscriptionModal": {
+    "title": "Geben Sie Ihre E-Mail-Adresse ein, um fortzufahren",
+    "placeholder": "E-Mail-Adresse",
+    "continue": "Weiter zum Checkout",
+    "cancel": "Abbrechen",
+    "description": "Wir verwenden diese E-Mail, um Ihr Konto zu erstellen und Ihr Abonnement zu verwalten.",
+    "errorInvalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "errorRequired": "E-Mail ist erforderlich.",
+    "errorNotStudentEmail": "Bildungspläne sind nur für verifizierte studentische E-Mail-Adressen verfügbar (z. B. .edu, .ac.uk).",
+    "canceled": "Der Abonnementvorgang wurde abgebrochen.",
+    "promoCode": "Gutscheincode",
+    "apply": "Anwenden",
+    "promoCodePlaceholder": "Gutscheincode eingeben",
+    "promoCodeSuccess": "Gutscheincode erfolgreich angewendet!",
+    "promoCodeError": "Ungültiger oder abgelaufener Gutscheincode.",
+    "verifying": "Verifizieren...",
+    "TrialWarningModal": {
+      "title": "Kostenlose Testversion nicht verfügbar",
+      "description": "Die 1-tägige kostenlose Testversion ist nur für Benutzer mit geschäftlichen E-Mail-Konten verfügbar. Sie können trotzdem abonnieren, aber der Testzeitraum wird nicht angewendet.",
+      "cancel": "Abbrechen",
+      "proceed": "Trotzdem fortfahren"
+    }
+  },
+  "PricingCTA": {
+    "title": "Flexible Pläne für jeden Bedarf",
+    "description": "Wählen Sie den perfekten Plan für Ihren Architektur-Visualisierungs-Workflow. Von Einzelpersonen bis hin zu großen Institutionen, wir haben für Sie gesorgt.",
+    "button": "Abo auswählen & loslegen"
+  },
   "Team": {
     "title": "LERNEN SIE UNSER TEAM KENNEN"
   },
@@ -337,6 +368,22 @@
   "Reviews": {
     "title": "WAS UNSERE NUTZER SAGEN",
     "viewAllReviews": "Alle Bewertungen ansehen"
+  },
+  "Testimonials": {
+    "christina": {
+      "name": "Christina Maximowitz",
+      "role": "Inhaberin Maximowitz",
+      "description": "Innenarchitektur | Strategische Raumkonzepte für Ihre Geschäftsziele",
+      "tag": "Design trifft Funktion",
+      "content": "Spannendes Thema! Weiter so!",
+      "date": "9. Aug. 2024"
+    },
+    "carsten": {
+      "name": "Carsten Ingolf Gösse",
+      "role": "Igk Gössel + Kluge . Generalplaner GmbH",
+      "content": "Gerne von mir- ein interessanter Ansatz, der beim Erlebbarmachen von Entwürfen für Bauherren helfen kann.",
+      "date": "9. Aug. 2024"
+    }
   },
   "Footer": {
     "solutions": "Lösungen",
@@ -2304,9 +2351,10 @@
   },
   "ThankYou": {
     "title": "Vielen Dank!",
-    "message": "Ihr Kauf war erfolgreich. Wir werden uns in Kürze bei Ihnen melden.",
+    "message": "Ihr Kauf war erfolgreich. Sie können die App jetzt nutzen.",
     "orderReference": "Bestellreferenz",
     "backToHome": "Zurück zur Startseite",
+    "createAccount": "Konto erstellen",
     "detailsTitle": "Kaufdetails",
     "name": "Name",
     "email": "E-Mail",

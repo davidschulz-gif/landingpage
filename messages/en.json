@@ -16,6 +16,8 @@
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
+    "dataPrivacy": "DATA PRIVACY",
+    "imprint": "IMPRINT",
     "navigation": {
       "solutions": {
         "create": {
@@ -214,8 +216,9 @@
     "descriptionText": "Transform your architectural drawings into stunning photorealistic visualizations with AI precision."
   },
   "Pricing": {
-    "professionalPlans": "PLANS for the App",
-    "educationPlans": "PLANS for the App",
+    "selectPlanCTA": "Select plan & get started",
+    "professionalPlans": "Professional Plans",
+    "educationPlans": "Education Plans",
     "bookDemo": "Book a Demo Call",
     "professional": "Professional",
     "education": "Education",
@@ -322,6 +325,34 @@
       }
     }
   },
+  "SubscriptionModal": {
+    "title": "Enter your email to continue",
+    "placeholder": "Email address",
+    "continue": "Continue to Checkout",
+    "cancel": "Cancel",
+    "description": "We'll use this email to create your account and manage your subscription.",
+    "errorInvalidEmail": "Please enter a valid email address.",
+    "errorRequired": "Email is required.",
+    "errorNotStudentEmail": "Educational plans are only available for verified student email addresses (e.g., .edu, .ac.uk).",
+    "canceled": "Subscription process was canceled.",
+    "promoCode": "Promo Code",
+    "apply": "Apply",
+    "promoCodePlaceholder": "Enter promo code",
+    "promoCodeSuccess": "Promo code applied successfully!",
+    "promoCodeError": "Invalid or expired promo code.",
+    "verifying": "Verifying...",
+    "TrialWarningModal": {
+      "title": "Free Trial Not Available",
+      "description": "The 1-day free trial is only available for users with professional email accounts. You can still subscribe, but the trial period will not be applied.",
+      "cancel": "Cancel",
+      "proceed": "Proceed Anyway"
+    }
+  },
+  "PricingCTA": {
+    "title": "Flexible Plans for Every Need",
+    "description": "Choose the perfect plan for your architectural visualization workflow. From individuals to large institutions, we have you covered.",
+    "button": "Select plan & get started"
+  },
   "Team": {
     "title": "MEET OUR TEAM"
   },
@@ -337,6 +368,22 @@
   "Reviews": {
     "title": "WHAT OUR USERS SAY",
     "viewAllReviews": "View All Reviews"
+  },
+  "Testimonials": {
+    "christina": {
+      "name": "Christina Maximowitz",
+      "role": "Owner Maximowitz",
+      "description": "Interior Architecture | Strategic space concepts for your business goals",
+      "tag": "Design meets function",
+      "content": "Exciting topic! Keep it up!",
+      "date": "Aug 9, 2024"
+    },
+    "carsten": {
+      "name": "Carsten Ingolf Gösse",
+      "role": "Igk Gössel + Kluge . Generalplaner GmbH",
+      "content": "Happy to share – an interesting approach that can help in making designs tangible for clients.",
+      "date": "Aug 9, 2024"
+    }
   },
   "Footer": {
     "solutions": "Solutions",
@@ -374,7 +421,7 @@
     "phoneLabel": "Phone Number",
     "phonePlaceholder": "Enter your Phone Number",
     "newsletterLabel": "I would like to receive marketing emails and updates about new features",
-    "privacyLabel":"I agree to the privacy policy",
+    "privacyLabel": "I agree to the privacy policy",
     "bookDemo": "Book a Demo Call",
     "learnMore": "Learn more",
     "description": "Learn more about the app and get notified about new features.",
@@ -2304,9 +2351,10 @@
   },
   "ThankYou": {
     "title": "Thank You!",
-    "message": "Your purchase was successful. We will be in touch shortly.",
+    "message": "Your purchase was successful. You can now go ahead and use the app.",
     "orderReference": "Order reference",
     "backToHome": "Return to Home",
+    "createAccount": "Create Account",
     "detailsTitle": "Purchase Details",
     "name": "Name",
     "email": "Email",
@@ -2370,8 +2418,7 @@
       "inputTypeValue": "Hand Sketch (Uploaded)"
     }
   },
-   "VideoGenerate": {
-    
+  "VideoGenerate": {
     "templates": {
       "title": "Video Templates",
       "ariaLabel": "Open Video Templates",

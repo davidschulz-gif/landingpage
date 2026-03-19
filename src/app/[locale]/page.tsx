@@ -60,14 +60,14 @@ const ReviewsSection = dynamic(
   }
 )
 
-const ManyChatPricingSection = dynamic(
+const PricingCTASection = dynamic(
   () =>
-    import('@/components/manychat-pricing-section').then(
-      mod => mod.ManyChatPricingSection
+    import('@/components/pricing-cta-section').then(
+      mod => mod.PricingCTASection
     ),
   {
     ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+    loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
 
@@ -447,14 +447,14 @@ export default function Home() {
         <IndustrySection />
       </motion.div>
 
-      {/* Pricing Section */}
+      {/* Pricing CTA Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+        transition={{ duration: 0.5, ease: 'easeOut' }}
         viewport={{ once: true, margin: '-100px' }}
       >
-        <ManyChatPricingSection />
+        <PricingCTASection />
       </motion.div>
 
       {/* Detailed Feature Comparison Section */}
