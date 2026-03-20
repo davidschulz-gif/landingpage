@@ -185,6 +185,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [promoDiscount, setPromoDiscount] = useState<any>(null)
   const [promoError, setPromoError] = useState<string | null>(null)
   const [promoSuccess, setPromoSuccess] = useState<string | null>(null)
+  const [subscribeError, setSubscribeError] = useState<string | null>(null)
 
   const [showTrialWarning, setShowTrialWarning] = useState(false)
   const [showKickOffModal, setShowKickOffModal] = useState(false)
@@ -220,6 +221,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     setPromoError(null)
     setPromoSuccess(null)
     setPromoDiscount(null)
+    setSubscribeError(null)
 
     try {
       const billingCycleMap: Record<string, string> = {
@@ -257,14 +259,56 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     }
   }, [promoCode, selectedPlanForModal, tModal])
 
-  useEffect(() => {
-    if (promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
-      handleVerifyPromoCode()
+  // useEffect(() => {
+  //   if (promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
+  //     const timoutId = setTimeout(() => {
+  //       handleVerifyPromoCode()
+  //       clearTimeout(timoutId);
+  //     }, 1000)
+  //   }
+  // }, [promoCode, selectedPlanForModal, handleVerifyPromoCode, promoDiscount, promoError])
+
+
+  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
+    if (promoDiscount && promoDiscount.couponId) {
+      setSubscribeError(null)
+      // const loadingToastId = toast.loading(tModal('verifying') || 'Verifying...')
+      try {
+        const response = await fetch(`${apiBaseUrl}validate-promo-code-step-2`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            code: promoCode,
+            discount: promoDiscount,
+            billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
+            planType: plan.planType,
+            isEducational: isEdu
+          }),
+        })
+        const data = await response.json()
+
+        if (!response.ok || !data.valid) {
+          console.log(response, "RESPOMSE")
+          const errorMessage = data.message || tModal('promoCodeError')
+          setSubscribeError(errorMessage)
+          toast.error(errorMessage)
+          return // do not open modal
+        }
+
+        // toast.dismiss(loadingToastId)
+      } catch (error) {
+        console.log(error, "ERROR")
+        console.error('Error validating promo code with plan:', error)
+        const errorMessage = tModal('promoCodeError')
+        setSubscribeError(errorMessage)
+        // toast.error(tModal('promoCodeError'), { id: loadingToastId })
+        return // do not open modal
+      }
     }
-  }, [promoCode, selectedPlanForModal, handleVerifyPromoCode, promoDiscount, promoError])
+    setSubscribeError(null)
 
-
-  const handleSubscribe = (plan: any, priceInfo: any, isEdu: boolean) => {
     setSelectedPlanForModal({
       planType: plan.planType,
       billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
@@ -702,6 +746,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   setPromoError(null)
                   setPromoSuccess(null)
                   setPromoDiscount(null)
+                  setSubscribeError(null)
                 }}
                 disabled={isRedirecting || isVerifyingPromo}
               />
@@ -732,6 +777,23 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               </div>
             )}
           </div>
+
+          {subscribeError && (
+            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
+                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
+                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
+                  {subscribeError}
+                </p>
+                <button
+                  onClick={() => setSubscribeError(null)}
+                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
+                >
+                  <IconX size={16} />
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className='flex flex-col items-center mb-12'>
             <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
@@ -859,6 +921,23 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               </div>
             )}
           </div>
+
+          {subscribeError && (
+            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
+                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
+                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
+                  {subscribeError}
+                </p>
+                <button
+                  onClick={() => setSubscribeError(null)}
+                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
+                >
+                  <IconX size={16} />
+                </button>
+              </div>
+            </div>
+          )}
 
           <p
             className='text-black pb-0 mb-8'
