@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
+import OnboardingWizard from './onboarding/onboarding-wizard'
 
 const professionalPlans = [
   {
@@ -185,6 +186,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [promoSuccess, setPromoSuccess] = useState<string | null>(null)
 
   const [showTrialWarning, setShowTrialWarning] = useState(false)
+  const [showKickOffModal, setShowKickOffModal] = useState(false)
+  const [showOnboarding, setShowOnboarding] = useState(false)
+  const [onboardingData, setOnboardingData] = useState<any>(null)
+  const [marketingConsent, setMarketingConsent] = useState(false)
+  const [privacyConsent, setPrivacyConsent] = useState(false)
 
   const router = useRouter()
   const tModal = useTranslations('SubscriptionModal')
@@ -197,25 +203,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       const newUrl = window.location.pathname
       window.history.replaceState({}, '', newUrl)
     }
-  }, [tModal])
 
-  const handleSubscribe = (plan: any, priceInfo: any, isEdu: boolean) => {
-    setSelectedPlanForModal({
-      planType: plan.planType,
-      billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
-      priceId: priceInfo.stripePriceId,
-      isEducational: isEdu
-    })
-    setIsModalOpen(true)
-    setModalError(null)
-    const searchParams = new URL(window.location.href).searchParams
     const urlPromoCode = searchParams.get('promoCode')
-    setPromoCode(urlPromoCode || '')
-    setPromoDiscount(null)
-    setPromoError(null)
-    setPromoSuccess(null)
-    setShowTrialWarning(false)
-  }
+    if (urlPromoCode) {
+      setPromoCode(urlPromoCode)
+    }
+  }, [tModal])
 
   const handleVerifyPromoCode = useCallback(async () => {
     if (!promoCode.trim()) return
@@ -262,10 +255,28 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   }, [promoCode, selectedPlanForModal, tModal])
 
   useEffect(() => {
-    if (isModalOpen && promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
+    if (promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
       handleVerifyPromoCode()
     }
-  }, [isModalOpen, promoCode, promoDiscount, promoError, isVerifyingPromo, handleVerifyPromoCode])
+  }, [promoCode, selectedPlanForModal, handleVerifyPromoCode, promoDiscount, promoError])
+
+
+  const handleSubscribe = (plan: any, priceInfo: any, isEdu: boolean) => {
+    setSelectedPlanForModal({
+      planType: plan.planType,
+      billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
+      priceId: priceInfo.stripePriceId,
+      isEducational: isEdu
+    })
+    setIsModalOpen(true)
+    setModalError(null)
+    const searchParams = new URL(window.location.href).searchParams
+    const urlPromoCode = searchParams.get('promoCode')
+    if (urlPromoCode && !promoCode) {
+      setPromoCode(urlPromoCode)
+    }
+    setShowTrialWarning(false)
+  }
 
   const handleContinue = async (ignoreTrialWarning = false) => {
     if (!userEmail || !userEmail.trim()) {
@@ -310,7 +321,59 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         return
       }
 
-      // 2. Proceed to Checkout
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
+      }
+      const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
+
+      // 2. Show Onboarding Wizard instead of proceeding to checkout immediately
+      setIsRedirecting(false)
+      setIsModalOpen(false)
+      setShowTrialWarning(false)
+
+      if (verifyData.existsUser || verifyData.existsPublicOnBoarding) {
+        await handleOnboardingComplete(verifyData.data || null)
+      } else {
+        setShowOnboarding(true)
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error)
+      const errorMessage = error.message || 'An unexpected error occurred'
+
+      // Check for specific student email error to show translated message
+      if (errorMessage.toLowerCase().includes('student email')) {
+        setModalError(tModal('errorNotStudentEmail'))
+      } else {
+        setModalError(errorMessage)
+      }
+
+      toast.error(errorMessage)
+      setIsRedirecting(false)
+    }
+  }
+
+  const handleOnboardingComplete = async (onboardingData: any) => {
+    setOnboardingData(onboardingData)
+    setIsRedirecting(true)
+
+    try {
+      if (onboardingData && !onboardingData.id) {
+        try {
+          const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: userEmail.trim(), ...onboardingData }),
+          })
+          if (!submitResponse.ok) {
+            console.error('Failed to save public onboarding data:', await submitResponse.json())
+          }
+        } catch (e) {
+          console.error('Error submitting public onboarding data:', e)
+        }
+      }
+
       const billingCycleMap: Record<string, string> = {
         monthly: 'MONTHLY',
         sixMonthly: 'SIX_MONTHLY',
@@ -331,6 +394,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           promoCode: promoDiscount ? promoCode.trim() : null,
           currency: planCurrency,
           cancelUrl: window.location.href,
+          onboardingData: onboardingData, // Pass onboarding data to checkout
         }),
       })
 
@@ -347,16 +411,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       }
     } catch (error: any) {
       console.error('Checkout error:', error)
-      const errorMessage = error.message || 'An unexpected error occurred'
-
-      // Check for specific student email error to show translated message
-      if (errorMessage.toLowerCase().includes('student email')) {
-        setModalError(tModal('errorNotStudentEmail'))
-      } else {
-        setModalError(errorMessage)
-      }
-
-      toast.error(errorMessage)
+      toast.error(error.message || 'Failed to create checkout session')
       setIsRedirecting(false)
     }
   }
@@ -545,11 +600,44 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   return (
     <section
       ref={containerRef}
-      className='min-h-screen py-20 relative'
+      className='min-h-screen relative pt-0 pb-20'
       style={{ backgroundColor: '#fcfcfd' }}
       id='pricing'
     >
-      <div className='w-full max-w-7xl mx-auto px-4 relative z-10'>
+      {/* Announcement Marquee */}
+      <div className='relative bg-black py-4 overflow-hidden  border-b border-white/10'>
+        <div className='flex items-center'>
+          <motion.div
+            animate={{ x: [0, -2000] }}
+            transition={{
+              repeat: Infinity,
+              duration: 30,
+              ease: 'linear'
+            }}
+            className='flex whitespace-nowrap text-white text-[11px] font-bold uppercase tracking-[0.1em] gap-8'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            {[...Array(4)].map((_, i) => (
+              <span key={i} className='flex gap-8 items-center'>
+                <span className='text-emerald-400'>| FIRST BUYER DISCOUNT €70 OFF |</span>
+                <span>NEW MODELS: NANO BANANA 2 • GOOGLE/UPSCALER • RECRAFT-AI/RECRAFT-CRISP-UPSCALE • SORA 2 • SORA 2 PRO • FLUX 2 PRO</span>
+              </span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Fixed View Now Button */}
+        <div className='absolute right-0 top-0 bottom-0 flex items-center px-8 z-20 bg-black shadow-[-20px_0_30px_rgba(0,0,0,0.8)]'>
+          <Button
+            className='bg-white text-black hover:bg-gray-100 text-[10px] font-black tracking-widest px-6 py-2 rounded-none uppercase transition-all'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            VIEW NOW
+          </Button>
+        </div>
+      </div>
+
+      <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
         {/* Professional Section */}
         <div className='text-center mb-12 relative z-40'>
           <h2
@@ -592,8 +680,51 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               {t('plans.enterprise.name')}
             </button>
           </div>
+          {/* Promo Code Input on Page */}
+          <div className='w-full max-w-md mx-auto mt-8 mb-10'>
+            <div className='flex gap-2 min-h-[50px]'>
+              <input
+                type='text'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
+                placeholder={tModal('promoCodePlaceholder')}
+                value={promoCode}
+                onChange={(e) => {
+                  setPromoCode(e.target.value)
+                  setPromoError(null)
+                  setPromoSuccess(null)
+                  setPromoDiscount(null)
+                }}
+                disabled={isRedirecting || isVerifyingPromo}
+              />
+              <Button
+                onClick={handleVerifyPromoCode}
+                disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              >
+                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+              </Button>
+            </div>
+            {promoError && (
+              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
+                <IconAlertCircle size={14} />
+                <span>{promoError}</span>
+              </div>
+            )}
+            {promoSuccess && (
+              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
+                <Check size={14} />
+                <span>{promoSuccess}</span>
+              </div>
+            )}
+            {promoDiscount && (
+              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
+                <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
+              </div>
+            )}
+          </div>
 
-          <div className='flex flex-col items-center mb-8'>
+          <div className='flex flex-col items-center mb-12'>
             <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
               <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
                 <span className='font-bold text-black'>
@@ -666,6 +797,50 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               {t('monthlyBilling')}
             </button>
           </div>
+          {/* Promo Code Input on Page (Education) */}
+          <div className='w-full max-w-md mx-auto mt-8 mb-6'>
+            <div className='flex gap-2 min-h-[50px]'>
+              <input
+                type='text'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
+                placeholder={tModal('promoCodePlaceholder')}
+                value={promoCode}
+                onChange={(e) => {
+                  setPromoCode(e.target.value)
+                  setPromoError(null)
+                  setPromoSuccess(null)
+                  setPromoDiscount(null)
+                }}
+                disabled={isRedirecting || isVerifyingPromo}
+              />
+              <Button
+                onClick={handleVerifyPromoCode}
+                disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              >
+                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+              </Button>
+            </div>
+            {promoError && (
+              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
+                <IconAlertCircle size={14} />
+                <span>{promoError}</span>
+              </div>
+            )}
+            {promoSuccess && (
+              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
+                <Check size={14} />
+                <span>{promoSuccess}</span>
+              </div>
+            )}
+            {promoDiscount && (
+              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
+                <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
+              </div>
+            )}
+          </div>
+
           <p
             className='text-black pb-0 mb-8'
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
@@ -766,54 +941,44 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   </div>
                 )}
 
-                {/* Promo Code Input */}
-                <div className='mt-4 pt-4 border-t border-white/5'>
-                  <div className='flex gap-2'>
+                <div className='flex flex-col gap-3 pt-2'>
+                  <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
-                      type='text'
-                      className='block flex-1 px-3 py-2 border border-white/10 bg-white/5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-white/20 transition-all uppercase placeholder:normal-case'
-                      placeholder={tModal('promoCodePlaceholder')}
-                      value={promoCode}
-                      onChange={(e) => {
-                        setPromoCode(e.target.value)
-                        setPromoError(null)
-                        setPromoSuccess(null)
-                        setPromoDiscount(null)
-                      }}
-                      disabled={isRedirecting || isVerifyingPromo}
+                      type='checkbox'
+                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
+                      checked={marketingConsent}
+                      onChange={(e) => setMarketingConsent(e.target.checked)}
+                      disabled={isRedirecting}
                     />
-                    <Button
-                      onClick={handleVerifyPromoCode}
-                      disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
-                      className='bg-white/10 text-white hover:bg-white/20 px-4 py-2 text-[10px] uppercase font-bold tracking-wider transition-all'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
-                    </Button>
-                  </div>
-                  {promoError && (
-                    <div className='flex items-center gap-2 text-red-500 text-[10px] mt-1'>
-                      <IconAlertCircle size={12} />
-                      <span>{promoError}</span>
-                    </div>
-                  )}
-                  {promoSuccess && (
-                    <div className='flex items-center gap-2 text-emerald-500 text-[10px] mt-1'>
-                      <Check size={12} />
-                      <span>{promoSuccess}</span>
-                    </div>
-                  )}
-                  {promoDiscount && (
-                    <div className='mt-2 p-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px]'>
-                      <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
-                    </div>
-                  )}
+                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
+                      {tModal('marketingConsent')}
+                    </span>
+                  </label>
+
+                  <label className='flex items-start gap-3 cursor-pointer group'>
+                    <input
+                      type='checkbox'
+                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
+                      checked={privacyConsent}
+                      onChange={(e) => setPrivacyConsent(e.target.checked)}
+                      disabled={isRedirecting}
+                    />
+                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
+                      {tModal.rich('privacyConsent', {
+                        privacyPolicy: (chunks) => (
+                          <Link href='/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                            {chunks}
+                          </Link>
+                        )
+                      })}
+                    </span>
+                  </label>
                 </div>
 
                 <div className='flex flex-col gap-3 mt-4'>
                   <Button
                     onClick={() => handleContinue()}
-                    disabled={isRedirecting}
+                    disabled={isRedirecting || !privacyConsent}
                     className='bg-white text-black hover:bg-gray-200 w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
@@ -893,6 +1058,90 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           </motion.div>
         )}
       </AnimatePresence>
+      {/* First Buyer Kick Off Button */}
+      {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && (
+        <div className='fixed bottom-10 left-0 right-0 z-[100] flex justify-center'>
+          <Button
+            onClick={() => setShowKickOffModal(true)}
+            className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            First Buyer Kick Off
+          </Button>
+        </div>
+      )}
+
+      {/* First Buyer Kick Off Modal */}
+      <AnimatePresence>
+        {showKickOffModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm'
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className='bg-white p-10 shadow-2xl flex flex-col items-center gap-6 max-w-lg w-full relative rounded-lg'
+            >
+              <button
+                className='absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors'
+                onClick={() => setShowKickOffModal(false)}
+              >
+                <IconX size={24} />
+              </button>
+
+              <h2 className='text-2xl font-bold text-black text-center'>
+                First-time buyer discount: €70 OFF
+              </h2>
+
+              <p className='text-sm text-gray-600 text-center px-4'>
+                If you’re new, kickstart your journey with <strong>€70 off</strong> monthly plans — just enter the code in the promo field.
+              </p>
+
+              <div className='text-7xl font-bold tracking-tighter text-black my-4' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                KICK
+              </div>
+
+              <div className='w-full flex flex-col gap-4 mt-2'>
+                <Button
+                  onClick={() => {
+                    setPromoCode('KICK')
+                    setPromoError(null)
+                    setPromoSuccess(null)
+                    setPromoDiscount(null)
+                    setShowKickOffModal(false)
+                    // Scroll to Top to see the effect
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  className='w-full bg-black text-white hover:bg-neutral-800 py-6 text-sm font-bold uppercase tracking-widest'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  Apply Promo Code
+                </Button>
+
+                <button
+                  onClick={() => setShowKickOffModal(false)}
+                  className='text-xs text-gray-400 hover:text-black transition-colors underline'
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  Maybe later
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {showOnboarding && (
+        <OnboardingWizard
+          email={userEmail}
+          locale={locale}
+          onComplete={handleOnboardingComplete}
+          onCancel={() => setShowOnboarding(false)}
+        />
+      )}
     </section>
   )
 }

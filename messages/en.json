@@ -328,7 +328,7 @@
   "SubscriptionModal": {
     "title": "Enter your email to continue",
     "placeholder": "Email address",
-    "continue": "Continue to Checkout",
+    "continue": "Continue",
     "cancel": "Cancel",
     "description": "We'll use this email to create your account and manage your subscription.",
     "errorInvalidEmail": "Please enter a valid email address.",
@@ -346,7 +346,9 @@
       "description": "The 1-day free trial is only available for users with professional email accounts. You can still subscribe, but the trial period will not be applied.",
       "cancel": "Cancel",
       "proceed": "Proceed Anyway"
-    }
+    },
+    "marketingConsent": "I would like to receive marketing emails and updates about new features",
+    "privacyConsent": "I agree to the <privacyPolicy>Privacy Policy</privacyPolicy>"
   },
   "PricingCTA": {
     "title": "Flexible Plans for Every Need",

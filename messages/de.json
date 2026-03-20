@@ -328,7 +328,7 @@
   "SubscriptionModal": {
     "title": "Geben Sie Ihre E-Mail-Adresse ein, um fortzufahren",
     "placeholder": "E-Mail-Adresse",
-    "continue": "Weiter zum Checkout",
+    "continue": "Weiter",
     "cancel": "Abbrechen",
     "description": "Wir verwenden diese E-Mail, um Ihr Konto zu erstellen und Ihr Abonnement zu verwalten.",
     "errorInvalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
@@ -346,7 +346,9 @@
       "description": "Die 1-tägige kostenlose Testversion ist nur für Benutzer mit geschäftlichen E-Mail-Konten verfügbar. Sie können trotzdem abonnieren, aber der Testzeitraum wird nicht angewendet.",
       "cancel": "Abbrechen",
       "proceed": "Trotzdem fortfahren"
-    }
+    },
+    "marketingConsent": "Ich möchte Marketing-E-Mails und Updates zu neuen Funktionen erhalten",
+    "privacyConsent": "Ich stimme der <privacyPolicy>Datenschutzerklärung</privacyPolicy> zu"
   },
   "PricingCTA": {
     "title": "Flexible Pläne für jeden Bedarf",
