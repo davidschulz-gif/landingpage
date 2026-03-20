@@ -2,17 +2,20 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useRef } from 'react'
+import Link from 'next/link'
 
 export const MenuItem = ({
   setActive,
   active,
   item,
   children,
+  href,
 }: {
   setActive: React.Dispatch<React.SetStateAction<string | null>>
   active: string | null
   item: string
   children?: React.ReactNode
+  href?: string
 }) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isHoveredRef = useRef(false)
@@ -64,19 +67,29 @@ export const MenuItem = ({
     }
   }, [])
 
+  const content = (
+    <motion.p
+      transition={{ duration: 0.3 }}
+      className='cursor-pointer text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800  dark:text-white'
+    >
+      {item}
+    </motion.p>
+  )
+
   return (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className='relative '
     >
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className='cursor-pointer text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800  dark:text-white'
-      >
-        {item}
-      </motion.p>
-      {active !== null && (
+      {href ? (
+        <Link href={href}>
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
+      {children && active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}

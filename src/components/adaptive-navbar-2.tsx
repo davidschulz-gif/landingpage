@@ -133,6 +133,10 @@ export function NavbarDemo() {
           },
         ],
       },
+      {
+        name: t('amaAwards'),
+        link: '/ama-awards',
+      },
     ]
   }
 
@@ -168,6 +172,7 @@ export function NavbarDemo() {
                   setActive={setActive}
                   active={active}
                   item={navItem.name}
+                  href={navItem.link}
                 >
                   <div className='flex flex-col space-y-4 text-sm'>
                     {navItem.submenu?.map((subitem: any, subIdx) => (

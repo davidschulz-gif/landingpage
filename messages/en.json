@@ -79,7 +79,8 @@
           "description": "With the PRO plan, you can book a free onboarding call."
         }
       }
-    }
+    },
+    "amaAwards": "Testimonials"
   },
   "ImageTemplates": {
     "title": "Image Templates",
@@ -2563,5 +2564,22 @@
       "noVideoAvailable": "No video available",
       "today": "Today"
     }
+  },
+  "BlogTestimonial": {
+    "badge": "SUCCESS STORY",
+    "sectionTitle": "Architekt Wins AMA Awards in Madrid",
+    "p1": "Architect Lucy Lago (@lucylago_arch) has just clinched the prestigious AMA Awards in Madrid, demonstrating how the fusion of creativity and technology is redefining contemporary architecture.",
+    "h2": "A Cliff House Powered by AI",
+    "p2": "Central to her award-winning cliff house design—also featured on ArchDaily—is the use of advanced AI tools that are transforming architectural visualization, enabling a faster and more intuitive transition from concept to immersive visual experience. As she revealed on Illustrarch, she integrates @typus.ai into her workflow. This allowed her to create high-quality visuals for the project independently—without the need to hire external visualizers or dedicate excessive time and resources. By leveraging AI, she was able to significantly reduce costs while maintaining full creative control over the process.",
+    "h3": "EU-Funded Innovation and Upcoming Features",
+    "p3": "This AI-powered platform, funded by the EU NRW program in our region, allows architectural ideas to materialize into atmospheric visuals within minutes. This rapid translation of sketches and concepts into photorealistic imagery is opening new doors for designers, students, and studios looking to elevate presentations, communicate ideas more effectively, and experiment with styles without the traditional time and cost constraints.",
+    "h4": "AI: A Key Differentiator in Architecture",
+    "p4": "AI-driven visualization is becoming a key differentiator in architectural practice. With EU-supported innovations, upcoming 3D cloud integration, and the inclusion of real material manufacturer products, the future of architectural rendering promises to be not only faster but also more collaborative, immersive, and expressive.",
+    "p5": "For architects, students, and enthusiasts alike, the message is clear: AI is changing the entire way firms operate.",
+    "watchVideo1": "Watch First Reel",
+    "watchVideo2": "Watch Second Reel",
+    "instagramTitle1": "EU-Funded Tool: Typus",
+    "instagramTitle2": "Typus x Illustrarch",
+    "readMore": "Read full story"
   }
 }

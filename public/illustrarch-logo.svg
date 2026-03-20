@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Black circle background -->
+  <circle cx="100" cy="100" r="100" fill="#000000"/>
+  <!-- White "A" shape with architectural style -->
+  <!-- Left leg of A -->
+  <polygon points="58,148 100,52 142,148 128,148 100,80 72,148" fill="#ffffff"/>
+  <!-- Crossbar of A -->
+  <rect x="78" y="112" width="44" height="14" fill="#000000"/>
+  <!-- Upper arrow notch - small V cut at top of A -->
+  <polygon points="93,52 100,40 107,52 100,58" fill="#ffffff"/>
+</svg>
