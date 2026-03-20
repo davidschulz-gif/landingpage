@@ -2578,10 +2578,16 @@
     "h4": "KI: Ein entscheidender Differenzierungsfaktor in der Architektur",
     "p4": "KI-gestützte Visualisierung wird zu einem immer wichtigeren Differenzierungsfaktor in der Architekturpraxis. Mit EU-geförderten Innovationen, der bevorstehenden 3D-Cloud-Integration und der Einbindung echter Materialherstellerprodukte verspricht die Zukunft des Architektur-Renderings nicht nur schneller, sondern auch kollaborativer, immersiver und ausdrucksvoller zu werden.",
     "p5": "Für Architektinnen und Architekten, Studierende und Enthusiasten ist die Botschaft klar: KI verändert die gesamte Arbeitsweise von Büros.",
-    "watchVideo1": "Erstes Reel ansehen",
-    "watchVideo2": "Zweites Reel ansehen",
+    "watchVideo1": "Video ansehen",
+    "watchVideo2": "Video ansehen",
     "instagramTitle1": "EU-gefördertes Tool: Typus",
     "instagramTitle2": "Typus x Illustrarch",
     "readMore": "Ganze Story lesen"
+  },
+  "BlogPromo": {
+    "badge": "ERFOLGSGESCHICHTE",
+    "title": "Architekt gewinnt AMA Awards in Madrid",
+    "date": "20. März 2026 · 5 Min. Lesezeit",
+    "readArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN"
   }
 }

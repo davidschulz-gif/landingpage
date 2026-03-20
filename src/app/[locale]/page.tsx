@@ -27,13 +27,13 @@ const StickySliderSection = dynamic(
   }
 )
 
-const ComparisonSection = dynamic(
-  () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const ComparisonSection = dynamic(
+//   () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const UseCasesSection = dynamic(
   () => import('@/components/use-cases-section').then(mod => mod.UseCasesSection),
@@ -52,13 +52,13 @@ const TabVideoShowcase = dynamic(
   }
 )
 
-const ReviewsSection = dynamic(
-  () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const ReviewsSection = dynamic(
+//   () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const PricingCTASection = dynamic(
   () =>
@@ -95,6 +95,14 @@ const ArticleCarouselSection = dynamic(
   }
 )
 
+const BlogPromoSection = dynamic(
+  () => import('@/components/blog-promo-section').then(mod => mod.BlogPromoSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
+  }
+)
+
 const CreatorShowcaseSection = dynamic(
   () =>
     import('@/components/creator-showcase-section').then(
@@ -114,13 +122,13 @@ const RightsSection = dynamic(
   }
 )
 
-const DetailedFeaturesSection = dynamic(
-  () => import('@/components/detailed-features-section').then(mod => mod.DetailedFeaturesSection),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const DetailedFeaturesSection = dynamic(
+//   () => import('@/components/detailed-features-section').then(mod => mod.DetailedFeaturesSection),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const IndustrySection = dynamic(
   () => import('@/components/industry-section').then(mod => mod.IndustrySection),
@@ -312,13 +320,13 @@ export default function Home() {
       />
 
       {/* Comparison Section */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
       >
         <ComparisonSection />
-      </motion.div>
+      </motion.div> */}
 
       {/* Image Templates */}
       <motion.div
@@ -458,13 +466,13 @@ export default function Home() {
       </motion.div>
 
       {/* Detailed Feature Comparison Section */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
       >
         <DetailedFeaturesSection />
-      </motion.div>
+      </motion.div> */}
 
 
       {/* Features Section */}
@@ -497,6 +505,16 @@ export default function Home() {
         <ArticleCarouselSection />
       </motion.div>
 
+      {/* Blog Promo Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <BlogPromoSection />
+      </motion.div>
+
       {/* Creator Showcase Section */}
       <motion.div
         initial={{ opacity: 0, y: 60 }}
@@ -508,14 +526,14 @@ export default function Home() {
       </motion.div>
 
       {/* Reviews Section with Marquee */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
         viewport={{ once: true, margin: '-100px' }}
       >
         <ReviewsSection />
-      </motion.div>
+      </motion.div> */}
 
       {/* FAQ Section */}
       <motion.div

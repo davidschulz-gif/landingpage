@@ -12,13 +12,14 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Check, X } from 'lucide-react'
+import { Check, X, ArrowLeft } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import OnboardingWizard from './onboarding/onboarding-wizard'
+import { TestimonialsSection } from './testimonials-section'
 
 const professionalPlans = [
   {
@@ -194,6 +195,8 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
   const router = useRouter()
   const tModal = useTranslations('SubscriptionModal')
+  const isEurope = useIsEurope();
+  console.log("isEurope", isEurope);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
@@ -561,14 +564,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
   useEffect(() => {
     fetchPlans();
-  }, []);
-
-  console.log(locale, "locale")
-
+  }, [isEurope]);
 
   const fetchPlans = async () => {
     try {
-      const response = await fetch(`${apiBaseUrl}plans?currency=${locale === 'en' ? 'usd' : 'eur'}`,
+      const response = await fetch(`${apiBaseUrl}plans?currency=${isEurope ? 'eur' : 'usd'}`,
         {
           method: 'GET',
           headers: {
@@ -638,6 +638,15 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       </div>
 
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
+        {isStandalone && (
+          <Link
+            href={`/${locale}`}
+            className="inline-flex items-center text-sm font-bold uppercase tracking-tight text-gray-500 hover:text-black transition-colors mb-12 group"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            {locale === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
+          </Link>
+        )}
         {/* Professional Section */}
         <div className='text-center mb-12 relative z-40'>
           <h2
@@ -744,9 +753,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                 isYearly={isYearly}
                 isProfessional={true}
-                isEurope={locale === 'de'}
+                isEurope={isEurope}
                 currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                 onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                promoDiscount={promoDiscount}
               />
             </div>
           ) : (
@@ -756,14 +766,23 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                   isYearly={isYearly}
                   isProfessional={true}
-                  isEurope={locale === 'de'}
+                  isEurope={isEurope}
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                   onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                  promoDiscount={promoDiscount}
                 />
               </div>
             ))
           )}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <TestimonialsSection />
+        </motion.div>
 
         {/* Education Section */}
         <div className='text-center mb-12 relative z-40'>
@@ -857,9 +876,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                 isYearly={isYearly}
                 isProfessional={false}
-                isEurope={locale === 'de'}
+                isEurope={isEurope}
                 currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                 onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
+                promoDiscount={promoDiscount}
               />
             </div>
           ))}
@@ -1157,6 +1177,7 @@ interface PricingCardProps {
   isEurope: boolean
   currencySymbol: string
   onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
+  promoDiscount?: any
 }
 
 function PricingCard({
@@ -1166,6 +1187,7 @@ function PricingCard({
   isEurope,
   currencySymbol,
   onSubscribe,
+  promoDiscount,
 }: PricingCardProps) {
   const t = useTranslations('Pricing')
 
@@ -1343,6 +1365,74 @@ function PricingCard({
   }
 
   const priceInfo = getPriceDisplay()
+
+  if (promoDiscount && priceInfo.mainPrice) {
+    const numericMatch = priceInfo.mainPrice.match(/[\d,.]+/);
+    if (numericMatch) {
+      let numericStr = numericMatch[0].replace(',', '.');
+      let val = parseFloat(numericStr);
+      if (!isNaN(val)) {
+        let newVal = val;
+        if (promoDiscount.type === 'percentage') {
+          newVal = val * (1 - promoDiscount.value / 100);
+        } else {
+          let months = 1;
+          if (plan.billingCycle === 'sixMonthly') {
+            months = 6;
+          } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
+            months = 12;
+          }
+          let discountPerMonth = (promoDiscount.value / 100) / months;
+          newVal = Math.max(0, val - discountPerMonth); // fixed amount is calculated per month equivalent
+        }
+
+        if (!priceInfo.discount) {
+          (priceInfo as any).discount = { originalPrice: priceInfo.mainPrice };
+        } else if (!('originalPrice' in (priceInfo.discount as any))) {
+          (priceInfo.discount as any).originalPrice = priceInfo.mainPrice;
+        }
+
+        priceInfo.mainPrice = `${currencySymbol}${newVal % 1 === 0 ? newVal : newVal.toFixed(2)}`;
+
+        // Also update billingInfo text like "418 billed every 6 months" -> "348 billed every 6 months"
+        if (priceInfo.billingInfo) {
+          const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const numRegex = new RegExp(`(${escapeRegExp(currencySymbol)}\\s?)([\\d,]+(?:\\.\\d+)?)`);
+          const match = priceInfo.billingInfo.match(numRegex);
+          if (match) {
+            let bNumericStr = match[2].replace(',', '.');
+            let bVal = parseFloat(bNumericStr);
+            if (!isNaN(bVal)) {
+              let newBVal = bVal;
+              if (promoDiscount.type === 'percentage') {
+                newBVal = bVal * (1 - promoDiscount.value / 100);
+              } else {
+                newBVal = Math.max(0, bVal - (promoDiscount.value / 100)); // fixed amount applies entirely to the cycle
+              }
+              priceInfo.billingInfo = priceInfo.billingInfo.replace(match[0], `${match[1]}${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
+            }
+          } else {
+            // Check if currency symbol is at the end or not present, but the number is 418, 594, etc.
+            // Simplified fallback for strings like "418€ alle 6 Monate" or plain un-prefixed values
+            const fallbackMatch = priceInfo.billingInfo.match(/^([\d,.]+) ?(?:€|\$|EUR|USD|£)?\b/);
+            if (fallbackMatch && parseFloat(fallbackMatch[1].replace(',', '.')) > 12) {
+              let bNumericStr = fallbackMatch[1].replace(',', '.');
+              let bVal = parseFloat(bNumericStr);
+              if (!isNaN(bVal)) {
+                let newBVal = bVal;
+                if (promoDiscount.type === 'percentage') {
+                  newBVal = bVal * (1 - promoDiscount.value / 100);
+                } else {
+                  newBVal = Math.max(0, bVal - (promoDiscount.value / 100));
+                }
+                priceInfo.billingInfo = priceInfo.billingInfo.replace(fallbackMatch[1], `${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   return (
     <div

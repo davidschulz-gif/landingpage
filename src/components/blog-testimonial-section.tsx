@@ -115,7 +115,7 @@ export function BlogTestimonialSection() {
                         alt="EU Co-Funded"
                         width={300}
                         height={100}
-                        className="h-16 w-auto object-contain"
+                        className="h-24 sm:h-28 lg:h-32 w-auto object-contain"
                     />
                     <div className="hidden sm:block h-px flex-1 bg-gray-200" />
                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs text-right hidden sm:block">
