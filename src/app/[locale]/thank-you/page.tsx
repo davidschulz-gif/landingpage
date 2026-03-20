@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
-import { appUrl, apiUrl } from '@/lib/constants'
+import { appUrl, apiUrl, landingPageUrl } from '@/lib/constants'
 
 
 function ThankYouContent() {
@@ -184,14 +184,21 @@ function ThankYouContent() {
         )}
 
         <div className="pt-8">
-          <Link href={`${appUrl}/register?email=${encodeURIComponent(user?.email)}`}>
+          {user?.email ? <Link href={`${appUrl}/register?email=${encodeURIComponent(user?.email)}`}>
             <Button
               className="bg-black cursor-pointer text-white hover:bg-gray-800 px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {t('createAccount')}
             </Button>
-          </Link>
+          </Link> : <Link href={`${landingPageUrl}/pricing`}>
+            <Button
+              className="bg-black cursor-pointer text-white hover:bg-gray-800 px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              {t('doNotHavePlan')}
+            </Button>
+          </Link>}
         </div>
       </div>
     </div>
