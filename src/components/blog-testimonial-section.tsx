@@ -1,15 +1,63 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Instagram, PlayCircle, ArrowLeft } from 'lucide-react'
+import { Instagram, PlayCircle, ArrowLeft, Play } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
+import { VideoThumbnail } from './video-thumbnail'
 
 export function BlogTestimonialSection() {
     const t = useTranslations('BlogTestimonial')
     const params = useParams()
     const locale = params.locale as string
+
+    const ClickableImage = ({
+        src,
+        alt,
+        width,
+        height,
+        href,
+        caption,
+        className = "",
+        priority = false
+    }: {
+        src: string,
+        alt: string,
+        width: number,
+        height: number,
+        href: string,
+        caption?: string,
+        className?: string,
+        priority?: boolean
+    }) => (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`relative block group overflow-hidden ${className}`}
+        >
+            <Image
+                src={src}
+                alt={alt}
+                width={width}
+                height={height}
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                priority={priority}
+            />
+            {/* Play Button Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
+                <div className="w-16 h-16 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl transition-transform duration-300 group-hover:scale-110">
+                    <Play className="w-8 h-8 text-white fill-white ml-1" />
+                </div>
+            </div>
+            {caption && (
+                <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gray-50 border-t border-gray-200 text-[11px] font-bold uppercase tracking-widest text-gray-500">
+                    {caption}
+                </div>
+            )}
+        </a>
+    )
 
     return (
         <article className="w-full max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -19,7 +67,7 @@ export function BlogTestimonialSection() {
                 className="inline-flex items-center text-sm font-bold uppercase tracking-tight text-gray-500 hover:text-black transition-colors mb-12 group"
             >
                 <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                {locale === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
+                {t('backToHome')}
             </Link>
 
             {/* Article Header */}
@@ -33,36 +81,38 @@ export function BlogTestimonialSection() {
                 </h1>
 
                 <div className="flex items-center gap-4 text-sm font-bold text-gray-400 uppercase tracking-widest">
-                    <span>{locale === 'de' ? '20. März 2026' : 'March 20, 2026'}</span>
+                    <span>{t('dateDisplay')}</span>
                     <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                    <span>{locale === 'de' ? '5 Min. Lesezeit' : '5 min read'}</span>
+                    <span>{t('readingTime')}</span>
                 </div>
             </header>
 
-            {/* Hero Image — Full width, as-is */}
-            <div className="w-full mb-16 border-2 border-black shadow-[12px_12px_0px_#000000]">
-                <Image
-                    src="/artical-page/1.jpg"
-                    alt="AMA Awards Architecture"
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto"
-                    priority
-                />
-            </div>
+            {/* Intro Text Block: Pull Quote + Featured On */}
+            <div className="space-y-8 mb-12">
 
-            {/* Main Content Area */}
-            <div className="text-gray-800 leading-relaxed font-medium space-y-16">
+                {/* Hero Image — Centered, smaller */}
+                <div className="flex justify-center mb-16">
+                    <div className="w-full max-w-2xl border-2 border-black shadow-[8px_8px_0px_#000000]">
+                        <ClickableImage
+                            src="/artical-page/1.jpg"
+                            alt="AMA Awards Architecture"
+                            width={800}
+                            height={440}
+                            href="https://www.instagram.com/reel/DQjbQh4kcWt/"
+                            priority={true}
+                        />
+                    </div>
+                </div>
 
                 {/* Pull Quote */}
-                <p className="text-xl md:text-3xl font-black leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
+                <p className="text-xl md:text-2xl font-black leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
                     {t('p1')}
                 </p>
 
                 {/* Featured On row */}
                 <div className="flex flex-wrap items-center gap-3">
                     <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                        {locale === 'de' ? 'Vorgestellt auf' : 'As featured on'}
+                        {t('featuredOn')}
                     </span>
                     <a
                         href="https://www.archdaily.com/985896/a-cliff-house-in-bali-and-a-waterfront-estate-in-greece-9-unbuilt-villas-submitted-to-archdaily"
@@ -84,6 +134,13 @@ export function BlogTestimonialSection() {
                     </a>
                 </div>
 
+
+            </div>
+
+
+            {/* Main Content Area */}
+            <div className="text-gray-800 leading-relaxed font-medium space-y-16">
+
                 {/* Section 1: Text LEFT, Image RIGHT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
@@ -91,16 +148,14 @@ export function BlogTestimonialSection() {
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p2')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <Image
+                        <ClickableImage
                             src="/artical-page/0313.00_00_04_10.Standbild003.jpg"
                             alt="AI-Powered Atmospheric Rendering"
                             width={960}
                             height={440}
-                            className="w-full h-auto"
+                            href="https://www.instagram.com/reel/DQjbQh4kcWt/"
+                            caption={t('caption1')}
                         />
-                        <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                            AI-Powered Atmospheric Rendering
-                        </div>
                     </div>
                 </div>
 
@@ -115,53 +170,44 @@ export function BlogTestimonialSection() {
                         alt="EU Co-Funded"
                         width={300}
                         height={100}
-                        className="h-24 sm:h-28 lg:h-32 w-auto object-contain"
+                        className="h-16 sm:h-16 lg:h-16 w-auto object-contain"
                     />
                     <div className="hidden sm:block h-px flex-1 bg-gray-200" />
                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs text-right hidden sm:block">
-                        {locale === 'de' ? 'Kofinanziert durch die Europäische Union' : 'Co-funded by the European Union'}
+                        {t('euCoFunded')}
                     </p>
                 </div>
 
-                {/* Instagram Reel 1 */}
-                <div>
-                    <a
-                        href="https://www.instagram.com/reel/DQjbQh4kcWt/?hl=en"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block bg-gray-50 border-2 border-dashed border-gray-300 p-6 md:p-10 transition-all hover:border-black hover:bg-white group"
-                    >
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-black text-white">
-                                    <Instagram className="w-5 h-5" />
-                                </div>
-                                <div className="text-left">
-                                    <h4 className="text-base font-black uppercase leading-none mb-1">{t('instagramTitle1')}</h4>
-                                    <p className="text-xs font-bold text-gray-500 uppercase tracking-tight">Instagram Reel · @lucylago_arch</p>
-                                </div>
-                            </div>
-                            <div className="inline-flex items-center gap-2 font-black text-sm border-2 border-black px-5 py-2.5 uppercase tracking-widest group-hover:bg-black group-hover:text-white transition-all shadow-[4px_4px_0px_#000000]">
-                                <PlayCircle className="w-4 h-4" />
-                                {t('watchVideo1')}
-                            </div>
-                        </div>
-                    </a>
+                {/* Instagram Reel 1: Text RIGHT, Video LEFT */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className="order-2 md:order-1 flex justify-center">
+                        <VideoThumbnail
+                            href="https://www.instagram.com/reel/DQjbQh4kcWt/?hl=en"
+                            imageSrc="/artical-page/1.jpg"
+                            title={t('instagramTitle1')}
+                            subtitle={t('reelDescription1')}
+                            handle="@lucylago_arch"
+                        />
+                    </div>
+                    <div className="space-y-4 order-1 md:order-2">
+                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle1')}</h2>
+                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                            {t('reelDescription1')}
+                        </p>
+                    </div>
                 </div>
 
                 {/* Section 2: Image LEFT, Text RIGHT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="order-2 md:order-1 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <Image
+                        <ClickableImage
                             src="/artical-page/0313.00_00_06_00.Standbild002.jpg"
                             alt="3D Integration Cloud Concept"
                             width={960}
                             height={540}
-                            className="w-full h-auto"
+                            href="https://www.instagram.com/reel/DQjbQh4kcWt/"
+                            caption={t('caption2')}
                         />
-                        <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                            3D Integration Cloud — Coming Soon
-                        </div>
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
                         <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h3')}</h2>
@@ -183,7 +229,7 @@ export function BlogTestimonialSection() {
                         <span className="text-sm font-black uppercase tracking-widest text-gray-700">Illustrarch</span>
                     </div>
                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs hidden sm:block">
-                        {locale === 'de' ? 'Wie von Illustrarch vorgestellt' : 'As featured on Illustrarch'}
+                        {t('featuredOnIllustrarch')}
                     </p>
                     <div className="hidden sm:block h-px flex-1 bg-gray-200" />
                 </div>
@@ -195,43 +241,34 @@ export function BlogTestimonialSection() {
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p4')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <Image
+                        <ClickableImage
                             src="/artical-page/0313.00_00_13_28.Standbild004.jpg"
                             alt="Design Process"
                             width={960}
                             height={540}
-                            className="w-full h-auto"
+                            href="https://www.instagram.com/p/DVO_kk0jL86/"
+                            caption={t('caption3')}
                         />
-                        <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                            Reshaping Modern Architecture
-                        </div>
                     </div>
                 </div>
 
-                {/* Instagram Reel 2 */}
-                <div>
-                    <a
-                        href="https://www.instagram.com/p/DVO_kk0jL86/?hl=en"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block bg-black text-white p-6 md:p-10 transition-all hover:bg-gray-900 group shadow-[8px_8px_0px_#e5e7eb]"
-                    >
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-white text-black">
-                                    <Instagram className="w-5 h-5" />
-                                </div>
-                                <div className="text-left">
-                                    <h4 className="text-base font-black uppercase leading-none mb-1 text-white">{t('instagramTitle2')}</h4>
-                                    <p className="text-xs font-bold text-gray-400 uppercase tracking-tight">Featured on Illustrarch · @illustrarch</p>
-                                </div>
-                            </div>
-                            <div className="inline-flex items-center gap-2 font-black text-sm bg-white text-black border-2 border-white px-5 py-2.5 uppercase tracking-widest">
-                                <PlayCircle className="w-4 h-4" />
-                                {t('watchVideo2')}
-                            </div>
-                        </div>
-                    </a>
+                {/* Instagram Reel 2: Text LEFT, Video RIGHT */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className="space-y-4 order-1">
+                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle2')}</h2>
+                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                            {t('reelDescription2')}
+                        </p>
+                    </div>
+                    <div className="order-2 flex justify-center">
+                        <VideoThumbnail
+                            href="https://www.instagram.com/p/DVO_kk0jL86/?hl=en"
+                            imageSrc="/artical-page/0313.00_00_13_28.Standbild004.jpg"
+                            title={t('instagramTitle2')}
+                            subtitle={t('reelDescription2')}
+                            handle="@illustrarch"
+                        />
+                    </div>
                 </div>
 
                 {/* Closing statement */}
@@ -252,15 +289,15 @@ export function BlogTestimonialSection() {
                                 : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
                         }
                         alt="EU Co-Funded"
-                        width={400}
-                        height={150}
-                        className="h-36 w-auto object-contain"
+                        width={300}
+                        height={250}
+                        className="h-16 w-auto object-contain"
                     />
                     <div className="text-left">
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
                             {locale === 'de'
-                                ? 'Kofinanziert durch die Europäische Union'
-                                : 'Co-funded by the European Union'}
+                                ? 'Solo Architektin gewinnt AMA Award. Ohne Team. Nur mit KI.'
+                                : 'Solo architect wins AMA Award. Without a team. Only with AI.'}
                         </p>
                         <p className="text-xs text-gray-400 mt-1 max-w-xs">
                             {locale === 'de'

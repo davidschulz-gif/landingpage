@@ -663,7 +663,7 @@
     "howItsPossible": {
       "title": "Wie ist das möglich?",
       "p1": "Wir arbeiten nicht mit klassischen Rendering-Pipelines, die oft zeitaufwendig und teuer sind. Stattdessen nutzen wir die neuesten Möglichkeiten KI-gestützter Visualisierungstechnologie, um Architektur in kürzester Zeit präzise und atmosphärisch darzustellen.",
-      "p2": "Unsere Visualisierungen werden dabei nicht automatisch generiert, sondern von erfahrenen Visualisierer:innen erstellt – alle mit Hintergrund in Architektur und architektonischer Darstellung. So verbinden wir die Geschwindigkeit moderner KI mit dem gestalterischen Verständnis von Architekt:innen.",
+      "p2": "Unsere Visualisierungen werden dabei nicht automatisch generiert, sondern von erfahrenen Visualisierer:innen erstellt – alle mit Hintergrund in Architektur und architektonischer Darstellung. So verbinden wir die Geschwindigkeit moderner KI mit dem gestalterischen Verständnis von Architect:innen.",
       "p3": "Das Ergebnis:",
       "p4": "Hochwertige Architekturvisualisierungen – schneller, flexibler und deutlich effizienter."
     },
@@ -2569,7 +2569,7 @@
   },
   "BlogTestimonial": {
     "badge": "ERFOLGSGESCHICHTE",
-    "sectionTitle": "Architekt gewinnt AMA Awards in Madrid",
+    "sectionTitle": "Architect gewinnt AMA Awards in Madrid",
     "p1": "Die Architektin Lucy Lago (@lucylago_arch) hat gerade beim renommierten AMA Award in Madrid gewonnen – ein Beweis dafür, wie die Verbindung von Kreativität und Technologie die zeitgenössische Architektur neu definiert.",
     "h2": "Ein Klippenhaus, powered by KI",
     "p2": "Schlüsselelement ihres preisgekrönten Klippenhaus-Designs – das auch auf ArchDaily vorgestellt wurde – ist der Einsatz fortschrittlicher KI-Tools, die die Architekturvisualisierung revolutionieren und den Übergang vom Konzept zum immersiven visuellen Erlebnis schneller und intuitiver machen. Wie sie auf Illustrarch enthüllte, integriert sie @typus.ai in ihren Workflow. Damit konnte sie hochwertige Visualisierungen für das Projekt eigenständig erstellen – ohne externe Visualisierungsbüros engagieren oder übermäßig viel Zeit und Ressourcen aufwenden zu müssen. Durch den Einsatz von KI konnte sie die Kosten erheblich senken und gleichzeitig die volle kreative Kontrolle behalten.",
@@ -2578,6 +2578,17 @@
     "h4": "KI: Ein entscheidender Differenzierungsfaktor in der Architektur",
     "p4": "KI-gestützte Visualisierung wird zu einem immer wichtigeren Differenzierungsfaktor in der Architekturpraxis. Mit EU-geförderten Innovationen, der bevorstehenden 3D-Cloud-Integration und der Einbindung echter Materialherstellerprodukte verspricht die Zukunft des Architektur-Renderings nicht nur schneller, sondern auch kollaborativer, immersiver und ausdrucksvoller zu werden.",
     "p5": "Für Architektinnen und Architekten, Studierende und Enthusiasten ist die Botschaft klar: KI verändert die gesamte Arbeitsweise von Büros.",
+    "backToHome": "Zurück zur Startseite",
+    "dateDisplay": "20. März 2026",
+    "readingTime": "5 Min. Lesezeit",
+    "featuredOn": "Vorgestellt auf",
+    "featuredOnIllustrarch": "Wie von Illustrarch vorgestellt",
+    "euCoFunded": "Solo Architektin gewinnt AMA Award. Ohne Team. Nur mit KI.",
+    "caption1": "KI-gestützte atmosphärische Darstellung",
+    "caption2": "3D-Integrations-Cloud — Demnächst verfügbar",
+    "caption3": "Moderne Architektur neu gestalten",
+    "reelDescription1": "Sehen Sie, wie Lucy Lago die AMA Awards mit KI-gestützten Designs gewinnt. In diesem exklusiven Video teilt sie Einblicke in ihre Vision und den Einsatz von Typus-KI.",
+    "reelDescription2": "Ein Blick hinter die Kulissen des Designprozesses, der auf Illustrarch vorgestellt wurde. Erfahren Sie, wie die Synergie zwischen Architektur und KI neue Möglichkeiten schafft.",
     "watchVideo1": "Video ansehen",
     "watchVideo2": "Video ansehen",
     "instagramTitle1": "EU-gefördertes Tool: Typus",
@@ -2586,7 +2597,7 @@
   },
   "BlogPromo": {
     "badge": "ERFOLGSGESCHICHTE",
-    "title": "Architekt gewinnt AMA Awards in Madrid",
+    "title": "Architect gewinnt AMA Awards in Madrid",
     "date": "20. März 2026 · 5 Min. Lesezeit",
     "readArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN"
   }
