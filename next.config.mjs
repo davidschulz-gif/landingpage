@@ -25,6 +25,12 @@ const nextConfig = {
         port: '',
         pathname: '/typusai/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'prai-vision.s3.eu-central-1.amazonaws.com',
+        port: '',
+        pathname: '/industryImageBeforeAfter/**',
+      },
     ],
   },
   compiler: {

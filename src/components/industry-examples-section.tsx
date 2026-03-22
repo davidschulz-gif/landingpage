@@ -13,49 +13,51 @@ interface Example {
   images: string[]
 }
 
-// Industry-specific image pairs [input/before, result/after]
-// All pairs are real matched before/after sets from slider_original → slider_output
+const BASE_IMAGE_AWS_URL = "https://prai-vision.s3.eu-central-1.amazonaws.com/industryImageBeforeAfter"
+
+// Industry-specific image pairs [before, after]
+// All pairs use dedicated generated images from /before-after/generate/
 const INDUSTRY_IMAGES: Record<string, string[][]> = {
   architects: [
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
-    ['/before-after/slider_original/cad_original.png', '/before-after/slider_output/cad_result.png'],
-    ['/before-after/slider_original/sitemodel_original.jpg', '/before-after/slider_output/sitemodel_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/architects_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/architects_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/architects_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/architects_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/architects_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/architects_example3_after.webp`],
   ],
   interiorArchitects: [
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
-    ['/before-after/slider_original/colormap_original.png', '/before-after/slider_output/colormap_result.png'],
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/interiorArchitects_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/interiorArchitects_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/interiorArchitects_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/interiorArchitects_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/interiorArchitects_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/interiorArchitects_example3_after.webp`],
   ],
   carpenters: [
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
-    ['/before-after/slider_original/cad_original.png', '/before-after/slider_output/cad_result.png'],
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/carpenters_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/carpenters_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/carpenters_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/carpenters_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/carpenters_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/carpenters_example3_after.webp`],
   ],
   kitchenBuilders: [
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
-    ['/before-after/slider_original/colormap_original.png', '/before-after/slider_output/colormap_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/kitchenBuilders_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/kitchenBuilders_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/kitchenBuilders_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/kitchenBuilders_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/kitchenBuilders_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/kitchenBuilders_example3_after.webp`],
   ],
   painters: [
-    ['/before-after/slider_original/colormap_original.png', '/before-after/slider_output/colormap_result.png'],
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/painters_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/painters_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/painters_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/painters_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/painters_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/painters_example3_after.webp`],
   ],
   furnitureMakers: [
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
-    ['/before-after/slider_original/sketch_original.png', '/before-after/slider_output/sketch_result.png'],
-    ['/before-after/slider_original/3d_original.png', '/before-after/slider_output/3d_result.png'],
-    ['/before-after/slider_original/cad_original.png', '/before-after/slider_output/cad_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/furnitureMakers_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/furnitureMakers_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/furnitureMakers_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/furnitureMakers_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/furnitureMakers_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/furnitureMakers_example3_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/furnitureMakers_example4_before.webp`, `${BASE_IMAGE_AWS_URL}/furnitureMakers_example4_after.webp`],
   ],
   realEstate: [
-    ['/before-after/slider_original/sitemodel_original.jpg', '/before-after/slider_output/sitemodel_result.png'],
-    ['/before-after/slider_original/3d_original.png', '/before-after/slider_output/3d_result.png'],
-    ['/before-after/slider_original/freepik_original.png', '/before-after/slider_output/freepik_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/realEstate_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/realEstate_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/realEstate_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/realEstate_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/realEstate_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/realEstate_example3_after.webp`],
   ],
   developers: [
-    ['/before-after/slider_original/sitemodel_original.jpg', '/before-after/slider_output/sitemodel_result.png'],
-    ['/before-after/slider_original/3d_original.png', '/before-after/slider_output/3d_result.png'],
-    ['/before-after/slider_original/cad_original.png', '/before-after/slider_output/cad_result.png'],
+    [`${BASE_IMAGE_AWS_URL}/developers_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/developers_example1_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/developers_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/developers_example2_after.webp`],
+    [`${BASE_IMAGE_AWS_URL}/developers_example3_before.webp`, `${BASE_IMAGE_AWS_URL}/developers_example3_after.webp`],
   ],
 }
 
@@ -103,7 +105,7 @@ export function IndustryExamplesSection({ slug }: { slug: string }) {
   return (
     <section className="py-24 px-4 bg-[#fcfcfd] dark:bg-[#0a0a0c] border-b border-neutral-100 dark:border-neutral-900">
       <div className="max-w-7xl mx-auto space-y-12">
-        
+
         <motion.div {...motionProps} className="space-y-4">
           <h2 className="text-[32px] md:text-[40px] font-bold tracking-tight text-[#2B2B2B] dark:text-white leading-[1.1]">
             {t(`${slug}.IndustryExamples.title`)}
@@ -155,13 +157,13 @@ export function IndustryExamplesSection({ slug }: { slug: string }) {
                           <div key={imgIdx} className="relative aspect-video rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-800 border border-gray-100 dark:border-neutral-800">
                             <Image
                               src={img}
-                              alt={`${example.title} — ${imgIdx === 0 ? 'Input' : 'Result'}`}
+                              alt={`${example.title} — ${imgIdx === 0 ? 'Before' : 'After'}`}
                               fill
                               className="object-cover"
                               sizes="(max-width: 768px) 100vw, 50vw"
                             />
                             <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
-                              {imgIdx === 0 ? 'Input' : 'Result'}
+                              {imgIdx === 0 ? 'Before' : 'After'}
                             </div>
                           </div>
                         ))}
