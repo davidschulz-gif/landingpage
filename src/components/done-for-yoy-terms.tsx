@@ -1,5 +1,6 @@
 import { Linkedin, Instagram } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import Link from 'next/link';
 
 const DoneForYouTerms = () => {
     const locale = useLocale();
@@ -300,6 +301,11 @@ const DoneForYouTerms = () => {
                 <div className="max-w-4xl mx-auto">
                     {locale === 'de' ? <ContentDE /> : <ContentEN />}
                 </div>
+            </div>
+            <div className="flex justify-center">
+                <Link href="/" className="bg-black  px-4 py-2 mb-4 text-white font-semibold">
+                    Back to Home
+                </Link>
             </div>
 
             {/* Footer */}
