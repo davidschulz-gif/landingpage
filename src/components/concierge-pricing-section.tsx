@@ -108,7 +108,8 @@ export function ConciergePricingSection() {
     return {
       ...plan,
       name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
-      features: dynamicFeatures.map(f => t(f)),
+      contractTerm: t(`plans.${plan.id}.contractTerm` as any),
+      features: dynamicFeatures.map(f => t(f as any)),
       ...(plan.popular ? { topBadges: [tPricing('bestResultsForDFY')] } : {}),
     }
   })
@@ -258,8 +259,8 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
   return (
     <div
       className={`flex h-full min-h-[650px] flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${plan.popular
-          ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10'
-          : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
+        ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10'
+        : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
         }`}
     >
       {/* Ribbon Tag / Badges */}
@@ -277,13 +278,21 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
       {/* Header Section */}
       <div className='flex flex-col mb-6 relative pt-2'>
-        <div className='flex items-center justify-between mb-4'>
+        <div className='flex items-center justify-between mb-4 gap-2'>
           <span
             className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider text-neutral-900 dark:text-white'
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
             {plan.name}
           </span>
+          {plan.contractTerm && (
+            <span
+              className='text-[10px] font-bold uppercase tracking-widest bg-neutral-100 dark:bg-neutral-900 px-2 py-1 text-neutral-500 rounded-sm'
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              {plan.contractTerm}
+            </span>
+          )}
         </div>
 
         {/* Pricing Section */}

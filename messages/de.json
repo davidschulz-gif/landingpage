@@ -581,6 +581,7 @@
         "name": "Basic",
         "price": "500",
         "yearlyPrice": "4000",
+        "contractTerm": "24-Monatige Vertragslaufzeit",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
           "videoCall": "1 Video Call pro Monat",
@@ -597,6 +598,7 @@
         "name": "Pro",
         "price": "1000",
         "yearlyPrice": "8000",
+        "contractTerm": "12-Monatige Vertragslaufzeit",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
           "videoCall": "3 Video Calls pro Monat",
