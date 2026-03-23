@@ -413,7 +413,8 @@
       "terms": "Terms",
       "dataPrivacy": "Data Privacy",
       "imprint": "Imprint",
-      "bilderFlatrate": "Image Flat Rate"
+      "bilderFlatrate": "Image Flat Rate",
+      "termsDoneForYou": "Done-for-you Terms"
     }
   },
   "BookingDemoClassForm": {

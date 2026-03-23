@@ -26,18 +26,30 @@ export const ImageTemplates: React.FC = () => {
                 const fetchedData = await response.json();
 
                 const visibleCategories = (fetchedData?.categories || []).filter((cat: any) => cat.slug !== 'material-style');
-
-                const allTemplates = visibleCategories.flatMap((cat: any) => {
-                    return (cat.templates || []).map((t: any) => ({
-                        id: `template-${t.id}`,
-                        backendId: t.id,
-                        categoryId: cat.id,
-                        title: locale === 'de' ? (t.displayNameDe || '') : (t.displayNameEn || ''),
-                        description: locale === 'de' ? (t.descriptionDe || '') : (t.descriptionEn || ''),
-                        prompt: t.promptSnippet,
-                        thumbnail: t.imageUrl || ''
-                    }));
-                });
+                const t1Category = visibleCategories.find((cat: any) => cat.slug === 'architecture-render')?.templates;
+                const t2Category = visibleCategories.find((cat: any) => cat.slug === 'interior')?.templates;
+                const templateSlugArray = [
+                    'institutional-buildings',
+                    'commercial-buildings',
+                    'recreational-buildings',
+                    'agricultural-buildings',
+                    'residential-buildings',
+                    'industrial-buildings',
+                    'multistory-office-building',
+                    'architectural-sculptural',
+                    'modern-living-room',
+                    'minimalist-interior',
+                    'industrial-loft-living-room'
+                ]
+                const rowTemplates = [...t1Category, ...t2Category]?.filter((t: any) => templateSlugArray.includes(t.slug));
+                const allTemplates = rowTemplates.map((t: any) => ({
+                    id: `template-${t.id}`,
+                    backendId: t.id,
+                    title: locale === 'de' ? (t.displayNameDe || '') : (t.displayNameEn || ''),
+                    description: locale === 'de' ? (t.descriptionDe || '') : (t.descriptionEn || ''),
+                    prompt: t.promptSnippet,
+                    thumbnail: t.imageUrl || ''
+                }));
 
                 // Ensure we have 11 templates for the grid
                 setImageTemplates(allTemplates.slice(0, 11));

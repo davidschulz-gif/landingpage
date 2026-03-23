@@ -413,7 +413,8 @@
       "terms": "AGB",
       "dataPrivacy": "Datenschutz",
       "imprint": "Impressum",
-      "bilderFlatrate": "Bilder-Flatrate"
+      "bilderFlatrate": "Bilder-Flatrate",
+      "termsDoneForYou": "Done-for-you AGB"
     }
   },
   "BookingDemoClassForm": {

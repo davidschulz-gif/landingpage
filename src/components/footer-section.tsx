@@ -63,6 +63,7 @@ export function FooterSection() {
         href: 'https://app.typus.ai/data-privacy',
       },
       { name: t('links.imprint'), href: 'https://app.typus.ai/imprint' },
+      { name: t('links.termsDoneForYou'), href: `/${locale}/terms-done-for-you` },
     ],
   }
 
@@ -190,9 +191,8 @@ export function FooterSection() {
             height={200}
           />
           <div
-            className={`flex items-center justify-center transition-transform ${
-              locale === 'en' ? 'scale-[1.6] sm:scale-[2.5] px-6 sm:px-10' : ''
-            }`}
+            className={`flex items-center justify-center transition-transform ${locale === 'en' ? 'scale-[1.6] sm:scale-[2.5] px-6 sm:px-10' : ''
+              }`}
           >
             <Image
               className='h-7 w-auto md:h-9'
