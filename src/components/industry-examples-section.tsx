@@ -17,7 +17,7 @@ const BASE_IMAGE_AWS_URL = "https://prai-vision.s3.eu-central-1.amazonaws.com/in
 
 // Industry-specific image pairs [before, after]
 // All pairs use dedicated generated images from /before-after/generate/
-const INDUSTRY_IMAGES: Record<string, string[][]> = {
+export const INDUSTRY_IMAGES: Record<string, string[][]> = {
   architects: [
     [`${BASE_IMAGE_AWS_URL}/architects_example1_before.webp`, `${BASE_IMAGE_AWS_URL}/architects_example1_after.webp`],
     [`${BASE_IMAGE_AWS_URL}/architects_example2_before.webp`, `${BASE_IMAGE_AWS_URL}/architects_example2_after.webp`],

@@ -120,7 +120,8 @@ export function BlogTestimonialSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
                     >
-                        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+                        <Image src="/archdaily.png" alt="Archdail" width={20} height={20} className="rounded-full" />
+                        {/* <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg> */}
                         ArchDaily
                     </a>
                     <a
@@ -170,7 +171,7 @@ export function BlogTestimonialSection() {
                         alt="EU Co-Funded"
                         width={300}
                         height={100}
-                        className="h-[75px] sm:h-[75px] lg:h-[75px] w-auto object-contain"
+                        className={`${locale === 'de' ? 'h-[40px]' : 'h-[95px]'} w-auto object-contain`}
                     />
                     <div className="hidden sm:block h-px flex-1 bg-gray-200" />
                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs text-right hidden sm:block">
@@ -291,7 +292,7 @@ export function BlogTestimonialSection() {
                         alt="EU Co-Funded"
                         width={300}
                         height={250}
-                        className="h-[75px] w-auto object-contain"
+                        className={`${locale === 'de' ? 'h-[40px]' : 'h-[95px]'} w-auto object-contain`}
                     />
                     <div className="text-left">
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500">

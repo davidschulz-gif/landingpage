@@ -13,18 +13,22 @@ import {
   UtensilsCrossed
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { Compare } from '@/components/ui/compare'
+import { INDUSTRY_IMAGES } from './industry-examples-section'
 
-const IndustryCard = ({ 
-  icon: Icon, 
-  title, 
-  description 
-}: { 
-  icon: any, 
-  title: string, 
-  description: string 
+const IndustryCard = ({
+  icon: Icon,
+  title,
+  description,
+  images
+}: {
+  icon: any,
+  title: string,
+  description: string,
+  images?: string[]
 }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -32,14 +36,25 @@ const IndustryCard = ({
       transition={{ duration: 0.3 }}
       className="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col h-full group"
     >
-      <div className="mb-6">
-        <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors">
+      {images && images.length >= 2 && (
+        <div className="w-full h-56 sm:h-52 mb-8 rounded-xl overflow-hidden relative">
+          <Compare
+            firstImage={images[0]}
+            secondImage={images[1]}
+            className="w-full h-full object-cover border-none"
+            slideMode="hover"
+          />
+        </div>
+      )}
+
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-12 h-12 shrink-0 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors">
           <Icon size={24} />
         </div>
+        <h3 className="text-xl font-bold text-gray-900">{title}</h3>
       </div>
 
-      <h3 className="text-lg font-bold mb-3 text-gray-900">{title}</h3>
-      <p style={{fontFamily:'sans-serif'}} className="text-gray-700 text-sm leading-relaxed flex-grow">
+      <p style={{ fontFamily: 'sans-serif' }} className="text-gray-700 text-sm leading-relaxed flex-grow">
         {description}
       </p>
     </motion.div>
@@ -55,64 +70,72 @@ export const IndustrySection = () => {
       icon: Building2,
       title: t('cards.architects.title'),
       description: t('cards.architects.description'),
+      images: INDUSTRY_IMAGES['architects']?.[0],
     },
     {
       id: 'interiorArchitects',
       icon: Palette,
       title: t('cards.interiorArchitects.title'),
       description: t('cards.interiorArchitects.description'),
+      images: INDUSTRY_IMAGES['interiorArchitects']?.[0],
     },
     {
       id: 'carpenters',
       icon: Hammer,
       title: t('cards.carpenters.title'),
       description: t('cards.carpenters.description'),
+      images: INDUSTRY_IMAGES['carpenters']?.[0],
     },
     {
       id: 'kitchenBuilders',
       icon: UtensilsCrossed,
       title: t('cards.kitchenBuilders.title'),
       description: t('cards.kitchenBuilders.description'),
+      images: INDUSTRY_IMAGES['kitchenBuilders']?.[0],
     },
     {
       id: 'painters',
       icon: Paintbrush,
       title: t('cards.painters.title'),
       description: t('cards.painters.description'),
+      images: INDUSTRY_IMAGES['painters']?.[0],
     },
     {
       id: 'furnitureMakers',
-      icon: Car, // Using Car for furniture makers as a placeholder if no better icon, but maybe 'Box' or 'Armchair'? Lucas has Sofa but let's see. Lucide doesn't have armchair by default in some versions. Let's use Car for now to match screenshot if it looks like that, wait, screenshot has a car icon for Möbelmacher (Furniture makers/Cabinet makers). Yes, it does look like a car.
+      icon: Car,
       title: t('cards.furnitureMakers.title'),
       description: t('cards.furnitureMakers.description'),
+      images: INDUSTRY_IMAGES['furnitureMakers']?.[0],
     },
     {
       id: 'developers',
       icon: Users,
       title: t('cards.developers.title'),
       description: t('cards.developers.description'),
+      images: INDUSTRY_IMAGES['developers']?.[0],
     },
     {
       id: 'realEstate',
       icon: Home,
       title: t('cards.realEstate.title'),
       description: t('cards.realEstate.description'),
+      images: INDUSTRY_IMAGES['realEstate']?.[0],
     },
   ]
 
   return (
     <section className="py-24 px-6 bg-[#F9F9F9] relative overflow-hidden">
       {/* Background Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-           style={{ 
-             backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
-             backgroundSize: '40px 40px' 
-           }}>
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -120,7 +143,7 @@ export const IndustrySection = () => {
           >
             {t('title')}
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,13 +154,14 @@ export const IndustrySection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {industries.map((industry) => (
             <Link key={industry.id} href={`/industry/${industry.id}`} className="block h-full">
               <IndustryCard
                 icon={industry.icon}
                 title={industry.title}
                 description={industry.description}
+                images={industry.images}
               />
             </Link>
           ))}
