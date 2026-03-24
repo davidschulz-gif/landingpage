@@ -413,7 +413,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: userEmail.trim(), ...onboardingData }),
+            body: JSON.stringify({
+              email: userEmail.trim(),
+              marketingConsent,
+              privacyConsent,
+              ...onboardingData
+            }),
           })
           if (!submitResponse.ok) {
             console.error('Failed to save public onboarding data:', await submitResponse.json())
@@ -443,6 +448,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           promoCode: promoDiscount ? promoCode.trim() : null,
           currency: planCurrency,
           cancelUrl: window.location.href,
+          marketingConsent,
+          privacyConsent,
+          language: locale,
           onboardingData: onboardingData, // Pass onboarding data to checkout
         }),
       })
