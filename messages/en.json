@@ -219,6 +219,8 @@
   "Pricing": {
     "selectPlanCTA": "Select plan & get started",
     "professionalPlans": "Professional Plans",
+    "missingProFeaturesTitle": "Features that are missing in Explorer but included in the Pro plan:",
+    "upgradeToPro": "Upgrade to Pro to unlock these features",
     "educationPlans": "Education Plans",
     "bookDemo": "Book a Demo Call",
     "professional": "Professional",

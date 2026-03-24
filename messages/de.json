@@ -219,6 +219,8 @@
   "Pricing": {
     "selectPlanCTA": "Abo auswählen & loslegen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
+    "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
+    "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Demo-Anruf buchen",
     "educationPlans": "BILDUNGSPLÄNE",
     "professional": "Professionell",

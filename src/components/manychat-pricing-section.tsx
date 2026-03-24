@@ -693,15 +693,17 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         )}
         {/* Professional Section */}
         <div className='text-center mb-12 relative z-40'>
-          <h2
-            className='text-[30px] font-normal text-black mb-6'
-            style={{
-              fontFamily:
-                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-            }}
-          >
-            {t('professionalPlans')}
-          </h2>
+          {selectedPlanTier === 'explorer' && (
+            <h2
+              className='text-4xl font-bold text-gray-900 mb-6 font-siggnal'
+              style={{
+                fontFamily:
+                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+              }}
+            >
+              {t('professionalPlans')}
+            </h2>
+          )}
 
           <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
             <button
@@ -809,18 +811,72 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
         {/* Professional Plans Cards */}
         <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-32'>
-          {currentProfPlans.length === 1 ? (
-            <div className='w-full max-w-xs z-30'>
-              <PricingCard
-                plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                isYearly={isYearly}
-                isProfessional={true}
-                isEurope={isEurope}
-                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                promoDiscount={promoDiscount}
-              />
-            </div>
+          {selectedPlanTier === 'explorer' ? (
+            <>
+              <div className='w-full max-w-xs z-30'>
+                <PricingCard
+                  plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                  isYearly={isYearly}
+                  isProfessional={true}
+                  isEurope={isEurope}
+                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                  onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                  promoDiscount={promoDiscount}
+                />
+              </div>
+
+              {/* Overview Card: Missing Pro Features */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className='w-full max-w-xs z-20'
+              >
+                <div
+                  className='h-full bg-white border border-black p-8 flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all'
+                  style={{ minHeight: '580px' }}
+                >
+                  <div className='mb-6 pb-4 border-b border-black/10'>
+                    <h3
+                      className='text-xl font-bold text-black leading-tight uppercase'
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      {t('missingProFeaturesTitle')}
+                    </h3>
+                  </div>
+
+                  <div className='space-y-4 flex-1'>
+                    {[
+                      t('plans.pro.features.credits1000'),
+                      t('plans.pro.features.resolution4k'),
+                      t('plans.pro.features.editByChat'),
+                      t('plans.pro.features.upscale13k'),
+                      t('plans.pro.features.onboardingCall')
+                    ].map((feature, idx) => (
+                      <div key={idx} className='flex items-start gap-3 group'>
+                        <div className='flex-shrink-0 w-5 h-5 bg-red-50 flex items-center justify-center mt-0.5 group-hover:bg-red-100 transition-colors border border-red-200'>
+                          <X size={12} className='text-red-500' />
+                        </div>
+                        <div className='flex-1'>
+                          <span
+                            className='text-[13px] font-bold text-black uppercase leading-tight'
+                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                          >
+                            {feature}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className='mt-8 pt-4 border-t border-black/10'>
+                    <p className='text-xs text-gray-500 text-center font-medium italic'>
+                      {t('upgradeToPro')}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </>
           ) : (
             currentProfPlans.map((plan, index) => (
               <div key={index} className='w-full max-w-xs z-10'>
@@ -1197,7 +1253,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               </h2>
 
               <p className='text-sm text-gray-600 text-center px-4'>
-                If you’re new, kickstart your journey with <strong>€70 off</strong> monthly plans — just enter the code in the promo field.
+                If you’re new, kickstart your journey with <strong>€70 off</strong> — just enter the code in the promo field.
               </p>
 
               <div className='text-7xl font-bold tracking-tighter text-black my-4' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
@@ -1611,7 +1667,7 @@ function PricingCard({
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {t('plusVat')}
             </div>
-            {isProfessional && !priceInfo.discount && (
+            {isProfessional && !promoDiscount && (
               <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
