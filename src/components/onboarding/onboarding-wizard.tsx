@@ -33,6 +33,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         state: '',
         country: '',
         software: '',
+        companySize: '',
         status: '',
         moneySpentForOneImage: '',
         timeOnRenderings: '',
@@ -54,7 +55,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         }
 
         if (currentStep >= 3 && currentStep <= 6) {
-            const name = currentStep === 3 ? 'software' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
+            const name = currentStep === 3 ? 'companySize' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
             if (!(formData as any)[name]) {
                 toast.error((t as any).requiredField || 'Required')
                 return
@@ -213,9 +214,9 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
             case 4:
             case 5:
             case 6:
-                const options = currentStep === 3 ? t.softwareOptions : (currentStep === 4 ? t.statusOptions : (currentStep === 5 ? t.moneySpentOptions : (t as any).timeOnRenderingsOptions))
-                const name = currentStep === 3 ? 'software' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
-                const title = currentStep === 3 ? t.whichSoftware : (currentStep === 4 ? t.whichStatus : (currentStep === 5 ? t.moneySpentQuestion : (t as any).timeSpentQuestion))
+                const options = currentStep === 3 ? t.companySizeOptions : (currentStep === 4 ? t.statusOptions : (currentStep === 5 ? t.moneySpentOptions : (t as any).timeOnRenderingsOptions))
+                const name = currentStep === 3 ? 'companySize' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
+                const title = currentStep === 3 ? (t as any).companySizeQuestion : (currentStep === 4 ? t.whichStatus : (currentStep === 5 ? t.moneySpentQuestion : (t as any).timeSpentQuestion))
 
                 return (
                     <div className="relative w-full mb-8">
@@ -355,7 +356,10 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         }
     }
 
-    const isSkippable = currentStep === 2 || (currentStep === 7 && !formData.phoneNumber)
+    const isStep2Filled = formData.streetAndNumber.trim() || formData.city.trim() || formData.postcode.trim() || formData.state.trim() || formData.country.trim()
+    const isStep7Filled = !!formData.phoneNumber
+
+    const isSkippable = (currentStep === 2 && !isStep2Filled) || (currentStep === 7 && !isStep7Filled)
 
     return (
         <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfd] p-4 overflow-y-auto">

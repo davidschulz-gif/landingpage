@@ -33,6 +33,7 @@ export const onboardingTranslations = {
         country: "Country",
         countryPlaceholder: "Enter country",
         whichSoftware: "Which software do you use?",
+        companySizeQuestion: "How many employees does your company have?",
         whichStatus: "Which status are you in?",
         moneySpentQuestion: "If you outsource it, how much money do you spend for one image?",
         timeSpentQuestion: "How much time do you spend on renderings?",
@@ -55,6 +56,11 @@ export const onboardingTranslations = {
             { label: "Sketch", value: "Sketch" },
             { label: "Rhino", value: "Rhino" },
             { label: "Other", value: "Other" },
+        ],
+        companySizeOptions: [
+            { label: "1-10", value: "1-10" },
+            { label: "11-50", value: "11-50" },
+            { label: "50+", value: "50+" },
         ],
         statusOptions: [
             { label: "Architectural Student", value: "Architectural Student" },
@@ -107,6 +113,7 @@ export const onboardingTranslations = {
         country: "Land",
         countryPlaceholder: "Geben Sie das Land ein",
         whichSoftware: "Welche Software verwenden Sie?",
+        companySizeQuestion: "Wie viele Mitarbeiter hat Ihr Unternehmen?",
         whichStatus: "Welchen Status haben Sie?",
         moneySpentQuestion: "Wenn Sie es auslagern, wie viel Geld geben Sie für ein Bild aus?",
         timeSpentQuestion: "Wie viel Zeit verbringen Sie mit Renderings?",
@@ -129,6 +136,11 @@ export const onboardingTranslations = {
             { label: "Sketch", value: "Sketch" },
             { label: "Rhino", value: "Rhino" },
             { label: "Andere", value: "Other" },
+        ],
+        companySizeOptions: [
+            { label: "1-10", value: "1-10" },
+            { label: "11-50", value: "11-50" },
+            { label: "50+", value: "50+" },
         ],
         statusOptions: [
             { label: "Architekturstudent", value: "Architectural Student" },
