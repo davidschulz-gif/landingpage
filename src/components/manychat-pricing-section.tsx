@@ -259,14 +259,16 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     }
   }, [promoCode, selectedPlanForModal, tModal])
 
-  // useEffect(() => {
-  //   if (promoCode && !promoDiscount && !promoError && !isVerifyingPromo) {
-  //     const timoutId = setTimeout(() => {
-  //       handleVerifyPromoCode()
-  //       clearTimeout(timoutId);
-  //     }, 1000)
-  //   }
-  // }, [promoCode, selectedPlanForModal, handleVerifyPromoCode, promoDiscount, promoError])
+
+  useEffect(() => {
+    // Check if we should auto-verify (code exists but no result/error yet)
+    if (promoCode && promoCode.trim().length >= 3 && !promoDiscount && !promoError && !isVerifyingPromo) {
+      const timer = setTimeout(() => {
+        handleVerifyPromoCode()
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [promoCode, handleVerifyPromoCode, promoDiscount, promoError, isVerifyingPromo])
 
 
   const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
