@@ -578,13 +578,13 @@
     "billedMonthly": "Billed monthly",
     "switchToYearly": "Switch to Yearly and save",
     "subscribe": "Subscribe",
-    "saveWithAnnual": "Save {amount} with annual billing",
+    "saveWithAnnual": "Save {amount} (33%) with annual billing",
     "plans": {
       "basic": {
         "name": "Basic",
         "price": "500",
         "yearlyPrice": "4000",
-        "contractTerm": "24-Month Contract duration",
+        "contractTerm": "24-Month term",
         "features": {
           "visualizer": "1 personal visualizer",
           "videoCall": "1 Video Call pro Monat",
@@ -601,7 +601,7 @@
         "name": "Pro",
         "price": "1000",
         "yearlyPrice": "8000",
-        "contractTerm": "12-Month Contract duration",
+        "contractTerm": "12-Month term",
         "features": {
           "visualizer": "1 personal visualizer",
           "videoCall": "3 Video Calls pro Monat",

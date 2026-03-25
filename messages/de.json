@@ -578,13 +578,13 @@
     "billedMonthly": "Monatlich abgerechnet",
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie",
     "subscribe": "Abonnieren",
-    "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
+    "saveWithAnnual": "Sparen Sie {amount} (33%) mit jährlicher Abrechnung",
     "plans": {
       "basic": {
         "name": "Basic",
         "price": "500",
         "yearlyPrice": "4000",
-        "contractTerm": "24-Monatige Vertragslaufzeit",
+        "contractTerm": "24-Monatige Laufzeit",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
           "videoCall": "1 Video Call pro Monat",
@@ -601,7 +601,7 @@
         "name": "Pro",
         "price": "1000",
         "yearlyPrice": "8000",
-        "contractTerm": "12-Monatige Vertragslaufzeit",
+        "contractTerm": "12-Monatige Laufzeit",
         "features": {
           "visualizer": "1 persönlicher Visualisierer",
           "videoCall": "3 Video Calls pro Monat",

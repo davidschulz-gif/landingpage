@@ -258,7 +258,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
           </span>
           {plan.contractTerm && (
             <span
-              className='text-[10px] font-bold uppercase tracking-widest bg-neutral-100 dark:bg-neutral-900 px-2 py-1 text-neutral-500 rounded-sm'
+              className='text-[10px] font-extrabold uppercase tracking-wider bg-black text-white dark:bg-white dark:text-black px-3 py-1 rounded-full shadow-sm'
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {plan.contractTerm}
@@ -290,7 +290,10 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
               {priceInfo.billingInfo}
             </div>
             {priceInfo.saveInfo && (
-              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div
+                className='text-emerald-600 dark:text-emerald-400 font-bold'
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              >
                 {priceInfo.saveInfo}
               </div>
             )}
