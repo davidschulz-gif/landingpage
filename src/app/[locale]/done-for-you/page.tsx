@@ -662,7 +662,7 @@ export default function DoneForYouPage() {
                 </BreathingAnimationText>
 
                 {/* Esra Aslan Profile Card */}
-                <div className='w-full mt-8'>
+                {/* <div className='w-full mt-8'>
                   <a
                     href={t('benefits.advisorLinkedIn')}
                     target='_blank'
@@ -686,7 +686,7 @@ export default function DoneForYouPage() {
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> */}
 
                 <div className='flex flex-col items-center lg:items-start gap-12'>
                   {/* <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
