@@ -117,20 +117,13 @@ export function ConciergePricingSection() {
   return (
     <section
       ref={containerRef}
-      className='md:h-[200vh] py-10 relative'
+      className='py-2 relative'
       style={{ backgroundColor: '#fcfcfd' }}
       id='concierge-pricing'
     >
-      <div className='md:sticky top-0 flex flex-col justify-center overflow-hidden px-4'>
-        <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
-          <motion.div
-            className='text-center mb-0 relative z-40'
-            style={{ y: headerY }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true, margin: '100px' }}
-          >
+      <div className='flex flex-col justify-center overflow-hidden px-4'>
+        <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-2'>
+          <div className='text-center mb-0 relative z-40'>
             <h2
               className='text-[30px] font-normal text-black mb-12'
               style={{
@@ -179,47 +172,25 @@ export function ConciergePricingSection() {
             >
               {t('subtitle')}
             </p> */}
-          </motion.div>
+          </div>
 
-          <div className='relative md:flex hidden justify-center items-stretch h-auto min-h-[80vh] w-full max-w-7xl mx-auto gap-8 px-4'>
-            <motion.div
-              className='w-80 flex h-full self-stretch z-10'
-              style={{
-                opacity: leftCardOpacity,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.1, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
+          <div className='relative md:flex hidden justify-center items-stretch h-auto w-full max-w-7xl mx-auto gap-8 px-4 mb-8'>
+            <div className='w-80 flex h-full self-stretch z-10'>
               <PricingCard plan={currentPlans[0]} isYearly={isYearly} />
-            </motion.div>
-            <motion.div
-              className='w-80 flex h-full self-stretch z-10'
-              style={{
-                opacity: rightCardOpacity,
-              }}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.2, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
+            </div>
+            <div className='w-80 flex h-full self-stretch z-10'>
               <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
-            </motion.div>
+            </div>
           </div>
           <div>
             <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-8'>
               {currentPlans.map((plan, index) => (
-                <motion.div
+                <div
                   key={index}
                   className='w-full max-w-xs z-30'
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05, ease: 'easeOut' }}
-                  viewport={{ once: true, margin: '-50px' }}
                 >
                   <PricingCard plan={plan} isYearly={isYearly} />
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

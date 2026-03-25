@@ -10,6 +10,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { useLocale } from 'next-intl'
+import Link from 'next/link'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -47,17 +50,17 @@ const ConciergePricingSection = dynamic(
 
 
 export default function PricingPage() {
-    const t = useTranslations('Pricing')
     const tHero = useTranslations('Hero')
+    const locale = useLocale();
     const [viewMode, setViewMode] = useState<'app' | 'done-for-you'>('app')
 
     return (
         <div className='relative w-full bg-white'>
             <NavbarDemo />
 
-            <main className="pt-20">
+            <main className="pt-4">
                 {/* Announcement Marquee */}
-                <div className='relative bg-black py-4 overflow-hidden  border-b border-white/10'>
+                <div className='relative bg-black py-2 overflow-hidden  border-b border-white/10'>
                     <div className='flex items-center'>
                         <motion.div
                             animate={{ x: [0, -2000] }}
@@ -88,7 +91,18 @@ export default function PricingPage() {
                         </Button>
                     </div>
                 </div>
-                <div className='flex justify-center mt-12 mb-8 relative z-40 px-4'>
+
+                <div className='max-w-7xl mx-auto px-4 mt-4'>
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex items-center text-sm font-bold uppercase tracking-tight text-gray-500 hover:text-black transition-colors group"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                        {locale === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
+                    </Link>
+                </div>
+
+                <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                     <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
                         {['app', 'done-for-you'].map((mode) => (
                             <button
@@ -117,20 +131,20 @@ export default function PricingPage() {
                     {viewMode === 'app' ? (
                         <motion.div
                             key="app"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 1, y: 0 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.3 }}
                         >
                             <ManyChatPricingSection isStandalone={true} />
                         </motion.div>
                     ) : (
                         <motion.div
                             key="done-for-you"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 1, y: 0 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.3 }}
                         >
                             <ConciergePricingSection />
                         </motion.div>

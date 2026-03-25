@@ -8,7 +8,7 @@ import { FloatingCollage } from '@/components/done-for-you-hero-images'
 import { FloatingBuzzer } from '@/components/floating-buzzer'
 import { FooterSection } from '@/components/footer-section'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowLeft, ArrowRight, BanknoteIcon, BarChart3, CheckCircle2, Clock, FileText, Image, MessageSquare, PhoneCall } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BanknoteIcon, BarChart3, CheckCircle2, Clock, FileText, Image, MessageSquare, PhoneCall, Send, Sparkles } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -124,9 +124,9 @@ export default function DoneForYouPage() {
   })
 
   // Solution section animations
-  const solutionScale = useTransform(scrollYProgress, [0.4, 0.6], [1, 0.9])
-  const solutionOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0.5])
-  const solutionY = useTransform(scrollYProgress, [0.4, 0.6], [0, -50])
+  const solutionScale = useTransform(scrollYProgress, [0.1, 0.4], [1, 0.85])
+  const solutionOpacity = useTransform(scrollYProgress, [0.1, 0.4], [1, 0])
+  const solutionY = useTransform(scrollYProgress, [0.1, 0.4], [0, -100])
 
   return (
     <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
@@ -216,7 +216,14 @@ export default function DoneForYouPage() {
         {/* Solution Section */}
         <div ref={containerRef} className="relative">
           {/* Problem Section */}
-          <section className='relative z-20 py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'>
+          <motion.section
+            style={{
+              scale: solutionScale,
+              opacity: solutionOpacity,
+              y: solutionY
+            }}
+            className='sticky top-0 z-10 py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'
+          >
             <div className='max-w-5xl mx-auto'>
               <motion.div {...motionProps} className='mb-16 md:mb-24 text-center'>
                 <BreathingAnimationText animationType='black-gray'>
@@ -285,7 +292,7 @@ export default function DoneForYouPage() {
                 </motion.div>
               </div>
             </div>
-          </section>
+          </motion.section>
 
           {/* Solution Section */}
 
@@ -423,8 +430,8 @@ export default function DoneForYouPage() {
 
               <div className='mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
                 {[
-                  { step: 1, icon: FileText, badgeKey: null },
-                  { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
+                  { step: 1, icon: Send, badgeKey: null },
+                  { step: 2, icon: Sparkles, badgeKey: 'solution.step2Badge' },
                   { step: 3, icon: Image, badgeKey: null },
                 ].map(({ step, icon: Icon, badgeKey }) => (
                   <motion.div

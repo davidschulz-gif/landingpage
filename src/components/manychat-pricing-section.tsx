@@ -660,18 +660,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     >
 
 
-      <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-20'>
-        {isStandalone && (
-          <Link
-            href={`/${locale}`}
-            className="inline-flex items-center text-sm font-bold uppercase tracking-tight text-gray-500 hover:text-black transition-colors mb-12 group"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            {locale === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
-          </Link>
-        )}
+      <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-0'>
         {/* Professional Section */}
-        <div className='text-center mb-12 relative z-40'>
+        <div className='text-center mb-2 relative z-40'>
           {selectedPlanTier === 'explorer' && (
             <h2
               className='text-4xl font-bold text-gray-900 mb-6 font-siggnal'
@@ -684,7 +675,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </h2>
           )}
 
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-6'>
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-2'>
             <button
               onClick={() => setSelectedPlanTier('explorer')}
               className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
@@ -789,7 +780,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         </div>
 
         {/* Professional Plans Cards */}
-        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-32'>
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-4'>
           {selectedPlanTier === 'explorer' ? (
             <>
               <div className='w-full max-w-xs z-30'>
@@ -805,12 +796,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               </div>
 
               {/* Overview Card: Missing Pro Features */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                className='w-full max-w-xs z-20'
-              >
+              <div className='w-full max-w-xs z-20'>
                 <div
                   className='h-full bg-white border border-black p-8 flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all'
                   style={{ minHeight: '580px' }}
@@ -854,7 +840,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </>
           ) : (
             currentProfPlans.map((plan, index) => (
@@ -873,18 +859,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           )}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <TestimonialsSection />
-        </motion.div>
+        <TestimonialsSection />
 
         {/* Education Section */}
-        <div className='text-center mb-12 relative z-40'>
+        <div className='text-center mb-2 relative z-40'>
           <h2
-            className='text-[30px] font-normal text-black mt-20 mb-6'
+            className='text-[30px] font-normal text-black mt-10 mb-2'
             style={{
               fontFamily:
                 "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
@@ -983,7 +963,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         </div>
 
         {/* Education Plans Cards */}
-        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-20'>
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
           {currentEduPlans.map((plan, index) => (
             <div key={index} className='w-full max-w-xs z-30'>
               <PricingCard
