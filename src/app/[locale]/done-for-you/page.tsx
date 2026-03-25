@@ -19,16 +19,81 @@ import designerAnimation from '../../../../public/lottie/Designer.json'
 // Carousel imports
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
-const ConciergePricingSection = dynamic(
-  () =>
-    import('@/components/concierge-pricing-section').then(
-      mod => mod.ConciergePricingSection
-    ),
+
+const RightsSection = dynamic(
+  () => import('@/components/rights-section').then(mod => mod.RightsSection),
   {
     ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 dark:bg-neutral-800 animate-pulse' />,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
+
+const HowItWorks = dynamic(
+  () => import('@/components/how-it-works').then(mod => mod.HowItWorks),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const IndustrySection = dynamic(
+  () => import('@/components/industry-section').then(mod => mod.IndustrySection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const FeaturesSection = dynamic(
+  () =>
+    import('@/components/features-section').then(mod => mod.FeaturesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const UseCasesSection = dynamic(
+  () => import('@/components/use-cases-section').then(mod => mod.UseCasesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const FeatureShowcase = dynamic(
+  () => import('@/components/feature').then(mod => mod.FeatureShowcase),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+
+const ComparisonSection = dynamic(
+  () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const DetailedFeaturesSection = dynamic(
+  () => import('@/components/detailed-features-section').then(mod => mod.DetailedFeaturesSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
+const ReviewsSection = dynamic(
+  () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 
 export default function DoneForYouPage() {
   const t = useTranslations('BilderFlatrate')
@@ -505,12 +570,85 @@ export default function DoneForYouPage() {
           </div>
         </section>
 
-        {/* Concierge Pricing Section */}
-        <section className='py-24 lg:py-12 px-4'>
-          <motion.div {...motionProps}>
-            <ConciergePricingSection />
-          </motion.div>
-        </section>
+        {/* Concierge Pricing Section moved to pricing/page.tsx */}
+
+        {/* Use Cases Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <UseCasesSection />
+        </motion.div>
+
+        {/* Rights Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <RightsSection />
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <HowItWorks />
+        </motion.div>
+
+
+        {/* Industry Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <IndustrySection />
+        </motion.div>
+
+
+
+
+        {/* Features Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FeaturesSection />
+        </motion.div>
+
+        {/* Feature Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FeatureShowcase />
+        </motion.div>
+
+
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ComparisonSection />
+        </motion.div>
+
+
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <DetailedFeaturesSection />
+        </motion.div>
+
 
         {/* Final CTA */}
         <section id='booking-form' className='py-24 lg:py-32 px-4 bg-white dark:bg-black border-t border-neutral-100 dark:border-neutral-900'>
@@ -604,6 +742,15 @@ export default function DoneForYouPage() {
           </div>
         </section>
       </main>
+
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+        viewport={{ once: true, margin: '-100px' }}
+      >
+        <ReviewsSection />
+      </motion.div>
 
       {/* Footer */}
       <FooterSection />
