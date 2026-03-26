@@ -52,13 +52,13 @@ const TabVideoShowcase = dynamic(
   }
 )
 
-// const ReviewsSection = dynamic(
-//   () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
-//   {
-//     ssr: false,
-//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-//   }
-// )
+const ReviewsSection = dynamic(
+  () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
 
 const PricingCTASection = dynamic(
   () =>
@@ -526,14 +526,14 @@ export default function Home() {
       </motion.div>
 
       {/* Reviews Section with Marquee */}
-      {/* <motion.div
+      <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
         viewport={{ once: true, margin: '-100px' }}
       >
         <ReviewsSection />
-      </motion.div> */}
+      </motion.div>
 
       {/* FAQ Section */}
       <motion.div
