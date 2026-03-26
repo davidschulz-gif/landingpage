@@ -57,6 +57,28 @@ const conciergePlans = [
       'plans.pro.features.feedback',
     ],
   },
+  {
+    id: 'premium',
+    name: 'PREMIUM',
+    monthlyPrice: '€1500',
+    yearlyPrice: '€12000',
+    monthlyEquivalant: '€1000',
+    save: '€6000',
+    monthlyPaymentLink: 'https://buy.stripe.com/premium_monthly_placeholder',
+    yearlyPaymentLink: 'https://buy.stripe.com/premium_yearly_placeholder',
+    period: '/month',
+    yearlyPeriod: '/year',
+    planType: 'PREMIUM',
+    features: [
+      'plans.premium.features.visualizer',
+      'plans.premium.features.videoCall',
+      'plans.premium.features.emailComm',
+      'plans.premium.features.requests',
+      'plans.premium.features.inputImages',
+      'plans.premium.features.turnaround',
+      'plans.premium.features.feedback',
+    ],
+  },
 ]
 
 export function ConciergePricingSection() {
@@ -180,6 +202,9 @@ export function ConciergePricingSection() {
             </div>
             <div className='w-80 flex h-full self-stretch z-10'>
               <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
+            </div>
+            <div className='w-80 flex h-full self-stretch z-10'>
+              <PricingCard plan={currentPlans[2]} isYearly={isYearly} />
             </div>
           </div>
           <div>

@@ -613,6 +613,23 @@
           "turnaround": "Rücklauf im Schnitt in 24h",
           "feedback": "detailliertes feedback zum Worklfow"
         }
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "1500",
+        "yearlyPrice": "12000",
+        "contractTerm": "12-Monatige Laufzeit",
+        "features": {
+          "visualizer": "2 persönliche Visualisierer",
+          "videoCall": "unbegrenzte Video Calls",
+          "emailComm": "email Kommunikation",
+          "requests": "unbegrenzte Anfragen",
+          "pauseYearly": "jederzeit pausieren - bis zu 5 mal im Jahr. keine Kosten für Leerlauf.",
+          "cancelMonthly": "monatl. kündbar.",
+          "inputImages": "max 3 Input Bilder pro Anfrage",
+          "turnaround": "Rücklauf im Schnitt in 24h",
+          "feedback": "detailliertes feedback zum Worklfow"
+        }
       }
     }
   },
