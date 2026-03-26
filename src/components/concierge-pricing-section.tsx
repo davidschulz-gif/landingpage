@@ -129,7 +129,7 @@ export function ConciergePricingSection() {
 
     return {
       ...plan,
-      name: t(plan.id === 'basic' ? 'plans.basic.name' : 'plans.pro.name'),
+      name: t(`plans.${plan.id}.name` as any),
       contractTerm: t(`plans.${plan.id}.contractTerm` as any),
       features: dynamicFeatures.map(f => t(f as any)),
       ...(plan.popular ? { topBadges: [tPricing('bestResultsForDFY')] } : {}),
