@@ -219,6 +219,7 @@
   "Pricing": {
     "selectPlanCTA": "Select plan & get started",
     "professionalPlans": "Professional Plans",
+    "selfServiceTitle": "KI App for Architects - Self Service",
     "missingProFeaturesTitle": "Features that are missing in Explorer but included in the Pro plan:",
     "upgradeToPro": "Upgrade to Pro to unlock these features",
     "educationPlans": "Education Plans",
@@ -443,7 +444,13 @@
       "unexpected": "An unexpected error occurred. Please try again."
     },
     "success": "You will be notified about new features.",
-    "backAction": "Back to form"
+    "backAction": "Back to form",
+    "cta": {
+      "t": "Ready for your personal visualization specialist?",
+      "point1": "free trial of the service with individual input that you send us",
+      "point2": "free needs analysis",
+      "point3": "free & non-binding initial consultation"
+    }
   },
   "BeforeYouGo": {
     "title": "Before you leave, join our list and get 70$ off your first subscription."

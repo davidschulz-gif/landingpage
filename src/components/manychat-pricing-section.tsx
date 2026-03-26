@@ -180,11 +180,19 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [selectedPlanForModal, setSelectedPlanForModal] = useState<any>(null)
   const [isRedirecting, setIsRedirecting] = useState(false)
   const [modalError, setModalError] = useState<string | null>(null)
-  const [promoCode, setPromoCode] = useState('')
+  // Professional Promo state
+  const [profPromoCode, setProfPromoCode] = useState('')
+  const [profPromoDiscount, setProfPromoDiscount] = useState<any>(null)
+  const [profPromoError, setProfPromoError] = useState<string | null>(null)
+  const [profPromoSuccess, setProfPromoSuccess] = useState<string | null>(null)
+
+  // Educational Promo state
+  const [eduPromoCode, setEduPromoCode] = useState('')
+  const [eduPromoDiscount, setEduPromoDiscount] = useState<any>(null)
+  const [eduPromoError, setEduPromoError] = useState<string | null>(null)
+  const [eduPromoSuccess, setEduPromoSuccess] = useState<string | null>(null)
+
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
-  const [promoDiscount, setPromoDiscount] = useState<any>(null)
-  const [promoError, setPromoError] = useState<string | null>(null)
-  const [promoSuccess, setPromoSuccess] = useState<string | null>(null)
   const [subscribeError, setSubscribeError] = useState<string | null>(null)
 
   const [showTrialWarning, setShowTrialWarning] = useState(false)
@@ -210,17 +218,24 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
     const urlPromoCode = searchParams.get('promoCode')
     if (urlPromoCode) {
-      setPromoCode(urlPromoCode)
+      setProfPromoCode(urlPromoCode)
+      setEduPromoCode(urlPromoCode)
     }
   }, [tModal])
 
-  const handleVerifyPromoCode = useCallback(async () => {
-    if (!promoCode.trim()) return
+  const handleVerifyPromoCode = useCallback(async (type: 'prof' | 'edu') => {
+    const isEdu = type === 'edu'
+    const code = isEdu ? eduPromoCode : profPromoCode
+    const setDiscount = isEdu ? setEduPromoDiscount : setProfPromoDiscount
+    const setError = isEdu ? setEduPromoError : setProfPromoError
+    const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
+
+    if (!code.trim()) return
 
     setIsVerifyingPromo(true)
-    setPromoError(null)
-    setPromoSuccess(null)
-    setPromoDiscount(null)
+    setError(null)
+    setSuccess(null)
+    setDiscount(null)
     setSubscribeError(null)
 
     try {
@@ -229,7 +244,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         sixMonthly: 'SIX_MONTHLY',
         yearly: 'YEARLY',
       }
-      const mappedBillingCycle = selectedPlanForModal ? (billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()) : 'MONTHLY'
+      // If we're verifying from the card-specific modal, we use that plan logic.
+      // If verifying from the page input, we use a general default (yearly for edu, monthly for prof)
+      // or try to find a selected plan.
+      const mappedBillingCycle = selectedPlanForModal
+        ? (billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase())
+        : (isEdu ? 'YEARLY' : 'MONTHLY')
 
       const response = await fetch(`${apiBaseUrl}validate-promo-code`, {
         method: 'POST',
@@ -237,42 +257,56 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          promoCode: promoCode.trim(),
+          promoCode: code.trim(),
           billingCycle: mappedBillingCycle,
-          planType: selectedPlanForModal?.planType,
-          isEducational: selectedPlanForModal?.isEducational,
+          planType: selectedPlanForModal?.planType || (isEdu ? 'STARTER' : 'PRO'),
+          isEducational: isEdu,
         }),
       })
 
       const data = await response.json()
 
       if (response.ok && data.valid) {
-        setPromoDiscount(data.discount)
-        setPromoSuccess(tModal('promoCodeSuccess'))
+        setDiscount(data.discount)
+        setSuccess(tModal('promoCodeSuccess'))
       } else {
-        setPromoError(data.message || tModal('promoCodeError'))
+        setError(data.message || tModal('promoCodeError'))
       }
     } catch (error) {
-      setPromoError(tModal('promoCodeError'))
+      setError(tModal('promoCodeError'))
     } finally {
       setIsVerifyingPromo(false)
     }
-  }, [promoCode, selectedPlanForModal, tModal])
+  }, [eduPromoCode, profPromoCode, selectedPlanForModal, tModal])
 
 
   useEffect(() => {
     // Check if we should auto-verify (code exists but no result/error yet)
-    if (promoCode && promoCode.trim().length >= 3 && !promoDiscount && !promoError && !isVerifyingPromo) {
+    if (profPromoCode && profPromoCode.trim().length >= 3 && !profPromoDiscount && !profPromoError && !isVerifyingPromo) {
       const timer = setTimeout(() => {
-        handleVerifyPromoCode()
+        handleVerifyPromoCode('prof')
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [promoCode, handleVerifyPromoCode, promoDiscount, promoError, isVerifyingPromo])
+  }, [profPromoCode, handleVerifyPromoCode, profPromoDiscount, profPromoError, isVerifyingPromo])
+
+  useEffect(() => {
+    // Check if we should auto-verify (code exists but no result/error yet)
+    if (eduPromoCode && eduPromoCode.trim().length >= 3 && !eduPromoDiscount && !eduPromoError && !isVerifyingPromo) {
+      const timer = setTimeout(() => {
+        handleVerifyPromoCode('edu')
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo])
 
 
   const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
-    if (promoDiscount && promoDiscount.couponId) {
+    const code = isEdu ? eduPromoCode : profPromoCode
+    const discount = isEdu ? eduPromoDiscount : profPromoDiscount
+    const setError = isEdu ? setEduPromoError : setProfPromoError
+
+    if (discount && discount.couponId) {
       setSubscribeError(null)
       // const loadingToastId = toast.loading(tModal('verifying') || 'Verifying...')
       try {
@@ -282,8 +316,8 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            code: promoCode,
-            discount: promoDiscount,
+            code: code,
+            discount: discount,
             billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
             planType: plan.planType,
             isEducational: isEdu
@@ -321,8 +355,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     setModalError(null)
     const searchParams = new URL(window.location.href).searchParams
     const urlPromoCode = searchParams.get('promoCode')
-    if (urlPromoCode && !promoCode) {
-      setPromoCode(urlPromoCode)
+    if (urlPromoCode && !code) {
+      if (isEdu) setEduPromoCode(urlPromoCode)
+      else setProfPromoCode(urlPromoCode)
     }
     setShowTrialWarning(false)
   }
@@ -362,7 +397,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         return
       }
 
-      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !promoDiscount) {
+      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
         console.log('Showing Trial Warning Modal')
         setShowTrialWarning(true)
         setIsModalOpen(false) // Close the main modal to show warning
@@ -445,7 +480,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           planType: selectedPlanForModal.planType,
           billingCycle: mappedBillingCycle,
           isEducational: selectedPlanForModal.isEducational,
-          promoCode: promoDiscount ? promoCode.trim() : null,
+          promoCode: selectedPlanForModal.isEducational ? (eduPromoDiscount ? eduPromoCode.trim() : null) : (profPromoDiscount ? profPromoCode.trim() : null),
           currency: planCurrency,
           cancelUrl: window.location.href,
           marketingConsent,
@@ -663,17 +698,15 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-0'>
         {/* Professional Section */}
         <div className='text-center mb-2 relative z-40'>
-          {/* {selectedPlanTier === 'explorer' && (
-            <h2
-              className='text-4xl font-bold text-gray-900 mb-6 font-siggnal'
-              style={{
-                fontFamily:
-                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-              }}
-            >
-              {t('professionalPlans')}
-            </h2>
-          )} */}
+          <h2
+            className='text-[30px] font-normal text-black mt-10 mb-8'
+            style={{
+              fontFamily:
+                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            {t('selfServiceTitle')}
+          </h2>
 
           <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-2'>
             <button
@@ -712,40 +745,40 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 type='text'
                 className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
                 placeholder={tModal('promoCodePlaceholder')}
-                value={promoCode}
+                value={profPromoCode}
                 onChange={(e) => {
-                  setPromoCode(e.target.value)
-                  setPromoError(null)
-                  setPromoSuccess(null)
-                  setPromoDiscount(null)
+                  setProfPromoCode(e.target.value)
+                  setProfPromoError(null)
+                  setProfPromoSuccess(null)
+                  setProfPromoDiscount(null)
                   setSubscribeError(null)
                 }}
                 disabled={isRedirecting || isVerifyingPromo}
               />
               <Button
-                onClick={handleVerifyPromoCode}
-                disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
+                onClick={() => handleVerifyPromoCode('prof')}
+                disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
                 className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
             </div>
-            {promoError && (
+            {profPromoError && (
               <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
                 <IconAlertCircle size={14} />
-                <span>{promoError}</span>
+                <span>{profPromoError}</span>
               </div>
             )}
-            {promoSuccess && (
+            {profPromoSuccess && (
               <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
                 <Check size={14} />
-                <span>{promoSuccess}</span>
+                <span>{profPromoSuccess}</span>
               </div>
             )}
-            {promoDiscount && (
+            {profPromoDiscount && (
               <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
+                <span className='font-bold uppercase'>{profPromoDiscount.name}:</span> {profPromoDiscount.type === 'percentage' ? `${profPromoDiscount.value}% OFF` : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
               </div>
             )}
           </div>
@@ -791,7 +824,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   isEurope={isEurope}
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                   onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                  promoDiscount={promoDiscount}
+                  promoDiscount={profPromoDiscount}
                 />
               </div>
 
@@ -852,7 +885,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   isEurope={isEurope}
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                   onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                  promoDiscount={promoDiscount}
+                  promoDiscount={profPromoDiscount}
                 />
               </div>
             ))
@@ -900,39 +933,39 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 type='text'
                 className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
                 placeholder={tModal('promoCodePlaceholder')}
-                value={promoCode}
+                value={eduPromoCode}
                 onChange={(e) => {
-                  setPromoCode(e.target.value)
-                  setPromoError(null)
-                  setPromoSuccess(null)
-                  setPromoDiscount(null)
+                  setEduPromoCode(e.target.value)
+                  setEduPromoError(null)
+                  setEduPromoSuccess(null)
+                  setEduPromoDiscount(null)
                 }}
                 disabled={isRedirecting || isVerifyingPromo}
               />
               <Button
-                onClick={handleVerifyPromoCode}
-                disabled={!promoCode.trim() || isRedirecting || isVerifyingPromo}
+                onClick={() => handleVerifyPromoCode('edu')}
+                disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
                 className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
             </div>
-            {promoError && (
+            {eduPromoError && (
               <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
                 <IconAlertCircle size={14} />
-                <span>{promoError}</span>
+                <span>{eduPromoError}</span>
               </div>
             )}
-            {promoSuccess && (
+            {eduPromoSuccess && (
               <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
                 <Check size={14} />
-                <span>{promoSuccess}</span>
+                <span>{eduPromoSuccess}</span>
               </div>
             )}
-            {promoDiscount && (
+            {eduPromoDiscount && (
               <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{promoDiscount.name}:</span> {promoDiscount.type === 'percentage' ? `${promoDiscount.value}% OFF` : `-${promoDiscount.value / 100} ${promoDiscount.currency?.toUpperCase()}`}
+                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}% OFF` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
               </div>
             )}
           </div>
@@ -973,7 +1006,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 isEurope={isEurope}
                 currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                 onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
-                promoDiscount={promoDiscount}
+                promoDiscount={eduPromoDiscount}
               />
             </div>
           ))}
@@ -1173,7 +1206,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         )}
       </AnimatePresence>
       {/* First Buyer Kick Off Button */}
-      {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && (
+      {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && !profPromoDiscount && (
         <div className='fixed bottom-10 left-0 right-0 z-[100] flex justify-center'>
           <Button
             onClick={() => setShowKickOffModal(true)}
@@ -1222,10 +1255,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               <div className='w-full flex flex-col gap-4 mt-2'>
                 <Button
                   onClick={() => {
-                    setPromoCode('KICK')
-                    setPromoError(null)
-                    setPromoSuccess(null)
-                    setPromoDiscount(null)
+                    setProfPromoCode('KICK')
+                    setProfPromoError(null)
+                    setProfPromoSuccess(null)
+                    setProfPromoDiscount(null)
                     setShowKickOffModal(false)
                     // Scroll to Top to see the effect
                     window.scrollTo({ top: 0, behavior: 'smooth' })

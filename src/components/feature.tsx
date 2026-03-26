@@ -56,10 +56,10 @@ export const FeatureShowcase: React.FC = () => {
         <section className="py-12 bg-[#F7F7F7] font-space-grotesk">
             <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-20">
                 <div className="text-center space-y-4">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                    {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
                         {t('title')}
-                    </h2>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light">
+                    </h2> */}
+                    <p className="text-3xl text-gray-900 max-w-5xl mx-auto font-light">
                         {t('subtitle')}
                     </p>
                 </div>
@@ -116,4 +116,3 @@ export const FeatureShowcase: React.FC = () => {
         </section>
     );
 };
- 

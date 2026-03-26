@@ -120,13 +120,12 @@ export default function DoneForYouPage() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end end"]
   })
 
-  // Solution section animations
-  const solutionScale = useTransform(scrollYProgress, [0.1, 0.4], [1, 0.85])
-  const solutionOpacity = useTransform(scrollYProgress, [0.1, 0.4], [1, 0])
-  const solutionY = useTransform(scrollYProgress, [0.1, 0.4], [0, -100])
+  const problemOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0])
+  const problemScale = useTransform(scrollYProgress, [0.4, 0.6], [1, 0.95])
+
 
   return (
     <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
@@ -215,130 +214,107 @@ export default function DoneForYouPage() {
 
         {/* Solution Section */}
         <div ref={containerRef} className="relative">
-          {/* Problem Section */}
-          <motion.section
-            style={{
-              scale: solutionScale,
-              opacity: solutionOpacity,
-              y: solutionY
-            }}
-            className='sticky top-0 z-10 py-24 lg:py-32 bg-white dark:bg-black px-4 border-y border-neutral-100 dark:border-neutral-900'
-          >
-            <div className='max-w-5xl mx-auto'>
-              <motion.div {...motionProps} className='mb-16 md:mb-24 text-center'>
-                <BreathingAnimationText animationType='black-gray'>
-                  <h2
-                    className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white leading-[1.1] mb-6'
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
-                  >
-                    {t('problem.statusQuoHeader')}
-                  </h2>
-                </BreathingAnimationText>
-              </motion.div>
-
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center'>
-                <motion.div {...motionProps}>
-                  <BreathingAnimationText animationType='black-gray'>
-                    <h2 className='text-[24px] md:text-[32px] font-normal text-neutral-900 dark:text-white mb-8 tracking-tight leading-tight'>
-                      {t('problem.title1')} <br /> {t('problem.title2')}
+          {/* Problem Section Wrapper with enough height to pin it */}
+          <div className="h-[180vh] relative">
+            <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden z-10">
+              <motion.section
+                style={{
+                  opacity: problemOpacity,
+                  scale: problemScale
+                }}
+                className='w-full py-12 lg:py-20 bg-white dark:bg-black px-4'
+              >
+                <div className='max-w-5xl mx-auto'>
+                  <motion.div {...motionProps} className='mb-12 md:mb-16 text-center'>
+                    {/* <BreathingAnimationText animationType='black-gray'> */}
+                    <h2
+                      className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white leading-[1.1] mb-6'
+                      style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
+                    >
+                      {t('problem.statusQuoHeader')}
                     </h2>
-                  </BreathingAnimationText>
+                    {/* </BreathingAnimationText> */}
+                  </motion.div>
 
-                  <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400'>
-                    <p className='font-medium text-neutral-800 dark:text-neutral-200'>{t('problem.subtitle')}</p>
-                    <ul className='space-y-4 mt-6'>
-                      {[t('problem.point1'), t('problem.point2'), t('problem.point3')].map((point, i) => (
-                        <li key={i} className='flex items-center gap-4'>
-                          <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
-                            <span className='text-[12px] text-red-600'>✕</span>
-                          </div>
-                          <span style={{ fontFamily: 'sans-serif' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className='mt-8 pt-6 border-t text-xl border-neutral-100 dark:border-neutral-900'>
-                      {t('problem.conclusion')}
-                    </p>
-                  </div>
-                </motion.div>
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
+                    <motion.div {...motionProps}>
+                      {/* <BreathingAnimationText animationType='black-gray'> */}
+                      <h2 className='text-[24px] md:text-[32px] font-normal text-neutral-900 dark:text-white mb-8 tracking-tight leading-tight'>
+                        {t('problem.title1')} <br /> {t('problem.title2')}
+                      </h2>
+                      {/* </BreathingAnimationText> */}
 
-                <motion.div
-                  {...motionProps}
-                  transition={{ ...motionProps.transition, delay: 0.2, ease: 'easeOut' as const }}
-                  className='bg-[#fcfcfd] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-100 dark:border-neutral-800 shadow-[0_10px_40px_rgba(0,0,0,0.02)]'
-                >
-                  <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
-                  <div className='space-y-8'>
-                    {[
-                      { icon: Clock, title: t('problem.meaning1Title'), desc: t('problem.meaning1Desc') },
-                      { icon: MessageSquare, title: t('problem.meaning2Title'), desc: t('problem.meaning2Desc') },
-                      { icon: BanknoteIcon, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
-                    ].map((item, i) => (
-                      <div key={i} className='flex gap-5'>
-                        <div className='mt-1 text-red-600 dark:text-red-500'>
-                          <item.icon className='w-5 h-5' />
-                        </div>
-                        <div>
-                          <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
-                          <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
-                        </div>
+                      <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400'>
+                        <p className='font-medium text-neutral-800 dark:text-neutral-200'>{t('problem.subtitle')}</p>
+                        <ul className='space-y-4 mt-6'>
+                          {[t('problem.point1'), t('problem.point2'), t('problem.point3')].map((point, i) => (
+                            <li key={i} className='flex items-center gap-4'>
+                              <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
+                                <span className='text-[12px] text-red-600'>✕</span>
+                              </div>
+                              <span style={{ fontFamily: 'sans-serif' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className='mt-8 pt-6 border-t text-xl border-neutral-100 dark:border-neutral-900'>
+                          {t('problem.conclusion')}
+                        </p>
                       </div>
-                    ))}
-                  </div>
+                    </motion.div>
 
-                  <div className='mt-10 p-4 border border-neutral-100 text-lg dark:border-neutral-800 bg-white dark:bg-black text-center  font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
-                    {t('problem.finalConclusion')}
+                    <motion.div
+                      {...motionProps}
+                      transition={{ ...motionProps.transition, delay: 0.2, ease: 'easeOut' as const }}
+                      className='bg-[#fcfcfd] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-100 dark:border-neutral-800 shadow-[0_10px_40px_rgba(0,0,0,0.02)]'
+                    >
+                      <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
+                      <div className='space-y-8'>
+                        {[
+                          { icon: Clock, title: t('problem.meaning1Title'), desc: t('problem.meaning1Desc') },
+                          { icon: MessageSquare, title: t('problem.meaning2Title'), desc: t('problem.meaning2Desc') },
+                          { icon: BanknoteIcon, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
+                        ].map((item, i) => (
+                          <div key={i} className='flex gap-5'>
+                            <div className='mt-1 text-red-600 dark:text-red-500'>
+                              <item.icon className='w-5 h-5' />
+                            </div>
+                            <div>
+                              <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
+                              <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className='mt-10 p-4 border border-neutral-100 text-lg dark:border-neutral-800 bg-white dark:bg-black text-center  font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
+                        {t('problem.finalConclusion')}
+                      </div>
+                    </motion.div>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.section>
             </div>
-          </motion.section>
-
-          {/* Solution Section */}
-
-          {/*           
-          <motion.section 
-            style={{ 
-              scale: solutionScale,
-              opacity: solutionOpacity,
-              y: solutionY
-            }}
-            className='sticky top-0 z-10 py-24 lg:py-32 px-4 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-900'
-          >
-          <div className='max-w-5xl mx-auto text-center'>
-            <motion.div {...motionProps} className='mb-20'>
-              <BreathingAnimationText animationType='black-gray'>
-                <h2 className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white mb-6 tracking-tight'>
-                  {t('solution.title')}
-                </h2>
-              </BreathingAnimationText>
-              <p style={{fontFamily:'sans-serif'}} className='text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto'>
-                {t('solution.subtitle')}
-              </p>
-            </motion.div>
           </div>
-        </motion.section> */}
 
           {/* Benefits Section */}
-          <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
+          <section
+            className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'
+          >
             <div className='max-w-4xl mx-auto'>
               <motion.div {...motionProps} className='text-center mb-20'>
-                <div className='w-96 h-96 mx-auto mb-8 flex items-center justify-center'>
+                {/* <div className='w-96 h-96 mx-auto mb-8 flex items-center justify-center'>
                   <Lottie
                     animationData={designerAnimation}
                     loop={true}
                     style={{ width: '100%', height: '100%' }}
-                  // height={50}
-                  // width={100}
                   />
-                </div>
+                </div> */}
                 <h3 className='text-[28px] md:text-[42px] font-normal uppercase tracking-[0.3em] text-white mb-6'>
                   {t('benefits.solutionHeader')}
                 </h3>
                 <h2 className='text-[28px] md:text-[42px] font-normal mb-6 tracking-tight'>
                   {t('benefits.title')}
                 </h2>
-                {/* </BreathingAnimationText> */}
                 <p className='text-sm md:text-base max-w-2xl mx-auto'>
                   {t('benefits.subtitle')}
                 </p>
@@ -368,12 +344,7 @@ export default function DoneForYouPage() {
                     <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
                   </p>
 
-                  {/* Visualizer Profile Card Slider */}
                   <div className='w-full px-1 space-y-2 relative'>
-                    {/* <Carousel className='w-full'>
-                    <CarouselContent> */}
-                    {/* Christian Brehmer */}
-                    {/* <CarouselItem> */}
                     <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
                       <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
                         <img
@@ -390,10 +361,7 @@ export default function DoneForYouPage() {
                         </p>
                       </div>
                     </div>
-                    {/* </CarouselItem> */}
 
-                    {/* Bjarne Weber */}
-                    {/* <CarouselItem> */}
                     <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
                       <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
                         <img
@@ -410,13 +378,6 @@ export default function DoneForYouPage() {
                         </p>
                       </div>
                     </div>
-                    {/* </CarouselItem>
-                    </CarouselContent> */}
-
-                    {/* Navigation Buttons */}
-                    {/* <CarouselPrevious className='-left-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
-                    <CarouselNext className='-right-4 bg-white/10 border-neutral-700 text-white hover:bg-white/20 hover:text-white transform scale-75' />
-                  </Carousel> */}
                   </div>
                 </motion.div>
               </div>
@@ -443,17 +404,14 @@ export default function DoneForYouPage() {
                     viewport={{ once: true, margin: '-80px' }}
                     className='dark:bg-[#fcfcfd] bg-neutral-900/30 p-8 md:p-10 border border-neutral-900 dark:border-neutral-800 text-left shadow-[0_10px_40px_rgba(0,0,0,0.01)] relative overflow-visible'
                   >
-                    {/* Icon — top right */}
                     <div className='absolute top-6 right-6 dark:text-black text-white'>
                       <Icon className='w-10 h-10' strokeWidth={1} />
                     </div>
 
-                    {/* Step number */}
                     <div className='w-10 h-10 dark:bg-black bg-neutral-300 dark:text-white text-black flex items-center justify-center font-bold text-sm flex-shrink-0 mb-6'>
                       {step}
                     </div>
 
-                    {/* Green badge — top-left corner */}
                     {badgeKey && (
                       <motion.div
                         initial={{ opacity: 0, rotate: -8, scale: 0.75, y: 6 }}
@@ -617,6 +575,14 @@ export default function DoneForYouPage() {
         </motion.div>
 
 
+        {/* Feature Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FeatureShowcase />
+        </motion.div>
 
 
         {/* Features Section */}
@@ -629,14 +595,7 @@ export default function DoneForYouPage() {
           <FeaturesSection />
         </motion.div>
 
-        {/* Feature Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <FeatureShowcase />
-        </motion.div>
+
 
 
         <motion.div

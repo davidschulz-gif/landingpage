@@ -60,7 +60,7 @@ export default function PricingPage() {
 
             <main className="pt-4">
                 {/* Announcement Marquee */}
-                <div className='relative bg-black py-2 overflow-hidden  border-b border-white/10'>
+                <div className='relative bg-black  md:mt-[10px] py-2 overflow-hidden  border-b border-white/10'>
                     <div className='flex items-center'>
                         <motion.div
                             animate={{ x: [0, -2000] }}

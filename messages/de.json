@@ -219,6 +219,7 @@
   "Pricing": {
     "selectPlanCTA": "Abo auswählen & loslegen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
+    "selfServiceTitle": "KI App für Architekten - Self Service",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Demo-Anruf buchen",
@@ -443,7 +444,13 @@
       "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
     },
     "success": "Sie werden über neue Funktionen benachrichtigt.",
-    "backAction": "Zurück zum Formular"
+    "backAction": "Zurück zum Formular",
+    "cta": {
+      "t": "Bereit für Ihren persönlichen Visualisierungs-Spezialisten?",
+      "point1": "kostenloser Test des Services mit einem individuellen Input das Sie uns schicken",
+      "point2": "kostenlose Bedarfsanalyse",
+      "point3": "kostenlose & unverbindliche Erstberatung"
+    }
   },
   "BeforeYouGo": {
     "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 70€ Rabatt auf Ihr erstes Abonnement."

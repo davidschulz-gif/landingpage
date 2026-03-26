@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import BookingDemoClassForm from './demo-class-boooking-form'
+import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
 
 const conciergePlans = [
   {
@@ -188,7 +189,7 @@ export function ConciergePricingSection() {
 
           <div className='relative flex flex-col lg:flex-row justify-center items-stretch h-auto w-full max-w-[1440px] mx-auto gap-12 px-4 mb-8'>
             <div className='lg:w-[300px] flex-shrink-0'>
-              <BookingDemoClassForm showTitle={true} />
+              <BookingDemoClassFormForPricingPage />
             </div>
 
             <div className='flex-grow md:grid hidden grid-cols-3 gap-8 items-stretch'>
