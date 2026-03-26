@@ -663,7 +663,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-0'>
         {/* Professional Section */}
         <div className='text-center mb-2 relative z-40'>
-          {selectedPlanTier === 'explorer' && (
+          {/* {selectedPlanTier === 'explorer' && (
             <h2
               className='text-4xl font-bold text-gray-900 mb-6 font-siggnal'
               style={{
@@ -673,7 +673,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             >
               {t('professionalPlans')}
             </h2>
-          )}
+          )} */}
 
           <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-2'>
             <button

@@ -7,9 +7,7 @@ import { Check } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-
-
-
+import BookingDemoClassForm from './demo-class-boooking-form'
 
 const conciergePlans = [
   {
@@ -118,8 +116,6 @@ export function ConciergePricingSection() {
     [0, 0, 1, 1]
   )
 
-
-
   const currentPlans = conciergePlans.map(plan => {
     // Filter out requests and add conditional features
     const baseFeatures = plan.features.filter(f => !f.includes('.requests'))
@@ -132,7 +128,7 @@ export function ConciergePricingSection() {
       name: t(`plans.${plan.id}.name` as any),
       contractTerm: t(`plans.${plan.id}.contractTerm` as any),
       features: dynamicFeatures.map(f => t(f as any)),
-      ...(plan.popular ? { topBadges: [tPricing('bestResultsForDFY')] } : {}),
+      ...(plan.popular || plan.id === 'premium' ? { topBadges: [tPricing('bestResultsForDFY')] } : {}),
     }
   })
 
@@ -144,7 +140,7 @@ export function ConciergePricingSection() {
       id='concierge-pricing'
     >
       <div className='flex flex-col justify-center overflow-hidden px-4'>
-        <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-2'>
+        <div className='w-full mx-auto px-4 relative z-10 pt-2'>
           <div className='text-center mb-0 relative z-40'>
             <h2
               className='text-[30px] font-normal text-black mb-12'
@@ -188,23 +184,26 @@ export function ConciergePricingSection() {
                 </p>
               </div>
             </div>
-            {/* <p
-              className='text-black pb-0 mb-8'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('subtitle')}
-            </p> */}
           </div>
 
-          <div className='relative md:flex hidden justify-center items-stretch h-auto w-full max-w-7xl mx-auto gap-8 px-4 mb-8'>
-            <div className='w-80 flex h-full self-stretch z-10'>
+          <div className='relative flex flex-col lg:flex-row justify-center items-stretch h-auto w-full max-w-[1440px] mx-auto gap-12 px-4 mb-8'>
+            <div className='lg:w-[300px] flex-shrink-0'>
+              <BookingDemoClassForm showTitle={true} />
+            </div>
+
+            <div className='flex-grow md:grid hidden grid-cols-3 gap-8 items-stretch'>
               <PricingCard plan={currentPlans[0]} isYearly={isYearly} />
-            </div>
-            <div className='w-80 flex h-full self-stretch z-10'>
               <PricingCard plan={currentPlans[1]} isYearly={isYearly} />
-            </div>
-            <div className='w-80 flex h-full self-stretch z-10'>
               <PricingCard plan={currentPlans[2]} isYearly={isYearly} />
+            </div>
+
+            {/* Mobile View for Cards */}
+            <div className='md:hidden flex flex-col items-center gap-8'>
+              {currentPlans.map((plan, index) => (
+                <div key={index} className='w-full max-w-xs'>
+                  <PricingCard plan={plan} isYearly={isYearly} />
+                </div>
+              ))}
             </div>
           </div>
           <div>
@@ -226,10 +225,9 @@ export function ConciergePricingSection() {
 }
 
 function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] }; isYearly: boolean }) {
+  const isEurope = true
   const t = useTranslations('ConciergePricing')
   const tPricing = useTranslations('Pricing')
-  const isEurope = true
-  // const isEurope = useIsEurope()
 
   const getPriceDisplay = () => {
     if (isYearly) {
@@ -263,7 +261,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
       {plan.topBadges && plan.topBadges.length > 0 && (
         <div className='absolute -top-4 right-4 z-30 flex flex-col items-end gap-1.5'>
           {plan.topBadges.map((badge: string, i: number) => (
-            <div key={i} className='bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
+            <div key={i} className='bg-green-800 dark:bg-white text-white dark:text-black px-3 py-1 rounded-full shadow-md'>
               <span className='text-[12px] font-bold tracking-wide whitespace-nowrap' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {badge}
               </span>
@@ -283,7 +281,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
           </span>
           {plan.contractTerm && (
             <span
-              className='text-[10px] font-extrabold uppercase tracking-wider bg-black text-white dark:bg-white dark:text-black px-3 py-1 rounded-full shadow-sm'
+              className='text-[10px] font-extrabold uppercase tracking-wider bg-black text-white dark:bg-white dark:text-black px-3 py-1 rounded-full shadow-sm whitespace-nowrap'
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {plan.contractTerm}
@@ -325,12 +323,6 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {tPricing('plusVat')}
             </div>
-            {/* <div
-              className='text-emerald-600 dark:text-emerald-400 font-bold mt-2'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {tPricing('freeTrial')}
-            </div> */}
           </div>
         </div>
       </div>
@@ -341,11 +333,13 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
           {plan.features.map((feature: string, index: number) => (
             <li
               key={index}
-              className={`flex items-start text-xs font-medium py-2.5 ${index !== plan.features.length - 1 ? 'border-b border-neutral-100 dark:border-neutral-900' : ''}`}
+              className={`flex items-start py-2.5 ${index !== plan.features.length - 1 ? 'border-b border-neutral-100 dark:border-neutral-900' : ''}`}
             >
-              <Check className='w-4 h-4 flex-shrink-0 mt-0.5 mr-3 text-orange-500' />
+              <div className="flex-shrink-0 flex items-center h-[24px] mr-3">
+                <Check className='w-4 h-4 text-orange-500' strokeWidth={3} />
+              </div>
               <span
-                className='leading-relaxed text-left flex-1 text-neutral-700 dark:text-neutral-300'
+                className='text-[15px] leading-[24px] font-medium text-left flex-1 text-neutral-700 dark:text-neutral-300'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {feature}
