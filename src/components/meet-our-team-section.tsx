@@ -15,24 +15,24 @@ const teamMembers = [
     linkedin: 'https://www.linkedin.com/in/julia-g%C3%B6ge-6256741a2/',
   },
   {
-    id: 'marc',
-    name: 'MARC HUPPERICH',
-    role: '3D ARTIST',
-    image: '/team/marchupperich.png',
-    linkedin: 'https://www.linkedin.com/in/marc-hupperich-621998156/',
+    id: 'dominik',
+    name: 'DOMINIK DENNY',
+    role: 'ACCOUNT MANAGER',
+    image: '/DominikDenny.png',
+    linkedin: '#',
   },
   {
-    id: 'david',
-    name: 'DAVID SCHULZ',
-    role: 'KEY ACCOUNT MANAGER',
-    image: '/team/davidschulz.png',
-    linkedin: 'https://www.linkedin.com/in/david-schulz-6ba991286/',
+    id: 'bjarne',
+    name: 'BJARNE WEBER',
+    role: 'VISUALIZER',
+    image: '/BjarneWeber.webp',
+    linkedin: '#',
   },
 ]
 
 export function MeetOurTeamSection() {
   const t = useTranslations('Team')
-  
+
   return (
     <section className='py-10' style={{ backgroundColor: '#fcfcfd' }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>

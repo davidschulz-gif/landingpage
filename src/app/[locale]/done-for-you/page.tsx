@@ -638,31 +638,32 @@ export default function DoneForYouPage() {
                 </BreathingAnimationText>
 
                 {/* Esra Aslan Profile Card */}
-                {/* <div className='w-full mt-8'>
-                  <a
+                <div className='w-full mt-8'>
+                  {/* <a
                     href={t('benefits.advisorLinkedIn')}
                     target='_blank'
                     rel='noopener noreferrer'
                     className='block group transition-transform duration-300 hover:scale-[1.02]'
-                  >
-                    <div className='flex items-center gap-4 bg-[#fcfcfd] dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
-                      <div className='w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
-                        <img
-                          src='/EsraAslan.PNG'
-                          alt={t('benefits.advisorName')}
-                          className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
-                        />
-                      </div>
-                      <div className='flex-1'>
-                        <p className='text-black dark:text-white font-bold text-xl uppercase tracking-widest'>{t('benefits.advisorName')}</p>
-                        <p className='text-neutral-500 text-md uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
-                        <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-400 text-md leading-relaxed' title={t('benefits.advisorBio')}>
+                  > */}
+                  <div className='flex items-center gap-4 bg-[#fcfcfd] dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+                    <div className='w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+                      <img
+                        src='/DominikDenny.png'
+                        alt={t('benefits.advisorName')}
+                        className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
+                      />
+                    </div>
+                    <div className='flex-1'>
+                      <p className='text-black dark:text-white font-bold text-xl uppercase tracking-widest'>{t('benefits.advisorName')}</p>
+                      <p className='text-neutral-500 text-md uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
+                      {/*    <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-400 text-md leading-relaxed' title={t('benefits.advisorBio')}>
                           {t('benefits.advisorBio')}
                         </p>
-                      </div>
+                         */}
                     </div>
-                  </a>
-                </div> */}
+                  </div>
+                  {/* </a> */}
+                </div>
 
                 <div className='flex flex-col items-center lg:items-start gap-12'>
                   {/* <ActionButton href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
