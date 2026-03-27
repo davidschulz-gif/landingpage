@@ -125,7 +125,7 @@ export function BlogTestimonialSection() {
                         ArchDaily
                     </a>
                     <a
-                        href="https://www.instagram.com/illustrarch/"
+                        href="https://illustrarch.com/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
@@ -247,7 +247,7 @@ export function BlogTestimonialSection() {
                             alt="Design Process"
                             width={960}
                             height={540}
-                            href="https://www.instagram.com/p/DVO_kk0jL86/"
+                            href="https://www.instagram.com/reel/DVd-fi2jFOQ/"
                             caption={t('caption3')}
                         />
                     </div>
@@ -263,7 +263,7 @@ export function BlogTestimonialSection() {
                     </div>
                     <div className="order-2 flex justify-center">
                         <VideoThumbnail
-                            href="https://www.instagram.com/p/DVO_kk0jL86/?hl=en"
+                            href="https://www.instagram.com/reel/DVd-fi2jFOQ/"
                             imageSrc="/artical-page/0313.00_00_13_28.Standbild004.jpg"
                             title={t('instagramTitle2')}
                             subtitle={t('reelDescription2')}
