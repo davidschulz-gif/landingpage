@@ -300,7 +300,7 @@ export default function DoneForYouPage() {
           <section
             className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'
           >
-            <div className='max-w-4xl mx-auto'>
+            <div className='max-w-7xl mx-auto'>
               <motion.div {...motionProps} className='text-center mb-20'>
                 {/* <div className='w-96 h-96 mx-auto mb-8 flex items-center justify-center'>
                   <Lottie
@@ -319,6 +319,16 @@ export default function DoneForYouPage() {
                   {t('benefits.subtitle')}
                 </p>
               </motion.div>
+
+              <div className='overflow-hidden rounded-[50px] mb-10'>
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-100px' }}
+                >
+                  <FeatureShowcase />
+                </motion.div>
+              </div>
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <motion.div {...motionProps} className='bg-neutral-900/50 p-8 md:p-12 border border-neutral-800'>
@@ -495,7 +505,7 @@ export default function DoneForYouPage() {
 
         {/* How It's Possible Section */}
         <section className='bg-[#fcfcfd] dark:bg-[#0d0e12] px-4'>
-          <div className='max-w-4xl mx-auto'>
+          <div className='max-w-7xl mx-auto'>
             <motion.div {...motionProps} className='text-center space-y-8'>
               <BreathingAnimationText animationType='black-gray'>
                 <h2 className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white tracking-tight'>
@@ -503,7 +513,7 @@ export default function DoneForYouPage() {
                 </h2>
               </BreathingAnimationText>
 
-              <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-3xl mx-auto'>
+              <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-7xl mx-auto'>
                 <p style={{ fontFamily: 'sans-serif' }} >{t('howItsPossible.p1')}</p>
 
                 <div className='flex justify-center py-6'>
@@ -576,13 +586,13 @@ export default function DoneForYouPage() {
 
 
         {/* Feature Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeatureShowcase />
-        </motion.div>
+        </motion.div> */}
 
 
         {/* Features Section */}
