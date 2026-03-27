@@ -5,7 +5,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { Layers, Maximize, Video, Zap } from 'lucide-react';
 
-export const FeatureShowcase: React.FC = () => {
+export const FeatureShowcase: React.FC<{ disableHeading?: boolean }> = ({ disableHeading = false }) => {
     const t = useTranslations('FeatureShowcase');
     // const navigate = useNavigate();
 
@@ -53,16 +53,16 @@ export const FeatureShowcase: React.FC = () => {
     ];
 
     return (
-        <section className="py-12 bg-[#F7F7F7] font-space-grotesk">
+        <section className={` bg-[#F7F7F7] font-space-grotesk ${!disableHeading ? 'py-2' : 'py-12'}`}>
             <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-20">
-                <div className="text-center space-y-4">
+                {!disableHeading && <div className="text-center space-y-4">
                     {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
                         {t('title')}
                     </h2> */}
                     <p className="text-3xl text-gray-900 max-w-5xl mx-auto font-light">
                         {t('subtitle')}
                     </p>
-                </div>
+                </div>}
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {features.map((feature, index) => (

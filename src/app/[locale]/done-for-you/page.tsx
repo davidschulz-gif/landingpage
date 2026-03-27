@@ -320,13 +320,13 @@ export default function DoneForYouPage() {
                 </p>
               </motion.div>
 
-              <div className='overflow-hidden rounded-[50px] mb-10'>
+              <div className='overflow-hidden rounded-[50px] mb-12'>
                 <motion.div
                   initial={{ opacity: 0, y: 60 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-100px' }}
                 >
-                  <FeatureShowcase />
+                  <FeatureShowcase disableHeading={true} />
                 </motion.div>
               </div>
 
@@ -637,16 +637,10 @@ export default function DoneForYouPage() {
                   </h2>
                 </BreathingAnimationText>
 
-                {/* Esra Aslan Profile Card */}
+                {/* Advisor Profile Card */}
                 <div className='w-full mt-8'>
-                  {/* <a
-                    href={t('benefits.advisorLinkedIn')}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='block group transition-transform duration-300 hover:scale-[1.02]'
-                  > */}
                   <div className='flex items-center gap-4 bg-[#fcfcfd] dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
-                    <div className='w-20 h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+                    <div className='w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
                       <img
                         src='/DominikDenny.png'
                         alt={t('benefits.advisorName')}
@@ -654,15 +648,10 @@ export default function DoneForYouPage() {
                       />
                     </div>
                     <div className='flex-1'>
-                      <p className='text-black dark:text-white font-bold text-xl uppercase tracking-widest'>{t('benefits.advisorName')}</p>
-                      <p className='text-neutral-500 text-md uppercase tracking-wider mb-1'>{t('benefits.advisorRole')}</p>
-                      {/*    <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-400 text-md leading-relaxed' title={t('benefits.advisorBio')}>
-                          {t('benefits.advisorBio')}
-                        </p>
-                         */}
+                      <p className='text-black dark:text-white font-bold text-xl uppercase tracking-widest leading-tight mb-1'>{t('benefits.advisorName')}</p>
+                      <p className='text-neutral-500 text-sm uppercase tracking-wider'>{t('benefits.advisorRole')}</p>
                     </div>
                   </div>
-                  {/* </a> */}
                 </div>
 
                 <div className='flex flex-col items-center lg:items-start gap-12'>

@@ -22,6 +22,7 @@ interface BookingDemoClassFormProps {
 export default function BookingDemoClassFormForPricingPage({ className, showTitle = true }: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
   const tPricing = useTranslations('Pricing')
+  const tBilder = useTranslations('BilderFlatrate')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isRequesting, setIsRequesting] = useState(false)
@@ -220,10 +221,10 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       )}
     >
 
-      <h2 className="text-2xl font-bold text-gray-900 mb-1 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+      <h2 className="text-2xl font-bold text-gray-900 mb-0.5 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
         {tPricing('bookDemo')}
       </h2>
-      <div className="mb-1">
+      <div className="mb-0.5">
         <BreathingAnimationText animationType='black-gray'>
           <h2 className='text-[18px] font-normal text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
             {t('cta.t')}
@@ -231,8 +232,25 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         </BreathingAnimationText>
       </div>
 
-      <div className='flex flex-col items-start gap-8 my-4'>
-        <ul className='space-y-4 text-left w-full'>
+      {/* Advisor Profile Card */}
+      <div className='w-full my-0.5'>
+        <div className='flex items-center gap-4 bg-[#fcfcfd] dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-1 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+          <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+            <img
+              src='/DominikDenny.png'
+              alt={tBilder('benefits.advisorName')}
+              className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
+            />
+          </div>
+          <div className='flex-1'>
+            <p className='text-black dark:text-white font-bold text-base uppercase tracking-widest'>{tBilder('benefits.advisorName')}</p>
+            <p className='text-neutral-500 text-xs uppercase tracking-wider mt-1'>{tBilder('benefits.advisorRole')}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className='flex flex-col items-start gap-8 my-3'>
+        <ul className='space-y-2 text-left w-full'>
           {[
             { icon: Image, key: 'point1' },
             { icon: BarChart3, key: 'point2' },
@@ -341,7 +359,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             disabled={isRequesting}
           />
 
-          <div className="pt-0.5">
+          <div className="">
             <div className='flex items-start gap-3 px-1'>
               <input
                 type='checkbox'
@@ -358,7 +376,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             </div>
           </div>
 
-          <div className="pt-0.5">
+          <div className="">
             <div className='flex items-start gap-3 px-1'>
               <input
                 type='checkbox'
@@ -377,7 +395,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
 
           <button
             type='submit'
-            className='w-full py-4 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
+            className='w-full py-3 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
             style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             disabled={isRequesting}
           >
