@@ -253,7 +253,7 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
   return (
     <div
-      className={`flex h-full min-h-[650px] flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${plan.popular
+      className={`flex  flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${plan.popular
         ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10'
         : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
         }`}
@@ -324,6 +324,17 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {tPricing('plusVat')}
             </div>
+          </div>
+        </div>
+
+        {/* Unlimited Requests Marker */}
+        <div className='mb-0.5'>
+
+          <div
+            className='text-[16px] font-bold text-black dark:text-white'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            {t('unlimitedRequests')}
           </div>
         </div>
       </div>

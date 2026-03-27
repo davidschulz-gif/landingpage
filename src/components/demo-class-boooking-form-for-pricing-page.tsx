@@ -220,18 +220,18 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       )}
     >
 
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+      <h2 className="text-2xl font-bold text-gray-900 mb-1 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
         {tPricing('bookDemo')}
       </h2>
-      <div className="mb-6">
+      <div className="mb-1">
         <BreathingAnimationText animationType='black-gray'>
-          <h2 className='text-[24px] font-normal text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+          <h2 className='text-[18px] font-normal text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
             {t('cta.t')}
           </h2>
         </BreathingAnimationText>
       </div>
 
-      <div className='flex flex-col items-start gap-8 mt-4 mb-10'>
+      <div className='flex flex-col items-start gap-8 my-4'>
         <ul className='space-y-4 text-left w-full'>
           {[
             { icon: Image, key: 'point1' },
@@ -241,8 +241,8 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             const Icon = item.icon
             return (
               <li key={i} className='flex items-center gap-4 group'>
-                <div className='w-8 h-8 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-100 dark:border-neutral-800 shadow-sm transition-colors group-hover:bg-neutral-100 dark:group-hover:bg-neutral-800'>
-                  <Icon className='w-4 h-4 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
+                <div className='w-6 h-6 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-100 dark:border-neutral-800 shadow-sm transition-colors group-hover:bg-neutral-100 dark:group-hover:bg-neutral-800'>
+                  <Icon className='w-3 h-3 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
                 </div>
                 <span className='text-[14px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
                   {t(`cta.point${i + 1}` as any)}
@@ -341,7 +341,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             disabled={isRequesting}
           />
 
-          <div className="pt-2">
+          <div className="pt-0.5">
             <div className='flex items-start gap-3 px-1'>
               <input
                 type='checkbox'
@@ -358,7 +358,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             </div>
           </div>
 
-          <div className="pt-2">
+          <div className="pt-0.5">
             <div className='flex items-start gap-3 px-1'>
               <input
                 type='checkbox'

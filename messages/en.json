@@ -579,6 +579,7 @@
   "ConciergePricing": {
     "title": "DONE FOR YOU Service - An external visualizer by your side.",
     "subtitle": "We do it for you",
+    "unlimitedRequests": "unlimited requests",
     "yearlyBilling": "Yearly Billing",
     "monthlyBilling": "Monthly Billing",
     "billedYearly": "Billed yearly",
@@ -860,7 +861,7 @@
     "banner": {
       "privacy": "Your privacy always comes first.",
       "hosting": "Hosting",
-      "hostingDetails": "AWS S3 EU — Zurich migration currently underway"
+      "hostingDetails": "AWS S3 EU — state central-1 Frankfurt"
     }
   },
   "DetailedComparison": {
