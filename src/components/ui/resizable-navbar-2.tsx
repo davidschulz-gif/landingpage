@@ -8,6 +8,7 @@ import {
   useScroll,
 } from 'motion/react'
 
+import { Link } from '@/i18n/navigation'
 import React, { useRef, useState } from 'react'
 
 interface NavbarProps {
@@ -178,7 +179,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <Link
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
           className='relative px-4 py-2 text-neutral-600 dark:text-neutral-300'
@@ -192,7 +193,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             />
           )}
           <span className='relative z-20'>{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   )
@@ -286,11 +287,10 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
   return (
-    <a
-      href='#'
-      className={`relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 transition-opacity duration-200 ${
-        visible ? 'opacity-100' : 'opacity-0'
-      }`}
+    <Link
+      href='/'
+      className={`relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 transition-opacity duration-200 ${visible ? 'opacity-100' : 'opacity-0'
+        }`}
     >
       <div className='bg-black size-4 m-3'></div>
       <span
@@ -307,7 +307,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
       >
         typus.AI
       </span>
-    </a>
+    </Link>
   )
 }
 
@@ -325,9 +325,9 @@ export const NavbarButton = ({
   className?: string
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient'
 } & (
-  | React.ComponentPropsWithoutRef<'a'>
-  | React.ComponentPropsWithoutRef<'button'>
-)) => {
+    | React.ComponentPropsWithoutRef<'a'>
+    | React.ComponentPropsWithoutRef<'button'>
+  )) => {
   const baseStyles =
     'px-4 py-2  bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center'
 
@@ -341,12 +341,12 @@ export const NavbarButton = ({
   }
 
   return (
-    <Tag
-      href={href || undefined}
+    <Link
+      href={href || '#'}
       className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
+      {...(props as any)}
     >
       {children}
-    </Tag>
+    </Link>
   )
 }

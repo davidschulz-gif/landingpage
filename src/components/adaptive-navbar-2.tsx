@@ -15,7 +15,7 @@ import {
 import { Play } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { usePathname } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
@@ -40,23 +40,23 @@ export function NavbarDemo() {
     return [
       {
         name: t('solutions'),
-        link: '#solutions',
+        link: '/#solutions',
         submenu: [
           { title: t('app'), isSection: true },
           {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
-            link: '#create',
+            link: '/#create',
           },
           {
             title: tNav('solutions.edit.title'),
             description: tNav('solutions.edit.description'),
-            link: '#edit',
+            link: '/#edit',
           },
           {
             title: tNav('solutions.upscale.title'),
             description: tNav('solutions.upscale.description'),
-            link: '#upscale',
+            link: '/#upscale',
           },
           { title: t('service'), isSection: true },
           {
@@ -68,7 +68,7 @@ export function NavbarDemo() {
       },
       {
         name: t('community'),
-        link: '#community',
+        link: '/#community',
         submenu: [
           {
             title: tNav('community.tutorials.title'),
@@ -79,12 +79,12 @@ export function NavbarDemo() {
           {
             title: tNav('community.press.title'),
             description: tNav('community.press.description'),
-            link: '#press',
+            link: '/#press',
           },
           {
             title: tNav('community.reviews.title'),
             description: tNav('community.reviews.description'),
-            link: '#reviews',
+            link: '/#reviews',
           },
           {
             title: tNav('community.instagram.title'),
@@ -102,7 +102,7 @@ export function NavbarDemo() {
       },
       {
         name: t('licenses'),
-        link: '#licenses',
+        link: '/#licenses',
         submenu: [
           {
             title: tNav('licenses.pricing.title'),
@@ -112,18 +112,18 @@ export function NavbarDemo() {
           {
             title: tNav('licenses.plugins.title'),
             description: tNav('licenses.plugins.description'),
-            link: '#plugins',
+            link: '/#plugins',
           },
           {
             title: tNav('licenses.studentAccess.title'),
             description: tNav('licenses.studentAccess.description'),
-            link: '#student-access',
+            link: '/#student-access',
           },
         ],
       },
       {
         name: t('contact'),
-        link: '#contact',
+        link: '/#contact',
         submenu: [
           {
             title: tNav('contact.bookCall.title'),
@@ -135,7 +135,7 @@ export function NavbarDemo() {
       },
       {
         name: t('amaAwards'),
-        link: '/ama-awards',
+        link: '/#reviews',
       },
     ]
   }
@@ -174,26 +174,28 @@ export function NavbarDemo() {
                   item={navItem.name}
                   href={navItem.link}
                 >
-                  <div className='flex flex-col space-y-4 text-sm'>
-                    {navItem.submenu?.map((subitem: any, subIdx) => (
-                      subitem.isSection ? (
-                        <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
-                          <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
-                            {subitem.title}
-                          </h5>
-                        </div>
-                      ) : (
-                        <HoveredLink
-                          key={`hovered-link-${idx}-${subIdx}`}
-                          href={subitem.link}
-                          target={subitem?.target}
-                        >
-                          <h1 className='font-semibold'>{subitem.title}</h1>
-                          <p>{subitem.description}</p>
-                        </HoveredLink>
-                      )
-                    ))}
-                  </div>
+                  {navItem.submenu && (
+                    <div className='flex flex-col space-y-4 text-sm'>
+                      {navItem.submenu?.map((subitem: any, subIdx) => (
+                        subitem.isSection ? (
+                          <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
+                            <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
+                              {subitem.title}
+                            </h5>
+                          </div>
+                        ) : (
+                          <HoveredLink
+                            key={`hovered-link-${idx}-${subIdx}`}
+                            href={subitem.link}
+                            target={subitem?.target}
+                          >
+                            <h1 className='font-semibold'>{subitem.title}</h1>
+                            <p>{subitem.description}</p>
+                          </HoveredLink>
+                        )
+                      ))}
+                    </div>
+                  )}
                 </MenuItem>
               ))}
             </Menu>
@@ -263,7 +265,7 @@ export function NavbarDemo() {
             <div className='relative max-w-[80%] mx-auto px-8 '>
               <div className='relative'>
                 <div className='grid grid-cols-4 gap-8'>
-                  {translatedNavItems.map((navItem, navIdx) => (
+                  {translatedNavItems.filter(item => item.submenu).map((navItem, navIdx) => (
                     <div
                       key={`section-${navIdx}`}
                       className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
@@ -291,7 +293,7 @@ export function NavbarDemo() {
                               </h5>
                             </div>
                           ) : (
-                            <a
+                            <Link
                               key={`submenu-${navIdx}-${subIdx}`}
                               href={subitem.link}
                               target={subitem.target ?? '_self'}
@@ -305,7 +307,7 @@ export function NavbarDemo() {
                                   {subitem.description}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           )
                         ))}
                       </div>
@@ -355,20 +357,20 @@ export function NavbarDemo() {
                 }}
               >
                 <div className='flex items-center justify-between'>
-                  <div className='text-[10px] text-gray-500 font-medium tracking-wide'>
+                  <div className='text-[16px] text-gray-500 font-medium tracking-wide'>
                     {t('explorePlatform')}
                   </div>
                   <div className='flex items-center gap-6'>
                     <Link
                       href='#demo'
-                      className='inline-flex items-center gap-1.5 text-[11px] text-black hover:text-gray-900 font-medium transition-all duration-200 hover:translate-x-0.5'
+                      className='inline-flex items-center gap-1.5 text-[16px] text-black hover:text-gray-900 font-medium transition-all duration-200 hover:translate-x-0.5'
                     >
                       <Play className='w-3 h-3' />
                       {t('explorePlatform')}
                     </Link>
                     <a
                       href='/pricing'
-                      className='text-[11px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5  hover:bg-gray-100/60 transition-all duration-200'
+                      className='text-[16px] text-gray-800 hover:text-gray-900 font-medium px-3 py-1.5  hover:bg-gray-100/60 transition-all duration-200'
                     >
                       {t('seePricing')}
                     </a>
@@ -441,7 +443,7 @@ export function NavbarDemo() {
                       </h5>
                     </div>
                   ) : (
-                    <a
+                    <Link
                       key={`mobile-submenu-${idx}-${subIdx}`}
                       href={subitem.link}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -450,7 +452,7 @@ export function NavbarDemo() {
                       <div>
                         <div className='font-medium'>{subitem.title}</div>
                       </div>
-                    </a>
+                    </Link>
                   )
                 ))}
               </div>

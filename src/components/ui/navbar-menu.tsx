@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import React, { useEffect, useRef } from 'react'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 
 export const MenuItem = ({
   setActive,
@@ -183,7 +183,7 @@ export const ProductItem = ({
   src: string
 }) => {
   return (
-    <a href={href} className='flex space-x-2'>
+    <Link href={href} className='flex space-x-2'>
       <img
         src={src}
         width={140}
@@ -199,18 +199,18 @@ export const ProductItem = ({
           {description}
         </p>
       </div>
-    </a>
+    </Link>
   )
 }
 
 export const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <a
+    <Link
       {...rest}
       className='text-neutral-700 dark:text-neutral-200 hover:text-black '
     >
       {children}
-    </a>
+    </Link>
   )
 }
 
