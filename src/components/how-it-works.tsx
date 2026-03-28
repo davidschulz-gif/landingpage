@@ -1,4 +1,4 @@
-import { Image as ImageIcon, MousePointer2, Sparkles, Type, Upload, Zap } from 'lucide-react';
+import { Clock, FileText, Image as ImageIcon, Sparkles, Type, Upload, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
@@ -21,12 +21,12 @@ export const HowItWorks: React.FC = () => {
 
     const steps = [
         {
-            icon: <MousePointer2 className="w-6 h-6" />,
+            icon: <FileText className="w-6 h-6" />,
             title: t('steps.step1.title'),
             description: t('steps.step1.description'),
         },
         {
-            icon: <Sparkles className="w-6 h-6" />,
+            icon: <Clock className="w-6 h-6" />,
             title: t('steps.step2.title'),
             description: t('steps.step2.description'),
         },

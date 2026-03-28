@@ -679,13 +679,13 @@
     "solution": {
       "title": "Die Bilder-Flat für Architekturvisualisierungen",
       "subtitle": "Mit Typus erhalten Sie Visualisierungen im Abo statt pro Projekt. Statt jedes Bild einzeln zu bezahlen, können Sie so viele Visualisierungen anfragen wie Sie möchten. Ein persönlicher Visualisierungs-Spezialist erstellt die Bilder für Sie.",
-      "step1Title": "geben sie ihre vision ein",
-      "step1Desc": "Laden sie eine einfache handskizze, ein 3d-modell hoch oder geben sie einfach einen beschreibenden text-prompt ein.",
-      "step2Title": "ki-transformation",
-      "step2Desc": "unsere fortschrittlichen ki-modelle analysieren ihre eingabe und erstellen fotorealistische architekturvisualisierungen.",
+      "step1Title": "sie senden ihre referenzbilder",
+      "step1Desc": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben.",
+      "step2Title": "wir erstellen die bilder mit KI",
+      "step2Desc": "Ihr persönlicher Spezialist übernimmt die Arbeit. Wie ein externer Mitarbeiter:in",
       "step2Badge": "Rücklauf 24-48h",
-      "step3Title": "premium-ergebnisse",
-      "step3Desc": "laden sie hochwertige renderings herunter, die bereit für kundenpräsentationen oder marketingmaterialien sind.",
+      "step3Title": "sie erhalten ihr bild",
+      "step3Desc": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück. Sie erhalten feedback zum KI-Workflow",
       "tag1": "Einfach",
       "tag2": "Schnell",
       "tag3": "Planbar"
@@ -798,7 +798,7 @@
     }
   },
   "UseCases": {
-    "title": "Für alle Rollen in Architektur & Immobilien konzipiert",
+    "title": "Für alle in Architektur & Immobilien konzipiert",
     "subtitle": "Spürbare Vorteile für Architekten, Innenarchitekten, Bauherren, Immobilien und Unternehmen. Weniger manuelles Rendering, mehr Designvarianten und bis zu 80% Einsparungen bei der Visualisierung mit der typus AI App.",
     "badge": "USE CASE",
     "button": "Mehr entdecken",
@@ -2432,16 +2432,16 @@
     "subtitle": "Verwandeln Sie Ihre Architekturkonzepte in drei einfachen Schritten in die Realität.",
     "steps": {
       "step1": {
-        "title": "1. Geben Sie Ihre Vision ein",
-        "description": "Laden Sie eine einfache Handskizze, ein 3D-Modell hoch oder geben Sie einfach einen beschreibenden Text-Prompt ein."
+        "title": "sie senden ihre referenzbilder",
+        "description": "Skizzen, Mockups oder 3D-Modelle - senden Sie uns, was Sie haben."
       },
       "step2": {
-        "title": "2. KI-Transformation",
-        "description": "Unsere fortschrittlichen KI-Modelle analysieren Ihre Eingabe und erstellen fotorealistische Architekturvisualisierungen."
+        "title": "wir erstellen die bilder mit KI",
+        "description": "Ihr persönlicher Spezialist übernimmt die Arbeit. Wie ein externer Mitarbeiter:in"
       },
       "step3": {
-        "title": "3. Premium-Ergebnisse",
-        "description": "Laden Sie hochwertige Renderings herunter, die bereit für Kundenpräsentationen oder Marketingmaterialien sind."
+        "title": "sie erhalten ihr bild",
+        "description": "In kürzester Zeit erhalten Sie überzeugende Ergebnisse zurück. Sie erhalten feedback zum KI-Workflow"
       }
     },
     "visualization": {

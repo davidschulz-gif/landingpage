@@ -679,13 +679,13 @@
     "solution": {
       "title": "The Image Flat Rate for Architecture Visualizations",
       "subtitle": "With Typus, you get visualizations by subscription instead of per project. Instead of paying for each image individually, you can request as many visualizations as you want. A personal visualization specialist creates the images for you.",
-      "step1Title": "enter your vision",
-      "step1Desc": "Upload a simple hand sketch, a 3D model, or simply enter a descriptive text prompt.",
-      "step2Title": "ai-transformation",
-      "step2Desc": "Our advanced AI models analyze your input and create photorealistic architectural visualizations.",
+      "step1Title": "you send your reference images",
+      "step1Desc": "Sketches, mockups or 3D models - send us what you have.",
+      "step2Title": "we create the images with AI",
+      "step2Desc": "Your personal specialist takes over the work. Like an external team member",
       "step2Badge": "Turnaround 24-48h",
-      "step3Title": "premium results",
-      "step3Desc": "Download high-quality renderings that are ready for client presentations or marketing materials.",
+      "step3Title": "you receive your image",
+      "step3Desc": "In the shortest possible time you will receive convincing results. You receive feedback on the AI workflow",
       "tag1": "Simple",
       "tag2": "Fast",
       "tag3": "Planable"
@@ -798,7 +798,7 @@
     }
   },
   "UseCases": {
-    "title": "Built for every role in Architecture & Real Estate",
+    "title": "Built for everyone in Architecture & Real Estate",
     "subtitle": "Tangible results for architects, interior designers, developers, real estate firms and enterprises. Reduced manual rendering, more design variants and up to 80% savings on visualization with the typus AI App.",
     "badge": "USE CASE",
     "button": "Find out more",
@@ -2432,16 +2432,16 @@
     "subtitle": "Transform your architectural concepts into reality in three simple steps.",
     "steps": {
       "step1": {
-        "title": "1. Input Your Vision",
-        "description": "Upload a simple hand sketch, a 3D model, or just type a descriptive text prompt."
+        "title": "you send your reference images",
+        "description": "Sketches, mockups or 3D models - send us what you have."
       },
       "step2": {
-        "title": "2. AI Transformation",
-        "description": "Our advanced AI models analyze your input and generate photorealistic architectural visualizations."
+        "title": "we create the images with AI",
+        "description": "Your personal specialist takes over the work. Like an external team member"
       },
       "step3": {
-        "title": "3. Premium Results",
-        "description": "Download high-quality renders ready for client presentations or marketing materials."
+        "title": "you receive your image",
+        "description": "In the shortest possible time you will receive convincing results. You receive feedback on the AI workflow"
       }
     },
     "visualization": {

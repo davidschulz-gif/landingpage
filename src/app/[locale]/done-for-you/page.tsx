@@ -401,8 +401,8 @@ export default function DoneForYouPage() {
 
               <div className='mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
                 {[
-                  { step: 1, icon: Send, badgeKey: null },
-                  { step: 2, icon: Sparkles, badgeKey: 'solution.step2Badge' },
+                  { step: 1, icon: FileText, badgeKey: null },
+                  { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
                   { step: 3, icon: Image, badgeKey: null },
                 ].map(({ step, icon: Icon, badgeKey }) => (
                   <motion.div
