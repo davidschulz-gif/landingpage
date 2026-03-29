@@ -2,6 +2,7 @@
 
 import { useIsMobile } from '@/hooks/use-mobile'
 import { motion } from 'framer-motion'
+import { Check, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export const DetailedFeaturesSection = () => {
@@ -33,12 +34,12 @@ export const DetailedFeaturesSection = () => {
     if (!text) return null;
     const separatorMatch = text.match(/ (\-|–) /);
     if (!separatorMatch) return <span className="font-bold">{text}</span>;
-    
+
     const separator = separatorMatch[0];
     const parts = text.split(separator);
     const firstPart = parts[0];
     const restPart = parts.slice(1).join(separator);
-    
+
     return (
       <span>
         <span className="font-bold">{firstPart}</span>
@@ -50,16 +51,16 @@ export const DetailedFeaturesSection = () => {
   return (
     <section className="py-24 px-6 bg-white relative overflow-hidden">
       {/* Background Grid Pattern (Optional, based on image) */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-           style={{ 
-             backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
-             backgroundSize: '40px 40px' 
-           }}>
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -67,7 +68,7 @@ export const DetailedFeaturesSection = () => {
           >
             {t('title')}
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -81,7 +82,7 @@ export const DetailedFeaturesSection = () => {
         {isMobile ? (
           <div className="space-y-6">
             {rows.map((row, i) => (
-              <motion.div 
+              <motion.div
                 key={row.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -111,17 +112,20 @@ export const DetailedFeaturesSection = () => {
                   <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-1/4">
                     {t('columns.function')}
                   </th>
-                  <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
-                    {t('columns.typus')}
+                  <th className="py-6 px-8 flex items-center gap-2 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
+                    <span className="w-5 h-5 flex items-center justify-center border border-red-500 rounded-full">
+                      <X size={12} className="text-red-500" />
+                    </span>
+                    {t('columns.traditional')}
                   </th>
                   <th className="py-6 px-8 text-left text-sm font-bold text-gray-900 uppercase tracking-wider w-[37.5%]">
-                    {t('columns.traditional')}
+                    {t('columns.typus')}
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {rows.map((row, i) => (
-                  <motion.tr 
+                  <motion.tr
                     key={row.id}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -132,11 +136,22 @@ export const DetailedFeaturesSection = () => {
                     <td className="py-5 px-8 font-bold text-gray-900">
                       {row.label}
                     </td>
-                    <td className="py-5 px-8 text-gray-900">
-                      {formatText(row.typus)}
+                    <td className="py-5 px-8 flex items-center gap-2 text-gray-900">
+                      <div className="flex items-center gap-2">
+                        <span className="w-5 h-5 flex items-center justify-center ">
+                          <X className="text-red-500 w-5 h-5 flex-shrink-0 mt-1" />
+                        </span>
+                        {formatText(row.traditional)}
+                      </div>
                     </td>
-                    <td className="py-5 px-8 text-gray-900">
-                      {formatText(row.traditional)}
+                    <td className="py-5 px-8  text-gray-900">
+                      <div className="flex items-center gap-2">
+                        <span className="w-5 h-5 flex items-center justify-center">
+
+                          <Check className="text-[#00A878] w-5 h-5 flex-shrink-0 mt-1" />
+                        </span>
+                        {formatText(row.typus)}
+                      </div>
                     </td>
                   </motion.tr>
                 ))}
@@ -145,7 +160,7 @@ export const DetailedFeaturesSection = () => {
           </div>
         )}
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
