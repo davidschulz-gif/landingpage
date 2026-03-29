@@ -56,7 +56,7 @@ export function NavbarDemo() {
           {
             title: tNav('solutions.upscale.title'),
             description: tNav('solutions.upscale.description'),
-            link: '/#upscale',
+            link: '/#enhance',
           },
           { title: t('service'), isSection: true },
           {

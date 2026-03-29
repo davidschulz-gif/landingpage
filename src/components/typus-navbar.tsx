@@ -36,7 +36,7 @@ export default function TypusNavbar() {
           title: 'Upscale',
           description:
             'Enhance image resolution and quality with AI-powered upscaling',
-          link: '#upscale',
+          link: '#enhance',
         },
       ],
     },
@@ -177,11 +177,10 @@ export default function TypusNavbar() {
 
       <div className='fixed z-50 w-full top-0'>
         <Navbar
-          className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-            isScrolled || isMenuOpen
+          className={`transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isScrolled || isMenuOpen
               ? 'bg-white/95 backdrop-blur-xl'
               : 'bg-transparent backdrop-blur-xl'
-          }`}
+            }`}
         >
           {/* Desktop Navigation */}
           <NavBody className='px-6 h-16 py-3 max-w-[80%] mx-auto'>
@@ -206,11 +205,10 @@ export default function TypusNavbar() {
                     {/* Apple-style mega menu showing all sections */}
                     <div
                       ref={menuRef}
-                      className={`fixed left-0 right-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[60] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                        isMenuOpen
+                      className={`fixed left-0 right-0 w-full bg-white/95 backdrop-blur-2xl border-b border-gray-200/60 shadow-2xl shadow-black/10 z-[60] transition-all duration-300 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
                           ? 'opacity-100 visible translate-y-0'
                           : 'opacity-0 invisible -translate-y-2'
-                      }`}
+                        }`}
                       style={{ top: `${menuTopPosition}px` }}
                       onMouseEnter={handleMenuEnter}
                       onMouseLeave={handleMenuLeave}
@@ -224,11 +222,10 @@ export default function TypusNavbar() {
                             {navItems.map((navItem, navIdx) => (
                               <div
                                 key={`section-${navIdx}`}
-                                className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                                  isMenuOpen
+                                className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
                                     ? 'opacity-100 translate-y-0'
                                     : 'opacity-0 translate-y-3'
-                                }`}
+                                  }`}
                                 style={{
                                   transitionDelay: isMenuOpen
                                     ? `${navIdx * 50}ms`
@@ -266,11 +263,10 @@ export default function TypusNavbar() {
                           {/* Premium bottom section */}
                           {/* Premium bottom section - hidden when menu is open */}
                           <div
-                            className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
-                              isMenuOpen
+                            className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
                                 ? 'opacity-0 translate-y-3 hidden'
                                 : 'opacity-100 translate-y-0'
-                            }`}
+                              }`}
                             style={{
                               transitionDelay: isMenuOpen ? '0ms' : '200ms',
                             }}

@@ -38,7 +38,7 @@ export const HowItWorks: React.FC = () => {
     ];
 
     return (
-        <section className="py-16 md:py-36 bg-white relative overflow-hidden font-space-grotesk">
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden font-space-grotesk">
             {/* Background decorative elements */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F7F7F7]/50 -skew-x-12 transform origin-top translate-x-1/2 -z-10" />
 

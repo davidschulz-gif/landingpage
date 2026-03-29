@@ -399,7 +399,21 @@ export default function DoneForYouPage() {
                 </div>
               </div>
 
-              <div className='mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
+
+
+              {/* How It Works Section */}
+              <div className='mt-20 rounded-xl overflow-hidden '>
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-100px' }}
+                >
+                  <HowItWorks />
+                </motion.div>
+              </div>
+
+
+              {/* <div className='mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 relative'>
                 {[
                   { step: 1, icon: FileText, badgeKey: null },
                   { step: 2, icon: Clock, badgeKey: 'solution.step2Badge' },
@@ -443,7 +457,7 @@ export default function DoneForYouPage() {
                     </p>
                   </motion.div>
                 ))}
-              </div>
+              </div> */}
 
               <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-white'>
                 <span>{t('solution.tag1')}</span>
@@ -566,13 +580,13 @@ export default function DoneForYouPage() {
         </motion.div>
 
         {/* How It Works Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <HowItWorks />
-        </motion.div>
+        </motion.div> */}
 
 
         {/* Industry Section */}
