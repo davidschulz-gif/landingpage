@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play } from 'lucide-react'
+import { Play, Sparkles, Pencil, Zap, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -47,22 +47,26 @@ export function NavbarDemo() {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
             link: '/#create',
+            icon: Sparkles,
           },
           {
             title: tNav('solutions.edit.title'),
             description: tNav('solutions.edit.description'),
             link: '/#edit',
+            icon: Pencil,
           },
           {
             title: tNav('solutions.upscale.title'),
             description: tNav('solutions.upscale.description'),
             link: '/#enhance',
+            icon: Zap,
           },
           { title: t('service'), isSection: true },
           {
             title: tNav('solutions.bilderFlatrate.title'),
             description: tNav('solutions.bilderFlatrate.description'),
             link: '/done-for-you',
+            icon: ImageIcon,
           },
         ],
       },
@@ -75,28 +79,33 @@ export function NavbarDemo() {
             description: tNav('community.tutorials.description'),
             link: 'https://www.youtube.com/@typus_ai',
             target: '_blank',
+            icon: Youtube,
           },
           {
             title: tNav('community.press.title'),
             description: tNav('community.press.description'),
             link: '/#press',
+            icon: Newspaper,
           },
           {
             title: tNav('community.reviews.title'),
             description: tNav('community.reviews.description'),
             link: '/#reviews',
+            icon: Star,
           },
           {
             title: tNav('community.instagram.title'),
             description: tNav('community.instagram.description'),
             link: 'https://www.instagram.com/typus.ai/',
             target: '_blank',
+            icon: Instagram,
           },
           {
             title: tNav('community.linkedin.title'),
             description: tNav('community.linkedin.description'),
             link: 'https://www.linkedin.com/company/typus-ai/',
             target: '_blank',
+            icon: Linkedin,
           },
         ],
       },
@@ -108,16 +117,19 @@ export function NavbarDemo() {
             title: tNav('licenses.pricing.title'),
             description: tNav('licenses.pricing.description'),
             link: '/pricing',
+            icon: Tag,
           },
           {
             title: tNav('licenses.plugins.title'),
             description: tNav('licenses.plugins.description'),
             link: '/#plugins',
+            icon: Puzzle,
           },
           {
             title: tNav('licenses.studentAccess.title'),
             description: tNav('licenses.studentAccess.description'),
             link: '/#student-access',
+            icon: GraduationCap,
           },
         ],
       },
@@ -130,6 +142,7 @@ export function NavbarDemo() {
             description: tNav('contact.bookCall.description'),
             link: 'mailto:hello@typus.ai',
             target: '_blank',
+            icon: Mail,
           },
         ],
       },
@@ -189,8 +202,17 @@ export function NavbarDemo() {
                             href={subitem.link}
                             target={subitem?.target}
                           >
-                            <h1 className='font-semibold'>{subitem.title}</h1>
-                            <p>{subitem.description}</p>
+                            <div className='flex items-start gap-3'>
+                              {subitem.icon && (
+                                <div className='mt-0.5 p-1 rounded-lg bg-gray-50 border border-transparent transition-colors'>
+                                  <subitem.icon className='w-3.5 h-3.5 text-gray-600' />
+                                </div>
+                              )}
+                              <div className='flex-1'>
+                                <h1 className='font-semibold text-[13px]'>{subitem.title}</h1>
+                                <p className='text-[11px] text-gray-500 leading-tight'>{subitem.description}</p>
+                              </div>
+                            </div>
                           </HoveredLink>
                         )
                       ))}
@@ -299,13 +321,20 @@ export function NavbarDemo() {
                               target={subitem.target ?? '_self'}
                               className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
                             >
-                              <div className='flex-1'>
-                                <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
-                                  {subitem.title}
-                                </h4>
-                                <p style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
-                                  {subitem.description}
-                                </p>
+                              <div className='flex items-start gap-3'>
+                                {subitem.icon && (
+                                  <div className='mt-0.5 p-1.5 rounded-lg bg-gray-50 group-hover/item:bg-white border border-transparent group-hover/item:border-gray-100 transition-colors'>
+                                    <subitem.icon className='w-4 h-4 text-gray-600 group-hover/item:text-black' />
+                                  </div>
+                                )}
+                                <div className='flex-1'>
+                                  <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
+                                    {subitem.title}
+                                  </h4>
+                                  <p style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
+                                    {subitem.description}
+                                  </p>
+                                </div>
                               </div>
                             </Link>
                           )
@@ -350,7 +379,7 @@ export function NavbarDemo() {
 
               {/* Premium bottom section */}
               {/* Premium bottom section - hidden when menu is open */}
-              <div
+              {/* <div
                 className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)]`}
                 style={{
                   transitionDelay: isMenuOpen ? '0ms' : '200ms',
@@ -376,7 +405,7 @@ export function NavbarDemo() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className='flex items-center gap-6 h-full'>
               <Link
@@ -447,8 +476,13 @@ export function NavbarDemo() {
                       key={`mobile-submenu-${idx}-${subIdx}`}
                       href={subitem.link}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className='flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
+                      className='flex items-start gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 p-2 -mx-2 rounded-lg transition-colors'
                     >
+                      {subitem.icon && (
+                        <div className='p-1.5 rounded-lg bg-gray-50 dark:bg-neutral-800 border border-transparent'>
+                          <subitem.icon className='w-4 h-4' />
+                        </div>
+                      )}
                       <div>
                         <div className='font-medium'>{subitem.title}</div>
                       </div>

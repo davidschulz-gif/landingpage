@@ -138,7 +138,7 @@ export const DetailedFeaturesSection = () => {
                     </td>
                     <td className="py-5 px-8 flex items-center gap-2 text-gray-900">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 flex items-center justify-center ">
+                        <span className="w-5 h-5 flex items-center justify-center">
                           <X className="text-red-500 w-5 h-5 flex-shrink-0 mt-1" />
                         </span>
                         {formatText(row.traditional)}
