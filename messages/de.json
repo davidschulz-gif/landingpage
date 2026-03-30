@@ -766,34 +766,34 @@
     },
     "rows": {
       "outside": {
-        "task": "Externe Beauftragung",
-        "traditional": "500–1.500 € pro Rendering, Lieferung dauert mehrere Tage, lange Abstimmungsrunden",
-        "typus": "25-30 Bilder im Monat, bis zu 30x günstiger als konventionelle Renderings"
+        "task": "Außenvisualisierung",
+        "traditional": "500–1.500 € pro Rendering, Lieferung dauert mehrere Tage",
+        "typus": "200-1000 Renderings im Pro Abo – wählen Sie das Beste aus"
       },
       "interior": {
-        "task": "Interne Bearbeitung über Architekten",
-        "traditional": "Zeitaufwendige Prozesse gehen zulasten der eigentlichen Kernkompetenzen in den Planungsaufgaben sowie der Beschaffung von Softwarelizenzen und Hardware",
-        "typus": "keine Softwarelizenzen, keine versteckten Kosten"
+        "task": "Innen-Rendering",
+        "traditional": "300–1.000 € pro Rendering, lange Abstimmungsrunden",
+        "typus": "Endlose Varianten innerhalb von Minuten erstellen"
       },
       "facade": {
-        "task": "Interne Bearbeitung über Praktikanten",
-        "traditional": "mangelnde Expertise und Erfahrung, keine hochwertigen Ergebnisse, viele Abstimmungen notwendig",
-        "typus": "Visualisierer mit langjähriger Erfahrung"
+        "task": "Fassadenmaterial tauschen",
+        "traditional": "Stunden in Rendering-Tools oder Photoshop verbracht",
+        "typus": "In nur wenigen Minuten fertig"
       },
       "redesign": {
-        "task": "Interne Bearbeitung über professionelle Visualisierer",
-        "traditional": "mit hohen Fixkosten verbunden, Leerlauf , wenn es keinen Bedarf gibt",
-        "typus": "um ein vielfaches günstiger als ein Festangestellter Visualisierer hohe Flexibilität, Abo ist pausierbar"
+        "task": "Innenraum neu gestalten",
+        "traditional": "Stunden in Rendering-Tools oder Photoshop verbracht",
+        "typus": "In nur wenigen Minuten fertig"
       },
       "variants": {
         "task": "Optionen dem Kunden vorstellen",
         "traditional": "Tage mit konventionellem Rendering",
-        "typus": "direkt in ersten Kundengesprächen, nicht erst zur finalen Präsentation"
+        "typus": "Minuten mit typus – direkt im Kundengespräch"
       },
       "pitch": {
         "task": "Projekt-Pitch & Konzeptboard",
         "traditional": "Generische Inspirationsboards – beliebig und austauschbar",
-        "typus": "Maßgeschneiderte Visualisierung für Ihr Projekt – genau Ihre Idee"
+        "typus": "Maßgeschneidertes Konzeptboard für Ihr Projekt – genau Ihre Idee"
       }
     }
   },
@@ -875,22 +875,22 @@
     "rows": {
       "time": {
         "label": "Zeit bis zum ersten Ergebnis",
-        "typus": "24-48h",
-        "traditional": "Tage und Wochen – manueller Rendering-Ablauf"
+        "typus": "Minuten – KI liefert Resultate sofort",
+        "traditional": "Stunden bis Tage – manueller Rendering-Ablauf"
       },
       "cost": {
         "label": "Preis pro Bild",
-        "typus": "Günstig – monatl Fesptreis",
+        "typus": "Günstig – monatl Festpreis",
         "traditional": "Teuer – kostspielige Lizenzen und Hardware"
       },
       "iterations": {
         "label": "Überarbeitungen & Varianten",
-        "typus": "Unbegrenzt – bis Sie zufrieden sind",
+        "typus": "Unbegrenzt – Konzepte ohne Verzögerung erkunden",
         "traditional": "Eingeschränkt – jede Anpassung erfordert neue Rendering-Runs"
       },
       "learningCurve": {
         "label": "Einarbeitungsaufwand",
-        "typus": "sofort - Inputmaterial direkt an den Visualisierer schicken",
+        "typus": "Gering – einfache Oberfläche, sofort startklar",
         "traditional": "Hoch – komplexe Tools, monatelange Einarbeitung"
       },
       "outputQuality": {
@@ -900,23 +900,33 @@
       },
       "hardware": {
         "label": "Benötigte Hardware",
-        "typus": "Keine - wir übernehmen das",
+        "typus": "Keine – läuft in der Cloud in jedem Browser",
         "traditional": "Leistungsstarke GPU nötig – teure Spezialsysteme"
       },
       "updates": {
         "label": "KI-Modell-Aktualisierung",
-        "typus": "Automatisch – wir nutzen die leistungsstärksten Modelle",
+        "typus": "Automatisch – neueste Modelle innerhalb von 24 Stunden verfügbar",
         "traditional": "Manuell – häufige Software-Updates & Versionspflege"
+      },
+      "onboarding": {
+        "label": "Einstieg",
+        "typus": "Sofort – Browser öffnen und loslegen",
+        "traditional": "Aufwendig – installieren, konfigurieren, Plugins ergänzen"
       },
       "control": {
         "label": "Gestaltungsfreiheit",
-        "typus": "Vollständig – Visualisierer setzen alles um",
+        "typus": "Vollständig – KI-gestützt, Sie haben das letzte Wort",
         "traditional": "Vollständig – rein manuelle Kontrolle"
       },
       "scalability": {
         "label": "Skalierbarkeit",
-        "typus": "Unbegrenzt – mehrere Visualisierer buchbar",
+        "typus": "Unbegrenzt – Output auf Abruf steigern",
         "traditional": "Begrenzt – durch Hardware-Kapazität beschränkt"
+      },
+      "hybrid": {
+        "label": "Hybrid-Workflow",
+        "typus": "Ja – KI nahtlos mit bestehenden Methoden verbinden",
+        "traditional": "Nein – ausschließlich konventionelle Werkzeuge"
       }
     },
     "footer": "* Zeiten und Kosten sind Schätzwerte auf Basis gängiger Branchen-Benchmarks. Tatsächliche Ergebnisse hängen von Umfang und Komplexität des Projekts ab."

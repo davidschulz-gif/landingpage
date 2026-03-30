@@ -17,10 +17,10 @@ export const DetailedFeaturesSection = () => {
     'outputQuality',
     'hardware',
     'updates',
-    // 'setup',
+    'onboarding',
     'control',
     'scalability',
-    // 'hybrid',
+    'hybrid',
   ]
 
   const rows = rowKeys.map((key) => ({
