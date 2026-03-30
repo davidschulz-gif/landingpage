@@ -766,34 +766,34 @@
     },
     "rows": {
       "outside": {
-        "task": "Exterior visualisation",
-        "traditional": "500–1'500 $ per render, delivery takes several days",
-        "typus": "200+ renders in the starter plan — pick the one you like"
+        "task": "External outsourcing",
+        "traditional": "€500–1,500 per rendering, delivery takes several days, long coordination rounds",
+        "typus": "25–30 images per month, up to 30x cheaper than conventional renderings"
       },
       "interior": {
-        "task": "Interior Rendering",
-        "traditional": "300–1'000 $ per render, lengthy revision rounds",
-        "typus": "Generate endless variations within minutes"
+        "task": "Internal processing by architects",
+        "traditional": "Time-consuming processes at the expense of core competencies in planning tasks, as well as the need for software licenses and hardware procurement",
+        "typus": "No software licenses, no hidden costs"
       },
       "facade": {
-        "task": "Swap the facade material",
-        "traditional": "Hours spent in rendering tools or Photoshop",
-        "typus": "Finished in just a few minutes"
+        "task": "Internal processing by interns",
+        "traditional": "Lack of expertise and experience, low-quality results, many coordination rounds required",
+        "typus": "Visualizers with many years of experience"
       },
       "redesign": {
-        "task": "Interior space redesign",
-        "traditional": "Hours spent in rendering tools or Photoshop",
-        "typus": "Finished in just a few minutes"
+        "task": "Internal processing by professional visualizers",
+        "traditional": "Associated with high fixed costs, idle time when there is no demand",
+        "typus": "Significantly cheaper than a full-time visualizer, high flexibility, subscription can be paused"
       },
       "variants": {
-        "task": "Present options to the client",
-        "traditional": "Days using conventional rendering",
-        "typus": "Minutes with typus — right inside the client meeting"
+        "task": "Presenting options to the client",
+        "traditional": "Takes days with conventional rendering",
+        "typus": "Available directly in initial client meetings, not only in final presentations"
       },
       "pitch": {
-        "task": "Project Pitch & Concept Board",
-        "traditional": "Generic mood boards — generic and forgettable",
-        "typus": "Custom concept board for your project — true to your idea"
+        "task": "Project pitch & concept board",
+        "traditional": "Generic inspiration boards – interchangeable and not distinctive",
+        "typus": "Tailored visualization for your project – exactly your idea"
       }
     }
   },
@@ -874,59 +874,49 @@
     },
     "rows": {
       "time": {
-        "label": "Time to first output",
-        "typus": "Minutes – AI delivers results right away",
-        "traditional": "Hours to days – manual rendering workflow"
+        "label": "Time to first result",
+        "typus": "24–48 hours",
+        "traditional": "Days to weeks – manual rendering workflow"
       },
       "cost": {
         "label": "Price per image",
-        "typus": "Affordable – Pay-per-Use, zero upfront cost",
-        "traditional": "Expensive – costly software licenses and hardware"
+        "typus": "Affordable – fixed monthly price",
+        "traditional": "Expensive – costly licenses and hardware"
       },
       "iterations": {
-        "label": "Revisions & Variants",
-        "typus": "Unlimited – explore concepts without delay",
-        "traditional": "Restricted – each tweak means another full render"
+        "label": "Revisions & variations",
+        "typus": "Unlimited – until you are satisfied",
+        "traditional": "Limited – each adjustment requires a new rendering run"
       },
       "learningCurve": {
-        "label": "Onboarding Effort",
-        "typus": "Low – simple interface, start right away",
-        "traditional": "High – advanced tools, months to master"
+        "label": "Onboarding effort",
+        "typus": "Immediate – simply send input material to the visualizer",
+        "traditional": "High – complex tools, months of training required"
       },
       "outputQuality": {
-        "label": "Result Quality",
-        "typus": "Studio-grade – fine-tuned for architecture",
-        "traditional": "Studio-grade – but needs deep technical skill"
+        "label": "Output quality",
+        "typus": "Studio-level – finely tuned for architecture",
+        "traditional": "Studio-level – but requires deep expertise"
       },
       "hardware": {
-        "label": "Hardware Needed",
-        "typus": "None – runs in the cloud on any browser",
-        "traditional": "Powerful GPU required – pricey dedicated machines"
+        "label": "Required hardware",
+        "typus": "None – we handle everything",
+        "traditional": "High-performance GPU required – expensive specialized systems"
       },
       "updates": {
-        "label": "AI Model Refresh",
-        "typus": "Automatic – newest models available within 24 hours",
-        "traditional": "Manual – frequent software updates & version juggling"
-      },
-      "setup": {
-        "label": "Getting Started",
-        "typus": "Instant – open your browser and begin",
-        "traditional": "Involved – install, configure, and add plugins"
+        "label": "AI model updates",
+        "typus": "Automatic – we use the most powerful models",
+        "traditional": "Manual – frequent software updates and version maintenance"
       },
       "control": {
-        "label": "Design Freedom",
-        "typus": "Total – AI-assisted, final call is yours",
-        "traditional": "Total – entirely hands-on control"
+        "label": "Creative control",
+        "typus": "Full – visualizers implement everything",
+        "traditional": "Full – purely manual control"
       },
       "scalability": {
         "label": "Scalability",
-        "typus": "Unlimited – ramp up output on demand",
-        "traditional": "Capped – restricted by hardware capacity"
-      },
-      "hybrid": {
-        "label": "Hybrid Workflow",
-        "typus": "Yes – blend AI seamlessly with existing methods",
-        "traditional": "No – limited to conventional tools only"
+        "typus": "Unlimited – multiple visualizers can be booked",
+        "traditional": "Limited – constrained by hardware capacity"
       }
     },
     "footer": "* Time and cost figures are approximate estimates based on common industry benchmarks. Actual results will vary by project scope and complexity."
