@@ -327,6 +327,20 @@
           "resolution13k": "RESOLUTION UP TO 13K"
         }
       }
+    },
+    "creditDeduction": {
+      "title": "Credit Deduction Overview",
+      "imageGeneration": "Image Generation",
+      "videoGeneration": "Video Generation",
+      "resolution1K": "1K Resolution",
+      "resolution2K": "2K Resolution",
+      "resolution4K": "4K Resolution",
+      "credit1": "1 credit",
+      "credits3": "3 credits",
+      "credits5": "5 credits",
+      "credits25": "25 credits",
+      "credits50": "50 credits",
+      "credits75": "75 credits"
     }
   },
   "SubscriptionModal": {

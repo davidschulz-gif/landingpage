@@ -892,6 +892,114 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           )}
         </div>
 
+        {/* Credit Deduction Overview & Status */}
+        <div className='w-full max-w-xl mx-auto mt-4 mb-8 z-20 relative'>
+          <div className='border border-black/10 bg-white'>
+            <div className='border-b border-black/10 px-3 py-2'>
+              <h3
+                className='text-[11px] font-bold text-black lowercase tracking-wider text-center'
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                {t('creditDeduction.title')}
+              </h3>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black/10'>
+              {/* Image Credits */}
+              <div className='px-4 py-3'>
+                <div className='flex items-center gap-1.5 mb-2'>
+                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
+                    <rect x='3' y='3' width='18' height='18' rx='2' strokeLinecap='round' strokeLinejoin='round' />
+                    <circle cx='8.5' cy='8.5' r='1.5' />
+                    <polyline points='21 15 16 10 5 21' strokeLinecap='round' strokeLinejoin='round' />
+                  </svg>
+                  <h4
+                    className='text-[10px] font-bold tracking-wide text-black'
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('creditDeduction.imageGeneration')}
+                  </h4>
+                </div>
+                <div className='space-y-0.5'>
+                  {[
+                    { label: t('creditDeduction.resolution1K'), credits: t('creditDeduction.credit1') },
+                    { label: t('creditDeduction.resolution2K'), credits: t('creditDeduction.credits3') },
+                    { label: t('creditDeduction.resolution4K'), credits: t('creditDeduction.credits5') },
+                  ].map(({ label, credits }) => (
+                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
+                      <span
+                        className='text-[9px] font-medium text-gray-500'
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {credits}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Video Credits */}
+              <div className='px-4 py-3'>
+                <div className='flex items-center gap-1.5 mb-2'>
+                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
+                    <polygon points='23 7 16 12 23 17 23 7' strokeLinecap='round' strokeLinejoin='round' />
+                    <rect x='1' y='5' width='15' height='14' rx='2' strokeLinecap='round' strokeLinejoin='round' />
+                  </svg>
+                  <h4
+                    className='text-[10px] font-bold tracking-wide text-black'
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('creditDeduction.videoGeneration')}
+                  </h4>
+                </div>
+                <div className='space-y-0.5'>
+                  {[
+                    { label: '4s / 5s', credits: t('creditDeduction.credits25') },
+                    { label: '8s / 10s', credits: t('creditDeduction.credits50') },
+                    { label: '12s', credits: t('creditDeduction.credits75') },
+                  ].map(({ label, credits }) => (
+                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
+                      <span
+                        className='text-[9px] font-medium text-gray-500'
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {credits}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='flex flex-wrap justify-center items-center gap-4 mt-2.5 text-gray-400'>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Safe & Secure Checkout</span>
+            </div>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Cancel Anytime</span>
+            </div>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>No Setup Fee</span>
+            </div>
+          </div>
+        </div>
+
         <TestimonialsSection />
 
         {/* Education Section */}
@@ -1012,115 +1120,6 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           ))}
         </div>
 
-        {/* Credit Deduction Overview */}
-        <div className='w-full mt-16 mb-4 border border-black/10 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,0.07)]'>
-          <div className='border-b border-black px-8 py-5'>
-            <h3
-              className='text-lg font-bold text-black uppercase tracking-widest text-center'
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-            >
-              Credit Deduction Overview
-            </h3>
-          </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black/10'>
-            {/* Image Credits */}
-            <div className='px-8 py-7'>
-              <div className='flex items-center gap-2 mb-5'>
-                <svg className='w-5 h-5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
-                  <rect x='3' y='3' width='18' height='18' rx='2' strokeLinecap='round' strokeLinejoin='round' />
-                  <circle cx='8.5' cy='8.5' r='1.5' />
-                  <polyline points='21 15 16 10 5 21' strokeLinecap='round' strokeLinejoin='round' />
-                </svg>
-                <h4
-                  className='text-sm font-bold uppercase tracking-widest text-black'
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  Image Generation
-                </h4>
-              </div>
-              <div className='space-y-3'>
-                {[
-                  { label: '1K Resolution', credits: '1 credit' },
-                  { label: '2K Resolution', credits: '3 credits' },
-                  { label: '4K Resolution', credits: '5 credits' },
-                ].map(({ label, credits }) => (
-                  <div key={label} className='flex items-center justify-between py-2.5 border-b border-black/5 last:border-0'>
-                    <span
-                      className='text-sm font-medium text-gray-700'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className='text-sm font-bold text-black bg-black/5 px-3 py-1'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {credits}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Video Credits */}
-            <div className='px-8 py-7'>
-              <div className='flex items-center gap-2 mb-5'>
-                <svg className='w-5 h-5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
-                  <polygon points='23 7 16 12 23 17 23 7' strokeLinecap='round' strokeLinejoin='round' />
-                  <rect x='1' y='5' width='15' height='14' rx='2' strokeLinecap='round' strokeLinejoin='round' />
-                </svg>
-                <h4
-                  className='text-sm font-bold uppercase tracking-widest text-black'
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  Video Generation
-                </h4>
-              </div>
-              <div className='space-y-3'>
-                {[
-                  { label: '4s / 5s', credits: '25 credits' },
-                  { label: '8s / 10s', credits: '50 credits' },
-                  { label: '12s', credits: '75 credits' },
-                ].map(({ label, credits }) => (
-                  <div key={label} className='flex items-center justify-between py-2.5 border-b border-black/5 last:border-0'>
-                    <span
-                      className='text-sm font-medium text-gray-700'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      className='text-sm font-bold text-black bg-black/5 px-3 py-1'
-                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                    >
-                      {credits}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Status Indicators */}
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12'>
-        <div className='flex flex-wrap justify-center items-center gap-6 text-gray-400'>
-          <div className='flex items-center gap-2'>
-            <Check className='w-4 h-4 text-emerald-500' />
-            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>Safe & Secure Checkout</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <Check className='w-4 h-4 text-emerald-500' />
-            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>Cancel Anytime</span>
-          </div>
-          <div className='flex items-center gap-2'>
-            <Check className='w-4 h-4 text-emerald-500' />
-            <span className='text-sm uppercase tracking-wider font-medium' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>No Setup Fee</span>
-          </div>
-        </div>
       </div>
 
       {/* Subscription Modal */}
