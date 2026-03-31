@@ -76,6 +76,7 @@ function ThankYouContent() {
           event: 'purchase',
           ecommerce: {
             transaction_id: user?.id,
+            email: user?.email,
             value: user?.amount,
             currency: user?.currency?.toUpperCase() || 'EUR',
             items: [user?.item]
