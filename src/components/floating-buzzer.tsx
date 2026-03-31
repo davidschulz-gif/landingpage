@@ -48,14 +48,28 @@ export function FloatingBuzzer() {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className='fixed bottom-10 left-1/2 -translate-x-1/2 z-[999] w-full max-w-fit px-4 flex justify-center'
         >
-          <button
-            onClick={scrollToBooking}
-            className='z-[9999] rounded-xl px-12 py-6 border-0 hover:shadow-2xl transition-all duration-300 ease-out font-black text-xl uppercase tracking-widest flex items-center gap-4 group bg-white/60 shadow-lg backdrop-blur-md text-black cursor-pointer'
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, -3, 3, -3, 3, 0],
+            }}
+            transition={{
+              duration: 0.4,
+              repeat: Infinity,
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
+            className="z-[999] rounded-xl"
           >
-            <span style={{fontFamily:'sans-serif'}} className='relative'>
-              {t('text')}
-            </span>
-          </button>
+            <button
+              onClick={scrollToBooking}
+              className='z-[9999] rounded-xl px-12 py-6 border-0 hover:shadow-2xl transition-all duration-300 ease-out font-black text-xl uppercase tracking-widest flex items-center gap-4 group bg-white/60 shadow-lg backdrop-blur-md text-black cursor-pointer animate-pulse-glow'
+            >
+              <span style={{ fontFamily: 'sans-serif' }} className='relative'>
+                {t('text')}
+              </span>
+            </button>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

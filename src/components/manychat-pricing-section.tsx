@@ -1298,13 +1298,27 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       {/* First Buyer Kick Off Button */}
       {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && !profPromoDiscount && (
         <div className='fixed bottom-10 left-0 right-0 z-[100] flex justify-center'>
-          <Button
-            onClick={() => setShowKickOffModal(true)}
-            className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl'
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, -3, 3, -3, 3, 0],
+            }}
+            transition={{
+              duration: 0.4,
+              repeat: Infinity,
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
+            className="rounded-2xl"
           >
-            First Buyer Kick Off
-          </Button>
+            <Button
+              onClick={() => setShowKickOffModal(true)}
+              className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl animate-pulse-glow relative'
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              First Buyer Kick Off
+            </Button>
+          </motion.div>
         </div>
       )}
 
