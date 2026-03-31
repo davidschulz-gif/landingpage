@@ -30,8 +30,10 @@ function ThankYouContent() {
         setUser({
           name: s?.customer_details?.name,
           email: s?.customer_details?.email,
+          phone: s?.customer_details?.phone,
+          address: s?.customer_details?.address,
           payment_status: s?.payment_status,
-          id: sessionId, // session id is often the transaction id
+          id: sessionId,
           transaction_id: sessionId,
           amount: (s?.item?.price || 0) / 100,
           currency: s?.item?.currency?.toUpperCase(),
@@ -60,30 +62,58 @@ function ThankYouContent() {
       }
 
 
+      const customerName = user?.name || "";
+      const firstName = customerName.split(" ").shift() || "";
+      const lastName = customerName.split(" ").length > 1 ? customerName.split(" ").pop() : "";
 
       //  setUser({name:session?.user?.name,email:session?.user?.email,id:session?.user?.id,transaction_id:session?.id,amount:session?.amount_total/100,currency:session?.currency?.toUpperCase(),plan:session?.user?.plan})
       console.log("GTM PAYLOAD", {
+        event: 'purchase',
+        user_data: {
+          email: user?.email,
+          phone_number: user?.phone,
+          first_name: firstName,
+          last_name: lastName,
+          address: {
+            city: user?.address?.city,
+            postal_code: user?.address?.postal_code,
+            country: user?.address?.country,
+            street: user?.address?.line1
+          }
+        },
         ecommerce: {
           transaction_id: user?.id,
           value: user?.amount,
           currency: user?.currency?.toUpperCase() || 'EUR',
           items: [user?.item]
-        }
-      },)
-      // ✅ Direct GTM push (your preferred method)
+        },
+      })
+      // ✅ Direct GTM push with Advanced Matching data
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
+
         (window as any).dataLayer.push({
           event: 'purchase',
+          user_data: {
+            email: user?.email,
+            phone_number: user?.phone,
+            first_name: firstName,
+            last_name: lastName,
+            address: {
+              city: user?.address?.city,
+              postal_code: user?.address?.postal_code,
+              country: user?.address?.country,
+              street: user?.address?.line1
+            }
+          },
           ecommerce: {
             transaction_id: user?.id,
-            email: user?.email,
             value: user?.amount,
             currency: user?.currency?.toUpperCase() || 'EUR',
             items: [user?.item]
           },
         });
 
-        console.log('✅ GTM Purchase Event Pushed');
+        console.log('✅ GTM Purchase Event Pushed with User Data');
       } else {
         console.warn('❌ dataLayer not found');
       }
