@@ -235,6 +235,7 @@
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 50%",
     "mostPopular": "Am beliebtesten",
     "bestResults": "High-End Ergebnisse",
+    "bestOffer": "BESTES ANGEBOT",
     "bestResultsForDFY": "Schneller Rücklauf",
     "subscribe": "Abonnieren",
     "plusVat": "Zuzüglich 19% MwSt",
@@ -278,9 +279,11 @@
         "name": "PRO ONE",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
-          "resolution4k": "4K AUFLÖSUNG (4 GLEICHZEITIGE JOBS)",
+          "credits1000": "1000 CREDITS /Monat (200-1000 Bilder (siehe Übersicht zum Kreditabzug unten))",
+          "resolution4k": "4K AUFLÖSUNG",
+          "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
+          "highEndResults": "HIGH-END ERGEBNISSE",
           "upscale13k": "HOCHSKALIERUNG BIS ZU 13K",
           "onboardingCall": "ONBOARDING-VIDEO-ANRUF"
         }

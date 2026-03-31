@@ -43,12 +43,11 @@ const professionalPlans = [
     id: 'pro',
     name: 'PRO',
     monthlyPrice: { eur: '€99', usd: '$117' },
-    sixMonthPrice: { eur: '€354', usd: '$418' },
+    sixMonthPrice: { eur: '€294', usd: '$337' },
     yearlyPrice: { eur: '€468', usd: '$668' },
-    sixMonthMonthlyPrice: { eur: '€59', usd: '$70' },
+    sixMonthMonthlyPrice: { eur: '€49', usd: '$56' },
     yearlyMonthlyPrice: { eur: '€39', usd: '$46' },
     planType: 'PRO',
-    popular: true,
     // Discount display: original (crossed out), discounted (green), badges, intro price
     discount: {
       monthly: {
@@ -56,13 +55,13 @@ const professionalPlans = [
         introPeriodKey: 'billedMonthly',
       },
       sixMonthly: {
-        discountedMonthly: { eur: '€59', usd: '$70' },
-        periodDiscountPercent: 40,
-        periodSaveAmount: { eur: '€240', usd: '$285' },
+        discountedMonthly: { eur: '€49', usd: '$56' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€300', usd: '$365' },
         originalCycle: { eur: '€594', usd: '$702' },
-        discountPercent: 40,
-        saveAmountCycle: { eur: '€240', usd: '$285' },
-        introFirstPeriod: { eur: '€354', usd: '$418' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€300', usd: '$365' },
+        introFirstPeriod: { eur: '€294', usd: '$337' },
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
@@ -82,10 +81,11 @@ const professionalPlans = [
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
         hasFeature: true,
       },
-      { text: '4K RESOLUTION (4 CONCURRENT JOB)', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
+      { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 13K', hasFeature: true },
-      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
     ],
   },
 ]
@@ -551,7 +551,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -560,7 +560,6 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           ...baseProPlan,
           name: t('plans.proSemi.name'), // PRO SEMI
           billingCycle: 'sixMonthly' as const,
-          popular: true,
           fetchedData: fetchedPlan,
           features: baseProPlan.features.map(f => ({
             ...f,
@@ -568,7 +567,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -585,7 +584,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') && f.text.includes('4 CONCURRENT') ? 'resolution4k' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('13K') ? 'upscale13k' : 'onboardingCall'}`
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -1386,6 +1385,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
 type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
   fetchedData?: any
+  popular?: boolean
 }
 
 interface PricingCardProps {
@@ -1493,8 +1493,10 @@ function PricingCard({
 
           const d = discountData
           if (d && 'originalCycle' in d) {
-            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
-            billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`
+            if (!fetchedData) {
+              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+              billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`
+            }
             discount = {
               originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
               discountPercent: d.discountPercent,
@@ -1522,8 +1524,10 @@ function PricingCard({
 
           const d = discountData
           if (d && 'bestDeal' in d) {
-            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
-            billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`
+            if (!fetchedData) {
+              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+              billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`
+            }
             discount = {
               originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
               discountPercent: d.discountPercent,
@@ -1679,7 +1683,7 @@ function PricingCard({
                 className='text-[10px] font-bold uppercase tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
-                {t('bestResults')}
+                {t('bestOffer')}
               </span>
             </div>
             {/* Shadow under ribbon */}
