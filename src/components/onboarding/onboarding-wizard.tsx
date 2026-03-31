@@ -54,6 +54,14 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
             }
         }
 
+        if (currentStep === 2) {
+            if (!formData.streetAndNumber.trim() || !formData.city.trim() || !formData.postcode.trim() || !formData.country.trim()) {
+                setShowErrors(true)
+                toast.error((t as any).addressRequired || 'Address fields are required')
+                return
+            }
+        }
+
         if (currentStep >= 3 && currentStep <= 6) {
             const name = currentStep === 3 ? 'companySize' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
             if (!(formData as any)[name]) {
@@ -153,37 +161,49 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                         <h2 className="text-lg font-semibold text-gray-900 mb-6">{t.provideAddress}</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="md:col-span-2 space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.streetAndNumber}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.streetAndNumber} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="streetAndNumber"
                                     value={formData.streetAndNumber}
                                     onChange={handleInputChange}
                                     placeholder={t.streetAndNumberPlaceholder}
-                                    className="w-full p-3 border border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none"
+                                    className={cn("w-full p-3 border rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none",
+                                        showErrors && !formData.streetAndNumber.trim() ? "border-red-500" : "border-gray-300")}
                                 />
+                                {showErrors && !formData.streetAndNumber.trim() && (
+                                    <p className="text-red-500 text-xs mt-1">{(t as any).requiredField || 'Required'}</p>
+                                )}
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.city}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.city} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="city"
                                     value={formData.city}
                                     onChange={handleInputChange}
                                     placeholder={t.cityPlaceholder}
-                                    className="w-full p-3 border border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none"
+                                    className={cn("w-full p-3 border rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none",
+                                        showErrors && !formData.city.trim() ? "border-red-500" : "border-gray-300")}
                                 />
+                                {showErrors && !formData.city.trim() && (
+                                    <p className="text-red-500 text-xs mt-1">{(t as any).requiredField || 'Required'}</p>
+                                )}
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.postcode}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.postcode} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="postcode"
                                     value={formData.postcode}
                                     onChange={handleInputChange}
                                     placeholder={t.postcodePlaceholder}
-                                    className="w-full p-3 border border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none"
+                                    className={cn("w-full p-3 border rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none",
+                                        showErrors && !formData.postcode.trim() ? "border-red-500" : "border-gray-300")}
                                 />
+                                {showErrors && !formData.postcode.trim() && (
+                                    <p className="text-red-500 text-xs mt-1">{(t as any).requiredField || 'Required'}</p>
+                                )}
                             </div>
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">{t.stateProvince}</label>
@@ -197,15 +217,19 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.country}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">{t.country} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="country"
                                     value={formData.country}
                                     onChange={handleInputChange}
                                     placeholder={t.countryPlaceholder}
-                                    className="w-full p-3 border border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none"
+                                    className={cn("w-full p-3 border rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none",
+                                        showErrors && !formData.country.trim() ? "border-red-500" : "border-gray-300")}
                                 />
+                                {showErrors && !formData.country.trim() && (
+                                    <p className="text-red-500 text-xs mt-1">{(t as any).requiredField || 'Required'}</p>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -356,10 +380,8 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         }
     }
 
-    const isStep2Filled = formData.streetAndNumber.trim() || formData.city.trim() || formData.postcode.trim() || formData.state.trim() || formData.country.trim()
     const isStep7Filled = !!formData.phoneNumber
-
-    const isSkippable = (currentStep === 2 && !isStep2Filled) || (currentStep === 7 && !isStep7Filled)
+    const isSkippable = (currentStep === 7 && !isStep7Filled)
 
     return (
         <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfd] p-4 overflow-y-auto">

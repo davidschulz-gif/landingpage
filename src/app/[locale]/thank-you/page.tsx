@@ -37,6 +37,7 @@ function ThankYouContent() {
           transaction_id: sessionId,
           amount: (s?.item?.price || 0) / 100,
           currency: s?.item?.currency?.toUpperCase(),
+          onboardingData: s?.onboardingData,
           item: {
             item_name: s?.item?.name,
             item_id: s?.item?.product_id,
@@ -70,16 +71,13 @@ function ThankYouContent() {
       console.log("GTM PAYLOAD", {
         event: 'purchase',
         user_data: {
+          first_name: user?.onboardingData?.firstName,
+          last_name: user?.onboardingData?.lastName,
           email: user?.email,
-          phone_number: user?.phone,
-          first_name: firstName,
-          last_name: lastName,
-          address: {
-            city: user?.address?.city,
-            postal_code: user?.address?.postal_code,
-            country: user?.address?.country,
-            street: user?.address?.line1
-          }
+          phone: user?.onboardingData?.phone,
+          city: user?.onboardingData?.city,
+          country: user?.onboardingData?.country,
+          postal_code: user?.onboardingData?.postalCode
         },
         ecommerce: {
           transaction_id: user?.id,
@@ -94,16 +92,13 @@ function ThankYouContent() {
         (window as any).dataLayer.push({
           event: 'purchase',
           user_data: {
+            first_name: user?.onboardingData?.firstName,
+            last_name: user?.onboardingData?.lastName,
             email: user?.email,
-            phone_number: user?.phone,
-            first_name: firstName,
-            last_name: lastName,
-            address: {
-              city: user?.address?.city,
-              postal_code: user?.address?.postal_code,
-              country: user?.address?.country,
-              street: user?.address?.line1
-            }
+            phone: user?.onboardingData?.phone,
+            city: user?.onboardingData?.city,
+            country: user?.onboardingData?.country,
+            postal_code: user?.onboardingData?.postalCode
           },
           ecommerce: {
             transaction_id: user?.id,
