@@ -1750,7 +1750,7 @@ function PricingCard({
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {t('plusVat')}
             </div>
-            {isProfessional && !promoDiscount && (
+            {isProfessional && !promoDiscount && plan.billingCycle !== 'monthly' && plan.planType !== 'EXPLORER' && (
               <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
