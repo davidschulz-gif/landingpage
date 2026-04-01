@@ -1702,7 +1702,7 @@ function PricingCard({
               <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
               {/* Text */}
               <span
-                className='text-[10px] font-bold uppercase tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
+                className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {t('bestOffer')}

@@ -235,7 +235,7 @@
     "switchToYearly": "Switch to Yearly to save 50%",
     "mostPopular": "Most Popular",
     "bestResults": "High-End Results",
-    "bestOffer": "BEST OFFER",
+    "bestOffer": "high end results",
     "bestResultsForDFY": "Fast Return",
     "subscribe": "Subscribe",
     "plusVat": "Plus 19% VAT",
@@ -300,7 +300,7 @@
       "student": {
         "name": "STARTER",
         "features": {
-          "credits50": "50 CREDITS /month (e.g. 30 base images and 10 Refinements)",
+          "credits50": "50 CREDITS /month (10-50 images (see credit deduction overview below))",
           "optCreditsTopUps": "OPT. CREDITS TOP UPS",
           "unlimitedJobs": "UNLIMITED CONCURRENT JOBS",
           "integratedRefiner": "INTEGRATED REFINER",
@@ -313,7 +313,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "EVERYTHING FROM STARTER",
-          "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
+          "credits150": "150 CREDITS /month (30-150 images (see credit deduction overview below))",
           "concurrentJobs2": "2 CONCURRENT JOBS",
           "resolution4k": "RESOLUTION UP TO 4K",
           "noQueue": "NO QUEUE"
@@ -323,7 +323,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits1000": "1000 CREDITS /month (e.g. 800 base images and 40 Refinements)",
+          "credits1000": "1000 CREDITS /month (200-1000 images (see credit deduction overview below))",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",

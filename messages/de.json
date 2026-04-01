@@ -235,7 +235,7 @@
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 50%",
     "mostPopular": "Am beliebtesten",
     "bestResults": "High-End Ergebnisse",
-    "bestOffer": "BESTES ANGEBOT",
+    "bestOffer": "high end results",
     "bestResultsForDFY": "Schneller Rücklauf",
     "subscribe": "Abonnieren",
     "plusVat": "Zuzüglich 19% MwSt",
@@ -300,7 +300,7 @@
       "student": {
         "name": "STARTER",
         "features": {
-          "credits50": "50 CREDITS /Monat (z.B. 30 Basisbilder und 10 Verfeinerungen)",
+          "credits50": "50 CREDITS /Monat (10-50 Bilder (siehe Übersicht zum Kreditabzug unten))",
           "optCreditsTopUps": "OPT. CREDIT-AUFLADUNGEN",
           "unlimitedJobs": "UNBEGRENZTE GLEICHZEITIGE JOBS",
           "integratedRefiner": "INTEGRIERTER REFINER",
@@ -313,7 +313,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "ALLES VOM STARTER",
-          "credits150": "150 CREDITS /Monat (z.B. 100 Basisbilder und 10 Verfeinerungen)",
+          "credits150": "150 CREDITS /Monat (30-150 Bilder (siehe Übersicht zum Kreditabzug unten))",
           "concurrentJobs2": "2 GLEICHZEITIGE JOBS",
           "resolution4k": "AUFLÖSUNG BIS ZU 4K",
           "noQueue": "KEINE WARTESCHLANGE"
@@ -323,7 +323,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS /Monat (z.B. 800 Basisbilder und 40 Verfeinerungen)",
+          "credits1000": "1000 CREDITS /Monat (200-1000 Bilder (siehe Übersicht zum Kreditabzug unten))",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
