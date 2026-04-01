@@ -65,13 +65,13 @@ const professionalPlans = [
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
-        discountedMonthly: { eur: '€39', usd: '$46' },
-        periodDiscountPercent: 61,
-        periodSaveAmount: { eur: '€720', usd: '$853' },
+        discountedMonthly: { eur: '€29', usd: '$35' },
+        periodDiscountPercent: 70,
+        periodSaveAmount: { eur: '€840', usd: '$983' },
         originalCycle: { eur: '€1188', usd: '$1404' },
-        discountPercent: 61,
-        saveAmountCycle: { eur: '€720', usd: '$853' },
-        introFirstPeriod: { eur: '€468', usd: '$668' },
+        discountPercent: 70,
+        saveAmountCycle: { eur: '€840', usd: '$983' },
+        introFirstPeriod: { eur: '€348', usd: '$421' },
         introPeriodKey: 'billedYearly',
         bestDeal: true,
       },
@@ -1304,9 +1304,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               rotate: [0, -3, 3, -3, 3, 0],
             }}
             transition={{
-              duration: 0.4,
+              duration: 2,
               repeat: Infinity,
-              repeatDelay: 2,
+              repeatDelay: 10,
               ease: "easeInOut"
             }}
             className="rounded-2xl"
@@ -1585,6 +1585,14 @@ function PricingCard({
           }
           stripePriceId = fetchedData.stripePrices?.YEARLY || ''
         }
+
+        // Add discount object for yearly plans so we get green colors and badge
+        const discount = {
+          periodDiscountPercent: 75,
+          periodSaveAmount: formatPrice(eduPlan.save, isEurope),
+        }
+
+        return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId, discount }
       } else {
         mainPrice = formatPrice(eduPlan.monthlyPrice, isEurope)
         billingInfo = t('billedMonthly')
@@ -1717,7 +1725,7 @@ function PricingCard({
 
         {/* Discount badge above price - period discount for 6-mo/yearly */}
         {priceInfo.discount?.periodDiscountPercent != null && (
-          <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+          <div className='bg-emerald-600 text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
         )}

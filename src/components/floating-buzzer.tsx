@@ -54,9 +54,9 @@ export function FloatingBuzzer() {
               rotate: [0, -3, 3, -3, 3, 0],
             }}
             transition={{
-              duration: 0.4,
+              duration: 2,
               repeat: Infinity,
-              repeatDelay: 2,
+              repeatDelay: 10,
               ease: "easeInOut"
             }}
             className="z-[999] rounded-xl"
