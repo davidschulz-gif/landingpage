@@ -22,7 +22,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
     const t = getOnboardingTranslations(locale)
     const [currentStep, setCurrentStep] = useState(1)
     const [showErrors, setShowErrors] = useState(false)
-    const totalSteps = 7
+    const totalSteps = 8
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -37,6 +37,8 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         status: '',
         moneySpentForOneImage: '',
         timeOnRenderings: '',
+        howDidYouHear: '',
+        howDidYouHearOther: '',
         phoneNumber: '',
         whatsappConsent: false,
         privacyTermsConsent: false,
@@ -62,9 +64,13 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
             }
         }
 
-        if (currentStep >= 3 && currentStep <= 6) {
-            const name = currentStep === 3 ? 'companySize' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : 'timeOnRenderings'))
+        if (currentStep >= 3 && currentStep <= 7) {
+            const name = currentStep === 3 ? 'companySize' : (currentStep === 4 ? 'status' : (currentStep === 5 ? 'moneySpentForOneImage' : (currentStep === 6 ? 'timeOnRenderings' : 'howDidYouHear')))
             if (!(formData as any)[name]) {
+                toast.error((t as any).requiredField || 'Required')
+                return
+            }
+            if (name === 'howDidYouHear' && formData.howDidYouHear === 'Other' && !formData.howDidYouHearOther.trim()) {
                 toast.error((t as any).requiredField || 'Required')
                 return
             }
@@ -75,7 +81,11 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         if (currentStep < totalSteps) {
             setCurrentStep(prev => prev + 1)
         } else {
-            onComplete(formData)
+            const finalData = { ...formData }
+            if (formData.howDidYouHear === 'Other') {
+                finalData.howDidYouHear = `Other: ${formData.howDidYouHearOther.trim()}`
+            }
+            onComplete(finalData)
         }
     }
 
@@ -280,6 +290,58 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                     </div>
                 )
             case 7:
+                const hearOptions = (t as any).howDidYouHearOptions
+                return (
+                    <div className="relative w-full mb-8">
+                        <h2 className="text-lg font-semibold text-gray-900 mb-6">{(t as any).howDidYouHearQuestion}</h2>
+                        <div className="relative w-full space-y-3">
+                            {hearOptions.map((opt: any) => (
+                                <div key={opt.value}>
+                                    <label
+                                        className={cn(
+                                            "flex items-center p-3 cursor-pointer group/sub relative w-full text-left transition-all duration-200 ease-out rounded-none overflow-hidden",
+                                            formData.howDidYouHear === opt.value
+                                                ? "text-black shadow-sm bg-white border border-gray-200"
+                                                : "text-gray-600 hover:bg-gray-50 hover:text-gray-800 border border-transparent"
+                                        )}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="howDidYouHear"
+                                            value={opt.value}
+                                            className="sr-only"
+                                            onChange={() => handleOptionSelect('howDidYouHear', opt.value)}
+                                        />
+                                        <div className="w-4 h-4 rounded-none flex items-center justify-center bg-gray-100 group-hover/sub:bg-gray-200 transition-colors duration-200 mr-3">
+                                            <div
+                                                className={cn(
+                                                    "w-1.5 h-1.5 rounded-none transition-all duration-200",
+                                                    formData.howDidYouHear === opt.value
+                                                        ? 'bg-black shadow-sm animate-pulse'
+                                                        : 'bg-gray-300 group-hover/sub:bg-gray-400'
+                                                )}
+                                            />
+                                        </div>
+                                        <span className="text-sm font-medium">{opt.label}</span>
+                                    </label>
+                                    {opt.value === 'Other' && formData.howDidYouHear === 'Other' && (
+                                        <div className="mt-2 ml-7">
+                                            <input
+                                                type="text"
+                                                placeholder={locale === 'de' ? "Bitte geben Sie an..." : "Please specify..."}
+                                                value={formData.howDidYouHearOther}
+                                                onChange={(e) => setFormData(prev => ({ ...prev, howDidYouHearOther: e.target.value }))}
+                                                className="w-full p-2 border border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 transition-all text-sm outline-none"
+                                                autoFocus
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )
+            case 8:
                 return (
                     <div className="relative w-full mb-8 overflow-y-auto max-h-[50vh] pr-2 custom-scrollbar">
                         <style>{`
@@ -324,7 +386,6 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                                     {t.whatsappInfo}
                                 </p>
                             </div>
-
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">{t.whatsappNumberOptional}</label>
                                 <PhoneInput
@@ -380,8 +441,8 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         }
     }
 
-    const isStep7Filled = !!formData.phoneNumber
-    const isSkippable = (currentStep === 7 && !isStep7Filled)
+    const isStep8Filled = !!formData.phoneNumber
+    const isSkippable = (currentStep === 8 && !isStep8Filled)
 
     return (
         <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfd] p-4 overflow-y-auto">

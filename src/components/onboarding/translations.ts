@@ -79,6 +79,14 @@ export const onboardingTranslations = {
             { label: "2 days", value: "2 days" },
             { label: "more than 2 days", value: "more than 2 days" },
         ],
+        howDidYouHearQuestion: "Where did you first hear about us?",
+        howDidYouHearOptions: [
+            { label: "Instagram", value: "Instagram" },
+            { label: "Google Search", value: "Google Search" },
+            { label: "LinkedIn", value: "LinkedIn" },
+            { label: "Email", value: "Email" },
+            { label: "Other - please specify", value: "Other" },
+        ],
     },
     de: {
         back: "Zurück",
@@ -159,6 +167,14 @@ export const onboardingTranslations = {
             { label: "Ein paar Stunden", value: "A few hours" },
             { label: "2 Tage", value: "2 days" },
             { label: "mehr als 2 Tage", value: "more than 2 days" },
+        ],
+        howDidYouHearQuestion: "Wie haben Sie von uns erfahren?",
+        howDidYouHearOptions: [
+            { label: "Instagram", value: "Instagram" },
+            { label: "Google Search", value: "Google Search" },
+            { label: "LinkedIn", value: "LinkedIn" },
+            { label: "Email", value: "Email" },
+            { label: "Andere - bitte angeben", value: "Other" },
         ],
     },
 };
