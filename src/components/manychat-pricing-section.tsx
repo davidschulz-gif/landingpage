@@ -452,6 +452,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               email: userEmail.trim(),
               marketingConsent,
               privacyConsent,
+              language: locale,
               ...onboardingData
             }),
           })
