@@ -354,7 +354,7 @@
     "description": "Wir verwenden diese E-Mail, um Ihr Konto zu erstellen und Ihr Abonnement zu verwalten.",
     "errorInvalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     "errorRequired": "E-Mail ist erforderlich.",
-    "errorNotStudentEmail": "Bildungspläne sind nur für verifizierte studentische E-Mail-Adressen verfügbar (z. B. .edu, .ac.uk).",
+    "errorNotStudentEmail": "Studentenstatus ist erforderlich, um Studentenpläne nutzen zu können. Sie müssen sich mit einer gültigen geschäftlichen E-Mail-Adresse anmelden. Wir behalten uns das Recht vor, Ihren Status zu überprüfen und Ihren Plan ohne vorherige Ankündigung zu kündigen, falls dieses Angebot missbraucht wird.",
     "canceled": "Der Abonnementvorgang wurde abgebrochen.",
     "promoCode": "Gutscheincode",
     "apply": "Anwenden",

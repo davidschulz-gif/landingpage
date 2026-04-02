@@ -354,7 +354,7 @@
     "description": "We'll use this email to create your account and manage your subscription.",
     "errorInvalidEmail": "Please enter a valid email address.",
     "errorRequired": "Email is required.",
-    "errorNotStudentEmail": "Educational plans are only available for verified student email addresses (e.g., .edu, .ac.uk).",
+    "errorNotStudentEmail": "Student status is required to use student plans. You must subscribe using a valid educational email address. We reserve the right to verify your status and cancel your plan without notice if this offer is misused.",
     "canceled": "Subscription process was canceled.",
     "promoCode": "Promo Code",
     "apply": "Apply",
