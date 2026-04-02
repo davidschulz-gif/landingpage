@@ -6,6 +6,7 @@ import { setRequestLocale } from 'next-intl/server'
 
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
+import BeforeYouGoPopup from '@/components/before-you-go-popup'
 import './globals.css'
 
 
@@ -179,7 +180,12 @@ export default async function RootLayout({
         />
         {/* End Google Tag Manager */}
       </head>
-      <body className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'>
+      <body 
+        className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'
+        /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
+           inject attributes that cause Next.js hydration mismatches. */
+        suppressHydrationWarning
+      >
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -196,7 +202,10 @@ export default async function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            {children}
+            <BeforeYouGoPopup />
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
       <script id="vtag-ai-js" async src="https://r2.leadsy.ai/tag.js" data-pid="91T92U78hCpk9Nyg" data-version="062024"></script>

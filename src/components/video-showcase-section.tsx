@@ -163,7 +163,7 @@ export const VideoShowcaseSection = () => {
               <video
                 className='w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover '
                 src='/videos/INTRO_typus_newlogo.webm'
-                poster='/video-poster.jpg'
+                poster='/modern-villa-render.png'
                 autoPlay
                 muted
                 loop

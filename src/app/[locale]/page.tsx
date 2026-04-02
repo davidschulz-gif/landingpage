@@ -163,12 +163,6 @@ const FeaturesSection = dynamic(
   }
 )
 
-const BeforeYouGoPopup = dynamic(
-  () => import('@/components/before-you-go-popup').then(mod => mod.default),
-  {
-    ssr: false,
-  }
-)
 
 const DoneForYouCombinedSection = dynamic(
   () => import('@/components/done-for-you-combined-section').then(mod => mod.DoneForYouCombinedSection),
@@ -631,8 +625,6 @@ export default function Home() {
       {/* Main Content - Always Rendered */}
       <MainContent />
 
-      {/* Before You Go Popup */}
-      <BeforeYouGoPopup />
 
       {/* Splash Screen Overlay */}
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}

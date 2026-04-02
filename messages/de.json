@@ -474,7 +474,13 @@
     }
   },
   "BeforeYouGo": {
-    "title": "Bevor Sie gehen, treten Sie unserer Liste bei und erhalten Sie 70€ Rabatt auf Ihr erstes Abonnement."
+    "badge": "LIMITIERTES ANGEBOT",
+    "title": "Bevor du gehst: Hast du schon das fantastische Angebot für PRO Complete gesehen?",
+    "body": "Zahle, was du normalerweise in 3 Monaten ausgibst, und erhalte 12 volle Monate Zugang. Dieses Angebot ist zeitlich begrenzt, und der Preis wird schrittweise steigen – das bedeutet, er wird nicht wieder so niedrig sein wie jetzt.",
+    "cta": "PRO Complete Angebot ansehen",
+    "dismiss": "Nein, ich zahle lieber später mehr",
+    "paidLabel": "Monate gezahlt",
+    "accessLabel": "Monate Zugriff"
   },
   "FloatingBuzzer": {
     "text": "Kostenlose Demo und Erstgespräch anfragen"

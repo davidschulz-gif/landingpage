@@ -104,7 +104,8 @@ export function TabVideoShowcase() {
       })
 
       video.addEventListener('error', e => {
-        console.error('Failed to preload video:', src, e)
+        // Log as warning rather than error to avoid triggering dev overlays for missing assets
+        console.warn('Video preload skipped (asset may be missing):', src)
       })
     }
 
@@ -291,7 +292,9 @@ export function TabVideoShowcase() {
 
                   // Try to play immediately when data is loaded
                   if (video.paused) {
-                    video.play().catch(console.error)
+                    video.play().catch(err => {
+                      if (err.name !== 'AbortError') console.warn('Autoplay prevented:', err)
+                    })
                   }
                 }}
                 onCanPlay={e => {
@@ -302,7 +305,9 @@ export function TabVideoShowcase() {
 
                   // Force play when video can play
                   if (video.paused) {
-                    video.play().catch(console.error)
+                    video.play().catch(err => {
+                      if (err.name !== 'AbortError') console.warn('Autoplay prevented:', err)
+                    })
                   }
                 }}
                 onCanPlayThrough={e => {
@@ -314,8 +319,10 @@ export function TabVideoShowcase() {
                   // Final attempt to force play
                   if (video && video.paused) {
                     video.play().catch(error => {
-                      console.error('Autoplay failed:', error)
-                      setVideoLoadError(`Autoplay blocked: ${error.message}`)
+                      if (error.name !== 'AbortError') {
+                        console.error('Autoplay failed:', error)
+                        setVideoLoadError(`Autoplay blocked: ${error.message}`)
+                      }
                     })
                   }
                 }}
