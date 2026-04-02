@@ -233,9 +233,12 @@
     "threeMonthlyBilling": "3-monatliche Abrechnung",
     "sixMonthlyBilling": "6-monatliche Abrechnung",
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 50%",
+    "temporaryOfferTitle": "Befristetes Angebot: Zahlen Sie, was Sie normalerweise in 3 Monaten ausgeben würden",
+    "temporaryOfferSubtitle": "Erhalten Sie 12 volle Monate Zugriff.",
     "mostPopular": "Am beliebtesten",
     "bestResults": "High-End Ergebnisse",
-    "bestOffer": "high end results",
+    "bestOffer": "Bestes Angebot",
+    "highEndResults": "high end results",
     "bestResultsForDFY": "Schneller Rücklauf",
     "subscribe": "Abonnieren",
     "plusVat": "Zuzüglich 19% MwSt",
@@ -369,7 +372,8 @@
       "proceed": "Trotzdem fortfahren"
     },
     "marketingConsent": "Ich möchte Marketing-E-Mails und Updates zu neuen Funktionen erhalten",
-    "privacyConsent": "Ich stimme der <privacyPolicy>Datenschutzerklärung</privacyPolicy> zu"
+    "privacyConsent": "Ich stimme der <privacyPolicy>Datenschutzerklärung</privacyPolicy> zu",
+    "termsConsent": "Ich stimme den <termsLink>AGB</termsLink> zu"
   },
   "PricingCTA": {
     "title": "Flexible Pläne für jeden Bedarf",

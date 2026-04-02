@@ -146,6 +146,7 @@ const educationPlans = [
     yearlyPeriod: '/year',
     planType: 'PRO',
     popular: true,
+    badgeTextKey: 'bestOffer',
     features: [
       { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
       {
@@ -199,8 +200,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [showKickOffModal, setShowKickOffModal] = useState(false)
   const [showOnboarding, setShowOnboarding] = useState(false)
   const [onboardingData, setOnboardingData] = useState<any>(null)
-  const [marketingConsent, setMarketingConsent] = useState(false)
+  const [marketingConsent, setMarketingConsent] = useState(true)
   const [privacyConsent, setPrivacyConsent] = useState(false)
+  const [termsConsent, setTermsConsent] = useState(false)
 
   const router = useRouter()
   const tModal = useTranslations('SubscriptionModal')
@@ -452,6 +454,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               email: userEmail.trim(),
               marketingConsent,
               privacyConsent,
+              termsConsent,
               language: locale,
               ...onboardingData
             }),
@@ -486,6 +489,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           cancelUrl: window.location.href,
           marketingConsent,
           privacyConsent,
+          termsConsent,
           language: locale,
           onboardingData: onboardingData, // Pass onboarding data to checkout
         }),
@@ -578,6 +582,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           name: t('plans.proComplete.name'), // PRO COMPLETE
           billingCycle: 'yearly' as const,
           popular: true,
+          badgeTextKey: 'highEndResults',
           fetchedData: fetchedPlan,
           features: baseProPlan.features.map(f => ({
             ...f,
@@ -1095,12 +1100,20 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           )}
 
-          <p
-            className='text-black pb-0 mb-8'
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-          >
-            {t('switchToYearly')}
-          </p>
+          <div className='flex flex-col gap-1 mb-8 text-center'>
+            <p
+              className='text-black text-xl font-bold uppercase'
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              {t('temporaryOfferTitle')}
+            </p>
+            <p
+              className='text-black text-lg font-medium'
+              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            >
+              {t('temporaryOfferSubtitle')}
+            </p>
+          </div>
         </div>
 
         {/* Education Plans Cards */}
@@ -1204,7 +1217,26 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                     <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
                       {tModal.rich('privacyConsent', {
                         privacyPolicy: (chunks) => (
-                          <Link href='/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                            {chunks}
+                          </Link>
+                        )
+                      })}
+                    </span>
+                  </label>
+
+                  <label className='flex items-start gap-3 cursor-pointer group'>
+                    <input
+                      type='checkbox'
+                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
+                      checked={termsConsent}
+                      onChange={(e) => setTermsConsent(e.target.checked)}
+                      disabled={isRedirecting}
+                    />
+                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
+                      {tModal.rich('termsConsent', {
+                        termsLink: (chunks) => (
+                          <Link href='https://app.typus.ai/terms' target='_blank' className='text-white underline hover:text-gray-200'>
                             {chunks}
                           </Link>
                         )
@@ -1216,7 +1248,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 <div className='flex flex-col gap-3 mt-4'>
                   <Button
                     onClick={() => handleContinue()}
-                    disabled={isRedirecting || !privacyConsent}
+                    disabled={isRedirecting || !privacyConsent || !termsConsent}
                     className='bg-white text-black hover:bg-gray-200 w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
@@ -1401,6 +1433,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
   fetchedData?: any
   popular?: boolean
+  badgeTextKey?: string
 }
 
 interface PricingCardProps {
@@ -1706,7 +1739,7 @@ function PricingCard({
                 className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
-                {t('bestOffer')}
+                {plan.badgeTextKey ? t(plan.badgeTextKey) : t('bestOffer')}
               </span>
             </div>
             {/* Shadow under ribbon */}
