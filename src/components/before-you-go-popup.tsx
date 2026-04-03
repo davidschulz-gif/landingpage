@@ -6,87 +6,97 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-const STORAGE_KEY = 'byg_offer_v1'
-const TRIGGER_DELAY_MS = 30000 // Set to 30s to allow testing exit intent
+const TRIGGER_DELAY_MS = 30000 // Set to 30s as requested
 
 export default function BeforeYouGoPopup() {
   const t = useTranslations('BeforeYouGo')
   const tPricing = useTranslations('Pricing')
 
   const [isOpen, setIsOpen] = useState(false)
-  const [hasShown, setHasShown] = useState(false)
+  const [timerTriggered, setTimerTriggered] = useState(false)
   const [mounted, setMounted] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Check localStorage and URL params on mount
+  // Initialization on mount
   useEffect(() => {
     setMounted(true)
-    const shown = localStorage.getItem(STORAGE_KEY) === 'true'
-    console.log('BYG DEBUG: localStorage check result:', shown)
-    if (shown) {
-      setHasShown(true)
-    }
+    console.log('--- BeforeYouGoPopup Component Mounted ---')
 
+    // Testing parameter to reset timer state if needed
     if (typeof window !== 'undefined' && window.location.search.includes('test=1')) {
-      console.log('BYG DEBUG: Force test mode active (?test=1). Forcing hasShown to false.')
-      setHasShown(false)
+      console.log('Test mode active: resetting timer state')
+      setTimerTriggered(false)
     }
   }, [])
 
   const show = (triggerType: string) => {
-    console.log(`BYG DEBUG: show() called by ${triggerType}. Current hasShown:`, hasShown)
-    if (hasShown) {
-      console.log('BYG DEBUG: show() skipped because hasShown is already true')
+    console.warn(`[BYG] Attempting to show popup - Trigger: ${triggerType}`)
+    if (isOpen) {
+      console.warn('[BYG] Popup already open - ignoring trigger')
       return
     }
-    console.log(`BYG DEBUG: SHOWING POPUP NOW! (trigger: ${triggerType})`)
     setIsOpen(true)
-    setHasShown(true)
-    localStorage.setItem(STORAGE_KEY, 'true')
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
   }
 
-  // Trigger 1: 30-second timer
+  // Trigger 1: 30-second timer (Only once per session/page load)
   useEffect(() => {
-    if (hasShown || !mounted) return
+    if (timerTriggered || !mounted) return
 
+    console.log(`Setting 30s timer (Delay: ${TRIGGER_DELAY_MS}ms)`)
     timeoutRef.current = setTimeout(() => {
+      setTimerTriggered(true)
       show('30s Timer')
     }, TRIGGER_DELAY_MS)
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [hasShown, mounted])
+  }, [timerTriggered, mounted])
 
-  // Trigger 2: Exit intent
+  // Trigger 2: Exit intent (Triggers every time user tries to exit viewport)
   useEffect(() => {
-    console.log('BYG DEBUG: Exit Intent effect check. hasShown:', hasShown, 'mounted:', mounted)
-    if (hasShown || !mounted) {
-      if (!mounted) console.log('BYG DEBUG: Exit intent skipped - not mounted yet')
-      else console.log('BYG DEBUG: Exit intent skipped - already shown')
-      return
-    }
+    if (!mounted) return
 
     const handleMouseLeave = (e: MouseEvent) => {
       // Detecting exit from the viewport
       const fromTop = e.clientY <= 0 || e.pageY <= 0 || (e.relatedTarget === null && e.target === document)
-      console.log('BYG DEBUG: mouseleave event. clientY:', e.clientY, 'pageY:', e.pageY, 'relatedTarget:', e.relatedTarget, 'fromTop:', fromTop)
+
+      // Use console.warn for better visibility in some consoles
+      console.warn('BYG Event- clientY:', e.clientY, 'fromTop:', fromTop, 'isOpen:', isOpen)
 
       if (fromTop) {
-        console.log('BYG DEBUG: Exit Intent detected from top! Triggering show().')
-        show('Exit Intent')
+        show('Exit Intent (mouseleave)')
       }
     }
 
-    console.log('BYG DEBUG: Attaching mouseleave listener to document')
-    document.addEventListener('mouseleave', handleMouseLeave)
+    const handleMouseMove = (e: MouseEvent) => {
+      // If mouse is at the very top (y=0), trigger exit intent immediately
+      if (e.clientY <= 0 && !isOpen) {
+        console.warn('BYG Event- mousemove AT top (y=0)')
+        show('Exit Intent (mousemove)')
+      } else if (e.clientY < 5 && !isOpen) {
+        console.warn('BYG Event- mousemove near top:', e.clientY)
+      }
+    }
+
+    // Backup trigger: user switching tabs or clicking address bar
+    const handleBlur = () => {
+      console.warn('BYG Event- window blur (tabs/address bar)')
+      // show('Window Blur') // We can enable this if mouseleave fails
+    }
+
+    // Using window instead of document for broader compatibility
+    window.addEventListener('mouseleave', handleMouseLeave, { passive: true })
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('blur', handleBlur, { passive: true })
 
     return () => {
-      console.log('BYG DEBUG: Removing mouseleave listener from document')
-      document.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('blur', handleBlur)
     }
-  }, [hasShown, mounted])
+  }, [mounted, isOpen])
 
   const handleClose = () => {
     setIsOpen(false)
