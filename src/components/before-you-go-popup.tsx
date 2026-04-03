@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
-const STORAGE_KEY = 'byg_force_final_7'
-const TRIGGER_DELAY_MS = 30000
+const STORAGE_KEY = 'byg_offer_v1'
+const TRIGGER_DELAY_MS = 30000 // Set to 30s to allow testing exit intent
 
 export default function BeforeYouGoPopup() {
   const t = useTranslations('BeforeYouGo')
@@ -18,19 +18,31 @@ export default function BeforeYouGoPopup() {
   const [mounted, setMounted] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Check only URL params for forced test mode on mount
+  // Check localStorage and URL params on mount
   useEffect(() => {
     setMounted(true)
+    const shown = localStorage.getItem(STORAGE_KEY) === 'true'
+    console.log('BYG DEBUG: localStorage check result:', shown)
+    if (shown) {
+      setHasShown(true)
+    }
+
     if (typeof window !== 'undefined' && window.location.search.includes('test=1')) {
-      console.log('Pop-up: Force test mode active.')
+      console.log('BYG DEBUG: Force test mode active (?test=1). Forcing hasShown to false.')
+      setHasShown(false)
     }
   }, [])
 
   const show = (triggerType: string) => {
-    console.log(`Pop-up triggered by: ${triggerType}`)
+    console.log(`BYG DEBUG: show() called by ${triggerType}. Current hasShown:`, hasShown)
+    if (hasShown) {
+      console.log('BYG DEBUG: show() skipped because hasShown is already true')
+      return
+    }
+    console.log(`BYG DEBUG: SHOWING POPUP NOW! (trigger: ${triggerType})`)
     setIsOpen(true)
     setHasShown(true)
-    // Removed localStorage.setItem to allow repeated testing during development
+    localStorage.setItem(STORAGE_KEY, 'true')
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
   }
 
@@ -49,26 +61,35 @@ export default function BeforeYouGoPopup() {
 
   // Trigger 2: Exit intent
   useEffect(() => {
-    if (hasShown || !mounted) return
+    console.log('BYG DEBUG: Exit Intent effect check. hasShown:', hasShown, 'mounted:', mounted)
+    if (hasShown || !mounted) {
+      if (!mounted) console.log('BYG DEBUG: Exit intent skipped - not mounted yet')
+      else console.log('BYG DEBUG: Exit intent skipped - already shown')
+      return
+    }
 
     const handleMouseLeave = (e: MouseEvent) => {
-      // Trigger if mouse is in the top 20px
-      if (e.clientY <= 20) {
+      // Detecting exit from the viewport
+      const fromTop = e.clientY <= 0 || e.pageY <= 0 || (e.relatedTarget === null && e.target === document)
+      console.log('BYG DEBUG: mouseleave event. clientY:', e.clientY, 'pageY:', e.pageY, 'relatedTarget:', e.relatedTarget, 'fromTop:', fromTop)
+
+      if (fromTop) {
+        console.log('BYG DEBUG: Exit Intent detected from top! Triggering show().')
         show('Exit Intent')
-        window.removeEventListener('mouseleave', handleMouseLeave)
       }
     }
 
-    window.addEventListener('mouseleave', handleMouseLeave)
-    return () => window.removeEventListener('mouseleave', handleMouseLeave)
+    console.log('BYG DEBUG: Attaching mouseleave listener to document')
+    document.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      console.log('BYG DEBUG: Removing mouseleave listener from document')
+      document.removeEventListener('mouseleave', handleMouseLeave)
+    }
   }, [hasShown, mounted])
 
   const handleClose = () => {
     setIsOpen(false)
-    // Reset hasShown after a small delay so it can trigger again without refresh
-    setTimeout(() => {
-      setHasShown(false)
-    }, 1000)
   }
 
   if (!mounted) return null
@@ -98,25 +119,17 @@ export default function BeforeYouGoPopup() {
             className='fixed inset-0 z-[999999] flex items-center justify-center p-4 pointer-events-none'
           >
             <div
-              className='relative w-full max-w-md pointer-events-auto overflow-hidden'
-              style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.08)' }}
+              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-[#0a0a0a] border border-white/10'
               onClick={e => e.stopPropagation()}
             >
               {/* Subtle gradient accent at top */}
               <div
-                className='absolute top-0 left-0 right-0 h-px'
-                style={{
-                  background:
-                    'linear-gradient(90deg, transparent, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.4) 60%, transparent)',
-                }}
+                className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent'
               />
 
               {/* Ambient glow */}
               <div
-                className='absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none'
-                style={{
-                  background: 'radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)',
-                }}
+                className='absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(255,255,255,0.04)_0%,transparent_70%)]'
               />
 
               {/* Close button */}
@@ -132,11 +145,7 @@ export default function BeforeYouGoPopup() {
                 {/* Urgency badge */}
                 <div className='flex items-center gap-2 mb-6'>
                   <div
-                    className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase'
-                    style={{
-                      border: '1px solid rgba(255,255,255,0.15)',
-                      color: 'rgba(255,255,255,0.7)',
-                    }}
+                    className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase border border-white/15 text-white/70'
                   >
                     <IconClock size={11} strokeWidth={2} />
                     {t('badge')}
@@ -145,58 +154,45 @@ export default function BeforeYouGoPopup() {
 
                 {/* Headline */}
                 <h2
-                  className='text-xl font-light leading-snug mb-4'
-                  style={{ color: 'rgba(255,255,255,0.95)', letterSpacing: '-0.01em' }}
+                  className='text-xl font-normal leading-snug mb-4 text-white tracking-tight'
                 >
                   {t('title')}
                 </h2>
 
                 {/* Body */}
                 <p
-                  className='text-sm leading-relaxed mb-8'
-                  style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 300 }}
+                  className='text-sm leading-relaxed mb-8 text-white font-normal'
+                  style={{ fontFamily: 'sans-serif' }}
                 >
                   {t('body')}
                 </p>
 
                 {/* Offer highlights */}
                 <div
-                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative'
-                  style={{
-                    background: 'rgba(255,255,255,0.02)',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                  }}
+                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-white/5 border border-white/5'
                 >
                   <div
-                    className='absolute inset-0 opacity-20 pointer-events-none'
-                    style={{
-                      background: 'radial-gradient(circle at 50% 50%, rgba(255,54,54,0.1), transparent 70%)',
-                    }}
+                    className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
                   />
                   <div className='text-center relative z-10'>
                     <div className='text-3xl font-light text-white'>3</div>
-                    <div className='text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1'>
+                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white/90 mt-1'>
                       {t('paidLabel')}
                     </div>
                   </div>
                   <div
-                    className='text-white/20 text-2xl font-thin relative z-10'
-                    style={{ transform: 'scaleX(1.8)' }}
+                    className='text-white/90 text-2xl font-thin relative z-10 scale-x-[1.8]'
                   >
                     →
                   </div>
                   <div className='text-center relative z-10'>
                     <div className='text-3xl font-light text-white'>12</div>
-                    <div className='text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1'>
+                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white/90 mt-1'>
                       {t('accessLabel')}
                     </div>
                   </div>
                   <div
-                    className='text-[9px] font-bold uppercase tracking-wider px-2 py-1 relative z-10'
-                    style={{
-                      background: '#ff3636',
-                      color: 'white',
-                    }}
+                    style={{ fontFamily: 'sans-serif' }} className='text-[9px] font-bold uppercase tracking-wider px-2 py-1 relative z-10 bg-[#ad8802] text-black'
                   >
                     {tPricing('bestOffer')}
                   </div>
@@ -205,8 +201,7 @@ export default function BeforeYouGoPopup() {
                 {/* CTA button */}
                 <Link
                   href='/pricing'
-                  className='group flex items-center justify-center gap-2.5 w-full py-3.5 text-sm font-medium tracking-wide transition-all duration-200 mb-3'
-                  style={{ background: 'white', color: 'black' }}
+                  className='group flex items-center justify-center gap-2.5 w-full py-3.5 text-sm font-medium tracking-wide transition-all duration-200 mb-3 bg-white text-black'
                   onClick={handleClose}
                 >
                   {t('cta')}
@@ -220,14 +215,7 @@ export default function BeforeYouGoPopup() {
                 {/* Dismiss */}
                 <button
                   onClick={handleClose}
-                  className='w-full text-center text-[11px] transition-colors duration-200'
-                  style={{ color: 'rgba(255,255,255,0.25)' }}
-                  onMouseEnter={e =>
-                    ((e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.5)')
-                  }
-                  onMouseLeave={e =>
-                    ((e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.25)')
-                  }
+                  className='w-full text-center text-[11px] transition-colors duration-200 text-white/70 hover:text-white/90'
                 >
                   {t('dismiss')}
                 </button>

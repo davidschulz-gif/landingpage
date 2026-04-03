@@ -816,9 +816,22 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           </div>
         </div>
+        {selectedPlanTier !== 'explorer' && <div className='flex flex-col gap-1 mb-8 text-center'>
+          <p
+            className='text-black text-xl font-bold uppercase'
+          >
+            {t('temporaryOfferTitle')}
+          </p>
+          <p
+            className='text-black text-lg font-medium'
+          >
+            {t('temporaryOfferSubtitle')}
+          </p>
+        </div>}
 
         {/* Professional Plans Cards */}
         <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-4'>
+
           {selectedPlanTier === 'explorer' ? (
             <>
               <div className='w-full max-w-xs z-30'>
@@ -882,7 +895,30 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </>
           ) : (
             currentProfPlans.map((plan, index) => (
-              <div key={index} className='w-full max-w-xs z-10'>
+              <div key={index} className='w-full max-w-xs z-10 relative'>
+                {selectedPlanTier === 'pro' && index === 2 && (
+                  <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
+                    <div className='flex flex-col items-center gap-1'>
+                      <span className='text-[10px] font-bold text-black uppercase tracking-widest bg-yellow-400 px-2 py-0.5 whitespace-nowrap rotate-6 shadow-sm mb-1'>
+                        {t('bestDeal') || 'Best Deal'}
+                      </span>
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-black rotate-[140deg]"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
                 <PricingCard
                   plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                   isYearly={isYearly}
@@ -1100,20 +1136,20 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           )}
 
-          <div className='flex flex-col gap-1 mb-8 text-center'>
-            <p
-              className='text-black text-xl font-bold uppercase'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('temporaryOfferTitle')}
-            </p>
-            <p
-              className='text-black text-lg font-medium'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('temporaryOfferSubtitle')}
-            </p>
-          </div>
+          {isYearly && (
+            <div className='flex flex-col gap-1 mb-8 text-center'>
+              <p
+                className='text-black text-xl font-bold uppercase'
+              >
+                {t('temporaryOfferTitle')}
+              </p>
+              <p
+                className='text-black text-lg font-medium'
+              >
+                {t('temporaryOfferSubtitle')}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Education Plans Cards */}
@@ -1346,9 +1382,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           >
             <Button
               onClick={() => setShowKickOffModal(true)}
-              className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl animate-pulse-glow relative'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
+              className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl animate-pulse-glow relative'>
               First Buyer Kick Off
             </Button>
           </motion.div>
@@ -1714,10 +1748,10 @@ function PricingCard({
 
   return (
     <div
-      className='flex h-[580px] mb-4 flex-col  sm: md: p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-800 relative'
+      className='flex h-[580px] mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group'
       style={{
-        backgroundColor: '#000000',
-        color: '#ffffff',
+        backgroundColor: '#ffffff',
+        color: '#000000',
       }}
     >
       {/* Ribbon Tag */}
@@ -1751,7 +1785,7 @@ function PricingCard({
       {/* Header Section */}
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
-          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-white'
+          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-black'
           style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
           {plan.name}
@@ -1770,35 +1804,32 @@ function PricingCard({
             {priceInfo.discount ? (
               <>
                 {'originalPrice' in priceInfo.discount && (
-                  <div className='text-[12px] text-white/50 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <div className='text-[12px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period}
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className='text-2xl sm:text-3xl font-bold text-emerald-400 tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className='text-3xl sm:text-4xl font-bold text-emerald-600 tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
-                  <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.period}
                   </span>
                 </div>
-                {/* <div className='bg-emerald-600 text-white text-[9px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mt-2 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                  {t('discountBadge', { percent: priceInfo.discount.discountPercent, amount: priceInfo.discount.saveAmount })}
-                </div> */}
               </>
             ) : (
               <div className='flex items-baseline justify-center gap-1'>
-                <span className='text-2xl sm:text-3xl font-bold text-white tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                <span className='text-3xl sm:text-4xl font-bold text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {priceInfo.mainPrice}
                 </span>
-                <span className='text-xs sm:text-sm text-white/70' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {priceInfo.period}
                 </span>
               </div>
             )}
           </div>
 
-          <div className='space-y-1 text-[11px] text-white/75 mt-3 text-center'>
+          <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
             <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {priceInfo.billingInfo}
             </div>
@@ -1811,7 +1842,7 @@ function PricingCard({
               {t('plusVat')}
             </div>
             {isProfessional && !promoDiscount && plan.billingCycle !== 'monthly' && plan.planType !== 'EXPLORER' && (
-              <div className='text-emerald-400 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div className='text-emerald-600 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
             )}
@@ -1831,15 +1862,15 @@ function PricingCard({
             return (
               <li
                 key={index}
-                className='flex items-start text-xs font-medium py-1.5 border-b border-gray-800 last:border-b-0'
+                className='flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0'
               >
                 {hasFeature ? (
-                  <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-white' />
+                  <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-black' />
                 ) : (
-                  <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-white/50' />
+                  <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-black/30' />
                 )}
                 <span
-                  className={`leading-tight text-left flex-1 ${hasFeature ? 'text-white' : 'text-white/70'
+                  className={`leading-tight text-left flex-1 ${hasFeature ? 'text-black' : 'text-black/40'
                     }`}
                   style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
@@ -1855,7 +1886,7 @@ function PricingCard({
       <div className='mt-auto'>
         <Button
           onClick={() => onSubscribe(plan, priceInfo)}
-          className='bg-white text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-white hover:bg-transparent hover:text-white transition-all duration-200'
+          className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
           style={{
             fontFamily: "'Soyuz Grotesk', sans-serif",
           }}
