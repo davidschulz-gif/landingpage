@@ -374,7 +374,8 @@
     },
     "marketingConsent": "I would like to receive marketing emails and updates about new features",
     "privacyConsent": "I agree to the <privacyPolicy>data privacy</privacyPolicy>",
-    "termsConsent": "I agree to the <termsLink>terms</termsLink>"
+    "termsConsent": "I agree to the <termsLink>terms</termsLink>",
+    "agbPrivacyConsent": "I agree to the <termsLink>terms</termsLink> and the <privacyPolicy>data privacy</privacyPolicy>"
   },
   "PricingCTA": {
     "title": "Flexible Plans for Every Need",

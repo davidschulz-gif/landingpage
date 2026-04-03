@@ -374,7 +374,8 @@
     },
     "marketingConsent": "Ich möchte Marketing-E-Mails und Updates zu neuen Funktionen erhalten",
     "privacyConsent": "Ich stimme der <privacyPolicy>Datenschutzerklärung</privacyPolicy> zu",
-    "termsConsent": "Ich stimme den <termsLink>AGB</termsLink> zu"
+    "termsConsent": "Ich stimme den <termsLink>AGB</termsLink> zu",
+    "agbPrivacyConsent": "Ich stimme den <termsLink>AGB</termsLink> und der <privacyPolicy>Datenschutzerklärung</privacyPolicy> zu"
   },
   "PricingCTA": {
     "title": "Flexible Pläne für jeden Bedarf",

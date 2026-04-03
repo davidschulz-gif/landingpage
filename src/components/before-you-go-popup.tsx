@@ -115,7 +115,7 @@ export default function BeforeYouGoPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className='fixed inset-0 z-[999998] bg-black/60 backdrop-blur-sm'
+            className='fixed inset-0 z-[999998] bg-black/90 backdrop-blur-sm'
             onClick={handleClose}
           />
 
@@ -129,7 +129,7 @@ export default function BeforeYouGoPopup() {
             className='fixed inset-0 z-[999999] flex items-center justify-center p-4 pointer-events-none'
           >
             <div
-              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-[#0a0a0a] border border-white/10'
+              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-black '
               onClick={e => e.stopPropagation()}
             >
               {/* Subtle gradient accent at top */}
@@ -138,14 +138,12 @@ export default function BeforeYouGoPopup() {
               />
 
               {/* Ambient glow */}
-              <div
-                className='absolute -top-32 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(255,255,255,0.04)_0%,transparent_70%)]'
-              />
+              {/* Ambient glow removed to avoid gray */}
 
               {/* Close button */}
               <button
                 onClick={handleClose}
-                className='absolute top-4 right-4 p-1 text-white/30 hover:text-white/70 transition-colors duration-200 z-10'
+                className='absolute top-4 right-4 p-1 text-white hover:text-white transition-colors duration-200 z-10'
                 aria-label='Close'
               >
                 <IconX size={18} strokeWidth={1.5} />
@@ -155,7 +153,7 @@ export default function BeforeYouGoPopup() {
                 {/* Urgency badge */}
                 <div className='flex items-center gap-2 mb-6'>
                   <div
-                    className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-semibold tracking-[0.15em] uppercase border border-white/15 text-white/70'
+                    className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-[0.15em] uppercase border border-white text-white'
                   >
                     <IconClock size={11} strokeWidth={2} />
                     {t('badge')}
@@ -179,32 +177,44 @@ export default function BeforeYouGoPopup() {
 
                 {/* Offer highlights */}
                 <div
-                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-white/5 border border-white/5'
+                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-black border border-white'
                 >
                   <div
                     className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
                   />
                   <div className='text-center relative z-10'>
                     <div className='text-3xl font-light text-white'>3</div>
-                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white/90 mt-1'>
+                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
                       {t('paidLabel')}
                     </div>
                   </div>
                   <div
-                    className='text-white/90 text-2xl font-thin relative z-10 scale-x-[1.8]'
+                    className='text-white text-2xl font-thin relative z-10 scale-x-[1.8]'
                   >
                     →
                   </div>
                   <div className='text-center relative z-10'>
                     <div className='text-3xl font-light text-white'>12</div>
-                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white/90 mt-1'>
+                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
                       {t('accessLabel')}
                     </div>
                   </div>
                   <div
-                    style={{ fontFamily: 'sans-serif' }} className='text-[9px] font-bold uppercase tracking-wider px-2 py-1 relative z-10 bg-[#ad8802] text-black'
+                    style={{ fontFamily: 'sans-serif' }}
+                    className='text-[10px] font-black uppercase tracking-wider px-3 py-1.5 relative z-10 bg-[#FFD700] text-black overflow-hidden shadow-[0_0_15px_rgba(255,215,0,0.5)]'
                   >
-                    {tPricing('bestOffer')}
+                    <span className='relative z-10'>{tPricing('bestOffer')}</span>
+                    <motion.div
+                      initial={{ x: '-150%' }}
+                      animate={{ x: '150%' }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 1.5,
+                        ease: "linear",
+                        repeatDelay: 2
+                      }}
+                      className='absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-20deg]'
+                    />
                   </div>
                 </div>
 
@@ -225,7 +235,7 @@ export default function BeforeYouGoPopup() {
                 {/* Dismiss */}
                 <button
                   onClick={handleClose}
-                  className='w-full text-center text-[11px] transition-colors duration-200 text-white/70 hover:text-white/90'
+                  className='w-full text-center text-[11px] transition-colors duration-200 text-white hover:text-white underline'
                 >
                   {t('dismiss')}
                 </button>

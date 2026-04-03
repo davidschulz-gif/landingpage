@@ -20,6 +20,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import OnboardingWizard from './onboarding/onboarding-wizard'
 import { TestimonialsSection } from './testimonials-section'
+import Lottie from 'lottie-react'
+import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
 
 const professionalPlans = [
   {
@@ -582,7 +584,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           name: t('plans.proComplete.name'), // PRO COMPLETE
           billingCycle: 'yearly' as const,
           popular: true,
-          badgeTextKey: 'highEndResults',
+          badgeTextKey: 'bestOffer',
           fetchedData: fetchedPlan,
           features: baseProPlan.features.map(f => ({
             ...f,
@@ -817,16 +819,25 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           </div>
         </div>
         {selectedPlanTier !== 'explorer' && <div className='flex flex-col gap-1 mb-8 text-center'>
-          <p
-            className='text-black text-xl font-bold uppercase'
-          >
-            {t('temporaryOfferTitle')}
-          </p>
-          <p
-            className='text-black text-lg font-medium'
-          >
-            {t('temporaryOfferSubtitle')}
-          </p>
+          <div className='flex items-center justify-center gap-2'>
+            <div className='flex flex-col gap-1 items-center'>
+              <p
+                className='text-black text-xl font-bold uppercase'
+              >
+                {t('temporaryOfferTitle')}
+              </p>
+              <p
+                className='text-black text-lg font-medium'
+              >
+                {t('temporaryOfferSubtitle')}
+              </p>
+            </div>
+            <div className='w-40 h-40 rotate-[-50deg]'>
+              {/* <div className='absolute rotate-[-50deg] w-20 h-20 top-[-40px] left-[-40px]'> */}
+              <Lottie animationData={HandDrawnArrow} loop={true} className='w-40 h-40' />
+              {/* </div> */}
+            </div>
+          </div>
         </div>}
 
         {/* Professional Plans Cards */}
@@ -899,10 +910,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 {selectedPlanTier === 'pro' && index === 2 && (
                   <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
                     <div className='flex flex-col items-center gap-1'>
-                      <span className='text-[10px] font-bold text-black uppercase tracking-widest bg-yellow-400 px-2 py-0.5 whitespace-nowrap rotate-6 shadow-sm mb-1'>
+
+                      {/* <Lottie animationData={HandDrawnArrow} loop={true} className='w-20 h-20' /> */}
+                      {/* <span className='text-[10px] font-bold text-black uppercase tracking-widest bg-yellow-400 px-2 py-0.5 whitespace-nowrap rotate-6 shadow-sm mb-1'>
                         {t('bestDeal') || 'Best Deal'}
-                      </span>
-                      <svg
+                      </span> */}
+                      {/* <svg
                         width="40"
                         height="40"
                         viewBox="0 0 24 24"
@@ -915,7 +928,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                       >
                         <path d="M7 17L17 7" />
                         <path d="M7 7h10v10" />
-                      </svg>
+                      </svg> */}
                     </div>
                   </div>
                 )}
@@ -1184,10 +1197,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='bg-neutral-900 border border-white/10 p-8 shadow-2xl flex flex-col gap-6 max-w-md w-full relative'
+              className='bg-black p-8 shadow-2xl flex flex-col gap-6 max-w-md w-full relative'
             >
               <button
-                className='absolute top-4 right-4 text-gray-400 hover:text-white transition-colors'
+                className='absolute top-4 right-4 text-white hover:text-white transition-colors'
                 onClick={() => setIsModalOpen(false)}
               >
                 <IconX size={20} />
@@ -1200,7 +1213,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 >
                   {tModal('title')}
                 </h3>
-                <p className='text-sm text-gray-400'>
+                <p className='text-sm text-white'>
                   {tModal('description')}
                 </p>
               </div>
@@ -1208,11 +1221,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               <div className='space-y-4'>
                 <div className='relative'>
                   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                    <IconMail className='h-5 w-5 text-gray-500' />
+                    <IconMail className='h-5 w-5 text-white' />
                   </div>
                   <input
                     type='email'
-                    className='block w-full pl-10 pr-3 py-3 border border-white/10 bg-white/5 text-white text-sm focus:outline-none focus:ring-1 focus:ring-white/20 transition-all'
+                    className='block w-full pl-10 pr-3 py-3 border border-white bg-black text-white text-sm focus:outline-none focus:ring-1 focus:ring-white transition-all'
                     placeholder={tModal('placeholder')}
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
@@ -1232,12 +1245,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
                       type='checkbox'
-                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
+                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
                       checked={marketingConsent}
                       onChange={(e) => setMarketingConsent(e.target.checked)}
                       disabled={isRedirecting}
                     />
-                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
+                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
                       {tModal('marketingConsent')}
                     </span>
                   </label>
@@ -1245,34 +1258,23 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
                       type='checkbox'
-                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
-                      checked={privacyConsent}
-                      onChange={(e) => setPrivacyConsent(e.target.checked)}
+                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                      checked={termsConsent && privacyConsent}
+                      onChange={(e) => {
+                        setTermsConsent(e.target.checked)
+                        setPrivacyConsent(e.target.checked)
+                      }}
                       disabled={isRedirecting}
                     />
-                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
-                      {tModal.rich('privacyConsent', {
-                        privacyPolicy: (chunks) => (
-                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
-                            {chunks}
-                          </Link>
-                        )
-                      })}
-                    </span>
-                  </label>
-
-                  <label className='flex items-start gap-3 cursor-pointer group'>
-                    <input
-                      type='checkbox'
-                      className='mt-1 size-4 border-white/20 bg-white/5 accent-white cursor-pointer rounded-sm transition-all group-hover:border-white/40'
-                      checked={termsConsent}
-                      onChange={(e) => setTermsConsent(e.target.checked)}
-                      disabled={isRedirecting}
-                    />
-                    <span className='text-[11px] text-gray-400 select-none leading-tight group-hover:text-gray-300 transition-colors'>
-                      {tModal.rich('termsConsent', {
+                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                      {tModal.rich('agbPrivacyConsent', {
                         termsLink: (chunks) => (
                           <Link href='https://app.typus.ai/terms' target='_blank' className='text-white underline hover:text-gray-200'>
+                            {chunks}
+                          </Link>
+                        ),
+                        privacyPolicy: (chunks) => (
+                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
                             {chunks}
                           </Link>
                         )
@@ -1285,7 +1287,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   <Button
                     onClick={() => handleContinue()}
                     disabled={isRedirecting || !privacyConsent || !termsConsent}
-                    className='bg-white text-black hover:bg-gray-200 w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:opacity-50'
+                    className='bg-white text-black hover:bg-white w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {isRedirecting ? (
@@ -1295,7 +1297,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   </Button>
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className='text-gray-500 hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
+                    className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                   >
                     {tModal('cancel')}

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useRef, useState } from 'react'
 import BookingDemoClassForm from './demo-class-boooking-form'
 import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
+import { useIsEurope } from '@/hooks/use-is-europe'
 
 const conciergePlans = [
   {
@@ -226,7 +227,7 @@ export function ConciergePricingSection() {
 }
 
 function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] }; isYearly: boolean }) {
-  const isEurope = true
+  const isEurope = useIsEurope()
   const t = useTranslations('ConciergePricing')
   const tPricing = useTranslations('Pricing')
 
