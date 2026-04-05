@@ -365,6 +365,7 @@
     "promoCodePlaceholder": "Gutscheincode eingeben",
     "promoCodeSuccess": "Gutscheincode erfolgreich angewendet!",
     "promoCodeError": "Ungültiger oder abgelaufener Gutscheincode.",
+    "promoCodeNotForEdu": "Dieser Gutscheincode ist nicht für Bildungspläne anwendbar.",
     "verifying": "Verifizieren...",
     "TrialWarningModal": {
       "title": "Kostenlose Testversion nicht verfügbar",

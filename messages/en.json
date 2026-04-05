@@ -365,6 +365,7 @@
     "promoCodePlaceholder": "Enter promo code",
     "promoCodeSuccess": "Promo code applied successfully!",
     "promoCodeError": "Invalid or expired promo code.",
+    "promoCodeNotForEdu": "This promo code is not applicable for Education Plans.",
     "verifying": "Verifying...",
     "TrialWarningModal": {
       "title": "Free Trial Not Available",

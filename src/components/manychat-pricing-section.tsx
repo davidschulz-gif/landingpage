@@ -148,7 +148,7 @@ const educationPlans = [
     yearlyPeriod: '/year',
     planType: 'PRO',
     popular: true,
-    badgeTextKey: 'bestOffer',
+    badgeTextKey: 'highEndResults',
     features: [
       { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
       {
@@ -233,6 +233,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
     const setDiscount = isEdu ? setEduPromoDiscount : setProfPromoDiscount
     const setError = isEdu ? setEduPromoError : setProfPromoError
     const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
+
+    if (isEdu && code.trim().toUpperCase() === 'KICK') {
+      setError(tModal('promoCodeNotForEdu'))
+      return
+    }
 
     if (!code.trim()) return
 
@@ -1775,7 +1780,7 @@ function PricingCard({
                 className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
-                {plan.badgeTextKey ? t(plan.badgeTextKey) : t('bestOffer')}
+                {plan.badgeTextKey ? t(plan.badgeTextKey) : t('highestRated')}
               </span>
             </div>
             {/* Shadow under ribbon */}
