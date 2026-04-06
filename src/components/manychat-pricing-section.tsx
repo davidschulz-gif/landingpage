@@ -270,6 +270,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           billingCycle: mappedBillingCycle,
           planType: selectedPlanForModal?.planType || (isEdu ? 'STARTER' : 'PRO'),
           isEducational: isEdu,
+          currency: planCurrency,
         }),
       })
 
