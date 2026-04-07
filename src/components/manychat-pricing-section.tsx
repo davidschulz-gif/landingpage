@@ -176,6 +176,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
   const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('usd');
+  const [isVat, setIsVat] = useState<boolean>(true);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -683,7 +684,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
       setPlans(plansData?.regularPlans);
       setEducationalPlans(plansData?.educationalPlans);
-      setPlanCurrency(plansData?.currency)
+      setPlanCurrency(plansData?.currency);
+      if (plansData?.location?.isVat !== undefined) {
+        setIsVat(plansData.location.isVat);
+      }
       // Use currency from backend
       // const detectedCurrency = ;
       // setCurrency(detectedCurrency);
@@ -860,6 +864,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                   onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
                   promoDiscount={profPromoDiscount}
+                  isVat={isVat}
                 />
               </div>
 
@@ -946,6 +951,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                   onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
                   promoDiscount={profPromoDiscount}
+                  isVat={isVat}
                 />
               </div>
             ))
@@ -1183,6 +1189,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                 onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
                 promoDiscount={eduPromoDiscount}
+                isVat={isVat}
               />
             </div>
           ))}
@@ -1486,6 +1493,7 @@ interface PricingCardProps {
   currencySymbol: string
   onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
   promoDiscount?: any
+  isVat?: boolean
 }
 
 function PricingCard({
@@ -1496,6 +1504,7 @@ function PricingCard({
   currencySymbol,
   onSubscribe,
   promoDiscount,
+  isVat = true,
 }: PricingCardProps) {
   const t = useTranslations('Pricing')
 
@@ -1846,9 +1855,11 @@ function PricingCard({
                 {priceInfo.saveInfo}
               </div>
             )}
-            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-              {t('plusVat')}
-            </div>
+            {isVat && (
+              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {t('plusVat')}
+              </div>
+            )}
             {isProfessional && !promoDiscount && plan.billingCycle !== 'monthly' && plan.planType !== 'EXPLORER' && (
               <div className='text-emerald-600 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
