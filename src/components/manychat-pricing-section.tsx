@@ -1571,7 +1571,9 @@ function PricingCard({
 
           const d = discountData
           if (d) {
-            mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+            if (!fetchedData) {
+              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
+            }
           }
         } else if (billingCycle === 'sixMonthly') {
           mainPrice = isEurope
