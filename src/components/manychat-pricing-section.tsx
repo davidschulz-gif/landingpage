@@ -842,10 +842,8 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 {t('temporaryOfferSubtitle')}
               </p>
             </div>
-            <div className='w-40 h-40 rotate-[-50deg]'>
-              {/* <div className='absolute rotate-[-50deg] w-20 h-20 top-[-40px] left-[-40px]'> */}
+            <div className='w-40 h-40 rotate-[-50deg] hidden md:block '>
               <Lottie animationData={HandDrawnArrow} loop={true} className='w-40 h-40' />
-              {/* </div> */}
             </div>
           </div>
         </div>}

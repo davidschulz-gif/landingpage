@@ -42,7 +42,7 @@ export const FloatingCollage = () => {
   const displayImages = isDesktop ? ALL_IMAGES : ALL_IMAGES.filter(img => img.mobile)
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-visible z-0">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {/* Subtle Grid Background for that designer look */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
         style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
