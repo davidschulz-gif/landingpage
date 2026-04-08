@@ -73,7 +73,7 @@ export const DoneForYouCombinedSection = () => {
               <div className='flex items-center gap-4 bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-4 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
                 <div className='w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
                   <img
-                    src='/dominikdenny.png'
+                    src='/DominikDenny.png'
                     alt={useTranslations('BilderFlatrate.benefits')('advisorName')}
                     className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
                   />
