@@ -146,8 +146,8 @@ export const FeaturesSection = () => {
           transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-50px' }}
         >
-          <p>{t('introText1')}</p>
-          <p>{t('introText2')}</p>
+          <p style={{ fontFamily: 'sans-serif' }}>{t('introText1')}</p>
+          <p style={{ fontFamily: 'sans-serif' }}>{t('introText2')}</p>
         </motion.div>
       </motion.div>
 
@@ -188,7 +188,7 @@ export const FeaturesSection = () => {
                 <h3 className='mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
-                <div className='flex-1'>
+                <div style={{ fontFamily: 'sans-serif' }} className='flex-1'>
                   <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
                     {firstSentence}
                     {isExpanded && hasMoreText && <span>{remainingText}</span>}
