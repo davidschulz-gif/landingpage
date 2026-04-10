@@ -2655,10 +2655,44 @@
     "instagramTitle2": "Typus x Illustrarch",
     "readMore": "Ganze Story lesen"
   },
+  "SiegristTestimonial": {
+    "badge": "ERFOLGSGESCHICHTE",
+    "sectionTitle": "Schweizer Büro Siegrist Architectes: Zwei Visionen, ein KI-Workflow",
+    "p1": "Mariela und Luz Maria Siegrist, das Schwester-Duo hinter Siegrist Architectes, verbinden Schweizer Präzision mit KI-gestützter Kreativität, um nachhaltige Architektur neu zu definieren.",
+    "h2": "Lernräume der Zukunft entwickeln",
+    "p2": "Ihre jüngsten Arbeiten, darunter die 'Développement du Site Scolaire' in Saint-Aubin, zeigen ihr Engagement für den Holzbau und naturintegrierte Designs. Durch den Einsatz von Typus.AI können sie Atmosphäre und Materialität bereits in frühen Entwurfsphasen schnell prototypisch darstellen. 'Zwei Generationen, zwei Visionen, ein Ziel: beseelte Orte zu schaffen', sagen sie. Die KI ermöglicht es ihnen, in Sekundenschnelle zu untersuchen, wie Holzfassaden mit Licht und Landschaft interagieren – ein Prozess, der früher Tage dauerte.",
+    "h3": "Alpiner Minimalismus trifft moderne Technik",
+    "p3": "In Venthône integriert ihre Transformation des Schulzentrums minimalistische Ästhetik in die alpine Landschaft des Wallis. Die Herausforderung bestand darin, die Seele des Ortes zu bewahren und gleichzeitig moderne Funktionalität hinzuzufügen. Mit Typus konnten sie die Holzstruktur des Erweiterungsbaus vor der dramatischen Bergkulisse visualisieren und so sicherstellen, dass sich jedes Detail mit dem Standort verbunden anfühlt.",
+    "h4": "Nachhaltigkeit und Seele",
+    "p4": "Für Siegrist Architectes ist Architektur mehr als nur Gebäude; es geht um die Seele des Ortes. Die KI-gestützte Visualisierung hilft ihnen, diese Vision Stakeholdern und Jurys effektiver zu vermitteln und komplexe nachhaltige Entwürfe greifbar und inspirierend zu machen.",
+    "p5": "Für die Zukunft der Schweizer Architektur eröffnet die Verschmelzung von traditionellem Handwerk und KI neue Horizonte.",
+    "backToHome": "Zur Startseite",
+    "dateDisplay": "10. April 2026",
+    "readingTime": "4 Min. Lesezeit",
+    "featuredOn": "Gesehen auf Instagram",
+    "featuredOnIllustrarch": "Offizielle Website besuchen",
+    "euCoFunded": "Siegrist Architectes: Schularchitektur mit KI und Holz neu definiert.",
+    "caption1": "Atmosphärischer Holzbau - Saint-Aubin",
+    "caption2": "Alpine Integration - Venthône",
+    "caption3": "Zwei Generationen, zwei Visionen",
+    "reelDescription1": "Erfahren Sie, wie Siegrist Architectes KI nutzen, um nachhaltige Schulumgebungen in Saint-Aubin zu visualisieren. Ein tiefer Einblick in die Holzarchitektur.",
+    "reelDescription2": "Die Transformation des Schulzentrums Venthône. Alpiner Minimalismus mit KI visualisiert für eine perfekte Landschaftsintegration.",
+    "watchVideo1": "Projekt ansehen",
+    "watchVideo2": "Projekt ansehen",
+    "instagramTitle1": "Projekt: Saint-Aubin",
+    "instagramTitle2": "Projekt: Venthône",
+    "readMore": "Projekte entdecken"
+  },
   "BlogPromo": {
     "badge": "ERFOLGSGESCHICHTE",
-    "title": "Architect gewinnt AMA Awards in Madrid",
-    "date": "20. März 2026 · 5 Min. Lesezeit",
+    "ama": {
+      "title": "Architect gewinnt AMA Awards in Madrid",
+      "date": "20. März 2026 · 5 Min. Lesezeit"
+    },
+    "siegrist": {
+      "title": "Schweizer Präzision trifft KI: Siegrist Architectes",
+      "date": "10. April 2026 · 4 Min. Lesezeit"
+    },
     "readArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN"
   }
 }

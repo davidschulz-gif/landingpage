@@ -119,14 +119,16 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  --font-sans: var(--font-soyuz-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-soyuz-grotesk), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-ft-calhern), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-ft-calhern), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-ft-calhern: var(--font-ft-calhern);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
@@ -158,6 +160,7 @@
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -169,14 +172,16 @@
       opacity: 0;
       transform: translateY(50px) scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
   }
+
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-soyuz-grotesk), 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-ft-calhern), 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
@@ -185,6 +190,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -195,20 +201,19 @@
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-100%);
   }
 }
 
 .animate-scroll {
-  animation: scroll var(--animation-duration) linear infinite
-    var(--animation-direction);
+  animation: scroll var(--animation-duration) linear infinite var(--animation-direction);
 }
 
 /* Adding vertical scroll animation class */
 .animate-scroll-vertical {
-  animation: scroll-vertical var(--animation-duration) linear infinite
-    var(--animation-direction);
+  animation: scroll-vertical var(--animation-duration) linear infinite var(--animation-direction);
 }
 
 .scroller {
@@ -218,10 +223,12 @@
 
 /* Adding professional text animations for enhanced UI */
 @keyframes pulse-subtle {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.9;
   }
@@ -232,6 +239,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -242,17 +250,20 @@
   0% {
     width: 0;
   }
+
   100% {
     width: 4rem;
   }
 }
 
 @keyframes float-particle {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.3;
   }
+
   50% {
     transform: translateY(-20px) rotate(180deg);
     opacity: 0.8;
@@ -290,6 +301,7 @@
   0% {
     width: 0%;
   }
+
   100% {
     width: 100%;
   }
@@ -300,11 +312,13 @@
 }
 
 @keyframes breathe-black-gray {
+
   0%,
   100% {
     color: #000000;
     opacity: 1;
   }
+
   50% {
     color: #808080;
     opacity: 0.7;
@@ -316,11 +330,13 @@
 }
 
 @keyframes breathe-red-orange {
+
   0%,
   100% {
     color: #ff0000;
     opacity: 1;
   }
+
   50% {
     color: #ffa500;
     opacity: 0.7;
@@ -332,11 +348,13 @@
 }
 
 @keyframes breathe-primary-hover {
+
   0%,
   100% {
     background-color: rgb(255, 54, 54);
     border-color: rgb(255, 54, 54);
   }
+
   50% {
     background-color: rgb(255, 140, 0);
     border-color: rgb(255, 140, 0);
@@ -344,11 +362,13 @@
 }
 
 @keyframes breathe-border-primary {
+
   0%,
   100% {
     border-color: rgb(255, 54, 54);
     box-shadow: 0 0 0 rgba(255, 54, 54, 0.3);
   }
+
   50% {
     border-color: rgb(255, 140, 0);
     box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
@@ -369,10 +389,12 @@
 
 /* Smooth gradient animation for popular badge */
 @keyframes gradient-shift {
+
   0%,
   100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -406,6 +428,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -415,6 +438,7 @@
   0% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -424,6 +448,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -446,6 +471,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -457,17 +483,19 @@
 }
 
 @keyframes bounce-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-10%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
 
 .animate-bounce-slow {
   animation: bounce-slow 2s infinite;
 }
-

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from '@/components/ui/button'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
@@ -716,11 +716,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         {/* Professional Section */}
         <div className='text-center mb-2 relative z-40'>
           <h2
-            className='text-[30px] font-normal text-black mt-10 mb-8'
-            style={{
-              fontFamily:
-                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-            }}
+            className='text-[50px] font-black mt-10 mb-8'
+          // style={{
+          //   fontFamily:
+          //     "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+          // }}
           >
             {t('selfServiceTitle')}
           </h2>

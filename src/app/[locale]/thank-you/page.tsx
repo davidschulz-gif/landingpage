@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
@@ -161,7 +161,7 @@ function ThankYouContent() {
         </div>
         <h1
           className="text-4xl font-bold text-black"
-          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: "var(--font-ft-calhern), var(--font-ft-calhern), sans-serif" }}
         >
           {t('title')}
         </h1>
@@ -171,7 +171,7 @@ function ThankYouContent() {
 
         {user && (
           <div className="bg-gray-50 p-6 rounded-lg text-left space-y-4 border border-gray-100 shadow-sm">
-            <h2 className="text-xl font-bold text-black border-b border-gray-200 pb-2" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+            <h2 className="text-xl font-bold text-black border-b border-gray-200 pb-2" style={{ fontFamily: "var(--font-ft-calhern), var(--font-ft-calhern), sans-serif" }}>
               {t('detailsTitle')}
             </h2>
             <div className="grid grid-cols-1 gap-y-3 text-sm">
@@ -213,14 +213,14 @@ function ThankYouContent() {
           {user?.email ? <Link href={`${appUrl}/register?email=${encodeURIComponent(user?.email)}`}>
             <Button
               className="bg-black cursor-pointer text-white hover:bg-gray-800 px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             >
               {t('createAccount')}
             </Button>
           </Link> : <Link href={`${landingPageUrl}/pricing`}>
             <Button
               className="bg-black cursor-pointer text-white hover:bg-gray-800 px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             >
               {t('doNotHavePlan')}
             </Button>

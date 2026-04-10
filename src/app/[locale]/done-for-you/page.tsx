@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { ActionButton } from '@/components/action-button'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
@@ -128,7 +128,7 @@ export default function DoneForYouPage() {
 
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}>
+    <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-space-grotesk' style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
       {/* Navbar */}
       <NavbarDemo />
 
@@ -171,7 +171,7 @@ export default function DoneForYouPage() {
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.6, ease: 'easeOut' }}
                       className='text-[32px] md:text-[50px] lg:text-[64px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] absolute w-full'
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
+                      style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                     >
                       {titles[currentIndex]}
                     </motion.h1>
@@ -229,7 +229,7 @@ export default function DoneForYouPage() {
                     {/* <BreathingAnimationText animationType='black-gray'> */}
                     <h2
                       className='text-[28px] md:text-[42px] font-normal text-neutral-900 dark:text-white leading-[1.1] mb-6'
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), sans-serif" }}
+                      style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                     >
                       {t('problem.statusQuoHeader')}
                     </h2>

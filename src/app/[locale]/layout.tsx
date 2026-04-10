@@ -22,6 +22,17 @@ const soyuzGrotesk = localFont({
   variable: '--font-soyuz-grotesk',
 })
 
+const ftCalhern = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/FTCalhern/FTCalhern-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-ft-calhern',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://typus.ai'),
   title: {
@@ -148,7 +159,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${soyuzGrotesk.variable} antialiased`}
+      className={`${ftCalhern.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -180,7 +191,7 @@ export default async function RootLayout({
         />
         {/* End Google Tag Manager */}
       </head>
-      <body 
+      <body
         className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'
         /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
            inject attributes that cause Next.js hydration mismatches. */
