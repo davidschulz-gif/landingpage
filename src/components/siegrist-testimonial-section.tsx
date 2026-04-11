@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Instagram, ArrowLeft, Play, Globe } from 'lucide-react'
+import { Instagram, ArrowLeft, Play, Globe, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
@@ -20,7 +20,8 @@ export function SiegristTestimonialSection() {
         href,
         caption,
         className = "",
-        priority = false
+        priority = false,
+        iconType = 'play'
     }: {
         src: string,
         alt: string,
@@ -29,7 +30,8 @@ export function SiegristTestimonialSection() {
         href: string,
         caption?: string,
         className?: string,
-        priority?: boolean
+        priority?: boolean,
+        iconType?: 'play' | 'instagram' | 'link'
     }) => (
         <a
             href={href}
@@ -45,10 +47,12 @@ export function SiegristTestimonialSection() {
                 className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                 priority={priority}
             />
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
+            {/* Icon Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/20 transition-colors">
                 <div className="w-16 h-16 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl transition-transform duration-300 group-hover:scale-110">
-                    <Play className="w-8 h-8 text-white fill-white ml-1" />
+                    {iconType === 'play' && <Play className="w-8 h-8 text-white fill-white ml-1" />}
+                    {iconType === 'instagram' && <Instagram className="w-8 h-8 text-white" />}
+                    {iconType === 'link' && <ExternalLink className="w-8 h-8 text-white" />}
                 </div>
             </div>
             {caption && (
@@ -57,6 +61,44 @@ export function SiegristTestimonialSection() {
                 </div>
             )}
         </a>
+    )
+
+    const ProjectDataSheet = ({ data }: { data: any }) => (
+        <div className="mt-8 p-6 bg-white border-2 border-black shadow-[4px_4px_0px_#000000] font-sans text-sm">
+            <div className="font-bold uppercase tracking-widest text-[10px] text-gray-500 mb-4 border-b-2 border-black pb-2">
+                {data.label}
+            </div>
+            <div className="space-y-3">
+                {[
+                    { label: locale === 'de' ? 'BAUHERRSCHAFT' : 'CLIENT', value: data.client.split(': ')[1] || data.client },
+                    { label: locale === 'de' ? 'JAHR' : 'YEAR', value: data.year.split(': ')[1] || data.year },
+                    { label: locale === 'de' ? 'TYPOLOGIE' : 'TYPOLOGY', value: data.typology.split(': ')[1] || data.typology },
+                    { label: locale === 'de' ? 'FLÄCHE' : 'SURFACE', value: data.surface.split(': ')[1] || data.surface },
+                ].map((item, idx) => (
+                    <div key={idx} className="flex justify-between items-start gap-4 border-b border-gray-100 pb-2">
+                        <span className="font-bold uppercase text-[9px] text-gray-400 mt-1 whitespace-nowrap">{item.label}</span>
+                        <span className="font-black uppercase text-right leading-tight">{item.value}</span>
+                    </div>
+                ))}
+                <div className="flex justify-between items-center pt-2">
+                    <span className="font-bold uppercase text-[10px] text-gray-600">{locale === 'de' ? 'GESAMTKOSTEN' : 'TOTAL COST'}</span>
+                    <span className="font-black uppercase text-2xl text-right leading-none tracking-tighter">
+                        {data.cost.split(': ')[1] || data.cost}
+                    </span>
+                </div>
+            </div>
+        </div>
+    )
+
+    const ProjectCaption = ({ data }: { data: any }) => (
+        <div className="p-5 bg-white font-sans text-[13px] leading-snug space-y-2 border-t border-gray-100">
+            <div className="font-black uppercase tracking-tight text-black">{data.project}</div>
+            <div className="text-gray-500 font-medium italic">{data.competition}</div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
+                <span className="text-blue-600 font-bold tracking-tight hover:underline cursor-pointer">{data.imageCredit}</span>
+                <span className="text-blue-600 font-bold tracking-tight hover:underline cursor-pointer">{data.modelCredit}</span>
+            </div>
+        </div>
     )
 
     return (
@@ -92,14 +134,16 @@ export function SiegristTestimonialSection() {
 
                 {/* Hero Image — Centered, smaller */}
                 <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-2xl border-2 border-black shadow-[8px_8px_0px_#000000]">
+                    <div className="w-full max-w-2xl border-2 border-black shadow-[8px_8px_0px_#000000] relative">
                         <ClickableImage
-                            src="/siegrist/portrait.png"
-                            alt="Siegrist Architectes Portrait"
+                            src="/siegrist/office-portrait.jpg"
+                            alt="Siegrist Architectes Office - Mariela & Luz Maria Siegrist"
                             width={800}
                             height={440}
-                            href="https://siegristarchitectes.ch/en/"
+                            href="https://siegristarchitectes.ch/en/office/"
                             priority={true}
+                            caption={t('caption3')}
+                            iconType="link"
                         />
                     </div>
                 </div>
@@ -146,16 +190,19 @@ export function SiegristTestimonialSection() {
                     <div className="space-y-4 order-1">
                         <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h2')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p2')}</p>
+                        <ProjectDataSheet data={t.raw('saintAubinData')} />
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
                         <ClickableImage
-                            src="/siegrist/saint-aubin.png"
+                            src="/siegrist/saint-aubin.jpg"
                             alt="Saint-Aubin Project Visualization"
                             width={960}
                             height={440}
-                            href="https://www.instagram.com/p/DWgGKLNiN9P/"
+                            href="https://siegristarchitectes.ch/en/portfolio-item/development-of-the-school-site-saint-aubin-fr/"
                             caption={t('caption1')}
+                            iconType="link"
                         />
+                        <ProjectCaption data={t.raw('saintAubinData')} />
                     </div>
                 </div>
 
@@ -180,14 +227,17 @@ export function SiegristTestimonialSection() {
 
                 {/* Project Showcase 1: Text RIGHT, Video/Thumbnail LEFT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="order-2 md:order-1 flex justify-center">
+                    <div className="order-2 md:order-1 flex flex-col items-center">
                         <VideoThumbnail
                             href="https://www.instagram.com/p/DWgGKLNiN9P/"
-                            imageSrc="/siegrist/saint-aubin.png"
+                            imageSrc="/siegrist/saint-aubin.jpg"
                             title={t('instagramTitle1')}
                             subtitle={t('reelDescription1')}
                             handle="@siegristarchitectes"
                         />
+                        <div className="w-full max-w-sm">
+                            <ProjectCaption data={t.raw('saintAubinData')} />
+                        </div>
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
                         <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle1')}</h2>
@@ -201,17 +251,20 @@ export function SiegristTestimonialSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="order-2 md:order-1 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
                         <ClickableImage
-                            src="/siegrist/venthone.png"
+                            src="/siegrist/venthone.jpg"
                             alt="Venthône Project Visualization"
                             width={960}
                             height={540}
-                            href="https://www.instagram.com/p/DViepQmiAsG/"
+                            href="https://siegristarchitectes.ch/en/portfolio-item/renovation-and-expansion-of-the-school-center-venthone-vs/"
                             caption={t('caption2')}
+                            iconType="link"
                         />
+                        <ProjectCaption data={t.raw('venthoneData')} />
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
                         <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h3')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p3')}</p>
+                        <ProjectDataSheet data={t.raw('venthoneData')} />
                     </div>
                 </div>
 
@@ -223,19 +276,22 @@ export function SiegristTestimonialSection() {
                             {t('reelDescription2')}
                         </p>
                     </div>
-                    <div className="order-2 flex justify-center">
+                    <div className="order-2 flex flex-col items-center">
                         <VideoThumbnail
                             href="https://www.instagram.com/p/DViepQmiAsG/"
-                            imageSrc="/siegrist/venthone.png"
+                            imageSrc="/siegrist/venthone.jpg"
                             title={t('instagramTitle2')}
                             subtitle={t('reelDescription2')}
                             handle="@siegristarchitectes"
                         />
+                        <div className="w-full max-w-sm">
+                            <ProjectCaption data={t.raw('venthoneData')} />
+                        </div>
                     </div>
                 </div>
 
                 <div className="py-6 border-y border-gray-200 my-4 text-center">
-                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                    <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
                         {t('featuredOnIllustrarch')}
                     </p>
                 </div>
@@ -248,12 +304,13 @@ export function SiegristTestimonialSection() {
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
                         <ClickableImage
-                            src="/siegrist/portrait.png"
+                            src="/siegrist/office-portrait.jpg"
                             alt="Siegrist Architectes Team"
                             width={960}
                             height={540}
-                            href="https://siegristarchitectes.ch/en/"
+                            href="https://siegristarchitectes.ch/en/office/"
                             caption={t('caption3')}
+                            iconType="link"
                         />
                     </div>
                 </div>
@@ -282,10 +339,10 @@ export function SiegristTestimonialSection() {
                     />
                     <div className="text-left">
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
-                             {t('euCoFunded')}
+                            {t('euCoFunded')}
                         </p>
                         <p className="text-xs text-gray-400 mt-1 max-w-xs">
-                             {locale === 'de'
+                            {locale === 'de'
                                 ? 'Typus wird im Rahmen des EU-geförderten NRW-Programms entwickelt.'
                                 : 'Typus is developed under the EU-funded NRW program.'}
                         </p>

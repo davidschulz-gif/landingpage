@@ -81,10 +81,10 @@ export function VideoThumbnail({ href, imageSrc, title, subtitle, handle = "@typ
                 </div>
             </div>
 
-            {/* Play Button Icon on Hover */}
+            {/* Instagram Icon on Hover */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
                 <div className="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border border-white/50 shadow-2xl">
-                    <Play className="w-6 h-6 text-white fill-white" />
+                    <Instagram className="w-6 h-6 text-white" />
                 </div>
             </div>
         </motion.a>

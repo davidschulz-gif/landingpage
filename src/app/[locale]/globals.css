@@ -121,7 +121,6 @@
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --font-sans: var(--font-ft-calhern), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-ft-calhern), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-ft-calhern: var(--font-ft-calhern);
 }
 
 @layer base {

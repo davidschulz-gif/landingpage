@@ -78,9 +78,20 @@
           "title": "hello@typus.ai",
           "description": "Mit dem PRO-Plan können Sie einen kostenlosen Onboarding-Call buchen."
         }
+      },
+      "stories": {
+        "siegrist": {
+          "title": "Siegrist Architectes",
+          "description": "Schweizer Präzision trifft auf KI-Workflow."
+        },
+        "ama": {
+          "title": "AMA Awards Madrid",
+          "description": "Architektonische Exzellenz aus Spanien."
+        }
       }
     },
-    "amaAwards": "Nutzerbewertungen"
+    "successStories": "Erfolgsgeschichten",
+    "amaAwards": "Testimonials"
   },
   "ImageTemplates": {
     "title": "Bildvorlagen",
@@ -2681,7 +2692,31 @@
     "watchVideo2": "Projekt ansehen",
     "instagramTitle1": "Projekt: Saint-Aubin",
     "instagramTitle2": "Projekt: Venthône",
-    "readMore": "Projekte entdecken"
+    "readMore": "Projekte entdecken",
+    "saintAubinData": {
+      "label": "Projektdaten",
+      "project": "DEVELOPPEMENT DU SITE SCOLAIRE – SAINT-AUBIN, FRIBOURG",
+      "competition": "Concours ouvert d'architecture 2026",
+      "client": "Bauherrschaft: Gemeinde Saint-Aubin",
+      "year": "Jahr: 2026",
+      "typology": "Typologie: Klassenzimmer, Bibliothek, Tagesschule",
+      "surface": "Fläche: 4'860 m²",
+      "cost": "Gesamtkosten: CHF 18,3 Mio.",
+      "imageCredit": "image @typus.ai",
+      "modelCredit": "model @wolczekarchitekturmodellbau"
+    },
+    "venthoneData": {
+      "label": "Projektdaten",
+      "project": "TRANSFORMATION DU CENTRE SCOLAIRE – VENTHÔNE, VS",
+      "competition": "Concours ouvert d'architecture 2026",
+      "client": "Bauherrschaft: Gemeinde Noble-Contrée",
+      "year": "Jahr: 2026",
+      "typology": "Typologie: Klassenzimmer, Mensa, Mehrzweckhalle",
+      "surface": "Fläche: 2'250 m²",
+      "cost": "Gesamtkosten: CHF 10,6 Mio.",
+      "imageCredit": "image @typus.ai",
+      "modelCredit": "model @wolczekarchitekturmodellbau"
+    }
   },
   "BlogPromo": {
     "badge": "ERFOLGSGESCHICHTE",

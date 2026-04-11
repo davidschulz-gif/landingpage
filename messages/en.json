@@ -78,8 +78,19 @@
           "title": "hello@typus.ai",
           "description": "With the PRO plan, you can book a free onboarding call."
         }
+      },
+      "stories": {
+        "siegrist": {
+          "title": "Siegrist Architectes",
+          "description": "Swiss precision meets AI workflow."
+        },
+        "ama": {
+          "title": "AMA Awards Madrid",
+          "description": "Winning architectural excellence in Spain."
+        }
       }
     },
+    "successStories": "Success Stories",
     "amaAwards": "Testimonials"
   },
   "ImageTemplates": {
@@ -2679,7 +2690,31 @@
     "watchVideo2": "View Project",
     "instagramTitle1": "Project: Saint-Aubin",
     "instagramTitle2": "Project: Venthône",
-    "readMore": "Explore projects"
+    "readMore": "Explore projects",
+    "saintAubinData": {
+      "label": "Project Data",
+      "project": "DEVELOPPEMENT DU SITE SCOLAIRE – SAINT-AUBIN, FRIBOURG",
+      "competition": "Concours ouvert d'architecture 2026",
+      "client": "Client: Municipality of Saint-Aubin",
+      "year": "Year: 2026",
+      "typology": "Typology: Classrooms, Library, Day school",
+      "surface": "Surface: 4,860 m²",
+      "cost": "Overall Cost: CHF 18.3M",
+      "imageCredit": "image @typus.ai",
+      "modelCredit": "model @wolczekarchitekturmodellbau"
+    },
+    "venthoneData": {
+      "label": "Project Data",
+      "project": "TRANSFORMATION DU CENTRE SCOLAIRE – VENTHÔNE, VS",
+      "competition": "Concours ouvert d'architecture 2026",
+      "client": "Client: Municipality of Noble-Contrée",
+      "year": "Year: 2026",
+      "typology": "Typology: Classrooms, Refectory, Multi-purpose hall",
+      "surface": "Surface: 2,250 m²",
+      "cost": "Overall Cost: CHF 10.6M",
+      "imageCredit": "image @typus.ai",
+      "modelCredit": "model @wolczekarchitekturmodellbau"
+    }
   },
   "BlogPromo": {
     "badge": "SUCCESS STORY",
