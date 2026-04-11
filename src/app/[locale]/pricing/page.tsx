@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { ManyChatPricingSection } from '@/components/manychat-pricing-section'
@@ -70,7 +70,7 @@ export default function PricingPage() {
                                 ease: 'linear'
                             }}
                             className='flex whitespace-nowrap text-white text-[11px] font-bold uppercase tracking-[0.1em] gap-8'
-                            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                         >
                             {[...Array(4)].map((_, i) => (
                                 <span key={i} className='flex gap-8 items-center'>
@@ -85,7 +85,7 @@ export default function PricingPage() {
                     <div className='absolute right-0 top-0 bottom-0 flex items-center px-8 z-20 bg-black shadow-[-20px_0_30px_rgba(0,0,0,0.8)]'>
                         <Button
                             className='bg-white text-black hover:bg-gray-100 text-[10px] font-black tracking-widest px-6 py-2 rounded-none uppercase transition-all'
-                            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                         >
                             VIEW NOW
                         </Button>
@@ -109,7 +109,7 @@ export default function PricingPage() {
                                 key={mode}
                                 onClick={() => setViewMode(mode as any)}
                                 className={`relative z-10 px-8 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
-                                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                             >
                                 {viewMode === mode && (
                                     <motion.div

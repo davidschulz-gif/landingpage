@@ -12,7 +12,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Check, X, ArrowLeft } from 'lucide-react'
+import { Check, X, ArrowLeft, Gift } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -716,11 +716,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         {/* Professional Section */}
         <div className='text-center mb-2 relative z-40'>
           <h2
-            className='text-[50px] font-black mt-10 mb-8'
-          // style={{
-          //   fontFamily:
-          //     "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-          // }}
+            className='text-[50px] font-black mt-10 mb-8 text-black'
           >
             {t('selfServiceTitle')}
           </h2>
@@ -1017,7 +1013,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                   </svg>
                   <h4
                     className='text-[10px] font-bold tracking-wide text-black'
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
                   >
                     {t('creditDeduction.videoGeneration')}
                   </h4>
@@ -1118,7 +1114,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 onClick={() => handleVerifyPromoCode('edu')}
                 disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
                 className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
@@ -1379,27 +1375,30 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       </AnimatePresence>
       {/* First Buyer Kick Off Button */}
       {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && !profPromoDiscount && (
-        <div className='fixed bottom-10 left-0 right-0 z-[100] flex justify-center'>
-          <motion.div
-            animate={{
-              scale: [1, 1.1, 1],
-              rotate: [0, -3, 3, -3, 3, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 10,
-              ease: "easeInOut"
-            }}
-            className="rounded-2xl"
-          >
-            <Button
-              onClick={() => setShowKickOffModal(true)}
-              className='bg-white text-black hover:bg-gray-50 px-12 py-8 text-2xl font-black uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all border border-gray-100 rounded-2xl animate-pulse-glow relative'>
-              First Buyer Kick Off
-            </Button>
-          </motion.div>
-        </div>
+
+        <motion.button
+          animate={{
+            scale: [1, 1.05, 1],
+            rotate: [0, -2, 2, -2, 2, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 10,
+            ease: "easeInOut"
+          }}
+          onClick={() => setShowKickOffModal(true)}
+          className="fixed right-10 bottom-10 -translate-y-1/2 z-[9999] rounded-2xl p-4 border-y border-l border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
+          style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+          aria-label={"First Buyer Kick Off"}
+        >
+          <Gift className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
+          <span className="relative font-bold text-2xl uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[400px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
+            First Buyer Kick Off
+          </span>
+        </motion.button>
+
+
       )}
 
       {/* First Buyer Kick Off Modal */}
@@ -1432,7 +1431,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 If you’re new, kickstart your journey with <strong>€70 off</strong> — just enter the code in the promo field.
               </p>
 
-              <div className='text-7xl font-bold tracking-tighter text-black my-4' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div className='text-7xl font-bold tracking-tighter text-black my-4' style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}>
                 KICK
               </div>
 
