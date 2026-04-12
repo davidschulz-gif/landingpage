@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { Button } from '@/components/ui/button'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
@@ -401,6 +401,14 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       })
       const verifyData = await verifyResponse.json()
       console.log('Verify Data:', verifyData)
+
+      if (!verifyResponse.ok) {
+        toast.error(verifyData.message || 'An unexpected error occurred')
+        setSubscribeError(verifyData.message || 'An unexpected error occurred')
+        setIsModalOpen(false)
+        setIsRedirecting(false)
+        return
+      }
 
       if (selectedPlanForModal.isEducational && !verifyData.isUniversity) {
         setModalError(tModal('errorNotStudentEmail'))
