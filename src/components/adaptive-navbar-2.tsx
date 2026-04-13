@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import {
   MobileNav,
   MobileNavHeader,
@@ -228,7 +228,7 @@ export function NavbarDemo() {
         <div className='flex items-center gap-6 h-full'>
           <Link
             href={`/pricing`}
-            className='bg-black text-white px-4 py-2 text-[13px] font-medium hover:bg-gray-800 transition-colors duration-200'
+            className='bg-black text-white px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-black transition-colors duration-200'
           >
             {tPricing('selectPlanCTA')}
           </Link>
@@ -344,9 +344,9 @@ export function NavbarDemo() {
                   ))}
                 </div>
 
-                <div className='absolute bottom-0 right-0 gap-4 flex'>
+                <div className='absolute bottom-0 right-0 gap-4 flex items-center'>
                   <Image
-                    className='h-12 w-36'
+                    className='h-12 w-auto object-contain'
                     src='/bdbau.png'
                     alt=''
                     width={200}

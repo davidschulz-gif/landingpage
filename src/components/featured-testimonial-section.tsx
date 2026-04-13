@@ -165,7 +165,7 @@ export function FeaturedTestimonialSection() {
                 </BreathingAnimationText> */}
 
                 <Button
-                  className='animate-breathe-primary-hover bg-black hover:bg-gray-800 text-white px-6 py-2  text-sm font-medium transition-all duration-300 hover:scale-105'
+                  className='animate-breathe-primary-hover bg-black hover:bg-black text-white px-6 py-2  text-sm font-medium transition-all duration-300 hover:scale-105'
                   style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 >
                   Read full article

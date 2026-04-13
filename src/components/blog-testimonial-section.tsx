@@ -118,7 +118,7 @@ export function BlogTestimonialSection() {
                         href="https://www.archdaily.com/985896/a-cliff-house-in-bali-and-a-waterfront-estate-in-greece-9-unbuilt-villas-submitted-to-archdaily"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                     >
                         <Image src="/archdaily.png" alt="Archdail" width={20} height={20} className="rounded-full" />
                         {/* <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg> */}
@@ -128,7 +128,7 @@ export function BlogTestimonialSection() {
                         href="https://illustrarch.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                     >
                         <Image src="/illustrarch-logo.svg" alt="Illustrarch" width={14} height={14} className="rounded-full" />
                         Illustrarch

@@ -432,7 +432,7 @@ export function TabVideoShowcase() {
                       duration={2000}
                       onClick={() => setActiveTab(tab.id)}
                     >
-                      <Card className='bg-white dark:bg-gray-800 border-0 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4 w-full h-full shadow-sm relative z-10'>
+                      <Card className='bg-white dark:bg-black border-0 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4 w-full h-full shadow-sm relative z-10'>
                         <CardContent className='p-1 md:p-3 md:min-h-[200px] flex flex-col'>
                           <motion.div
                             className='flex items-start md:items-center md:flex-row flex-col gap-2 mb-3'
@@ -442,7 +442,7 @@ export function TabVideoShowcase() {
                             viewport={{ once: true }}
                           >
                             <motion.div
-                              className='p-1 bg-black dark:bg-gray-800'
+                              className='p-1 bg-black dark:bg-black'
                               whileHover={{ scale: 1.1, rotate: 5 }}
                               transition={{ duration: 0.2 }}
                             >
@@ -507,7 +507,7 @@ export function TabVideoShowcase() {
                   </div>
                 ) : (
                   <Card
-                    className='cursor-pointer transition-all duration-300 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4'
+                    className='cursor-pointer transition-all duration-300 bg-white dark:bg-black border-gray-200 dark:border-gray-700 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4'
                     onClick={() => setActiveTab(tab.id)}
                   >
                     <CardContent className='p-1 md:p-3 md:min-h-[200px] flex flex-col'>
@@ -519,7 +519,7 @@ export function TabVideoShowcase() {
                         viewport={{ once: true }}
                       >
                         <motion.div
-                          className='p-1 bg-gray-100 dark:bg-gray-700'
+                          className='p-1 bg-gray-100 dark:bg-black'
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.2 }}
                         >

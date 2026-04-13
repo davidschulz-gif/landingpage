@@ -162,7 +162,7 @@ export function SiegristTestimonialSection() {
                         href="https://siegristarchitectes.ch/en/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                     >
                         <Globe className="w-3.5 h-3.5" />
                         Siegrist Architectes Website
@@ -171,7 +171,7 @@ export function SiegristTestimonialSection() {
                         href="https://www.instagram.com/siegristarchitectes/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-gray-800 hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                     >
                         <Instagram className="w-3.5 h-3.5" />
                         Instagram

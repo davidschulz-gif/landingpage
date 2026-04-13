@@ -183,8 +183,7 @@ export function FooterSection() {
 
         <div className='flex flex-wrap gap-4 md:gap-8 justify-center mt-10 w-full items-center px-4'>
           <Image
-            className='h-12 w-auto md:h-16 md:w-36'
-            // src='/logo/lo_bdbau_1c_rz.avif'
+            className='h-12 w-auto md:h-16 md:w-auto object-contain'
             src='/bdbau.png'
             alt=''
             width={200}

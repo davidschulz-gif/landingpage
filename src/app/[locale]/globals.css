@@ -6,7 +6,7 @@
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
   --background: #fcfcfd;
-  --foreground: #475569;
+  --foreground: #000000;
   --card: #ffffff;
   --card-foreground: #164e63;
   --popover: #ffffff;
