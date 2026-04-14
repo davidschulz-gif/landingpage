@@ -115,7 +115,20 @@ const DoneForYouTerms = () => {
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">12. Vertraulichkeit</h2>
+                <h2 className="text-xl font-semibold mb-3">12. Widerrufsrecht</h2>
+                <p className="mb-2">(1) Verbraucher haben grundsätzlich ein gesetzliches Widerrufsrecht bei Fernabsatzverträgen.</p>
+                <p className="mb-2">(2) Das Widerrufsrecht erlischt jedoch gemäß § 356 Abs. 5 BGB bei Verträgen über die Bereitstellung von digitalen Inhalten oder digitalen Dienstleistungen vorzeitig, wenn:</p>
+                <ul className="list-disc ml-6 mb-2">
+                    <li>der Nutzer ausdrücklich zugestimmt hat, dass mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist begonnen wird, und</li>
+                    <li>der Nutzer seine Kenntnis davon bestätigt hat, dass er durch diese Zustimmung mit Beginn der Ausführung sein Widerrufsrecht verliert.</li>
+                </ul>
+                <p className="mb-2">(3) Mit Abschluss des Abonnements und Nutzung der Plattform typus.ai erklärt sich der Nutzer ausdrücklich damit einverstanden, dass die Leistung unmittelbar bereitgestellt wird und bestätigt zugleich den Verlust des Widerrufsrechts mit Beginn der Nutzung.</p>
+                <p className="mb-2">(4) Ein Widerruf nach Beginn der Nutzung der digitalen Dienstleistung ist daher ausgeschlossen.</p>
+                <p className="mb-2">(5) Das Recht zur Kündigung des Abonnements bleibt hiervon unberührt.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-semibold mb-3">13. Vertraulichkeit</h2>
                 <p className="mb-2">(1) Beide Parteien verpflichten sich, alle vertraulichen Informationen geheim zu halten.</p>
                 <p className="mb-2">(2) Dies gilt insbesondere für:</p>
                 <ul className="list-disc ml-6 mb-2">
@@ -125,13 +138,13 @@ const DoneForYouTerms = () => {
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">13. Datenschutz</h2>
+                <h2 className="text-xl font-semibold mb-3">14. Datenschutz</h2>
                 <p className="mb-2">(1) Die Verarbeitung personenbezogener Daten erfolgt gemäß DSGVO.</p>
                 <p>(2) Weitere Informationen ergeben sich aus der Datenschutzerklärung des Anbieters.</p>
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">14. Schlussbestimmungen</h2>
+                <h2 className="text-xl font-semibold mb-3">15. Schlussbestimmungen</h2>
                 <p className="mb-2">(1) Es gilt das Recht der Bundesrepublik Deutschland.</p>
                 <p className="mb-2">(2) Gerichtsstand ist der Sitz des Anbieters, sofern gesetzlich zulässig.</p>
                 <p>(3) Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
@@ -255,7 +268,20 @@ const DoneForYouTerms = () => {
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">12. Confidentiality</h2>
+                <h2 className="text-xl font-semibold mb-3">12. Right of Withdrawal</h2>
+                <p className="mb-2">(1) Consumers generally have a statutory right of withdrawal in distance selling contracts.</p>
+                <p className="mb-2">(2) However, in accordance with Section 356 (5) BGB, the right of withdrawal expires prematurely for contracts concerning the provision of digital content or digital services if:</p>
+                <ul className="list-disc ml-6 mb-2">
+                    <li>the user has expressly agreed that the execution of the contract shall begin before the end of the withdrawal period, and</li>
+                    <li>the user has confirmed their knowledge that by agreeing to the commencement of execution, they lose their right of withdrawal.</li>
+                </ul>
+                <p className="mb-2">(3) By concluding the subscription and using the typus.ai platform, the user expressly agrees that the service will be provided immediately and at the same time confirms the loss of the right of withdrawal upon commencement of use.</p>
+                <p className="mb-2">(4) A withdrawal after the commencement of the use of the digital service is therefore excluded.</p>
+                <p className="mb-2">(5) The right to terminate the subscription remains unaffected by this.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-semibold mb-3">13. Confidentiality</h2>
                 <p className="mb-2">(1) Both parties commit to keeping all confidential information secret.</p>
                 <p className="mb-2">(2) This specifically applies to:</p>
                 <ul className="list-disc ml-6 mb-2">
@@ -265,13 +291,13 @@ const DoneForYouTerms = () => {
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">13. Data Protection</h2>
+                <h2 className="text-xl font-semibold mb-3">14. Data Protection</h2>
                 <p className="mb-2">(1) The processing of personal data occurs in accordance with the GDPR.</p>
                 <p>(2) Further information can be found in the Provider's privacy policy.</p>
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-3">14. Final Provisions</h2>
+                <h2 className="text-xl font-semibold mb-3">15. Final Provisions</h2>
                 <p className="mb-2">(1) The laws of the Federal Republic of Germany apply.</p>
                 <p className="mb-2">(2) The place of jurisdiction is the Provider's registered office, where legally permissible.</p>
                 <p>(3) Should individual provisions be invalid, the validity of the remaining provisions remains unaffected.</p>
