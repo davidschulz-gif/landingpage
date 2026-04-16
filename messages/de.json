@@ -353,12 +353,12 @@
       "resolution1K": "1K Auflösung",
       "resolution2K": "2K Auflösung",
       "resolution4K": "4K Auflösung",
-      "credit1": "1 Credit",
-      "credits3": "3 Credits",
-      "credits5": "5 Credits",
-      "credits25": "25 Credits",
-      "credits50": "50 Credits",
-      "credits75": "75 Credits"
+      "credit1": "3 Credit",
+      "credits3": "9 Credits",
+      "credits5": "15 Credits",
+      "credits25": "75 Credits",
+      "credits50": "150 Credits",
+      "credits75": "225 Credits"
     }
   },
   "SubscriptionModal": {
