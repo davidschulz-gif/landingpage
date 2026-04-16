@@ -210,12 +210,12 @@ function ThankYouContent() {
         )}
 
         <div className="pt-8">
-          {user?.email ? <Link href={`${appUrl}/register?email=${encodeURIComponent(user?.email)}`}>
+          {user?.email ? <Link href={`${appUrl}/login?email=${encodeURIComponent(user?.email)}`}>
             <Button
               className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
               style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             >
-              {t('createAccount')}
+              {t('logIn')}
             </Button>
           </Link> : <Link href={`${landingPageUrl}/pricing`}>
             <Button

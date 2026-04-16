@@ -25,7 +25,7 @@ const soyuzGrotesk = localFont({
 const ftCalhern = localFont({
   src: [
     {
-      path: '../../../public/fonts/FTCalhern/FTCalhern-Regular.otf',
+      path: '../../../public/fonts/PPFragment/PPFragment-TextRegular.otf',
       weight: '400',
       style: 'normal',
     },

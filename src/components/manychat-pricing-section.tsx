@@ -177,6 +177,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   const [educationalPlans, setEducationalPlans] = useState<any>();
   const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('usd');
   const [isVat, setIsVat] = useState<boolean>(true);
+  const [locationContinent, setLocationContinent] = useState<string | null>(null);
+  const [locationCountryCode, setLocationCountryCode] = useState<string | null>(null);
+  const [locationCurrency, setLocationCurrency] = useState<string | null>(null);
+  const [universityName, setUniversityName] = useState<string | null>(null);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -397,10 +401,14 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       const verifyResponse = await fetch(`${apiBaseUrl}verify-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: userEmail.trim() }),
+        body: JSON.stringify({ email: userEmail.trim(), isEducational: selectedPlanForModal.isEducational ? true : false }),
       })
       const verifyData = await verifyResponse.json()
       console.log('Verify Data:', verifyData)
+
+      if (verifyData.universityName) {
+        setUniversityName(verifyData.universityName)
+      }
 
       if (!verifyResponse.ok) {
         toast.error(verifyData.message || 'An unexpected error occurred')
@@ -473,6 +481,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               privacyConsent,
               termsConsent,
               language: locale,
+              ...(locationCountryCode && { countryCode: locationCountryCode }),
+              ...(locationCurrency && { currency: locationCurrency }),
+              ...(locationContinent && { continent: locationContinent }),
+              ...(selectedPlanForModal.isEducational && { isStudent: true }),
+              ...(selectedPlanForModal.isEducational && { universityName: universityName }),
               ...onboardingData
             }),
           })
@@ -695,6 +708,15 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       setPlanCurrency(plansData?.currency);
       if (plansData?.location?.isVat !== undefined) {
         setIsVat(plansData.location.isVat);
+      }
+      if (plansData?.location?.continent) {
+        setLocationContinent(plansData.location.continent);
+      }
+      if (plansData?.location?.country_code) {
+        setLocationCountryCode(plansData.location.country_code);
+      }
+      if (plansData?.location?.currency) {
+        setLocationCurrency(plansData.location.currency);
       }
       // Use currency from backend
       // const detectedCurrency = ;
