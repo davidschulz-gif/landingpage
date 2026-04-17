@@ -244,6 +244,9 @@ export function SiegristTestimonialSection() {
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
                             {t('reelDescription1')}
                         </p>
+                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                            {t('saintAubinData.imageCredit')}
+                        </p>
                     </div>
                 </div>
 
@@ -274,6 +277,9 @@ export function SiegristTestimonialSection() {
                         <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle2')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
                             {t('reelDescription2')}
+                        </p>
+                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                            {t('venthoneData.imageCredit')}
                         </p>
                     </div>
                     <div className="order-2 flex flex-col items-center">

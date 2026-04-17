@@ -7,58 +7,116 @@ export const ImageTemplates: React.FC = () => {
     const t = useTranslations('ImageTemplates');
     const locale = useLocale();
 
-    const [imageTemplates, setImageTemplates] = useState<any[]>([]);
+    // const [imageTemplates, setImageTemplates] = useState<any[]>([]);
 
-    useEffect(() => {
-        const fetchTemplates = async () => {
-            try {
+    // useEffect(() => {
+    //     const fetchTemplates = async () => {
+    //         try {
 
-                const response = await fetch(
-                    `${apiUrl}/api/customization/templates`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Accept: 'application/json',
-                        },
-                    }
-                )
-                const fetchedData = await response.json();
+    //             const response = await fetch(
+    //                 `${apiUrl}/api/customization/templates`,
+    //                 {
+    //                     method: 'GET',
+    //                     headers: {
+    //                         'Content-Type': 'application/json',
+    //                         Accept: 'application/json',
+    //                     },
+    //                 }
+    //             )
+    //             const fetchedData = await response.json();
 
-                const visibleCategories = (fetchedData?.categories || []).filter((cat: any) => cat.slug !== 'material-style');
-                const t1Category = visibleCategories.find((cat: any) => cat.slug === 'architecture-render')?.templates;
-                const t2Category = visibleCategories.find((cat: any) => cat.slug === 'interior')?.templates;
-                const templateSlugArray = [
-                    'institutional-buildings',
-                    'commercial-buildings',
-                    'recreational-buildings',
-                    'agricultural-buildings',
-                    'residential-buildings',
-                    'industrial-buildings',
-                    'multistory-office-building',
-                    'architectural-sculptural',
-                    'modern-living-room',
-                    'minimalist-interior',
-                    'industrial-loft-living-room'
-                ]
-                const rowTemplates = [...t1Category, ...t2Category]?.filter((t: any) => templateSlugArray.includes(t.slug));
-                const allTemplates = rowTemplates.map((t: any) => ({
-                    id: `template-${t.id}`,
-                    backendId: t.id,
-                    title: locale === 'de' ? (t.displayNameDe || '') : (t.displayNameEn || ''),
-                    description: locale === 'de' ? (t.descriptionDe || '') : (t.descriptionEn || ''),
-                    prompt: t.promptSnippet,
-                    thumbnail: t.imageUrl || ''
-                }));
+    //             const visibleCategories = (fetchedData?.categories || []).filter((cat: any) => cat.slug !== 'material-style');
+    //             const t1Category = visibleCategories.find((cat: any) => cat.slug === 'architecture-render')?.templates;
+    //             const t2Category = visibleCategories.find((cat: any) => cat.slug === 'interior')?.templates;
+    //             const templateSlugArray = [
+    //                 'institutional-buildings',
+    //                 'commercial-buildings',
+    //                 'recreational-buildings',
+    //                 'agricultural-buildings',
+    //                 'residential-buildings',
+    //                 'industrial-buildings',
+    //                 'multistory-office-building',
+    //                 'architectural-sculptural',
+    //                 'modern-living-room',
+    //                 'minimalist-interior',
+    //                 'industrial-loft-living-room'
+    //             ]
+    //             const rowTemplates = [...t1Category, ...t2Category]?.filter((t: any) => templateSlugArray.includes(t.slug));
+    //             const allTemplates = rowTemplates.map((t: any) => ({
+    //                 id: `template-${t.id}`,
+    //                 backendId: t.id,
+    //                 title: locale === 'de' ? (t.displayNameDe || '') : (t.displayNameEn || ''),
+    //                 description: locale === 'de' ? (t.descriptionDe || '') : (t.descriptionEn || ''),
+    //                 prompt: t.promptSnippet,
+    //                 thumbnail: t.imageUrl || ''
+    //             }));
 
-                // Ensure we have 11 templates for the grid
-                setImageTemplates(allTemplates.slice(0, 11));
-            } catch (err) {
-                console.error('Failed to fetch templates for showcase:', err);
-            }
-        };
-        fetchTemplates();
-    }, [locale]);
+    //             // Ensure we have 11 templates for the grid
+    //             setImageTemplates(allTemplates.slice(0, 11));
+    //         } catch (err) {
+    //             console.error('Failed to fetch templates for showcase:', err);
+    //         }
+    //     };
+    //     fetchTemplates();
+    // }, [locale]);
+
+    const templates = [
+        {
+            title: t('items.architectural.title'),
+            description: t('items.architectural.description'),
+            thumbnail: '/cover_images/architectural-modern-architectural-precision.jpg',
+        },
+        {
+            title: t('items.commercial.title'),
+            description: t('items.commercial.description'),
+            thumbnail: '/cover_images/commercial-adaptive-reuse.jpg',
+        },
+        {
+            title: t('items.industrial.title'),
+            description: t('items.industrial.description'),
+            thumbnail: '/cover_images/industrial--robust-industrial-architecture.jpg',
+        },
+        {
+            title: t('items.interiorFamily.title'),
+            description: t('items.interiorFamily.description'),
+            thumbnail: '/cover_images/interior-family-living-room.jpg',
+        },
+        {
+            title: t('items.interiorKitchen.title'),
+            description: t('items.interiorKitchen.description'),
+            thumbnail: '/cover_images/interior-maximalist-kitchen.jpg',
+        },
+        {
+            title: t('items.landscape.title'),
+            description: t('items.landscape.description'),
+            thumbnail: '/cover_images/landscape-elevated-garden-walkway.jpg',
+        },
+        {
+            title: t('items.publicCoastal.title'),
+            description: t('items.publicCoastal.description'),
+            thumbnail: '/cover_images/public-coastal-pavilion.jpg',
+        },
+        {
+            title: t('items.residentialConcrete.title'),
+            description: t('items.residentialConcrete.description'),
+            thumbnail: '/cover_images/residential-concrete-pavilion.jpg',
+        },
+        {
+            title: t('items.residentialForest.title'),
+            description: t('items.residentialForest.description'),
+            thumbnail: '/cover_images/residential-forest-glass-pavilion.jpg',
+        },
+        {
+            title: t('items.residentialEarth.title'),
+            description: t('items.residentialEarth.description'),
+            thumbnail: '/cover_images/residential-rammed-earth-villa.jpg',
+        },
+        {
+            title: t('items.publicWaterfront.title'),
+            description: t('items.publicWaterfront.description'),
+            thumbnail: '/cover_images/waterfront-cultural-centre.jpg',
+        },
+    ]
 
     return (
         <div className="max-w-7xl mx-auto py-1 px-6 sm:px-10 space-y-8 w-full">
@@ -69,7 +127,7 @@ export const ImageTemplates: React.FC = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[160px] md:auto-rows-[220px]">
                 {/* Dynamic Templates for the Grid */}
-                {imageTemplates.map((template, index) => {
+                {templates.map((template, index) => {
 
                     // Assign grid spans based on index to recreate the Krea.ai asymmetric look
                     let spanClasses = "col-span-1 row-span-1";
@@ -83,7 +141,7 @@ export const ImageTemplates: React.FC = () => {
 
                     return (
                         <div
-                            key={template.id}
+                            key={index}
                             className={`group relative rounded-[32px] overflow-hidden border border-gray-100 bg-white transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-1 ${spanClasses}`}
                         >
                             <img

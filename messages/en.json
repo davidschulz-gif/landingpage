@@ -95,7 +95,53 @@
   },
   "ImageTemplates": {
     "title": "Image Templates",
-    "subtitle": "Explore architectural styles and jumpstart your project."
+    "subtitle": "Explore architectural styles and jumpstart your project.",
+    "items": {
+      "architectural": {
+        "title": "Architectural",
+        "description": "Modern Architectural Precision"
+      },
+      "commercial": {
+        "title": "Commercial",
+        "description": "Commercial Adaptive Reuse"
+      },
+      "industrial": {
+        "title": "Industrial",
+        "description": "Robust Industrial Architecture"
+      },
+      "interiorFamily": {
+        "title": "Interior",
+        "description": "Family Living Room"
+      },
+      "interiorKitchen": {
+        "title": "Interior",
+        "description": "Minimalist Kitchen"
+      },
+      "landscape": {
+        "title": "Landscape",
+        "description": "Elevated Garden Walkway"
+      },
+      "publicCoastal": {
+        "title": "Public",
+        "description": "Coastal Pavilion"
+      },
+      "residentialConcrete": {
+        "title": "Residential",
+        "description": "Concrete Pavilion"
+      },
+      "residentialForest": {
+        "title": "Residential",
+        "description": "Forest Glass Pavilion"
+      },
+      "residentialEarth": {
+        "title": "Residential",
+        "description": "Rammed Earth Villa"
+      },
+      "publicWaterfront": {
+        "title": "Public",
+        "description": "Waterfront Cultural Centre"
+      }
+    }
   },
   "Hero": {
     "titles": [
@@ -269,7 +315,7 @@
       "starter": {
         "name": "STARTER",
         "features": {
-          "credits50": "50 CREDITS /month (e.g. 30 base images and 10 Refinements)",
+          "credits50": "50 CREDITS /month (e.g. 16 base images and 10 Refinements)",
           "resolution2k": "2K RESOLUTION",
           "allPlugins": "ALL PLUGIN INTEGRATIONS",
           "noSupport": "NO SUPPORT",
@@ -282,7 +328,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "EVERYTHING FROM STARTER",
-          "credits150": "150 CREDITS /month (e.g. 100 base images and 10 Refinements)",
+          "credits150": "150 CREDITS /month (e.g. 50 base images and 10 Refinements)",
           "resolution4k": "4K RESOLUTION (2 CONCURRENT JOB)",
           "emailSupport": "EMAIL SUPPORT",
           "imageEditing": "IMAGE EDITING",
@@ -294,7 +340,7 @@
         "name": "PRO ONE",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits1000": "1000 CREDITS /month (200-1000 images (see credit deduction overview below))",
+          "credits1000": "1000 CREDITS /month (66-333 images (see credit deduction overview below))",
           "resolution4k": "4K RESOLUTION",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "editByChat": "EDIT BY CHAT",
@@ -315,7 +361,7 @@
       "student": {
         "name": "STARTER",
         "features": {
-          "credits50": "50 CREDITS /month (10-50 images (see credit deduction overview below))",
+          "credits50": "50 CREDITS /month (3-16 images (see credit deduction overview below))",
           "optCreditsTopUps": "OPT. CREDITS TOP UPS",
           "unlimitedJobs": "UNLIMITED CONCURRENT JOBS",
           "integratedRefiner": "INTEGRATED REFINER",
@@ -328,7 +374,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "EVERYTHING FROM STARTER",
-          "credits150": "150 CREDITS /month (30-150 images (see credit deduction overview below))",
+          "credits150": "150 CREDITS /month (10-50 images (see credit deduction overview below))",
           "concurrentJobs2": "2 CONCURRENT JOBS",
           "resolution4k": "RESOLUTION UP TO 4K",
           "noQueue": "NO QUEUE"
@@ -338,7 +384,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits1000": "1000 CREDITS /month (200-1000 images (see credit deduction overview below))",
+          "credits1000": "1000 CREDITS /month (66-333 images (see credit deduction overview below))",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",
@@ -356,9 +402,9 @@
       "credit1": "3 credit",
       "credits3": "9 credits",
       "credits5": "15 credits",
-      "credits25": "75 credits",
-      "credits50": "150 credits",
-      "credits75": "225 credits"
+      "credits25": "65 credits",
+      "credits50": "125 credits",
+      "credits75": "175 credits"
     }
   },
   "SubscriptionModal": {
@@ -2492,6 +2538,20 @@
       "aiPromptBadge": "AI Prompt",
       "inputTypeBadge": "Input Type",
       "inputTypeValue": "Hand Sketch (Uploaded)"
+    },
+    "landingSteps": {
+      "step1": {
+        "title": "Enter your vision",
+        "description": "Upload a simple hand sketch, a 3D model, or simply enter a descriptive text prompt."
+      },
+      "step2": {
+        "title": "AI Transformation",
+        "description": "Our advanced AI models analyze your input and create photorealistic architectural visualizations."
+      },
+      "step3": {
+        "title": "Premium Results",
+        "description": "Download high-quality renderings ready for client presentations or marketing materials."
+      }
     }
   },
   "VideoGenerate": {

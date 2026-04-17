@@ -1,11 +1,22 @@
 import { Clock, FileText, Image as ImageIcon, Sparkles, Type, Upload, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const HowItWorks: React.FC = () => {
     const t = useTranslations('HowItWorks');
     const [typedText, setTypedText] = useState('');
     const fullText = t('visualization.prompt');
+    const [isLandingPage, setIsLandingPage] = useState(true);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        if (pathname === '/en/done-for-you' || pathname === '/de/done-for-you') {
+            setIsLandingPage(false);
+        } else {
+            setIsLandingPage(true);
+        }
+    }, [pathname]);
 
     useEffect(() => {
         let index = 0;
@@ -19,7 +30,23 @@ export const HowItWorks: React.FC = () => {
         return () => clearInterval(interval);
     }, [fullText]);
 
-    const steps = [
+    const steps = isLandingPage ? [
+        {
+            icon: <FileText className="w-6 h-6" />,
+            title: t('landingSteps.step1.title'),
+            description: t('landingSteps.step1.description'),
+        },
+        {
+            icon: <Clock className="w-6 h-6" />,
+            title: t('landingSteps.step2.title'),
+            description: t('landingSteps.step2.description'),
+        },
+        {
+            icon: <ImageIcon className="w-6 h-6" />,
+            title: t('landingSteps.step3.title'),
+            description: t('landingSteps.step3.description'),
+        },
+    ] : [
         {
             icon: <FileText className="w-6 h-6" />,
             title: t('steps.step1.title'),
