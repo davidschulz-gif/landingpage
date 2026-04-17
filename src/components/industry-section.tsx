@@ -14,7 +14,6 @@ import {
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Compare } from '@/components/ui/compare'
-import { INDUSTRY_IMAGES } from './industry-examples-section'
 
 const IndustryCard = ({
   icon: Icon,
@@ -70,56 +69,56 @@ export const IndustrySection = () => {
       icon: Building2,
       title: t('cards.architects.title'),
       description: t('cards.architects.description'),
-      images: INDUSTRY_IMAGES['architects']?.[0],
+      images: ['/industeries/architects/before.jpg', '/industeries/architects/after.jpg'],
     },
     {
       id: 'interiorArchitects',
       icon: Palette,
       title: t('cards.interiorArchitects.title'),
       description: t('cards.interiorArchitects.description'),
-      images: INDUSTRY_IMAGES['interiorArchitects']?.[0],
+      images: ['/industeries/interior/before.jpg', '/industeries/interior/after.jpg'],
     },
     {
       id: 'carpenters',
       icon: Hammer,
       title: t('cards.carpenters.title'),
       description: t('cards.carpenters.description'),
-      images: INDUSTRY_IMAGES['carpenters']?.[0],
+      images: ['/industeries/carpenters/before.jpg', '/industeries/carpenters/after.jpg'],
     },
     {
       id: 'kitchenBuilders',
       icon: UtensilsCrossed,
       title: t('cards.kitchenBuilders.title'),
       description: t('cards.kitchenBuilders.description'),
-      images: INDUSTRY_IMAGES['kitchenBuilders']?.[0],
+      images: ['/industeries/kitchen/before.jpg', '/industeries/kitchen/after.jpg'],
     },
     {
       id: 'painters',
       icon: Paintbrush,
       title: t('cards.painters.title'),
       description: t('cards.painters.description'),
-      images: INDUSTRY_IMAGES['painters']?.[0],
+      images: ['/industeries/painters/before.jpg', '/industeries/painters/after.jpg'],
     },
     {
       id: 'furnitureMakers',
       icon: Car,
       title: t('cards.furnitureMakers.title'),
       description: t('cards.furnitureMakers.description'),
-      images: INDUSTRY_IMAGES['furnitureMakers']?.[0],
+      images: ['/industeries/furniture/before.jpg', '/industeries/furniture/after.jpg'],
     },
     {
       id: 'developers',
       icon: Users,
       title: t('cards.developers.title'),
       description: t('cards.developers.description'),
-      images: INDUSTRY_IMAGES['developers']?.[0],
+      images: ['/industeries/developers/before.jpg', '/industeries/developers/after.jpg'],
     },
     {
       id: 'realEstate',
       icon: Home,
       title: t('cards.realEstate.title'),
       description: t('cards.realEstate.description'),
-      images: INDUSTRY_IMAGES['realEstate']?.[0],
+      images: ['/industeries/real-estate/before.jpg', '/industeries/real-estate/after.jpg'],
     },
   ]
 

@@ -173,7 +173,7 @@ export const Compare = ({
           opacity: sliderXPercent < 15 ? 0 : 1
         }}
       >
-        <div className=" border border-border bg-background px-2 text-base">
+        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm">
           {t('before')}
         </div>
       </div>
@@ -185,7 +185,7 @@ export const Compare = ({
           opacity: sliderXPercent > 85 ? 0 : 1
         }}
       >
-        <div className=" border border-border bg-background px-2 text-base">
+        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm">
           {t('after')}
         </div>
       </div>
@@ -228,7 +228,7 @@ export const Compare = ({
                 alt="first image"
                 src={firstImage}
                 className={cn(
-                  "absolute inset-0  z-20  shrink-0 w-full h-full select-none",
+                  "absolute inset-0 z-20 shrink-0 w-full h-full select-none object-cover object-left-top",
                   firstImageClassName
                 )}
                 draggable={false}
@@ -242,7 +242,7 @@ export const Compare = ({
         {secondImage ? (
           <motion.img
             className={cn(
-              "absolute top-0 left-0 z-[19]   w-full h-full select-none",
+              "absolute top-0 left-0 z-[19] w-full h-full select-none object-cover object-left-top",
               secondImageClassname
             )}
             alt="second image"
