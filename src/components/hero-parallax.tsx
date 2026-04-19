@@ -121,7 +121,7 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-[220vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
+      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-auto md:h-[220vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-clip antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
     >
       <Header />
       <motion.div
@@ -203,7 +203,7 @@ export const Header = () => {
           <div className='relative max-w-lg flex-1'>
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
-                className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[85px]'
+                className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[135px] sm:h-[90px] md:h-[85px]'
                 style={{ fontFamily: "var(--font-soyuz-grotesk),'Soyuz Grotesk', sans-serif" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -224,7 +224,7 @@ export const Header = () => {
               </motion.h1>
             </BreathingAnimationText>
 
-            <div className='h-[72px] relative overflow-hidden mb-6'>
+            <div className='h-[110px] sm:h-[80px] md:h-[72px] relative overflow-hidden mb-6'>
               <AnimatePresence mode='wait'>
                 <motion.div
                   key={currentIndex}

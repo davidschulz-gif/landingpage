@@ -783,10 +783,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           </div>
           {/* Promo Code Input on Page */}
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
-            <div className='flex gap-2 min-h-[50px]'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
                 type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
                 placeholder={tModal('promoCodePlaceholder')}
                 value={profPromoCode}
                 onChange={(e) => {
@@ -801,7 +801,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               <Button
                 onClick={() => handleVerifyPromoCode('prof')}
                 disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1126,10 +1126,10 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           </div>
           {/* Promo Code Input on Page (Education) */}
           <div className='w-full max-w-md mx-auto mt-8 mb-6'>
-            <div className='flex gap-2 min-h-[50px]'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
                 type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-full'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
                 placeholder={tModal('promoCodePlaceholder')}
                 value={eduPromoCode}
                 onChange={(e) => {
@@ -1143,7 +1143,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               <Button
                 onClick={() => handleVerifyPromoCode('edu')}
                 disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-full text-sm uppercase font-bold tracking-wider transition-all'
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
                 style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1418,7 +1418,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             ease: "easeInOut"
           }}
           onClick={() => setShowKickOffModal(true)}
-          className="fixed right-10 bottom-10 -translate-y-1/2 z-[9999] rounded-2xl p-4 border-y border-l border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
+          className="fixed right-10 bottom-10 -translate-y-1/2 z-[9999] rounded-2xl p-4 border border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
           style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
           aria-label={"First Buyer Kick Off"}
         >

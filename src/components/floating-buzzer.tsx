@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { PhoneCall } from 'lucide-react'
 
 export function FloatingBuzzer() {
   const t = useTranslations('FloatingBuzzer')
@@ -46,12 +47,12 @@ export function FloatingBuzzer() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className='fixed bottom-10 left-1/2 -translate-x-1/2 z-[999] w-full max-w-fit px-4 flex justify-center'
+          className='fixed bottom-10 right-0 z-[999] w-full max-w-fit px-4 flex justify-center'
         >
-          <motion.div
+          <motion.button
             animate={{
-              scale: [1, 1.1, 1],
-              rotate: [0, -3, 3, -3, 3, 0],
+              scale: [1, 1.05, 1],
+              rotate: [0, -2, 2, -2, 2, 0],
             }}
             transition={{
               duration: 2,
@@ -59,17 +60,16 @@ export function FloatingBuzzer() {
               repeatDelay: 10,
               ease: "easeInOut"
             }}
-            className="z-[999] rounded-xl"
+            onClick={scrollToBooking}
+            className="z-[9999] rounded-2xl p-4 border border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
+            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+            aria-label={t('text')}
           >
-            <button
-              onClick={scrollToBooking}
-              className='z-[9999] rounded-xl px-12 py-6 border-0 hover:shadow-2xl transition-all duration-300 ease-out font-black text-xl uppercase tracking-widest flex items-center gap-4 group bg-white/60 shadow-lg backdrop-blur-md text-black cursor-pointer animate-pulse-glow'
-            >
-              <span style={{ fontFamily: 'sans-serif' }} className='relative'>
-                {t('text')}
-              </span>
-            </button>
-          </motion.div>
+            <PhoneCall className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
+            <span className="relative font-bold text-lg md:text-xl uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[1200px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
+              {t('text')}
+            </span>
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>
