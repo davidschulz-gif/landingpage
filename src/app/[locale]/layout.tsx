@@ -159,7 +159,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${ftCalhern.variable} antialiased`}
+      className={`${ftCalhern.variable} antialiased max-md:overflow-x-hidden`}
       suppressHydrationWarning
     >
       <head>
@@ -192,7 +192,7 @@ export default async function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body
-        className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300'
+        className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden'
         /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
            inject attributes that cause Next.js hydration mismatches. */
         suppressHydrationWarning
