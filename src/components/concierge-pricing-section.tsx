@@ -200,13 +200,13 @@ export function ConciergePricingSection() {
             </div>
 
             {/* Mobile View for Cards */}
-            <div className='md:hidden flex flex-col items-center gap-8'>
+            {/* <div className='md:hidden flex flex-col items-center gap-8'>
               {currentPlans.map((plan, index) => (
                 <div key={index} className='w-full max-w-xs'>
                   <PricingCard plan={plan} isYearly={isYearly} />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
           <div>
             <div className='relative md:hidden flex flex-col justify-center items-center w-full gap-8'>
