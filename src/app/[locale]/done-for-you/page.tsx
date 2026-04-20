@@ -29,7 +29,7 @@ const RightsSection = dynamic(
 )
 
 const HowItWorks = dynamic(
-  () => import('@/components/how-it-works').then(mod => mod.HowItWorks),
+  () => import('@/components/how-it-works-done-for-you').then(mod => mod.HowItWorks),
   {
     ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,

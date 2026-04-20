@@ -1,4 +1,4 @@
-import { Clock, FileText, Image as ImageIcon, Sparkles, Type, Upload, Zap } from 'lucide-react';
+import { Clock, FileText, Image as ImageIcon, Type, Upload, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -43,18 +43,18 @@ const HowItWorksWithoutOptimization: React.FC = () => {
     const steps = useMemo(() => [
         {
             icon: <FileText className="w-6 h-6" />,
-            title: t('landingSteps.step1.title'),
-            description: t('landingSteps.step1.description'),
+            title: t('steps.step1.title'),
+            description: t('steps.step1.description'),
         },
         {
             icon: <Clock className="w-6 h-6" />,
-            title: t('landingSteps.step2.title'),
-            description: t('landingSteps.step2.description'),
+            title: t('steps.step2.title'),
+            description: t('steps.step2.description'),
         },
         {
             icon: <ImageIcon className="w-6 h-6" />,
-            title: t('landingSteps.step3.title'),
-            description: t('landingSteps.step3.description'),
+            title: t('steps.step3.title'),
+            description: t('steps.step3.description'),
         },
     ], [t]);
 
