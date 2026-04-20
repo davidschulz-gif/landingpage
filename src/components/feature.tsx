@@ -77,6 +77,7 @@ export const FeatureShowcase: React.FC<{ disableHeading?: boolean }> = ({ disabl
                                 <img
                                     src={feature.image}
                                     alt={feature.title}
+                                    loading='lazy'
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
