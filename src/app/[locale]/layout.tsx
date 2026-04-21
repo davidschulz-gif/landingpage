@@ -11,15 +11,15 @@ import './globals.css'
 
 
 
-const soyuzGrotesk = localFont({
+const logoFont = localFont({
   src: [
     {
-      path: '../../../public/fonts/soyuz-grotesk/Soyuz Grotesk Bold.woff',
-      weight: '700',
+      path: '../../../public/fonts/soyuz-grotesk/Soyuz Grotesk Bold.otf',
+      weight: '400',
       style: 'normal',
     },
   ],
-  variable: '--font-soyuz-grotesk',
+  variable: '--font-logo-font',
 })
 
 const ftCalhern = localFont({
@@ -159,7 +159,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${ftCalhern.variable} antialiased max-md:overflow-x-hidden`}
+      className={`${ftCalhern.variable} ${logoFont.variable} antialiased max-md:overflow-x-hidden`}
       suppressHydrationWarning
     >
       <head>
@@ -192,7 +192,7 @@ export default async function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body
-        className='bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden'
+        className={`bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
         /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
            inject attributes that cause Next.js hydration mismatches. */
         suppressHydrationWarning

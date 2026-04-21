@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { cn } from '@/lib/utils';
 
 type AnimationVariant = 'black-gray' | 'red-orange' | 'cyan-blue' | 'none';
@@ -8,14 +8,14 @@ interface BreathingAnimationTextProps extends React.HTMLAttributes<HTMLElement> 
   animationType?: AnimationVariant;
   duration?: number;
   intensity?: number;
-  as?: React.ElementType;
+  as?: any; // Simplified to avoid complex generic reconciliation
 }
 
 /**
- * BreathingAnimationText component that applies a subtle breathing effect (color and opacity).
- * Optimized with React.memo and supporting polymorphic elements.
+ * BreathingAnimationText component that applies a subtle breathing effect.
+ * Simplified for maximum performance to resolve render-time regressions.
  */
-export const BreathingAnimationText = React.memo(({
+export const BreathingAnimationText = memo(({
   children,
   animationType = 'black-gray',
   duration = 4,
@@ -34,16 +34,14 @@ export const BreathingAnimationText = React.memo(({
       ? 'animate-breathe-cyan-blue'
       : '';
 
-  const customStyle = {
-    ...style,
-    '--breathe-duration': `${duration}s`,
-    '--breathe-intensity': intensity,
-  } as React.CSSProperties;
-
   return (
     <Component
       className={cn(animationClass, className)}
-      style={customStyle}
+      style={{
+        ...style,
+        '--breathe-duration': `${duration}s`,
+        '--breathe-intensity': intensity,
+      } as React.CSSProperties}
       {...props}
     >
       {children}

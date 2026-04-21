@@ -74,9 +74,9 @@ export function FooterSection() {
         <div className='mb-12 flex flex-col items-center space-y-2'>
           <div className='bg-black size-4 m-3'></div>
           <span
-            className='text-center uppercase'
+            className='text-center uppercase font-logo'
             style={{
-              fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
+              // fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
               fontSize: '18px',
               fontWeight: 300,
               letterSpacing: '2.5px',

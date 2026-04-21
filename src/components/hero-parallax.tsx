@@ -363,16 +363,16 @@ export const Header = () => {
           >
             <div className='bg-black size-4 m-3'></div>
             <span
-              className='text-center uppercase'
+              // id='typus-logo'
+              className='text-center !font-logo'
               style={{
-                fontFamily:
-                  "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
                 fontSize: '25px',
-                fontWeight: 300,
+                fontWeight: 700,
                 letterSpacing: '2.5px',
                 lineHeight: '1.3em',
                 color: '#000',
                 textTransform: 'uppercase',
+                fontFamily: 'var(--font-soyuz-grotesk)'
               }}
             >
               typus.AI

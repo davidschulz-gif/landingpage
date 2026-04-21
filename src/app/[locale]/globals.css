@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+
+
+
+
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -121,6 +126,7 @@
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --font-sans: var(--font-ft-calhern), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-ft-calhern), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-logo: var(--font-logo-font);
 }
 
 @layer base {
@@ -311,10 +317,13 @@
 }
 
 @keyframes breathe-black-gray {
-  0%, 100% {
+
+  0%,
+  100% {
     color: inherit;
     opacity: 1;
   }
+
   50% {
     color: #808080;
     opacity: calc(1 - (0.3 * var(--breathe-intensity, 1)));
@@ -326,10 +335,13 @@
 }
 
 @keyframes breathe-red-orange {
-  0%, 100% {
+
+  0%,
+  100% {
     color: #ff0000;
     opacity: 1;
   }
+
   50% {
     color: #ffa500;
     opacity: calc(1 - (0.3 * var(--breathe-intensity, 1)));
@@ -341,10 +353,13 @@
 }
 
 @keyframes breathe-cyan-blue {
-  0%, 100% {
+
+  0%,
+  100% {
     color: #06b6d4;
     opacity: 1;
   }
+
   50% {
     color: #3b82f6;
     opacity: calc(1 - (0.3 * var(--breathe-intensity, 1)));

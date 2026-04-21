@@ -299,260 +299,6 @@ export default function Home() {
     }
   }
 
-  const MainContent = () => (
-    <div className='relative w-full'>
-      {/* Navbar */}
-      {/* <AdaptiveNavbar /> */}
-      <NavbarDemo />
-
-      {/* <SmallNavbarMenu /> */}
-
-      {/* Hero Section with Parallax */}
-      <HeroParallax
-        row123Products={translatedRow123Products}
-        row4Products={translatedRow4Products}
-      />
-
-      {/* Comparison Section */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <ComparisonSection />
-      </motion.div> */}
-
-      {/* Image Templates */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <ImageTemplates />
-      </motion.div>
-
-      {/* Video Templates */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <VideoTemplates />
-      </motion.div> */}
-
-      {/* Use Cases Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <UseCasesSection />
-      </motion.div>
-
-      {/* Feature Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FeatureShowcase />
-      </motion.div>
-
-      {/* Rights Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <RightsSection />
-      </motion.div>
-
-      {/* How It Works Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <HowItWorks />
-      </motion.div>
-
-
-      {/* Video Showcase Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <VideoShowcaseSection />
-      </motion.div>
-
-      {/* Sticky Slider Section */}
-      {isMobile ? (
-        ''
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <StickySliderSection />
-        </motion.div>
-      )}
-
-      {/* Tab Video Showcase */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <TabVideoShowcase />
-      </motion.div>
-
-      {/* Before & After Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <CompareDemo />
-      </motion.div>
-      {/* Comparison Section
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <ComparisonSection />
-      </motion.div> */}
-
-      {/* Done For You Combined Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <DoneForYouCombinedSection />
-      </motion.div>
-
-      {/* Industry Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <IndustrySection />
-      </motion.div>
-
-      {/* Pricing CTA Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <PricingCTASection />
-      </motion.div>
-
-      {/* Detailed Feature Comparison Section */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <DetailedFeaturesSection />
-      </motion.div> */}
-
-
-      {/* Features Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FeaturesSection />
-      </motion.div>
-
-      {/* Meet Our Team Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <MeetOurTeamSection />
-      </motion.div>
-
-      {/* Article Carousel Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <ArticleCarouselSection />
-      </motion.div>
-
-      {/* Blog Promo Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <BlogPromoSection />
-      </motion.div>
-
-      {/* Creator Showcase Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <CreatorShowcaseSection />
-      </motion.div>
-
-      {/* Reviews Section with Marquee */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <ReviewsSection />
-      </motion.div>
-
-      {/* FAQ Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FAQSection />
-      </motion.div>
-
-      {/* Enhanced Footer */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
-        viewport={{ once: true, margin: '-100px' }}
-      >
-        <FooterSection />
-      </motion.div>
-
-      {/* Sticky Bottom Sheet */}
-      <StickyBottomSheet showOnlyInHero={true} />
-    </div>
-  )
-
   if (!isClient) {
     return null
   }
@@ -623,7 +369,217 @@ export default function Home() {
       />
 
       {/* Main Content - Always Rendered */}
-      <MainContent />
+      <div className='relative w-full'>
+        {/* Navbar */}
+        <NavbarDemo />
+
+        {/* Hero Section with Parallax */}
+        <HeroParallax
+          row123Products={translatedRow123Products}
+          row4Products={translatedRow4Products}
+        />
+
+        {/* Image Templates */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ImageTemplates />
+        </motion.div>
+
+        {/* Use Cases Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <UseCasesSection />
+        </motion.div>
+
+        {/* Feature Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FeatureShowcase />
+        </motion.div>
+
+        {/* Rights Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <RightsSection />
+        </motion.div>
+
+        {/* How It Works Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <HowItWorks />
+        </motion.div>
+
+
+        {/* Video Showcase Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <VideoShowcaseSection />
+        </motion.div>
+
+        {/* Sticky Slider Section */}
+        {isMobile ? (
+          ''
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            <StickySliderSection />
+          </motion.div>
+        )}
+
+        {/* Tab Video Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <TabVideoShowcase />
+        </motion.div>
+
+        {/* Before & After Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <CompareDemo />
+        </motion.div>
+
+        {/* Done For You Combined Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <DoneForYouCombinedSection />
+        </motion.div>
+
+        {/* Industry Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <IndustrySection />
+        </motion.div>
+
+        {/* Pricing CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <PricingCTASection />
+        </motion.div>
+
+        {/* Features Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FeaturesSection />
+        </motion.div>
+
+        {/* Meet Our Team Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <MeetOurTeamSection />
+        </motion.div>
+
+        {/* Article Carousel Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ArticleCarouselSection />
+        </motion.div>
+
+        {/* Blog Promo Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <BlogPromoSection />
+        </motion.div>
+
+        {/* Creator Showcase Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <CreatorShowcaseSection />
+        </motion.div>
+
+        {/* Reviews Section with Marquee */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ReviewsSection />
+        </motion.div>
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FAQSection />
+        </motion.div>
+
+        {/* Enhanced Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FooterSection />
+        </motion.div>
+
+        {/* Sticky Bottom Sheet */}
+        <StickyBottomSheet showOnlyInHero={true} />
+      </div>
 
 
       {/* Splash Screen Overlay */}
