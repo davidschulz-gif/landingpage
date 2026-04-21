@@ -30,10 +30,10 @@ export function SplashScreen({
     timeoutRefs.current.forEach(clearTimeout)
     timeoutRefs.current = []
 
-    // Mobile-optimized splash screen timing
-    const baseDelay = isMobile ? 300 : 600
-    const slideDelay = isMobile ? 1000 : 1800
-    const completeDelay = isMobile ? 1200 : 2000
+    // Mobile-optimized splash screen timing - drastically reduced to improve SI
+    const baseDelay = isMobile ? 100 : 200
+    const slideDelay = isMobile ? 400 : 600
+    const completeDelay = isMobile ? 500 : 700
 
     const t1 = setTimeout(() => setShowDelegate(false), baseDelay)
     const t2 = setTimeout(() => setSlideOut(true), slideDelay)

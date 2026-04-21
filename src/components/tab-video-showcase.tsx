@@ -9,29 +9,30 @@ import { BreathingAnimationText } from './breathing-animation-text'
 
 // Video cache
 const videoCache = new Map<string, HTMLVideoElement>()
+const bucketUrl = "https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/"
 
 // Static configuration for tabs to avoid re-allocation
 const TABS_CONFIG = [
   {
     id: 'create',
     icon: Wand2,
-    video: '/videos/showcase/create_showcase_typus.webm',
-    videoMobile: '/videos/showcase/create_showcase_typus.webm',
-    poster: '/modern-villa-render.png',
+    video: bucketUrl + 'videos/showcase/create_showcase_typus.webm',
+    videoMobile: bucketUrl + 'videos/showcase/create_showcase_typus.webm',
+    poster: bucketUrl + 'modern-villa-render.png',
   },
   {
     id: 'edit',
     icon: Edit3,
-    video: '/videos/showcase/edit_showcase.webm',
-    videoMobile: '/videos/showcase/compressed/edit_showcase.webm',
-    poster: '/modern-office-building.png',
+    video: bucketUrl + 'videos/showcase/edit_showcase.webm',
+    videoMobile: bucketUrl + 'videos/showcase/compressed/edit_showcase.webm',
+    poster: bucketUrl + 'modern-office-building.png',
   },
   {
     id: 'enhance',
     icon: Sparkles,
-    video: '/videos/showcase/upscale_showcase.webm',
-    videoMobile: '/videos/showcase/compressed/upscale_showcase.webm',
-    poster: '/modern-interior-design.png',
+    video: bucketUrl + 'videos/showcase/upscale_showcase.webm',
+    videoMobile: bucketUrl + 'videos/showcase/compressed/upscale_showcase.webm',
+    poster: bucketUrl + 'modern-interior-design.png',
   },
 ]
 
@@ -170,40 +171,47 @@ export const TabVideoShowcase = memo(() => {
       className='relative overflow-hidden mx-auto flex max-w-[95%] md:max-w-[65%] w-full flex-col md:px-4 py-16 text-neutral-800 dark:text-neutral-200'
       style={{ backgroundColor: '#fcfcfd' }}
     >
+      <link
+        rel="preload"
+        as="video"
+        href={bucketUrl + 'videos/showcase/create_showcase_typus.webm'}
+        type="video/webm"
+        fetchPriority="high"
+      />
       {/* Title Section */}
       <motion.div
         className='flex w-full flex-col items-center justify-center gap-2 text-center mb-16'
         style={{ y: titleY }}
       >
-            <BreathingAnimationText animationType='black-gray'>
-              <motion.h1
-                className='mb-2 text-[30px] font-medium !leading-tight text-neutral-800 dark:text-neutral-200'
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                viewport={{ once: true, margin: '-50px' }}
-              >
-                <motion.span
-                  className='text-black dark:text-white font-normal'
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  {t('title')}
-                </motion.span>
-                <br />
-                <motion.span
-                  className='text-neutral-800 dark:text-white font-normal'
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  {t('titleSecond')}
-                </motion.span>
-              </motion.h1>
-            </BreathingAnimationText>
+        <BreathingAnimationText animationType='black-gray'>
+          <motion.h1
+            className='mb-2 text-[30px] font-medium !leading-tight text-neutral-800 dark:text-neutral-200'
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, margin: '-50px' }}
+          >
+            <motion.span
+              className='text-black dark:text-white font-normal'
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {t('title')}
+            </motion.span>
+            <br />
+            <motion.span
+              className='text-neutral-800 dark:text-white font-normal'
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              {t('titleSecond')}
+            </motion.span>
+          </motion.h1>
+        </BreathingAnimationText>
         <BreathingAnimationText animationType='black-gray'>
           <motion.p
             className='mx-auto mb-2 px-4 text-[14px] font-thin text-neutral-800 dark:text-neutral-200 md:max-w-2xl md:px-24'

@@ -62,9 +62,9 @@ export const INDUSTRY_IMAGES: Record<string, string[][]> = {
 }
 
 const DEFAULT_IMAGES = [
-  ['/before-after/a_before.png', '/before-after/a_after.png'],
-  ['/before-after/b_before.png', '/before-after/b_after.png'],
-  ['/before-after/c_before.png', '/before-after/c_after.png'],
+  ['/before-after/a_before.webp', '/before-after/a_after.webp'],
+  ['/before-after/b_before.webp', '/before-after/b_after.webp'],
+  ['/before-after/c_before.webp', '/before-after/c_after.webp'],
 ]
 
 export function IndustryExamplesSection({ slug }: { slug: string }) {

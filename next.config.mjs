@@ -31,6 +31,12 @@ const nextConfig = {
         port: '',
         pathname: '/industryImageBeforeAfter/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'typus-ai.s3.eu-central-1.amazonaws.com',
+        port: '',
+        pathname: '/landingpage/public/**',
+      },
     ],
   },
   compiler: {

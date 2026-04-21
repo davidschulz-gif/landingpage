@@ -103,16 +103,16 @@ const BlogPromoSection = dynamic(
   }
 )
 
-const CreatorShowcaseSection = dynamic(
-  () =>
-    import('@/components/creator-showcase-section').then(
-      mod => mod.CreatorShowcaseSection
-    ),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const CreatorShowcaseSection = dynamic(
+//   () =>
+//     import('@/components/creator-showcase-section').then(
+//       mod => mod.CreatorShowcaseSection
+//     ),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const RightsSection = dynamic(
   () => import('@/components/rights-section').then(mod => mod.RightsSection),
@@ -207,9 +207,9 @@ const FeatureShowcase = dynamic(
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
-  const [isClient, setIsClient] = useState(false)
   const [isPreloaded, setIsPreloaded] = useState(false)
   const isMobile = useIsMobile()
+
 
   // Translate product titles
   const translatedRow123Products = useMemo(() => {
@@ -240,6 +240,7 @@ export default function Home() {
     }))
   }, [])
 
+  const [isClient, setIsClient] = useState(false)
   useEffect(() => {
     setIsClient(true)
 
@@ -299,9 +300,7 @@ export default function Home() {
     }
   }
 
-  if (!isClient) {
-    return null
-  }
+  // Removed if (!isClient) block to allow SSR of the main content
 
   return (
     <>
@@ -436,13 +435,11 @@ export default function Home() {
         </motion.div>
 
         {/* Sticky Slider Section */}
-        {isMobile ? (
-          ''
-        ) : (
+        {(!isClient || isMobile) ? null : (
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             viewport={{ once: true, margin: '-100px' }}
           >
             <StickySliderSection />
@@ -539,14 +536,14 @@ export default function Home() {
         </motion.div>
 
         {/* Creator Showcase Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <CreatorShowcaseSection />
-        </motion.div>
+        </motion.div> */}
 
         {/* Reviews Section with Marquee */}
         <motion.div

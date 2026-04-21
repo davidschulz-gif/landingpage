@@ -9,12 +9,14 @@ interface HeroVideoPlayerProps {
   src: string
   className?: string
   ariaLabel?: string
+  poster?: string
 }
 
 export function HeroVideoPlayer({
   src,
   className,
   ariaLabel = 'Hero video',
+  poster,
 }: HeroVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -67,6 +69,7 @@ export function HeroVideoPlayer({
         playsInline
         preload='metadata'
         aria-label={ariaLabel}
+        poster={poster}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       />

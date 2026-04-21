@@ -344,6 +344,7 @@ export const Header = () => {
             >
               <HeroVideoPlayer
                 src={videoSource}
+                poster='/hero-parallax-images/row-1-2-3/commercial building.png'
                 ariaLabel={
                   locale === 'de' ? 'Hero Video Deutsch' : 'Hero Video English'
                 }

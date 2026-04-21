@@ -19,26 +19,26 @@ export const CompareWithAnimation = ({
 
   // Before images (original/CAD files)
   const beforeImages = [
-    "before-after/a_before.png",
-    "before-after/b_before.png",
-    "before-after/c_before.png",
-    "before-after/d_before.png",
+    "before-after/a_before.webp",
+    "before-after/b_before.webp",
+    "before-after/c_before.webp",
+    "before-after/d_before.webp",
   ];
 
   // After images (result/output renders)
   const afterImages = [
-    "/before-after/a_after.png",
-    "/before-after/b_after.png",
-    "/before-after/c_after.png",
-    "/before-after/d_after.png",
+    "/before-after/a_after.webp",
+    "/before-after/b_after.webp",
+    "/before-after/c_after.webp",
+    "/before-after/d_after.webp",
   ];
 
   // Thumbnail images for navigation (using output images as thumbnails)
   const thumbnailImages = [
-    "before-after/a_after.png",
-    "before-after/b_after.png",
-    "before-after/c_after.png",
-    "before-after/d_after.png",
+    "before-after/a_after.webp",
+    "before-after/b_after.webp",
+    "before-after/c_after.webp",
+    "before-after/d_after.webp",
   ];
 
   const projectTitles = [
