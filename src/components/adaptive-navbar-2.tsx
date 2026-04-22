@@ -17,7 +17,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { usePathname } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
 import { appUrl } from '@/lib/constants'
 
@@ -154,6 +154,28 @@ export function NavbarDemo() {
   }
 
   const translatedNavItems = getTranslatedNavItems()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
 
   const handleMenuEnter = () => {
     setIsMenuOpen(true)
@@ -450,54 +472,64 @@ export function NavbarDemo() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           />
         </MobileNavHeader>
-        <MobileNavMenu
-          isOpen={isMobileMenuOpen}
-          onClose={() => setIsMobileMenuOpen(false)}
-        >
+      </MobileNav>
+
+      {/* Break MobileNavMenu out of the MobileNav filter boundary to enable true fixed positioning */}
+      <MobileNavMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      >
+        <div className='w-full flex flex-col gap-6 font-sans pb-4'>
           {translatedNavItems.map((item, idx) => (
-            <div key={`mobile-item-${idx}`} className='space-y-2'>
+            <div key={`mobile-item-${idx}`} className='space-y-4 pb-5 border-b border-gray-100 dark:border-neutral-800 last:border-0 last:pb-0'>
               <a
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className='relative text-neutral-600 dark:text-neutral-300 font-medium'
+                className='block relative text-gray-900 dark:text-white font-bold text-[13px] tracking-[0.1em] uppercase'
               >
-                <span className='block'>{item.name}</span>
+                {item.name}
               </a>
-              <div className='pl-4 space-y-2 mt-2'>
-                {item.submenu?.map((subitem: any, subIdx) => (
-                  subitem.isSection ? (
-                    <div key={`mobile-section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
-                      <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
-                        {subitem.title}
-                      </h5>
-                    </div>
-                  ) : (
-                    <Link
-                      key={`mobile-submenu-${idx}-${subIdx}`}
-                      href={subitem.link}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className='flex items-start gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 p-2 -mx-2 rounded-lg transition-colors'
-                    >
-                      {subitem.icon && (
-                        <div className='p-1.5 rounded-lg bg-gray-50 dark:bg-neutral-800 border border-transparent'>
-                          <subitem.icon className='w-4 h-4' />
-                        </div>
-                      )}
-                      <div>
-                        <div className='font-medium'>{subitem.title}</div>
+              
+              {item.submenu && (
+                <div className='flex flex-col gap-2 pl-2'>
+                  {item.submenu.map((subitem: any, subIdx) => (
+                    subitem.isSection ? (
+                      <div key={`mobile-section-label-${idx}-${subIdx}`} className='pt-3 pb-1'>
+                        <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest'>
+                          {subitem.title}
+                        </h5>
                       </div>
-                    </Link>
-                  )
-                ))}
-              </div>
+                    ) : (
+                      <Link
+                        key={`mobile-submenu-${idx}-${subIdx}`}
+                        href={subitem.link}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className='flex items-center gap-3 p-2 -mx-2 rounded-xl text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 group'
+                      >
+                        {subitem.icon && (
+                          <div className='flex items-center justify-center w-8 h-8 rounded-lg bg-gray-50/80 dark:bg-neutral-800 border border-gray-200/50 dark:border-neutral-700 shadow-sm group-hover:scale-105 transition-transform'>
+                            <subitem.icon className='w-4 h-4 text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors' />
+                          </div>
+                        )}
+                        <div className='font-medium text-[15px]'>
+                          {subitem.title}
+                        </div>
+                      </Link>
+                    )
+                  ))}
+                </div>
+              )}
             </div>
           ))}
-          <div className='flex w-full flex-col gap-4'>
+          
+          {/* CTA Buttons */}
+          <div className='flex flex-col gap-3 mt-6 pt-2 font-sans'>
             <NavbarButton
               href={`/pricing`}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='dark'
-              className='w-full text-nowrap'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-semibold tracking-wide'
+              style={{ fontFamily: 'inherit' }}
             >
               {tPricing('selectPlanCTA')}
             </NavbarButton>
@@ -505,33 +537,23 @@ export function NavbarDemo() {
               href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
-              className='w-full min-w-[140px] text-nowrap'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
+              style={{ fontFamily: 'inherit' }}
             >
               {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
             </NavbarButton>
-            <div className='flex flex-col gap-2 border-t pt-2'>
-              <div className='flex gap-2'>
-                {/* <NavbarButton
-                  href={'https://app.typus.ai/login'}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant='secondary'
-                  className='w-full text-nowrap'
-                >
-                  {t('login')}
-                </NavbarButton> */}
-                <NavbarButton
-                  href={`${appUrl}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant='secondary'
-                  className='w-full text-nowrap'
-                >
-                  {t('goToApp')}
-                </NavbarButton>
-              </div>
-            </div>
+            <NavbarButton
+              href={`${appUrl}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant='primary'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-medium tracking-wide'
+              style={{ fontFamily: 'inherit' }}
+            >
+              {t('goToApp')}
+            </NavbarButton>
           </div>
-        </MobileNavMenu>
-      </MobileNav>
+        </div>
+      </MobileNavMenu>
     </Navbar>
   )
 }

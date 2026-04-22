@@ -168,6 +168,18 @@ export default function TypusNavbar() {
     }
   }, [isMenuOpen])
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
+
   return (
     <>
       {/* Background overlay when menu is open */}
@@ -337,63 +349,71 @@ export default function TypusNavbar() {
               />
             </MobileNavHeader>
 
-            <MobileNavMenu
-              isOpen={isMobileMenuOpen}
-              onClose={() => setIsMobileMenuOpen(false)}
-            >
-              {navItems.map((item, idx) => (
-                <div key={`mobile-item-${idx}`} className='space-y-2'>
-                  <a
-                    href={item.link}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className='relative text-neutral-600 dark:text-neutral-300 font-medium'
-                  >
-                    <span className='block'>{item.name}</span>
-                  </a>
-                  <div className='pl-4 space-y-2'>
-                    {item.submenu?.map((subitem, subIdx) => (
-                      <a
-                        key={`mobile-submenu-${idx}-${subIdx}`}
-                        href={subitem.link}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className='flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
-                      >
-                        <div className='w-8 h-5 bg-neutral-100 dark:bg-neutral-800 overflow-hidden flex-shrink-0 mt-0.5'>
-                          <div className='w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center'>
-                            <div className='w-2 h-2 bg-black '></div>
-                          </div>
-                        </div>
-                        <div>
-                          <div className='font-medium'>{subitem.title}</div>
-                          <div className='text-xs opacity-75'>
-                            {subitem.description}
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              <div className='flex w-full flex-col gap-4'>
-                <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant='secondary'
-                  className='w-full min-w-[140px] text-nowrap'
-                >
-                  Login
-                </NavbarButton>
-                <NavbarButton
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant='primary'
-                  className='w-full min-w-[140px] text-nowrap'
-                >
-                  Sign Up
-                </NavbarButton>
-              </div>
-            </MobileNavMenu>
           </MobileNav>
         </Navbar>
       </div>
+
+      {/* Break MobileNavMenu out of the Navbar filter boundary to enable true fixed positioning */}
+      <MobileNavMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      >
+        <div className='w-full flex flex-col gap-6 font-sans pb-4'>
+          {navItems.map((item, idx) => (
+            <div key={`mobile-item-${idx}`} className='space-y-4 pb-5 border-b border-gray-100 dark:border-neutral-800 last:border-0 last:pb-0'>
+              <a
+                href={item.link}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className='block relative text-gray-900 dark:text-white font-bold text-[13px] tracking-[0.1em] uppercase'
+              >
+                {item.name}
+              </a>
+              
+              {item.submenu && (
+                <div className='flex flex-col gap-2 pl-2'>
+                  {item.submenu.map((subitem: any, subIdx) => (
+                    <a
+                      key={`mobile-submenu-${idx}-${subIdx}`}
+                      href={subitem.link}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className='flex items-center gap-3 p-2 -mx-2 rounded-xl text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 group'
+                    >
+                      <div className='flex items-center justify-center w-8 h-8 rounded-lg bg-gray-50/80 dark:bg-neutral-800 border border-gray-200/50 dark:border-neutral-700 shadow-sm group-hover:scale-105 transition-transform'>
+                        <div className='w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 group-hover:bg-gray-800 dark:group-hover:bg-gray-300 transition-colors' />
+                      </div>
+                      <div className='flex-1'>
+                        <div className='font-medium text-[15px]'>
+                          {subitem.title}
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          
+          {/* CTA Buttons */}
+          <div className='flex flex-col gap-3 mt-6 pt-2 font-sans'>
+            <NavbarButton
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant='dark'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-semibold tracking-wide'
+              style={{ fontFamily: 'inherit' }}
+            >
+              Login
+            </NavbarButton>
+            <NavbarButton
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant='primary'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
+              style={{ fontFamily: 'inherit' }}
+            >
+              Sign Up
+            </NavbarButton>
+          </div>
+        </div>
+      </MobileNavMenu>
     </>
   )
 }

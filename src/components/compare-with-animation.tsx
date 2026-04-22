@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { MediaBucketUrl } from "@/lib/constants";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { ActionButton } from "./action-button";
@@ -19,26 +20,26 @@ export const CompareWithAnimation = ({
 
   // Before images (original/CAD files)
   const beforeImages = [
-    "before-after/a_before.webp",
-    "before-after/b_before.webp",
-    "before-after/c_before.webp",
-    "before-after/d_before.webp",
+    MediaBucketUrl + "before-after/a_before.webp",
+    MediaBucketUrl + "before-after/b_before.webp",
+    MediaBucketUrl + "before-after/c_before.webp",
+    MediaBucketUrl + "before-after/d_before.webp",
   ];
 
   // After images (result/output renders)
   const afterImages = [
-    "/before-after/a_after.webp",
-    "/before-after/b_after.webp",
-    "/before-after/c_after.webp",
-    "/before-after/d_after.webp",
+    MediaBucketUrl + "before-after/a_after.webp",
+    MediaBucketUrl + "before-after/b_after.webp",
+    MediaBucketUrl + "before-after/c_after.webp",
+    MediaBucketUrl + "before-after/d_after.webp",
   ];
 
   // Thumbnail images for navigation (using output images as thumbnails)
   const thumbnailImages = [
-    "before-after/a_after.webp",
-    "before-after/b_after.webp",
-    "before-after/c_after.webp",
-    "before-after/d_after.webp",
+    MediaBucketUrl + "before-after/a_after.webp",
+    MediaBucketUrl + "before-after/b_after.webp",
+    MediaBucketUrl + "before-after/c_after.webp",
+    MediaBucketUrl + "before-after/d_after.webp",
   ];
 
   const projectTitles = [

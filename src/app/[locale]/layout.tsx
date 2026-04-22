@@ -163,16 +163,16 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        {/* <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
           crossOrigin='anonymous'
-        />
+        /> */}
         <link rel='dns-prefetch' href='https://app.typus.ai' />
         <link
           rel='preload'
-          href='/hero-parallax-images/row-1-2-3/commercial building.png'
+          href={'row-1-2-3/commercial building.png'}
           as='image'
         />
         <link rel='preload' href='/logo/typus_logo_red_transp.png' as='image' />

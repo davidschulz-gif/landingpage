@@ -1,5 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
+import { MediaBucketUrl } from '@/lib/constants'
 import { Redo, Undo } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -12,22 +13,22 @@ export const PhotoStripAnimation = ({
 }: PhotoStripAnimationProps) => {
   const t = useTranslations('Compare')
   const originalImages = [
-    '/before-after/slider_original/3d_original.webp',
-    '/before-after/slider_original/cad_original.webp',
-    '/before-after/slider_original/colormap_original.webp',
-    '/before-after/slider_original/freepik_original.webp',
-    '/before-after/slider_original/sitemodel_original.webp',
-    '/before-after/slider_original/sketch_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/3d_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/cad_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/colormap_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/freepik_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/sitemodel_original.webp',
+    MediaBucketUrl + 'before-after/slider_original/sketch_original.webp',
   ]
 
   // Result/After images (photorealistic renders)
   const resultImages = [
-    '/before-after/slider_output/3d_result.webp',
-    '/before-after/slider_output/cad_result.webp',
-    '/before-after/slider_output/colormap_result.webp',
-    '/before-after/slider_output/freepik_result.webp',
-    '/before-after/slider_output/sitemodel_result.webp',
-    '/before-after/slider_output/sketch_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/3d_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/cad_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/colormap_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/freepik_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/sitemodel_result.webp',
+    MediaBucketUrl + 'before-after/slider_output/sketch_result.webp',
   ]
 
   return (

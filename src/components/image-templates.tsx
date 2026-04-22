@@ -1,5 +1,5 @@
 'use client'
-import { apiUrl } from '@/lib/constants';
+import { apiUrl, MediaBucketUrl } from '@/lib/constants';
 import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 
@@ -64,57 +64,57 @@ export const ImageTemplates: React.FC = () => {
         {
             title: t('items.architectural.title'),
             description: t('items.architectural.description'),
-            thumbnail: '/cover_images/architectural-modern-architectural-precision.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/architectural-modern-architectural-precision.jpg',
         },
         {
             title: t('items.commercial.title'),
             description: t('items.commercial.description'),
-            thumbnail: '/cover_images/commercial-adaptive-reuse.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/commercial-adaptive-reuse.jpg',
         },
         {
             title: t('items.industrial.title'),
             description: t('items.industrial.description'),
-            thumbnail: '/cover_images/industrial--robust-industrial-architecture.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/industrial--robust-industrial-architecture.jpg',
         },
         {
             title: t('items.interiorFamily.title'),
             description: t('items.interiorFamily.description'),
-            thumbnail: '/cover_images/interior-family-living-room.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/interior-family-living-room.jpg',
         },
         {
             title: t('items.interiorKitchen.title'),
             description: t('items.interiorKitchen.description'),
-            thumbnail: '/cover_images/interior-maximalist-kitchen.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/interior-maximalist-kitchen.jpg',
         },
         {
             title: t('items.landscape.title'),
             description: t('items.landscape.description'),
-            thumbnail: '/cover_images/landscape-elevated-garden-walkway.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/landscape-elevated-garden-walkway.jpg',
         },
         {
             title: t('items.publicCoastal.title'),
             description: t('items.publicCoastal.description'),
-            thumbnail: '/cover_images/public-coastal-pavilion.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/public-coastal-pavilion.jpg',
         },
         {
             title: t('items.residentialConcrete.title'),
             description: t('items.residentialConcrete.description'),
-            thumbnail: '/cover_images/residential-concrete-pavilion.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/residential-concrete-pavilion.jpg',
         },
         {
             title: t('items.residentialForest.title'),
             description: t('items.residentialForest.description'),
-            thumbnail: '/cover_images/residential-forest-glass-pavilion.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/residential-forest-glass-pavilion.jpg',
         },
         {
             title: t('items.residentialEarth.title'),
             description: t('items.residentialEarth.description'),
-            thumbnail: '/cover_images/residential-rammed-earth-villa.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/residential-rammed-earth-villa.jpg',
         },
         {
             title: t('items.publicWaterfront.title'),
             description: t('items.publicWaterfront.description'),
-            thumbnail: '/cover_images/waterfront-cultural-centre.jpg',
+            thumbnail: MediaBucketUrl + 'cover_images/waterfront-cultural-centre.jpg',
         },
     ]
 

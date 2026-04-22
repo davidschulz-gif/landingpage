@@ -71,8 +71,8 @@ export const Navbar = ({ children, className, isScrolled }: NavbarProps) => {
     <div
       ref={ref}
       className={cn(
-        'sticky inset-x-0 top-16 z-40',
-        isScrolled ? 'w-[60%] mx-auto mt-4 ' : 'w-full',
+        'sticky inset-x-0 top-0 lg:top-16 z-40',
+        isScrolled ? 'w-full lg:w-[60%] mx-auto mt-0 lg:mt-4 ' : 'w-full',
         className
       )}
     >
@@ -176,10 +176,17 @@ export const MobileNavMenu = ({
       {isOpen && (
         <div
           className={cn(
-            'absolute inset-x-0 top-16 !z-[1000] flex w-full flex-col items-start justify-start gap-4 bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950 overflow-y-auto max-h-[calc(100vh-64px)] overscroll-behavior-contain pb-12',
+            'fixed inset-x-0 top-0 bottom-0 !z-[1000] flex w-full flex-col items-start justify-start gap-4 bg-white/95 backdrop-blur-xl px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950 overflow-y-auto overscroll-behavior-contain pb-12',
             className
           )}
         >
+          <div className='flex w-full items-center justify-between'>
+            <NavbarLogo visible={true} />
+            <MobileNavToggle
+              isOpen={isOpen}
+              onClick={onClose}
+            />
+          </div>
           {children}
         </div>
       )}
@@ -210,10 +217,10 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
     >
       <div className='bg-black size-3 m-2.5'></div>
       <span
-        className='text-center uppercase'
+        className='text-center !font-logo uppercase'
         style={{
-          fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
-          fontSize: '10px',
+          // fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
+          fontSize: '25px',
           fontWeight: 300,
           letterSpacing: '2px',
           lineHeight: '1.3em',

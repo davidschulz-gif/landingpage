@@ -1,6 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
+import { MediaBucketUrl } from '@/lib/constants'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -62,9 +63,9 @@ export const INDUSTRY_IMAGES: Record<string, string[][]> = {
 }
 
 const DEFAULT_IMAGES = [
-  ['/before-after/a_before.webp', '/before-after/a_after.webp'],
-  ['/before-after/b_before.webp', '/before-after/b_after.webp'],
-  ['/before-after/c_before.webp', '/before-after/c_after.webp'],
+  [MediaBucketUrl + 'before-after/a_before.webp', MediaBucketUrl + 'before-after/a_after.webp'],
+  [MediaBucketUrl + 'before-after/b_before.webp', MediaBucketUrl + 'before-after/b_after.webp'],
+  [MediaBucketUrl + 'before-after/c_before.webp', MediaBucketUrl + 'before-after/c_after.webp'],
 ]
 
 export function IndustryExamplesSection({ slug }: { slug: string }) {

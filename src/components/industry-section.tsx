@@ -1,6 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
+import { MediaBucketUrl } from '@/lib/constants'
 import { motion } from 'framer-motion'
 import {
   Building2,
@@ -69,56 +70,56 @@ export const IndustrySection = () => {
       icon: Building2,
       title: t('cards.architects.title'),
       description: t('cards.architects.description'),
-      images: ['/industeries/architects/before.webp', '/industeries/architects/after.webp'],
+      images: [MediaBucketUrl + 'industeries/architects/before.webp', MediaBucketUrl + 'industeries/architects/after.webp'],
     },
     {
       id: 'interiorArchitects',
       icon: Palette,
       title: t('cards.interiorArchitects.title'),
       description: t('cards.interiorArchitects.description'),
-      images: ['/industeries/interior/before.webp', '/industeries/interior/after.webp'],
+      images: [MediaBucketUrl + 'industeries/interior/before.webp', MediaBucketUrl + 'industeries/interior/after.webp'],
     },
     {
       id: 'carpenters',
       icon: Hammer,
       title: t('cards.carpenters.title'),
       description: t('cards.carpenters.description'),
-      images: ['/industeries/carpenters/before.webp', '/industeries/carpenters/after.webp'],
+      images: [MediaBucketUrl + 'industeries/carpenters/before.webp', MediaBucketUrl + 'industeries/carpenters/after.webp'],
     },
     {
       id: 'kitchenBuilders',
       icon: UtensilsCrossed,
       title: t('cards.kitchenBuilders.title'),
       description: t('cards.kitchenBuilders.description'),
-      images: ['/industeries/kitchen/before.webp', '/industeries/kitchen/after.webp'],
+      images: [MediaBucketUrl + 'industeries/kitchen/before.webp', MediaBucketUrl + 'industeries/kitchen/after.webp'],
     },
     {
       id: 'painters',
       icon: Paintbrush,
       title: t('cards.painters.title'),
       description: t('cards.painters.description'),
-      images: ['/industeries/painters/before.webp', '/industeries/painters/after.webp'],
+      images: [MediaBucketUrl + 'industeries/painters/before.webp', MediaBucketUrl + 'industeries/painters/after.webp'],
     },
     {
       id: 'furnitureMakers',
       icon: Car,
       title: t('cards.furnitureMakers.title'),
       description: t('cards.furnitureMakers.description'),
-      images: ['/industeries/furniture/before.webp', '/industeries/furniture/after.webp'],
+      images: [MediaBucketUrl + 'industeries/furniture/before.webp', MediaBucketUrl + 'industeries/furniture/after.webp'],
     },
     {
       id: 'developers',
       icon: Users,
       title: t('cards.developers.title'),
       description: t('cards.developers.description'),
-      images: ['/industeries/developers/before.webp', '/industeries/developers/after.webp'],
+      images: [MediaBucketUrl + 'industeries/developers/before.webp', MediaBucketUrl + 'industeries/developers/after.webp'],
     },
     {
       id: 'realEstate',
       icon: Home,
       title: t('cards.realEstate.title'),
       description: t('cards.realEstate.description'),
-      images: ['/industeries/real-estate/before.webp', '/industeries/real-estate/after.webp'],
+      images: [MediaBucketUrl + 'industeries/real-estate/before.webp', MediaBucketUrl + 'industeries/real-estate/after.webp'],
     },
   ]
 
