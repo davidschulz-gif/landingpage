@@ -540,7 +540,13 @@
     "cta": "See PRO Complete Offer",
     "dismiss": "No, I'll pay more later",
     "paidLabel": "months paid",
-    "accessLabel": "months access"
+    "accessLabel": "months access",
+    "emailPlaceholder": "Your email address",
+    "privacyConsent": "I agree to the privacy policy and consent to data processing",
+    "continue": "Continue to Offer ",
+    "trustText": "No spam. Cancel anytime.",
+    "errorEmail": "Please enter a valid email address",
+    "errorConsent": "Please agree to the privacy policy"
   },
   "FloatingBuzzer": {
     "text": "Request a Free Demo and Initial Consultation"

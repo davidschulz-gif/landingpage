@@ -1,3 +1,4 @@
+import { apiUrl } from '@/lib/constants'
 import {
   IconAlertCircle,
   IconCheck,
@@ -42,7 +43,7 @@ export default function HeroEmailForm() {
 
     try {
       const response = await fetch(
-        'https://app.typus.ai/api/bigmailer/request-verification-jwt',
+        `${apiUrl}/api/bigmailer/request-verification-jwt`,
         {
           method: 'POST',
           headers: {
@@ -59,7 +60,7 @@ export default function HeroEmailForm() {
       if (contentType.includes('application/json')) {
         try {
           data = await response.json()
-        } catch {}
+        } catch { }
       }
 
       if (!response.ok) {

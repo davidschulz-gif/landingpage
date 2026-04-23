@@ -1,9 +1,10 @@
 'use client'
 
-import { IconArrowRight, IconClock, IconX } from '@tabler/icons-react'
+import { IconArrowRight, IconCheck, IconClock, IconX } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
+import { useRouter } from '@/i18n/navigation'
+import { apiUrl } from '@/lib/constants'
 import { useEffect, useRef, useState } from 'react'
 
 const TRIGGER_DELAY_MS = 30000 // Set to 30s as requested
@@ -15,7 +16,13 @@ export default function BeforeYouGoPopup() {
   const [isOpen, setIsOpen] = useState(false)
   const [timerTriggered, setTimerTriggered] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [email, setEmail] = useState('')
+  const [isConsented, setIsConsented] = useState(false)
+  const [errors, setErrors] = useState<{ email?: string; consent?: string }>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const router = useRouter()
 
   // Initialization on mount
   useEffect(() => {
@@ -100,6 +107,72 @@ export default function BeforeYouGoPopup() {
 
   const handleClose = () => {
     setIsOpen(false)
+    // Reset form state when closed
+    setEmail('')
+    setIsConsented(false)
+    setErrors({})
+  }
+
+  const validate = () => {
+    const newErrors: { email?: string; consent?: string } = {}
+    if (!email) {
+      newErrors.email = t('errorEmail')
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = t('errorEmail')
+    }
+    if (!isConsented) {
+      newErrors.consent = t('errorConsent')
+    }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!validate()) return
+
+    setIsSubmitting(true)
+    const trimmedEmail = email.trim()
+    console.log('[BYG] Form submitted:', { email: trimmedEmail, isConsented })
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000)
+
+    try {
+      // BigMailer Integration
+      const response = await fetch(
+        `${apiUrl}/api/bigmailer/request-verification-jwt`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({ email: trimmedEmail }),
+          signal: controller.signal,
+        }
+      )
+
+      if (!response.ok) {
+        console.warn('[BYG] API response not OK:', response.statusText)
+      } else {
+        console.log('[BYG] API success')
+      }
+    } catch (error: any) {
+      if (error?.name === 'AbortError') {
+        console.error('[BYG] API Timeout')
+      } else {
+        console.error('[BYG] API submission error:', error)
+      }
+      // Non-blocking: we still proceed to the offer
+    } finally {
+      clearTimeout(timeoutId)
+      setIsSubmitting(false)
+      setIsOpen(false)
+
+      // Always redirect to the offer page as requested
+      router.push('/pricing')
+    }
   }
 
   if (!mounted) return null
@@ -129,7 +202,7 @@ export default function BeforeYouGoPopup() {
             className='fixed inset-0 z-[999999] flex items-center justify-center p-4 pointer-events-none'
           >
             <div
-              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-black '
+              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-black rounded-3xl border border-white/10 shadow-2xl'
               onClick={e => e.stopPropagation()}
             >
               {/* Subtle gradient accent at top */}
@@ -169,7 +242,7 @@ export default function BeforeYouGoPopup() {
 
                 {/* Body */}
                 <p
-                  className='text-sm leading-relaxed mb-8 text-white font-normal'
+                  className='text-sm leading-relaxed mb-6 text-white/90 font-normal'
                   style={{ fontFamily: 'sans-serif' }}
                 >
                   {t('body')}
@@ -177,7 +250,7 @@ export default function BeforeYouGoPopup() {
 
                 {/* Offer highlights */}
                 <div
-                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-black border border-white'
+                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-black border border-white/20 rounded-2xl'
                 >
                   <div
                     className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
@@ -218,24 +291,91 @@ export default function BeforeYouGoPopup() {
                   </div>
                 </div>
 
-                {/* CTA button */}
-                <Link
-                  href='/pricing'
-                  className='group flex items-center justify-center gap-2.5 w-full py-3.5 text-sm font-medium tracking-wide transition-all duration-200 mb-3 bg-white text-black'
-                  onClick={handleClose}
-                >
-                  {t('cta')}
-                  <IconArrowRight
-                    size={16}
-                    strokeWidth={2}
-                    className='transition-transform duration-200 group-hover:translate-x-1'
-                  />
-                </Link>
+                {/* Unified Form */}
+                <form onSubmit={handleSubmit} className='mt-2'>
+                  {/* Email input */}
+                  <div className='mb-4'>
+                    <input
+                      type='email'
+                      placeholder={t('emailPlaceholder')}
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value)
+                        if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+                      }}
+                      className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
+                      required
+                    />
+                    {errors.email && (
+                      <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                    )}
+                  </div>
+
+                  {/* Consent checkbox */}
+                  <div className='mb-6'>
+                    <label className='flex items-start gap-3 cursor-pointer group'>
+                      <div className='relative flex items-center mt-0.5 shrink-0'>
+                        <input
+                          type='checkbox'
+                          checked={isConsented}
+                          onChange={(e) => {
+                            setIsConsented(e.target.checked)
+                            if (errors.consent) setErrors(prev => ({ ...prev, consent: undefined }))
+                          }}
+                          className='peer hidden'
+                        />
+                        <div className={`w-4 h-4 border ${errors.consent ? 'border-red-500' : 'border-white/40'} peer-checked:bg-white peer-checked:border-white transition-all duration-200`} />
+                        <IconCheck
+                          size={12}
+                          className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
+                          strokeWidth={3}
+                        />
+                      </div>
+                      <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
+                        {t('privacyConsent')}
+                      </span>
+                    </label>
+                    {errors.consent && (
+                      <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
+                    )}
+                  </div>
+
+                  {/* Submit button */}
+                  <button
+                    type='submit'
+                    disabled={isSubmitting}
+                    className='flex items-center justify-center gap-2 w-full py-4 text-sm font-semibold transition-all duration-300 mb-2 bg-white text-black hover:bg-white/90 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-2xl shadow-lg'
+                  >
+                    {isSubmitting ? (
+                      <span className='flex items-center gap-2'>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+                        >
+                          <IconCheck size={16} strokeWidth={3} />
+                        </motion.div>
+                        Processing...
+                      </span>
+                    ) : (
+                      <>
+                        {t('continue')}
+                        <IconArrowRight size={16} strokeWidth={2.5} />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Trust text */}
+                  <div className='flex flex-col items-center gap-1 mt-4'>
+                    <p className='text-[10px] text-white/30 italic'>
+                      {t('trustText')}
+                    </p>
+                  </div>
+                </form>
 
                 {/* Dismiss */}
                 <button
                   onClick={handleClose}
-                  className='w-full text-center text-[11px] transition-colors duration-200 text-white hover:text-white underline'
+                  className='w-full text-center text-[11px] transition-colors duration-200 text-white/60 hover:text-white underline mt-2'
                 >
                   {t('dismiss')}
                 </button>
