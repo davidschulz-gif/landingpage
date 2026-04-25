@@ -39,10 +39,10 @@ export function ReviewsSection() {
         >
           <BreathingAnimationText animationType='black-gray'>
             <h2
-              className='text-[30px] font-normal text-black mb-6'
-              style={{
-                fontFamily: "'Soyuz Grotesk', sans-serif",
-              }}
+              className='text-[30px] font-normal text-black mb-6 font-soyuz-grotes'
+            // style={{
+            //   fontFamily: "'Soyuz Grotesk', sans-serif",
+            // }}
             >
               {t('title')}
             </h2>

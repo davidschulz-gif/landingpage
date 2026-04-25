@@ -81,12 +81,14 @@ export default function TypusNavbar() {
           description: 'Choose the perfect plan for your creative needs',
           link: '#pricing',
         },
+        /* Temporarily disabled until Speckle integration is ready
         {
           title: 'Plugins',
           description:
             'Extend functionality with our professional plugin suite',
           link: '#plugins',
         },
+        */
         {
           title: 'Student Access',
           description: 'Special discounted rates for students and educators',

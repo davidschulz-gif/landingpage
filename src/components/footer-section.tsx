@@ -52,8 +52,9 @@ export function FooterSection() {
     ],
     licenses: [
       { name: t('links.pricing'), href: '#pricing' },
-      { name: t('links.plugins'), href: '#plugins' },
-      { name: t('links.studentAccess'), href: '#student-access' },
+      // Temporarily disabled until Speckle integration is ready
+      // { name: t('links.plugins'), href: '#plugins' },
+      { name: t('links.studentAccess'), href: '/pricing#student-plan' },
     ],
     contact: [{ name: 'hello@typus.ai', href: 'mailto:hello@typus.ai' }],
     legal: [

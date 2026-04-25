@@ -230,6 +230,16 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       setProfPromoCode(urlPromoCode)
       setEduPromoCode(urlPromoCode)
     }
+
+    // Scroll to student plan if hash is present
+    if (window.location.hash === '#student-plan') {
+      const element = document.getElementById('student-plan')
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      }
+    }
   }, [tModal])
 
   const handleVerifyPromoCode = useCallback(async (type: 'prof' | 'edu') => {
@@ -746,7 +756,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         {/* Professional Section */}
         <div className='text-center mb-2 relative z-40'>
           <h2
-            className='text-[50px] font-black mt-10 mb-8 text-black'
+            className='text-[30px] font-black mt-10 mb-8 text-black'
           >
             {t('selfServiceTitle')}
           </h2>
@@ -1093,7 +1103,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         <TestimonialsSection />
 
         {/* Education Section */}
-        <div className='text-center mb-2 relative z-40'>
+        <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
           <h2
             className='text-[30px] font-normal text-black mt-10 mb-2'
             style={{

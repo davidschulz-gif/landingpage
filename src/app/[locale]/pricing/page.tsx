@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { ManyChatPricingSection } from '@/components/manychat-pricing-section'
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
@@ -53,6 +53,12 @@ export default function PricingPage() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
     const [viewMode, setViewMode] = useState<'app' | 'done-for-you'>('app')
+
+    useEffect(() => {
+        if (window.location.hash === '#student-plan') {
+            setViewMode('app')
+        }
+    }, [])
 
     return (
         <div className='relative w-full bg-white'>

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import TypusNavbar from '@/components/typus-navbar'
 import {
   MobileNav,
@@ -114,12 +114,14 @@ export default function AdaptiveNavbar() {
           description: 'Choose the perfect plan for your creative needs',
           link: '#pricing',
         },
+        /* Temporarily disabled until Speckle integration is ready
         {
           title: 'Plugins',
           description:
             'Extend functionality with our professional plugin suite',
           link: '#plugins',
         },
+        */
         {
           title: 'Student Access',
           description: 'Special discounted rates for students and educators',

@@ -145,7 +145,7 @@ export function ConciergePricingSection() {
         <div className='w-full mx-auto px-4 relative z-10 pt-2'>
           <div className='text-center mb-0 relative z-40'>
             <h2
-              className='text-[50px] font-normal text-black mb-12'
+              className='text-[30px] font-normal text-black mb-12'
               style={{
                 fontFamily:
                   "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",

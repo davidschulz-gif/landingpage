@@ -165,6 +165,43 @@ export const TabVideoShowcase = memo(() => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  // Listen for hash changes or custom events to switch tabs
+  useEffect(() => {
+    const handleHashSync = () => {
+      const hash = window.location.hash.replace('#', '')
+      const validTabs = ['create', 'edit', 'enhance']
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash)
+      }
+    }
+
+    const handleCustomEvent = (e: Event) => {
+      const customEvent = e as CustomEvent
+      if (customEvent.detail && typeof customEvent.detail === 'string') {
+        const tabId = customEvent.detail
+        const validTabs = ['create', 'edit', 'enhance']
+        if (validTabs.includes(tabId)) {
+          setActiveTab(tabId)
+          // Smooth scroll to container if not visible
+          if (containerRef.current) {
+            containerRef.current.scrollIntoView({ behavior: 'smooth' })
+          }
+        }
+      }
+    }
+
+    // Initial check
+    handleHashSync()
+
+    window.addEventListener('hashchange', handleHashSync)
+    window.addEventListener('showcase-tab-change', handleCustomEvent)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashSync)
+      window.removeEventListener('showcase-tab-change', handleCustomEvent)
+    }
+  }, [])
+
   return (
     <section
       ref={containerRef}
@@ -225,10 +262,10 @@ export const TabVideoShowcase = memo(() => {
         </BreathingAnimationText>
       </motion.div>
 
-      <div id='create' />
-      <div id='edit' />
-      <div id='enhance' />
-      <div id='demo' />
+      <div id='create' className='scroll-mt-32' />
+      <div id='edit' className='scroll-mt-32' />
+      <div id='enhance' className='scroll-mt-32' />
+      <div id='demo' className='scroll-mt-32' />
 
       {/* Video Section - Scrollable */}
       <motion.div

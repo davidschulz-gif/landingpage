@@ -35,6 +35,17 @@ export function NavbarDemo() {
   const pathname = usePathname()
   const isDoneForYou = pathname.includes('/done-for-you')
   const locale = useLocale()
+  
+  const handleTabClick = (link: string) => {
+    if (link.startsWith('/#')) {
+      const tabId = link.split('#')[1]
+      const validTabs = ['create', 'edit', 'enhance']
+      if (validTabs.includes(tabId)) {
+        window.dispatchEvent(new CustomEvent('showcase-tab-change', { detail: tabId }))
+      }
+    }
+  }
+
   // Get translated navigation items
   const getTranslatedNavItems = () => {
     return [
@@ -119,16 +130,18 @@ export function NavbarDemo() {
             link: '/pricing',
             icon: Tag,
           },
+          /* Temporarily disabled until Speckle integration is ready
           {
             title: tNav('licenses.plugins.title'),
             description: tNav('licenses.plugins.description'),
             link: '/#plugins',
             icon: Puzzle,
-          },
+          }, 
+          */
           {
             title: tNav('licenses.studentAccess.title'),
             description: tNav('licenses.studentAccess.description'),
-            link: '/#student-access',
+            link: '/pricing#student-plan',
             icon: GraduationCap,
           },
         ],
@@ -223,6 +236,7 @@ export function NavbarDemo() {
                             key={`hovered-link-${idx}-${subIdx}`}
                             href={subitem.link}
                             target={subitem?.target}
+                            onClick={() => handleTabClick(subitem.link)}
                           >
                             <div className='flex items-start gap-3'>
                               {subitem.icon && (
@@ -503,7 +517,10 @@ export function NavbarDemo() {
                       <Link
                         key={`mobile-submenu-${idx}-${subIdx}`}
                         href={subitem.link}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          handleTabClick(subitem.link)
+                        }}
                         className='flex items-center gap-3 p-2 -mx-2 rounded-xl text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 group'
                       >
                         {subitem.icon && (

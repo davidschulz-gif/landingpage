@@ -37,6 +37,12 @@ const nextConfig = {
         port: '',
         pathname: '/landingpage/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'prai-vision.s3.eu-central-1.amazonaws.com',
+        port: '',
+        pathname: '/templates/**',
+      },
     ],
   },
   compiler: {
