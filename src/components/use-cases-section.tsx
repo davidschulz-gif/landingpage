@@ -52,10 +52,10 @@ const UseCaseCard = ({
 
       <div className="mb-4 relative z-10">
         <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{badge}</span>
-        <h3 className="text-2xl font-bold mt-2 text-gray-900">{title}</h3>
+        <h3 className="text-2xl font-bold mt-2 text-gray-900 break-words">{title}</h3>
       </div>
 
-      <p className="text-gray-800 text-md leading-relaxed mb-6 flex-grow relative z-10">
+      <p className="text-gray-800 text-md leading-relaxed mb-6 flex-grow relative z-10 break-words">
         {description}
       </p>
 
@@ -135,7 +135,7 @@ export const UseCasesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold leading-tight mb-8 tracking-tight text-gray-900"
+            className="text-3xl md:text-4xl font-bold leading-tight mb-8 tracking-tight text-gray-900 break-words"
           >
             {t('title')}
           </motion.h2>
@@ -144,7 +144,7 @@ export const UseCasesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-gray-800 leading-relaxed"
+            className="text-lg md:text-xl text-gray-800 leading-relaxed break-words"
           >
             {t('subtitle')}
           </motion.p>

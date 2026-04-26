@@ -32,10 +32,10 @@ const RightCard = ({
 
       <div className="mb-4 relative z-10">
         <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{title}</span>
-        <h3 className="text-2xl font-bold mt-2 text-gray-900">{subtitle}</h3>
+        <h3 className="text-2xl font-bold mt-2 text-gray-900 break-words">{subtitle}</h3>
       </div>
 
-      <p className="text-gray-600 text-md leading-relaxed relative z-10">
+      <p className="text-gray-600 text-md leading-relaxed relative z-10 break-words">
         {description}
       </p>
     </motion.div>
@@ -93,7 +93,7 @@ export const RightsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-gray-900"
+            className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-gray-900 break-words"
           >
             {t('title')}
           </motion.h2>

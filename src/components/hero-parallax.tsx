@@ -203,7 +203,7 @@ export const Header = () => {
           <div className='relative max-w-lg flex-1'>
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
-                className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[135px] sm:h-[90px] md:h-[85px]'
+                className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[135px] sm:h-[90px] md:h-[85px] break-words'
                 style={{ fontFamily: "var(--font-soyuz-grotesk),'Soyuz Grotesk', sans-serif" }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}

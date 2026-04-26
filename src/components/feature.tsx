@@ -53,17 +53,18 @@ export const FeatureShowcase: React.FC<{ disableHeading?: boolean }> = ({ disabl
     ];
 
     return (
-        <section className={` bg-[#F7F7F7] font-space-grotesk ${!disableHeading ? 'py-2' : 'py-12'}`}>
+        <section className={`bg-[#F7F7F7] font-space-grotesk overflow-hidden ${!disableHeading ? 'py-2' : 'py-12'}`}>
             <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-20">
-                {!disableHeading && <div className="text-center space-y-4">
-                    {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                        {t('title')}
-                    </h2> */}
-                    <p className="text-3xl text-gray-900 max-w-5xl mx-auto font-light">
-                        {t('subtitle')}
-                    </p>
-                </div>}
-
+                {!disableHeading && (
+                    <div className="text-center space-y-4">
+                        {/* <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+                            {t('title')}
+                        </h2> */}
+                        <p className="text-2xl md:text-3xl text-gray-900 max-w-5xl mx-auto font-light break-words">
+                            {t('subtitle')}
+                        </p>
+                    </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {features.map((feature, index) => (
                         <div
@@ -92,8 +93,8 @@ export const FeatureShowcase: React.FC<{ disableHeading?: boolean }> = ({ disabl
 
                                 {/* Content */}
                                 <div className="absolute inset-0 p-10 flex flex-col justify-end space-y-4 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                                    <div className="space-y-1">
-                                        <h3 className="text-3xl font-bold text-white tracking-tight">{feature.title}</h3>
+                                    <div className="p-8 pt-0 mt-auto">
+                                        <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight break-words">{feature.title}</h3>
                                         <p className="text-sm text-gray-200 font-light leading-relaxed max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                             {feature.subtitle}
                                         </p>
