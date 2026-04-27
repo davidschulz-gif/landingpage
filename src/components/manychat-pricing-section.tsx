@@ -524,6 +524,17 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         }, {} as Record<string, string>);
 
         let cookies = getCookiesMap();
+        
+        // Extract from URL (Priority)
+        const urlParams = new URLSearchParams(window.location.search);
+        const gclid = urlParams.get('gclid') || cookies['gclid'] || null;
+        const gbraid = urlParams.get('gbraid') || cookies['gbraid'] || null;
+        const wbraid = urlParams.get('wbraid') || cookies['wbraid'] || null;
+
+        // Persist GCLID in cookies if found in URL
+        if (urlParams.get('gclid')) {
+          document.cookie = `gclid=${gclid}; path=/; max-age=7776000`; // 90 days
+        }
 
         // 🛠️ TESTING FALLBACK: If on localhost and cookies are missing, generate fake ones
         if (window.location.hostname === 'localhost' && !cookies['_ga']) {
@@ -531,10 +542,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           const fakeGa = `GA1.1.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
           const fakeSid = `GS2.1.${Math.floor(Date.now() / 1000)}.1.1.1.1`;
           const fakeFpid = `FPID2.2.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
+          const fakeGclid = `CLID_${Math.floor(Math.random() * 1000000000)}`;
           
           document.cookie = `_ga=${fakeGa}; path=/; max-age=31536000`;
           document.cookie = `_ga_QR6YQP6P8N=${fakeSid}; path=/; max-age=31536000`;
           document.cookie = `FPID=${fakeFpid}; path=/; max-age=31536000`;
+          document.cookie = `gclid=${fakeGclid}; path=/; max-age=7776000`;
           
           cookies = getCookiesMap(); // Refresh map
         }
@@ -544,8 +557,11 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           _ga_QR6YQP6P8N: cookies['_ga_QR6YQP6P8N'] || null,
           _fbp: cookies['_fbp'] || null,
           FPID: cookies['FPID'] || null,
+          gclid: cookies['gclid'] || urlParams.get('gclid') || null,
+          gbraid: cookies['gbraid'] || urlParams.get('gbraid') || null,
+          wbraid: cookies['wbraid'] || urlParams.get('wbraid') || null,
         };
-        console.log('🎯 Final Tracking Cookies:', trackingCookies);
+        console.log('🎯 Final Tracking Cookies (including GCLID):', trackingCookies);
         return trackingCookies;
       };
 

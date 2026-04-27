@@ -190,6 +190,26 @@ export default async function RootLayout({
           }}
         />
         {/* End Google Tag Manager */}
+        <script
+          id="capture-params"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const params = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid'];
+                  params.forEach(param => {
+                    const value = urlParams.get(param);
+                    if (value) {
+                      document.cookie = param + '=' + value + '; path=/; max-age=7776000; SameSite=Lax';
+                      console.log('✅ Captured ' + param + ' globally from URL:', value);
+                    }
+                  });
+                } catch (e) { console.error('Tracking capture error:', e); }
+              })();
+            `
+          }}
+        />
       </head>
       <body
         className={`bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
