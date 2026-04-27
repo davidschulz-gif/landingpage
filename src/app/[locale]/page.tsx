@@ -368,7 +368,7 @@ export default function Home() {
       />
 
       {/* Main Content - Always Rendered */}
-      <div className='relative w-full overflow-x-hidden'>
+      <div className='relative w-full'>
         {/* Navbar */}
         <NavbarDemo />
 
