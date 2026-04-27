@@ -514,6 +514,41 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
       }
       const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
 
+      const getTrackingCookies = () => {
+        if (typeof document === 'undefined') return {};
+        
+        const getCookiesMap = () => document.cookie.split(';').reduce((acc, cookie) => {
+          const [key, value] = cookie.split('=').map(c => c.trim());
+          if (key) acc[key] = value;
+          return acc;
+        }, {} as Record<string, string>);
+
+        let cookies = getCookiesMap();
+
+        // 🛠️ TESTING FALLBACK: If on localhost and cookies are missing, generate fake ones
+        if (window.location.hostname === 'localhost' && !cookies['_ga']) {
+          console.log('🧪 Localhost detected: Generating fake tracking cookies for testing...');
+          const fakeGa = `GA1.1.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
+          const fakeSid = `GS2.1.${Math.floor(Date.now() / 1000)}.1.1.1.1`;
+          const fakeFpid = `FPID2.2.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
+          
+          document.cookie = `_ga=${fakeGa}; path=/; max-age=31536000`;
+          document.cookie = `_ga_QR6YQP6P8N=${fakeSid}; path=/; max-age=31536000`;
+          document.cookie = `FPID=${fakeFpid}; path=/; max-age=31536000`;
+          
+          cookies = getCookiesMap(); // Refresh map
+        }
+
+        const trackingCookies = {
+          _ga: cookies['_ga'] || null,
+          _ga_QR6YQP6P8N: cookies['_ga_QR6YQP6P8N'] || null,
+          _fbp: cookies['_fbp'] || null,
+          FPID: cookies['FPID'] || null,
+        };
+        console.log('🎯 Final Tracking Cookies:', trackingCookies);
+        return trackingCookies;
+      };
+
       const response = await fetch(`${apiBaseUrl}checkout`, {
         method: 'POST',
         headers: {
@@ -531,7 +566,8 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           privacyConsent,
           termsConsent,
           language: locale,
-          onboardingData: onboardingData, // Pass onboarding data to checkout
+          onboardingData: onboardingData,
+          trackingData: getTrackingCookies(), // Explicitly send cookies here
         }),
       })
 
