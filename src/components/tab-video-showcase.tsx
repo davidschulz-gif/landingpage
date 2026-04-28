@@ -165,6 +165,15 @@ export const TabVideoShowcase = memo(() => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  const scrollToVideo = () => {
+    if (videoSectionRef.current) {
+      videoSectionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      })
+    }
+  }
+
   // Listen for hash changes or custom events to switch tabs
   useEffect(() => {
     const handleHashSync = () => {
@@ -175,6 +184,7 @@ export const TabVideoShowcase = memo(() => {
       }
     }
 
+
     const handleCustomEvent = (e: Event) => {
       const customEvent = e as CustomEvent
       if (customEvent.detail && typeof customEvent.detail === 'string') {
@@ -182,10 +192,7 @@ export const TabVideoShowcase = memo(() => {
         const validTabs = ['create', 'edit', 'enhance']
         if (validTabs.includes(tabId)) {
           setActiveTab(tabId)
-          // Smooth scroll to container if not visible
-          if (containerRef.current) {
-            containerRef.current.scrollIntoView({ behavior: 'smooth' })
-          }
+          scrollToVideo()
         }
       }
     }
@@ -270,14 +277,14 @@ export const TabVideoShowcase = memo(() => {
       {/* Video Section - Scrollable */}
       <motion.div
         ref={videoSectionRef}
-        className='flex w-full flex-col items-center justify-center mb-16'
+        className='flex w-full flex-col items-center justify-center mb-16 scroll-mt-24'
         style={{ scale: videoScale, y: videoY }}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
         viewport={{ once: true, margin: '-100px' }}
       >
-        <div className='relative w-full h-full mx-auto px-4'>
+        <div className='relative w-full min-h-[250px] md:min-h-[500px] lg:min-h-[600px] flex items-center justify-center mx-auto px-4'>
           {activeTabData ? (
             // Replace your existing motion.video component with this updated version:
             <div className='flex justify-center items-center w-full'>
@@ -467,7 +474,10 @@ export const TabVideoShowcase = memo(() => {
                       containerClassName='w-full h-auto'
                       borderClassName='h-1 w-24 bg-gradient-to-r from-gray-900 via-black to-gray-900 opacity-90 blur-[0.5px]'
                       duration={2000}
-                      onClick={() => setActiveTab(tab.id)}
+                      onClick={() => {
+                        setActiveTab(tab.id)
+                        scrollToVideo()
+                      }}
                     >
                       <Card className='bg-white dark:bg-black border-0 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4 w-full h-full shadow-sm relative z-10'>
                         <CardContent className='p-1 md:p-3 md:min-h-[200px] flex flex-col'>
@@ -543,7 +553,10 @@ export const TabVideoShowcase = memo(() => {
                 ) : (
                   <Card
                     className='cursor-pointer transition-all duration-300 bg-white dark:bg-black border-gray-200 dark:border-gray-700 hover:shadow-md px-2 md:px-4 pb-6 pt-2 md:pt-4'
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => {
+                      setActiveTab(tab.id)
+                      scrollToVideo()
+                    }}
                   >
                     <CardContent className='p-1 md:p-3 md:min-h-[200px] flex flex-col'>
                       <motion.div
