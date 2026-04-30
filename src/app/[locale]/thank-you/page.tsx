@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { appUrl, apiUrl, landingPageUrl } from '@/lib/constants'
-
+import Script from 'next/script'
 
 function ThankYouContent() {
   const t = useTranslations('ThankYou')
@@ -15,6 +15,18 @@ function ThankYouContent() {
   const sessionId = searchParams.get('session_id')
   const [user, setUser] = useState<any>();
 
+  // Function to report conversion to Google Ads
+  const reportGoogleAdsConversion = (userData: any) => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
+        'value': userData.amount || 1.0,
+        'currency': userData.currency || 'EUR',
+        'transaction_id': userData.id || ''
+      });
+      console.log('✅ Google Ads Conversion Reported');
+    }
+  };
 
   const fetchCheckoutSession = async (sessionId: string) => {
     try {
@@ -43,7 +55,8 @@ function ThankYouContent() {
             item_id: s?.item?.product_id,
             price: s?.item?.price / 100,
             quantity: s?.item?.quantity
-          }
+          },
+          plan: s?.item?.name // Extracting plan name for display
         });
 
       }
@@ -58,7 +71,7 @@ function ThankYouContent() {
     try {
 
       if (!user || user?.payment_status !== 'paid') {
-        alert('❌ Payment not completed');
+        // alert('❌ Payment not completed');
         return;
       }
 
@@ -109,6 +122,9 @@ function ThankYouContent() {
         });
 
         console.log('✅ GTM Purchase Event Pushed with User Data');
+        
+        // Also report to Google Ads directly
+        reportGoogleAdsConversion(user);
       } else {
         console.warn('❌ dataLayer not found');
       }
@@ -235,6 +251,28 @@ export default function ThankYouPage() {
   return (
     <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center">...</div>}>
       <ThankYouContent />
+      {/* Google Ads conversion script */}
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          function gtag_report_conversion(url) {
+            var callback = function () {
+              if (typeof(url) != 'undefined') {
+                window.location = url;
+              }
+            };
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
+                  'value': 1.0,
+                  'currency': 'EUR',
+                  'transaction_id': '',
+                  'event_callback': callback
+              });
+            }
+            return false;
+          }
+        `}
+      </Script>
     </Suspense>
   )
 }
