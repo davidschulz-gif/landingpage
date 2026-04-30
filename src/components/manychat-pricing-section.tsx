@@ -516,7 +516,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
       const getTrackingCookies = () => {
         if (typeof document === 'undefined') return {};
-        
+
         const getCookiesMap = () => document.cookie.split(';').reduce((acc, cookie) => {
           const [key, value] = cookie.split('=').map(c => c.trim());
           if (key) acc[key] = value;
@@ -524,7 +524,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         }, {} as Record<string, string>);
 
         let cookies = getCookiesMap();
-        
+
         // Extract from URL (Priority)
         const urlParams = new URLSearchParams(window.location.search);
         const gclid = urlParams.get('gclid') || cookies['gclid'] || null;
@@ -543,12 +543,12 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           const fakeSid = `GS2.1.${Math.floor(Date.now() / 1000)}.1.1.1.1`;
           const fakeFpid = `FPID2.2.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
           const fakeGclid = `CLID_${Math.floor(Math.random() * 1000000000)}`;
-          
+
           document.cookie = `_ga=${fakeGa}; path=/; max-age=31536000`;
           document.cookie = `_ga_QR6YQP6P8N=${fakeSid}; path=/; max-age=31536000`;
           document.cookie = `FPID=${fakeFpid}; path=/; max-age=31536000`;
           document.cookie = `gclid=${fakeGclid}; path=/; max-age=7776000`;
-          
+
           cookies = getCookiesMap(); // Refresh map
         }
 
@@ -882,8 +882,18 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
               </div>
             )}
             {profPromoDiscount && (
-              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{profPromoDiscount.name}:</span> {profPromoDiscount.type === 'percentage' ? `${profPromoDiscount.value}% OFF` : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
+              // <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px]'>
+              //   <span className='font-normal uppercase'>{profPromoDiscount.name}:</span> {profPromoDiscount.type === 'percentage' ? `${profPromoDiscount.value}% OFF` : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
+              // </div>
+              <div className='mt-2 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
+                <span className='font-medium normal-case'>
+                  {profPromoDiscount.name}:
+                </span>{' '}
+                <span className='font-normal'>
+                  {profPromoDiscount.type === 'percentage'
+                    ? `${profPromoDiscount.value}% off`
+                    : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
+                </span>
               </div>
             )}
           </div>
@@ -905,14 +915,43 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           )}
 
-          <div className='flex flex-col items-center mb-12'>
-            <div className='bg-site-white border border-black rounded-none p-3 mb-4 max-w-2xl'>
-              <p className='text-gray-900 text-center font-medium text-sm font-space-grotesk'>
-                <span className='font-bold text-black'>
-                  {t('freeTrial')}
-                </span>{' '}
-                {t('freeTrialDescription')}
+          {/* <div className='flex flex-col items-center mb-12 w-full'>
+            <div className={`rounded-none p-3 mb-4 max-w-2xl w-full border transition-all duration-300 ${profPromoDiscount ? 'bg-red-50 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'bg-site-white border-black'}`}>
+              <p className={`text-center font-medium text-sm font-space-grotesk ${profPromoDiscount ? 'text-red-700' : 'text-gray-900'}`}>
+                {profPromoDiscount ? (
+                  <span className='font-bold uppercase tracking-tight'>
+                    {locale === 'de'
+                      ? 'Die Testversion ist nicht gültig, wenn der Gutscheincode angewendet wird'
+                      : 'The trial is not valid when the promo code is applied'}
+                  </span>
+                ) : (
+                  <>
+                    <span className='font-bold text-black'>
+                      {t('freeTrial')}
+                    </span>{' '}
+                    {t('freeTrialDescription')}
+                  </>
+                )}
               </p>
+            </div>
+          </div> */}
+
+          <div className='flex justify-center mb-8 w-full '>
+            <div className='max-w-2xl w-full text-xs text-gray-500 text-center border border-black py-3'>
+              {profPromoDiscount ? (
+                <span>
+                  {locale === 'de'
+                    ? 'Die Testversion ist nicht gültig, wenn der Gutscheincode angewendet wird'
+                    : 'The trial is not valid when a promo code is applied'}
+                </span>
+              ) : (
+                <span>
+                  <span className='font-medium text-gray-700'>
+                    {t('freeTrial')}
+                  </span>{' '}
+                  {t('freeTrialDescription')}
+                </span>
+              )}
             </div>
           </div>
         </div>
