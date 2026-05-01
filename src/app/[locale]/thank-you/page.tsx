@@ -22,7 +22,19 @@ function ThankYouContent() {
         'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
         'value': userData.amount || 1.0,
         'currency': userData.currency || 'EUR',
-        'transaction_id': userData.id || ''
+        'transaction_id': userData.id || '',
+        'user_data': {
+          'email': userData.email,
+          'phone_number': userData.onboardingData?.phone,
+          'address': {
+            'first_name': userData.onboardingData?.firstName,
+            'last_name': userData.onboardingData?.lastName,
+            'city': userData.onboardingData?.city,
+            'region': userData.onboardingData?.state,
+            'postal_code': userData.onboardingData?.postalCode,
+            'country': userData.onboardingData?.country
+          }
+        }
       });
       console.log('✅ Google Ads Conversion Reported');
     }
@@ -56,7 +68,8 @@ function ThankYouContent() {
             price: s?.item?.price / 100,
             quantity: s?.item?.quantity
           },
-          plan: s?.item?.name // Extracting plan name for display
+          plan: s?.item?.name, // Extracting plan name for display
+          metadata: s?.metadata // Store metadata for GTM
         });
 
       }
@@ -69,40 +82,16 @@ function ThankYouContent() {
 
   const pushPurchaseToDataLayer = (data: any) => {
     try {
-
       if (!user || user?.payment_status !== 'paid') {
-        // alert('❌ Payment not completed');
         return;
       }
 
+      const executePush = () => {
+        const customerName = user?.name || "";
+        const firstName = customerName.split(" ").shift() || "";
+        const lastName = customerName.split(" ").length > 1 ? customerName.split(" ").pop() : "";
 
-      const customerName = user?.name || "";
-      const firstName = customerName.split(" ").shift() || "";
-      const lastName = customerName.split(" ").length > 1 ? customerName.split(" ").pop() : "";
-
-      //  setUser({name:session?.user?.name,email:session?.user?.email,id:session?.user?.id,transaction_id:session?.id,amount:session?.amount_total/100,currency:session?.currency?.toUpperCase(),plan:session?.user?.plan})
-      console.log("GTM PAYLOAD", {
-        event: 'purchase',
-        user_data: {
-          first_name: user?.onboardingData?.firstName,
-          last_name: user?.onboardingData?.lastName,
-          email: user?.email,
-          phone: user?.onboardingData?.phone,
-          city: user?.onboardingData?.city,
-          country: user?.onboardingData?.country,
-          postal_code: user?.onboardingData?.postalCode
-        },
-        ecommerce: {
-          transaction_id: user?.id,
-          value: user?.amount,
-          currency: user?.currency?.toUpperCase() || 'EUR',
-          items: [user?.item]
-        },
-      })
-      // ✅ Direct GTM push with Advanced Matching data
-      if (typeof window !== 'undefined' && (window as any).dataLayer) {
-
-        (window as any).dataLayer.push({
+        console.log("GTM PAYLOAD", {
           event: 'purchase',
           user_data: {
             first_name: user?.onboardingData?.firstName,
@@ -119,14 +108,70 @@ function ThankYouContent() {
             currency: user?.currency?.toUpperCase() || 'EUR',
             items: [user?.item]
           },
-        });
+        })
 
-        console.log('✅ GTM Purchase Event Pushed with User Data');
-        
-        // Also report to Google Ads directly
-        reportGoogleAdsConversion(user);
-      } else {
-        console.warn('❌ dataLayer not found');
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({
+            event: 'purchase',
+            user_data: {
+              first_name: user?.onboardingData?.firstName,
+              last_name: user?.onboardingData?.lastName,
+              email: user?.email,
+              phone: user?.onboardingData?.phone,
+              city: user?.onboardingData?.city,
+              country: user?.onboardingData?.country,
+              postal_code: user?.onboardingData?.postalCode
+            },
+            ecommerce: {
+              transaction_id: user?.id,
+              value: user?.amount,
+              currency: user?.currency?.toUpperCase() || 'EUR',
+              items: [user?.item]
+            },
+            // Attribution Data
+            gclid: user?.metadata?.gclid || "",
+            utm_source: user?.metadata?.utm_source || "",
+            utm_medium: user?.metadata?.utm_medium || "",
+            utm_campaign: user?.metadata?.utm_campaign || "",
+            utm_campaign_name: user?.metadata?.utm_campaign_name || "",
+            utm_content: user?.metadata?.utm_content || "",
+            utm_term: user?.metadata?.utm_term || "",
+            gad_source: user?.metadata?.gad_source || "",
+            gad_campaignid: user?.metadata?.gad_campaignid || "",
+            bi: user?.metadata?.bi || ""
+          });
+
+          console.log('✅ GTM Purchase Event Pushed with User Data');
+          reportGoogleAdsConversion(user);
+        } else {
+          console.warn('❌ dataLayer not found');
+        }
+      };
+
+      // Check for consent - if already granted or if we should wait
+      if (typeof window !== 'undefined') {
+        const dataLayer = (window as any).dataLayer || [];
+        const consentGiven = dataLayer.some((entry: any) => 
+          entry.event === 'cookie_consent_update' || entry.event === 'consent_update'
+        );
+
+        if (consentGiven) {
+          executePush();
+        } else {
+          console.log('⏳ Waiting for consent before pushing purchase event...');
+          // Poll for consent or wait for event
+          let checkInterval = setInterval(() => {
+            const currentDataLayer = (window as any).dataLayer || [];
+            if (currentDataLayer.some((entry: any) => entry.event === 'cookie_consent_update')) {
+              console.log('✅ Consent detected, pushing purchase event');
+              executePush();
+              clearInterval(checkInterval);
+            }
+          }, 500);
+          
+          // Timeout after 5 seconds to avoid hanging
+          setTimeout(() => clearInterval(checkInterval), 5000);
+        }
       }
 
     } catch (error) {
@@ -135,28 +180,12 @@ function ThankYouContent() {
   };
 
 
-  // useEffect(() => {
-  //   if (sessionId) {
-  //     alert(sessionId)
-  //     // Send the GTM event for the Stripe purchase tracking
-  //     // We push the event and the session_id so that GTM can capture it
-  //     sendGTMEvent({ event: 'stripe_purchase', session_id: sessionId })
-  //   }
-  // }, [sessionId])
-
   useEffect(() => {
     const handleTracking = async () => {
       if (!sessionId) return;
 
-      // ❌ remove alert in production
       console.log('Session ID:', sessionId);
-
       const session = await fetchCheckoutSession(sessionId);
-
-
-      // if (session) {
-      //   pushPurchaseToDataLayer(session);
-      // }
     };
 
     handleTracking();
@@ -191,11 +220,6 @@ function ThankYouContent() {
               {t('detailsTitle')}
             </h2>
             <div className="grid grid-cols-1 gap-y-3 text-sm">
-              {/* <div className="flex justify-between items-center">
-                <span className="text-gray-500 font-medium">{t('name')}</span>
-                <span className="text-black font-semibold">{user?.name}</span>
-              </div> */}
-
               <div className="flex justify-between items-center">
                 <span className="text-gray-500 font-medium">{t('email')}</span>
                 <span className="text-black font-semibold">{user?.email}</span>
@@ -251,28 +275,30 @@ export default function ThankYouPage() {
   return (
     <Suspense fallback={<div className="min-h-[80vh] flex items-center justify-center">...</div>}>
       <ThankYouContent />
-      {/* Google Ads conversion script */}
-      <Script id="google-ads-conversion" strategy="afterInteractive">
-        {`
-          function gtag_report_conversion(url) {
-            var callback = function () {
-              if (typeof(url) != 'undefined') {
-                window.location = url;
+      {/* 
+        OLD CONVERSION SCRIPT (Commented for reference)
+        <Script id="google-ads-conversion" strategy="afterInteractive">
+          {`
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
+                    'value': 1.0,
+                    'currency': 'EUR',
+                    'transaction_id': '',
+                    'event_callback': callback
+                });
               }
-            };
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'conversion', {
-                  'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
-                  'value': 1.0,
-                  'currency': 'EUR',
-                  'transaction_id': '',
-                  'event_callback': callback
-              });
+              return false;
             }
-            return false;
-          }
-        `}
-      </Script>
+          `}
+        </Script>
+      */}
     </Suspense>
   )
 }

@@ -560,6 +560,15 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           gclid: cookies['gclid'] || urlParams.get('gclid') || null,
           gbraid: cookies['gbraid'] || urlParams.get('gbraid') || null,
           wbraid: cookies['wbraid'] || urlParams.get('wbraid') || null,
+          utm_source: cookies['utm_source'] || urlParams.get('utm_source') || null,
+          utm_medium: cookies['utm_medium'] || urlParams.get('utm_medium') || null,
+          utm_campaign: cookies['utm_campaign'] || urlParams.get('utm_campaign') || null,
+          utm_content: cookies['utm_content'] || urlParams.get('utm_content') || null,
+          utm_term: cookies['utm_term'] || urlParams.get('utm_term') || null,
+          utm_campaign_name: cookies['utm_campaign_name'] || urlParams.get('utm_campaign_name') || null,
+          gad_source: cookies['gad_source'] || urlParams.get('gad_source') || null,
+          gad_campaignid: cookies['gad_campaignid'] || urlParams.get('gad_campaignid') || null,
+          bi: cookies['stapeUserId'] || null,
         };
         console.log('🎯 Final Tracking Cookies (including GCLID):', trackingCookies);
         return trackingCookies;

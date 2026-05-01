@@ -182,27 +182,40 @@ export default async function RootLayout({
           name='viewport'
           content='width=device-width, initial-scale=1, viewport-fit=cover'
         />
-        {/* Google Tag Manager */}
+        {/* 
+          OLD TRACKING CODE (Commented for reference)
+          <script id="gtm-consent-mode" dangerouslySetInnerHTML={{ __html: \`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent', 'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'wait_for_update': 500 });\` }} />
+          <script id="gtm-script" dangerouslySetInnerHTML={{ __html: \`!function(){"use strict";...}();\` }} />
+          <script id="google-ads-gtag" dangerouslySetInnerHTML={{ __html: \`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-17657716865');\` }} />
+        */}
+        {/* Google Tracking Header - Unified Initialization */}
         <script
-          id="gtm-script"
-          dangerouslySetInnerHTML={{
-            __html: `!function(){"use strict";function l(e){for(var t=e,r=0,n=document.cookie.split(";");r<n.length;r++){var o=n[r].split("=");if(o[0].trim()===t)return o[1]}}function s(e){return localStorage.getItem(e)}function u(e){return window[e]}function A(e,t){e=document.querySelector(e);return t?null==e?void 0:e.getAttribute(t):null==e?void 0:e.textContent}var e=window,t=document,r="script",n="dataLayer",o="https://ss.typus.ai",a="https://load.ss.typus.ai",i="d75patrvfsjx",c="c001u=EQ5OISI%2FWTZKJz8sMT46Rw5XQUhHVBAPRR4KFgMBWgAR",g="stapeUserId",v="",E="",d=!1;try{var d=!!g&&(m=navigator.userAgent,!!(m=new RegExp("Version/([0-9._]+)(.*Mobile)?.*Safari.*").exec(m)))&&16.4<=parseFloat(m[1]),f="stapeUserId"===g,I=d&&!f?function(e,t,r){void 0===t&&(t="");var n={cookie:l,localStorage:s,jsVariable:u,cssSelector:A},t=Array.isArray(t)?t:[t];if(e&&n[e])for(var o=n[e],a=0,i=t;a<i.length;a++){var c=i[a],c=r?o(c,r):o(c);if(c)return c}else console.warn("invalid uid source",e)}(g,v,E):void 0;d=d&&(!!I||f)}catch(e){console.error(e)}var m=e,g=(m[n]=m[n]||[],m[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"}),t.getElementsByTagName(r)[0]),v=I?"&bi="+encodeURIComponent(I):"",E=t.createElement(r),f=(d&&(i=8<i.length?i.replace(/([a-z]{8}$)/,"kp$1"):"kp"+i),!d&&a?a:o);E.async=!0,E.src=f+"/"+i+".js?"+c+v,null!=(e=g.parentNode)&&e.insertBefore(E,g)}();`
-          }}
-        />
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17657716865" />
-        <script
-          id="google-ads-gtag"
+          id="gtm-init"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              
+              // 1. Consent Mode Default
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'wait_for_update': 500
+              });
+
+              // 2. Global Config
               gtag('js', new Date());
-              gtag('config', 'AW-17657716865');
+              gtag('config', 'AW-17657716865', { 'send_page_view': false });
+              
+              // 3. Stape/GTM Loader
+              (function(){"use strict";function l(e){for(var t=e,r=0,n=document.cookie.split(";");r<n.length;r++){var o=n[r].split("=");if(o[0].trim()===t)return o[1]}}function s(e){return localStorage.getItem(e)}function u(e){return window[e]}function A(e,t){e=document.querySelector(e);return t?null==e?void 0:e.getAttribute(t):null==e?void 0:e.textContent}var e=window,t=document,r="script",n="dataLayer",o="https://ss.typus.ai",a="https://load.ss.typus.ai",i="d75patrvfsjx",c="c001u=EQ5OISI%2FWTZKJz8sMT46Rw5XQUhHVBAPRR4KFgMBWgAR",g="stapeUserId",v="",E="",d=!1;try{var d=!!g&&(m=navigator.userAgent,!!(m=new RegExp("Version/([0-9._]+)(.*Mobile)?.*Safari.*").exec(m)))&&16.4<=parseFloat(m[1]),f="stapeUserId"===g,I=d&&!f?function(e,t,r){void 0===t&&(t="");var n={cookie:l,localStorage:s,jsVariable:u,cssSelector:A},t=Array.isArray(t)?t:[t];if(e&&n[e])for(var o=n[e],a=0,i=t;a<i.length;a++){var c=i[a],c=r?o(c,r):o(c);if(c)return c}else console.warn("invalid uid source",e)}(g,v,E):void 0;d=d&&(!!I||f)}catch(e){console.error(e)}var m=e,g=(m[n]=m[n]||[],m[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"}),I&&m[n].push({bi:I}),t.getElementsByTagName(r)[0]),v=I?"&bi="+encodeURIComponent(I):"",E=t.createElement(r),f=(d&&(i=8<i.length?i.replace(/([a-z]{8}$)/,"kp$1"):"kp"+i),!d&&a?a:o);E.async=!0,E.src=f+"/"+i+".js?"+c+v,null!=(e=g.parentNode)&&e.insertBefore(E,g)}());
             `
           }}
         />
-        {/* End Google Tag Manager */}
+        {/* Google tag (gtag.js) - External Library */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17657716865" />
         <script
           id="capture-params"
           dangerouslySetInnerHTML={{
@@ -210,12 +223,12 @@ export default async function RootLayout({
               (function() {
                 try {
                   const urlParams = new URLSearchParams(window.location.search);
-                  const params = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid'];
+                  const params = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_campaign_name', 'gad_source', 'gad_campaignid', 'stapeUserId'];
                   params.forEach(param => {
-                    const value = urlParams.get(param);
+                    const value = urlParams.get(param) || (param === 'stapeUserId' ? (document.cookie.split('; ').find(row => row.startsWith('stapeUserId='))?.split('=')[1]) : null);
                     if (value) {
-                      document.cookie = param + '=' + value + '; path=/; max-age=7776000; SameSite=Lax';
-                      console.log('✅ Captured ' + param + ' globally from URL:', value);
+                      document.cookie = param + '=' + value + '; path=/; domain=.typus.ai; max-age=7776000; SameSite=Lax';
+                      console.log('✅ Captured ' + param + ' globally:', value);
                     }
                   });
                 } catch (e) { console.error('Tracking capture error:', e); }
