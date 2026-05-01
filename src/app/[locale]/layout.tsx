@@ -343,36 +343,51 @@ export default async function RootLayout({
                 // 6. CHECK GA4 REQUEST
                 // -----------------------------
                 console.log("\\n🌐 Monitoring GA4 network calls...");
-                const observer = new PerformanceObserver((list) => {
-                  list.getEntries().forEach((entry) => {
-                    if (entry.name.includes("collect?v=2") || entry.name.includes("collect?v=1") || entry.name.includes("ss.typus.ai")) {
-                      console.log("📡 Tracking Request Found:", entry.name);
+                
+                const checkEntry = (entry) => {
+                  const isTracking = entry.name.includes("collect?v=2") || entry.name.includes("collect?v=1") || entry.name.includes("ss.typus.ai");
+                  if (isTracking) {
+                    try {
                       const url = new URL(entry.name);
-                      const hasAttribution = url.searchParams.has('utm_source') || 
-                                           url.searchParams.has('gclid') || 
-                                           url.searchParams.has('gclaw') || 
-                                           url.searchParams.has('bi') ||
-                                           entry.name.includes('utm_source');
+                      const isEvent = url.searchParams.has('en');
                       
-                      const hasSession = url.searchParams.has('sid') || url.searchParams.has('ga_session_id') || url.searchParams.has('ga_sid');
-                      const hasClientId = url.searchParams.has('cid') || url.searchParams.has('ga_client_id') || url.searchParams.has('ga_cid');
+                      if (isEvent || entry.name.includes("collect")) {
+                        console.log("📡 Tracking Request Found:", entry.name);
+                        
+                        const hasAttribution = url.searchParams.has('utm_source') || 
+                                             url.searchParams.has('gclid') || 
+                                             url.searchParams.has('gclaw') || 
+                                             url.searchParams.has('bi') ||
+                                             entry.name.includes('utm_source');
+                        
+                        const hasSession = url.searchParams.has('sid') || url.searchParams.has('ga_session_id') || url.searchParams.has('ga_sid');
+                        const hasClientId = url.searchParams.has('cid') || url.searchParams.has('ga_client_id') || url.searchParams.has('ga_cid');
 
-                      if (hasAttribution) {
-                        console.log("✅ Attribution data detected");
-                      } else {
-                        console.warn("❌ No attribution data in this request");
-                      }
+                        if (hasAttribution) {
+                          console.log("✅ Attribution data detected");
+                        } else {
+                          console.warn("❌ No attribution data in this URL (Normal for repeat hits)");
+                        }
 
-                      if (hasSession && hasClientId) {
-                        console.log("✅ Session & Client IDs detected");
-                      } else {
-                        console.warn("⚠️ Missing Session or Client ID (Session linking may fail)");
+                        if (isEvent && !hasSession && !hasClientId) {
+                          console.warn("⚠️ Event detected but Session/Client IDs missing from URL (Check POST body)");
+                        } else if (hasSession && hasClientId) {
+                          console.log("✅ Session & Client IDs detected");
+                        }
                       }
-                    }
-                  });
+                    } catch (e) { /* Invalid URL for some reason */ }
+                  }
+                };
+
+                // Catch existing entries
+                performance.getEntriesByType("resource").forEach(checkEntry);
+
+                // Observe new entries
+                const observer = new PerformanceObserver((list) => {
+                  list.getEntries().forEach(checkEntry);
                 });
 
-                observer.observe({ entryTypes: ["resource"] });
+                observer.observe({ type: "resource", buffered: true });
 
                 // -----------------------------
                 // 7. FINAL DIAGNOSIS
