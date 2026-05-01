@@ -236,7 +236,6 @@ export default async function RootLayout({
               });
 
               // Explicitly signal consent to unblock components (like Thank You page)
-              // Explicitly signal consent to unblock components (like Thank You page)
               window.dataLayer.push({ 
                 event: 'cookie_consent_update', 
                 analytics_storage: 'granted',
@@ -351,13 +350,23 @@ export default async function RootLayout({
                       const url = new URL(entry.name);
                       const hasAttribution = url.searchParams.has('utm_source') || 
                                            url.searchParams.has('gclid') || 
+                                           url.searchParams.has('gclaw') || 
                                            url.searchParams.has('bi') ||
                                            entry.name.includes('utm_source');
                       
+                      const hasSession = url.searchParams.has('sid') || url.searchParams.has('ga_session_id') || url.searchParams.has('ga_sid');
+                      const hasClientId = url.searchParams.has('cid') || url.searchParams.has('ga_client_id') || url.searchParams.has('ga_cid');
+
                       if (hasAttribution) {
-                        console.log("✅ Attribution data detected in request");
+                        console.log("✅ Attribution data detected");
                       } else {
-                        console.warn("❌ No attribution data detected in this request");
+                        console.warn("❌ No attribution data in this request");
+                      }
+
+                      if (hasSession && hasClientId) {
+                        console.log("✅ Session & Client IDs detected");
+                      } else {
+                        console.warn("⚠️ Missing Session or Client ID (Session linking may fail)");
                       }
                     }
                   });
