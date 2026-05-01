@@ -236,11 +236,21 @@ export default async function RootLayout({
               });
 
               // Explicitly signal consent to unblock components (like Thank You page)
+              // Explicitly signal consent to unblock components (like Thank You page)
               window.dataLayer.push({ 
                 event: 'cookie_consent_update', 
                 analytics_storage: 'granted',
                 ad_storage: 'granted'
               });
+
+              // Safeguard: Re-signal granted status after a short delay to ensure GTM overrides don't stick
+              setTimeout(function() {
+                gtag('consent', 'update', {
+                  'analytics_storage': 'granted',
+                  'ad_storage': 'granted'
+                });
+                console.log("🛡️ Persistence Layer: Consent re-verified as GRANTED");
+              }, 2500);
 
               gtag('js', new Date());
               gtag('config', 'AW-17657716865', { 'send_page_view': false });
@@ -263,7 +273,7 @@ export default async function RootLayout({
                 // 1. CHECK URL PARAMS
                 // -----------------------------
                 const params = new URLSearchParams(window.location.search);
-                const utms = ["utm_source", "utm_medium", "utm_campaign", "gclid"];
+                const utms = ["utm_source", "utm_medium", "utm_campaign", "gclid", "stapeUserId"];
 
                 console.log("🔍 Checking URL params...");
                 utms.forEach((param) => {
@@ -316,12 +326,18 @@ export default async function RootLayout({
                 try {
                   gtag("get", "G-QR6YQP6P8N", "consent", (consent) => {
                     console.log("Consent State:", consent);
+                    if (!consent) {
+                      console.warn("⚠️ Consent object not returned (GA4 not yet initialized)");
+                      return;
+                    }
                     if (consent.analytics_storage !== "granted") {
                       console.warn("❌ analytics_storage NOT granted");
+                    } else {
+                      console.log("✅ analytics_storage granted");
                     }
                   });
                 } catch (e) {
-                  console.warn("⚠️ Cannot read consent (may not be initialized)");
+                  console.warn("⚠️ Cannot read consent:", e.message);
                 }
 
                 // -----------------------------
@@ -330,12 +346,18 @@ export default async function RootLayout({
                 console.log("\\n🌐 Monitoring GA4 network calls...");
                 const observer = new PerformanceObserver((list) => {
                   list.getEntries().forEach((entry) => {
-                    if (entry.name.includes("collect?v=2")) {
-                      console.log("📡 GA4 Request Found:", entry.name);
-                      if (entry.name.includes("utm_source") || entry.name.includes("gclid")) {
-                        console.log("✅ Attribution passed to GA4");
+                    if (entry.name.includes("collect?v=2") || entry.name.includes("collect?v=1") || entry.name.includes("ss.typus.ai")) {
+                      console.log("📡 Tracking Request Found:", entry.name);
+                      const url = new URL(entry.name);
+                      const hasAttribution = url.searchParams.has('utm_source') || 
+                                           url.searchParams.has('gclid') || 
+                                           url.searchParams.has('bi') ||
+                                           entry.name.includes('utm_source');
+                      
+                      if (hasAttribution) {
+                        console.log("✅ Attribution data detected in request");
                       } else {
-                        console.warn("❌ Attribution NOT passed to GA4");
+                        console.warn("❌ No attribution data detected in this request");
                       }
                     }
                   });
