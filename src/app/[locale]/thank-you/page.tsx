@@ -20,7 +20,7 @@ function ThankYouContent() {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
         'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
-        'value': userData.amount || 1.0,
+        'value': userData.amount,
         'currency': userData.currency || 'EUR',
         'transaction_id': userData.id || '',
         'user_data': {
