@@ -20,7 +20,8 @@ function ThankYouContent() {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
         'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
-        'value': userData.amount || 1.0,
+        // 'value': userData.amount || 1.0,
+        'value': 500,
         'currency': userData.currency || 'EUR',
         'transaction_id': userData.id || '',
         'user_data': {
@@ -151,7 +152,7 @@ function ThankYouContent() {
       // Check for consent - if already granted or if we should wait
       if (typeof window !== 'undefined') {
         const dataLayer = (window as any).dataLayer || [];
-        const consentGiven = dataLayer.some((entry: any) => 
+        const consentGiven = dataLayer.some((entry: any) =>
           entry.event === 'cookie_consent_update' || entry.event === 'consent_update'
         );
 
@@ -168,7 +169,7 @@ function ThankYouContent() {
               clearInterval(checkInterval);
             }
           }, 500);
-          
+
           // Timeout after 5 seconds to avoid hanging
           setTimeout(() => clearInterval(checkInterval), 5000);
         }
