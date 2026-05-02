@@ -216,13 +216,23 @@ export default async function RootLayout({
               (function() {
                 try {
                   const urlParams = new URLSearchParams(window.location.search);
-                  const params = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid'];
-                     const params = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_campaign_name', 'gad_source', 'gad_campaignid', 'stapeUserId'];
+                  const params = [
+                    'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 
+                    'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 
+                    'utm_campaign_name', 'gad_source', 'gad_campaignid', 'stapeUserId'
+                  ];
                   params.forEach(param => {
-                    const value = urlParams.get(param) || (param === 'stapeUserId' ? (document.cookie.split('; ').find(row => row.startsWith('stapeUserId='))?.split('=')[1]) : null);
+                    let value = urlParams.get(param);
+                    
+                    // Fallback for stapeUserId from cookie if not in URL
+                    if (!value && param === 'stapeUserId') {
+                      value = document.cookie.split('; ').find(row => row.startsWith('stapeUserId='))?.split('=')[1];
+                    }
+                    
                     if (value) {
-                      document.cookie = param + '=' + value + '; path=/; max-age=7776000; SameSite=Lax';
-                      console.log('✅ Captured ' + param + ' globally from URL:', value);
+                      const domain = window.location.hostname.endsWith('typus.ai') ? '; domain=.typus.ai' : '';
+                      document.cookie = param + '=' + value + '; path=/; max-age=7776000; SameSite=Lax' + domain;
+                      console.log('✅ Captured ' + param + ':', value);
                     }
                   });
                 } catch (e) { console.error('Tracking capture error:', e); }
@@ -231,7 +241,7 @@ export default async function RootLayout({
           }}
         />
         {/* google analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR6YQP6P8N"></script>
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR6YQP6P8N"></script>
         <script
           id="google-analytics"
           dangerouslySetInnerHTML={{
@@ -242,7 +252,7 @@ export default async function RootLayout({
               gtag('config', 'G-QR6YQP6P8N');
             `
           }}
-        />
+        /> */}
         {/* google analytics */}
       </head>
       <body

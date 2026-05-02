@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
@@ -20,21 +20,22 @@ function ThankYouContent() {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
         'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
-        'value': userData.amount,
+        // 'value': userData.amount,
+        "value": 348,
         'currency': userData.currency || 'EUR',
         'transaction_id': userData.id || '',
-        'user_data': {
-          'email': userData.email,
-          'phone_number': userData.onboardingData?.phone,
-          'address': {
-            'first_name': userData.onboardingData?.firstName,
-            'last_name': userData.onboardingData?.lastName,
-            'city': userData.onboardingData?.city,
-            'region': userData.onboardingData?.state,
-            'postal_code': userData.onboardingData?.postalCode,
-            'country': userData.onboardingData?.country
-          }
-        }
+        // 'user_data': {
+        //   'email': userData.email,
+        //   'phone_number': userData.onboardingData?.phone,
+        //   'address': {
+        //     'first_name': userData.onboardingData?.firstName,
+        //     'last_name': userData.onboardingData?.lastName,
+        //     'city': userData.onboardingData?.city,
+        //     'region': userData.onboardingData?.state,
+        //     'postal_code': userData.onboardingData?.postalCode,
+        //     'country': userData.onboardingData?.country
+        //   }
+        // }
       });
       console.log('✅ Google Ads Conversion Reported');
     }
