@@ -230,6 +230,20 @@ export default async function RootLayout({
             `
           }}
         />
+        {/* google analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR6YQP6P8N"></script>
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { window.dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'G-QR6YQP6P8N');
+            `
+          }}
+        />
+        {/* google analytics */}
       </head>
       <body
         className={`bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
