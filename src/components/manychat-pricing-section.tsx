@@ -945,7 +945,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           </div> */}
 
-          {/* <div className='flex justify-center mb-8 w-full '>
+          <div className='flex justify-center mb-8 w-full '>
             <div className='max-w-2xl w-full text-xs text-gray-500 text-center border border-black py-3'>
               {profPromoDiscount ? (
                 <span>
@@ -962,7 +962,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 </span>
               )}
             </div>
-          </div> */}
+          </div>
         </div>
         {selectedPlanTier !== 'explorer' && <div className='flex flex-col gap-1 mb-8 text-center'>
           <div className='flex items-center justify-center gap-2'>
