@@ -946,9 +946,9 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
           </div> */}
 
           <div className='flex justify-center mb-8 w-full '>
-            <div className='max-w-2xl w-full text-xs text-gray-500 text-center border border-black py-3'>
+            <div className={`${profPromoDiscount ? 'border-red-500' : 'border-black'} max-w-2xl w-full text-xs text-gray-500 text-center border  py-3`}>
               {profPromoDiscount ? (
-                <span>
+                <span className='text-red-600'>
                   {locale === 'de'
                     ? 'Die Testversion ist nicht gültig, wenn der Gutscheincode angewendet wird'
                     : 'The trial is not valid when a promo code is applied'}
