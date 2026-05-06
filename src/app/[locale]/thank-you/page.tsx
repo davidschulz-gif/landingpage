@@ -21,21 +21,8 @@ function ThankYouContent() {
       (window as any).gtag('event', 'conversion', {
         'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
         'value': userData.amount,
-        // "value": 348,
         'currency': userData.currency || 'EUR',
         'transaction_id': userData.id || '',
-        // 'user_data': {
-        //   'email': userData.email,
-        //   'phone_number': userData.onboardingData?.phone,
-        //   'address': {
-        //     'first_name': userData.onboardingData?.firstName,
-        //     'last_name': userData.onboardingData?.lastName,
-        //     'city': userData.onboardingData?.city,
-        //     'region': userData.onboardingData?.state,
-        //     'postal_code': userData.onboardingData?.postalCode,
-        //     'country': userData.onboardingData?.country
-        //   }
-        // }
       });
       console.log('✅ Google Ads Conversion Reported');
     }
@@ -125,21 +112,22 @@ function ThankYouContent() {
             },
             ecommerce: {
               transaction_id: user?.id,
+              transactionValue: user?.amount,
               value: user?.amount,
               currency: user?.currency?.toUpperCase() || 'EUR',
               items: [user?.item]
             },
             // Attribution Data
-            gclid: user?.metadata?.gclid || "",
-            utm_source: user?.metadata?.utm_source || "",
-            utm_medium: user?.metadata?.utm_medium || "",
-            utm_campaign: user?.metadata?.utm_campaign || "",
-            utm_campaign_name: user?.metadata?.utm_campaign_name || "",
-            utm_content: user?.metadata?.utm_content || "",
-            utm_term: user?.metadata?.utm_term || "",
-            gad_source: user?.metadata?.gad_source || "",
-            gad_campaignid: user?.metadata?.gad_campaignid || "",
-            bi: user?.metadata?.bi || ""
+            ...user?.metadata?.gclid && { gclid: user?.metadata?.gclid },
+            ...user?.metadata?.utm_source && { utm_source: user?.metadata?.utm_source },
+            ...user?.metadata?.utm_medium && { utm_medium: user?.metadata?.utm_medium },
+            ...user?.metadata?.utm_campaign && { utm_campaign: user?.metadata?.utm_campaign },
+            ...user?.metadata?.utm_campaign_name && { utm_campaign_name: user?.metadata?.utm_campaign_name },
+            ...user?.metadata?.utm_content && { utm_content: user?.metadata?.utm_content },
+            ...user?.metadata?.utm_term && { utm_term: user?.metadata?.utm_term },
+            ...user?.metadata?.gad_source && { gad_source: user?.metadata?.gad_source },
+            ...user?.metadata?.gad_campaignid && { gad_campaignid: user?.metadata?.gad_campaignid },
+            ...user?.metadata?.bi && { bi: user?.metadata?.bi }
           });
 
           console.log('✅ GTM Purchase Event Pushed with User Data');
