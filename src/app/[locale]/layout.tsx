@@ -196,8 +196,8 @@ export default async function RootLayout({
           }}
         />
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17657716865" />
-        <script
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17657716865" /> */}
+        {/* <script
           id="google-ads-gtag"
           dangerouslySetInnerHTML={{
             __html: `
@@ -207,7 +207,7 @@ export default async function RootLayout({
               gtag('config', 'AW-17657716865');
             `
           }}
-        />
+        /> */}
         {/* End Google Tag Manager */}
         <script
           id="capture-params"

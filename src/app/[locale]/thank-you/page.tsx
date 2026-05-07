@@ -16,17 +16,17 @@ function ThankYouContent() {
   const [user, setUser] = useState<any>();
 
   // Function to report conversion to Google Ads
-  const reportGoogleAdsConversion = (userData: any) => {
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
-        'value': userData.amount,
-        'currency': userData.currency || 'EUR',
-        'transaction_id': userData.id || '',
-      });
-      console.log('✅ Google Ads Conversion Reported');
-    }
-  };
+  // const reportGoogleAdsConversion = (userData: any) => {
+  //   if (typeof window !== 'undefined' && (window as any).gtag) {
+  //     (window as any).gtag('event', 'conversion', {
+  //       'send_to': 'AW-17657716865/4ZZwCM3aqK4bEIHB7eNB',
+  //       'value': userData.amount,
+  //       'currency': userData.currency || 'EUR',
+  //       'transaction_id': userData.id || '',
+  //     });
+  //     console.log('✅ Google Ads Conversion Reported');
+  //   }
+  // };
 
   const fetchCheckoutSession = async (sessionId: string) => {
     try {
@@ -131,7 +131,7 @@ function ThankYouContent() {
           });
 
           console.log('✅ GTM Purchase Event Pushed with User Data');
-          reportGoogleAdsConversion(user);
+          // reportGoogleAdsConversion(user);
         } else {
           console.warn('❌ dataLayer not found');
         }
