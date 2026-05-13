@@ -434,7 +434,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         return
       }
 
-      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount) && selectedPlanForModal.planType !== 'EXPLORER') {
+      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
         console.log('Showing Trial Warning Modal')
         setShowTrialWarning(true)
         setIsModalOpen(false) // Close the main modal to show warning
@@ -945,7 +945,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             </div>
           </div> */}
 
-          {selectedPlanTier !== 'explorer' && (
+          {/* {selectedPlanTier !== 'explorer' && ( */}
             <div className='flex justify-center mb-8 w-full '>
               <div className={`${profPromoDiscount ? 'border-red-500' : 'border-black'} max-w-2xl w-full text-xs text-gray-500 text-center border  py-3`}>
                 {profPromoDiscount ? (
@@ -964,7 +964,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 )}
               </div>
             </div>
-          )}
+          {/* )} */}
         </div>
         {selectedPlanTier !== 'explorer' && <div className='flex flex-col gap-1 mb-8 text-center'>
           <div className='flex items-center justify-center gap-2'>
@@ -2001,7 +2001,7 @@ function PricingCard({
                 {t('plusVat')}
               </div>
             )}
-            {isProfessional && !promoDiscount && plan.billingCycle !== 'monthly' && plan.planType !== 'EXPLORER' && (
+            {isProfessional && !promoDiscount && (
               <div className='text-emerald-600 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
