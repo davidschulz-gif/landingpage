@@ -256,7 +256,7 @@ export default function BeforeYouGoPopup() {
                     className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
                   />
                   <div className='text-center relative z-10'>
-                    <div className='text-3xl font-light text-white'>3</div>
+                    <div className='text-3xl font-light text-white'>4</div>
                     <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
                       {t('paidLabel')}
                     </div>
