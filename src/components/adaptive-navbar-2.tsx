@@ -322,8 +322,8 @@ export function NavbarDemo() {
 
             <div className='relative max-w-[80%] mx-auto px-8 '>
               <div className='relative'>
-                <div className='grid grid-cols-4 gap-8'>
-                  {translatedNavItems.filter(item => item.submenu).map((navItem, navIdx) => (
+                <div className='grid grid-cols-5 gap-8'>
+                  {translatedNavItems.map((navItem, navIdx) => (
                     <div
                       key={`section-${navIdx}`}
                       className={`space-y-4 transition-all duration-400 ease-[cubic-bezier(0.4,0.0,0.2,1)] ${isMenuOpen
@@ -337,9 +337,17 @@ export function NavbarDemo() {
                       }}
                     >
                       <div className='relative'>
-                        <h3 className='text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1'>
-                          {navItem.name}
-                        </h3>
+                        {navItem.submenu ? (
+                          <h3 className='text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1'>
+                            {navItem.name}
+                          </h3>
+                        ) : (
+                          <Link href={navItem.link} onClick={handleMenuLeave} className="inline-block hover:opacity-70 transition-opacity">
+                            <h3 className='text-[10px] md:text-[11px] lg:text-[13px] font-medium text-gray-800 uppercase mb-1'>
+                              {navItem.name}
+                            </h3>
+                          </Link>
+                        )}
                         <div className='w-8 h-px bg-gradient-to-r from-black to-gray-800'></div>
                       </div>
                       <div className='space-y-3'>
