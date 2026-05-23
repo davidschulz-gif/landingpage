@@ -273,7 +273,7 @@ export function BlogTestimonialSection() {
                 </div>
 
                 {/* Closing statement */}
-                <p className="text-4xl font-black uppercase tracking-tighter leading-[0.85] text-black">
+                <p className="text-4xl font-black uppercase  leading-[1.25] text-black">
                     {t('p5')}
                 </p>
             </div>
