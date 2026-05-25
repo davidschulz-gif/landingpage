@@ -33,7 +33,6 @@ const creatorVideos: CreatorVideo[] = [
 
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DJEMfELAcwF/media/?size=l', id: 1, link: 'https://www.instagram.com/reel/DJEMfELAcwF/', likes: '12.4k', comments: 142 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DILOHVlog-p/media/?size=l', id: 2, link: 'https://www.instagram.com/reel/DILOHVlog-p/', likes: '8.2k', comments: 89 },
-    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVbI4GVAEDM/media/?size=l', id: 3, link: 'https://www.instagram.com/reel/DVbI4GVAEDM/', likes: '15.1k', comments: 234 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYkIIwCbMP/media/?size=l', id: 4, link: 'https://www.instagram.com/reel/DVYkIIwCbMP/', likes: '6.7k', comments: 56 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVL3Ir8CLaS/media/?size=l', id: 5, link: 'https://www.instagram.com/reel/DVL3Ir8CLaS/', likes: '22.0k', comments: 412 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYw17tiGBe/media/?size=l', id: 6, link: 'https://www.instagram.com/reel/DVYw17tiGBe/', likes: '4.5k', comments: 34 },
@@ -50,6 +49,7 @@ const creatorVideos: CreatorVideo[] = [
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU5vy-bjJF4/media/?size=l', id: 17, link: 'https://www.instagram.com/reel/DU5vy-bjJF4/', likes: '16.9k', comments: 245 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUqAGTNDs0I/media/?size=l', id: 18, link: 'https://www.instagram.com/reel/DUqAGTNDs0I/', likes: '8.5k', comments: 78 },
     // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVH01T2jjFJ/media/?size=l', id: 19, link: 'https://www.instagram.com/reel/DVH01T2jjFJ/', likes: '14.2k', comments: 189 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVbI4GVAEDM/media/?size=l', id: 3, link: 'https://www.instagram.com/reel/DVbI4GVAEDM/', likes: '15.1k', comments: 234 }, 
    ]
 
 export function CreatorShowcaseSection() {
