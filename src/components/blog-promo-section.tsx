@@ -57,7 +57,7 @@ export function BlogPromoSection() {
 
                         <div className="w-full md:w-1/2 flex flex-col justify-center space-y-8">
                             <div className="space-y-4">
-                                <h2 className="text-4xl md:text-5xl lg:text-5xl font-extrabold uppercase tracking-tighter text-black leading-[0.9] group-hover:text-gray-700 transition-colors">
+                                <h2 className="text-2xl md:text-3xl lg:text-3xl font-normal uppercase tracking-tighter text-black leading-[0.9] group-hover:text-gray-700 transition-colors">
                                     {story.title}
                                 </h2>
 
