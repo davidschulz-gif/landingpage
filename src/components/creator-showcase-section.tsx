@@ -20,26 +20,7 @@ interface CreatorVideo {
 }
 
 const creatorVideos: CreatorVideo[] = [
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DJEMfELAcwF/media/?size=l', id: 1, link: 'https://www.instagram.com/reel/DJEMfELAcwF/', likes: '12.4k', comments: 142 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DILOHVlog-p/media/?size=l', id: 2, link: 'https://www.instagram.com/reel/DILOHVlog-p/', likes: '8.2k', comments: 89 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVbI4GVAEDM/media/?size=l', id: 3, link: 'https://www.instagram.com/reel/DVbI4GVAEDM/', likes: '15.1k', comments: 234 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYkIIwCbMP/media/?size=l', id: 4, link: 'https://www.instagram.com/reel/DVYkIIwCbMP/', likes: '6.7k', comments: 56 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVL3Ir8CLaS/media/?size=l', id: 5, link: 'https://www.instagram.com/reel/DVL3Ir8CLaS/', likes: '22.0k', comments: 412 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYw17tiGBe/media/?size=l', id: 6, link: 'https://www.instagram.com/reel/DVYw17tiGBe/', likes: '4.5k', comments: 34 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYu2XiCr1t/media/?size=l', id: 7, link: 'https://www.instagram.com/reel/DVYu2XiCr1t/', likes: '10.9k', comments: 156 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYi9cKiHfX/media/?size=l', id: 8, link: 'https://www.instagram.com/reel/DVYi9cKiHfX/', likes: '3.2k', comments: 28 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVEnRTRCBLA/media/?size=l', id: 9, link: 'https://www.instagram.com/reel/DVEnRTRCBLA/', likes: '18.4k', comments: 287 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVTpYsWiB1d/media/?size=l', id: 10, link: 'https://www.instagram.com/reel/DVTpYsWiB1d/', likes: '7.8k', comments: 92 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYPW-UDWYY/media/?size=l', id: 11, link: 'https://www.instagram.com/reel/DVYPW-UDWYY/', likes: '9.3k', comments: 114 },
-    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU_rpVTERC-/media/?size=l', id: 12, link: 'https://www.instagram.com/reel/DU_rpVTERC-/', likes: '5.1k', comments: 45 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU0nz_3DD4K/media/?size=l', id: 13, link: 'https://www.instagram.com/reel/DU0nz_3DD4K/', likes: '13.7k', comments: 167 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVQjaPBDB5Z/media/?size=l', id: 14, link: 'https://www.instagram.com/reel/DVQjaPBDB5Z/', likes: '11.2k', comments: 123 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVEBRJ9jGoo/media/?size=l', id: 15, link: 'https://www.instagram.com/reel/DVEBRJ9jGoo/', likes: '25.6k', comments: 534 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVUY0fADDct/media/?size=l', id: 16, link: 'https://www.instagram.com/p/DVUY0fADDct/', likes: '4.8k', comments: 39 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU5vy-bjJF4/media/?size=l', id: 17, link: 'https://www.instagram.com/reel/DU5vy-bjJF4/', likes: '16.9k', comments: 245 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUqAGTNDs0I/media/?size=l', id: 18, link: 'https://www.instagram.com/reel/DUqAGTNDs0I/', likes: '8.5k', comments: 78 },
-    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVH01T2jjFJ/media/?size=l', id: 19, link: 'https://www.instagram.com/reel/DVH01T2jjFJ/', likes: '14.2k', comments: 189 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUnbsnMjBWD/media/?size=l', id: 20, link: 'https://www.instagram.com/reel/DUnbsnMjBWD/', likes: '19.8k', comments: 312 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUnbsnMjBWD/media/?size=l', id: 20, link: 'https://www.instagram.com/reel/DUnbsnMjBWD/', likes: '19.8k', comments: 312 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DXMg5yoDPf-/media/?size=l', id: 21, link: 'https://www.instagram.com/reel/DXMg5yoDPf-/', likes: '10.5k', comments: 150 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYW7sTtqOtX/media/?size=l', id: 22, link: 'https://www.instagram.com/reel/DYW7sTtqOtX/', likes: '14.2k', comments: 210 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYndENNsHkW/media/?size=l', id: 23, link: 'https://www.instagram.com/reel/DYndENNsHkW/', likes: '8.9k', comments: 120 },
@@ -49,7 +30,27 @@ const creatorVideos: CreatorVideo[] = [
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DXysyBezoO4/media/?size=l', id: 27, link: 'https://www.instagram.com/reel/DXysyBezoO4/', likes: '11.1k', comments: 175 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DW4XXNBjGEw/media/?size=l', id: 28, link: 'https://www.instagram.com/reel/DW4XXNBjGEw/', likes: '9.4k', comments: 135 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DH6GJ96CLvm/media/?size=l', id: 29, link: 'https://www.instagram.com/reel/DH6GJ96CLvm/', likes: '13.2k', comments: 195 },
-]
+
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DJEMfELAcwF/media/?size=l', id: 1, link: 'https://www.instagram.com/reel/DJEMfELAcwF/', likes: '12.4k', comments: 142 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DILOHVlog-p/media/?size=l', id: 2, link: 'https://www.instagram.com/reel/DILOHVlog-p/', likes: '8.2k', comments: 89 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVbI4GVAEDM/media/?size=l', id: 3, link: 'https://www.instagram.com/reel/DVbI4GVAEDM/', likes: '15.1k', comments: 234 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYkIIwCbMP/media/?size=l', id: 4, link: 'https://www.instagram.com/reel/DVYkIIwCbMP/', likes: '6.7k', comments: 56 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVL3Ir8CLaS/media/?size=l', id: 5, link: 'https://www.instagram.com/reel/DVL3Ir8CLaS/', likes: '22.0k', comments: 412 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYw17tiGBe/media/?size=l', id: 6, link: 'https://www.instagram.com/reel/DVYw17tiGBe/', likes: '4.5k', comments: 34 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYu2XiCr1t/media/?size=l', id: 7, link: 'https://www.instagram.com/reel/DVYu2XiCr1t/', likes: '10.9k', comments: 156 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYi9cKiHfX/media/?size=l', id: 8, link: 'https://www.instagram.com/reel/DVYi9cKiHfX/', likes: '3.2k', comments: 28 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVEnRTRCBLA/media/?size=l', id: 9, link: 'https://www.instagram.com/reel/DVEnRTRCBLA/', likes: '18.4k', comments: 287 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVTpYsWiB1d/media/?size=l', id: 10, link: 'https://www.instagram.com/reel/DVTpYsWiB1d/', likes: '7.8k', comments: 92 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVYPW-UDWYY/media/?size=l', id: 11, link: 'https://www.instagram.com/reel/DVYPW-UDWYY/', likes: '9.3k', comments: 114 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU_rpVTERC-/media/?size=l', id: 12, link: 'https://www.instagram.com/reel/DU_rpVTERC-/', likes: '5.1k', comments: 45 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU0nz_3DD4K/media/?size=l', id: 13, link: 'https://www.instagram.com/reel/DU0nz_3DD4K/', likes: '13.7k', comments: 167 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVQjaPBDB5Z/media/?size=l', id: 14, link: 'https://www.instagram.com/reel/DVQjaPBDB5Z/', likes: '11.2k', comments: 123 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVEBRJ9jGoo/media/?size=l', id: 15, link: 'https://www.instagram.com/reel/DVEBRJ9jGoo/', likes: '25.6k', comments: 534 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVUY0fADDct/media/?size=l', id: 16, link: 'https://www.instagram.com/p/DVUY0fADDct/', likes: '4.8k', comments: 39 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DU5vy-bjJF4/media/?size=l', id: 17, link: 'https://www.instagram.com/reel/DU5vy-bjJF4/', likes: '16.9k', comments: 245 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUqAGTNDs0I/media/?size=l', id: 18, link: 'https://www.instagram.com/reel/DUqAGTNDs0I/', likes: '8.5k', comments: 78 },
+    // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVH01T2jjFJ/media/?size=l', id: 19, link: 'https://www.instagram.com/reel/DVH01T2jjFJ/', likes: '14.2k', comments: 189 },
+   ]
 
 export function CreatorShowcaseSection() {
     const t = useTranslations('CreatorShowcase')
