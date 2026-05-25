@@ -81,7 +81,7 @@ export default function PricingPage() {
                             {[...Array(4)].map((_, i) => (
                                 <span key={i} className='flex gap-8 items-center'>
                                     <span className='text-emerald-400'>| FIRST BUYER DISCOUNT €70 OFF |</span>
-                                    <span>NEW MODELS: RUNWAY GEN-4.5 • GROK IMAGINE VIDEO • SDXL LIGHTNING • STABILITY AI SDXL • GPT IMAGE 2 • GOOGLE IMAGEN 4 ULTRA • SEEDREAM 5.0 LITE • KLING V3 VIDEO • KLING V3 OMNI VIDEO • GOOGLE VEO 3.1 • WAN VIDEO 2.2 • GOOGLE/UPSCALER • RECRAFT-AI/RECRAFT-CRISP-UPSCALE • SORA 2 • SORA 2 PRO • FLUX 2 PRO • RUNWAY GEN-4.5 • GROK IMAGINE VIDEO</span>
+                                    <span>NEW MODELS: RUNWAY GEN-4.5 • GROK IMAGINE VIDEO • SDXL LIGHTNING • GPT IMAGE 2 • GOOGLE IMAGEN 4 ULTRA • SEEDREAM 5.0 LITE • KLING V3 VIDEO • KLING V3 OMNI VIDEO • GOOGLE VEO 3.1 • WAN VIDEO 2.2 • GOOGLE/UPSCALER • RECRAFT-AI/RECRAFT-CRISP-UPSCALE • SORA 2 • SORA 2 PRO • FLUX 2 PRO • RUNWAY GEN-4.5 • GROK IMAGINE VIDEO</span>
                                 </span>
                             ))}
                         </motion.div>

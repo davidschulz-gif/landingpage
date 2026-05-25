@@ -20,6 +20,7 @@ export function SiegristTestimonialSection() {
         href,
         caption,
         className = "",
+        imageClassName = "",
         priority = false,
         iconType = 'play'
     }: {
@@ -30,6 +31,7 @@ export function SiegristTestimonialSection() {
         href: string,
         caption?: string,
         className?: string,
+        imageClassName?: string,
         priority?: boolean,
         iconType?: 'play' | 'instagram' | 'link'
     }) => (
@@ -44,7 +46,7 @@ export function SiegristTestimonialSection() {
                 alt={alt}
                 width={width}
                 height={height}
-                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                className={`${imageClassName || "w-full h-auto"} transition-transform duration-700 group-hover:scale-105`}
                 priority={priority}
             />
             {/* Icon Overlay */}
@@ -134,7 +136,7 @@ export function SiegristTestimonialSection() {
 
                 {/* Hero Image — Centered, smaller */}
                 <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-2xl border-2 border-black shadow-[8px_8px_0px_#000000] relative">
+                    <div className="w-full max-w-[480px] h-[550px] border-2 border-black shadow-[8px_8px_0px_#000000] relative">
                         <ClickableImage
                             src="/siegrist/office-portrait.jpg"
                             alt="Siegrist Architectes Office - Mariela & Luz Maria Siegrist"
@@ -144,12 +146,14 @@ export function SiegristTestimonialSection() {
                             priority={true}
                             caption={t('caption3')}
                             iconType="link"
+                            className="h-full"
+                            imageClassName="w-full h-full object-cover"
                         />
                     </div>
                 </div>
 
                 {/* Pull Quote */}
-                <p className="text-xl md:text-2xl font-black leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
+                <p className="text-xl md:text-2xl font-normal leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
                     {t('p1')}
                 </p>
 
@@ -183,7 +187,7 @@ export function SiegristTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
 
@@ -238,7 +242,7 @@ export function SiegristTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
 
@@ -324,7 +328,7 @@ export function SiegristTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
 
@@ -348,7 +352,7 @@ export function SiegristTestimonialSection() {
                 </div>
 
                 {/* Closing statement */}
-                <p className="text-4xl font-black uppercase tracking-tighter leading-[0.85] text-black">
+                <p className="text-4xl font-normal uppercase tracking-tighter leading-[0.85] text-black">
                     {t('p5')}
                 </p>
             </div>
@@ -387,7 +391,7 @@ export function SiegristTestimonialSection() {
                     href={`/${locale}`}
                     className="inline-flex items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                 >
-                    {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                 </Link>
 
                 {/* Next Article Card */}

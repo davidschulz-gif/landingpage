@@ -162,6 +162,7 @@ export function NavbarDemo() {
       {
         name: t('amaAwards'),
         link: '/#success-stories',
+        isTestimonials: true,
       },
     ]
   }
@@ -219,7 +220,7 @@ export function NavbarDemo() {
                   key={`menu-item-${idx}`}
                   setActive={setActive}
                   active={active}
-                  item={navItem.name}
+                  item={navItem.name.toUpperCase()}
                   href={navItem.link}
                 >
                   {navItem.submenu && (
@@ -252,6 +253,63 @@ export function NavbarDemo() {
                           </HoveredLink>
                         )
                       ))}
+                    </div>
+                  )}
+                  {navItem.isTestimonials && (
+                    <div className='flex flex-col gap-4 text-sm w-72 p-1'>
+                      {/* Article Card 1 */}
+                      <Link href={`/ama-awards`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                          <div className="flex flex-col xl:flex-row">
+                              <div className="w-full xl:w-[45%] p-1.5">
+                                  <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                      <Image
+                                          src="/artical-page/1.jpg"
+                                          alt="AMA Awards Architecture"
+                                          fill
+                                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                      />
+                                  </div>
+                              </div>
+                              <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                  <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                      {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                  </h2>
+                                  <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                      <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                  </div>
+                                  <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                      {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                  </div>
+                              </div>
+                          </div>
+                      </Link>
+
+                      {/* Article Card 2 */}
+                      <Link href={`/siegrist`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                          <div className="flex flex-col xl:flex-row">
+                              <div className="w-full xl:w-[45%] p-1.5">
+                                  <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                      <Image
+                                          src="/siegrist/saint-aubin.jpg"
+                                          alt="Siegrist Architectes"
+                                          fill
+                                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                      />
+                                  </div>
+                              </div>
+                              <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                  <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                      {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
+                                  </h2>
+                                  <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                      <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
+                                  </div>
+                                  <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                      {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                  </div>
+                              </div>
+                          </div>
+                      </Link>
                     </div>
                   )}
                 </MenuItem>
@@ -350,40 +408,98 @@ export function NavbarDemo() {
                         )}
                         <div className='w-8 h-px bg-gradient-to-r from-black to-gray-800'></div>
                       </div>
-                      <div className='space-y-3'>
-                        {navItem.submenu?.map((subitem: any, subIdx) => (
-                          subitem.isSection ? (
-                            <div key={`section-label-${navIdx}-${subIdx}`} className='pt-4 first:pt-0'>
-                              <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2'>
-                                {subitem.title}
-                              </h5>
-                            </div>
-                          ) : (
-                            <Link
-                              key={`submenu-${navIdx}-${subIdx}`}
-                              href={subitem.link}
-                              target={subitem.target ?? '_self'}
-                              className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
-                            >
-                              <div className='flex items-start gap-3'>
-                                {subitem.icon && (
-                                  <div className='mt-0.5 p-1.5 rounded-lg bg-gray-50 group-hover/item:bg-white border border-transparent group-hover/item:border-gray-100 transition-colors'>
-                                    <subitem.icon className='w-4 h-4 text-gray-600 group-hover/item:text-black' />
+                      {navItem.isTestimonials ? (
+                        <div className='flex flex-col gap-4 pt-2'>
+                          {/* Article Card 1 */}
+                          <Link href={`/ama-awards`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                              <div className="flex flex-col xl:flex-row">
+                                  <div className="w-full xl:w-[45%] p-1.5">
+                                      <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                          <Image
+                                              src="/artical-page/1.jpg"
+                                              alt="AMA Awards Architecture"
+                                              fill
+                                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                          />
+                                      </div>
                                   </div>
-                                )}
-                                <div className='flex-1'>
-                                  <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
-                                    {subitem.title}
-                                  </h4>
-                                  <p style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
-                                    {subitem.description}
-                                  </p>
-                                </div>
+                                  <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                      <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                          {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                      </h2>
+                                      <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                          <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                      </div>
+                                      <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                          {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                      </div>
+                                  </div>
                               </div>
-                            </Link>
-                          )
-                        ))}
-                      </div>
+                          </Link>
+
+                          {/* Article Card 2 */}
+                          <Link href={`/siegrist`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                              <div className="flex flex-col xl:flex-row">
+                                  <div className="w-full xl:w-[45%] p-1.5">
+                                      <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                          <Image
+                                              src="/siegrist/saint-aubin.jpg"
+                                              alt="Siegrist Architectes"
+                                              fill
+                                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                          />
+                                      </div>
+                                  </div>
+                                  <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                      <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                          {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
+                                      </h2>
+                                      <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                          <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
+                                      </div>
+                                      <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                          {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                      </div>
+                                  </div>
+                              </div>
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className='space-y-3'>
+                          {navItem.submenu?.map((subitem: any, subIdx) => (
+                            subitem.isSection ? (
+                              <div key={`section-label-${navIdx}-${subIdx}`} className='pt-4 first:pt-0'>
+                                <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2'>
+                                  {subitem.title}
+                                </h5>
+                              </div>
+                            ) : (
+                              <Link
+                                key={`submenu-${navIdx}-${subIdx}`}
+                                href={subitem.link}
+                                target={subitem.target ?? '_self'}
+                                className='block group/item p-2 -mx-2  hover:bg-gray-50/80 hover:shadow-sm transition-all duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)] hover:translate-x-1'
+                              >
+                                <div className='flex items-start gap-3'>
+                                  {subitem.icon && (
+                                    <div className='mt-0.5 p-1.5 rounded-lg bg-gray-50 group-hover/item:bg-white border border-transparent group-hover/item:border-gray-100 transition-colors'>
+                                      <subitem.icon className='w-4 h-4 text-gray-600 group-hover/item:text-black' />
+                                    </div>
+                                  )}
+                                  <div className='flex-1'>
+                                    <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
+                                      {subitem.title}
+                                    </h4>
+                                    <p style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
+                                      {subitem.description}
+                                    </p>
+                                  </div>
+                                </div>
+                              </Link>
+                            )
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

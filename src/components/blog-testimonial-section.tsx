@@ -20,6 +20,7 @@ export function BlogTestimonialSection() {
         href,
         caption,
         className = "",
+        imageClassName = "",
         priority = false
     }: {
         src: string,
@@ -29,6 +30,7 @@ export function BlogTestimonialSection() {
         href: string,
         caption?: string,
         className?: string,
+        imageClassName?: string,
         priority?: boolean
     }) => (
         <a
@@ -42,7 +44,7 @@ export function BlogTestimonialSection() {
                 alt={alt}
                 width={width}
                 height={height}
-                className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                className={`${imageClassName || "w-full h-auto"} transition-transform duration-700 group-hover:scale-105`}
                 priority={priority}
             />
             {/* Play Button Overlay */}
@@ -92,7 +94,7 @@ export function BlogTestimonialSection() {
 
                 {/* Hero Image — Centered, smaller */}
                 <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-2xl border-2 border-black shadow-[8px_8px_0px_#000000]">
+                    <div className="w-full max-w-[480px] h-[550px] border-2 border-black shadow-[8px_8px_0px_#000000]">
                         <ClickableImage
                             src="/artical-page/1.jpg"
                             alt="AMA Awards Architecture"
@@ -100,12 +102,14 @@ export function BlogTestimonialSection() {
                             height={440}
                             href="https://www.instagram.com/reel/DQjbQh4kcWt/"
                             priority={true}
+                            className="h-full"
+                            imageClassName="w-full h-full object-cover"
                         />
                     </div>
                 </div>
 
                 {/* Pull Quote */}
-                <p className="text-xl md:text-2xl font-black leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
+                <p className="text-xl md:text-2xl font-normal leading-[1.1] text-black tracking-tight border-l-8 border-black pl-8 py-2">
                     {t('p1')}
                 </p>
 
@@ -140,7 +144,7 @@ export function BlogTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
             </div>
@@ -191,7 +195,7 @@ export function BlogTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
 
@@ -256,7 +260,7 @@ export function BlogTestimonialSection() {
                         href={`/${locale}`}
                         className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
-                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
                 </div>
 
@@ -298,7 +302,7 @@ export function BlogTestimonialSection() {
                 </div>
 
                 {/* Closing statement */}
-                <p className="text-4xl font-black uppercase  leading-[1.25] text-black">
+                <p className="text-4xl font-normal uppercase  leading-[1.25] text-black">
                     {t('p5')}
                 </p>
             </div>
@@ -339,7 +343,7 @@ export function BlogTestimonialSection() {
                     href={`/${locale}`}
                     className="inline-flex items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                 >
-                    {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                 </Link>
 
                 {/* Next Article Card */}
