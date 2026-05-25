@@ -78,7 +78,7 @@ export function BlogTestimonialSection() {
                     {t('badge')}
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-7xl  mb-8 leading-[0.9] tracking-tighter text-gray-900 uppercase">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-8 leading-[0.9] tracking-tighter text-gray-900 uppercase">
                     {t('sectionTitle')}
                 </h1>
 
@@ -156,7 +156,7 @@ export function BlogTestimonialSection() {
                 {/* Section 1: Text LEFT, Image RIGHT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
-                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h2')}</h2>
+                        <h2 className="text-xl font-normal uppercase tracking-tighter text-black leading-none">{t('h2')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p2')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
@@ -211,7 +211,7 @@ export function BlogTestimonialSection() {
                         />
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
-                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle1')}</h2>
+                        <h2 className="text-xl font-normal uppercase tracking-tighter text-black leading-none">{t('instagramTitle1')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
                             {t('reelDescription1')}
                         </p>
@@ -231,7 +231,7 @@ export function BlogTestimonialSection() {
                         />
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
-                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h3')}</h2>
+                        <h2 className="text-xl font-normal uppercase tracking-tighter text-black leading-none">{t('h3')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p3')}</p>
                     </div>
                 </div>
@@ -267,7 +267,7 @@ export function BlogTestimonialSection() {
                 {/* Section 3: Text LEFT, Image RIGHT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
-                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('h4')}</h2>
+                        <h2 className="text-xl font-normal uppercase tracking-tighter text-black leading-none">{t('h4')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p4')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
@@ -285,7 +285,7 @@ export function BlogTestimonialSection() {
                 {/* Instagram Reel 2: Text LEFT, Video RIGHT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
-                        <h2 className="text-2xl font-black uppercase tracking-tighter text-black leading-none">{t('instagramTitle2')}</h2>
+                        <h2 className="text-xl font-normal uppercase tracking-tighter text-black leading-none">{t('instagramTitle2')}</h2>
                         <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
                             {t('reelDescription2')}
                         </p>
@@ -338,7 +338,7 @@ export function BlogTestimonialSection() {
                 </div>
 
                 {/* <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div> */}
-                <h3 className="font-black text-xl mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
+                <h3 className="font-normal text-lg mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
                 <Link
                     href={`/${locale}`}
                     className="inline-flex items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
@@ -360,7 +360,7 @@ export function BlogTestimonialSection() {
                             </div>
                         </div>
                         <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col justify-center">
-                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.85] text-black mb-6">
+                            <h2 className="text-2xl md:text-3xl font-normal uppercase tracking-tighter leading-[0.85] text-black mb-6">
                                 {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
                             </h2>
                             <div className="flex items-center gap-3 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-10">

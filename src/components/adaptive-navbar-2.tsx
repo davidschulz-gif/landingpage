@@ -271,7 +271,7 @@ export function NavbarDemo() {
                                   </div>
                               </div>
                               <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                  <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                  <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
                                       {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
                                   </h2>
                                   <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
@@ -298,7 +298,7 @@ export function NavbarDemo() {
                                   </div>
                               </div>
                               <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                  <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                  <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
                                       {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
                                   </h2>
                                   <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
@@ -424,7 +424,7 @@ export function NavbarDemo() {
                                       </div>
                                   </div>
                                   <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                      <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                      <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
                                           {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
                                       </h2>
                                       <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
@@ -451,7 +451,7 @@ export function NavbarDemo() {
                                       </div>
                                   </div>
                                   <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                      <h2 className="text-[9px] font-black uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                      <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
                                           {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
                                       </h2>
                                       <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
