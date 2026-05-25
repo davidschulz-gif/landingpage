@@ -27,7 +27,7 @@ export function BlogPromoSection() {
     ]
 
     return (
-        <section className="w-full max-w-6xl mx-auto px-4 py-20 space-y-16">
+        <section className="w-full max-w-6xl mx-auto px-4 py-20 space-y-16" id="success-stories">
             <div className="text-center mb-12">
                 <span className="inline-flex items-center px-4 py-1 border-2 border-black font-black text-xs uppercase tracking-[0.2em] bg-black text-white shadow-[4px_4px_0px_#ccc]">
                     {t('badge')}

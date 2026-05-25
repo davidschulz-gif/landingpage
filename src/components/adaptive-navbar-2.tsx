@@ -161,7 +161,7 @@ export function NavbarDemo() {
       },
       {
         name: t('amaAwards'),
-        link: '/#reviews',
+        link: '/#success-stories',
       },
     ]
   }

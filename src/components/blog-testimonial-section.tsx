@@ -76,7 +76,7 @@ export function BlogTestimonialSection() {
                     {t('badge')}
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 leading-[0.9] tracking-tighter text-gray-900 uppercase">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl  mb-8 leading-[0.9] tracking-tighter text-gray-900 uppercase">
                     {t('sectionTitle')}
                 </h1>
 
@@ -135,7 +135,14 @@ export function BlogTestimonialSection() {
                     </a>
                 </div>
 
-
+                <div className="flex justify-center mt-12 mb-4">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
+                </div>
             </div>
 
 
@@ -179,6 +186,15 @@ export function BlogTestimonialSection() {
                     </p>
                 </div>
 
+                <div className="flex justify-center mb-16">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
+                </div>
+
                 {/* Instagram Reel 1: Text RIGHT, Video LEFT */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="order-2 md:order-1 flex justify-center">
@@ -206,7 +222,7 @@ export function BlogTestimonialSection() {
                             alt="3D Integration Cloud Concept"
                             width={960}
                             height={540}
-                            href="https://www.instagram.com/reel/DQjbQh4kcWt/"
+                            href="https://www.instagram.com/reels/DVd-fi2jFOQ"
                             caption={t('caption2')}
                         />
                     </div>
@@ -233,6 +249,15 @@ export function BlogTestimonialSection() {
                         {t('featuredOnIllustrarch')}
                     </p>
                     <div className="hidden sm:block h-px flex-1 bg-gray-200" />
+                </div>
+
+                <div className="flex justify-center mb-16">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
                 </div>
 
                 {/* Section 3: Text LEFT, Image RIGHT */}
@@ -308,7 +333,7 @@ export function BlogTestimonialSection() {
                     </div>
                 </div>
 
-                <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div>
+                {/* <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div> */}
                 <h3 className="font-black text-xl mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
                 <Link
                     href={`/${locale}`}
@@ -316,6 +341,38 @@ export function BlogTestimonialSection() {
                 >
                     {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
                 </Link>
+
+                {/* Next Article Card */}
+                <div className="w-full mt-24 text-left border-2 border-black shadow-[8px_8px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                    <div className="flex flex-col md:flex-row">
+                        <div className="w-full md:w-[55%] p-4 md:p-6">
+                            <div className="border-2 border-black h-full overflow-hidden relative min-h-[250px]">
+                                <Image
+                                    src="/siegrist/saint-aubin.jpg"
+                                    alt="Siegrist Architectes"
+                                    fill
+                                    className="object-cover transition-transform duration-700 hover:scale-105"
+                                />
+                            </div>
+                        </div>
+                        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col justify-center">
+                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.85] text-black mb-6">
+                                {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
+                            </h2>
+                            <div className="flex items-center gap-3 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-10">
+                                <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
+                                <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                <span>{locale === 'de' ? '4 MIN LESEZEIT' : '4 MIN READ'}</span>
+                            </div>
+                            <Link
+                                href={`/${locale}/siegrist`}
+                                className="inline-flex items-center w-fit gap-3 font-black text-xs bg-black text-white px-8 py-4 uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                            >
+                                {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </footer>
         </article>
     )

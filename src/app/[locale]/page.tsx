@@ -43,14 +43,14 @@ const UseCasesSection = dynamic(
   }
 )
 
-const TabVideoShowcase = dynamic(
-  () =>
-    import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const TabVideoShowcase = dynamic(
+//   () =>
+//     import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase),
+//   {
+//     ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const ReviewsSection = dynamic(
   () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
@@ -103,16 +103,16 @@ const BlogPromoSection = dynamic(
   }
 )
 
-// const CreatorShowcaseSection = dynamic(
-//   () =>
-//     import('@/components/creator-showcase-section').then(
-//       mod => mod.CreatorShowcaseSection
-//     ),
-//   {
-//     ssr: false,
-//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-//   }
-// )
+const CreatorShowcaseSection = dynamic(
+  () =>
+    import('@/components/creator-showcase-section').then(
+      mod => mod.CreatorShowcaseSection
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
 
 const RightsSection = dynamic(
   () => import('@/components/rights-section').then(mod => mod.RightsSection),
@@ -447,14 +447,14 @@ export default function Home() {
         )}
 
         {/* Tab Video Showcase */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <TabVideoShowcase />
-        </motion.div>
+        </motion.div> */}
 
         {/* Before & After Section */}
         <motion.div
@@ -536,14 +536,14 @@ export default function Home() {
         </motion.div>
 
         {/* Creator Showcase Section */}
-        {/* <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <CreatorShowcaseSection />
-        </motion.div> */}
+        </motion.div>
 
         {/* Reviews Section with Marquee */}
         <motion.div

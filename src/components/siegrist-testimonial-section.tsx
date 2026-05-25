@@ -178,6 +178,14 @@ export function SiegristTestimonialSection() {
                     </a>
                 </div>
 
+                <div className="flex justify-center mt-12 mb-4">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
+                </div>
 
             </div>
 
@@ -223,6 +231,15 @@ export function SiegristTestimonialSection() {
                     <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs text-right hidden sm:block">
                         {t('euCoFunded')}
                     </p>
+                </div>
+
+                <div className="flex justify-center mb-16 mt-8">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
                 </div>
 
                 {/* Project Showcase 1: Text RIGHT, Video/Thumbnail LEFT */}
@@ -302,6 +319,15 @@ export function SiegristTestimonialSection() {
                     </p>
                 </div>
 
+                <div className="flex justify-center mb-16 mt-8">
+                    <Link
+                        href={`/${locale}`}
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
+                        {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
+                    </Link>
+                </div>
+
                 {/* Section 4: Text LEFT, Image RIGHT (Portrait) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
@@ -355,7 +381,7 @@ export function SiegristTestimonialSection() {
                     </div>
                 </div>
 
-                <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div>
+                {/* <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div> */}
                 <h3 className="font-black text-xl mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
                 <Link
                     href={`/${locale}`}
@@ -363,6 +389,38 @@ export function SiegristTestimonialSection() {
                 >
                     {locale === 'de' ? 'Zur Startseite' : 'SEE THE APP'}
                 </Link>
+
+                {/* Next Article Card */}
+                <div className="w-full mt-24 text-left border-2 border-black shadow-[8px_8px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                    <div className="flex flex-col md:flex-row">
+                        <div className="w-full md:w-[55%] p-4 md:p-6">
+                            <div className="border-2 border-black h-full overflow-hidden relative min-h-[250px]">
+                                <Image
+                                    src="/artical-page/1.jpg"
+                                    alt="AMA Awards Architecture"
+                                    fill
+                                    className="object-cover transition-transform duration-700 hover:scale-105"
+                                />
+                            </div>
+                        </div>
+                        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col justify-center">
+                            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.85] text-black mb-6">
+                                {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                            </h2>
+                            <div className="flex items-center gap-3 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-10">
+                                <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                <span>{locale === 'de' ? '5 MIN LESEZEIT' : '5 MIN READ'}</span>
+                            </div>
+                            <Link
+                                href={`/${locale}/ama-awards`}
+                                className="inline-flex items-center w-fit gap-3 font-black text-xs bg-white text-black border-2 border-black px-8 py-4 uppercase tracking-widest hover:bg-gray-50 transition-colors"
+                            >
+                                {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </footer>
         </article>
     )
