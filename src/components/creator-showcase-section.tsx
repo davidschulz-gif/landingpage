@@ -10,6 +10,8 @@ import {
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { BreathingAnimationText } from './breathing-animation-text'
+import { Instagram } from 'lucide-react'
+import TypusLogoBlack from './common/typus-logo-black'
 
 interface CreatorVideo {
     id: number
@@ -25,8 +27,8 @@ const creatorVideos: CreatorVideo[] = [
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYW7sTtqOtX/media/?size=l', id: 22, link: 'https://www.instagram.com/reel/DYW7sTtqOtX/', likes: '14.2k', comments: 210 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYndENNsHkW/media/?size=l', id: 23, link: 'https://www.instagram.com/reel/DYndENNsHkW/', likes: '8.9k', comments: 120 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYrz0Plx95u/media/?size=l', id: 24, link: 'https://www.instagram.com/reel/DYrz0Plx95u/', likes: '21.3k', comments: 340 },
-    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYUV6ztTd3L/media/?size=l', id: 25, link: 'https://www.instagram.com/reel/DYUV6ztTd3L/', likes: '5.6k', comments: 80 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYFhvurIp1i/media/?size=l', id: 26, link: 'https://www.instagram.com/reel/DYFhvurIp1i/', likes: '17.8k', comments: 260 },
+    { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYUV6ztTd3L/media/?size=l', id: 25, link: 'https://www.instagram.com/reel/DYUV6ztTd3L/', likes: '5.6k', comments: 80 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DXysyBezoO4/media/?size=l', id: 27, link: 'https://www.instagram.com/reel/DXysyBezoO4/', likes: '11.1k', comments: 175 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DW4XXNBjGEw/media/?size=l', id: 28, link: 'https://www.instagram.com/reel/DW4XXNBjGEw/', likes: '9.4k', comments: 135 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DH6GJ96CLvm/media/?size=l', id: 29, link: 'https://www.instagram.com/reel/DH6GJ96CLvm/', likes: '13.2k', comments: 195 },
@@ -130,20 +132,15 @@ export function CreatorShowcaseSection() {
 
                                                     {/* Bottom Overlay: Dummy Info */}
                                                     <div className='absolute bottom-5 left-5 right-5 text-white flex flex-col gap-2'>
-                                                        <div className='flex items-center gap-2'>
-                                                            <div className='w-6 h-6 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] border border-white/20' />
-                                                            <span className='text-xs font-semibold'>@typus.ai</span>
-                                                        </div>
-                                                        {/* <div className='flex items-center gap-4 text-[10px] font-medium opacity-90'>
-                                                            <span className='flex items-center gap-1'>
-                                                                <svg className='w-3 h-3' fill='white' viewBox='0 0 24 24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' /></svg>
-                                                                {video.likes}
-                                                            </span>
-                                                            <span className='flex items-center gap-1'>
-                                                                <svg className='w-3 h-3' fill='none' stroke='white' strokeWidth='2' viewBox='0 0 24 24'><path d='M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 11-7.6-14 8.38 8.38 0 013.8.9L21 3z' /></svg>
-                                                                {video.comments}
-                                                            </span>
-                                                        </div> */}
+                                                        {/* <div className='flex items-center gap-2'> */}
+                                                            {/* <div className='relative'> */}
+                                                               
+                                                                <div className='absolute -bottom-1 -left-1 w-[18px] h-[18px] rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] border border-white flex items-center justify-center shadow-sm'>
+                                                                    <Instagram className='w-[10px] h-[10px] text-white' strokeWidth={2.5} />
+                                                                </div>
+                                                            {/* </div> */}
+                                                            <div className='absolute -bottom-1 left-6 text-xs font-semibold drop-shadow-sm'>@typus.ai</div>
+                                                        {/* </div> */}
                                                     </div>
 
                                                     {/* Play Button Center Overlay */}

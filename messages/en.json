@@ -179,7 +179,13 @@
   "HeroEmailForm": {
     "placeholder": "Enter your email",
     "learnMore": "Learn more",
-    "description": "Learn more about the app and get notified about new features."
+    "description": "Learn more about the app and get notified about new features.",
+    "features": {
+      "info": "Information",
+      "caseStudies": "Case Studies",
+      "exclusiveOffers": "Exclusive offers and insights",
+      "viewApp": "View the app for free"
+    }
   },
   "VideoShowcase": {
     "title": "TRANSFORM YOUR VISION",

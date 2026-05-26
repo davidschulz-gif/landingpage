@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { ActionButton } from '@/components/action-button'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
@@ -134,8 +134,8 @@ export default function DoneForYouPage() {
 
       <main className='flex flex-col w-full pb-20'>
         {/* Hero Section */}
-        <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
-          {/* Floating Images Background */}
+        {/* <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
+         
           <FloatingCollage />
 
           <div className='max-w-4xl mx-auto text-center space-y-8 relative z-20'>
@@ -210,7 +210,7 @@ export default function DoneForYouPage() {
               </div>
             </motion.div>
           </div>
-        </section>
+        </section> */}
 
         {/* Solution Section */}
         <div ref={containerRef} className="relative">

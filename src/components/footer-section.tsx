@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import HeroEmailForm from './hero-email-form'
 import SupportedPaymentMethods from './payment/SupportedPaymentMethods'
 
 const socialLinks = [
@@ -215,8 +216,15 @@ export function FooterSection() {
           />
         </div>
 
-        {/* Co-Financing Section */}
+        {/* Email Form Section */}
         <div className='mt-12 xl:mt-16 mb-8 max-w-4xl mx-auto'>
+          <div className='border-t border-gray-200 dark:border-gray-800 pt-8 flex justify-center flex-col items-center'>
+            <HeroEmailForm showFeatures={false} />
+          </div>
+        </div>
+
+        {/* Co-Financing Section */}
+        <div className='mb-8 max-w-4xl mx-auto'>
           <div className='border-t border-gray-200 dark:border-gray-800 pt-8'>
             <h3 className='text-sm md:text-base font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-4 text-center uppercase tracking-wide'>
               {t('coFinancingTitle')}

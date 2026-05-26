@@ -179,7 +179,13 @@
   "HeroEmailForm": {
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
     "learnMore": "Mehr erfahren",
-    "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt."
+    "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
+    "features": {
+      "info": "Informationen",
+      "caseStudies": "Case Studies",
+      "exclusiveOffers": "Exklusive Angebote und Einblicke",
+      "viewApp": "Kostenlos die App ansehen"
+    }
   },
   "VideoShowcase": {
     "title": "VERWANDELN SIE IHRE VISION",

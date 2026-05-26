@@ -9,7 +9,11 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-export default function HeroEmailForm() {
+interface HeroEmailFormProps {
+  showFeatures?: boolean;
+}
+
+export default function HeroEmailForm({ showFeatures = true }: HeroEmailFormProps) {
   const t = useTranslations('HeroEmailForm')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -91,7 +95,7 @@ export default function HeroEmailForm() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 1.1, ease: 'easeOut' }}
+      // transition={{ duration: 0.1, delay: 1.1, ease: 'easeOut' }}
       className='mt-4 w-full max-w-sm'
     >
       <div className='flex items-stretch gap-2'>
@@ -152,6 +156,26 @@ export default function HeroEmailForm() {
           {t('description')}
         </span>
       </div>
+      
+      {showFeatures && (
+        <div className='mt-6 flex flex-wrap items-center gap-4'>
+          {[
+            t('features.info'),
+            t('features.caseStudies'),
+            t('features.exclusiveOffers'),
+            t('features.viewApp'),
+          ].map((feature, idx) => (
+            <div
+              key={idx}
+              className='border border-black px-3 py-1.5 flex items-center justify-center text-center bg-transparent'
+            >
+              <span className='text-[12px] text-black dark:text-black font-medium'>
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </motion.div>
   )
 }

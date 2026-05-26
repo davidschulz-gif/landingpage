@@ -3,6 +3,7 @@
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import CompareDemo from '@/components/compare-drag-demo'
 import { HeroParallax } from '@/components/hero-parallax'
+import { MainHero } from '@/components/main-hero'
 import { ToastProvider } from '@/components/providers/toast-provider'
 import { SplashScreen } from '@/components/splash-screen'
 import { StickyBottomSheet } from '@/components/sticky-bottom-sheet'
@@ -372,11 +373,14 @@ export default function Home() {
         {/* Navbar */}
         <NavbarDemo />
 
+        {/* Hero Section */}
+        <MainHero />
+
         {/* Hero Section with Parallax */}
         <HeroParallax
           row123Products={translatedRow123Products}
           row4Products={translatedRow4Products}
-        />
+/>
 
         {/* Image Templates */}
         <motion.div
