@@ -180,6 +180,18 @@
     "placeholder": "Enter your email",
     "learnMore": "Learn more",
     "description": "Learn more about the app and get notified about new features.",
+    "success": "Verification link sent. Please check your email.",
+    "gate": {
+      "title": "Exclusive Early Access",
+      "subtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
+      "privacy": "No spam. Unsubscribe at any time."
+    },
+    "errors": {
+      "required": "Please enter your email address.",
+      "invalid": "Please enter a valid email address.",
+      "timeout": "Request timed out. Please try again.",
+      "unexpected": "An unexpected error occurred."
+    },
     "features": {
       "info": "Information",
       "caseStudies": "Case Studies",

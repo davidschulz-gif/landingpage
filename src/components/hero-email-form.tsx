@@ -11,9 +11,10 @@ import { useState } from 'react'
 
 interface HeroEmailFormProps {
   showFeatures?: boolean;
+  onSuccess?: () => void;
 }
 
-export default function HeroEmailForm({ showFeatures = true }: HeroEmailFormProps) {
+export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEmailFormProps) {
   const t = useTranslations('HeroEmailForm')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
@@ -77,6 +78,9 @@ export default function HeroEmailForm({ showFeatures = true }: HeroEmailFormProp
         data?.message || t('success')
       )
       setEmail('')
+      if (onSuccess) {
+        setTimeout(() => onSuccess(), 1200)
+      }
     } catch (error: any) {
       if (error?.name === 'AbortError') {
         setErrorMessage(t('errors.timeout'))

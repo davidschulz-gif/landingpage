@@ -180,6 +180,18 @@
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
     "learnMore": "Mehr erfahren",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
+    "success": "Bestätigung wurde gesendet. Bitte prüfen Sie Ihre E-Mail.",
+    "gate": {
+      "title": "Exklusiver Früh­zugang",
+      "subtitle": "Tragen Sie Ihre E-Mail ein, um Informationen, Case Studies und exklusive Angebote zu erhalten – und die App kostenlos zu entdecken.",
+      "privacy": "Kein Spam. Abmeldung jederzeit möglich."
+    },
+    "errors": {
+      "required": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+      "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "timeout": "Zeitüberschreitung. Bitte versuchen Sie es erneut.",
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+    },
     "features": {
       "info": "Informationen",
       "caseStudies": "Case Studies",
