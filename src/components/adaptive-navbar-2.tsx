@@ -46,6 +46,14 @@ export function NavbarDemo() {
     }
   }
 
+  const handleGoToAppClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+    const hasProvided = localStorage.getItem('typus_email_provided')
+    if (!hasProvided) {
+      e.preventDefault()
+      window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }))
+    }
+  }
+
   // Get translated navigation items
   const getTranslatedNavItems = () => {
     return [
@@ -353,6 +361,7 @@ export function NavbarDemo() {
 
           <Link
             href={`${appUrl}`}
+            onClick={handleGoToAppClick}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {t('goToApp')}
@@ -685,7 +694,10 @@ export function NavbarDemo() {
             </NavbarButton>
             <NavbarButton
               href={`${appUrl}`}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+                setIsMobileMenuOpen(false)
+                handleGoToAppClick(e)
+              }}
               variant='primary'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-medium tracking-wide'
               style={{ fontFamily: 'inherit' }}

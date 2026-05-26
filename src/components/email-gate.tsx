@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import HeroEmailForm from './hero-email-form'
+import { Check, X } from 'lucide-react'
 
 const STORAGE_KEY = 'typus_email_provided'
 
@@ -15,32 +16,38 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
   const [isExiting, setIsExiting] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  const [redirectUrl, setRedirectUrl] = useState<string | null>(null)
+
   useEffect(() => {
     setMounted(true)
-    const hasProvided = localStorage.getItem(STORAGE_KEY)
-    
-    // Exempt pages like thank-you, terms, privacy, imprint, etc.
-    const isExempt = 
-      pathname.includes('/thank-you') || 
-      pathname.includes('/terms') || 
-      pathname.includes('/privacy') || 
-      pathname.includes('/imprint')
+  }, [])
 
-    if (!hasProvided && !isExempt) {
+  useEffect(() => {
+    const handleShowGate = (e: Event) => {
+      const customEvent = e as CustomEvent<{ redirectUrl?: string }>
+      const targetUrl = customEvent.detail?.redirectUrl || null
+      setRedirectUrl(targetUrl)
       setShowGate(true)
-      // prevent scroll while gate is open
       document.body.style.overflow = 'hidden'
-    } else {
-      setShowGate(false)
-      document.body.style.overflow = ''
     }
-  }, [pathname])
+
+    window.addEventListener('show-email-gate', handleShowGate)
+    return () => {
+      window.removeEventListener('show-email-gate', handleShowGate)
+    }
+  }, [])
 
   const handleSuccess = () => {
     localStorage.setItem(STORAGE_KEY, '1')
     setIsExiting(true)
     document.body.style.overflow = ''
-    setTimeout(() => setShowGate(false), 700)
+    setTimeout(() => {
+      setShowGate(false)
+      setIsExiting(false)
+      if (redirectUrl) {
+        window.location.href = redirectUrl
+      }
+    }, 700)
   }
 
   // SSR: render children immediately; gate appears only client-side
@@ -86,6 +93,21 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className='relative z-10 bg-white dark:bg-[#0d0e12] border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.15)] p-10 md:p-14 max-w-lg w-full mx-4 flex flex-col items-center text-center'
             >
+              {/* close button */}
+              <button
+                onClick={() => {
+                  setIsExiting(true)
+                  document.body.style.overflow = ''
+                  setTimeout(() => {
+                    setShowGate(false)
+                    setIsExiting(false)
+                  }, 700)
+                }}
+                className='absolute top-6 right-6 p-1.5 rounded-full text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors'
+                aria-label="Close"
+              >
+                <X className='w-5 h-5' />
+              </button>
               {/* logo mark */}
               <div className='mb-6 flex flex-col items-center gap-2'>
                 <div className='bg-black dark:bg-white w-4 h-4 rounded-sm' />
@@ -110,20 +132,22 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                 {t('gate.subtitle')}
               </p>
 
-              {/* feature pills */}
-              <div className='flex flex-wrap justify-center gap-2 mb-8'>
+              {/* checkmark features list */}
+              <div className='flex flex-col gap-4 text-left w-full max-w-sm mx-auto mb-8 bg-neutral-50 dark:bg-neutral-900/40 p-6 rounded-2xl border border-neutral-100 dark:border-neutral-900'>
                 {[
                   t('features.info'),
                   t('features.caseStudies'),
                   t('features.exclusiveOffers'),
                   t('features.viewApp'),
                 ].map((feature, idx) => (
-                  <span
-                    key={idx}
-                    className='border border-black dark:border-white/30 px-3 py-1.5 text-[11px] font-medium text-black dark:text-white uppercase tracking-wide'
-                  >
-                    {feature}
-                  </span>
+                  <div key={idx} className='flex items-start gap-3'>
+                    <div className='w-5 h-5 rounded-full bg-[#E6F7F2] dark:bg-[#003d2b] flex items-center justify-center flex-shrink-0 mt-0.5'>
+                      <Check className='text-[#00A878] w-3.5 h-3.5' strokeWidth={3} />
+                    </div>
+                    <span className='text-sm font-medium text-neutral-800 dark:text-neutral-200'>
+                      {feature}
+                    </span>
+                  </div>
                 ))}
               </div>
 

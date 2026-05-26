@@ -8,6 +8,7 @@ import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import BeforeYouGoPopup from '@/components/before-you-go-popup'
 import { FloatingEmailBuzzer } from '@/components/floating-email-buzzer'
+import { EmailGate } from '@/components/email-gate'
 import './globals.css'
 
 
@@ -279,10 +280,12 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider>
-            {children}
-            <BeforeYouGoPopup />
-             {/* Floating Email Buzzer */}
-          <FloatingEmailBuzzer/>
+            <EmailGate>
+              {children}
+              <BeforeYouGoPopup />
+               {/* Floating Email Buzzer */}
+              <FloatingEmailBuzzer/>
+            </EmailGate>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

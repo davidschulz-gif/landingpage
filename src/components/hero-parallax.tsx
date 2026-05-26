@@ -194,6 +194,16 @@ export const Header = () => {
     return () => clearInterval(timer)
   }, [titles.length])
 
+  const handleGoToAppClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === appUrl) {
+      const hasProvided = localStorage.getItem('typus_email_provided')
+      if (!hasProvided) {
+        e.preventDefault()
+        window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }))
+      }
+    }
+  }
+
   return (
     <div className='max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-6 md:px-0 w-full'>
       <div className='md:pb-12 relative'>
@@ -462,7 +472,11 @@ export const Header = () => {
 
                   {/* Button */}
                   <div className='mt-1'>
-                    <ActionButton href={card.href} className='w-full'>
+                    <ActionButton
+                      href={card.href}
+                      onClick={(e) => handleGoToAppClick(e, card.href)}
+                      className='w-full'
+                    >
                       {card.label}
                     </ActionButton>
                   </div>
