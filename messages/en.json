@@ -536,14 +536,14 @@
   "BeforeYouGo": {
     "badge": "LIMITED TIME OFFER",
     "title": "Before you go, have you seen the phenomenal offer for PRO Complete?",
-    "body": "Pay what you'd normally spend in 3 months and get 12 full months of access. This is a limited-time offer, and the price will increase gradually—meaning it will never be as low as it is now.",
+    "body": "Pay what you'd normally spend in 4 months and get 12 full months of access. This is a limited-time offer, and the price will increase gradually—meaning it will never be as low as it is now.",
     "cta": "See PRO Complete Offer",
     "dismiss": "No, I'll pay more later",
     "paidLabel": "months paid",
     "accessLabel": "months access",
     "emailPlaceholder": "Your email address",
     "privacyConsent": "I agree to the privacy policy and consent to data processing",
-    "continue": "Continue to Offer ",
+    "continue": "Get more information without obligation",
     "trustText": "No spam. Cancel anytime.",
     "errorEmail": "Please enter a valid email address",
     "errorConsent": "Please agree to the privacy policy"
