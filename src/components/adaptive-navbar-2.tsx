@@ -340,25 +340,12 @@ export function NavbarDemo() {
           >
             {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
           </Link>
-          {/* <Link
-            href={'https://app.typus.ai/login'}
+          <Link
+            href={`${appUrl}/login`}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {t('login')}
           </Link>
-          <Link
-            href={'https://app.typus.ai/register'}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
-          >
-            {t('signUp')}
-          </Link> */}
-          {/* <ActionButton
-            href={`https://app.typus.ai/register?language=${locale}`}
-            className="!ps-4 !pe-1 transform scale-90 origin-right"
-          >
-            {t('goToApp')}
-          </ActionButton> */}
-
           <Link
             href={`${appUrl}`}
             onClick={handleGoToAppClick}
@@ -691,6 +678,15 @@ export function NavbarDemo() {
               style={{ fontFamily: 'inherit' }}
             >
               {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
+            </NavbarButton>
+            <NavbarButton
+              href={`${appUrl}/login`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              variant='secondary'
+              className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
+              style={{ fontFamily: 'inherit' }}
+            >
+              {t('login')}
             </NavbarButton>
             <NavbarButton
               href={`${appUrl}`}

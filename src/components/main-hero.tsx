@@ -28,11 +28,11 @@ export function MainHero() {
   }, [titles.length])
 
   return (
-    <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
+    <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
       {/* Floating Images Background */}
       <FloatingCollage />
 
-      <div className='max-w-4xl mx-auto text-center space-y-8 relative z-20'>
+      <div className='max-w-4xl mx-auto text-center space-y-8 lg:pt-12 relative z-20'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export function MainHero() {
           </div>
 
           <BreathingAnimationText animationType='black-gray'>
-            <div className='relative overflow-visible flex items-center justify-center w-full min-h-[90px] sm:min-h-[70px] md:min-h-[120px] lg:min-h-[140px]'>
+            <div className='relative overflow-visible flex items-center justify-center w-full min-h-[90px] sm:min-h-[70px] md:min-h-[120px] lg:min-h-[60px]'>
               <AnimatePresence mode='wait'>
                 <motion.h1
                   key={currentIndex}
@@ -83,7 +83,7 @@ export function MainHero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className='text-[26px] md:text-[38px] lg:text-[48px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
+                  className='text-[26px] md:text-[38px] lg:text-[35px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
                   style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                 >
                   {titles[currentIndex]}
@@ -92,7 +92,7 @@ export function MainHero() {
             </div>
           </BreathingAnimationText>
 
-          <div className='relative overflow-visible flex items-center justify-center w-full min-h-[80px] md:min-h-[100px] mb-10 mt-6'>
+          <div className='relative overflow-visible flex items-center justify-center w-full min-h-[80px] md:min-h-[100px] mb-10 mt-6 md:mb-0 md:mt-0 lg:min-h-[80px]'>
             <AnimatePresence mode='wait'>
               <motion.p
                 key={currentIndex}
@@ -100,7 +100,7 @@ export function MainHero() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className='text-xl md:text-2xl text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-2xl w-full px-4'
+                className='text-xl  text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-2xl w-full px-4'
               >
                 {subtitles[currentIndex]}
               </motion.p>
