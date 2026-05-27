@@ -100,17 +100,17 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       // transition={{ duration: 0.1, delay: 1.1, ease: 'easeOut' }}
-      className='mt-4 w-full max-w-2xl mx-auto'
+      className='mt-4 w-full max-w-2xl mx-auto px-4'
     >
-      <div className='w-full max-w-sm mx-auto'>
-        <div className='flex items-stretch gap-2'>
+      <div className='w-full max-w-md mx-auto'>
+        <div className='flex flex-col sm:flex-row items-stretch gap-2.5'>
           <input
             type='email'
             name='email'
             required
             placeholder={t('placeholder')}
             aria-label='Email address'
-            className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60'
+            className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 w-full'
             value={email}
             onChange={e => setEmail(e.target.value)}
             disabled={isRequesting}
@@ -119,7 +119,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           />
           <button
             type='button'
-            className='!px-6 flex items-center flex-shrink-0 py-2 bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60'
+            className='w-full sm:w-auto !px-6 py-2.5 flex items-center justify-center flex-shrink-0 bg-white shadow-sm text-sm transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60 text-black border border-black/10'
             onClick={handleSubmit}
             disabled={isRequesting}
           >
@@ -164,7 +164,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       </div>
       
       {showFeatures && (
-        <div className='mt-6 flex flex-row items-center justify-start md:justify-center gap-4 md:gap-6 w-full max-w-4xl mx-auto overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none'>
+        <div className='mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 w-full max-w-4xl mx-auto pb-2 md:pb-0'>
           {[
             t('features.info'),
             t('features.caseStudies'),
