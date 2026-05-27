@@ -100,69 +100,71 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       // transition={{ duration: 0.1, delay: 1.1, ease: 'easeOut' }}
-      className='mt-4 w-full max-w-sm'
+      className='mt-4 w-full max-w-2xl mx-auto'
     >
-      <div className='flex items-stretch gap-2'>
-        <input
-          type='email'
-          name='email'
-          required
-          placeholder={t('placeholder')}
-          aria-label='Email address'
-          className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          disabled={isRequesting}
-          aria-invalid={!!errorMessage}
-          aria-describedby={errorMessage ? 'hero-email-error' : undefined}
-        />
-        <button
-          type='button'
-          className='!px-6 flex items-center flex-shrink-0 py-2 bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60'
-          onClick={handleSubmit}
-          disabled={isRequesting}
-        >
-          <span>{t('learnMore')}</span>
-          {isRequesting ? (
-            <IconLoader2 className='animate-spin ms-1 size-4' />
-          ) : (
-            ''
-          )}
-        </button>
-      </div>
-      {errorMessage && (
-        <div
-          id='hero-email-error'
-          role='alert'
-          aria-live='assertive'
-          className='mt-2 flex items-center gap-2 text-[11px] text-red-600'
-        >
-          <IconAlertCircle size={14} />
-          <span>{errorMessage}</span>
+      <div className='w-full max-w-sm mx-auto'>
+        <div className='flex items-stretch gap-2'>
+          <input
+            type='email'
+            name='email'
+            required
+            placeholder={t('placeholder')}
+            aria-label='Email address'
+            className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            disabled={isRequesting}
+            aria-invalid={!!errorMessage}
+            aria-describedby={errorMessage ? 'hero-email-error' : undefined}
+          />
+          <button
+            type='button'
+            className='!px-6 flex items-center flex-shrink-0 py-2 bg-white shadow-sm text-sm h-full transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60'
+            onClick={handleSubmit}
+            disabled={isRequesting}
+          >
+            <span>{t('learnMore')}</span>
+            {isRequesting ? (
+              <IconLoader2 className='animate-spin ms-1 size-4' />
+            ) : (
+              ''
+            )}
+          </button>
         </div>
-      )}
-      {successMessage && (
-        <div
-          role='status'
-          aria-live='polite'
-          className='mt-2 flex items-center gap-2 text-[11px] text-green-600'
-        >
-          <IconCheck size={14} />
-          <span>{successMessage}</span>
+        {errorMessage && (
+          <div
+            id='hero-email-error'
+            role='alert'
+            aria-live='assertive'
+            className='mt-2 flex items-center gap-2 text-[11px] text-red-600'
+          >
+            <IconAlertCircle size={14} />
+            <span>{errorMessage}</span>
+          </div>
+        )}
+        {successMessage && (
+          <div
+            role='status'
+            aria-live='polite'
+            className='mt-2 flex items-center gap-2 text-[11px] text-green-600'
+          >
+            <IconCheck size={14} />
+            <span>{successMessage}</span>
+          </div>
+        )}
+        <div className='mt-2 flex items-center gap-2'>
+          <IconMail size={14} className='text-gray-600' />
+          <span
+            className='text-[11px] text-gray-600 dark:text-gray-300'
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            {t('description')}
+          </span>
         </div>
-      )}
-      <div className='mt-2 flex items-center gap-2'>
-        <IconMail size={14} className='text-gray-600' />
-        <span
-          className='text-[11px] text-gray-600 dark:text-gray-300'
-          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-        >
-          {t('description')}
-        </span>
       </div>
       
       {showFeatures && (
-        <div className='mt-6 flex flex-wrap items-center gap-y-2 gap-x-5 justify-center md:justify-start w-full max-w-2xl'>
+        <div className='mt-6 flex flex-row items-center justify-start md:justify-center gap-3 w-full max-w-4xl mx-auto overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none'>
           {[
             t('features.info'),
             t('features.caseStudies'),
@@ -171,10 +173,9 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           ].map((feature, idx) => (
             <div
               key={idx}
-              className='flex items-center gap-1.5 bg-transparent whitespace-nowrap'
+              className='border border-black dark:border-white px-4 py-2 flex items-center justify-center text-center bg-transparent whitespace-nowrap flex-shrink-0'
             >
-              <IconCheck size={16} className='text-[#00A878] flex-shrink-0' />
-              <span className='text-[12px] text-neutral-800 dark:text-neutral-200 font-semibold uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <span className='text-[11px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {feature}
               </span>
             </div>

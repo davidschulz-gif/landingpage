@@ -121,9 +121,10 @@ export const HeroParallax = ({
     <div
       ref={ref}
       data-hero-section
-      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-auto md:h-[220vh] pt-8 pb-16 md:pt-12 md:pb-20 overflow-clip antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
+      className='w-full max-w-[100%] md:max-w-[80%] mx-auto h-auto md:h-auto pt-8 pb-16 md:pt-12 md:pb-20 overflow-clip antialiased relative flex flex-col self-auto [perspective:1500px] [transform-style:preserve-3d] bg-transparent dark:bg-transparent'
     >
       <Header />
+      {/* Commented out as requested
       <motion.div
         style={{
           rotateX: transforms.rotateX,
@@ -172,6 +173,7 @@ export const HeroParallax = ({
           </>
         )}
       </motion.div>
+      */}
     </div>
   )
 }
@@ -208,9 +210,10 @@ export const Header = () => {
     <div className='max-w-7xl z-50 relative mx-auto pt-0 pb-0 md:pt-32 md:pb-0 lg:pt-0 lg:pb-24 px-6 md:px-0 w-full'>
       <div className='md:pb-12 relative'>
         {/* Top Section - Left and Right */}
-        <div className='flex flex-col lg:flex-row gap-8 lg:gap-12 items-start lg:items-center mb-12 lg:mb-0'>
+        <div className='flex flex-col gap-10 items-center justify-center text-center mb-12 lg:mb-16 w-full'>
           {/* Left Side - Headline and Description */}
-          <div className='relative max-w-lg flex-1'>
+          <div className='relative w-full max-w-2xl flex flex-col items-center justify-center text-center'>
+            {/* Commented out heading and description as requested
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
                 className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[135px] sm:h-[90px] md:h-[85px] break-words'
@@ -253,13 +256,14 @@ export const Header = () => {
                 </motion.div>
               </AnimatePresence>
             </div>
+            */}
 
-            <div className='flex items-start gap-6 flex-col md:flex-row md:items-center'>
+            <div className='flex items-center justify-center gap-6 flex-col md:flex-row w-full'>
               <div className='w-auto'>
                 <Link
                   href='https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D'
                   target='_blank'
-                  className='flex items-center'
+                  className='flex items-center justify-center'
                 >
                   <GoogleLogo fontSize={24} className='me-4' />
                   <div className='flex items-center'>
@@ -318,7 +322,7 @@ export const Header = () => {
                   </BreathingAnimationText>
                 </Link>
                 <BreathingAnimationText animationType='black-gray'>
-                  <span className='text-xs text-gray-500 mt-1 block'>
+                  <span className='text-xs text-gray-500 mt-1 block text-center'>
                     {t('reviewsCount')}
                   </span>
                 </BreathingAnimationText>
@@ -345,12 +349,12 @@ export const Header = () => {
           </div>
 
           {/* Right Side - Video */}
-          <div className='relative w-full lg:w-auto lg:flex-1 flex justify-center lg:justify-end'>
+          <div className='relative w-full flex justify-center'>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-              className='relative w-full max-w-md lg:max-w-lg xl:max-w-xl'
+              className='relative w-full max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl'
             >
               <HeroVideoPlayer
                 src={videoSource}
@@ -364,9 +368,9 @@ export const Header = () => {
         </div>
 
         {/* Center - Logo, Title and Button */}
-        <div className='flex flex-col items-center text-center pt-12 md:pt-20'>
-          {/* Logo */}
-          <motion.div
+        {/* <div className='flex flex-col items-center text-center pt-12 md:pt-20'> */}
+        
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
@@ -388,9 +392,9 @@ export const Header = () => {
             >
               typus.AI
             </span>
-          </motion.div>
+          </motion.div> */}
 
-          {/* Offers Section */}
+          {/* Commented out as requested
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -437,7 +441,6 @@ export const Header = () => {
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
                   className='border border-black dark:border-white p-4 flex flex-col gap-3'
                 >
-                  {/* Title */}
                   <h3
                     className='text-center uppercase font-bold text-[11px] tracking-[0.18em] text-black dark:text-white pb-2.5 border-b border-black/10 dark:border-white/10'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
@@ -445,7 +448,6 @@ export const Header = () => {
                     {card.title}
                   </h3>
 
-                  {/* Features */}
                   <div className='flex flex-col gap-1.5'>
                     {card.features.map((feature, i) => (
                       <motion.div
@@ -470,7 +472,6 @@ export const Header = () => {
                     ))}
                   </div>
 
-                  {/* Button */}
                   <div className='mt-1'>
                     <ActionButton
                       href={card.href}
@@ -485,7 +486,8 @@ export const Header = () => {
 
             </div>
           </motion.div>
-        </div>
+          */}
+        {/* </div> */}
       </div>
 
 

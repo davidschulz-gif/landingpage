@@ -182,7 +182,7 @@
     "description": "Learn more about the app and get notified about new features.",
     "success": "Verification link sent. Please check your email.",
     "gate": {
-      "title": "Exclusive Early Access",
+      "title": "View the app for free.",
       "subtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
       "privacy": "No spam. Unsubscribe at any time."
     },
@@ -760,14 +760,16 @@
       "badge": "Done For You Offer",
       "innovativeBadge": "innovative service",
       "titles": [
-        "The Image Flat Rate for Architecture Firms.",
-        "Your personal visualization specialist"
+        "AI FOR ARCHITECTS.",
+        "THE CHATGPT FOR ARCHITECTS.",
+        "VISUALIZATIONS 90% CHEAPER"
       ],
       "subtitles": [
-        "Architecture visualizations. Fast. Personal. For a fixed price.",
-        "Simply request images — we create them for you."
+        "Transform your CAD files and sketches into photorealistic renders.",
+        "What ChatGPT is for text is typus.ai for architecture visualization. Sketch in, presentation picture out — in minutes.",
+        "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 117."
       ],
-      "cta": "Request a Free Demo and Initial Consultation"
+      "cta": "Learn more"
     },
     "problem": {
       "title1": "Architecture Visualizations",
