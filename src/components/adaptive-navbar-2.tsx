@@ -334,12 +334,12 @@ export function NavbarDemo() {
           >
             {tPricing('selectPlanCTA')}
           </Link>
-          <Link
+          {/* <Link
             href={isDoneForYou ? '/' : '/done-for-you'}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
           >
             {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
-          </Link>
+          </Link> */}
           <Link
             href={`${appUrl}/login`}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
@@ -564,12 +564,12 @@ export function NavbarDemo() {
               </div> */}
             </div>
             <div className='flex items-center gap-6 h-full'>
-              <Link
+              {/* <Link
                 href={isDoneForYou ? '/' : '/done-for-you'}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
-              </Link>
+              </Link> */}
               <Link
                 href={`${appUrl}/login`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
@@ -656,6 +656,72 @@ export function NavbarDemo() {
                   ))}
                 </div>
               )}
+
+              {item.isTestimonials && (
+                <div className='flex flex-col gap-4 pl-2 pt-2'>
+                  {/* Article Card 1 */}
+                  <Link
+                    href={`/ama-awards`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300"
+                  >
+                    <div className="flex flex-row">
+                      <div className="w-[35%] p-1.5">
+                        <div className="border border-black overflow-hidden relative min-h-[70px] aspect-square">
+                          <Image
+                            src="/artical-page/1.jpg"
+                            alt="AMA Awards Architecture"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-[65%] p-2 flex flex-col justify-center">
+                        <h2 className="text-[11px] font-medium text-black uppercase tracking-tight leading-tight mb-1 line-clamp-2">
+                          {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                        </h2>
+                        <div className="flex items-center gap-1.5 text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                          <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                        </div>
+                        <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2.5 py-1 uppercase tracking-widest transition-colors">
+                          {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Article Card 2 */}
+                  <Link
+                    href={`/siegrist`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300"
+                  >
+                    <div className="flex flex-row">
+                      <div className="w-[35%] p-1.5">
+                        <div className="border border-black overflow-hidden relative min-h-[70px] aspect-square">
+                          <Image
+                            src="/siegrist/saint-aubin.jpg"
+                            alt="Siegrist Architectes"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-[65%] p-2 flex flex-col justify-center">
+                        <h2 className="text-[11px] font-medium text-black uppercase tracking-tight leading-tight mb-1 line-clamp-2">
+                          {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
+                        </h2>
+                        <div className="flex items-center gap-1.5 text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                          <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
+                        </div>
+                        <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2.5 py-1 uppercase tracking-widest transition-colors">
+                          {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
             </div>
           ))}
           
@@ -670,7 +736,7 @@ export function NavbarDemo() {
             >
               {tPricing('selectPlanCTA')}
             </NavbarButton>
-            <NavbarButton
+            {/* <NavbarButton
               href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
@@ -678,7 +744,7 @@ export function NavbarDemo() {
               style={{ fontFamily: 'inherit' }}
             >
               {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
-            </NavbarButton>
+            </NavbarButton> */}
             <NavbarButton
               href={`${appUrl}/login`}
               onClick={() => setIsMobileMenuOpen(false)}
