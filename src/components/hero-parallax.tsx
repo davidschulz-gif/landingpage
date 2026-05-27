@@ -211,7 +211,8 @@ export const Header = () => {
       <div className='md:pb-12 relative'>
         {/* Top Section - Left and Right */}
         <div className='flex flex-col gap-10 items-center justify-center text-center mb-12 lg:mb-16 w-full'>
-          {/* Left Side - Headline and Description */}
+          {/* Left Side - Headline and Description (Commented out because trust badges and HeroEmailForm have been relocated up into MainHero) */}
+          {/*
           <div className='relative w-full max-w-2xl flex flex-col items-center justify-center text-center'>
             {/* Commented out heading and description as requested
             <BreathingAnimationText animationType='black-gray'>
@@ -256,7 +257,7 @@ export const Header = () => {
                 </motion.div>
               </AnimatePresence>
             </div>
-            */}
+            * /
 
             <div className='flex items-center justify-center gap-6 flex-col md:flex-row w-full'>
               <div className='w-auto'>
@@ -302,7 +303,7 @@ export const Header = () => {
                         )}
                       </svg>
                     ))}
-                    {/* Half star for 4.5 rating */}
+                    {/* Half star for 4.5 rating * /
                     <svg
                       className='w-5 h-5 text-yellow-400 absolute'
                       style={{ marginLeft: '80px' }}
@@ -344,9 +345,10 @@ export const Header = () => {
               />
             </div>
 
-            {/* Small email form */}
+            {/* Small email form * /
             <HeroEmailForm />
           </div>
+          */}
 
           {/* Right Side - Video */}
           <div className='relative w-full flex justify-center'>

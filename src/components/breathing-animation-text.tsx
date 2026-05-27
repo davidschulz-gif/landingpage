@@ -25,22 +25,23 @@ export const BreathingAnimationText = memo(({
   style,
   ...props
 }: BreathingAnimationTextProps) => {
-  const animationClass =
-    animationType === 'black-gray'
-      ? 'animate-breathe-black-gray'
-      : animationType === 'red-orange'
-      ? 'animate-breathe-red-orange'
-      : animationType === 'cyan-blue'
-      ? 'animate-breathe-cyan-blue'
-      : '';
+  // const animationClass =
+  //   animationType === 'black-gray'
+  //     ? 'animate-breathe-black-gray'
+  //     : animationType === 'red-orange'
+  //     ? 'animate-breathe-red-orange'
+  //     : animationType === 'cyan-blue'
+  //     ? 'animate-breathe-cyan-blue'
+  //     : '';
 
   return (
     <Component
-      className={cn(animationClass, className)}
+      // className={cn(animationClass, className)}
+      className={cn(className)}
       style={{
         ...style,
-        '--breathe-duration': `${duration}s`,
-        '--breathe-intensity': intensity,
+        // '--breathe-duration': `${duration}s`,
+        // '--breathe-intensity': intensity,
       } as React.CSSProperties}
       {...props}
     >

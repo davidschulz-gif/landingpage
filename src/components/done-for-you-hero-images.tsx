@@ -4,24 +4,24 @@ import { useMediaQuery } from '../hooks/use-media-query'
 
 const ALL_IMAGES = [
   // Top Cluster (More horizontal, premium renders)
-  { src: '/variation-10.jpg', mobile: false, desktop: { width: 380, height: 260, x: 250, y: -420, rotate: 4, delay: 0.3 } },
+  { src: '/variation-10.jpg', mobile: false, desktop: { width: 380, height: 260, x: 480, y: -420, rotate: 4, delay: 0.3 } },
 
   // Left Cluster
-  { src: '/variation-3.jpg', mobile: false, desktop: { width: 300, height: 210, x: -650, y: -150, rotate: -8, delay: 0.2 } },
-  { src: '/variation-4.jpg', mobile: false, desktop: { width: 375, height: 250, x: -750, y: 50, rotate: 6, delay: 0.4 } },
-  { src: '/variation-7.jpg', mobile: false, desktop: { width: 250, height: 175, x: -600, y: 250, rotate: -4, delay: 0.1 } },
+  { src: '/variation-3.jpg', mobile: false, desktop: { width: 300, height: 210, x: -760, y: -140, rotate: -8, delay: 0.2 } },
+  { src: '/variation-4.jpg', mobile: false, desktop: { width: 375, height: 250, x: -790, y: 60, rotate: 6, delay: 0.4 } },
+  { src: '/variation-7.jpg', mobile: false, desktop: { width: 250, height: 175, x: -750, y: 280, rotate: -6, delay: 0.1 } },
 
   // Right Cluster
-  { src: '/variation-8.jpg', mobile: false, desktop: { width: 280, height: 200, x: 400, y: -100, rotate: 5, delay: 0.5 } },
-  { src: '/industrial-building-render.png', mobile: false, desktop: { width: 320, height: 220, x: 450, y: 100, rotate: -4, delay: 0.15 } },
-  { src: '/cultural-center-render.png', mobile: false, desktop: { width: 300, height: 210, x: 175, y: 225, rotate: 7, delay: 0.45 } },
+  { src: '/variation-8.jpg', mobile: false, desktop: { width: 280, height: 200, x: 520, y: -90, rotate: 5, delay: 0.5 } },
+  { src: '/industrial-building-render.png', mobile: false, desktop: { width: 320, height: 220, x: 530, y: 90, rotate: -4, delay: 0.15 } },
+  { src: '/cultural-center-render.png', mobile: false, desktop: { width: 300, height: 210, x: 540, y: 270, rotate: 8, delay: 0.45 } },
 
   // Lower/Grip clusters (Filling space)
   // { src: '/historic-building-renovation.png', mobile: false, desktop: { width: 220, height: 160, x: -250, y: 480, rotate: 3, delay: 0.6 } },
   // { src: '/mixed-use-development.png', mobile: false, desktop: { width: 240, height: 170, x: 250, y: 520, rotate: -6, delay: 0.7 } },
 
   // Grid images integrated
-  { src: '/variation-1.jpg', mobile: false, desktop: { width: 300, height: 240, x: -650, y: -380, rotate: 10, delay: 0.8 } },
+  { src: '/variation-1.jpg', mobile: false, desktop: { width: 300, height: 240, x: -740, y: -380, rotate: 10, delay: 0.8 } },
   // { src: '/modern-healthcare-facility.png', mobile: false, desktop: { width: 220, height: 150, x: 850, y: -320, rotate: -8, delay: 0.9 } },
   // { src: '/modern-office-building.png', mobile: false, desktop: { width: 240, height: 170, x: -400, y: -520, rotate: -5, delay: 1.0 } },
   // { src: '/design-gallery-showcase.png', mobile: false, desktop: { width: 190, height: 130, x: 450, y: -550, rotate: 8, delay: 1.1 } },

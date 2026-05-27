@@ -164,7 +164,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       </div>
       
       {showFeatures && (
-        <div className='mt-6 flex flex-row items-center justify-start md:justify-center gap-3 w-full max-w-4xl mx-auto overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none'>
+        <div className='mt-6 flex flex-row items-center justify-start md:justify-center gap-4 md:gap-6 w-full max-w-4xl mx-auto overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none'>
           {[
             t('features.info'),
             t('features.caseStudies'),
@@ -173,8 +173,9 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           ].map((feature, idx) => (
             <div
               key={idx}
-              className='border border-black dark:border-white px-4 py-2 flex items-center justify-center text-center bg-transparent whitespace-nowrap flex-shrink-0'
+              className='flex items-center gap-2 bg-transparent whitespace-nowrap flex-shrink-0'
             >
+              <IconCheck className='size-3.5 md:size-4 text-black dark:text-white flex-shrink-0' stroke={3} />
               <span className='text-[11px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {feature}
               </span>

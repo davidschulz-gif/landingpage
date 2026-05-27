@@ -110,9 +110,9 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
               </button>
               {/* logo mark */}
               <div className='mb-6 flex flex-col items-center gap-2'>
-                <div className='bg-black dark:bg-white w-4 h-4 rounded-sm' />
+                <div className='bg-black dark:bg-white w-4 h-4' />
                 <span
-                  className='text-xs uppercase tracking-[3px] font-light text-black dark:text-white'
+                  className='text-xs tracking-[3px] font-light text-black dark:text-white'
                   style={{ fontFamily: 'var(--font-ft-calhern), sans-serif' }}
                 >
                   typus.AI
