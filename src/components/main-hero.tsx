@@ -61,7 +61,7 @@ export function MainHero() {
               typus.AI
             </span>
           </motion.div>
-          <div className='flex justify-center w-full mt-12 mb-8'>
+          {/* <div className='flex justify-center w-full mt-12 mb-8'>
             <div className='relative inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] overflow-hidden font-space-grotesk rounded-none'
               style={{
                 background: 'linear-gradient(135deg, #b8860b 0%, #ffd700 35%, #fffacd 55%, #ffd700 75%, #b8860b 100%)',
@@ -72,7 +72,7 @@ export function MainHero() {
               <span className='relative z-10'>{t('hero.innovativeBadge')}</span>
               <span className='absolute inset-0 animate-shine' style={{ background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%)', backgroundSize: '200% 100%' }} />
             </div>
-          </div>
+          </div> */}
 
           <BreathingAnimationText animationType='black-gray'>
             <div className='relative overflow-visible flex items-center justify-center w-full min-h-[90px] sm:min-h-[70px] md:min-h-[120px] lg:min-h-[60px]'>

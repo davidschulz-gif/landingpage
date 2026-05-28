@@ -87,6 +87,145 @@ export function SiegristTestimonialSection() {
         </div>
     )
 
+    // Shared Slider Component
+    const ImageSliderMarkup = () => (
+        <div>
+            {/* Pagination with dots above image */}
+            <div className="flex items-center gap-3 mb-3 text-xs font-semibold text-neutral-800 font-rail select-none">
+                <span className="tracking-wide">
+                    {locale === 'de' ? `Bild ${activeSlide + 1} von 2` : `Image ${activeSlide + 1} of 2`}
+                </span>
+                <div className="flex gap-1.5 items-center">
+                    <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 0 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
+                    <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 1 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
+                </div>
+            </div>
+
+            {/* Image Slider Container with overlays */}
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-50 rounded-none group">
+                {/* Social Icons Overlay (Top Left) */}
+                <div className="absolute top-4 left-4 flex gap-2.5 z-20">
+                    <a
+                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://typus.ai/de/siegrist')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white hover:bg-neutral-800 transition-colors"
+                        aria-label="Share on Facebook"
+                    >
+                        <span className="font-sans text-[13px] font-bold select-none leading-none mt-[-1px]">f</span>
+                    </a>
+                    <a
+                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent('https://typus.ai/de/siegrist')}&text=${encodeURIComponent(t('sectionTitle'))}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-7 h-7 bg-white rounded-none flex items-center justify-center text-black hover:bg-neutral-100 transition-colors"
+                        aria-label="Share on Twitter"
+                    >
+                        <span className="font-serif text-[13px] font-black select-none leading-none">t</span>
+                    </a>
+                </div>
+
+                {/* Arrow Overlays (Top Right) */}
+                <div className="absolute top-4 right-4 flex gap-6 z-20">
+                    <button
+                        onClick={(e) => { e.preventDefault(); prevSlide(); }}
+                        className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
+                        aria-label="Previous image"
+                    >
+                        &larr;
+                    </button>
+                    <button
+                        onClick={(e) => { e.preventDefault(); nextSlide(); }}
+                        className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
+                        aria-label="Next image"
+                    >
+                        &rarr;
+                    </button>
+                </div>
+
+                {/* Slider Image */}
+                <a 
+                    href={slides[activeSlide].href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="block w-full h-full relative font-rail"
+                >
+                    <Image
+                        src={slides[activeSlide].src}
+                        alt={slides[activeSlide].alt}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    
+                    {/* Bottom Caption overlay inside the image container */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent text-white p-5 pt-12 text-[12.5px] leading-relaxed font-rail rounded-none border-0">
+                        <div>{slides[activeSlide].caption}</div>
+                        <div className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-1.5">
+                            {locale === 'de' ? `Foto: ${slides[activeSlide].credit}` : `Photo: ${slides[activeSlide].credit}`}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    )
+
+    // Shared Reels Component
+    const ReelsMarkup = () => (
+        <div className="space-y-4">
+            <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                {locale === 'de' ? 'PROJEKT-REELS' : 'PROJECT REELS'}
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+                <VideoThumbnail
+                    href="https://www.instagram.com/p/DWgGKLNiN9P/"
+                    imageSrc="/siegrist/saint-aubin.jpg"
+                    title={t('instagramTitle1')}
+                    subtitle={t('reelDescription1')}
+                    handle="@siegristarchitectes"
+                />
+                <VideoThumbnail
+                    href="https://www.instagram.com/p/DViepQmiAsG/"
+                    imageSrc="/siegrist/venthone.jpg"
+                    title={t('instagramTitle2')}
+                    subtitle={t('reelDescription2')}
+                    handle="@siegristarchitectes"
+                />
+            </div>
+        </div>
+    )
+
+    // Shared Data Sheets Component
+    const DataSheetsMarkup = () => (
+        <div className="space-y-6">
+            <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                {locale === 'de' ? 'PROJEKTDATEN' : 'PROJECT DATA'}
+            </h3>
+            <ProjectDataSheet data={t.raw('saintAubinData')} />
+            <ProjectDataSheet data={t.raw('venthoneData')} />
+        </div>
+    )
+
+    // Shared About Office Component
+    const AboutOfficeMarkup = () => (
+        <div className="space-y-4 font-rail">
+            <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                {locale === 'de' ? 'ÜBER DAS BÜRO' : 'ABOUT THE OFFICE'}
+            </h3>
+            <div className="relative overflow-hidden rounded-none aspect-[4/3] w-full bg-gray-50">
+                <Image 
+                    src="/siegrist/office-portrait.jpg" 
+                    alt="Siegrist Architectes Team" 
+                    fill 
+                    className="object-cover"
+                />
+            </div>
+            <div className="mt-2 text-xs text-neutral-800 leading-relaxed font-rail">
+                {t('caption3')}
+            </div>
+        </div>
+    )
+
     return (
         <article className="w-full max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 bg-white text-black font-rail">
             {/* Back Button */}
@@ -101,169 +240,31 @@ export function SiegristTestimonialSection() {
             {/* Layout Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 
-                {/* Left Column: Media, Reels, Data Sheets */}
-                <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-8 font-rail order-2 lg:order-1">
+                {/* Left Column: Media, Reels, Data Sheets (Desktop Only) */}
+                <div className="hidden lg:block lg:col-span-5 space-y-8 lg:sticky lg:top-8 font-rail">
                     
                     {/* Image Slider */}
-                    <div>
-                        {/* Pagination with dots above image */}
-                        <div className="flex items-center gap-3 mb-3 text-xs font-semibold text-neutral-800 font-rail select-none">
-                            <span className="tracking-wide">
-                                {locale === 'de' ? `Bild ${activeSlide + 1} von 2` : `Image ${activeSlide + 1} of 2`}
-                            </span>
-                            <div className="flex gap-1.5 items-center">
-                                <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 0 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
-                                <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 1 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
-                            </div>
-                        </div>
-
-                        {/* Image Slider Container with overlays */}
-                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-50 rounded-none group">
-                            {/* Social Icons Overlay (Top Left) */}
-                            <div className="absolute top-4 left-4 flex gap-2.5 z-20">
-                                <a
-                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://typus.ai/de/siegrist')}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white hover:bg-neutral-800 transition-colors"
-                                    aria-label="Share on Facebook"
-                                >
-                                    <span className="font-sans text-[13px] font-bold select-none leading-none mt-[-1px]">f</span>
-                                </a>
-                                <a
-                                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent('https://typus.ai/de/siegrist')}&text=${encodeURIComponent(t('sectionTitle'))}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-7 h-7 bg-white rounded-none flex items-center justify-center text-black hover:bg-neutral-100 transition-colors"
-                                    aria-label="Share on Twitter"
-                                >
-                                    <span className="font-serif text-[13px] font-black select-none leading-none">t</span>
-                                </a>
-                            </div>
-
-                            {/* Arrow Overlays (Top Right) */}
-                            <div className="absolute top-4 right-4 flex gap-6 z-20">
-                                <button
-                                    onClick={(e) => { e.preventDefault(); prevSlide(); }}
-                                    className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
-                                    aria-label="Previous image"
-                                >
-                                    &larr;
-                                </button>
-                                <button
-                                    onClick={(e) => { e.preventDefault(); nextSlide(); }}
-                                    className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
-                                    aria-label="Next image"
-                                >
-                                    &rarr;
-                                </button>
-                            </div>
-
-                            {/* Slider Image */}
-                            <a 
-                                href={slides[activeSlide].href} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="block w-full h-full relative font-rail"
-                            >
-                                <Image
-                                    src={slides[activeSlide].src}
-                                    alt={slides[activeSlide].alt}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                                
-                                {/* Bottom Caption overlay inside the image container */}
-                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent text-white p-5 pt-12 text-[12.5px] leading-relaxed font-rail rounded-none border-0">
-                                    <div>{slides[activeSlide].caption}</div>
-                                    <div className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-1.5">
-                                        {locale === 'de' ? `Foto: ${slides[activeSlide].credit}` : `Photo: ${slides[activeSlide].credit}`}
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Featured On Buttons */}
-                    {/* <div className="flex flex-wrap items-center gap-3 pt-2 font-rail">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                            {t('featuredOn')}
-                        </span>
-                        <a
-                            href="https://siegristarchitectes.ch/en/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-3 py-1.5 border border-neutral-200 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all bg-white rounded-none"
-                        >
-                            <Globe className="w-3.5 h-3.5" />
-                            Website
-                        </a>
-                        <a
-                            href="https://www.instagram.com/siegristarchitectes/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-3 py-1.5 border border-neutral-200 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all bg-white rounded-none"
-                        >
-                            <Instagram className="w-3.5 h-3.5" />
-                            Instagram
-                        </a>
-                    </div> */}
+                    <ImageSliderMarkup />
 
                     {/* Reels Grid */}
-                    <div className="pt-6 space-y-4">
-                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
-                            {locale === 'de' ? 'PROJEKT-REELS' : 'PROJECT REELS'}
-                        </h3>
-                        <div className="grid grid-cols-2 gap-4">
-                            <VideoThumbnail
-                                href="https://www.instagram.com/p/DWgGKLNiN9P/"
-                                imageSrc="/siegrist/saint-aubin.jpg"
-                                title={t('instagramTitle1')}
-                                subtitle={t('reelDescription1')}
-                                handle="@siegristarchitectes"
-                            />
-                            <VideoThumbnail
-                                href="https://www.instagram.com/p/DViepQmiAsG/"
-                                imageSrc="/siegrist/venthone.jpg"
-                                title={t('instagramTitle2')}
-                                subtitle={t('reelDescription2')}
-                                handle="@siegristarchitectes"
-                            />
-                        </div>
+                    <div className="pt-6">
+                        <ReelsMarkup />
                     </div>
 
                     {/* Data Sheets Stack */}
-                    <div className="pt-6 space-y-6">
-                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
-                            {locale === 'de' ? 'PROJEKTDATEN' : 'PROJECT DATA'}
-                        </h3>
-                        <ProjectDataSheet data={t.raw('saintAubinData')} />
-                        <ProjectDataSheet data={t.raw('venthoneData')} />
+                    <div className="pt-6">
+                        <DataSheetsMarkup />
                     </div>
 
                     {/* Office Team Section */}
-                    <div className="pt-6 space-y-4 font-rail">
-                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
-                            {locale === 'de' ? 'ÜBER DAS BÜRO' : 'ABOUT THE OFFICE'}
-                        </h3>
-                        <div className="relative overflow-hidden rounded-none aspect-[4/3] w-full bg-gray-50">
-                            <Image 
-                                src="/siegrist/office-portrait.jpg" 
-                                alt="Siegrist Architectes Team" 
-                                fill 
-                                className="object-cover"
-                            />
-                        </div>
-                        <div className="mt-2 text-xs text-neutral-800 leading-relaxed font-rail">
-                            {t('caption3')}
-                        </div>
+                    <div className="pt-6">
+                        <AboutOfficeMarkup />
                     </div>
 
                 </div>
 
-                {/* Right Column: Editorial Text content */}
-                <div className="lg:col-span-7 space-y-6 font-rail order-1 lg:order-2">
+                {/* Right Column: Editorial Text content & Mobile Stack */}
+                <div className="lg:col-span-7 space-y-6 font-rail">
                     
                     {/* Title with signature Bauwelt yellow accent underline */}
                     <div className="relative pb-2 mb-6 select-none">
@@ -283,6 +284,11 @@ export function SiegristTestimonialSection() {
                         <span>{locale === 'de' ? 'Text: Siegrist Architectes & Typus Redaktion' : 'Text: Siegrist Architectes & Typus Editorial'}</span>
                     </div>
 
+                    {/* Mobile-only Image Slider */}
+                    <div className="block lg:hidden my-6">
+                        <ImageSliderMarkup />
+                    </div>
+
                     {/* Body Paragraphs */}
                     <div className="space-y-10 text-neutral-800 leading-relaxed font-normal font-rail">
                         
@@ -296,6 +302,11 @@ export function SiegristTestimonialSection() {
                             </p>
                         </div>
 
+                        {/* Mobile-only Reels Grid */}
+                        <div className="block lg:hidden my-8 pt-4">
+                            <ReelsMarkup />
+                        </div>
+
                         {/* Section 2 */}
                         <div className="space-y-3">
                             <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
@@ -306,6 +317,11 @@ export function SiegristTestimonialSection() {
                             </p>
                         </div>
 
+                        {/* Mobile-only Office Team Portrait Section */}
+                        <div className="block lg:hidden my-8 pt-4">
+                            <AboutOfficeMarkup />
+                        </div>
+
                         {/* Section 3 */}
                         <div className="space-y-3">
                             <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
@@ -314,6 +330,11 @@ export function SiegristTestimonialSection() {
                             <p className="text-base text-neutral-700 leading-relaxed text-justify font-rail">
                                 {renderHighlightedText(t('p4'))}
                             </p>
+                        </div>
+
+                        {/* Mobile-only Project Data Sheets Stack */}
+                        <div className="block lg:hidden my-8 pt-4">
+                            <DataSheetsMarkup />
                         </div>
 
                         {/* Section 4 / Closing */}

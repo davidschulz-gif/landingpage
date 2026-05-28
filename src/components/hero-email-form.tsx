@@ -175,7 +175,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
               key={idx}
               className='flex items-center gap-2  whitespace-nowrap flex-shrink-0'
             >
-              <IconCheck className='size-3.5 md:size-4 text-black dark:text-white flex-shrink-0' stroke={3} />
+              <IconCheck className='size-3.5 md:size-4 text-emerald-700 dark:text-emerald-400 flex-shrink-0' stroke={3} />
               <span className='text-[11px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {feature}
               </span>

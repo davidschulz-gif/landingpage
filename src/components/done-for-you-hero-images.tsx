@@ -4,15 +4,15 @@ import { useMediaQuery } from '../hooks/use-media-query'
 
 const ALL_IMAGES = [
   // Top Cluster (More horizontal, premium renders)
-  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/low-aerial-modern-residential.jpg', mobile: false, desktop: { width: 325, height: 200, x: 325, y: -375, rotate: 4, delay: 0.3 } },
+  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/low-aerial-modern-residential.jpg', mobile: false, desktop: { width: 325, height: 175, x: 325, y: -325, rotate: 0, delay: 0.3 } },
 
   // Left Cluster
-  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/low-aerial-luxury-villa-pool.jpg', mobile: false, desktop: { width: 300, height: 200, x: -625, y: -175, rotate: -5, delay: 0.5 } },
+  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/european-waterfront-residential-building.jpg', mobile: false, desktop: { width: 300, height: 200, x: -625, y: -150, rotate: -1, delay: 0.5 } },
   { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/berlin-modern-apartment.jpg', mobile: false, desktop: { width: 300, height: 175, x: -600, y: 25, rotate: -5, delay: 0.15 } },
   { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/brutalist-cliffside-concrete-house.jpg', mobile: false, desktop: { width: 300, height: 175, x: -550, y: 200, rotate: -5, delay: 0.1 } },
 
   // Right Cluster
-  { src: '/variation-8.jpg', mobile: false, desktop: { width: 325, height: 200, x: 350, y: -175, rotate: 5, delay: 0.5 } },
+  { src: '/variation-8.jpg', mobile: false, desktop: { width: 325, height: 200, x: 350, y: -150, rotate: 1, delay: 0.5 } },
   { src: '/industrial-building-render.png', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 25, rotate: 5, delay: 0.15 } },
   { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/mediterranean-coastal-apartment-terraces.jpg', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 200, rotate: 5, delay: 0.15 } },
 
@@ -21,7 +21,7 @@ const ALL_IMAGES = [
   // { src: '/mixed-use-development.png', mobile: false, desktop: { width: 240, height: 170, x: 250, y: 520, rotate: -6, delay: 0.7 } },
 
   // Grid images integrated
-  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/low-aerial-courtyard-housing.jpg', mobile: false, desktop: { width: 325, height: 200, x: -550, y: -375, rotate: -4, delay: 0.3 } },
+  { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/low-aerial-courtyard-housing.jpg', mobile: false, desktop: { width: 325, height: 200, x: -650, y: -325, rotate: 0, delay: 0.3 } },
 ] 
 
 //  { src: '/variation-10.jpg', mobile: false, desktop: { width: 380, height: 260, x: 480, y: -420, rotate: 4, delay: 0.3 } },
