@@ -100,7 +100,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       // transition={{ duration: 0.1, delay: 1.1, ease: 'easeOut' }}
-      className='mt-4 w-full max-w-5xl mx-auto px-4'
+      className={`w-full max-w-5xl mx-auto ${showFeatures ? 'mt-4 px-4' : 'mt-2 px-0'}`}
     >
       <div className='w-full max-w-md mx-auto'>
         <div className='flex flex-col sm:flex-row items-stretch gap-2.5'>
