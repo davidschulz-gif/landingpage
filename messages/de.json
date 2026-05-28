@@ -565,7 +565,17 @@
     "continue": "unverbindlich mehr Infos erhalten",
     "trustText": "Kein Spam. Jederzeit kündbar.",
     "errorEmail": "Bitte gib eine gültige E-Mail-Adresse ein",
-    "errorConsent": "Bitte stimme den Datenschutzbestimmungen zu"
+    "errorConsent": "Bitte stimme den Datenschutzbestimmungen zu",
+    "viewFreeTitle": "Entdecke die App kostenlos.",
+    "viewFreeSubtitle": "Gib deine E-Mail-Adresse ein, um Informationen, Fallstudien und exklusive Angebote zu erhalten – und entdecke die App kostenlos.",
+    "viewFreeBullet1": "Entdecke die App kostenlos",
+    "viewFreeBullet2": "Fallstudien",
+    "viewFreeBullet3": "Exklusive Angebote und Einblicke",
+    "viewFreeEmailPlaceholder": "Deine E-Mail-Adresse",
+    "viewFreeCta": "Mehr erfahren",
+    "viewFreeEnvelopeText": "Erfahre mehr über die App und erhalte Benachrichtigungen über neue Funktionen.",
+    "viewFreeFooterText": "Kein Spam. Jederzeit abbestellbar.",
+    "viewFreePrivacyLink": "Datenschutz"
   },
   "FloatingBuzzer": {
     "text": "Kostenlose Demo und Erstgespräch anfragen"

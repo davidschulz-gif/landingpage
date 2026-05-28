@@ -102,7 +102,7 @@ export function SiegristTestimonialSection() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 
                 {/* Left Column: Media, Reels, Data Sheets */}
-                <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-8 font-rail">
+                <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-8 font-rail order-2 lg:order-1">
                     
                     {/* Image Slider */}
                     <div>
@@ -186,7 +186,7 @@ export function SiegristTestimonialSection() {
                     </div>
 
                     {/* Featured On Buttons */}
-                    <div className="flex flex-wrap items-center gap-3 pt-2 font-rail">
+                    {/* <div className="flex flex-wrap items-center gap-3 pt-2 font-rail">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
                             {t('featuredOn')}
                         </span>
@@ -208,7 +208,7 @@ export function SiegristTestimonialSection() {
                             <Instagram className="w-3.5 h-3.5" />
                             Instagram
                         </a>
-                    </div>
+                    </div> */}
 
                     {/* Reels Grid */}
                     <div className="pt-6 space-y-4">
@@ -263,7 +263,7 @@ export function SiegristTestimonialSection() {
                 </div>
 
                 {/* Right Column: Editorial Text content */}
-                <div className="lg:col-span-7 space-y-6 font-rail">
+                <div className="lg:col-span-7 space-y-6 font-rail order-1 lg:order-2">
                     
                     {/* Title with signature Bauwelt yellow accent underline */}
                     <div className="relative pb-2 mb-6 select-none">

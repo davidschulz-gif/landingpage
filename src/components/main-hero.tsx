@@ -38,29 +38,29 @@ export function MainHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' as const }}
         >
-           <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-                      className='mb-0 flex flex-col items-center space-y-2'
-                    >
-                      <div className='bg-black size-4'></div>
-                      <span
-                        // id='typus-logo'
-                        className='text-center !font-logo'
-                        style={{
-                          fontSize: '25px',
-                          fontWeight: 700,
-                          letterSpacing: '2.5px',
-                          lineHeight: '1.3em',
-                          color: '#000',
-                          textTransform: 'uppercase',
-                          fontFamily: 'var(--font-soyuz-grotesk)'
-                        }}
-                      >
-                        typus.AI
-                      </span>
-                    </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+            className='mb-0 flex flex-col items-center space-y-2'
+          >
+            <div className='bg-black size-4'></div>
+            <span
+              // id='typus-logo'
+              className='text-center !font-logo'
+              style={{
+                fontSize: '25px',
+                fontWeight: 700,
+                letterSpacing: '2.5px',
+                lineHeight: '1.3em',
+                color: '#000',
+                textTransform: 'uppercase',
+                fontFamily: 'var(--font-soyuz-grotesk)'
+              }}
+            >
+              typus.AI
+            </span>
+          </motion.div>
           <div className='flex justify-center w-full mt-12 mb-8'>
             <div className='relative inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] overflow-hidden font-space-grotesk rounded-none'
               style={{

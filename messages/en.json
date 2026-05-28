@@ -565,7 +565,17 @@
     "continue": "Get more information without obligation",
     "trustText": "No spam. Cancel anytime.",
     "errorEmail": "Please enter a valid email address",
-    "errorConsent": "Please agree to the privacy policy"
+    "errorConsent": "Please agree to the privacy policy",
+    "viewFreeTitle": "View the app for free.",
+    "viewFreeSubtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
+    "viewFreeBullet1": "View the app for free",
+    "viewFreeBullet2": "Case Studies",
+    "viewFreeBullet3": "Exclusive offers and insights",
+    "viewFreeEmailPlaceholder": "Enter your email",
+    "viewFreeCta": "Learn more",
+    "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",
+    "viewFreeFooterText": "No spam. Unsubscribe at any time.",
+    "viewFreePrivacyLink": "Data Privacy"
   },
   "FloatingBuzzer": {
     "text": "Request a Free Demo and Initial Consultation"
