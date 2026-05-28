@@ -497,7 +497,7 @@
     "licenses": "Licenses",
     "contact": "Contact",
     "legal": "Legal",
-    "copyright": "© 2025 Typus.AI. All rights reserved.",
+    "copyright": "© 2026 Typus.AI. All rights reserved.",
     "coFinancingTitle": "On Co-Financing",
     "coFinancing": "The project aims to develop central new features for the cloud-based AI visualization platform. This includes location-specific integration of 3D models into real environments, further processing of complete models, direct BIM integration, and AI-supported texture processing. An AI-compatible material catalog is also intended to enable the use of real materials and manufacturers. The automated conversion of 3D models into photorealistic renderings is promoted and allows intuitive editing directly in the browser. The prototype significantly improves the visualization process. For architects, this creates a new tool that enables efficient, flexible, and realistic visualizations in early design phases – including precise adjustments and location-accurate representation.",
     "links": {
@@ -2816,10 +2816,10 @@
   },
   "BlogPromo": {
     "badge": "SUCCESS STORY",
-    "title": "architect wins ama awards in madrid",
+    "title": "Solo architect wins AMA Award. No team. Only AI.",
     "date": "March 20, 2026 · 5 min read",
     "ama": {
-      "title": "architect wins ama awards in madrid",
+      "title": "Solo architect wins AMA Award. No team. Only AI.",
       "date": "March 20, 2026 · 5 min read"
     },
     "siegrist": {
@@ -2827,5 +2827,11 @@
       "date": "April 10, 2026 · 4 min read"
     },
     "readArticle": "READ FULL ARTICLE"
+  },
+  "LinkedinSlideshow": {
+    "badge": "Community Insights",
+    "title": "WHAT OUR COMMUNITY IS SAYING",
+    "subtitle": "Latest posts and insights from LinkedIn",
+    "viewOnLinkedin": "View on LinkedIn"
   }
 }

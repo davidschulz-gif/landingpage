@@ -205,6 +205,17 @@ const FeatureShowcase = dynamic(
   }
 )
 
+const LinkedinSlideshow = dynamic(
+  () =>
+    import('@/components/linkedin-slideshow').then(
+      mod => mod.LinkedinSlideshow
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-[620px] bg-neutral-100 dark:bg-neutral-800/40 animate-pulse rounded-3xl max-w-3xl mx-auto' />,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
@@ -376,11 +387,14 @@ export default function Home() {
         {/* Hero Section */}
         <MainHero />
 
-        {/* Hero Section with Parallax */}
-        <HeroParallax
+        {/* Hero Section with Parallax - Commented out per request */}
+        {/* <HeroParallax
           row123Products={translatedRow123Products}
           row4Products={translatedRow4Products}
-/>
+        /> */}
+
+        {/* Embedded LinkedIn Slideshow Showcase */}
+        <LinkedinSlideshow />
 
         {/* Image Templates */}
         <motion.div

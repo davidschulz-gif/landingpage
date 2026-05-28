@@ -497,7 +497,7 @@
     "licenses": "Lizenzen",
     "contact": "Kontakt",
     "legal": "Rechtliches",
-    "copyright": "© 2025 Typus.AI. Alle Rechte vorbehalten.",
+    "copyright": "© 2026 Typus.AI. Alle Rechte vorbehalten.",
     "coFinancingTitle": "Zur Kofinanzierung",
     "coFinancing": "Das Projekt zielt auf die Entwicklung zentraler neuer Funktionen für die cloudbasierte KI-Visualisierungsplattform. Dazu gehören die ortsspezifische Einbindung im Bereich der 3D-Modelle in reale Umgebungen, die Weiterverarbeitung vollständiger Modelle, die direkte BIM-Integration sowie KI-gestützte Texturverarbeitung. Ein KI-kompatibler Materialkatalog soll zudem den Einsatz realer Materialien und Hersteller ermöglichen. Gefördert wird die automatisierte Umwandlung im Bereich der 3D-Modelle in photorealistische Renderings und erlaubt eine intuitive Bearbeitung direkt im Browser. Der Prototyp verbessert den Visualisierungsprozess deutlich. Für Architekt:innen entsteht damit ein neues Werkzeug, das effiziente, flexible und realitätsnahe Visualisierungen in frühen Entwurfsphasen ermöglicht – inklusive präziser Anpassungen und ortsgenauer Darstellung.",
     "links": {
@@ -2818,10 +2818,10 @@
   },
   "BlogPromo": {
     "badge": "ERFOLGSGESCHICHTE",
-    "title": "architect wins ama awards in madrid",
+    "title": "Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.",
     "date": "March 20, 2026 · 5 min read",
     "ama": {
-      "title": "Architect gewinnt AMA Awards in Madrid",
+      "title": "Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.",
       "date": "20. März 2026 · 5 Min. Lesezeit"
     },
     "siegrist": {
@@ -2829,5 +2829,11 @@
       "date": "10. April 2026 · 4 Min. Lesezeit"
     },
     "readArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN"
+  },
+  "LinkedinSlideshow": {
+    "badge": "Community Insights",
+    "title": "WAS UNSERE COMMUNITY SAGT",
+    "subtitle": "Aktuelle Beiträge und Insights von LinkedIn",
+    "viewOnLinkedin": "Auf LinkedIn ansehen"
   }
 }

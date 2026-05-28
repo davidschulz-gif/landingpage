@@ -280,7 +280,7 @@ export function NavbarDemo() {
                               </div>
                               <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
                                   <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
-                                      {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                      {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
                                   </h2>
                                   <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
                                       <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
@@ -421,7 +421,7 @@ export function NavbarDemo() {
                                   </div>
                                   <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
                                       <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
-                                          {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                          {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
                                       </h2>
                                       <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
                                           <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
@@ -678,7 +678,7 @@ export function NavbarDemo() {
                       </div>
                       <div className="w-[65%] p-2 flex flex-col justify-center">
                         <h2 className="text-[11px] font-medium text-black uppercase tracking-tight leading-tight mb-1 line-clamp-2">
-                          {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                          {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
                         </h2>
                         <div className="flex items-center gap-1.5 text-[8px] font-bold text-gray-400 uppercase tracking-widest mb-2">
                           <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>

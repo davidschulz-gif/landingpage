@@ -31,14 +31,15 @@ const articleData: Article[] = [
     // link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
     link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
   },
-  {
+   {
     id: 1,
-    title: 'GOOGLE REVIEWS',
+    title: 'AI-Generated Architectural Precision and Visual Excellence',
     excerpt:
-      '"FANTASTIC! GREAT EXPERIENCE AND IMPRESSIVE QUALITY! EASY TO WORK AND FAST OUTPUT!"',
-    image: '/logo/google_logo.png',
-    source: 'ROLAND WOBORSKY, SELF-EMPLOYED',
-    link: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D',
+      'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
+    image: '/logo/dab_logo.png',
+    source: 'DAB ONLINE',
+    // link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
+    link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
   },
   {
     id: 2,
@@ -59,16 +60,16 @@ const articleData: Article[] = [
   //   source: 'ADDD Platform',
   //   link: 'https://addd.io/product/prai',
   // },
-  {
+   {
     id: 5,
-    title: 'AI-Generated Architectural Precision and Visual Excellence',
+    title: 'GOOGLE REVIEWS',
     excerpt:
-      'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
-    image: '/logo/dab_logo.png',
-    source: 'DAB ONLINE',
-    // link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
-    link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
+      '"FANTASTIC! GREAT EXPERIENCE AND IMPRESSIVE QUALITY! EASY TO WORK AND FAST OUTPUT!"',
+    image: '/logo/google_logo.png',
+    source: 'ROLAND WOBORSKY, SELF-EMPLOYED',
+    link: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D',
   },
+
   {
     id: 6,
     title: 'Innovation Forum: Leading Construction Technology Startups',

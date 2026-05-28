@@ -302,11 +302,6 @@ export function SiegristTestimonialSection() {
                             </p>
                         </div>
 
-                        {/* Mobile-only Reels Grid */}
-                        <div className="block lg:hidden my-8 pt-4">
-                            <ReelsMarkup />
-                        </div>
-
                         {/* Section 2 */}
                         <div className="space-y-3">
                             <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
@@ -345,6 +340,13 @@ export function SiegristTestimonialSection() {
                             <p className="whitespace-pre-line text-base text-neutral-700 leading-relaxed text-justify font-rail">
                                 {renderHighlightedText(t('p5'))}
                             </p>
+                        </div>
+
+                        {/* Mobile-only secondary media stack (moved after all paragraphs) */}
+                        <div className="block lg:hidden space-y-8 pt-6 border-t border-neutral-100">
+                            <ReelsMarkup />
+                            {/* <AboutOfficeMarkup />
+                            <DataSheetsMarkup /> */}
                         </div>
 
                     </div>
@@ -399,7 +401,7 @@ export function SiegristTestimonialSection() {
                             </div>
                             <div className="w-full md:w-[50%] p-6 flex flex-col justify-center">
                                 <h2 className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-black mb-4 font-rail">
-                                    {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                    {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
                                 </h2>
                                 <div className="flex items-center gap-2 text-[9px] font-bold text-neutral-400 uppercase tracking-widest mb-6 font-rail">
                                     <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
