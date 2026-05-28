@@ -18,7 +18,7 @@ export function VideoThumbnail({ href, imageSrc, title, subtitle, handle = "@typ
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative block aspect-[9/16] w-full max-w-[200px] mx-auto overflow-hidden rounded-[24px] border-2 border-black shadow-[4px_4px_0px_#000000] group bg-gray-100"
+            className="relative block aspect-[9/16] w-full max-w-[200px] mx-auto overflow-hidden rounded-none border-2 border-black shadow-[4px_4px_0px_#000000] group bg-gray-100"
             whileHover={{ y: -4, x: -2, boxShadow: "6px_6px_0px_#000000", transition: { duration: 0.2 } }}
         >
             {/* Background Image */}
@@ -73,7 +73,7 @@ export function VideoThumbnail({ href, imageSrc, title, subtitle, handle = "@typ
 
                     {/* Handle and Icon */}
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] border border-white/80 shadow-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                        <div className="w-8 h-8 rounded-none bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] border border-white/80 shadow-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
                             <Instagram className="w-4 h-4 text-white" />
                         </div>
                         <span className="text-white font-black text-sm tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{handle}</span>
@@ -83,7 +83,7 @@ export function VideoThumbnail({ href, imageSrc, title, subtitle, handle = "@typ
 
             {/* Instagram Icon on Hover */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
-                <div className="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border border-white/50 shadow-2xl">
+                <div className="w-14 h-14 bg-white/30 backdrop-blur-md rounded-none flex items-center justify-center border border-white/50 shadow-2xl">
                     <Instagram className="w-6 h-6 text-white" />
                 </div>
             </div>

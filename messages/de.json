@@ -184,7 +184,8 @@
     "gate": {
       "title": "Entdecken Sie die App kostenlos.",
       "subtitle": "Tragen Sie Ihre E-Mail ein, um Informationen, Case Studies und exklusive Angebote zu erhalten – und die App kostenlos zu entdecken.",
-      "privacy": "Kein Spam. Abmeldung jederzeit möglich."
+      "privacy": "Kein Spam. Abmeldung jederzeit möglich.",
+      "privacyLink": "Datenschutz"
     },
     "errors": {
       "required": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
@@ -193,7 +194,7 @@
       "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
     },
     "features": {
-      "info": "Informationen",
+      "info": "",
       "caseStudies": "Case Studies",
       "exclusiveOffers": "Exklusive Angebote und Einblicke",
       "viewApp": "App ansehen"
@@ -2755,15 +2756,15 @@
   },
   "SiegristTestimonial": {
     "badge": "ERFOLGSGESCHICHTE",
-    "sectionTitle": "Schweizer Büro Siegrist Architectes: Zwei Visionen, ein KI-Workflow",
-    "p1": "Mariela und Luz Maria Siegrist, das Schwester-Duo hinter Siegrist Architectes, verbinden Schweizer Präzision mit KI-gestützter Kreativität, um nachhaltige Architektur neu zu definieren.",
-    "h2": "Lernräume der Zukunft entwickeln",
-    "p2": "Ihre jüngsten Arbeiten, darunter die 'Développement du Site Scolaire' in Saint-Aubin, zeigen ihr Engagement für den Holzbau und naturintegrierte Designs. Durch den Einsatz von Typus.AI können sie Atmosphäre und Materialität bereits in frühen Entwurfsphasen schnell prototypisch darstellen. 'Zwei Generationen, zwei Visionen, ein Ziel: beseelte Orte zu schaffen', sagen sie. Die KI ermöglicht es ihnen, in Sekundenschnelle zu untersuchen, wie Holzfassaden mit Licht und Landschaft interagieren – ein Prozess, der früher Tage dauerte.",
-    "h3": "Alpiner Minimalismus trifft moderne Technik",
-    "p3": "In Venthône integriert ihre Transformation des Schulzentrums minimalistische Ästhetik in die alpine Landschaft des Wallis. Die Herausforderung bestand darin, die Seele des Ortes zu bewahren und gleichzeitig moderne Funktionalität hinzuzufügen. Mit Typus konnten sie die Holzstruktur des Erweiterungsbaus vor der dramatischen Bergkulisse visualisieren und so sicherstellen, dass sich jedes Detail mit dem Standort verbunden anfühlt.",
-    "h4": "Nachhaltigkeit und Seele",
-    "p4": "Für Siegrist Architectes ist Architektur mehr als nur Gebäude; es geht um die Seele des Ortes. Die KI-gestützte Visualisierung hilft ihnen, diese Vision Stakeholdern und Jurys effektiver zu vermitteln und komplexe nachhaltige Entwürfe greifbar und inspirierend zu machen.",
-    "p5": "Für die Zukunft der Schweizer Architektur eröffnet die Verschmelzung von traditionellem Handwerk und KI neue Horizonte.",
+    "sectionTitle": "KI gewinnt den Wettbewerb.",
+    "p1": "Die Bilder wirkten ruhig, präzise und atmosphärisch: Holzfassaden im Morgenlicht, offene Lernräume, eingebettet in Landschaft. Und doch entstanden diese Wettbewerbsvisualisierungen nicht über klassische externe Rendering-Studios mit langen Abstimmungsschleifen und hohen Zusatzkosten. Sie entstanden direkt im Entwurfsprozess — mit KI. Das Schweizer Büro Siegrist Architectes gewann mit diesem Ansatz einen offenen Wettbewerb für das Développement du Site Scolaire in Saint-Aubin (Fribourg): ein nachhaltiger Schulcampus in Holzbauweise mit 4'860 m² und einem Projektvolumen von CHF 18,3 Mio.",
+    "h2": "Weniger Ressourcen. Mehr Entwurf.",
+    "p2": "In offenen Wettbewerben arbeiten viele Büros mit begrenzter Zeit und begrenzten Budgets. Gleichzeitig steigen die Erwartungen an Visualisierung und Präsentation kontinuierlich. KI verändert dieses Verhältnis gerade fundamental. Im Fall von Saint-Aubin bedeutete das: keine externen Visualisierungsstudios, deutlich reduzierte Kosten, extrem schnelle Iterationen, und mehr Fokus auf den eigentlichen architektonischen Entwurf. Die Bilder wurden dadurch nicht generischer — sondern präziser. Weil sie direkt aus dem gestalterischen Prozess selbst entstanden.",
+    "h3": "Atmosphären entwerfen statt nur darstellen",
+    "p3": "Auch beim Projekt Transformation du Centre Scolaire in Venthône im Wallis nutzte Siegrist Architectes KI, um zu untersuchen, wie sich minimalistische Holzarchitektur in die alpine Landschaft integriert. Die zentrale Frage war nicht mehr nur: „Wie sieht das Gebäude aus?“ Sondern: „Wie fühlt sich dieser Ort an?“ Gerade für Büros im DACH-Raum wird das zunehmend relevant. Denn Wettbewerbe werden heute nicht allein über Konzepte entschieden, sondern über die Fähigkeit, räumliche Identität und Atmosphäre überzeugend zu vermitteln.",
+    "h4": "Von der Entwurfsidee zur Wettbewerbsvisualisierung in Minuten",
+    "p4": "Viele Büros kennen den klassischen Ablauf: Atmosphärische Renderings folgen oft spät — teuer, extern produziert und unter Zeitdruck. Siegrist Architectes arbeiteten anders. Mit Typus.AI kombinierten mit KI-gestützter Bildgenerierung. Licht, Materialität und landschaftliche Einbindung konnten dadurch bereits während des Entwurfs untersucht werden. Gerade im Holzbau eröffnete das neue Möglichkeiten. Fassaden und Freiräume konnten innerhalb von Sekunden getestet werden — ein Prozess, der früher Tage dauerte.",
+    "p5": "Die eigentliche Veränderung\n\nDie spannende Frage lautet deshalb nicht: „Kann KI Architektur visualisieren?“ Sondern: „Was passiert mit Wettbewerben, wenn plötzlich jedes Büro Bilder auf Wettbewerbsniveau erzeugen kann?“\n\nVielleicht entsteht dadurch erstmals eine gerechtere Ausgangslage — unabhängig von der Größe eines Büros oder dessen Renderbudget.\n\nFür Siegrist Architectes bedeutete die KI vor allem eines: mehr Kontrolle über den eigenen architektonischen Ausdruck. Und genau darin könnte die eigentliche Revolution liegen.",
     "backToHome": "Zur Startseite",
     "dateDisplay": "10. April 2026",
     "readingTime": "4 Min. Lesezeit",

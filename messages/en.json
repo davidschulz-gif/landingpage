@@ -184,7 +184,8 @@
     "gate": {
       "title": "View the app for free.",
       "subtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
-      "privacy": "No spam. Unsubscribe at any time."
+      "privacy": "No spam. Unsubscribe at any time.",
+      "privacyLink": "Data Privacy"
     },
     "errors": {
       "required": "Please enter your email address.",
@@ -193,7 +194,7 @@
       "unexpected": "An unexpected error occurred."
     },
     "features": {
-      "info": "Information",
+      "info": "",
       "caseStudies": "Case Studies",
       "exclusiveOffers": "Exclusive offers and insights",
       "viewApp": "View the app for free"
@@ -2753,15 +2754,15 @@
   },
   "SiegristTestimonial": {
     "badge": "SUCCESS STORY",
-    "sectionTitle": "Swiss Office Siegrist Architectes: Two Visions, One AI Workflow",
-    "p1": "Mariela and Luz Maria Siegrist, the sister duo behind Siegrist Architectes, are blending Swiss precision with AI-powered creativity to redefine sustainable architecture.",
-    "h2": "Developing Future Learning Spaces",
-    "p2": "Their recent work, including the 'Développement du Site Scolaire' in Saint-Aubin, showcases their commitment to wooden construction and nature-integrated designs. By using Typus.AI, they can rapidly prototype atmosphere and materiality in early design stages. 'Two generations, two visions, one goal: to create soulful places,' they say. The AI allows them to explore how wooden facades interact with light and landscape in seconds, a process that traditionally took days.",
-    "h3": "Alpine Minimalism Meets Modern Tech",
-    "p3": "In Venthône, their transformation of the school center integrates minimalist aesthetics into the Alpine landscape of Valais. The challenge was to maintain the soul of the place while adding modern functionality. With Typus, they were able to visualize the extension's wooden structure against the dramatic mountain backdrop, ensuring every detail felt connected to the site.",
-    "h4": "Sustainability and Soul",
-    "p4": "For Siegrist Architectes, architecture is about more than just buildings; it's about the soul of the place. AI-driven visualization helps them communicate this vision to stakeholders and juries more effectively, making complex sustainable designs tangible and inspiring.",
-    "p5": "For the future of Swiss architecture, the fusion of traditional craftsmanship and AI is opening new horizons.",
+    "sectionTitle": "AI wins the competition.",
+    "p1": "The images appeared calm, precise, and atmospheric: wooden facades in the morning light, open learning spaces, embedded in the landscape. Yet, these competition visualizations were not created through traditional external rendering studios with long feedback loops and high additional costs. They were created directly within the design process — using AI. The Swiss firm Siegrist Architectes won an open competition for the Développement du Site Scolaire in Saint-Aubin (Fribourg) with this approach: a sustainable timber school campus covering 4,860 m² with a project volume of CHF 18.3 million.",
+    "h2": "Fewer resources. More design.",
+    "p2": "In open competitions, many firms work with limited time and tight budgets. At the same time, expectations for visualization and presentation are continuously rising. AI is fundamentally changing this dynamic. In the case of Saint-Aubin, this meant: no external visualization studios, significantly reduced costs, extremely fast iterations, and more focus on the actual architectural design. The images did not become more generic — but rather more precise, because they arose directly from the creative process itself.",
+    "h3": "Designing atmospheres instead of just representing them",
+    "p3": "Also in the Transformation du Centre Scolaire project in Venthône in Valais, Siegrist Architectes used AI to explore how minimalist timber architecture integrates into the alpine landscape. The central question was no longer just: 'What does the building look like?' But rather: 'How does this place feel?' This is becoming increasingly relevant, especially for offices in the DACH region. Because today, competitions are not decided by concepts alone, but by the ability to convincingly convey spatial identity and atmosphere.",
+    "h4": "From design idea to competition visualization in minutes",
+    "p4": "Many offices know the classic routine: atmospheric renderings often come late — expensive, externally produced, and under time pressure. Siegrist Architectes worked differently. They combined their process with AI-driven image generation using Typus.AI. Light, materiality, and landscape integration could thus be explored during the design phase itself. Especially in timber construction, this opened up new possibilities. Facades and outdoor spaces could be tested within seconds — a process that used to take days.",
+    "p5": "The actual change\n\nTherefore, the exciting question is not: 'Can AI visualize architecture?' But rather: 'What happens to competitions when suddenly every office can produce images at a competition level?'\n\nPerhaps this will create a fairer starting point for the first time — regardless of the size of an office or its rendering budget.\n\nFor Siegrist Architectes, AI meant one thing above all: more control over their own architectural expression. And that is exactly where the real revolution might lie.",
     "backToHome": "Back to Home",
     "dateDisplay": "April 10, 2026",
     "readingTime": "4 min read",

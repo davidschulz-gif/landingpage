@@ -152,10 +152,10 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             <span>{successMessage}</span>
           </div>
         )}
-        <div className='mt-2 flex items-center gap-2'>
-          <IconMail size={14} className='text-gray-600' />
+        <div className='mt-2.5 flex items-start gap-2 text-left'>
+          <IconMail size={18} className='text-gray-600 dark:text-gray-400 mt-0.5 flex-shrink-0' />
           <span
-            className='text-[11px] text-gray-600 dark:text-gray-300'
+            className='text-[11px] text-gray-600 dark:text-gray-300 leading-normal'
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
             {t('description')}
@@ -166,10 +166,10 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       {showFeatures && (
         <div className='mt-6 flex flex-wrap lg:flex-nowrap items-center justify-center gap-x-6 gap-y-2.5 w-full max-w-4xl mx-auto px-4 py-2.5 md:px-6 md:py-3 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/5 rounded-2xl shadow-md'>
           {[
-            t('features.info'),
+            // t('features.info'),
+            t('features.viewApp'),
             t('features.caseStudies'),
             t('features.exclusiveOffers'),
-            t('features.viewApp'),
           ].map((feature, idx) => (
             <div
               key={idx}

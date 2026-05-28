@@ -35,6 +35,32 @@ const ftCalhern = localFont({
   variable: '--font-ft-calhern',
 })
 
+const newRailAlphabet = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/NewRailAlphabet/NewRailAlphabet-Light.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/NewRailAlphabet/NewRailAlphabet-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/NewRailAlphabet/NewRailAlphabet-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/NewRailAlphabet/NewRailAlphabet-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-new-rail-alphabet',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://typus.ai'),
   title: {
@@ -161,7 +187,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${ftCalhern.variable} ${logoFont.variable} antialiased max-md:overflow-x-hidden`}
+      className={`${ftCalhern.variable} ${logoFont.variable} ${newRailAlphabet.variable} antialiased max-md:overflow-x-hidden`}
       suppressHydrationWarning
     >
       <head>

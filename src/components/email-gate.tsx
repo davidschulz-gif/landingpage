@@ -152,10 +152,10 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                 {/* checkmark features list */}
                 <div className='flex flex-col gap-3 sm:gap-4 text-left w-full max-w-sm mx-auto mb-4 sm:mb-6 md:mb-8 bg-neutral-50 dark:bg-neutral-900/40 p-4 sm:p-6 rounded-2xl border border-neutral-100 dark:border-neutral-900'>
                   {[
-                    t('features.info'),
+                    // t('features.info'),
+                    t('features.viewApp'),
                     t('features.caseStudies'),
                     t('features.exclusiveOffers'),
-                    t('features.viewApp'),
                   ].map((feature, idx) => (
                     <div key={idx} className='flex items-start gap-2.5 sm:gap-3 group/item'>
                       <div className='w-5 h-5 rounded-full bg-[#E6F7F2] dark:bg-[#003d2b] flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover/item:scale-110'>
@@ -173,8 +173,17 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                   <HeroEmailForm showFeatures={false} onSuccess={handleSuccess} />
                 </div>
 
-                <p className='mt-4 sm:mt-6 text-[10px] text-neutral-400 dark:text-neutral-600'>
-                  {t('gate.privacy')}
+                <p className='mt-4 sm:mt-6 text-[10px] text-neutral-400 dark:text-neutral-600 flex flex-wrap items-center justify-center gap-1.5'>
+                  <span>{t('gate.privacy')}</span>
+                  <span className='inline-block w-0.5 h-0.5 bg-neutral-300 dark:bg-neutral-700 rounded-none' />
+                  <a
+                    href='https://app.typus.ai/data-privacy'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline hover:text-neutral-600 dark:hover:text-neutral-400'
+                  >
+                    {t('gate.privacyLink')}
+                  </a>
                 </p>
               </motion.div>
             </div>

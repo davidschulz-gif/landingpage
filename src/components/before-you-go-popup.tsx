@@ -188,7 +188,7 @@ export default function BeforeYouGoPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className='fixed inset-0 z-[999998] bg-black/90 backdrop-blur-sm'
+            className='fixed inset-0 z-[999998] bg-black/85 backdrop-blur-md'
             onClick={handleClose}
           />
 
@@ -199,186 +199,186 @@ export default function BeforeYouGoPopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            className='fixed inset-0 z-[999999] flex items-center justify-center p-4 pointer-events-none'
+            className='fixed inset-0 z-[999999] overflow-y-auto'
           >
-            <div
-              className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-black rounded-3xl border border-white/10 shadow-2xl'
-              onClick={e => e.stopPropagation()}
-            >
-              {/* Subtle gradient accent at top */}
+            {/* Scrollable Center Wrapper */}
+            <div className='relative min-h-screen flex items-center justify-center p-4 sm:p-6 pointer-events-none'>
               <div
-                className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent'
-              />
-
-              {/* Ambient glow */}
-              {/* Ambient glow removed to avoid gray */}
-
-              {/* Close button */}
-              <button
-                onClick={handleClose}
-                className='absolute top-4 right-4 p-1 text-white hover:text-white transition-colors duration-200 z-10'
-                aria-label='Close'
+                className='relative w-full max-w-md pointer-events-auto overflow-hidden bg-black rounded-3xl border border-white/10 shadow-2xl'
+                onClick={e => e.stopPropagation()}
               >
-                <IconX size={18} strokeWidth={1.5} />
-              </button>
-
-              <div className='px-8 py-9'>
-                {/* Urgency badge */}
-                <div className='flex items-center gap-2 mb-6'>
-                  <div
-                    className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-[0.15em] uppercase border border-white text-white'
-                  >
-                    <IconClock size={11} strokeWidth={2} />
-                    {t('badge')}
-                  </div>
-                </div>
-
-                {/* Headline */}
-                <h2
-                  className='text-xl font-normal leading-snug mb-4 text-white tracking-tight'
-                >
-                  {t('title')}
-                </h2>
-
-                {/* Body */}
-                <p
-                  className='text-sm leading-relaxed mb-6 text-white/90 font-normal'
-                  style={{ fontFamily: 'sans-serif' }}
-                >
-                  {t('body')}
-                </p>
-
-                {/* Offer highlights */}
+                {/* Subtle gradient accent at top */}
                 <div
-                  className='flex items-center justify-between mb-8 px-5 py-4 overflow-hidden relative bg-black border border-white/20 rounded-2xl'
-                >
-                  <div
-                    className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
-                  />
-                  <div className='text-center relative z-10'>
-                    <div className='text-3xl font-light text-white'>4</div>
-                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
-                      {t('paidLabel')}
-                    </div>
-                  </div>
-                  <div
-                    className='text-white text-2xl font-thin relative z-10 scale-x-[1.8]'
-                  >
-                    →
-                  </div>
-                  <div className='text-center relative z-10'>
-                    <div className='text-3xl font-light text-white'>12</div>
-                    <div style={{ fontFamily: 'sans-serif' }} className='text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
-                      {t('accessLabel')}
-                    </div>
-                  </div>
-                  <div
-                    style={{ fontFamily: 'sans-serif' }}
-                    className='text-[10px] font-black uppercase tracking-wider px-3 py-1.5 relative z-10 bg-[#FFD700] text-black overflow-hidden shadow-[0_0_15px_rgba(255,215,0,0.5)]'
-                  >
-                    <span className='relative z-10'>{tPricing('bestOffer')}</span>
-                    <motion.div
-                      initial={{ x: '-150%' }}
-                      animate={{ x: '150%' }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 1.5,
-                        ease: "linear",
-                        repeatDelay: 2
-                      }}
-                      className='absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-20deg]'
-                    />
-                  </div>
-                </div>
+                  className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent'
+                />
 
-                {/* Unified Form */}
-                <form onSubmit={handleSubmit} className='mt-2'>
-                  {/* Email input */}
-                  <div className='mb-4'>
-                    <input
-                      type='email'
-                      placeholder={t('emailPlaceholder')}
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value)
-                        if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
-                      }}
-                      className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
-                      required
-                    />
-                    {errors.email && (
-                      <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
-                    )}
-                  </div>
-
-                  {/* Consent checkbox */}
-                  <div className='mb-6'>
-                    <label className='flex items-start gap-3 cursor-pointer group'>
-                      <div className='relative flex items-center mt-0.5 shrink-0'>
-                        <input
-                          type='checkbox'
-                          checked={isConsented}
-                          onChange={(e) => {
-                            setIsConsented(e.target.checked)
-                            if (errors.consent) setErrors(prev => ({ ...prev, consent: undefined }))
-                          }}
-                          className='peer hidden'
-                        />
-                        <div className={`w-4 h-4 border ${errors.consent ? 'border-red-500' : 'border-white/40'} peer-checked:bg-white peer-checked:border-white transition-all duration-200`} />
-                        <IconCheck
-                          size={12}
-                          className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
-                          strokeWidth={3}
-                        />
-                      </div>
-                      <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
-                        {t('privacyConsent')}
-                      </span>
-                    </label>
-                    {errors.consent && (
-                      <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
-                    )}
-                  </div>
-
-                  {/* Submit button */}
-                  <button
-                    type='submit'
-                    disabled={isSubmitting}
-                    className='flex items-center justify-center gap-2 w-full py-4 text-sm font-semibold transition-all duration-300 mb-2 bg-white text-black hover:bg-white/90 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-2xl shadow-lg'
-                  >
-                    {isSubmitting ? (
-                      <span className='flex items-center gap-2'>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-                        >
-                          <IconCheck size={16} strokeWidth={3} />
-                        </motion.div>
-                        Processing...
-                      </span>
-                    ) : (
-                      <>
-                        {t('continue')}
-                        <IconArrowRight size={16} strokeWidth={2.5} />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Trust text */}
-                  <div className='flex flex-col items-center gap-1 mt-4'>
-                    <p className='text-[10px] text-white/30 italic'>
-                      {t('trustText')}
-                    </p>
-                  </div>
-                </form>
-
-                {/* Dismiss */}
+                {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className='w-full text-center text-[11px] transition-colors duration-200 text-white/60 hover:text-white underline mt-2'
+                  className='absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-all duration-300 hover:rotate-90 hover:scale-110 z-10'
+                  aria-label='Close'
                 >
-                  {t('dismiss')}
+                  <IconX size={18} strokeWidth={1.5} />
                 </button>
+
+                <div className='px-6 py-6 sm:px-8 sm:py-8'>
+                  {/* Urgency badge */}
+                  <div className='flex items-center gap-2 mb-4 sm:mb-6'>
+                    <div
+                      className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-[0.15em] uppercase border border-white text-white'
+                    >
+                      <IconClock size={11} strokeWidth={2} />
+                      {t('badge')}
+                    </div>
+                  </div>
+
+                  {/* Headline */}
+                  <h2
+                    className='text-lg sm:text-xl font-normal leading-snug mb-3 sm:mb-4 text-white tracking-tight'
+                  >
+                    {t('title')}
+                  </h2>
+
+                  {/* Body */}
+                  <p
+                    className='text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 text-white/90 font-normal'
+                    style={{ fontFamily: 'sans-serif' }}
+                  >
+                    {t('body')}
+                  </p>
+
+                  {/* Offer highlights */}
+                  <div
+                    className='flex items-center justify-between mb-5 sm:mb-8 px-4 py-3 sm:px-5 sm:py-4 overflow-hidden relative bg-black border border-white/20 rounded-2xl'
+                  >
+                    <div
+                      className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
+                    />
+                    <div className='text-center relative z-10'>
+                      <div className='text-2xl sm:text-3xl font-light text-white'>4</div>
+                      <div style={{ fontFamily: 'sans-serif' }} className='text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
+                        {t('paidLabel')}
+                      </div>
+                    </div>
+                    <div
+                      className='text-white text-2xl font-thin relative z-10 scale-x-[1.8]'
+                    >
+                      →
+                    </div>
+                    <div className='text-center relative z-10'>
+                      <div className='text-2xl sm:text-3xl font-light text-white'>12</div>
+                      <div style={{ fontFamily: 'sans-serif' }} className='text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
+                        {t('accessLabel')}
+                      </div>
+                    </div>
+                    <div
+                      style={{ fontFamily: 'sans-serif' }}
+                      className='text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 py-1 sm:px-3 sm:py-1.5 relative z-10 bg-[#FFD700] text-black overflow-hidden shadow-[0_0_15px_rgba(255,215,0,0.5)]'
+                    >
+                      <span className='relative z-10'>{tPricing('bestOffer')}</span>
+                      <motion.div
+                        initial={{ x: '-150%' }}
+                        animate={{ x: '150%' }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 1.5,
+                          ease: "linear",
+                          repeatDelay: 2
+                        }}
+                        className='absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-20deg]'
+                      />
+                    </div>
+                  </div>
+
+                  {/* Unified Form */}
+                  <form onSubmit={handleSubmit} className='mt-2'>
+                    {/* Email input */}
+                    <div className='mb-3 sm:mb-4'>
+                      <input
+                        type='email'
+                        placeholder={t('emailPlaceholder')}
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value)
+                          if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+                        }}
+                        className={`w-full px-4 py-2.5 sm:py-3 bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
+                        required
+                      />
+                      {errors.email && (
+                        <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                      )}
+                    </div>
+
+                    {/* Consent checkbox */}
+                    <div className='mb-4 sm:mb-6'>
+                      <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
+                        <div className='relative flex items-center mt-0.5 shrink-0'>
+                          <input
+                            type='checkbox'
+                            checked={isConsented}
+                            onChange={(e) => {
+                              setIsConsented(e.target.checked)
+                              if (errors.consent) setErrors(prev => ({ ...prev, consent: undefined }))
+                            }}
+                            className='peer hidden'
+                          />
+                          <div className={`w-4 h-4 border ${errors.consent ? 'border-red-500' : 'border-white/40'} peer-checked:bg-white peer-checked:border-white transition-all duration-200`} />
+                          <IconCheck
+                            size={12}
+                            className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
+                            strokeWidth={3}
+                          />
+                        </div>
+                        <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
+                          {t('privacyConsent')}
+                        </span>
+                      </label>
+                      {errors.consent && (
+                        <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
+                      )}
+                    </div>
+
+                    {/* Submit button */}
+                    <button
+                      type='submit'
+                      disabled={isSubmitting}
+                      className='flex items-center justify-center gap-2 w-full py-3 sm:py-4 text-sm font-semibold transition-all duration-300 mb-2 bg-white text-black hover:bg-white/90 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-2xl shadow-lg'
+                    >
+                      {isSubmitting ? (
+                        <span className='flex items-center gap-2'>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+                          >
+                            <IconCheck size={16} strokeWidth={3} />
+                          </motion.div>
+                          Processing...
+                        </span>
+                      ) : (
+                        <>
+                          {t('continue')}
+                          <IconArrowRight size={16} strokeWidth={2.5} />
+                        </>
+                      )}
+                    </button>
+
+                    {/* Trust text */}
+                    <div className='flex flex-col items-center gap-1 mt-3 sm:mt-4'>
+                      <p className='text-[10px] text-white/30 italic'>
+                        {t('trustText')}
+                      </p>
+                    </div>
+                  </form>
+
+                  {/* Dismiss */}
+                  <button
+                    onClick={handleClose}
+                    className='w-full text-center text-[11px] transition-colors duration-200 text-white/60 hover:text-white underline mt-2 sm:mt-3'
+                  >
+                    {t('dismiss')}
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>

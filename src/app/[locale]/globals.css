@@ -127,6 +127,7 @@
   --font-sans: var(--font-ft-calhern), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-ft-calhern), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-logo: var(--font-logo-font);
+  --font-rail: var(--font-new-rail-alphabet), sans-serif;
 }
 
 @layer base {

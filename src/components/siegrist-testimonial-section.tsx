@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Instagram, ArrowLeft, Play, Globe, ExternalLink } from 'lucide-react'
+import { Instagram, ArrowLeft, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
@@ -12,62 +13,56 @@ export function SiegristTestimonialSection() {
     const params = useParams()
     const locale = params.locale as string
 
-    const ClickableImage = ({
-        src,
-        alt,
-        width,
-        height,
-        href,
-        caption,
-        className = "",
-        imageClassName = "",
-        priority = false,
-        iconType = 'play'
-    }: {
-        src: string,
-        alt: string,
-        width: number,
-        height: number,
-        href: string,
-        caption?: string,
-        className?: string,
-        imageClassName?: string,
-        priority?: boolean,
-        iconType?: 'play' | 'instagram' | 'link'
-    }) => (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`relative block group overflow-hidden ${className}`}
-        >
-            <Image
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
-                className={`${imageClassName || "w-full h-auto"} transition-transform duration-700 group-hover:scale-105`}
-                priority={priority}
-            />
-            {/* Icon Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/20 transition-colors">
-                <div className="w-16 h-16 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-2xl transition-transform duration-300 group-hover:scale-110">
-                    {iconType === 'play' && <Play className="w-8 h-8 text-white fill-white ml-1" />}
-                    {iconType === 'instagram' && <Instagram className="w-8 h-8 text-white" />}
-                    {iconType === 'link' && <ExternalLink className="w-8 h-8 text-white" />}
-                </div>
-            </div>
-            {caption && (
-                <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gray-50 border-t border-gray-200 text-[11px] font-bold uppercase tracking-widest text-gray-500 text-center">
-                    {caption}
-                </div>
-            )}
-        </a>
-    )
+    const [activeSlide, setActiveSlide] = useState(0)
+
+    const slides = [
+        {
+            src: "/siegrist/saint-aubin.jpg",
+            alt: t('caption1'),
+            caption: t('caption1'),
+            credit: t('saintAubinData.imageCredit') || "image @typus.ai",
+            href: "https://siegristarchitectes.ch/en/portfolio-item/development-of-the-school-site-saint-aubin-fr/"
+        },
+        {
+            src: "/siegrist/venthone.jpg",
+            alt: t('caption2'),
+            caption: t('caption2'),
+            credit: t('venthoneData.imageCredit') || "image @typus.ai",
+            href: "https://siegristarchitectes.ch/en/portfolio-item/renovation-and-expansion-of-the-school-center-venthone-vs/"
+        }
+    ]
+
+    const nextSlide = () => {
+        setActiveSlide((prev) => (prev + 1) % slides.length)
+    }
+
+    const prevSlide = () => {
+        setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length)
+    }
+
+    const renderHighlightedText = (text: string) => {
+        const targets = ['mit KI', 'with AI', 'Typus.AI','KI-generiert', 'AI-generated', 'KI-gestützter', 'AI-powered'];
+        const regex = new RegExp(`(${targets.join('|')})`, 'g');
+        const parts = text.split(regex);
+        
+        return parts.map((part, idx) => {
+            if (targets.includes(part)) {
+                return (
+                    <span 
+                        key={idx} 
+                        className="bg-yellow-500 px-1.5 py-0.5 text-black font-black font-rail mx-0.5 select-none"
+                    >
+                        {part}
+                    </span>
+                );
+            }
+            return part;
+        });
+    };
 
     const ProjectDataSheet = ({ data }: { data: any }) => (
-        <div className="mt-8 p-6 bg-white border-2 border-black shadow-[4px_4px_0px_#000000] font-sans text-sm">
-            <div className="font-bold uppercase tracking-widest text-[10px] text-gray-500 mb-4 border-b-2 border-black pb-2">
+        <div className="py-4 border-y border-neutral-200 font-rail text-xs rounded-none bg-white">
+            <div className="font-extrabold uppercase tracking-widest text-[9px] text-gray-400 mb-4 pb-2 border-b border-neutral-100">
                 {data.label}
             </div>
             <div className="space-y-3">
@@ -77,14 +72,14 @@ export function SiegristTestimonialSection() {
                     { label: locale === 'de' ? 'TYPOLOGIE' : 'TYPOLOGY', value: data.typology.split(': ')[1] || data.typology },
                     { label: locale === 'de' ? 'FLÄCHE' : 'SURFACE', value: data.surface.split(': ')[1] || data.surface },
                 ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-start gap-4 border-b border-gray-100 pb-2">
-                        <span className="font-bold uppercase text-[9px] text-gray-400 mt-1 whitespace-nowrap">{item.label}</span>
-                        <span className="font-black uppercase text-right leading-tight">{item.value}</span>
+                    <div key={idx} className="flex justify-between items-start gap-4 border-b border-neutral-100 pb-2">
+                        <span className="font-bold uppercase text-[8px] text-gray-400 mt-1 whitespace-nowrap">{item.label}</span>
+                        <span className="font-black uppercase text-right leading-tight text-gray-950">{item.value}</span>
                     </div>
                 ))}
                 <div className="flex justify-between items-center pt-2">
-                    <span className="font-bold uppercase text-[10px] text-gray-600">{locale === 'de' ? 'GESAMTKOSTEN' : 'TOTAL COST'}</span>
-                    <span className="font-black uppercase text-2xl text-right leading-none tracking-tighter">
+                    <span className="font-bold uppercase text-[9px] text-gray-600">{locale === 'de' ? 'GESAMTKOSTEN' : 'TOTAL COST'}</span>
+                    <span className="font-black uppercase text-xl text-right leading-none tracking-tighter text-black">
                         {data.cost.split(': ')[1] || data.cost}
                     </span>
                 </div>
@@ -92,340 +87,317 @@ export function SiegristTestimonialSection() {
         </div>
     )
 
-    const ProjectCaption = ({ data }: { data: any }) => (
-        <div className="p-5 bg-white font-sans text-[13px] leading-snug space-y-2 border-t border-gray-100">
-            <div className="font-black uppercase tracking-tight text-black">{data.project}</div>
-            <div className="text-gray-500 font-medium italic">{data.competition}</div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
-                <span className="text-blue-600 font-bold tracking-tight hover:underline cursor-pointer">{data.imageCredit}</span>
-                <span className="text-blue-600 font-bold tracking-tight hover:underline cursor-pointer">{data.modelCredit}</span>
-            </div>
-        </div>
-    )
-
     return (
-        <article className="w-full max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <article className="w-full max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 bg-white text-black font-rail">
             {/* Back Button */}
             <Link
                 href={`/${locale}`}
-                className="inline-flex items-center text-sm font-bold uppercase tracking-tight text-gray-500 hover:text-black transition-colors mb-12 group"
+                className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors mb-12 group rounded-none font-rail"
             >
                 <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                 {t('backToHome')}
             </Link>
 
-            {/* Article Header */}
-            <header className="mb-8">
-                <div className="inline-flex items-center px-2 py-0.5 mb-6 border-2 border-black font-bold text-[10px] uppercase tracking-widest w-fit shadow-[2px_2px_0px_#000000]">
-                    {t('badge')}
-                </div>
+            {/* Layout Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                {/* Left Column: Media, Reels, Data Sheets */}
+                <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-8 font-rail">
+                    
+                    {/* Image Slider */}
+                    <div>
+                        {/* Pagination with dots above image */}
+                        <div className="flex items-center gap-3 mb-3 text-xs font-semibold text-neutral-800 font-rail select-none">
+                            <span className="tracking-wide">
+                                {locale === 'de' ? `Bild ${activeSlide + 1} von 2` : `Image ${activeSlide + 1} of 2`}
+                            </span>
+                            <div className="flex gap-1.5 items-center">
+                                <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 0 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
+                                <span className={`w-[9px] h-[9px] rounded-full transition-colors ${activeSlide === 1 ? 'bg-[#fce400]' : 'bg-[#9c9c9c]'}`}></span>
+                            </div>
+                        </div>
 
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-light mb-8 leading-[1.35] tracking-wide text-gray-900 uppercase">
-                    {t('sectionTitle')}
-                </h1>
+                        {/* Image Slider Container with overlays */}
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-50 rounded-none group">
+                            {/* Social Icons Overlay (Top Left) */}
+                            <div className="absolute top-4 left-4 flex gap-2.5 z-20">
+                                <a
+                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://typus.ai/de/siegrist')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white hover:bg-neutral-800 transition-colors"
+                                    aria-label="Share on Facebook"
+                                >
+                                    <span className="font-sans text-[13px] font-bold select-none leading-none mt-[-1px]">f</span>
+                                </a>
+                                <a
+                                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent('https://typus.ai/de/siegrist')}&text=${encodeURIComponent(t('sectionTitle'))}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-7 h-7 bg-white rounded-none flex items-center justify-center text-black hover:bg-neutral-100 transition-colors"
+                                    aria-label="Share on Twitter"
+                                >
+                                    <span className="font-serif text-[13px] font-black select-none leading-none">t</span>
+                                </a>
+                            </div>
 
-                <div className="flex items-center gap-4 text-sm font-bold text-gray-400 uppercase tracking-widest">
-                    <span>{t('dateDisplay')}</span>
-                    <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                    <span>{t('readingTime')}</span>
-                </div>
-            </header>
+                            {/* Arrow Overlays (Top Right) */}
+                            <div className="absolute top-4 right-4 flex gap-6 z-20">
+                                <button
+                                    onClick={(e) => { e.preventDefault(); prevSlide(); }}
+                                    className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
+                                    aria-label="Previous image"
+                                >
+                                    &larr;
+                                </button>
+                                <button
+                                    onClick={(e) => { e.preventDefault(); nextSlide(); }}
+                                    className="text-white hover:text-gray-300 transition-colors text-3xl font-light leading-none select-none active:scale-95"
+                                    aria-label="Next image"
+                                >
+                                    &rarr;
+                                </button>
+                            </div>
 
-            {/* Intro Text Block: Pull Quote + Featured On */}
-            <div className="space-y-8 mb-12">
-
-                {/* Hero Image — Centered, smaller */}
-                <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-[480px] h-[550px] border-2 border-black shadow-[8px_8px_0px_#000000] relative">
-                        <ClickableImage
-                            src="/siegrist/office-portrait.jpg"
-                            alt="Siegrist Architectes Office - Mariela & Luz Maria Siegrist"
-                            width={800}
-                            height={440}
-                            href="https://siegristarchitectes.ch/en/office/"
-                            priority={true}
-                            caption={t('caption3')}
-                            iconType="link"
-                            className="h-full"
-                            imageClassName="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
-
-                {/* Pull Quote */}
-                <p className="text-base md:text-lg font-light leading-[1.6] text-black tracking-wide border-l-8 border-black pl-8 py-2">
-                    {t('p1')}
-                </p>
-
-                {/* Featured On row */}
-                <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                        {t('featuredOn')}
-                    </span>
-                    <a
-                        href="https://siegristarchitectes.ch/en/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
-                    >
-                        <Globe className="w-3.5 h-3.5" />
-                        Siegrist Architectes Website
-                    </a>
-                    <a
-                        href="https://www.instagram.com/siegristarchitectes/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
-                    >
-                        <Instagram className="w-3.5 h-3.5" />
-                        Instagram
-                    </a>
-                </div>
-
-                <div className="flex justify-center mt-12 mb-4">
-                    <Link
-                        href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
-                    >
-                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
-                    </Link>
-                </div>
-
-            </div>
-
-
-            {/* Main Content Area */}
-            <div className="text-gray-800 leading-relaxed font-medium space-y-16">
-
-                {/* Section 1: Text LEFT, Image RIGHT */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="space-y-4 order-1">
-                        <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h2')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p2')}</p>
-                        <ProjectDataSheet data={t.raw('saintAubinData')} />
-                    </div>
-                    <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <ClickableImage
-                            src="/siegrist/saint-aubin.jpg"
-                            alt="Saint-Aubin Project Visualization"
-                            width={960}
-                            height={440}
-                            href="https://siegristarchitectes.ch/en/portfolio-item/development-of-the-school-site-saint-aubin-fr/"
-                            caption={t('caption1')}
-                            iconType="link"
-                        />
-                        <ProjectCaption data={t.raw('saintAubinData')} />
-                    </div>
-                </div>
-
-                {/* EU Logo Divider */}
-                <div className="flex items-center justify-center gap-6 py-6 border-y border-gray-200 my-4">
-                    <Image
-                        src={
-                            locale === 'de'
-                                ? '/eu-kofinanziert-von-der-europaeischen-union.png'
-                                : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
-                        }
-                        alt="EU Co-Funded"
-                        width={300}
-                        height={100}
-                        className={`${locale === 'de' ? 'h-[40px]' : 'h-[95px]'} w-auto object-contain`}
-                    />
-                    <div className="hidden sm:block h-px flex-1 bg-gray-200" />
-                    <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 max-w-xs text-right hidden sm:block">
-                        {t('euCoFunded')}
-                    </p>
-                </div>
-
-                <div className="flex justify-center mb-16 mt-8">
-                    <Link
-                        href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
-                    >
-                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
-                    </Link>
-                </div>
-
-                {/* Project Showcase 1: Text RIGHT, Video/Thumbnail LEFT */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="order-2 md:order-1 flex flex-col items-center">
-                        <VideoThumbnail
-                            href="https://www.instagram.com/p/DWgGKLNiN9P/"
-                            imageSrc="/siegrist/saint-aubin.jpg"
-                            title={t('instagramTitle1')}
-                            subtitle={t('reelDescription1')}
-                            handle="@siegristarchitectes"
-                        />
-                        <div className="w-full max-w-sm">
-                            <ProjectCaption data={t.raw('saintAubinData')} />
+                            {/* Slider Image */}
+                            <a 
+                                href={slides[activeSlide].href} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="block w-full h-full relative font-rail"
+                            >
+                                <Image
+                                    src={slides[activeSlide].src}
+                                    alt={slides[activeSlide].alt}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                                
+                                {/* Bottom Caption overlay inside the image container */}
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent text-white p-5 pt-12 text-[12.5px] leading-relaxed font-rail rounded-none border-0">
+                                    <div>{slides[activeSlide].caption}</div>
+                                    <div className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-1.5">
+                                        {locale === 'de' ? `Foto: ${slides[activeSlide].credit}` : `Photo: ${slides[activeSlide].credit}`}
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div className="space-y-4 order-1 md:order-2">
-                        <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('instagramTitle1')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
-                            {t('reelDescription1')}
-                        </p>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
-                            {t('saintAubinData.imageCredit')}
-                        </p>
-                    </div>
-                </div>
 
-                {/* Section 2: Image LEFT, Text RIGHT */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="order-2 md:order-1 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <ClickableImage
-                            src="/siegrist/venthone.jpg"
-                            alt="Venthône Project Visualization"
-                            width={960}
-                            height={540}
-                            href="https://siegristarchitectes.ch/en/portfolio-item/renovation-and-expansion-of-the-school-center-venthone-vs/"
-                            caption={t('caption2')}
-                            iconType="link"
-                        />
-                        <ProjectCaption data={t.raw('venthoneData')} />
+                    {/* Featured On Buttons */}
+                    <div className="flex flex-wrap items-center gap-3 pt-2 font-rail">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                            {t('featuredOn')}
+                        </span>
+                        <a
+                            href="https://siegristarchitectes.ch/en/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-3 py-1.5 border border-neutral-200 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all bg-white rounded-none"
+                        >
+                            <Globe className="w-3.5 h-3.5" />
+                            Website
+                        </a>
+                        <a
+                            href="https://www.instagram.com/siegristarchitectes/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-3 py-1.5 border border-neutral-200 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all bg-white rounded-none"
+                        >
+                            <Instagram className="w-3.5 h-3.5" />
+                            Instagram
+                        </a>
                     </div>
-                    <div className="space-y-4 order-1 md:order-2">
-                        <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h3')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p3')}</p>
+
+                    {/* Reels Grid */}
+                    <div className="pt-6 space-y-4">
+                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                            {locale === 'de' ? 'PROJEKT-REELS' : 'PROJECT REELS'}
+                        </h3>
+                        <div className="grid grid-cols-2 gap-4">
+                            <VideoThumbnail
+                                href="https://www.instagram.com/p/DWgGKLNiN9P/"
+                                imageSrc="/siegrist/saint-aubin.jpg"
+                                title={t('instagramTitle1')}
+                                subtitle={t('reelDescription1')}
+                                handle="@siegristarchitectes"
+                            />
+                            <VideoThumbnail
+                                href="https://www.instagram.com/p/DViepQmiAsG/"
+                                imageSrc="/siegrist/venthone.jpg"
+                                title={t('instagramTitle2')}
+                                subtitle={t('reelDescription2')}
+                                handle="@siegristarchitectes"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Data Sheets Stack */}
+                    <div className="pt-6 space-y-6">
+                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                            {locale === 'de' ? 'PROJEKTDATEN' : 'PROJECT DATA'}
+                        </h3>
+                        <ProjectDataSheet data={t.raw('saintAubinData')} />
                         <ProjectDataSheet data={t.raw('venthoneData')} />
                     </div>
-                </div>
 
-                {/* Section 3: Text LEFT, Video/Thumbnail RIGHT */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="space-y-4 order-1">
-                        <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('instagramTitle2')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
-                            {t('reelDescription2')}
-                        </p>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
-                            {t('venthoneData.imageCredit')}
-                        </p>
-                    </div>
-                    <div className="order-2 flex flex-col items-center">
-                        <VideoThumbnail
-                            href="https://www.instagram.com/p/DViepQmiAsG/"
-                            imageSrc="/siegrist/venthone.jpg"
-                            title={t('instagramTitle2')}
-                            subtitle={t('reelDescription2')}
-                            handle="@siegristarchitectes"
-                        />
-                        <div className="w-full max-w-sm">
-                            <ProjectCaption data={t.raw('venthoneData')} />
+                    {/* Office Team Section */}
+                    <div className="pt-6 space-y-4 font-rail">
+                        <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                            {locale === 'de' ? 'ÜBER DAS BÜRO' : 'ABOUT THE OFFICE'}
+                        </h3>
+                        <div className="relative overflow-hidden rounded-none aspect-[4/3] w-full bg-gray-50">
+                            <Image 
+                                src="/siegrist/office-portrait.jpg" 
+                                alt="Siegrist Architectes Team" 
+                                fill 
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="mt-2 text-xs text-neutral-800 leading-relaxed font-rail">
+                            {t('caption3')}
                         </div>
                     </div>
+
                 </div>
 
-                <div className="py-6 border-y border-gray-200 my-4 text-center">
-                    <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                        {t('featuredOnIllustrarch')}
+                {/* Right Column: Editorial Text content */}
+                <div className="lg:col-span-7 space-y-6 font-rail">
+                    
+                    {/* Title with signature Bauwelt yellow accent underline */}
+                    <div className="relative pb-2 mb-6 select-none">
+                        <h1 className="text-3xl md:text-4xl lg:text-[42px] font-black leading-tight tracking-tight text-neutral-900 font-rail">
+                            {t('sectionTitle')}
+                        </h1>
+                        <div className="w-32 md:w-[450px] h-[6px] bg-yellow-500  mt-3"></div>
+                    </div>
+
+                    {/* Lead Paragraph with thick vertical red line */}
+                    <p className="text-[17px] md:text-lg font-bold leading-relaxed text-neutral-950 font-rail mb-4  py-1 select-none">
+                        {renderHighlightedText(t('p1'))}
                     </p>
-                </div>
 
-                <div className="flex justify-center mb-16 mt-8">
-                    <Link
-                        href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
-                    >
-                        {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
-                    </Link>
-                </div>
-
-                {/* Section 4: Text LEFT, Image RIGHT (Portrait) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                    <div className="space-y-4 order-1">
-                        <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h4')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p4')}</p>
+                    {/* Author Credit */}
+                    <div className="text-xs font-medium text-neutral-500 font-rail pb-6">
+                        <span>{locale === 'de' ? 'Text: Siegrist Architectes & Typus Redaktion' : 'Text: Siegrist Architectes & Typus Editorial'}</span>
                     </div>
-                    <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
-                        <ClickableImage
-                            src="/siegrist/office-portrait.jpg"
-                            alt="Siegrist Architectes Team"
-                            width={960}
-                            height={540}
-                            href="https://siegristarchitectes.ch/en/office/"
-                            caption={t('caption3')}
-                            iconType="link"
-                        />
-                    </div>
-                </div>
 
-                {/* Closing statement */}
-                <p className="text-xl font-light uppercase tracking-wide leading-[1.5] text-black">
-                    {t('p5')}
-                </p>
-            </div>
-
-            {/* Article Footer */}
-            <footer className="mt-24 pt-12 border-t-2 border-black flex flex-col items-center text-center">
-
-                {/* EU Funding Attribution */}
-                <div className="w-full mb-12 p-6 bg-gray-50 border border-gray-200 flex flex-col sm:flex-row items-center justify-center gap-6">
-                    <Image
-                        src={
-                            locale === 'de'
-                                ? '/eu-kofinanziert-von-der-europaeischen-union.png'
-                                : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
-                        }
-                        alt="EU Co-Funded"
-                        width={300}
-                        height={250}
-                        className={`${locale === 'de' ? 'h-[40px]' : 'h-[95px]'} w-auto object-contain`}
-                    />
-                    <div className="text-left">
-                        <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
-                            {t('euCoFunded')}
-                        </p>
-                        <p className="text-xs text-gray-400 mt-1 max-w-xs">
-                            {locale === 'de'
-                                ? 'Typus wird im Rahmen des EU-geförderten NRW-Programms entwickelt.'
-                                : 'Typus is developed under the EU-funded NRW program.'}
-                        </p>
-                    </div>
-                </div>
-
-                {/* <div className="w-16 h-16 bg-black mb-6 flex items-center justify-center font-black text-white text-2xl">T</div> */}
-                <h3 className="font-normal text-lg mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
-                <Link
-                    href={`/${locale}`}
-                    className="inline-flex items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
-                >
-                    {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
-                </Link>
-
-                {/* Next Article Card */}
-                <div className="w-full mt-24 text-left border-2 border-black shadow-[8px_8px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
-                    <div className="flex flex-col md:flex-row">
-                        <div className="w-full md:w-[55%] p-4 md:p-6">
-                            <div className="border-2 border-black h-full overflow-hidden relative min-h-[250px]">
-                                <Image
-                                    src="/artical-page/1.jpg"
-                                    alt="AMA Awards Architecture"
-                                    fill
-                                    className="object-cover transition-transform duration-700 hover:scale-105"
-                                />
-                            </div>
-                        </div>
-                        <div className="w-full md:w-[45%] p-6 md:p-10 flex flex-col justify-center">
-                            <h2 className="text-lg md:text-xl font-light uppercase tracking-wide leading-[1.35] text-black mb-6">
-                                {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                    {/* Body Paragraphs */}
+                    <div className="space-y-10 text-neutral-800 leading-relaxed font-normal font-rail">
+                        
+                        {/* Section 1 */}
+                        <div className="space-y-3">
+                            <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
+                                {t('h2')}
                             </h2>
-                            <div className="flex items-center gap-3 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-10">
-                                <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
-                                <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                                <span>{locale === 'de' ? '5 MIN LESEZEIT' : '5 MIN READ'}</span>
-                            </div>
-                            <Link
-                                href={`/${locale}/ama-awards`}
-                                className="inline-flex items-center w-fit gap-3 font-black text-xs bg-white text-black border-2 border-black px-8 py-4 uppercase tracking-widest hover:bg-gray-50 transition-colors"
-                            >
-                                {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
-                            </Link>
+                            <p className="text-base text-neutral-700 leading-relaxed text-justify font-rail">
+                                {renderHighlightedText(t('p2'))}
+                            </p>
+                        </div>
+
+                        {/* Section 2 */}
+                        <div className="space-y-3">
+                            <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
+                                {t('h3')}
+                            </h2>
+                            <p className="text-base text-neutral-700 leading-relaxed text-justify font-rail">
+                                {renderHighlightedText(t('p3'))}
+                            </p>
+                        </div>
+
+                        {/* Section 3 */}
+                        <div className="space-y-3">
+                            <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
+                                {t('h4')}
+                            </h2>
+                            <p className="text-base text-neutral-700 leading-relaxed text-justify font-rail">
+                                {renderHighlightedText(t('p4'))}
+                            </p>
+                        </div>
+
+                        {/* Section 4 / Closing */}
+                        <div className="space-y-3 font-rail">
+                            <h2 className="text-base font-bold text-neutral-950 font-rail pt-4">
+                                {locale === 'de' ? 'DIE EIGENTLICHE VERÄNDERUNG' : 'THE ACTUAL REVOLUTION'}
+                            </h2>
+                            <p className="whitespace-pre-line text-base text-neutral-700 leading-relaxed text-justify font-rail">
+                                {renderHighlightedText(t('p5'))}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {/* EU Funding Attribution Divider */}
+                    <div className="w-full mt-12 p-6 bg-neutral-50 border border-neutral-100 rounded-none flex flex-col sm:flex-row items-center justify-center gap-6 font-rail">
+                        <Image
+                            src={
+                                locale === 'de'
+                                    ? '/eu-kofinanziert-von-der-europaeischen-union.png'
+                                    : '/eu-kofinanziert-von-der-europaeischen-union-en.png'
+                            }
+                            alt="EU Co-Funded"
+                            width={300}
+                            height={250}
+                            className={`${locale === 'de' ? 'h-[40px]' : 'h-[95px]'} w-auto object-contain`}
+                        />
+                        <div className="text-left font-rail">
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                                {t('euCoFunded')}
+                            </p>
+                            <p className="text-xs text-neutral-400 mt-1 max-w-xs normal-case">
+                                {locale === 'de'
+                                    ? 'Typus wird im Rahmen des EU-geförderten NRW-Programms entwickelt.'
+                                    : 'Typus is developed under the EU-funded NRW program.'}
+                            </p>
                         </div>
                     </div>
+
+                    {/* CTA Button */}
+                    <div className="flex justify-center pt-6 font-rail">
+                        <Link
+                            href={`/${locale}`}
+                            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 font-black text-xs bg-black text-white border border-black px-12 py-4 uppercase tracking-widest hover:bg-neutral-100 hover:text-black transition-all shadow-[4px_4px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none rounded-none"
+                        >
+                            {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
+                        </Link>
+                    </div>
+
+                    {/* Next Article Card */}
+                    <div className="w-full mt-12 text-left border border-neutral-200 bg-white hover:translate-y-[-2px] transition-transform duration-300 font-rail">
+                        <div className="flex flex-col md:flex-row font-rail">
+                            <div className="w-full md:w-[50%] p-4">
+                                <div className="border border-neutral-100 h-full overflow-hidden relative min-h-[220px]">
+                                    <Image
+                                        src="/artical-page/1.jpg"
+                                        alt="AMA Awards Architecture"
+                                        fill
+                                        className="object-cover transition-transform duration-700 hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full md:w-[50%] p-6 flex flex-col justify-center">
+                                <h2 className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-black mb-4 font-rail">
+                                    {locale === 'de' ? 'ARCHITEKTIN GEWINNT AMA AWARDS IN MADRID' : 'ARCHITECT WINS AMA AWARDS IN MADRID'}
+                                </h2>
+                                <div className="flex items-center gap-2 text-[9px] font-bold text-neutral-400 uppercase tracking-widest mb-6 font-rail">
+                                    <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                    <span className="text-neutral-200">|</span>
+                                    <span>{locale === 'de' ? '5 MIN LESEZEIT' : '5 MIN READ'}</span>
+                                </div>
+                                <Link
+                                    href={`/${locale}/ama-awards`}
+                                    className="inline-flex items-center w-fit gap-2 font-black text-[10px] bg-white text-black border border-neutral-200 px-6 py-3 uppercase tracking-widest hover:bg-gray-50 transition-colors rounded-none font-rail"
+                                >
+                                    {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </footer>
+
+            </div>
         </article>
     )
 }
