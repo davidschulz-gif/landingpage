@@ -1,10 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { IconChevronLeft, IconChevronRight, IconBrandLinkedin, IconExternalLink } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
-import { BreathingAnimationText } from './breathing-animation-text'
 
 export function LinkedinSlideshow() {
   const t = useTranslations('LinkedinSlideshow')
@@ -13,145 +12,131 @@ export function LinkedinSlideshow() {
   const viewOnLinkedin = t('viewOnLinkedin')
 
   const posts = [
-    // { id: '7363887619878903810' },
-    // { id: '7452015727538089985' },
-    // { id: '7363655458032586754' },
-    // { id: '7361127110196801536' },
-    // { id: '7357043695277322240' },
-    // { id: '7188164716626616320' },//\\
-    { id: '7373390579357110273' },     //
-    { id: '7373390484074811392' },    //
-    { id: '7373390379523399680' },   //
-    { id: '7357043618232115202' },  //
-    { id: '7363554370187108353' }, //
-    { id: '7361126961978507264' } // 
+    { id: '7296821603881922560' },
+    { id: '7452015727538089985' },
+    { id: '7363921514309521408' },
+    { id: '7188164717385822208' },
+    { id: '7373390579357110273' },     
+    { id: '7373390484074811392' },    
+    { id: '7373390379523399680' },   
+    { id: '7357043618232115202' },  
+    { id: '7363554370187108353' }, 
+    { id: '7361126961978507264' } 
   ]
 
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % posts.length)
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      // Scroll by exactly one card width + gap (260px card + 24px gap = 284px)
+      const scrollAmount = direction === 'left' ? -284 : 284
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
   }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + posts.length) % posts.length)
-  }
-
-  const currentPost = posts[currentIndex]
-  const embedUrl = `https://www.linkedin.com/embed/feed/update/urn:li:activity:${currentPost.id}`
-  const directUrl = `https://www.linkedin.com/feed/update/urn:li:activity:${currentPost.id}`
 
   return (
-    <section className="py-24 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
-      <div className="max-w-6xl mx-auto px-4 text-center">
+    <section className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         {/* Title & Header block with premium fonts and breath animation */}
-        <div className="mb-16">
-          {/* <BreathingAnimationText animationType="black-gray"> */}
-            <h2 
-              className="text-2xl sm:text-3xl md:text-[30px] font-normal text-black dark:text-white tracking-tight leading-none mb-4"
-              // style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
+        <div className="mb-12 relative z-10 flex flex-col md:flex-row md:items-end md:justify-between max-w-7xl mx-auto text-left px-4">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
               {title}
             </h2>
-          {/* </BreathingAnimationText> */}
+            <p className="text-gray-500 dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+              {subtitle}
+            </p>
+          </div>
           
-          <p className="text-gray-500 dark:text-neutral-400 max-w-2xl mx-auto text-sm md:text-lg px-4 font-medium font-sans">
-            {subtitle}
-          </p>
+          {/* Navigation buttons in the header */}
+          <div className="flex gap-2 mt-6 md:mt-0">
+            <button
+              onClick={() => scroll('left')}
+              className="p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95"
+              aria-label="Scroll left"
+            >
+              <IconChevronLeft size={20} strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95"
+              aria-label="Scroll right"
+            >
+              <IconChevronRight size={20} strokeWidth={2.5} />
+            </button>
+          </div>
         </div>
 
-        {/* Carousel Section */}
-        <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-16 flex items-center justify-center min-h-[660px]">
-          {/* Left Arrow button */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 sm:left-4 p-3 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-xl border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 z-30 cursor-pointer active:scale-95 shadow-neutral-200/50 dark:shadow-none"
-            aria-label="Previous slide"
+        {/* Row Container with Horizontal Scroll */}
+        <div className="relative w-full overflow-hidden">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 px-4 md:px-12 py-4 overflow-x-auto justify-start mx-auto w-fit max-w-full scroll-smooth snap-x snap-mandatory scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <IconChevronLeft size={22} strokeWidth={2.5} />
-          </button>
-
-          {/* Premium Card mockup */}
-          <div className="w-full flex justify-center items-center overflow-hidden min-h-[620px] relative z-20">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentPost.id}
-                initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="w-full max-w-[504px] bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-[32px] shadow-2xl overflow-hidden flex flex-col shadow-neutral-200/60 dark:shadow-black/40"
-              >
-                {/* Premium Header Bar */}
-                <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 dark:bg-blue-700 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-                      <IconBrandLinkedin size={22} strokeWidth={2} />
+            {posts.map((post, idx) => {
+              const embedUrl = `https://www.linkedin.com/embed/feed/update/urn:li:activity:${post.id}`;
+              const directUrl = `https://www.linkedin.com/feed/update/urn:li:activity:${post.id}`;
+              
+              return (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  className="snap-start flex-shrink-0 w-[260px] bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[24px] shadow-lg hover:shadow-xl hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 overflow-hidden flex flex-col"
+                >
+                  {/* Premium Compact Header */}
+                  <div className="px-4 py-3 bg-neutral-50/80 dark:bg-neutral-950/80 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-left">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-lg bg-blue-600 dark:bg-blue-700 flex items-center justify-center text-white shadow-sm">
+                        <IconBrandLinkedin size={18} strokeWidth={2} />
+                      </div>
+                      <div>
+                        <div className="text-[12px] font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1 leading-none mb-0.5">
+                          LinkedIn
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block -ml-3" />
+                        </div>
+                        <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-medium">
+                          Post {idx + 1}
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-sm font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1.5 leading-none mb-1">
-                        LinkedIn
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block -ml-3.5" />
-                      </div>
-                      <div className="text-[11px] text-neutral-400 dark:text-neutral-500 font-medium">
-                        Post {currentIndex + 1} of {posts.length}
-                      </div>
+                    
+                    {/* View external link */}
+                    <a
+                      href={directUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-0.5 text-[9px] font-bold tracking-wide uppercase text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+                      title={viewOnLinkedin}
+                    >
+                      <span>VIEW</span>
+                      <IconExternalLink size={12} strokeWidth={2.5} />
+                    </a>
+                  </div>
+
+                  {/* Embedded post scaled down */}
+                  <div className="p-2 bg-white dark:bg-neutral-900 flex justify-center items-center rounded-b-[24px]">
+                    <div className="w-full h-[400px] relative overflow-hidden bg-white dark:bg-neutral-900 rounded-xl">
+                      <iframe
+                        src={embedUrl}
+                        className="absolute top-0 left-0 w-[153.84%] h-[615px] border-0 bg-white origin-top-left"
+                        style={{ transform: 'scale(0.65)' }}
+                        allowFullScreen
+                        title={`Embedded LinkedIn Post ${idx + 1}`}
+                      ></iframe>
                     </div>
                   </div>
-                  
-                  {/* External direct link */}
-                  <a
-                    href={directUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-[11px] font-bold tracking-wide uppercase text-neutral-900 hover:text-neutral-700 dark:text-neutral-100 dark:hover:text-neutral-300 transition-colors"
-                  >
-                    {viewOnLinkedin}
-                    <IconExternalLink size={14} strokeWidth={2.5} />
-                  </a>
-                </div>
-
-                {/* Embedded post content frame */}
-                <div className="p-3 bg-white dark:bg-neutral-900 flex justify-center items-center">
-                  <iframe
-                    src={embedUrl}
-                    height="562"
-                    className="w-full rounded-2xl border-0 bg-white"
-                    allowFullScreen
-                    title="Embedded LinkedIn Post"
-                  ></iframe>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
-
-          {/* Right Arrow button */}
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 sm:right-4 p-3 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-xl border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 z-30 cursor-pointer active:scale-95 shadow-neutral-200/50 dark:shadow-none"
-            aria-label="Next slide"
-          >
-            <IconChevronRight size={22} strokeWidth={2.5} />
-          </button>
-        </div>
-
-        {/* Carousel Paginator dots with custom active state */}
-        <div className="flex gap-2.5 items-center justify-center mt-10">
-          {posts.map((post, idx) => (
-            <button
-              key={post.id}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-                currentIndex === idx 
-                  ? 'bg-neutral-950 dark:bg-white w-8 shadow-md shadow-neutral-500/20' 
-                  : 'bg-neutral-200 dark:bg-neutral-800 w-2 hover:bg-neutral-300 dark:hover:bg-neutral-700'
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>
   )
 }
+
