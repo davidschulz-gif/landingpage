@@ -46,14 +46,14 @@ export function LinkedinSlideshow() {
       <div className="max-w-6xl mx-auto px-4 text-center">
         {/* Title & Header block with premium fonts and breath animation */}
         <div className="mb-16">
-          <BreathingAnimationText animationType="black-gray">
+          {/* <BreathingAnimationText animationType="black-gray"> */}
             <h2 
               className="text-2xl sm:text-3xl md:text-[30px] font-normal text-black dark:text-white tracking-tight leading-none mb-4"
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              // style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
               {title}
             </h2>
-          </BreathingAnimationText>
+          {/* </BreathingAnimationText> */}
           
           <p className="text-gray-500 dark:text-neutral-400 max-w-2xl mx-auto text-sm md:text-lg px-4 font-medium font-sans">
             {subtitle}
