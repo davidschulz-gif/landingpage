@@ -1,9 +1,10 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
-import { IconChevronLeft, IconChevronRight, IconBrandLinkedin, IconExternalLink } from '@tabler/icons-react'
+import { useRef, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { IconChevronLeft, IconChevronRight, IconBrandLinkedin, IconExternalLink, IconGridDots, IconX } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 export function LinkedinSlideshow() {
   const t = useTranslations('LinkedinSlideshow')
@@ -11,20 +12,53 @@ export function LinkedinSlideshow() {
   const subtitle = t('subtitle')
   const viewOnLinkedin = t('viewOnLinkedin')
 
+  const params = useParams()
+  const locale = params?.locale === 'de' ? 'de' : 'en'
+
+  const localT = {
+    en: {
+      seeAll: "See All",
+      close: "Close",
+      wallTitle: "COMMUNITY HUB",
+      wallSubtitle: "Explore all recent LinkedIn posts and community updates in a single wall.",
+    },
+    de: {
+      seeAll: "Alle ansehen",
+      close: "Schließen",
+      wallTitle: "COMMUNITY-HUB",
+      wallSubtitle: "Entdecken Sie alle aktuellen LinkedIn-Beiträge und Community-Updates an einer Wand.",
+    }
+  }[locale]
+
   const posts = [
     { id: '7357043618232115202' },  
-    { id: '7373390484074811392' }, 
+    { id: '7373390484074811392' },
+    { id: '7292127211082440706' },  
+    { id: '7297566938463928321' },  
     { id: '7296821603881922560' },
     { id: '7452015727538089985' },
     { id: '7363921514309521408' },
     { id: '7373390579357110273' },        
+    { id: '7188164717385822208' },
     { id: '7373390379523399680' },   
     { id: '7363554370187108353' }, 
     { id: '7361126961978507264' },
-    { id: '7188164717385822208' },
   ]
 
+  const [isWallOpen, setIsWallOpen] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  // Disable body scroll when full-screen wall is active
+  useEffect(() => {
+    if (isWallOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isWallOpen])
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -37,7 +71,8 @@ export function LinkedinSlideshow() {
   return (
     <section className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-        {/* Title & Header block with premium fonts and breath animation */}
+        
+        {/* Title & Header block with navigation arrows */}
         <div className="mb-12 relative z-10 flex flex-col md:flex-row md:items-end md:justify-between max-w-7xl mx-auto text-left px-4">
           <div className="max-w-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
@@ -135,8 +170,120 @@ export function LinkedinSlideshow() {
             })}
           </div>
         </div>
+
+        {/* Center "See All" trigger button */}
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => setIsWallOpen(true)}
+            className="px-6 py-2.5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs font-bold tracking-widest uppercase rounded-full hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 shadow-md cursor-pointer active:scale-95 flex items-center gap-2"
+          >
+            <IconGridDots size={15} />
+            <span>{localT.seeAll}</span>
+          </button>
+        </div>
+
+        {/* Immersive Grid Wall Modal Overlay */}
+        <AnimatePresence>
+          {isWallOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[999] overflow-y-auto bg-neutral-100/95 dark:bg-neutral-950/95 backdrop-blur-xl py-16 px-4 sm:px-6 md:px-12 flex flex-col items-center"
+            >
+              {/* Close float button */}
+              <button
+                onClick={() => setIsWallOpen(false)}
+                className="absolute top-16 right-6 p-3 rounded-full bg-white dark:bg-neutral-900 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-800 transition-all duration-300 shadow-md cursor-pointer active:scale-95 z-50 flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider"
+              >
+                <IconX size={16} strokeWidth={2.5} />
+                <span>{localT.close}</span>
+              </button>
+
+              {/* Modal Header */}
+              <div className="max-w-3xl text-center mb-12 mt-8 px-4">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-200 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 text-[10px] font-bold tracking-widest uppercase mb-4">
+                  <IconBrandLinkedin size={14} className="text-blue-600 dark:text-blue-500" />
+                  LINKEDIN PORTAL
+                </div>
+                <h3 className="text-2xl sm:text-3xl md:text-[34px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+                  {localT.wallTitle}
+                </h3>
+                <p className="text-neutral-500 dark:text-neutral-400 text-sm sm:text-base font-medium font-sans max-w-xl mx-auto">
+                  {localT.wallSubtitle}
+                </p>
+              </div>
+
+              {/* Grid Wall Masonry Layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl w-full mt-4 justify-items-center pb-12">
+                {posts.map((post, idx) => {
+                  const embedUrl = `https://www.linkedin.com/embed/feed/update/urn:li:activity:${post.id}`;
+                  const directUrl = `https://www.linkedin.com/feed/update/urn:li:activity:${post.id}`;
+
+                  return (
+                    <motion.div
+                      key={`wall-${post.id}`}
+                      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                      transition={{ 
+                        type: 'spring',
+                        stiffness: 100,
+                        damping: 18,
+                        delay: idx * 0.06 
+                      }}
+                      className="w-[260px] bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[24px] shadow-md hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03] transition-all duration-500 overflow-hidden flex flex-col cursor-default"
+                    >
+                      {/* Grid Card Header */}
+                      <div className="px-4 py-3 bg-neutral-50/80 dark:bg-neutral-950/80 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-left">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-blue-600 dark:bg-blue-700 flex items-center justify-center text-white shadow-sm">
+                            <IconBrandLinkedin size={18} strokeWidth={2} />
+                          </div>
+                          <div>
+                            <div className="text-[12px] font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1 leading-none mb-0.5">
+                              LinkedIn
+                            </div>
+                            <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-medium">
+                              Post {idx + 1}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* View external link */}
+                        <a
+                          href={directUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-0.5 text-[9px] font-bold tracking-wide uppercase text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+                          title={viewOnLinkedin}
+                        >
+                          <span>VIEW</span>
+                          <IconExternalLink size={12} strokeWidth={2.5} />
+                        </a>
+                      </div>
+
+                      {/* Embedded post scaled down */}
+                      <div className="p-2 bg-white dark:bg-neutral-900 flex justify-center items-center rounded-b-[24px]">
+                        <div className="w-full h-[400px] relative overflow-hidden bg-white dark:bg-neutral-900 rounded-xl">
+                          <iframe
+                            src={embedUrl}
+                            className="absolute top-0 left-0 w-[153.84%] h-[615px] border-0 bg-white origin-top-left"
+                            style={{ transform: 'scale(0.65)' }}
+                            allowFullScreen
+                            title={`Embedded LinkedIn Grid Post ${idx + 1}`}
+                          ></iframe>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
 }
-

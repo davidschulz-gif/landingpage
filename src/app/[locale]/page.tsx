@@ -216,6 +216,17 @@ const LinkedinSlideshow = dynamic(
   }
 )
 
+const KernelZoomShowcase = dynamic(
+  () =>
+    import('@/components/kernel-zoom-showcase').then(
+      mod => mod.KernelZoomShowcase
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-[500px] bg-neutral-950/40 animate-pulse rounded-[32px] max-w-7xl mx-auto' />,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const [showSplash, setShowSplash] = useState(true)
@@ -395,6 +406,9 @@ export default function Home() {
 
         {/* Embedded LinkedIn Slideshow Showcase */}
         <LinkedinSlideshow />
+
+        {/* Giga-Resolution Kernel Zoom Showcase */}
+        <KernelZoomShowcase />
 
         {/* Image Templates */}
         <motion.div
