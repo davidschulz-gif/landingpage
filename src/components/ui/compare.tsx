@@ -17,6 +17,7 @@ interface CompareProps {
   showHandlebar?: boolean;
   autoplay?: boolean;
   autoplayDuration?: number;
+  style?: React.CSSProperties;
 }
 export const Compare = ({
   firstImage = "",
@@ -29,6 +30,7 @@ export const Compare = ({
   showHandlebar = true,
   autoplay = false,
   autoplayDuration = 5000,
+  style,
 }: CompareProps) => {
   const t = useTranslations('Compare');
   const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
@@ -156,6 +158,7 @@ export const Compare = ({
       style={{
         position: "relative",
         cursor: slideMode === "drag" ? "grab" : "col-resize",
+        ...style,
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={mouseLeaveHandler}

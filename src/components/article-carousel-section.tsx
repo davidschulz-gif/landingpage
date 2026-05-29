@@ -188,14 +188,12 @@ export function ArticleCarouselSection() {
                         
                         {/* Overlay DAB Online logo on Dr. Dietmar Köring's photo (article ID 0) */}
                         {article.id === 0 && (
-                          <div className='absolute inset-0 flex  pointer-events-none z-10'>
-                            <div className='w-[60%] top-20 left-26 max-w-[150px] aspect-[4/1] relative'>
-                              <img
-                                src='/blog/dabonline_logo_white.png'
-                                alt='DAB Online Logo'
-                                className='object-contain w-full h-full filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]'
-                              />
-                            </div>
+                          <div className='absolute bottom-[16%] left-1/2 -translate-x-1/2 pointer-events-none z-10 w-[55%] max-w-[150px] aspect-square'>
+                            <img
+                              src='/blog/dabonline_logo_white.png'
+                              alt='DAB Online Logo'
+                              className='w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]'
+                            />
                           </div>
                         )}
 

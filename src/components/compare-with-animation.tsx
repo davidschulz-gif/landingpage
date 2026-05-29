@@ -138,11 +138,14 @@ export const CompareWithAnimation = ({
           <Compare
             firstImage={beforeImages[activeIndex]}
             secondImage={afterImages[activeIndex]}
-            className="w-full overflow-hidden  border border-border lg: aspect-[1.3]"
+            className="w-full h-auto overflow-hidden border border-border"
             firstImageClassName="object-cover w-full h-full"
             secondImageClassname="object-cover w-full h-full"
             slideMode="drag"
             showHandlebar={true}
+            style={{
+              aspectRatio: activeIndex === 0 ? "2000/2000" : activeIndex === 1 ? "2688/1536" : activeIndex === 2 ? "2000/1143" : "4864/3328"
+            }}
           />
         </div>
       </div>
