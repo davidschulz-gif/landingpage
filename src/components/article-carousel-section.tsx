@@ -26,7 +26,7 @@ const articleData: Article[] = [
     title: 'WHAT EXPERTS SAY',
     excerpt:
       '"Sehr vielversprechend sieht derzeit die Anwendung Yanus aus. Wenn man dies in Zukunft mit Materialien und deren Herstellung abstimmt, wäre das ein enormer Gewinn. Auch könnte man so entsprechende Moods in Sekunden erstellen."',
-    image: '/blog/blog_1.png',
+    image: '/blog/dabonline_logo_white.png',
     source: 'DR. DIETMAR KÖRING - ARPHENOTYPE',
     // link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
     link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
@@ -36,7 +36,7 @@ const articleData: Article[] = [
     title: 'AI-Generated Architectural Precision and Visual Excellence',
     excerpt:
       'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
-    image: '/logo/dab_logo.png',
+    image: '/blog/dab.png',
     source: 'DAB ONLINE',
     // link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
     link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
@@ -302,8 +302,8 @@ export function ArticleCarouselSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className='left-2 md:-left-12 cursor-pointer hover:bg-red-500 hover:border-red-500 hover:text-white transition-colors duration-300' />
-          <CarouselNext className='right-2 md:-right-12 hover:bg-red-500 cursor-pointer hover:border-red-500 hover:text-white transition-colors duration-300' />
+          <CarouselPrevious className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95' />
+          <CarouselNext className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95' />
         </Carousel>
 
         {/* Company Evolution Note */}
