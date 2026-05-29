@@ -36,10 +36,20 @@ export function KernelZoomShowcase() {
 
   const t = translations[locale]
 
+  // Manually defined aspect ratio per image (including the new 9/16 portrait ratio)
   const images = [
-    'kernal-zoom/image-22070.jpg',
-    'kernal-zoom/image-22072.jpg',
-    'kernal-zoom/image-22073.jpg',
+    {
+      src: '/kernal-zoom/image-22070.png',
+      aspectRatio: 4 / 3
+    },
+    {
+      src: '/kernal-zoom/image-22072.png',
+      aspectRatio: 4 / 3
+    },
+    {
+      src: '/kernal-zoom/image-22073.png',
+      aspectRatio: 9 / 16
+    }
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -74,7 +84,7 @@ export function KernelZoomShowcase() {
       window.removeEventListener('resize', updateRect)
       clearTimeout(timer)
     }
-  }, [containerRef, mode])
+  }, [containerRef, mode, activeIndex]) // Added activeIndex so it triggers on slide transition!
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isZoomed || mode === 'presentation') return // Lock/disable coordinates during presentation/active zoom
@@ -106,6 +116,9 @@ export function KernelZoomShowcase() {
       setBoxCoords({ x: 50, y: 50 }) // Center the focus box initially
     }
   }
+
+  // Get active image's aspect ratio statically defined in the array
+  const currentAspectRatio = images[activeIndex].aspectRatio
 
   // Calculate pixel-perfect alignment offsets for the high-res inner image inside Focus Box
   const boxSize = isZoomed ? 320 : 220
@@ -148,8 +161,8 @@ export function KernelZoomShowcase() {
           </div>
         )}
 
-        {/* Dynamic Responsive Viewport Wrapper */}
-        <div className="w-full relative px-2 sm:px-6">
+        {/* Dynamic Responsive Viewport Wrapper - Centers Portrait / Landscapes Perfectly */}
+        <div className="w-full relative px-2 sm:px-6 flex justify-center items-center min-h-[300px]">
           <motion.div 
             ref={containerRef}
             layout
@@ -161,7 +174,12 @@ export function KernelZoomShowcase() {
             onMouseUp={() => { if (mode === 'interactive') setIsZoomed(false) }}
             onTouchStart={() => { if (mode === 'interactive') setIsZoomed(true) }}
             onTouchEnd={() => { if (mode === 'interactive') setIsZoomed(false) }}
-            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 w-full aspect-[4/3] max-h-[75vh] md:max-h-[80vh] rounded-none border-x-0 ${
+            style={{ 
+              aspectRatio: currentAspectRatio,
+              width: currentAspectRatio >= 1 ? '100%' : `calc(65vh * ${currentAspectRatio})`,
+              height: currentAspectRatio >= 1 ? 'auto' : '65vh'
+            }}
+            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-7xl rounded-none border-x-0 ${
               mode === 'presentation'
                 ? 'cursor-pointer group/pres'
                 : 'cursor-zoom-in'
@@ -169,12 +187,12 @@ export function KernelZoomShowcase() {
           >
             {/* 1. The Background Image (Slightly blurry outside the Focus Box in Interactive mode) */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence>
                 <motion.img
                   key={activeIndex}
-                  src={images[activeIndex]}
+                  src={images[activeIndex].src}
                   initial={{ 
-                    scale: 1.0, 
+                    scale: mode === 'presentation' ? 1.02 : 1.0, 
                     opacity: 0, 
                     rotate: 0.01 
                   }}
@@ -199,7 +217,7 @@ export function KernelZoomShowcase() {
                     },
                     x: { type: 'spring', stiffness: 120, damping: 20, mass: 0.8 },
                     y: { type: 'spring', stiffness: 120, damping: 20, mass: 0.8 },
-                    opacity: { duration: 0.5 }
+                    opacity: { duration: 0.8, ease: 'easeInOut' }
                   }}
                   className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none origin-center"
                   alt="Typus AI Giga-Resolution Render"
@@ -235,7 +253,7 @@ export function KernelZoomShowcase() {
                 {/* 3. Fully Clear/Sharp Image inside the Focus Box aligned pixel-perfectly with background */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 rounded-[22px] sm:rounded-[30px] bg-neutral-900 pointer-events-none">
                   <motion.img
-                    src={images[activeIndex]}
+                    src={images[activeIndex].src}
                     animate={{
                       scale: isZoomed ? 2.2 : 1.0,
                       x: isZoomed ? `${(50 - boxCoords.x) * 1.2}%` : '0%',
