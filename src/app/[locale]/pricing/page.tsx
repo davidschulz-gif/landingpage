@@ -48,6 +48,17 @@ const ConciergePricingSection = dynamic(
     }
 )
 
+const LinkedinSlideshow = dynamic(
+  () =>
+    import('@/components/linkedin-slideshow').then(
+      mod => mod.LinkedinSlideshow
+    ),
+  {
+    ssr: false,
+    loading: () => <div className='h-[620px] bg-neutral-100 dark:bg-neutral-800/40 animate-pulse rounded-3xl max-w-3xl mx-auto' />,
+  }
+)
+
 
 export default function PricingPage() {
     const tHero = useTranslations('Hero')
@@ -133,6 +144,9 @@ export default function PricingPage() {
                     </div>
                 </div>
 
+
+
+
                 <AnimatePresence mode="wait">
                     {viewMode === 'app' ? (
                         <motion.div
@@ -156,6 +170,8 @@ export default function PricingPage() {
                         </motion.div>
                     )}
                 </AnimatePresence>
+
+                <LinkedinSlideshow/> 
 
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}

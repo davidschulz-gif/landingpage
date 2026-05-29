@@ -26,7 +26,8 @@ const articleData: Article[] = [
     title: 'WHAT EXPERTS SAY',
     excerpt:
       '"Sehr vielversprechend sieht derzeit die Anwendung Yanus aus. Wenn man dies in Zukunft mit Materialien und deren Herstellung abstimmt, wäre das ein enormer Gewinn. Auch könnte man so entsprechende Moods in Sekunden erstellen."',
-    image: '/blog/dabonline_logo_white.png',
+    // image: '/blog/dabonline_logo_white.png',
+    image: '/blog/blog_1.png',
     source: 'DR. DIETMAR KÖRING - ARPHENOTYPE',
     // link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
     link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
@@ -184,6 +185,20 @@ export function ArticleCarouselSection() {
                           />
                         )}
                         <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
+                        
+                        {/* Overlay DAB Online logo on Dr. Dietmar Köring's photo (article ID 0) */}
+                        {article.id === 0 && (
+                          <div className='absolute inset-0 flex  pointer-events-none z-10'>
+                            <div className='w-[60%] top-20 left-26 max-w-[150px] aspect-[4/1] relative'>
+                              <img
+                                src='/blog/dabonline_logo_white.png'
+                                alt='DAB Online Logo'
+                                className='object-contain w-full h-full filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]'
+                              />
+                            </div>
+                          </div>
+                        )}
+
                         <div className='absolute bottom-4 left-4 right-4'>
                           <span className='text-white uppercase text-xs font-medium bg-black/30 px-2 py-1  backdrop-blur-sm'>
                             {article.source}
