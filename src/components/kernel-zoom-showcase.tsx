@@ -48,7 +48,7 @@ export function KernelZoomShowcase() {
     },
     {
       src: '/kernal-zoom/image-22073.png',
-      aspectRatio: 9 / 16
+      aspectRatio: 3 / 4
     }
   ]
 
@@ -176,8 +176,8 @@ export function KernelZoomShowcase() {
             onTouchEnd={() => { if (mode === 'interactive') setIsZoomed(false) }}
             style={{ 
               aspectRatio: currentAspectRatio,
-              width: currentAspectRatio >= 1 ? '100%' : `calc(65vh * ${currentAspectRatio})`,
-              height: currentAspectRatio >= 1 ? 'auto' : '65vh'
+              width: currentAspectRatio >= 1 ? '100%' : `calc(80vh * ${currentAspectRatio})`,
+              height: currentAspectRatio >= 1 ? 'auto' : '80vh'
             }}
             className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-7xl rounded-none border-x-0 ${
               mode === 'presentation'
