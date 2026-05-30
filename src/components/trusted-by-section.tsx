@@ -210,8 +210,7 @@ export const TrustedBySection = () => {
 
   return (
     <div
-      className='w-full bg-[#fcfcfd] backdrop-blur-sm relative z-30'
-      style={{ minHeight: '15%', maxHeight: '15%', height: '15%' }}
+      className='w-full bg-transparent relative z-30 mt-6'
     >
       <div className='flex justify-center items-start pt-3 md:pb-3 pb-1'>
         <div

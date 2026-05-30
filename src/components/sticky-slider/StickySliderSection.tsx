@@ -30,7 +30,7 @@ export const StickySliderSection = memo(() => {
             // Creator subcategories
             const keys = [
               'sketch',
-              'model3d',
+              // 'model3d',
               'cad',
               'sitephoto',
               'modelPhoto',
@@ -62,7 +62,7 @@ export const StickySliderSection = memo(() => {
             // Creator slides
             const keys = [
               'sketch',
-              'model3d',
+              // 'model3d',
               'cad',
               'sitephoto',
               'modelPhoto',

@@ -36,8 +36,8 @@ export function LinkedinSlideshow() {
     { id: '7296821603881922560' },
     { id: '7452015727538089985' },
     { id: '7363921514309521408' },
-    { id: '7373390579357110273' },        
     { id: '7188164717385822208' },
+    { id: '7373390579357110273' },        
     { id: '7373390379523399680' },   
     { id: '7363554370187108353' }, 
     { id: '7361126961978507264' },
@@ -72,8 +72,8 @@ export function LinkedinSlideshow() {
     <section className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         
-        {/* Title & Header block with navigation arrows */}
-        <div className="mb-12 relative z-10 flex flex-col md:flex-row md:items-end md:justify-between max-w-7xl mx-auto text-left px-4">
+        {/* Title & Header block */}
+        <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           <div className="max-w-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
               {title}
@@ -82,28 +82,26 @@ export function LinkedinSlideshow() {
               {subtitle}
             </p>
           </div>
-          
-          {/* Navigation buttons in the header */}
-          <div className="flex gap-2 mt-6 md:mt-0">
-            <button
-              onClick={() => scroll('left')}
-              className="p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95"
-              aria-label="Scroll left"
-            >
-              <IconChevronLeft size={20} strokeWidth={2.5} />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95"
-              aria-label="Scroll right"
-            >
-              <IconChevronRight size={20} strokeWidth={2.5} />
-            </button>
-          </div>
         </div>
 
         {/* Row Container with Horizontal Scroll */}
         <div className="relative w-full overflow-hidden">
+          {/* Navigation buttons centered vertically on the left and right sides */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-13 sm:h-13 md:w-16 md:h-16 flex items-center justify-center bg-white/90 dark:bg-neutral-900/90 text-neutral-800 dark:text-neutral-200 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black active:scale-95 cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <IconChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" strokeWidth={2.5} />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-13 sm:h-13 md:w-16 md:h-16 flex items-center justify-center bg-white/90 dark:bg-neutral-900/90 text-neutral-800 dark:text-neutral-200 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-neutral-200/60 dark:border-neutral-800/60 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black active:scale-95 cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <IconChevronRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" strokeWidth={2.5} />
+          </button>
+
           <div 
             ref={scrollContainerRef}
             className="flex gap-6 px-4 md:px-12 py-4 overflow-x-auto justify-start mx-auto w-fit max-w-full scroll-smooth snap-x snap-mandatory scrollbar-none"

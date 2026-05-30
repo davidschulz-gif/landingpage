@@ -92,6 +92,7 @@ export function KernelZoomShowcase() {
   const [boxCoords, setBoxCoords] = useState({ x: 50, y: 50 })
   const [containerRect, setContainerRect] = useState({ width: 960, height: 410 })
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   // Automatic Presentation Mode: switch images every 3 seconds
   useEffect(() => {
@@ -119,6 +120,16 @@ export function KernelZoomShowcase() {
       clearTimeout(timer)
     }
   }, [containerRef, mode, activeIndex]) // Added activeIndex so it triggers on slide transition!
+
+  // Block the floating email buzzer when in interactive mode or hovering the container
+  useEffect(() => {
+    if (mode === 'interactive' || isHovered) {
+      window.dispatchEvent(new CustomEvent('toggle-buzzer-visibility', { detail: { visible: false } }))
+      return () => {
+        window.dispatchEvent(new CustomEvent('toggle-buzzer-visibility', { detail: { visible: true } }))
+      }
+    }
+  }, [mode, isHovered])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isZoomed || mode === 'presentation') return // Lock/disable coordinates during presentation/active zoom
@@ -164,11 +175,11 @@ export function KernelZoomShowcase() {
     : ((boxCoords.y / 100) * containerRect.height - 110)
 
   return (
-    <section className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
+    <section className="py-10 md:py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
       <div className="max-w-[1600px] mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
-        <div className="max-w-3xl mx-auto mb-12 px-4">
+        <div className="max-w-3xl mx-auto mb-6 md:mb-8 px-4">
           
           <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
             {t.title}
@@ -180,7 +191,7 @@ export function KernelZoomShowcase() {
 
         {/* Try Interactive Button (Shown outside, above the image in Presentation Mode) */}
         {mode === 'presentation' && (
-          <div className="mb-8 flex justify-center">
+          <div className="mb-4 md:mb-6 flex justify-center">
             <button
               onClick={() => {
                 setMode('interactive')
@@ -202,18 +213,30 @@ export function KernelZoomShowcase() {
             layout
             onClick={handleContainerClick}
             onMouseMove={handleMouseMove}
-            onMouseEnter={() => { if (mode === 'interactive') setIsZoomed(true) }}
-            onMouseLeave={() => { if (mode === 'interactive') setIsZoomed(false) }}
+            onMouseEnter={() => { 
+              setIsHovered(true)
+              if (mode === 'interactive') setIsZoomed(true) 
+            }}
+            onMouseLeave={() => { 
+              setIsHovered(false)
+              if (mode === 'interactive') setIsZoomed(false) 
+            }}
             onMouseDown={() => { if (mode === 'interactive') setIsZoomed(true) }}
             onMouseUp={() => { if (mode === 'interactive') setIsZoomed(false) }}
-            onTouchStart={() => { if (mode === 'interactive') setIsZoomed(true) }}
-            onTouchEnd={() => { if (mode === 'interactive') setIsZoomed(false) }}
+            onTouchStart={() => { 
+              setIsHovered(true)
+              if (mode === 'interactive') setIsZoomed(true) 
+            }}
+            onTouchEnd={() => { 
+              setIsHovered(false)
+              if (mode === 'interactive') setIsZoomed(false) 
+            }}
             style={{ 
               aspectRatio: currentAspectRatio,
-              width: currentAspectRatio >= 1 ? '100%' : `calc(80vh * ${currentAspectRatio})`,
-              height: currentAspectRatio >= 1 ? 'auto' : '80vh'
+              width: `min(100%, calc(80vh * ${currentAspectRatio}))`,
+              height: `min(80vh, calc(100% / ${currentAspectRatio}))`
             }}
-            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-7xl rounded-none border-x-0 ${
+            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-4xl rounded-none border-x-0 w-full h-auto ${
               mode === 'presentation'
                 ? 'cursor-pointer group/pres'
                 : 'cursor-zoom-in'

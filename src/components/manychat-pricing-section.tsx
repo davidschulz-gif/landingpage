@@ -166,7 +166,13 @@ const educationPlans = [
 const apiBaseUrl = `${apiUrl}/api/subscription/public/`
 // const apiBaseUrl = 'https://app.typus.ai/api/subscription/public/'
 
-export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?: boolean }) {
+export function ManyChatPricingSection({ 
+  isStandalone = false,
+  showOnly = 'all'
+}: { 
+  isStandalone?: boolean
+  showOnly?: 'regular' | 'educational' | 'all'
+}) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
@@ -804,6 +810,139 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
   };
 
 
+  const renderEducationSection = () => {
+    return (
+      <>
+        {/* Education Section */}
+        <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
+          <h2
+            className='text-[30px] font-normal text-black mt-10 mb-2'
+            style={{
+              fontFamily:
+                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            {t('educationPlans')}
+          </h2>
+
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
+            <button
+              onClick={() => setIsYearly(true)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black'
+                }`}
+            >
+              {t('yearlyBilling')}
+            </button>
+            <button
+              onClick={() => setIsYearly(false)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
+                ? 'bg-white text-black shadow-md'
+                : 'text-black hover:text-black'
+                }`}
+            >
+              {t('monthlyBilling')}
+            </button>
+          </div>
+          {/* Promo Code Input on Page (Education) */}
+          <div className='w-full max-w-md mx-auto mt-8 mb-6'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
+              <input
+                type='text'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
+                placeholder={tModal('promoCodePlaceholder')}
+                value={eduPromoCode}
+                onChange={(e) => {
+                  setEduPromoCode(e.target.value)
+                  setEduPromoError(null)
+                  setEduPromoSuccess(null)
+                  setEduPromoDiscount(null)
+                }}
+                disabled={isRedirecting || isVerifyingPromo}
+              />
+              <Button
+                onClick={() => handleVerifyPromoCode('edu')}
+                disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
+                style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+              >
+                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+              </Button>
+            </div>
+            {eduPromoError && (
+              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
+                <IconAlertCircle size={14} />
+                <span>{eduPromoError}</span>
+              </div>
+            )}
+            {eduPromoSuccess && (
+              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
+                <Check size={14} />
+                <span>{eduPromoSuccess}</span>
+              </div>
+            )}
+            {eduPromoDiscount && (
+              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
+                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}% OFF` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
+              </div>
+            )}
+          </div>
+
+          {subscribeError && (
+            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
+                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
+                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
+                  {subscribeError}
+                </p>
+                <button
+                  onClick={() => setSubscribeError(null)}
+                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
+                >
+                  <IconX size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {isYearly && (
+            <div className='flex flex-col gap-1 mb-8 text-center'>
+              <p
+                className='text-black text-xl font-bold uppercase'
+              >
+                {t('temporaryOfferTitle')}
+              </p>
+              <p
+                className='text-black dark:text-white text-2xl sm:text-3xl md:text-[38px] font-black tracking-tight leading-tight'
+              >
+                {t('temporaryOfferSubtitle')}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Education Plans Cards */}
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
+          {currentEduPlans.map((plan, index) => (
+            <div key={index} className='w-full max-w-xs z-30'>
+              <PricingCard
+                plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                isYearly={isYearly}
+                isProfessional={false}
+                isEurope={isEurope}
+                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
+                promoDiscount={eduPromoDiscount}
+                isVat={isVat}
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
+
   return (
     <section
       ref={containerRef}
@@ -814,8 +953,13 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
 
 
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-0'>
+        {/* Educational Plans at the top if requested */}
+        {showOnly === 'educational' && renderEducationSection()}
+
         {/* Professional Section */}
-        <div className='text-center mb-2 relative z-40'>
+        {showOnly !== 'educational' && (
+          <>
+            <div className='text-center mb-2 relative z-40'>
           <h2
             className='text-[30px] font-black mt-10 mb-8 text-black'
           >
@@ -975,7 +1119,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
                 {t('temporaryOfferTitle')}
               </p>
               <p
-                className='text-black text-lg font-medium'
+                className='text-black dark:text-white text-2xl sm:text-3xl md:text-[38px] font-black tracking-tight leading-tight'
               >
                 {t('temporaryOfferSubtitle')}
               </p>
@@ -1093,6 +1237,8 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
             ))
           )}
         </div>
+          </>
+        )}
 
         {/* Credit Deduction Overview & Status */}
         <div className='w-full max-w-xl mx-auto mt-4 mb-8 z-20 relative'>
@@ -1205,131 +1351,7 @@ export function ManyChatPricingSection({ isStandalone = false }: { isStandalone?
         <TestimonialsSection />
 
         {/* Education Section */}
-        <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
-          <h2
-            className='text-[30px] font-normal text-black mt-10 mb-2'
-            style={{
-              fontFamily:
-                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-            }}
-          >
-            {t('educationPlans')}
-          </h2>
-
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
-            <button
-              onClick={() => setIsYearly(true)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-            >
-              {t('yearlyBilling')}
-            </button>
-            <button
-              onClick={() => setIsYearly(false)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-            >
-              {t('monthlyBilling')}
-            </button>
-          </div>
-          {/* Promo Code Input on Page (Education) */}
-          <div className='w-full max-w-md mx-auto mt-8 mb-6'>
-            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
-              <input
-                type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
-                placeholder={tModal('promoCodePlaceholder')}
-                value={eduPromoCode}
-                onChange={(e) => {
-                  setEduPromoCode(e.target.value)
-                  setEduPromoError(null)
-                  setEduPromoSuccess(null)
-                  setEduPromoDiscount(null)
-                }}
-                disabled={isRedirecting || isVerifyingPromo}
-              />
-              <Button
-                onClick={() => handleVerifyPromoCode('edu')}
-                disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
-                style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
-              >
-                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
-              </Button>
-            </div>
-            {eduPromoError && (
-              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
-                <IconAlertCircle size={14} />
-                <span>{eduPromoError}</span>
-              </div>
-            )}
-            {eduPromoSuccess && (
-              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
-                <Check size={14} />
-                <span>{eduPromoSuccess}</span>
-              </div>
-            )}
-            {eduPromoDiscount && (
-              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}% OFF` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
-              </div>
-            )}
-          </div>
-
-          {subscribeError && (
-            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
-              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
-                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
-                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
-                  {subscribeError}
-                </p>
-                <button
-                  onClick={() => setSubscribeError(null)}
-                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
-                >
-                  <IconX size={16} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {isYearly && (
-            <div className='flex flex-col gap-1 mb-8 text-center'>
-              <p
-                className='text-black text-xl font-bold uppercase'
-              >
-                {t('temporaryOfferTitle')}
-              </p>
-              <p
-                className='text-black text-lg font-medium'
-              >
-                {t('temporaryOfferSubtitle')}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Education Plans Cards */}
-        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
-          {currentEduPlans.map((plan, index) => (
-            <div key={index} className='w-full max-w-xs z-30'>
-              <PricingCard
-                plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                isYearly={isYearly}
-                isProfessional={false}
-                isEurope={isEurope}
-                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
-                promoDiscount={eduPromoDiscount}
-                isVat={isVat}
-              />
-            </div>
-          ))}
-        </div>
+        {showOnly === 'all' && renderEducationSection()}
 
       </div>
 

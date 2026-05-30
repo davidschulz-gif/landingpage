@@ -161,6 +161,7 @@
     "reviewsCount": "basierend auf 90+ Bewertungen",
     "appOfferTitle": "APP ANGEBOT",
     "serviceOfferTitle": "SERVICE ANGEBOT",
+    "educationOfferTitle": "BILDUNGSPLÄNE",
     "features": {
       "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
       "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
@@ -517,7 +518,7 @@
     "legal": "Rechtliches",
     "copyright": "© 2026 Typus.AI. Alle Rechte vorbehalten.",
     "coFinancingTitle": "Zur Kofinanzierung",
-    "coFinancing": "Das Projekt zielt auf die Entwicklung zentraler neuer Funktionen für die cloudbasierte KI-Visualisierungsplattform. Dazu gehören die ortsspezifische Einbindung im Bereich der 3D-Modelle in reale Umgebungen, die Weiterverarbeitung vollständiger Modelle, die direkte BIM-Integration sowie KI-gestützte Texturverarbeitung. Ein KI-kompatibler Materialkatalog soll zudem den Einsatz realer Materialien und Hersteller ermöglichen. Gefördert wird die automatisierte Umwandlung im Bereich der 3D-Modelle in photorealistische Renderings und erlaubt eine intuitive Bearbeitung direkt im Browser. Der Prototyp verbessert den Visualisierungsprozess deutlich. Für Architekt:innen entsteht damit ein neues Werkzeug, das effiziente, flexible und realitätsnahe Visualisierungen in frühen Entwurfsphasen ermöglicht – inklusive präziser Anpassungen und ortsgenauer Darstellung.",
+    "coFinancing": "Das Projekt zielt auf die Entwicklung zentraler neuer Funktionen für die cloudbasierte KI-Visualisierungsplattform. Dazu gehören die ortsspezifische Einbindung im Bereich der 3D-Modelle in reale Umgebungen, die Weiterverarbeitung vollständiger Modelle, die direkte BIM-Integration sowie KI-gestützte Texturverarbeitung. Gefördert wird die automatisierte Umwandlung im Bereich der 3D-Modelle in photorealistische Renderings und erlaubt eine intuitive Bearbeitung direkt im Browser. Der Prototyp verbessert den Visualisierungsprozess deutlich. Für Architekt:innen entsteht damit ein neues Werkzeug, das effiziente, flexible und realitätsnahe Visualisierungen in frühen Entwurfsphasen ermöglicht – inklusive präziser Anpassungen und ortsgenauer Darstellung.",
     "links": {
       "create": "Erstellen",
       "edit": "Bearbeiten",

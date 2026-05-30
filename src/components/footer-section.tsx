@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import HeroEmailForm from './hero-email-form'
 import SupportedPaymentMethods from './payment/SupportedPaymentMethods'
+import { TrustedBySection } from './trusted-by-section'
 
 const socialLinks = [
   {
@@ -223,15 +224,16 @@ export function FooterSection() {
           </div>
         </div>
 
-        {/* Co-Financing Section */}
+        {/* Co-Financing & Integrations Section */}
         <div className='mb-8 max-w-4xl mx-auto'>
           <div className='border-t border-gray-200 dark:border-gray-800 pt-8'>
             <h3 className='text-sm md:text-base font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-4 text-center uppercase tracking-wide'>
               {t('coFinancingTitle')}
             </h3>
-            <p className='text-xs md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed text-center'>
+            <p className='text-xs md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-6'>
               {t('coFinancing')}
             </p>
+            <TrustedBySection />
           </div>
         </div>
 

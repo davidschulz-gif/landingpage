@@ -104,7 +104,7 @@ export function TestimonialsSection() {
                                     </div>
                                 )}
                             </div>
-                            <div className="flex-1 pr-4 lg:pr-1 min-w-0">
+                            <div className="flex-1 pr-8 lg:pr-6 min-w-0">
                                 <a
                                     href={item.profileUrl}
                                     target="_blank"

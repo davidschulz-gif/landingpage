@@ -6,27 +6,18 @@ import { HeroParallax } from '@/components/hero-parallax'
 import { MainHero } from '@/components/main-hero'
 import { ToastProvider } from '@/components/providers/toast-provider'
 import { SplashScreen } from '@/components/splash-screen'
-import { StickyBottomSheet } from '@/components/sticky-bottom-sheet'
 import { VideoShowcaseSection } from '@/components/video-showcase-section'
 import { row123Products, row4Products } from '@/constants/homePage'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { measurePerformance } from '@/lib/performance'
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
 import { useEffect, useMemo, useState } from 'react'
 
-const StickySliderSection = dynamic(
-  () =>
-    import('@/components/sticky-slider-section').then(
-      mod => mod.StickySliderSection
-    ),
-  {
-    ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// Removed StickySliderSection dynamic import since it is moved to a separate page
 
 // const ComparisonSection = dynamic(
 //   () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -229,6 +220,7 @@ const KernelZoomShowcase = dynamic(
 
 export default function Home() {
   const t = useTranslations('HeroProducts')
+  const locale = useLocale()
   const [showSplash, setShowSplash] = useState(true)
   const [isPreloaded, setIsPreloaded] = useState(false)
   const isMobile = useIsMobile()
@@ -457,26 +449,43 @@ export default function Home() {
 
 
         {/* Video Showcase Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <VideoShowcaseSection />
-        </motion.div>
+        </motion.div> */}
 
-        {/* Sticky Slider Section */}
-        {(!isClient || isMobile) ? null : (
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <StickySliderSection />
-          </motion.div>
-        )}
+        {/* Overview of Features CTA Section replacing StickySliderSection */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 w-full flex flex-col items-center justify-center text-center px-4"
+        >
+          <div className="max-w-3xl mx-auto space-y-6">
+            <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              {locale === 'de' ? 'ENTDECKEN SIE ALLE FUNKTIONEN' : 'DISCOVER ALL FEATURES'}
+            </h2>
+            <p className="text-neutral-500 dark:text-neutral-400 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
+              {locale === 'de' 
+                ? 'Vom Skizzieren über CAD-Rendering bis hin zu intelligenten Inpainting- und Bearbeitungswerkzeugen – erfahren Sie, wie Sie Ihren Design-Workflow beschleunigen können.'
+                : 'From sketching and CAD rendering to intelligent inpainting and editing tools – explore how you can accelerate your design workflow.'}
+            </p>
+            <div className="pt-4">
+              <Link
+                href={`/${locale}/overview-of-features`}
+                className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              >
+                {locale === 'de' ? 'Feature-Übersicht ansehen' : 'See overview of features'}
+              </Link>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Tab Video Showcase */}
         {/* <motion.div
@@ -606,8 +615,7 @@ export default function Home() {
           <FooterSection />
         </motion.div>
 
-        {/* Sticky Bottom Sheet */}
-        <StickyBottomSheet showOnlyInHero={true} />
+        {/* Sticky Bottom Sheet Removed per Request */}
       </div>
 
 

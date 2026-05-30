@@ -63,11 +63,11 @@ const LinkedinSlideshow = dynamic(
 export default function PricingPage() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
-    const [viewMode, setViewMode] = useState<'app' | 'done-for-you'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'done-for-you' | 'education'>('app')
 
     useEffect(() => {
         if (window.location.hash === '#student-plan') {
-            setViewMode('app')
+            setViewMode('education')
         }
     }, [])
 
@@ -121,11 +121,11 @@ export default function PricingPage() {
 
                 <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                     <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
-                        {['app', 'done-for-you'].map((mode) => (
+                        {['app',  'education','done-for-you'].map((mode) => (
                             <button
                                 key={mode}
                                 onClick={() => setViewMode(mode as any)}
-                                className={`relative z-10 px-8 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
+                                className={`relative z-10 px-5 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
                                 style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                             >
                                 {viewMode === mode && (
@@ -137,7 +137,11 @@ export default function PricingPage() {
                                     />
                                 )}
                                 <span className='relative z-20'>
-                                    {mode === 'app' ? tHero('appOfferTitle') : tHero('serviceOfferTitle')}
+                                    {mode === 'app'
+                                        ? tHero('appOfferTitle')
+                                        : mode === 'done-for-you'
+                                            ? tHero('serviceOfferTitle')
+                                            : tHero('educationOfferTitle')}
                                 </span>
                             </button>
                         ))}
@@ -156,7 +160,17 @@ export default function PricingPage() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <ManyChatPricingSection isStandalone={true} />
+                            <ManyChatPricingSection isStandalone={true} showOnly="regular" />
+                        </motion.div>
+                    ) : viewMode === 'education' ? (
+                        <motion.div
+                            key="education"
+                            initial={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ManyChatPricingSection isStandalone={true} showOnly="educational" />
                         </motion.div>
                     ) : (
                         <motion.div

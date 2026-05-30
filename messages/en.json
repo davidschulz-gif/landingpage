@@ -161,6 +161,7 @@
     "reviewsCount": "based on 90+ reviews",
     "appOfferTitle": "APP OFFER",
     "serviceOfferTitle": "SERVICE OFFER",
+    "educationOfferTitle": "EDUCATION PLANS",
     "features": {
       "createAccount": "CREATE A FREE ACCOUNT",
       "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",
@@ -517,7 +518,7 @@
     "legal": "Legal",
     "copyright": "© 2026 Typus.AI. All rights reserved.",
     "coFinancingTitle": "On Co-Financing",
-    "coFinancing": "The project aims to develop central new features for the cloud-based AI visualization platform. This includes location-specific integration of 3D models into real environments, further processing of complete models, direct BIM integration, and AI-supported texture processing. An AI-compatible material catalog is also intended to enable the use of real materials and manufacturers. The automated conversion of 3D models into photorealistic renderings is promoted and allows intuitive editing directly in the browser. The prototype significantly improves the visualization process. For architects, this creates a new tool that enables efficient, flexible, and realistic visualizations in early design phases – including precise adjustments and location-accurate representation.",
+    "coFinancing": "The project aims to develop central new features for the cloud-based AI visualization platform. This includes location-specific integration of 3D models into real environments, further processing of complete models, direct BIM integration, and AI-supported texture processing. The automated conversion of 3D models into photorealistic renderings is promoted and allows intuitive editing directly in the browser. The prototype significantly improves the visualization process. For architects, this creates a new tool that enables efficient, flexible, and realistic visualizations in early design phases – including precise adjustments and location-accurate representation.",
     "links": {
       "create": "Create",
       "edit": "Edit",

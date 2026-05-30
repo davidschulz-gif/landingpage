@@ -6,12 +6,12 @@ export const tabsData: TabData[] = [
     name: 'CREATOR',
     subCategories: [
       { id: 1, name: 'Sketch', slideId: 1 },
-      { id: 2, name: '3D Model To Render (plugins)', slideId: 2 },
-      { id: 3, name: 'CAD', slideId: 3 },
-      { id: 4, name: 'Sitephoto', slideId: 4 },
-      { id: 5, name: 'Model Photo', slideId: 5 },
-      { id: 6, name: 'Color Map (Upload Custom Textures)', slideId: 6 },
-      { id: 7, name: 'Art Presets', slideId: 7 },
+      //  { id: 2, name: '3D Model To Render (plugins)', slideId: 2 },
+      { id: 2, name: 'CAD', slideId: 2 },
+      { id: 3, name: 'Sitephoto', slideId: 3 },
+      { id: 4, name: 'Model Photo', slideId: 4 },
+      { id: 5, name: 'Color Map (Upload Custom Textures)', slideId: 5 },
+      { id: 6, name: 'Art Presets', slideId: 6 },
     ],
     slides: [
       {
@@ -27,28 +27,27 @@ export const tabsData: TabData[] = [
       },
       {
         id: 2,
-        title: '3D MODEL TO RENDER',
-        subtitle: 'Plugins Integration',
-        description:
-          'Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.',
-        video: '/videos/create_3d_s.webm',
-        textColor: 'text-black',
-        buttonText: 'Get Plugins',
-        progress: '2/6',
-      },
-      {
-        id: 3,
-        title: 'CAD TRANSFORMATION',
+// title: '3D MODEL TO RENDER',
+//         subtitle: 'Plugins Integration',
+//         description:
+//           'Seamlessly integrate with your favorite 3D modeling software and enhance renders with AI.',
+//         video: '/videos/create_3d_s.webm',
+//         textColor: 'text-black',
+//         buttonText: 'Get Plugins',
+//         progress: '2/6',
+//       },
+//       {  
+              title: 'CAD TRANSFORMATION',
         subtitle: 'Technical To Visual',
         description:
           'Convert CAD files into stunning photorealistic renders while preserving structural accuracy.',
         video: '/videos/create_cad_s.webm',
         textColor: 'text-black',
         buttonText: 'Try CAD',
-        progress: '3/6',
+        progress: '2/6',
       },
       {
-        id: 4,
+        id: 3,
         title: 'Site photo enhancement',
         subtitle: 'Context Visualization',
         description:
@@ -56,10 +55,10 @@ export const tabsData: TabData[] = [
         video: '/videos/create_photo_s.webm',
         textColor: 'text-black',
         buttonText: 'Upload Photo',
-        progress: '4/6',
+        progress: '3/6',
       },
       {
-        id: 5,
+        id: 4,
         title: 'MODEL PHOTOGRAPHY',
         subtitle: 'Physical To Digital',
         description:
@@ -67,10 +66,10 @@ export const tabsData: TabData[] = [
         video: '/videos/create_modelphoto_s.webm',
         textColor: 'text-black',
         buttonText: 'Capture Model',
-        progress: '5/6',
+        progress: '4/6',
       },
       {
-        id: 6,
+        id: 5,
         title: 'CUSTOM TEXTURES',
         subtitle: 'Color Map Upload',
         description:
@@ -78,10 +77,10 @@ export const tabsData: TabData[] = [
         video: '/videos/create_colormap_s.webm',
         textColor: 'text-black',
         buttonText: 'Upload Textures',
-        progress: '6/7',
+        progress: '5/6',
       },
       {
-        id: 7,
+        id: 6,
         title: 'ART PRESETS',
         subtitle: 'Style Library Access',
         description:
@@ -89,7 +88,7 @@ export const tabsData: TabData[] = [
         video: '/videos/create_artpresets_s.webm',
         textColor: 'text-black',
         buttonText: 'Browse Presets',
-        progress: '7/7',
+        progress: '6/6',
       },
     ],
   },
