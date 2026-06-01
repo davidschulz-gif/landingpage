@@ -1,3 +1,4 @@
+'use client';
 import { Clock, FileText, Image as ImageIcon, Sparkles, Type, Upload, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo, useState } from 'react';

@@ -1,29 +1,30 @@
-'use client'
+// 'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import CompareDemo from '@/components/compare-drag-demo'
-import { HeroParallax } from '@/components/hero-parallax'
+// import { HeroParallax } from '@/components/hero-parallax'
 import { MainHero } from '@/components/main-hero'
 import { TrustedBySection } from '@/components/trusted-by-section'
-import { ToastProvider } from '@/components/providers/toast-provider'
-import { SplashScreen } from '@/components/splash-screen'
-import { VideoShowcaseSection } from '@/components/video-showcase-section'
-import { row123Products, row4Products } from '@/constants/homePage'
-import { useIsMobile } from '@/hooks/use-mobile'
-import { measurePerformance } from '@/lib/performance'
-import { motion } from 'framer-motion'
-import { useTranslations, useLocale } from 'next-intl'
-import Link from 'next/link'
+// import { ToastProvider } from '@/components/providers/toast-provider'
+// import { SplashScreen } from '@/components/splash-screen'
+// import { VideoShowcaseSection } from '@/components/video-showcase-section'
+// import { row123Products, row4Products } from '@/constants/homePage'
+// import { useIsMobile } from '@/hooks/use-mobile'
+// import { measurePerformance } from '@/lib/performance'
+// import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
+// import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
-import { useEffect, useMemo, useState } from 'react'
+// import { useState } from 'react'
+import Reveal from '@/components/common/Reveal'
 
 // Removed StickySliderSection dynamic import since it is moved to a separate page
 
 // const ComparisonSection = dynamic(
 //   () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
 //   {
-//     ssr: false,
+//     // ssr: false,
 //     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
 //   }
 // )
@@ -31,7 +32,7 @@ import { useEffect, useMemo, useState } from 'react'
 const UseCasesSection = dynamic(
   () => import('@/components/use-cases-section').then(mod => mod.UseCasesSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -40,7 +41,7 @@ const UseCasesSection = dynamic(
 //   () =>
 //     import('@/components/tab-video-showcase').then(mod => mod.TabVideoShowcase),
 //   {
-//     ssr: false,
+//     // ssr: false,
 //     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
 //   }
 // )
@@ -48,7 +49,7 @@ const UseCasesSection = dynamic(
 const ReviewsSection = dynamic(
   () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -59,7 +60,7 @@ const PricingCTASection = dynamic(
       mod => mod.PricingCTASection
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
@@ -72,7 +73,7 @@ const MeetOurTeamSection = dynamic(
       mod => mod.MeetOurTeamSection
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -83,7 +84,7 @@ const ArticleCarouselSection = dynamic(
       mod => mod.ArticleCarouselSection
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -91,7 +92,7 @@ const ArticleCarouselSection = dynamic(
 const BlogPromoSection = dynamic(
   () => import('@/components/blog-promo-section').then(mod => mod.BlogPromoSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
@@ -102,7 +103,7 @@ const CreatorShowcaseSection = dynamic(
       mod => mod.CreatorShowcaseSection
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -110,7 +111,7 @@ const CreatorShowcaseSection = dynamic(
 const RightsSection = dynamic(
   () => import('@/components/rights-section').then(mod => mod.RightsSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -118,7 +119,7 @@ const RightsSection = dynamic(
 // const DetailedFeaturesSection = dynamic(
 //   () => import('@/components/detailed-features-section').then(mod => mod.DetailedFeaturesSection),
 //   {
-//     ssr: false,
+//     // ssr: false,
 //     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
 //   }
 // )
@@ -126,7 +127,7 @@ const RightsSection = dynamic(
 const IndustrySection = dynamic(
   () => import('@/components/industry-section').then(mod => mod.IndustrySection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -134,7 +135,7 @@ const IndustrySection = dynamic(
 const FAQSection = dynamic(
   () => import('@/components/faq-section').then(mod => mod.FAQSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -142,7 +143,7 @@ const FAQSection = dynamic(
 const FooterSection = dynamic(
   () => import('@/components/footer-section').then(mod => mod.FooterSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
@@ -151,7 +152,7 @@ const FeaturesSection = dynamic(
   () =>
     import('@/components/features-section').then(mod => mod.FeaturesSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -160,7 +161,7 @@ const FeaturesSection = dynamic(
 const DoneForYouCombinedSection = dynamic(
   () => import('@/components/done-for-you-combined-section').then(mod => mod.DoneForYouCombinedSection),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
   }
 )
@@ -168,7 +169,7 @@ const DoneForYouCombinedSection = dynamic(
 const HowItWorks = dynamic(
   () => import('@/components/how-it-works').then(mod => mod.HowItWorks),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -176,7 +177,7 @@ const HowItWorks = dynamic(
 const ImageTemplates = dynamic(
   () => import('@/components/image-templates').then(mod => mod.ImageTemplates),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -184,7 +185,7 @@ const ImageTemplates = dynamic(
 // const VideoTemplates = dynamic(
 //   () => import('@/components/video-templates').then(mod => mod.VideoTemplates),
 //   {
-//     ssr: false,
+//     // ssr: false,
 //     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
 //   }
 // )
@@ -192,7 +193,7 @@ const ImageTemplates = dynamic(
 const FeatureShowcase = dynamic(
   () => import('@/components/feature').then(mod => mod.FeatureShowcase),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
 )
@@ -203,7 +204,7 @@ const LinkedinSlideshow = dynamic(
       mod => mod.LinkedinSlideshow
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-[620px] bg-neutral-100 dark:bg-neutral-800/40 animate-pulse rounded-3xl max-w-3xl mx-auto' />,
   }
 )
@@ -214,107 +215,107 @@ const KernelZoomShowcase = dynamic(
       mod => mod.KernelZoomShowcase
     ),
   {
-    ssr: false,
+    // ssr: false,
     loading: () => <div className='h-[500px] bg-neutral-950/40 animate-pulse rounded-[32px] max-w-7xl mx-auto' />,
   }
 )
 
 export default function Home() {
   const t = useTranslations('HeroProducts')
-  const locale = useLocale()
-  const [showSplash, setShowSplash] = useState(true)
-  const [isPreloaded, setIsPreloaded] = useState(false)
-  const isMobile = useIsMobile()
+  // const locale = useLocale()
+  // const [showSplash, setShowSplash] = useState(true)
+  // const [isPreloaded, setIsPreloaded] = useState(false)
+  // const isMobile = useIsMobile()
 
 
   // Translate product titles
-  const translatedRow123Products = useMemo(() => {
-    const titleMap: Record<string, string> = {
-      'Commercial Building': t('commercialBuilding'),
-      'Conceptual Representation': t('conceptualRepresentation'),
-      'Contemporary Residential Villa': t('contemporaryResidentialVilla'),
-      'Cultural Building': t('culturalBuilding'),
-      'Curtain Wall Façade': t('curtainWallFacade'),
-      'Industrial Loft Style': t('industrialLoftStyle'),
-      'Institutional Building': t('institutionalBuilding'),
-      'Japandi Style': t('japandiStyle'),
-      'Modern Residential House': t('modernResidentialHouse'),
-      'Modern Single Family House': t('modernSingleFamilyHouse'),
-      'Morning Light Sunbeams': t('morningLightSunbeams'),
-      'Multi-Family House': t('multiFamilyHouse'),
-    }
-    return row123Products.map(product => ({
-      ...product,
-      title: titleMap[product.title] || product.title,
-    }))
-  }, [t])
+  // const translatedRow123Products = useMemo(() => {
+  //   const titleMap: Record<string, string> = {
+  //     'Commercial Building': t('commercialBuilding'),
+  //     'Conceptual Representation': t('conceptualRepresentation'),
+  //     'Contemporary Residential Villa': t('contemporaryResidentialVilla'),
+  //     'Cultural Building': t('culturalBuilding'),
+  //     'Curtain Wall Façade': t('curtainWallFacade'),
+  //     'Industrial Loft Style': t('industrialLoftStyle'),
+  //     'Institutional Building': t('institutionalBuilding'),
+  //     'Japandi Style': t('japandiStyle'),
+  //     'Modern Residential House': t('modernResidentialHouse'),
+  //     'Modern Single Family House': t('modernSingleFamilyHouse'),
+  //     'Morning Light Sunbeams': t('morningLightSunbeams'),
+  //     'Multi-Family House': t('multiFamilyHouse'),
+  //   }
+  //   return row123Products.map(product => ({
+  //     ...product,
+  //     title: titleMap[product.title] || product.title,
+  //   }))
+  // }, [t])
 
-  const translatedRow4Products = useMemo(() => {
-    return row4Products.map(product => ({
-      ...product,
-      title: product.title, // row4Products have empty titles, so no translation needed
-    }))
-  }, [])
+  // const translatedRow4Products = useMemo(() => {
+  //   return row4Products.map(product => ({
+  //     ...product,
+  //     title: product.title, // row4Products have empty titles, so no translation needed
+  //   }))
+  // }, [])
 
-  const [isClient, setIsClient] = useState(false)
-  useEffect(() => {
-    setIsClient(true)
+  // const [isClient, setIsClient] = useState(false)
+  // useEffect(() => {
+  //   setIsClient(true)
 
-    // Initialize performance monitoring
-    measurePerformance()
+  //   // Initialize performance monitoring
+  //   measurePerformance()
 
-    // Performance monitoring
-    const startTime = performance.now()
-    console.log('🚀 Page load started at:', startTime)
+  //   // Performance monitoring
+  //   const startTime = performance.now()
+  //   console.log('🚀 Page load started at:', startTime)
 
-    // Background preloading during splash - optimized for faster loading
-    const preloadResources = async () => {
-      try {
+  //   // Background preloading during splash - optimized for faster loading
+  //   const preloadResources = async () => {
+  //     try {
         // Preload only critical above-the-fold images
-        const imagePromises = translatedRow123Products
-          .slice(0, 2)
-          .map(product => {
-            return new Promise(resolve => {
-              const img = new Image()
-              img.onload = resolve
-              img.onerror = resolve
-              img.src = product.thumbnail
-            })
-          })
+        // const imagePromises = translatedRow123Products
+        //   .slice(0, 2)
+        //   .map(product => {
+        //     return new Promise(resolve => {
+        //       const img = new Image()
+        //       img.onload = resolve
+        //       img.onerror = resolve
+        //       img.src = product.thumbnail
+        //     })
+        //   })
 
-        // Await critical images
-        await Promise.all(imagePromises)
+        // // Await critical images
+        // await Promise.all(imagePromises)
 
-        const endTime = performance.now()
-        const loadTime = endTime - startTime
-        console.log(`✅ Resources preloaded in ${loadTime.toFixed(2)}ms`)
-        console.log(
-          `📊 Performance: ${loadTime < 1500
-            ? 'Excellent'
-            : loadTime < 2500
-              ? 'Good'
-              : 'Needs improvement'
-          }`
-        )
+  //       const endTime = performance.now()
+  //       const loadTime = endTime - startTime
+  //       console.log(`✅ Resources preloaded in ${loadTime.toFixed(2)}ms`)
+  //       console.log(
+  //         `📊 Performance: ${loadTime < 1500
+  //           ? 'Excellent'
+  //           : loadTime < 2500
+  //             ? 'Good'
+  //             : 'Needs improvement'
+  //         }`
+  //       )
 
-        setIsPreloaded(true)
-      } catch (error) {
-        console.error('Preload error:', error)
-        setIsPreloaded(true)
-      }
-    }
+  //       setIsPreloaded(true)
+  //     } catch (error) {
+  //       console.error('Preload error:', error)
+  //       setIsPreloaded(true)
+  //     }
+  //   }
 
-    preloadResources()
-  }, [translatedRow123Products])
+  //   preloadResources()
+  // }, [translatedRow123Products])
 
-  const handleSplashComplete = () => {
-    if (isPreloaded) {
-      setShowSplash(false)
-    } else {
-      // Wait for preloading to complete
-      setTimeout(() => setShowSplash(false), 100) // Reduced from 500ms
-    }
-  }
+  // const handleSplashComplete = () => {
+  //   if (isPreloaded) {
+  //     setShowSplash(false)
+  //   } else {
+  //     // Wait for preloading to complete
+  //     setTimeout(() => setShowSplash(false), 100) // Reduced from 500ms
+  //   }
+  // }
 
   // Removed if (!isClient) block to allow SSR of the main content
 
@@ -392,14 +393,20 @@ export default function Home() {
         <MainHero />
 
         {/* Trust Logos (Certified By, GPU Engine, As Seen On, Finalist) */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           className='w-full max-w-7xl mx-auto px-4 py-8 md:py-12 border-b border-neutral-100 dark:border-neutral-900'
+        > */}
+        <Reveal  initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          className='w-full max-w-7xl mx-auto  px-4 py-1 md:py-12 border-b border-neutral-100 dark:border-neutral-900'
         >
           <TrustedBySection showOnlyOthers={true} />
-        </motion.div>
+        </Reveal>
+        {/* </motion.div> */}
 
         {/* Embedded LinkedIn Slideshow Showcase */}
         <LinkedinSlideshow />
@@ -408,49 +415,49 @@ export default function Home() {
         <KernelZoomShowcase />
 
         {/* Image Templates */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <ImageTemplates />
-        </motion.div>
+        </Reveal>
 
         {/* Use Cases Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <UseCasesSection />
-        </motion.div>
+        </Reveal>
 
         {/* Feature Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeatureShowcase />
-        </motion.div>
+        </Reveal>
 
         {/* Rights Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <RightsSection />
-        </motion.div>
+        </Reveal>
 
         {/* How It Works Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <HowItWorks />
-        </motion.div>
+        </Reveal>
 
 
         {/* Video Showcase Section */}
@@ -503,131 +510,131 @@ export default function Home() {
         </motion.div> */}
 
         {/* Before & After Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <CompareDemo />
-        </motion.div>
+        </Reveal>
 
         {/* Done For You Combined Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <DoneForYouCombinedSection />
-        </motion.div>
+        </Reveal>
 
         {/* Industry Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <IndustrySection />
-        </motion.div>
+        </Reveal>
 
         {/* Pricing CTA Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <PricingCTASection />
-        </motion.div>
+        </Reveal>
 
         {/* Features Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeaturesSection />
-        </motion.div>
+        </Reveal>
 
         {/* Meet Our Team Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <MeetOurTeamSection />
-        </motion.div>
+        </Reveal>
 
         {/* Article Carousel Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <ArticleCarouselSection />
-        </motion.div>
+        </Reveal>
 
         {/* Blog Promo Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <BlogPromoSection />
-        </motion.div>
+        </Reveal>
 
         {/* Creator Showcase Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <CreatorShowcaseSection />
-        </motion.div>
+        </Reveal>
 
         {/* Reviews Section with Marquee */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <ReviewsSection />
-        </motion.div>
+        </Reveal>
 
         {/* FAQ Section */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <FAQSection />
-        </motion.div>
+        </Reveal>
 
         {/* Enhanced Footer */}
-        <motion.div
+        <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <FooterSection />
-        </motion.div>
+        </Reveal>
 
         {/* Sticky Bottom Sheet Removed per Request */}
       </div>
 
 
       {/* Splash Screen Overlay */}
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      {/* {showSplash && <SplashScreen onComplete={handleSplashComplete} />} */}
 
-      {!showSplash && <ToastProvider />}
+      {/* {!showSplash && <ToastProvider />} */}
     </>
   )
 }

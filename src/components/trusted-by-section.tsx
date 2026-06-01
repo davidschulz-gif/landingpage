@@ -40,12 +40,12 @@ const getTrustedByItems = (
     title: t('integrations'),
     disableColumnHover: true,
     logo: (
-      <div className='flex items-center justify-center gap-4 w-full'>
+      <div className='flex flex-wrap sm:flex-nowrap items-center justify-center gap-3 sm:gap-4 w-full'>
         <a
           href='https://apps.autodesk.com/RVT/en/Detail/Index?id=439862635907036577'
           target='_blank'
           rel='noopener noreferrer'
-          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-16 sm:w-20 md:w-16 lg:w-20 xl:w-28'
         >
           <img
             src='/logo/revit_logo.png'
@@ -59,7 +59,7 @@ const getTrustedByItems = (
           href='https://www.food4rhino.com/en/app/typusai'
           target='_blank'
           rel='noopener noreferrer'
-          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 md:w-12 lg:w-16 xl:w-15'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-10 sm:w-12 md:w-12 lg:w-16 xl:w-15'
         >
           <Image
             src='/logo/rhino_logo.png?v=2'
@@ -69,7 +69,7 @@ const getTrustedByItems = (
             className='w-full h-auto'
           />
         </a>
-        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-28 md:w-16 lg:w-20 xl:w-32'>
+        <div className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-18 sm:w-22 md:w-16 lg:w-20 xl:w-32'>
           <img
             src='/logo/archicad_logo.png?v=2'
             alt='ArchiCAD'
@@ -82,7 +82,7 @@ const getTrustedByItems = (
           href='https://extensions.sketchup.com/extension/e6a9ad72-52d1-4c06-96c5-b26e8180db06/typus-ai'
           target='_blank'
           rel='noopener noreferrer'
-          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-24 md:w-16 lg:w-20 xl:w-28'
+          className='relative flex-shrink-0 transition-all duration-300 hover:scale-105 w-16 sm:w-20 md:w-16 lg:w-20 xl:w-28'
         >
           <Image
             src='/logo/sketchup.png'
@@ -355,8 +355,7 @@ export const TrustedBySection = ({
             {trustedItems.map((item, index) => (
               <div
                 key={index}
-                className='flex flex-col items-center flex-shrink-0'
-                style={{ width: 'max-content' }}
+                className='flex flex-col items-center w-full'
               >
                 <div
                   className='text-xs text-nowrap font-bold text-center uppercase mb-1'
@@ -372,7 +371,7 @@ export const TrustedBySection = ({
                 </div>
 
                 <div
-                  className='flex items-center justify-center hover:cursor-pointer'
+                  className='flex items-center justify-center hover:cursor-pointer w-full'
                   style={{ height: '60px' }}
                 >
                   {item.disableColumnHover ? (
