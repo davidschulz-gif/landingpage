@@ -34,7 +34,7 @@ const articleData: Article[] = [
   },
    {
     id: 1,
-    title: 'AI-Generated Architectural Precision and Visual Excellence',
+    title: 'KI-generierte architektonische Präzision und visuelle Exzellenz',
     excerpt:
       'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
     image: '/blog/dab.png',

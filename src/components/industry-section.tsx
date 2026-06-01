@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Compare } from '@/components/ui/compare'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 const IndustryCard = ({
   icon: Icon,
@@ -123,6 +124,13 @@ export const IndustrySection = () => {
     },
   ]
 
+  const isMobile = useIsMobile();
+  if (isMobile) {
+    return (
+      <div>
+      </div>
+    )
+  }
   return (
     <section className="py-24 px-6 bg-[#F9F9F9] relative overflow-hidden">
       {/* Background Grid Pattern */}

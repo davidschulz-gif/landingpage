@@ -32,6 +32,10 @@
           "title": "Upscale",
           "description": "Enhance image resolution and quality with AI-powered upscaling"
         },
+        "overviewOfFeatures": {
+          "title": "Feature Overview",
+          "description": "Discover all AI tools and features in one overview"
+        },
         "bilderFlatrate": {
           "title": "Image Flat Rate",
           "description": "Personal visualization flat rate for architecture"
@@ -505,7 +509,7 @@
     },
      "lena": {
       "name": "Lena Keilhofer",
-      "role": "Architech",
+      "role": "Architect",
       "content": "Sounds exciting and all the best for the Tech in Construction Award!",
       "date": "2 Years"
     }

@@ -74,11 +74,11 @@ export function LinkedinSlideshow() {
         
         {/* Title & Header block */}
         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+          <div className="">
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
               {title}
             </h2>
-            <p className="text-gray-500 dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
               {subtitle}
             </p>
           </div>

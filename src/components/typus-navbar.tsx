@@ -38,6 +38,11 @@ export default function TypusNavbar() {
             'Enhance image resolution and quality with AI-powered upscaling',
           link: '#enhance',
         },
+        {
+          title: 'Feature Overview',
+          description: 'Discover all AI tools and features in one overview',
+          link: '/overview-of-features',
+        },
       ],
     },
     {

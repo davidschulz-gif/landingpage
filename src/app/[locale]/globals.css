@@ -523,3 +523,28 @@
 .animate-bounce-slow {
   animation: bounce-slow 2s infinite;
 }
+
+
+@layer components {
+  .title {
+    @apply text-[18px] md:text-[24px] lg:text-[30px] font-normal text-black;
+  }
+
+  .title-secondary {
+    @apply text-[12px] md:text-[16px] lg:text-[20px] font-bold  text-black mb-6;
+  }
+  
+  .sub-title{
+    @apply text-gray-900  text-[12px]  md:text-[16px] lg:text-[18px] font-normal mb-4;       
+  }
+
+  .sub-title-secondary{
+    @apply text-gray-800  text-[10px]  md:text-[14px] lg:text-[16px] font-normal mb-4;       
+  }
+  
+  .paragraph {
+    @apply text-gray-900  text-[9px]  md:text-[12px] lg:text-[14px] font-normal mb-4;       
+  }
+
+  
+}

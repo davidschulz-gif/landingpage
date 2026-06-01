@@ -32,6 +32,10 @@
           "title": "Hochskalieren",
           "description": "Verbessern Sie Bildauflösung und Qualität mit KI-gestützter Hochskalierung"
         },
+        "overviewOfFeatures": {
+          "title": "Funktions-Übersicht",
+          "description": "Entdecken Sie alle KI-Werkzeuge und Funktionen im Überblick"
+        },
         "bilderFlatrate": {
           "title": "Bilder-Flatrate",
           "description": "Persönliche Visualisierungs-Flat für Architektur"
@@ -505,7 +509,7 @@
     },
      "lena": {
       "name": "Lena Keilhofer",
-      "role": "Architech",
+      "role": "Architect",
       "content": "Klingt spannend und alles Gute für den Tech in Construction Award!",
       "date": "2 Years"
     }

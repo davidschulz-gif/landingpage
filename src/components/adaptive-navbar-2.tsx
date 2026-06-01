@@ -80,6 +80,12 @@ export function NavbarDemo() {
             link: '/#enhance',
             icon: Zap,
           },
+          {
+            title: tNav('solutions.overviewOfFeatures.title'),
+            description: tNav('solutions.overviewOfFeatures.description'),
+            link: '/overview-of-features',
+            icon: Play,
+          },
           { title: t('service'), isSection: true },
           {
             title: tNav('solutions.bilderFlatrate.title'),

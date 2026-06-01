@@ -3,6 +3,7 @@ import { ActionButton } from '@/components/action-button'
 import { BreathingAnimationText } from '@/components/breathing-animation-text'
 import { motion } from 'framer-motion'
 import { memo } from 'react'
+import { useLocale } from 'next-intl'
 import { SlideData } from '../types'
 
 interface ContentPanelProps {
@@ -117,6 +118,7 @@ export const ContentPanel = memo(
     scrollDirection,
     onSlideChange,
   }: ContentPanelProps) => {
+    const locale = useLocale()
     return (
       <div className='flex-1 flex flex-col justify-center py-16 xl:py-0 xl:pr-16'>
         <ProgressIndicator
@@ -137,7 +139,7 @@ export const ContentPanel = memo(
         </div>
 
         <div className='mt-8 space-y-6'>
-          <ActionButton href={'https://app.typus.ai/register'}>
+          <ActionButton href={`/${locale}/pricing`}>
             {currentTabSlides[currentSlide]?.buttonText || 'Get Started'}
           </ActionButton>
         </div>

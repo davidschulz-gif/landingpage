@@ -63,7 +63,7 @@ const LinkedinSlideshow = dynamic(
 export default function PricingPage() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
-    const [viewMode, setViewMode] = useState<'app' | 'done-for-you' | 'education'>('education')
+    const [viewMode, setViewMode] = useState<'app' | 'done-for-you' | 'education'>('app')
 
     useEffect(() => {
         if (window.location.hash === '#student-plan') {
