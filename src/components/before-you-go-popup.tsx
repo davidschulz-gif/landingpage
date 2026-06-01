@@ -146,7 +146,7 @@ export default function BeforeYouGoPopup() {
     try {
       // BigMailer Integration
       const response = await fetch(
-        `${apiUrl}/api/bigmailer/request-verification-jwt`,
+        `${apiUrl}/api/bigmailer/add-lead`,
         {
           method: 'POST',
           headers: {

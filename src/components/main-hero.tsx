@@ -28,7 +28,7 @@ export function MainHero() {
   }, [titles.length])
 
   return (
-    <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh]'>
+    <section className='relative pt-32 pb-32 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh] lg:min-h-[786px]'>
       {/* Floating Images Background */}
       <FloatingCollage />
 

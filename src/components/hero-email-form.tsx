@@ -48,7 +48,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
 
     try {
       const response = await fetch(
-        `${apiUrl}/api/bigmailer/request-verification-jwt`,
+        `${apiUrl}/api/bigmailer/add-lead`,
         {
           method: 'POST',
           headers: {
