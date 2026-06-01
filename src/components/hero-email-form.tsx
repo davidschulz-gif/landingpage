@@ -77,6 +77,24 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       setSuccessMessage(
         data?.message || t('success')
       )
+      
+      // Push event to dataLayer
+      if (typeof window !== 'undefined') {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'subscribe',
+          user_data: {
+            email: trimmed,
+          },
+        })
+        console.log('Pushed subscribe event to dataLayer with email:', {
+          event: 'subscribe',
+          user_data: {
+            email: trimmed,
+          },
+        })
+      }
+
       setEmail('')
       if (onSuccess) {
         setTimeout(() => onSuccess(), 1200)

@@ -161,6 +161,23 @@ export default function BeforeYouGoPopup() {
       if (!response.ok) {
         console.warn('[BYG] API response not OK:', response.statusText)
       } else {
+
+        // Push event to dataLayer
+      if (typeof window !== 'undefined') {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'subscribe',
+          user_data: {
+            email: trimmedEmail,
+          },
+        })
+        console.log('Pushed subscribe event to dataLayer with email:', {
+          event: 'subscribe',
+          user_data: {
+            email: trimmedEmail,
+          },
+        })
+      }
         console.log('[BYG] API success')
       }
     } catch (error: any) {
