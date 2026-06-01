@@ -63,7 +63,7 @@ const LinkedinSlideshow = dynamic(
 export default function PricingPage() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
-    const [viewMode, setViewMode] = useState<'app' | 'done-for-you' | 'education'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'done-for-you' | 'education'>('education')
 
     useEffect(() => {
         if (window.location.hash === '#student-plan') {
@@ -121,7 +121,7 @@ export default function PricingPage() {
 
                 <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                     <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
-                        {['app',  'education','done-for-you'].map((mode) => (
+                        {['education', 'app', 'done-for-you'].map((mode) => (
                             <button
                                 key={mode}
                                 onClick={() => setViewMode(mode as any)}

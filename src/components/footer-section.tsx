@@ -233,7 +233,7 @@ export function FooterSection() {
             <p className='text-xs md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-6'>
               {t('coFinancing')}
             </p>
-            <TrustedBySection />
+            <TrustedBySection showOnlyIntegrations={true} />
           </div>
         </div>
 

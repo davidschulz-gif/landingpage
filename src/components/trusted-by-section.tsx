@@ -8,6 +8,7 @@ const getTrustedByItems = (
 ) => [
   {
     title: t('certifiedBy'),
+    disableColumnHover: false,
     logo: (
       <div className='relative w-10 lg:w-12 xl:w-14'>
         <Image
@@ -22,6 +23,7 @@ const getTrustedByItems = (
   },
   {
     title: t('gpuEngine'),
+    disableColumnHover: false,
     logo: (
       <div className='relative w-24 md:w-16 lg:w-20 xl:w-28'>
         <Image
@@ -36,6 +38,7 @@ const getTrustedByItems = (
   },
   {
     title: t('integrations'),
+    disableColumnHover: true,
     logo: (
       <div className='flex items-center justify-center gap-4 w-full'>
         <a
@@ -94,6 +97,7 @@ const getTrustedByItems = (
   },
   {
     title: t('asSeenOn'),
+    disableColumnHover: true,
     logo: (
       <div className='flex items-center justify-center gap-4 w-full'>
         <a
@@ -166,6 +170,7 @@ const getTrustedByItems = (
   },
   {
     title: t('finalist'),
+    disableColumnHover: false,
     logo: (
       <a
         href='https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions'
@@ -204,9 +209,29 @@ const getTrustedByItems = (
   // },
 ]
 
-export const TrustedBySection = () => {
+export const TrustedBySection = ({
+  showOnlyIntegrations = false,
+  showOnlyOthers = false,
+}: {
+  showOnlyIntegrations?: boolean
+  showOnlyOthers?: boolean
+} = {}) => {
   const t = useTranslations('TrustedBy')
-  const trustedItems = useMemo(() => getTrustedByItems(t), [t])
+  
+  const trustedItems = useMemo(() => {
+    const allItems = getTrustedByItems(t)
+    if (showOnlyIntegrations) {
+      // Index 2 is Integrations
+      return [allItems[2]]
+    }
+    if (showOnlyOthers) {
+      // All indexes except 2
+      return [allItems[0], allItems[1], allItems[3], allItems[4]]
+    }
+    return allItems
+  }, [t, showOnlyIntegrations, showOnlyOthers])
+
+  const isMarquee = trustedItems.length > 1
 
   return (
     <div
@@ -217,7 +242,7 @@ export const TrustedBySection = () => {
           className='hidden lg:flex flex-wrap justify-around gap-y-1 md:gap-y-6'
           style={{ width: '100%' }}
         >
-          {getTrustedByItems(t).map((item, index) => (
+          {trustedItems.map((item, index) => (
             <div
               key={index}
               className='flex flex-col'
@@ -240,7 +265,7 @@ export const TrustedBySection = () => {
                 className='flex items-center justify-center hover:cursor-pointer'
                 style={{ height: '60px' }}
               >
-                {[2, 3].includes(index) ? (
+                {item.disableColumnHover ? (
                   item.logo
                 ) : (
                   <div className='transition-all px-2 duration-300 hover:scale-110'>
@@ -251,13 +276,86 @@ export const TrustedBySection = () => {
             </div>
           ))}
         </div>
-        <div className='lg:hidden relative w-full overflow-hidden'>
-          <div className='flex items-center gap-3 animate-marquee whitespace-nowrap'>
-            {/* First set of items */}
+        {isMarquee ? (
+          <div className='lg:hidden relative w-full overflow-hidden'>
+            <div className='flex items-center gap-3 animate-marquee whitespace-nowrap'>
+              {/* First set of items */}
+              {trustedItems.map((item, index) => (
+                <div
+                  key={`first-${index}`}
+                  className='flex flex-col px-2 flex-shrink-0'
+                  style={{ width: 'max-content' }}
+                >
+                  <div
+                    className='text-xs text-nowrap font-bold text-center uppercase mb-1'
+                    style={{
+                      fontFamily: "'Soyuz Grotesk', sans-serif",
+                      fontWeight: 700,
+                      letterSpacing: '1px',
+                      fontSize: '8px',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {item.title}
+                  </div>
+
+                  <div
+                    className='flex items-center justify-center hover:cursor-pointer'
+                    style={{ height: '60px' }}
+                  >
+                    {item.disableColumnHover ? (
+                      item.logo
+                    ) : (
+                      <div className='transition-all px-2 duration-300 hover:scale-110'>
+                        {item.logo}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              {/* Duplicate set for seamless loop */}
+              {trustedItems.map((item, index) => (
+                <div
+                  key={`second-${index}`}
+                  className='flex flex-col px-2 flex-shrink-0'
+                  style={{ width: 'max-content' }}
+                >
+                  <div
+                    className='text-xs text-nowrap font-bold text-center uppercase mb-1'
+                    style={{
+                      fontFamily: "'Soyuz Grotesk', sans-serif",
+                      fontSize: '8px',
+                      fontWeight: 700,
+                      letterSpacing: '1px',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {item.title}
+                  </div>
+
+                  <div
+                    className='flex items-center justify-center hover:cursor-pointer'
+                    style={{ height: '60px' }}
+                  >
+                    {item.disableColumnHover ? (
+                      item.logo
+                    ) : (
+                      <div className='transition-all px-2 duration-300 hover:scale-110'>
+                        {item.logo}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className='lg:hidden flex justify-center items-center w-full px-4'>
             {trustedItems.map((item, index) => (
               <div
-                key={`first-${index}`}
-                className='flex flex-col px-2 flex-shrink-0'
+                key={index}
+                className='flex flex-col items-center flex-shrink-0'
                 style={{ width: 'max-content' }}
               >
                 <div
@@ -277,42 +375,7 @@ export const TrustedBySection = () => {
                   className='flex items-center justify-center hover:cursor-pointer'
                   style={{ height: '60px' }}
                 >
-                  {[2, 3].includes(index) ? (
-                    item.logo
-                  ) : (
-                    <div className='transition-all px-2 duration-300 hover:scale-110'>
-                      {item.logo}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            {/* Duplicate set for seamless loop */}
-            {trustedItems.map((item, index) => (
-              <div
-                key={`second-${index}`}
-                className='flex flex-col px-2 flex-shrink-0'
-                style={{ width: 'max-content' }}
-              >
-                <div
-                  className='text-xs text-nowrap font-bold text-center uppercase mb-1'
-                  style={{
-                    fontFamily: "'Soyuz Grotesk', sans-serif",
-                    fontSize: '8px',
-                    fontWeight: 700,
-                    letterSpacing: '1px',
-                    lineHeight: 1,
-                  }}
-                >
-                  {item.title}
-                </div>
-
-                <div
-                  className='flex items-center justify-center hover:cursor-pointer'
-                  style={{ height: '60px' }}
-                >
-                  {[2, 3].includes(index) ? (
+                  {item.disableColumnHover ? (
                     item.logo
                   ) : (
                     <div className='transition-all px-2 duration-300 hover:scale-110'>
@@ -323,7 +386,7 @@ export const TrustedBySection = () => {
               </div>
             ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

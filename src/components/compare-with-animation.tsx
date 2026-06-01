@@ -1,12 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { MediaBucketUrl } from "@/lib/constants";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { ActionButton } from "./action-button";
 import { BreathingAnimationText } from "./breathing-animation-text";
 import { Compare } from "./ui/compare";
 import { PhotoStripAnimation } from "./ui/photo-strip-animation";
+import Link from "next/link";
 
 interface CompareWithAnimationProps {
   className?: string;
@@ -17,7 +18,7 @@ export const CompareWithAnimation = ({
 }: CompareWithAnimationProps) => {
   const t = useTranslations('Compare')
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const locale = useLocale()
   // Before images (original/CAD files)
   const beforeImages = [
     MediaBucketUrl + "before-after/a_before.webp",
@@ -152,6 +153,17 @@ export const CompareWithAnimation = ({
 
       {/* Photo Strip Animation */}
       <PhotoStripAnimation className="mx-auto" />
+      <div className="flex items-center justify-center flex-col mt-12">
+       <div className="pt-4">
+              <Link
+                href={`/${locale}/overview-of-features`}
+                className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
+                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              >
+                {locale === 'de' ? 'Feature-Übersicht ansehen' : 'See overview of features'}
+              </Link>
+            </div>
+            </div>
     </div>
   );
 };

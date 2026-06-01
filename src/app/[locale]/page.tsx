@@ -4,6 +4,7 @@ import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import CompareDemo from '@/components/compare-drag-demo'
 import { HeroParallax } from '@/components/hero-parallax'
 import { MainHero } from '@/components/main-hero'
+import { TrustedBySection } from '@/components/trusted-by-section'
 import { ToastProvider } from '@/components/providers/toast-provider'
 import { SplashScreen } from '@/components/splash-screen'
 import { VideoShowcaseSection } from '@/components/video-showcase-section'
@@ -390,11 +391,15 @@ export default function Home() {
         {/* Hero Section */}
         <MainHero />
 
-        {/* Hero Section with Parallax - Commented out per request */}
-        {/* <HeroParallax
-          row123Products={translatedRow123Products}
-          row4Products={translatedRow4Products}
-        /> */}
+        {/* Trust Logos (Certified By, GPU Engine, As Seen On, Finalist) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          className='w-full max-w-7xl mx-auto px-4 py-8 md:py-12 border-b border-neutral-100 dark:border-neutral-900'
+        >
+          <TrustedBySection showOnlyOthers={true} />
+        </motion.div>
 
         {/* Embedded LinkedIn Slideshow Showcase */}
         <LinkedinSlideshow />
@@ -459,7 +464,7 @@ export default function Home() {
         </motion.div> */}
 
         {/* Overview of Features CTA Section replacing StickySliderSection */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -485,7 +490,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Tab Video Showcase */}
         {/* <motion.div
