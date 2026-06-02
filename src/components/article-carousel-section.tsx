@@ -209,7 +209,7 @@ export function ArticleCarouselSection() {
                     <CardContent className='p-0'>
                       <div className='aspect-square relative overflow-hidden '>
                         {/* Conditional rendering based on ID instead of source type */}
-                        {[1, 2, 3, 4, 5].includes(article.id) ? (
+                        {[1, 3, 4, 5].includes(article.id) ? (
                           <div className='w-full h-full bg-white flex items-center justify-center p-8'>
                             <img
                               src={article.image}
@@ -237,13 +237,28 @@ export function ArticleCarouselSection() {
                               }}
                             />
                           </div>
+                        ) : [2].includes(article.id) ?  (
+                          <div className='w-full h-full bg-white flex items-center justify-center p-8'>
+                            <img
+                              src={article.image}
+                              alt={article.title}
+                              className='object-contain transition-transform duration-300 hover:scale-105 -translate-y-14'
+                              style={{
+                                width : 'auto',
+                                height : 'auto',
+                                maxWidth: '300px',
+                                maxHeight: '200px',
+                              }}
+                            />
+                          </div>
                         ) : (
                           <img
                             src={article.image}
                             alt={article.title}
                             className='w-full h-full object-cover transition-transform duration-300 hover:scale-105'
                           />
-                        )}
+                        )
+                      }
                         <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
                         
                         {/* Overlay DAB Online logo on Dr. Dietmar Köring's photo (article ID 0) */}
