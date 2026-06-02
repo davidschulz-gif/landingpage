@@ -77,7 +77,7 @@ export function NavbarDemo() {
           {
             title: tNav('solutions.upscale.title'),
             description: tNav('solutions.upscale.description'),
-            link: '/#enhance',
+            link: '/upscale',
             icon: Zap,
           },
           {

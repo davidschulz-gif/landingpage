@@ -36,7 +36,7 @@ export default function TypusNavbar() {
           title: 'Upscale',
           description:
             'Enhance image resolution and quality with AI-powered upscaling',
-          link: '#enhance',
+          link: '/upscale',
         },
         {
           title: 'Feature Overview',
