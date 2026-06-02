@@ -18,6 +18,8 @@ interface CompareProps {
   autoplay?: boolean;
   autoplayDuration?: number;
   style?: React.CSSProperties;
+  firstImageLabel?: string;
+  secondImageLabel?: string;
 }
 export const Compare = ({
   firstImage = "",
@@ -31,6 +33,8 @@ export const Compare = ({
   autoplay = false,
   autoplayDuration = 5000,
   style,
+  firstImageLabel,
+  secondImageLabel,
 }: CompareProps) => {
   const t = useTranslations('Compare');
   const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
@@ -176,8 +180,8 @@ export const Compare = ({
           opacity: sliderXPercent < 15 ? 0 : 1
         }}
       >
-        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm">
-          {t('before')}
+        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm font-semibold tracking-wide">
+          {firstImageLabel || t('before')}
         </div>
       </div>
       
@@ -188,8 +192,8 @@ export const Compare = ({
           opacity: sliderXPercent > 85 ? 0 : 1
         }}
       >
-        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm">
-          {t('after')}
+        <div className=" border border-border bg-background px-1.5 py-0.5 text-xs rounded-sm shadow-sm font-semibold tracking-wide">
+          {secondImageLabel || t('after')}
         </div>
       </div>
 

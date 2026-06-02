@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
 
@@ -36,43 +35,52 @@ export function KernelZoomShowcaseUpscale() {
 
   const t = translations[locale]
 
-  // Image array for upscaler page - ready for user to replace
+  // Image array mapping 2K input images to 8K high-res outputs
   const images = [
     {
-      src: '/kernal-zoom/image-1.png',
-      aspectRatio: 4 / 3
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png',
+      output: '/upscale-images/ouput/replicate-prediction-e76q9cvbynrmr0cygy4afb13fr.png',
+      aspectRatio: 5936 / 4240
     },
     {
-      src: '/kernal-zoom/image-2.png',
-      aspectRatio: 4 / 3
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_19_29.png',
+      output: '/upscale-images/ouput/replicate-prediction-h71ac7x22xrmw0cygxqrehwypw.png',
+      aspectRatio: 6144 / 4096
     },
     {
-      src: '/kernal-zoom/image-3.png',
-      aspectRatio: 3 / 4
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_31_22.png',
+      output: '/upscale-images/ouput/replicate-prediction-236gt5q085rmw0cygxw8f8qbgw.png',
+      aspectRatio: 6144 / 4096
     },
     {
-      src: '/kernal-zoom/image-4.png',
-      aspectRatio: 4 / 3
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_36_08.png',
+      output: '/upscale-images/ouput/replicate-prediction-vrz0y04cfhrmy0cygz080gmwq4.png',
+      aspectRatio: 4480 / 5600
     },
     {
-      src: '/kernal-zoom/image-5.png',
-      aspectRatio: 4 / 3
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_48_13.png',
+      output: '/upscale-images/ouput/replicate-prediction-vhfc3w3vjhrmt0cygyw95xmw8m.png',
+      aspectRatio: 4480 / 5600
     },
     {
-      src: '/kernal-zoom/image-6.png',
-      aspectRatio: 3 / 4
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 11_13_32.png',
+      output: '/upscale-images/ouput/replicate-prediction-jqyf483s9drmy0cygz6rt8p08g.png',
+      aspectRatio: 5600 / 4480
     },
     {
-      src: '/kernal-zoom/image-7.png',
-      aspectRatio: 3 / 4
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 11_31_00.png',
+      output: '/upscale-images/ouput/replicate-prediction-cecmtn8qq5rmy0cygyxrndemcg.png',
+      aspectRatio: 5600 / 4480
     },
     {
-      src: '/kernal-zoom/image-8.png',
-      aspectRatio: 3 / 4
+      input: '/upscale-images/input/ChatGPT Image 2. Juni 2026, 11_35_42.png',
+      output: '/upscale-images/ouput/replicate-prediction-rr8jrjn4hxrmy0cygys9s3ykfg.png',
+      aspectRatio: 4256 / 5904
     },
     {
-      src: '/kernal-zoom/image-9.png',
-      aspectRatio: 4 / 3
+      input: '/upscale-images/input/ChatGPT Image 29. Mai 2026, 09_51_31.png',
+      output: '/upscale-images/ouput/replicate-prediction-hywt9y7ak1rmt0cygy18vd0dq8.png',
+      aspectRatio: 5248 / 4800
     },
   ]
 
@@ -159,8 +167,69 @@ export function KernelZoomShowcaseUpscale() {
     ? (containerRect.height * 0.5 - 160) 
     : ((boxCoords.y / 100) * containerRect.height - 110)
 
+  // Pure hardware-accelerated CSS style definitions
+  // Background shows input image (ChatGPT 2K) unblurred
+  const backgroundStyle: React.CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    userSelect: 'none',
+    pointerEvents: 'none',
+    transformOrigin: 'center',
+    transform: mode === 'presentation'
+      ? 'scale(1.08) translate3d(0, 0, 0)'
+      : isZoomed
+      ? `scale(2.2) translate3d(${(50 - boxCoords.x) * 1.2}%, ${(50 - boxCoords.y) * 1.2}%, 0px)`
+      : 'scale(1.0) translate3d(0, 0, 0)',
+    filter: 'none', // Blur filter completely removed as requested
+    transition: mode === 'presentation'
+      ? 'transform 3.0s linear'
+      : 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
+    animation: 'kernelZoomFadeIn 0.5s ease-in-out forwards',
+  }
+
+  const focusBoxStyle: React.CSSProperties = {
+    position: 'absolute',
+    left: isZoomed ? '50%' : `${boxCoords.x}%`,
+    top: isZoomed ? '50%' : `${boxCoords.y}%`,
+    transform: 'translate3d(-50%, -50%, 0px)',
+    width: `${boxSize}px`,
+    height: `${boxSize}px`,
+    borderColor: isZoomed ? 'rgba(255, 255, 255, 1.0)' : 'rgba(255, 255, 255, 0.8)',
+    transition: isZoomed
+      ? 'left 0.45s cubic-bezier(0.25, 1, 0.5, 1), top 0.45s cubic-bezier(0.25, 1, 0.5, 1), width 0.45s cubic-bezier(0.25, 1, 0.5, 1), height 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease'
+      : 'left 0.15s cubic-bezier(0.25, 1, 0.5, 1), top 0.15s cubic-bezier(0.25, 1, 0.5, 1), width 0.45s cubic-bezier(0.25, 1, 0.5, 1), height 0.45s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease',
+  }
+
+  // Focus Box shows output image (Typus 8K upscaled) razor sharp
+  const innerImageStyle: React.CSSProperties = {
+    width: containerRect.width,
+    height: containerRect.height,
+    position: 'absolute',
+    maxWidth: 'none',
+    left: `${-boxLeft}px`,
+    top: `${-boxTop}px`,
+    transform: `scale(${isZoomed ? 2.2 : 1.0}) translate3d(${
+      isZoomed ? `${(50 - boxCoords.x) * 1.2}%` : '0%'
+    }, ${
+      isZoomed ? `${(50 - boxCoords.y) * 1.2}%` : '0%'
+    }, 0px)`,
+    filter: 'blur(0px) contrast(1.04) brightness(1.01)',
+    transition: isZoomed
+      ? 'left 0.45s cubic-bezier(0.25, 1, 0.5, 1), top 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)'
+      : 'left 0.15s cubic-bezier(0.25, 1, 0.5, 1), top 0.15s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
+  }
+
   return (
     <section className="py-10 md:py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section-upscale">
+      <style>{`
+        @keyframes kernelZoomFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
       <div className="max-w-[1600px] mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
         
         {/* Try Interactive Button */}
@@ -182,9 +251,8 @@ export function KernelZoomShowcaseUpscale() {
 
         {/* Viewport wrapper */}
         <div className="w-full relative px-2 sm:px-6 flex justify-center items-center min-h-[300px]">
-          <motion.div 
+          <div 
             ref={containerRef}
-            layout
             onClick={handleContainerClick}
             onMouseMove={handleMouseMove}
             onMouseEnter={() => { 
@@ -216,93 +284,31 @@ export function KernelZoomShowcaseUpscale() {
                 : 'cursor-zoom-in'
             }`}
           >
-            {/* Background Image */}
+            {/* Background Image shows low-res input image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <AnimatePresence>
-                <motion.img
-                  key={activeIndex}
-                  src={images[activeIndex].src}
-                  initial={{ 
-                    scale: mode === 'presentation' ? 1.02 : 1.0, 
-                    opacity: 0, 
-                    rotate: 0.01 
-                  }}
-                  animate={{
-                    scale: mode === 'presentation' 
-                      ? 1.08 
-                      : isZoomed ? 2.2 : 1.0, 
-                    x: mode === 'interactive' && isZoomed ? `${(50 - boxCoords.x) * 1.2}%` : '0%',
-                    y: mode === 'interactive' && isZoomed ? `${(50 - boxCoords.y) * 1.2}%` : '0%',
-                    opacity: 1,
-                    filter: mode === 'interactive' && isZoomed 
-                      ? 'blur(2.0px) contrast(0.92) brightness(0.92)' 
-                      : mode === 'interactive' 
-                        ? 'blur(0.5px) contrast(0.96)' 
-                        : 'blur(0px) contrast(1.0)'
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    scale: { 
-                      duration: mode === 'presentation' ? 3 : 0.45, 
-                      ease: mode === 'presentation' ? 'linear' : 'easeOut' 
-                    },
-                    x: { type: 'spring', stiffness: 120, damping: 20, mass: 0.8 },
-                    y: { type: 'spring', stiffness: 120, damping: 20, mass: 0.8 },
-                    opacity: { duration: 0.8, ease: 'easeInOut' }
-                  }}
-                  className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none origin-center"
-                  alt="Typus AI Giga-Resolution Render"
-                />
-              </AnimatePresence>
+              <img
+                key={activeIndex}
+                src={images[activeIndex].input}
+                style={backgroundStyle}
+                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none origin-center"
+                alt="Original low-res input render"
+              />
             </div>
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
 
-            {/* Interactive Mode Zoom Box */}
+            {/* Interactive Mode Zoom Box shows high-res upscaled output image */}
             {mode === 'interactive' && (
-              <motion.div
-                animate={{
-                  left: isZoomed ? '50%' : `${boxCoords.x}%`,
-                  top: isZoomed ? '50%' : `${boxCoords.y}%`,
-                  x: '-50%',
-                  y: '-50%',
-                  width: isZoomed ? `${boxSize}px` : `${boxSize}px`,
-                  height: isZoomed ? `${boxSize}px` : `${boxSize}px`,
-                  borderColor: isZoomed ? 'rgba(255, 255, 255, 1.0)' : 'rgba(255, 255, 255, 0.8)'
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 120,
-                  damping: 20,
-                  mass: 0.8
-                }}
+              <div
+                style={focusBoxStyle}
                 className="absolute rounded-[24px] sm:rounded-[32px] border-2 pointer-events-none shadow-[0_0_40px_rgba(0,0,0,0.25)] z-20 flex flex-col justify-between p-3.5 overflow-hidden"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 rounded-[22px] sm:rounded-[30px] bg-neutral-900 pointer-events-none">
-                  <motion.img
-                    src={images[activeIndex].src}
-                    animate={{
-                      scale: isZoomed ? 2.2 : 1.0,
-                      x: isZoomed ? `${(50 - boxCoords.x) * 1.2}%` : '0%',
-                      y: isZoomed ? `${(50 - boxCoords.y) * 1.2}%` : '0%',
-                      left: -boxLeft,
-                      top: -boxTop,
-                      filter: 'blur(0px) contrast(1.04) brightness(1.01)'
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 120,
-                      damping: 20,
-                      mass: 0.8
-                    }}
-                    style={{
-                      width: containerRect.width,
-                      height: containerRect.height,
-                      position: 'absolute',
-                      maxWidth: 'none',
-                    }}
+                  <img
+                    src={images[activeIndex].output}
+                    style={innerImageStyle}
                     className="object-cover select-none pointer-events-none origin-center"
-                    alt="Upscaled Details"
+                    alt="Upscaled razor-sharp detail focus"
                   />
                 </div>
 
@@ -318,7 +324,7 @@ export function KernelZoomShowcaseUpscale() {
                     <IconArrowsMaximize size={14} strokeWidth={2.5} />
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {mode === 'interactive' && (
@@ -349,7 +355,7 @@ export function KernelZoomShowcaseUpscale() {
             >
               <IconChevronRight size={20} className="group-hover/btn:translate-x-0.5 transition-transform animate-none" />
             </button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Indicators HUD */}
