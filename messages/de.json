@@ -280,7 +280,7 @@
     }
   },
   "Compare": {
-    "title": "HOCHSKALIERUNG BIS ZU 13K AUFLÖSUNG",
+    "title": "HOCHSKALIERUNG BIS ZU 8K AUFLÖSUNG",
     "description": "Sehen Sie die dramatische Transformation von einfachen CAD-Dateien zu fotorealistischen Architekturvisualisierungen",
     "aiTransformation": "KI-gestützte Transformation",
     "startCreating": "Plan kaufen und loslegen",
@@ -369,7 +369,7 @@
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
           "highEndResults": "HIGH-END ERGEBNISSE",
-          "upscale13k": "HOCHSKALIERUNG BIS ZU 13K",
+          "upscale13k": "HOCHSKALIERUNG BIS ZU 8K",
           "onboardingCall": "ONBOARDING-VIDEO-ANRUF"
         }
       },
@@ -412,7 +412,7 @@
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
-          "resolution13k": "AUFLÖSUNG BIS ZU 13K"
+          "resolution13k": "AUFLÖSUNG BIS ZU 8K"
         }
       }
     },

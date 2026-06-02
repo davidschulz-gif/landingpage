@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { BreathingAnimationText } from './breathing-animation-text'
 
 interface Article {
@@ -18,28 +18,27 @@ interface Article {
   image: string
   source: string
   link: string
+  logo?: string
 }
 
-const articleData: Article[] = [
+const articleDataDe: Article[] = [
   {
     id: 0,
     title: 'WHAT EXPERTS SAY',
     excerpt:
       '"Sehr vielversprechend sieht derzeit die Anwendung Yanus aus. Wenn man dies in Zukunft mit Materialien und deren Herstellung abstimmt, wäre das ein enormer Gewinn. Auch könnte man so entsprechende Moods in Sekunden erstellen."',
-    // image: '/blog/dabonline_logo_white.png',
     image: '/blog/blog_1.png',
+    logo: '/blog/dabonline_logo_white.png',
     source: 'DR. DIETMAR KÖRING - ARPHENOTYPE',
-    // link: 'https://www.dabonline.de/digital/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu/',
     link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
   },
-   {
+  {
     id: 1,
     title: 'KI-generierte architektonische Präzision und visuelle Exzellenz',
     excerpt:
-      'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analysis by industry experts.',
+      'Das mit Yanus generierte KI-Bild kann sich nicht nur optisch, sondern auch mit seiner architektonischen Exaktheit sehen lassen. Analyse von Branchenexperten.',
     image: '/blog/dab.png',
     source: 'DAB ONLINE',
-    // link: 'https://www.dabonline.de/digital/architektur-visualisierung-ki-bildgeneratoren/',
     link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
   },
   {
@@ -47,21 +46,81 @@ const articleData: Article[] = [
     title:
       'PRÄI: Materialien gezielt steuern – KI-Visualisierung neu definiert',
     excerpt:
-      'Innovative AI-powered architectural visualization platform transforming the industry with precision material control and advanced visualization capabilities.',
-    image: '/logo/heinze-baunetz.png',
+      'Innovative, KI-gestützte Plattform für Architekturvisualisierung, die die Branche mit präziser Materialsteuerung und fortschrittlichen Visualisierungsfunktionen revolutioniert.',
+    logo: '/logo/heinze-baunetz.png',
+    image: '/blog/heinze.png',
     source: 'Heinze BauNetz-Newsletter',
     link: 'https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239',
   },
-  // {
-  //   id: 4,
-  //   title: 'Leading Plugin Integrations with Architectural Software',
-  //   excerpt:
-  //     'It offers seamless plugin integrations with leading architectural software solutions such as Revit, ArchiCAD, Rhino, and SketchUp for enhanced workflow efficiency.',
-  //   image: '/logo/addd_logo.png',
-  //   source: 'ADDD Platform',
-  //   link: 'https://addd.io/product/prai',
-  // },
-   {
+  {
+    id: 5,
+    title: 'GOOGLE REVIEWS',
+    excerpt:
+      '"FANTASTISCH! TOLLE ERFAHRUNG UND BEEINDRUCKENDE QUALITÄT! EINFACHE BEDIENUNG UND SCHNELLE ERGEBNISSE!"',
+    image: '/logo/google_logo.png',
+    source: 'ROLAND WOBORSKY, SELBSTSTÄNDIG',
+    link: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D',
+  },
+  {
+    id: 6,
+    title: 'Innovationsforum: Führende Startups im Bereich Bautechnologie',
+    excerpt:
+      'Präsentiert unter den besten Startups, die innovative Lösungen in der Bautechnologie, der Architekturvisualisierung und dem Branchenfortschritt zeigen.',
+    image: '/logo/bauforum_logo.gif',
+    source: 'Bauforum Innovation 2025',
+    link: 'https://bauforum-innovationen.de/teilnahmeinformationen-vertretene-unternehmen/',
+  },
+  {
+    id: 7,
+    title: 'Innovationspräsentation der Bauindustrie',
+    excerpt:
+      'Teilnahme an führenden Konferenzen für Bautechnologie, Präsentation innovativer KI-Lösungen und Vernetzung mit etablierten Technologieführern.',
+    image: '/logo/praii_logo.png',
+    source: 'F.A.Z. Konferenzen',
+    link: 'https://bauforum-innovationen.de/startups/',
+  },
+  {
+    id: 8,
+    title: 'DIGITAL INNOVATION AWARD',
+    excerpt: 'Wir gehörten zu den 4 Finalisten für den Digital Innovation Award 2024',
+    image: '/blog/vote_for_us.png',
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions',
+    source: 'LinkedIn',
+  },
+]
+
+const articleDataEn: Article[] = [
+  {
+    id: 0,
+    title: 'WHAT EXPERTS SAY',
+    excerpt:
+      '"The Yanus application currently looks very promising. If this is coordinated with materials and their manufacture in the future, it would be an enormous benefit. It would also allow appropriate moods to be created in seconds."',
+    image: '/blog/blog_1.png',
+    logo: '/blog/dabonline_logo_white.png',
+    source: 'DR. DIETMAR KÖRING - ARPHENOTYPE',
+    link: 'https://www.dabonline.de/bueropraxis/ki-in-der-architektur-es-kommen-neue-aufgaben-auf-uns-zu'
+  },
+  {
+    id: 1,
+    title: 'AI-Generated Architectural Precision and Visual Excellence',
+    excerpt:
+      'The AI image generated with Yanus is impressive not only visually but also for its architectural accuracy. Analysis by industry experts.',
+    image: '/blog/dab.png',
+    source: 'DAB ONLINE',
+    link: 'https://www.dabonline.de/bueropraxis/architektur-visualisierung-ki-bildgeneratoren',
+  },
+  {
+    id: 2,
+    title:
+      'PRÄI: Targeting Materials - AI Visualization Redefined',
+    excerpt:
+      'Innovative AI-powered architectural visualization platform transforming the industry with precision material control and advanced visualization capabilities.',
+    logo: '/logo/heinze-baunetz.png',
+    image: '/blog/heinze.png',
+    source: 'Heinze BauNetz-Newsletter',
+    link: 'https://www.baunetz.de/newsletter/archiv/show_nl.php?fn=ausgabe_9917426.html&wt_mc=nla.2025-05-09.service.browseransicht&context=2239',
+  },
+  {
     id: 5,
     title: 'GOOGLE REVIEWS',
     excerpt:
@@ -70,7 +129,6 @@ const articleData: Article[] = [
     source: 'ROLAND WOBORSKY, SELF-EMPLOYED',
     link: 'https://www.google.com/maps/place/TYPUS.AI+formerly+YANUS.AI/@50.93654,6.9045451,662m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47bf254b60018897:0xe59bac1b8b968df2!8m2!3d50.93654!4d6.90712!16s%2Fg%2F11w9p4ttwz?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D',
   },
-
   {
     id: 6,
     title: 'Innovation Forum: Leading Construction Technology Startups',
@@ -92,7 +150,7 @@ const articleData: Article[] = [
   {
     id: 8,
     title: 'DIGITAL INNOVATION AWARD',
-    excerpt: 'WE were ONE OF 4 FINALISTS FOR THE DIGITAL INNOVATION AWARD 2024',
+    excerpt: 'We were one of 4 finalists for the Digital Innovation Award 2024',
     image: '/blog/vote_for_us.png',
     link: 'https://www.linkedin.com/feed/update/urn:li:activity:7188164717385822208/?trk=public_post_embed_social-actions-reactions',
     source: 'LinkedIn',
@@ -103,7 +161,9 @@ const articleData: Article[] = [
 
 export function ArticleCarouselSection() {
   const t = useTranslations('Articles')
-  
+  const locale = useLocale()
+  const articleData = locale === 'de' ? articleDataDe : articleDataEn
+
   return (
     <div
       className='w-full py-20'
@@ -187,11 +247,11 @@ export function ArticleCarouselSection() {
                         <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent' />
                         
                         {/* Overlay DAB Online logo on Dr. Dietmar Köring's photo (article ID 0) */}
-                        {article.id === 0 && (
+                        {article.logo  && (
                           <div className='absolute bottom-[16%] left-1/2 -translate-x-1/2 pointer-events-none z-10 w-[55%] max-w-[150px] aspect-square'>
                             <img
-                              src='/blog/dabonline_logo_white.png'
-                              alt='DAB Online Logo'
+                              src={article.logo}
+                              alt='Logo'
                               className='w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]'
                             />
                           </div>

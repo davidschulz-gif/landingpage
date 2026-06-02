@@ -87,7 +87,7 @@ const professionalPlans = [
       { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
-      { text: 'UPSCALE UP TO 13K', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: true },
     ],
   },
 ]
@@ -158,7 +158,7 @@ const educationPlans = [
       { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'PREMIUM LIVE VIDEO CALL SUPPORT', hasFeature: true },
       { text: 'INCREASED SPEED OF GENERATION', hasFeature: true },
-      { text: 'RESOLUTION UP TO 13K', hasFeature: true },
+      { text: 'RESOLUTION UP TO 8K', hasFeature: true },
     ],
   },
 ]

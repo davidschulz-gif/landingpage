@@ -280,7 +280,7 @@
     }
   },
   "Compare": {
-    "title": "UPSCALE UP TO 13K RESOLUTION",
+    "title": "UPSCALE UP TO 8K RESOLUTION",
     "description": "See the dramatic transformation from basic CAD files to photorealistic architectural visualizations",
     "aiTransformation": "AI-Powered Transformation",
     "startCreating": "Buy Plan and Start Creating Now",
@@ -369,7 +369,7 @@
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "editByChat": "EDIT BY CHAT",
           "highEndResults": "HIGH-END RESULTS",
-          "upscale13k": "UPSCALE UP TO 13K",
+          "upscale13k": "UPSCALE UP TO 8K",
           "onboardingCall": "ONBOARDING VIDEO CALL"
         }
       },
@@ -412,7 +412,7 @@
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",
-          "resolution13k": "RESOLUTION UP TO 13K"
+          "resolution13k": "RESOLUTION UP TO 8K"
         }
       }
     },
