@@ -102,7 +102,7 @@ export default function UpscalePage() {
                 
                 <div className="pt-6 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black dark:text-white">
                   <span>{locale === 'de' ? 'MAX. AUFLÖSUNG' : 'MAX RESOLUTION'}</span>
-                  <span className="text-lg font-mono tracking-normal text-red-500 font-bold">8,000 PX</span>
+                  <span className="text-lg font-mono tracking-normal text-black dark:text-white font-bold">8,000 PX</span>
                 </div>
               </div>
             </div>

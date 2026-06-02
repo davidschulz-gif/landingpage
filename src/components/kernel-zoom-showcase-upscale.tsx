@@ -92,15 +92,6 @@ export function KernelZoomShowcaseUpscale() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
 
-  // Automatic Presentation Mode: switch images every 3 seconds
-  useEffect(() => {
-    if (mode !== 'presentation') return
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [mode, images.length])
-
   // Monitor container bounding rect for pixel-perfect image alignment inside Focus Box
   useEffect(() => {
     const updateRect = () => {
@@ -275,10 +266,10 @@ export function KernelZoomShowcaseUpscale() {
             }}
             style={{ 
               aspectRatio: currentAspectRatio,
-              width: `min(100%, calc(80vh * ${currentAspectRatio}))`,
-              height: `min(80vh, calc(100% / ${currentAspectRatio}))`
+              width: `min(100%, calc(90vh * ${currentAspectRatio}))`,
+              height: `min(90vh, calc(100% / ${currentAspectRatio}))`
             }}
-            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-4xl rounded-none border-x-0 w-full h-auto ${
+            className={`relative overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl dark:shadow-black/40 select-none transition-all duration-500 max-w-7xl rounded-none border-x-0 w-full h-auto ${
               mode === 'presentation'
                 ? 'cursor-pointer group/pres'
                 : 'cursor-zoom-in'
