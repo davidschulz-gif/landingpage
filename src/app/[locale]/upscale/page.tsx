@@ -147,10 +147,10 @@ export default function UpscaleMobilePage() {
         </div>
 
         {/* CTA Buttons - Placement 1 (Top Hero) */}
-        <div className="max-w-5xl mx-auto px-4 pb-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+         <div className="max-w-5xl mx-auto px-4 pb-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <ShareButton />
-          <PricingButton />
-        </div>
+         {/* <PricingButton /> */}
+        </div> 
 
         {/* 17 Preview Images feed with responsive grid */}
         <div className="max-w-5xl mx-auto px-4 pt-12 pb-12 border-t border-neutral-100 dark:border-neutral-900">
@@ -188,7 +188,7 @@ export default function UpscaleMobilePage() {
                   card,
                   <div key={`inline-btn-${index}`} className="col-span-full py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
                     <ShareButton />
-                    <PricingButton />
+                    {/* <PricingButton /> */}
                   </div>
                 ];
               }
@@ -266,7 +266,7 @@ export default function UpscaleMobilePage() {
         {/* CTA Buttons - Placement 4 (Above Footer) */}
         <div className="max-w-5xl mx-auto px-4 pb-16 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <ShareButton />
-          <PricingButton />
+          {/* <PricingButton /> */}
         </div>
       </div>
 
