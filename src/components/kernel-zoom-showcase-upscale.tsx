@@ -85,7 +85,7 @@ export function KernelZoomShowcaseUpscale() {
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [mode, setMode] = useState<'presentation' | 'interactive'>('presentation')
+  const [mode, setMode] = useState<'presentation' | 'interactive'>('interactive')
   const [isZoomed, setIsZoomed] = useState(false)
   const [boxCoords, setBoxCoords] = useState({ x: 50, y: 50 })
   const [containerRect, setContainerRect] = useState({ width: 960, height: 410 })
@@ -318,7 +318,7 @@ export function KernelZoomShowcaseUpscale() {
               </div>
             )}
 
-            {mode === 'interactive' && (
+            {/* {mode === 'interactive' && (
               <button
                 onClick={(e) => {
                   e.stopPropagation()
@@ -329,7 +329,7 @@ export function KernelZoomShowcaseUpscale() {
                 <IconX size={14} strokeWidth={2.5} />
                 {t.backToPresentation}
               </button>
-            )}
+            )} */}
 
             <button
               onClick={handlePrev}

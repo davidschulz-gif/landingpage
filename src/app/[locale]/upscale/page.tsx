@@ -2,6 +2,7 @@
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
+import { useIsMobile } from '@/hooks/use-mobile'
 import { motion } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import dynamic from 'next/dynamic'
@@ -33,6 +34,9 @@ const CompareDemoUpscale = dynamic(
 export default function UpscalePage() {
   const locale = useLocale()
   const [isClient, setIsClient] = useState(false)
+  
+  const mobile = useIsMobile();
+
 
   useEffect(() => {
     setIsClient(true)
@@ -110,7 +114,7 @@ export default function UpscalePage() {
         </div>
 
         {/* 2. Interactive Zoom Component */}
-        <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950 py-4">
+       { isClient && !mobile && <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950 py-4">
           <div className="max-w-5xl mx-auto px-4 mb-4">
             <h2 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
               {locale === 'de' 
@@ -123,8 +127,8 @@ export default function UpscalePage() {
                 : 'Hover over the image to experience the detail resolution and surface quality of the Typus.ai upscaler live.'}
             </p>
           </div>
-          {isClient && <KernelZoomShowcaseUpscale />}
-        </div>
+          <KernelZoomShowcaseUpscale /> 
+        </div>}
 
         {/* 3. Deep Detail & Workflow Section */}
         <div className="py-20 px-4 max-w-5xl mx-auto">
