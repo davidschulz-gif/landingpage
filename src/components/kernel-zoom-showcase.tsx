@@ -336,8 +336,8 @@ export function KernelZoomShowcase() {
             className="inline-flex items-center justify-center gap-3 px-8 py-4.5 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all duration-300 border border-neutral-800 dark:border-neutral-200"
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
-            <span>{locale === 'de' ? 'ALLE 18 INTERAKTIVEN PROJEKTE ANSEHEN' : 'EXPLORE ALL 18 INTERACTIVE PROJECTS'}</span>
-            <IconArrowRight size={14} />
+          <span>{locale === 'de' ? 'Alle 18 Beispiele in der interaktiven Bildschau sehen' : 'View all 18 examples in the interactive showcase'}</span>
+    <IconArrowRight size={14} />
           </Link>
         </div>
 
