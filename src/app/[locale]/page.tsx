@@ -1,7 +1,7 @@
 // 'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
-import CompareDemo from '@/components/compare-drag-demo'
+
 // import { HeroParallax } from '@/components/hero-parallax'
 import { MainHero } from '@/components/main-hero'
 import { TrustedBySection } from '@/components/trusted-by-section'
@@ -510,14 +510,14 @@ export default function Home() {
         </motion.div> */}
 
         {/* Before & After Section */}
-        <Reveal
+        {/* <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
           viewport={{ once: true, margin: '-100px' }}
         >
           <CompareDemo />
-        </Reveal>
+        </Reveal> */}
 
         {/* Done For You Combined Section */}
         <Reveal

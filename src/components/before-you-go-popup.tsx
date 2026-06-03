@@ -490,6 +490,14 @@ export default function BeforeYouGoPopup() {
                           {t('viewFreeBullet3')}
                         </span>
                       </div>
+                      <div className='flex items-center gap-3'>
+                        <div className='flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 shrink-0'>
+                          <IconCheck size={12} strokeWidth={3} />
+                        </div>
+                        <span className='text-xs sm:text-sm text-neutral-800 font-medium font-sans'>
+                          {t('viewFreeBullet4')}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Form */}

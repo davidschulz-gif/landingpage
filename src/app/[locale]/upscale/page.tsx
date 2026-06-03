@@ -5,8 +5,9 @@ import { FooterSection } from '@/components/footer-section'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import { useState, useEffect } from 'react'
-import { IconDeviceMobile, IconShare, IconCopy, IconCheck } from '@tabler/icons-react'
+import { IconDeviceMobile, IconShare, IconCopy, IconCheck, IconTag } from '@tabler/icons-react'
 import { ShareShowcaseModal } from '@/components/share-showcase-modal'
+import { Link } from '@/i18n/navigation'
 
 interface MobileImageItem {
   id: number
@@ -55,12 +56,23 @@ export default function UpscaleMobilePage() {
   const ShareButton = () => (
     <button
       onClick={handleShareLink}
-      className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold uppercase tracking-wider shadow-lg active:scale-95 transition-all duration-300 w-full max-w-sm border border-neutral-800 dark:border-neutral-200"
+      className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm"
       style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
     >
       <IconShare size={14} />
-      <span>{locale === 'de' ? 'Link zur interaktiven Bildschau erhalten' : 'Get link to interactive showcase'}</span>
+      <span>{locale === 'de' ? 'Alle 18 Beispiele in der interaktiven Bildschau sehen' : 'View all 18 examples in the interactive showcase'}</span>
     </button>
+  )
+
+  const PricingButton = () => (
+    <Link
+      href="/pricing"
+      className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm border border-neutral-800 dark:border-neutral-200 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+    >
+      <IconTag size={14} />
+      <span>{locale === 'de' ? 'Preise & Lizenzen ansehen' : 'View Pricing & Licenses'}</span>
+    </Link>
   )
 
   return (
@@ -134,9 +146,10 @@ export default function UpscaleMobilePage() {
           </motion.div>
         </div>
 
-        {/* Share Link Button - Placement 1 (Top Hero) */}
-        <div className="max-w-5xl mx-auto px-4 pb-8 text-center">
+        {/* CTA Buttons - Placement 1 (Top Hero) */}
+        <div className="max-w-5xl mx-auto px-4 pb-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <ShareButton />
+          <PricingButton />
         </div>
 
         {/* 17 Preview Images feed with responsive grid */}
@@ -173,8 +186,9 @@ export default function UpscaleMobilePage() {
               if (index === 5 || index === 11) {
                 return [
                   card,
-                  <div key={`inline-btn-${index}`} className="col-span-full py-8 flex justify-center text-center">
+                  <div key={`inline-btn-${index}`} className="col-span-full py-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
                     <ShareButton />
+                    <PricingButton />
                   </div>
                 ];
               }
@@ -249,9 +263,10 @@ export default function UpscaleMobilePage() {
           </div>
         </div>
 
-        {/* Share Link Button - Placement 4 (Above Footer) */}
-        <div className="max-w-5xl mx-auto px-4 pb-16 text-center">
+        {/* CTA Buttons - Placement 4 (Above Footer) */}
+        <div className="max-w-5xl mx-auto px-4 pb-16 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
           <ShareButton />
+          <PricingButton />
         </div>
       </div>
 

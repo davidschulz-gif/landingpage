@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl'
 import dynamic from 'next/dynamic'
 import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
-import { IconArrowLeft, IconArrowRight, IconLock } from '@tabler/icons-react'
+import { IconArrowLeft, IconArrowRight, IconLock, IconTag } from '@tabler/icons-react'
 import { useSearchParams } from 'next/navigation'
 import { apiUrl } from '@/lib/constants'
 
@@ -158,19 +158,22 @@ function Upscale1Content() {
               </div>
               
               <div className="flex gap-2">
+              
                 <Link
-                  href={`/${locale}/upscale-privacy`}
+                  href={`/${locale}/pricing`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-black rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
                 >
-                  <IconArrowLeft size={14} />
-                  <span>{locale === 'de' ? 'ÜBERSICHT' : 'HUB OVERVIEW'}</span>
+                  <IconTag size={14} />
+                  <span>{locale === 'de' ? 'Preise' : 'Pricing'}</span>
                 </Link>
                 
                 <Link
                   href={`/${locale}/upscale-privacy/upscale-2`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
                 >
-                  <span>{locale === 'de' ? 'BATCH 2 STARTEN' : 'GO TO BATCH 2'}</span>
+                  
+                  <span>{locale === 'de' ?  "mehr ansehen" : "see more"}</span>
+               
                   <IconArrowRight size={14} />
                 </Link>
               </div>
@@ -179,8 +182,8 @@ function Upscale1Content() {
             {/* Main Title */}
             <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
               {locale === 'de' 
-                ? 'INTERAKTIVER DETAIL-ZOOM (BATCH 1)' 
-                : 'INTERACTIVE DETAIL ZOOM (BATCH 1)'}
+                ? 'Interaktive Bildschau' 
+                : 'INTERACTIVE DETAIL ZOOM'}
             </h1>
 
             {/* Sub-text details */}
@@ -209,14 +212,44 @@ function Upscale1Content() {
           <p className="text-neutral-500 dark:text-neutral-400 text-xs sm:text-sm mb-6 uppercase tracking-wider font-mono">
             {locale === 'de' ? 'Bereit für die nächste Galerie?' : 'Ready to explore more renderings?'}
           </p>
-          <Link
-            href={`/${locale}/upscale-privacy/upscale-2`}
-            className="inline-flex items-center gap-2.5 px-8 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-          >
-            <span>{locale === 'de' ? 'Interaktive Galerie (Batch 2)' : 'Interactive Gallery (Batch 2)'}</span>
-            <IconArrowRight size={16} />
-          </Link>
+          <div className="max-w-xl mx-auto mb-8">
+            <div className="text-left bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[32px] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+              
+             
+
+              {/* Image Container */}
+              <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
+                <img
+                  src="/upscale-images copy/input/image-7.png"
+                  alt="Batch 2 preview"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Buttons Row */}
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <Link
+                  href={`/${locale}/upscale-privacy/upscale-2`}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
+                  <IconArrowRight size={14} />
+                </Link>
+
+                <Link
+                  href={`/${locale}/pricing`}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                >
+                  <IconTag size={14} />
+                  <span>{locale === 'de' ? 'Preise ansehen' : 'View Pricing'}</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          
         </div>
       </div>
 
