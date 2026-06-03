@@ -5,11 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ActionButton } from "./action-button";
 import { Compare } from "./ui/compare";
 
-interface CompareWithAnimationProps {
-  className?: string;
-}
-
-interface ComparisonProject {
+export interface ComparisonProject {
   id: string;
   titleDe: string;
   titleEn: string;
@@ -21,15 +17,21 @@ interface ComparisonProject {
   aspectRatio: string;
 }
 
+interface CompareWithAnimationProps {
+  className?: string;
+  projects?: ComparisonProject[];
+}
+
 export const CompareWithAnimationUpscale = ({
   className,
+  projects,
 }: CompareWithAnimationProps) => {
   const t = useTranslations('Compare');
   const [activeIndex, setActiveIndex] = useState(0);
   const locale = useLocale();
 
   // Unified list of 9 unique upscaled architectural projects
-  const projects: ComparisonProject[] = [
+  const defaultProjects: ComparisonProject[] = [
     {
       id: "model3d",
       titleDe: "3D-Modell (Standard)",
@@ -125,7 +127,8 @@ export const CompareWithAnimationUpscale = ({
     },
   ];
 
-  const activeProject = projects[activeIndex];
+  const projectsList = projects || defaultProjects;
+  const activeProject = projectsList[activeIndex];
   const hasDualOutputs = !!activeProject.output2;
 
   const originalLabel = "ChatGPT Image 2 (2K)";
@@ -137,7 +140,7 @@ export const CompareWithAnimationUpscale = ({
       {/* Header Section */}
       <div className="text-center mb-16 px-4">
         <h2
-          className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-black mb-6"
+          className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-neutral-900 dark:text-white mb-6"
           style={{
             fontFamily:
               "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
@@ -146,7 +149,7 @@ export const CompareWithAnimationUpscale = ({
           {locale === 'de' ? 'UPSCALE-VERGLEICH' : 'UPSCALER COMPARISON'}
         </h2>
         <p
-          className="text-gray-600 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base leading-relaxed"
+          className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base leading-relaxed"
           style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
           {locale === 'de' 
@@ -163,7 +166,7 @@ export const CompareWithAnimationUpscale = ({
             <div className="mb-4 text-[10px] sm:text-xs md:text-sm font-medium tracking-tight text-muted-foreground">
               {t('aiTransformation')}
             </div>
-            <div className="mb-2 text-[14px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-medium tracking-tight">
+            <div className="mb-2 text-[14px] sm:text-[18px] md:text-[24px] lg:text-[30px] font-medium tracking-tight text-neutral-900 dark:text-white">
               {locale === 'de' ? activeProject.titleDe : activeProject.titleEn}
             </div>
             <div className="mb-8 max-w-[35ch] text-[12px] sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 min-h-[48px]">
@@ -172,7 +175,7 @@ export const CompareWithAnimationUpscale = ({
             
             {/* 9 Project Thumbnails */}
             <div className="mb-6 flex flex-wrap gap-2 max-w-md">
-              {projects.map((proj, index) => (
+              {projectsList.map((proj, index) => (
                 <div
                   key={proj.id}
                   className={cn(
@@ -218,7 +221,7 @@ export const CompareWithAnimationUpscale = ({
             </div>
           </div>
           
-          <div className="lg:w-2/3 flex items-center justify-center">
+          <div className="w-full lg:w-2/3 flex items-center justify-center">
             <Compare
               firstImage={activeProject.input}
               secondImage={activeProject.output1}
@@ -254,7 +257,7 @@ export const CompareWithAnimationUpscale = ({
 
             {/* 9 Project Selector Thumbnails */}
             <div className="flex gap-2 max-w-full overflow-x-auto py-1">
-              {projects.map((proj, index) => (
+              {projectsList.map((proj, index) => (
                 <div
                   key={proj.id}
                   className={cn(

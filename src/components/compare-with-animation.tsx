@@ -135,7 +135,7 @@ export const CompareWithAnimation = ({
             </ActionButton>
           </div>
         </div>
-        <div className="lg:w-2/3">
+        <div className="w-full lg:w-2/3">
           <Compare
             firstImage={beforeImages[activeIndex]}
             secondImage={afterImages[activeIndex]}

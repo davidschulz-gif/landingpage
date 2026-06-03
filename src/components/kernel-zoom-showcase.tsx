@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX } from '@tabler/icons-react'
+import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX, IconArrowRight } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
+import { Link } from '@/i18n/navigation'
 
 export function KernelZoomShowcase() {
   const params = useParams()
@@ -36,72 +37,23 @@ export function KernelZoomShowcase() {
 
   const t = translations[locale]
 
-  // Manually defined aspect ratio per image (including the new 9/16 portrait ratio)
+  // Manually defined aspect ratio per image
   const images = [
-    // {
-    //   src: '/kernal-zoom/image-22070.png',
-    //   aspectRatio: 4 / 3
-    // },
-    // {
-    //   src: '/kernal-zoom/image-22072.png',
-    //   aspectRatio: 4 / 3
-    // },
-    // {
-    //   src: '/kernal-zoom/image-22073.png',
-    //   aspectRatio: 3 / 4
-    // },
-     {
-      src: '/kernal-zoom/image-1.png',
-      aspectRatio: 4 / 3
-    },
     {
       src: '/kernal-zoom/image-2.png',
-      aspectRatio: 4 / 3
-    },
-    {
-      src: '/kernal-zoom/image-3.png',
-      aspectRatio: 3 / 4
-    },
-    {
-      src: '/kernal-zoom/image-4.png',
-      aspectRatio: 4 / 3
-    },
-    {
-      src: '/kernal-zoom/image-5.png',
-      aspectRatio: 4 / 3
-    },
-    {
-      src: '/kernal-zoom/image-6.png',
-      aspectRatio: 3 / 4
-    },{
-      src: '/kernal-zoom/image-7.png',
-      aspectRatio: 3 / 4
-    },{
-      src: '/kernal-zoom/image-8.png',
-      aspectRatio: 3 / 4
-    },
-    {
-      src: '/kernal-zoom/image-9.png',
-      aspectRatio: 4 / 3
+      aspectRatio: 6144 / 4096
     },
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
-  const [mode, setMode] = useState<'presentation' | 'interactive'>('presentation')
+  const [mode, setMode] = useState<'presentation' | 'interactive'>('interactive')
   const [isZoomed, setIsZoomed] = useState(false)
   const [boxCoords, setBoxCoords] = useState({ x: 50, y: 50 })
   const [containerRect, setContainerRect] = useState({ width: 960, height: 410 })
   const containerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
 
-  // Automatic Presentation Mode: switch images every 3 seconds
-  useEffect(() => {
-    if (mode !== 'presentation') return
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [mode, images.length])
+
 
   // Monitor container bounding rect for pixel-perfect image alignment inside Focus Box
   useEffect(() => {
@@ -354,7 +306,7 @@ export function KernelZoomShowcase() {
             )}
 
             {/* Mode Controls: Return to Presentation Button */}
-            {mode === 'interactive' && (
+            {/* {mode === 'interactive' && (
               <button
                 onClick={(e) => {
                   e.stopPropagation()
@@ -365,55 +317,28 @@ export function KernelZoomShowcase() {
                 <IconX size={14} strokeWidth={2.5} />
                 {t.backToPresentation}
               </button>
-            )}
+            )} */}
 
-            {/* Left Chevron Button */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 bg-white/80 dark:bg-black/60 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black text-neutral-800 dark:text-white rounded-full border border-neutral-200 dark:border-neutral-800 shadow-md transition-all duration-300 z-30 cursor-pointer active:scale-95 group/btn"
-              aria-label="Previous image"
-            >
-              <IconChevronLeft size={20} className="group-hover/btn:-translate-x-0.5 transition-transform animate-none" />
-            </button>
-
-            {/* Right Chevron Button */}
-            <button
-              onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 bg-white/80 dark:bg-black/60 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black text-neutral-800 dark:text-white rounded-full border border-neutral-200 dark:border-neutral-800 shadow-md transition-all duration-300 z-30 cursor-pointer active:scale-95 group/btn"
-              aria-label="Next image"
-            >
-              <IconChevronRight size={20} className="group-hover/btn:translate-x-0.5 transition-transform animate-none" />
-            </button>
-
-           
           </motion.div>
         </div>
 
-        {/* Slide Indicators and HUD Info Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between max-w-7xl mx-auto mt-6 px-4 gap-4 text-neutral-500 dark:text-neutral-400 font-sans text-xs">
+        {/* HUD Info Bar */}
+        <div className="flex items-center justify-center max-w-7xl mx-auto mt-6 px-4 text-neutral-500 dark:text-neutral-400 font-sans text-xs">
           <div className="font-mono text-[11px] uppercase tracking-wider">
             {t.detailsResolved}
           </div>
-          
-          {/* Exact clean indicator matches (dash active, dots inactive) */}
-          <div className="flex gap-2.5 items-center">
-            {images.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
-                  activeIndex === idx 
-                    ? 'bg-neutral-800 dark:bg-white w-6 shadow-sm' 
-                    : 'bg-neutral-300 dark:bg-neutral-800 w-1.5 hover:bg-neutral-400'
-                }`}
-                aria-label={`Go to image ${idx + 1}`}
-              />
-            ))}
-          </div>
+        </div>
 
-          <div className="font-mono text-[11px] uppercase tracking-wider">
-            {t.imageText} {activeIndex + 1} / {images.length}
-          </div>
+        {/* Noticeable CTA Button to Separate Upscale page */}
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/upscale"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4.5 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all duration-300 border border-neutral-800 dark:border-neutral-200"
+            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          >
+            <span>{locale === 'de' ? 'ALLE 18 INTERAKTIVEN PROJEKTE ANSEHEN' : 'EXPLORE ALL 18 INTERACTIVE PROJECTS'}</span>
+            <IconArrowRight size={14} />
+          </Link>
         </div>
 
       </div>
