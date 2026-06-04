@@ -10,6 +10,8 @@ import Link from 'next/link'
 import { IconArrowLeft, IconTag, IconArrowRight } from '@tabler/icons-react'
 import { KernelZoomShowcaseUpscale2 } from '@/components/kernel-zoom-showcase-upscale-2'
 import type { ComparisonProject } from '@/components/compare-with-animation-upscale'
+import { useIsMobile } from '@/hooks/use-mobile'
+import { DesktopOnlyView } from '@/components/desktop-only-view'
 
 // Dynamically load upscale interactive comparison slider component
 const CompareWithAnimationUpscale = dynamic(
@@ -142,6 +144,7 @@ const batch2Projects: ComparisonProject[] = [
 function Upscale2Content() {
   const locale = useLocale()
   const [isClient, setIsClient] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     setIsClient(true)
@@ -153,111 +156,117 @@ function Upscale2Content() {
       <div>
         <NavbarDemo />
 
-        {/* Hero Section */}
-        <div className="pt-32 pb-8 px-4 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-6 text-left"
-          >
-            {/* Header Navigation */}
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[10px] font-bold uppercase tracking-[0.2em]">
-                <span>{locale === 'de' ? 'UPSCALE-VERGLEICH' : 'UPSCALER COMPARISON'}</span>
-              </div>
-              
-              <div className="flex gap-2">
-              
+        {isClient && isMobile ? (
+          <DesktopOnlyView />
+        ) : (
+          <>
+            {/* Hero Section */}
+            <div className="pt-32 pb-8 px-4 max-w-5xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="space-y-6 text-left"
+              >
+                {/* Header Navigation */}
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <span>{locale === 'de' ? 'UPSCALE-VERGLEICH' : 'UPSCALER COMPARISON'}</span>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                  
 
-                <Link
-                  href={`/${locale}/pricing`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-black rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
-                >
-                  <IconTag size={14} />
-                  <span>{locale === 'de' ? 'Preise' : 'Pricing'}</span>
-                </Link>
-                
-                <Link
-                  href={`/${locale}/upscale-privacy/upscale-1`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
-                >
-                  <IconArrowLeft size={14} />
-                  <span>{locale === 'de' ?  "mehr ansehen" : "see more"}</span>
-                </Link>
+                    <Link
+                      href={`/${locale}/pricing`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-black rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
+                    >
+                      <IconTag size={14} />
+                      <span>{locale === 'de' ? 'Preise' : 'Pricing'}</span>
+                    </Link>
+                    
+                    <Link
+                      href={`/${locale}/upscale-privacy/upscale-1`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
+                    >
+                      <IconArrowLeft size={14} />
+                      <span>{locale === 'de' ?  "mehr ansehen" : "see more"}</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Main Title */}
+                <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+                  {locale === 'de' 
+                    ? 'MATERIALDETAILS' 
+                    : 'MATERIAL DETAILS'}
+                </h1>
+
+                {/* Sub-text details */}
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base font-normal max-w-3xl leading-relaxed">
+                    {locale === 'de'
+                    ? 'Fokussiert auf Materialeigenschaften. Untersuchen Sie Verfeinerungen an Betonfassaden, Ziegelmauerwerk, Glasscheiben und Holzwerkstoffen.'
+                    : 'Focused on material characteristics. Check refinements on concrete facade, brick masonry, glass panes, and wood timber.'}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Comparison Slider Showcase */}
+            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
+              {isClient && <KernelZoomShowcaseUpscale2 />}
+            </div>
+
+            {/* Comparison Slider Showcase 2 */}
+            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
+              <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
+                {isClient && <CompareWithAnimationUpscale projects={batch2Projects} />}
               </div>
             </div>
 
-            {/* Main Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
-              {locale === 'de' 
-                ? 'MATERIALDETAILS' 
-                : 'MATERIAL DETAILS'}
-            </h1>
+            {/* Bottom Banner navigation */}
+            <div className="py-16 px-4 max-w-5xl mx-auto text-center">
+              <p className="text-neutral-500 dark:text-neutral-400 text-xs sm:text-sm mb-6 uppercase tracking-wider font-mono">
+                {locale === 'de' ? 'Möchten Sie die erste Galerie nochmals ansehen?' : 'Want to explore the first gallery again?'}
+              </p>
+              <div className="max-w-xl mx-auto mb-8">
+                <div className="text-left bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[32px] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+                 
+                 
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
+                    <img
+                      src="/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png"
+                      alt="Batch 1 preview"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-            {/* Sub-text details */}
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base font-normal max-w-3xl leading-relaxed">
-                {locale === 'de'
-                ? 'Fokussiert auf Materialeigenschaften. Untersuchen Sie Verfeinerungen an Betonfassaden, Ziegelmauerwerk, Glasscheiben und Holzwerkstoffen.'
-                : 'Focused on material characteristics. Check refinements on concrete facade, brick masonry, glass panes, and wood timber.'}
-            </p>
-          </motion.div>
-        </div>
+                  {/* Buttons Row */}
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <Link
+                      href={`/${locale}/upscale-privacy/upscale-1`}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
+                      <IconArrowRight size={14} />
+                    </Link>
 
-        {/* Comparison Slider Showcase */}
-        <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
-          {isClient && <KernelZoomShowcaseUpscale2 />}
-        </div>
-
-        {/* Comparison Slider Showcase 2 */}
-        <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
-          <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
-            {isClient && <CompareWithAnimationUpscale projects={batch2Projects} />}
-          </div>
-        </div>
-
-        {/* Bottom Banner navigation */}
-        <div className="py-16 px-4 max-w-5xl mx-auto text-center">
-          <p className="text-neutral-500 dark:text-neutral-400 text-xs sm:text-sm mb-6 uppercase tracking-wider font-mono">
-            {locale === 'de' ? 'Möchten Sie die erste Galerie nochmals ansehen?' : 'Want to explore the first gallery again?'}
-          </p>
-          <div className="max-w-xl mx-auto mb-8">
-            <div className="text-left bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[32px] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-             
-             
-              {/* Image Container */}
-              <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
-                <img
-                  src="/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png"
-                  alt="Batch 1 preview"
-                  className="w-full h-full object-cover"
-                />
+                    <Link
+                      href={`/${locale}/pricing`}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      <IconTag size={14} />
+                      <span>{locale === 'de' ? 'Preise ansehen' : 'View Pricing'}</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
 
-              {/* Buttons Row */}
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link
-                  href={`/${locale}/upscale-privacy/upscale-1`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
-                  <IconArrowRight size={14} />
-                </Link>
-
-                <Link
-                  href={`/${locale}/pricing`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  <IconTag size={14} />
-                  <span>{locale === 'de' ? 'Preise ansehen' : 'View Pricing'}</span>
-                </Link>
-              </div>
             </div>
-          </div>
-
-        </div>
+          </>
+        )}
       </div>
 
       <FooterSection />

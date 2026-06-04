@@ -65,7 +65,7 @@ export function NavbarDemo() {
           {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
-            link: '/#create',
+            link: '/create',
             icon: Sparkles,
           },
           {

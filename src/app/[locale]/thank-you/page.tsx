@@ -98,6 +98,11 @@ function ThankYouContent() {
           },
         })
 
+        if(user?.amount <= 0) {
+          console.log('Free trial or zero amount purchase, skipping conversion tracking');
+          return;
+        }
+
         if (typeof window !== 'undefined' && (window as any).dataLayer) {
           (window as any).dataLayer.push({
             event: 'purchase',

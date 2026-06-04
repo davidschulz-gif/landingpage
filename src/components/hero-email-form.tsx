@@ -188,6 +188,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             t('features.viewApp'),
             t('features.caseStudies'),
             t('features.exclusiveOffers'),
+            t('features.interactiveShowcase'),
           ].map((feature, idx) => (
             <div
               key={idx}

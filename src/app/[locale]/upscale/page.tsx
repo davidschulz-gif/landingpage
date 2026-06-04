@@ -59,7 +59,7 @@ export default function UpscaleMobilePage() {
       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm"
       style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
     >
-      <IconShare size={14} />
+      <IconShare size={36} />
       <span>{locale === 'de' ? 'Alle 18 Beispiele in der interaktiven Bildschau sehen' : 'View all 18 examples in the interactive showcase'}</span>
     </button>
   )

@@ -445,7 +445,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
     const isSkippable = (currentStep === 8 && !isStep8Filled)
 
     return (
-        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfd] p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-[50000] flex flex-col items-center justify-center bg-[#fcfcfd] p-4 overflow-y-auto">
             <button
                 className="absolute top-4 right-4 text-gray-600 cursor-pointer"
                 onClick={onCancel}

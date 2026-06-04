@@ -156,6 +156,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                     t('features.viewApp'),
                     t('features.caseStudies'),
                     t('features.exclusiveOffers'),
+                    t('features.interactiveShowcase'),
                   ].map((feature, idx) => (
                     <div key={idx} className='flex items-start gap-2.5 sm:gap-3 group/item'>
                       <div className='w-5 h-5 rounded-full bg-[#E6F7F2] dark:bg-[#003d2b] flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover/item:scale-110'>

@@ -7,7 +7,7 @@ export const navItems = [
         title: 'Create',
         description:
           'Generate stunning architectural visualizations from scratch with AI',
-        link: '#create',
+        link: '/create',
       },
       {
         title: 'Edit',
