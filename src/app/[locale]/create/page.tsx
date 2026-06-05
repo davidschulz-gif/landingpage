@@ -39,7 +39,7 @@ const upscalerPreviews: PreviewImage[] = [
   { id: 9, titleDe: "Innenhof-Eingang", titleEn: "Courtyard Entrance", src: "/upscaler-moblie/image-9.png" },
   { id: 10, titleDe: "Minimalistische Küche", titleEn: "Minimalist Kitchen", src: "/upscaler-moblie/image-10.png" },
   { id: 11, titleDe: "Historische Sanierung", titleEn: "Historic Renovation", src: "/upscaler-moblie/image-11.png" },
-  { id: 12, titleDe: "Zeitgenössisches Museum", titleEn: "Contemporary Museum", src: "/upscaler-moblie/image-12.png" },
+  { id: 12, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: "/upscaler-moblie/image-12.png" },
   { id: 13, titleDe: "Holzdach-Konstruktion", titleEn: "Timber Roof Structure", src: "/upscaler-moblie/image-13.png" },
   { id: 14, titleDe: "Brutalistische Bibliothek", titleEn: "Brutalist Library", src: "/upscaler-moblie/image-14.png" },
   { id: 15, titleDe: "Vorstadt-Reihenhaus", titleEn: "Suburban Townhouse", src: "/upscaler-moblie/image-15.png" },
