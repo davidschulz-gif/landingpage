@@ -421,6 +421,7 @@
       "title": "Credit Deduction Overview",
       "imageGeneration": "Image Generation",
       "videoGeneration": "Video Generation",
+      "imageUpscaling": "Image Upscaling",
       "resolution1K": "1K Resolution",
       "resolution2K": "2K Resolution",
       "resolution4K": "4K Resolution",
@@ -429,7 +430,15 @@
       "credits5": "15 credits",
       "credits25": "65 credits",
       "credits50": "125 credits",
-      "credits75": "175 credits"
+      "credits75": "175 credits",
+      "upscaleFactor2": "2x Upscale",
+      "upscaleFactor4": "4x Upscale",
+      "upscaleFactor8": "8x Upscale",
+      "upscaleFactor16": "16x Upscale",
+      "upscaleCredits20": "20 credits",
+      "upscaleCredits40": "40 credits",
+      "upscaleCredits50": "50 credits",
+      "upscaleCredits80": "80 credits"
     }
   },
   "SubscriptionModal": {

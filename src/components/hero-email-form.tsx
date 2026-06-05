@@ -182,7 +182,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       </div>
       
       {showFeatures && (
-        <div className='mt-6 flex flex-wrap lg:flex-nowrap items-center justify-center gap-x-6 gap-y-2.5 w-full max-w-4xl mx-auto px-4 py-2.5 md:px-6 md:py-3 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/5 rounded-2xl shadow-md'>
+        <div className='mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 w-fit mx-auto px-4 py-2 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/5 rounded-2xl shadow-md'>
           {[
             // t('features.info'),
             t('features.viewApp'),
@@ -192,10 +192,10 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           ].map((feature, idx) => (
             <div
               key={idx}
-              className='flex items-center gap-2  whitespace-nowrap flex-shrink-0'
+              className='flex items-center gap-1.5 min-w-0'
             >
-              <IconCheck className='size-3.5 md:size-4 text-emerald-700 dark:text-emerald-400 flex-shrink-0' stroke={3} />
-              <span className='text-[11px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <IconCheck className='size-3 md:size-4 text-emerald-700 dark:text-emerald-400 flex-shrink-0' stroke={3} />
+              <span className='text-[10px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider break-words whitespace-normal' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {feature}
               </span>
             </div>

@@ -96,8 +96,8 @@ export default function UpscaleMobilePage() {
             {/* Main Title */}
             <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
               {locale === 'de' 
-                ? 'HOCHSKALIERUNG BIS ZU 8K AUFLÖSUNG' 
-                : 'IMAGE UPSCALING UP TO 8K RESOLUTION'}
+                ? 'KI für großformatige Drucke und Wettbewerbspläne' 
+                : 'AI for large-format prints and competition plans'}
             </h1>
 
             {/* Introduction Text Block */}

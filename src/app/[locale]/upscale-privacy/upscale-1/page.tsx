@@ -193,9 +193,9 @@ function Upscale1Content() {
                     : 'INTERACTIVE DETAIL ZOOM'}
                 </h1>
                 {/* Second Title */}
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-normal text-black dark:text-white tracking-tight leading-relaxed" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
                   {locale === 'de' 
-                    ? 'Das Zoomfenster zeigt das mit dem Hochskalierer mit nur einem Klick auf TYPUS aufpolierte 8000 Pixel Ergebnis mit hoher, druckfertiger Detailtiefe. . Als Ausgangsbild (hier ausserhalb des Zoomfensters zu sehen) wurde ein mit Chat GPT Image2 generiertes 2.000 Pixel Bild verwendet.' 
+                    ? 'Das Zoomfenster zeigt das mit dem Hochskalierer mit nur einem Klick auf TYPUS aufpolierte 8000 Pixel Ergebnis mit hoher, druckfertiger Detailtiefe.  Als Ausgangsbild (hier ausserhalb des Zoomfensters zu sehen) wurde ein mit Chat GPT Image2 generiertes 2.000 Pixel Bild verwendet.' 
                     : 'The zoom window shows the 8000-pixel result, enhanced with a single click on TYPUS using the upscaler, resulting in high, print-ready detail. The original image (visible here outside the zoom window) was a 2000-pixel image generated with Chat GPT Image2.'}
                 </h1>
 
