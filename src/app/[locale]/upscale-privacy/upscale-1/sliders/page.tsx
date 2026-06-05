@@ -15,19 +15,16 @@ import { DesktopOnlyView } from '@/components/desktop-only-view'
 
 import type { ComparisonProject } from '@/components/compare-with-animation-upscale'
 
-// Dynamically load upscale interactive components for Batch 1
-const KernelZoomShowcaseUpscale = dynamic(
+const CompareWithAnimationUpscale = dynamic(
   () =>
-    import('@/components/kernel-zoom-showcase-upscale').then(
-      mod => mod.KernelZoomShowcaseUpscale
+    import('@/components/compare-with-animation-upscale').then(
+      mod => mod.CompareWithAnimationUpscale
     ),
   {
     ssr: false,
-    loading: () => <div className='h-[400px] bg-neutral-50 dark:bg-neutral-900 animate-pulse flex items-center justify-center text-neutral-400'>Loading Zoom Showcase...</div>,
+    loading: () => <div className='h-[400px] bg-neutral-50 dark:bg-neutral-900 animate-pulse flex items-center justify-center text-neutral-400'>Loading Comparison Slider...</div>,
   }
 )
-
-import { UpscaleThumbnailNav } from '@/components/upscale-thumbnail-nav'
 
 const batch1Projects: ComparisonProject[] = [
   {
@@ -123,7 +120,7 @@ const batch1Projects: ComparisonProject[] = [
 ]
 
 
-function Upscale1Content() {
+function Upscale1SlidersContent() {
   const locale = useLocale()
   const [isClient, setIsClient] = useState(false)
   const isMobile = useIsMobile()
@@ -141,80 +138,11 @@ function Upscale1Content() {
           <DesktopOnlyView />
         ) : (
           <>
-            {/* Hero Section */}
-            <div className="pt-32 pb-8 px-4 max-w-5xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="space-y-6 text-left"
-              >
-                {/* Header Navigation */}
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[10px] font-bold uppercase tracking-[0.2em]">
-                    <span>{locale === 'de' ? 'KAPITEL 1 • INTERAKTIV' : 'CHAPTER 1 • INTERACTIVE'}</span>
-                  </div>
-                  
-                  <div className="flex gap-2">
-                  
-                    <Link
-                      href={`/${locale}/pricing`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-950 hover:text-white dark:hover:bg-white dark:hover:text-black rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
-                    >
-                      <IconTag size={14} />
-                      <span>{locale === 'de' ? 'Preise' : 'Pricing'}</span>
-                    </Link>
-                    
-                    <Link
-                      href={`/${locale}/upscale-privacy/upscale-2`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-full text-[11px] font-bold tracking-wider uppercase shadow-sm transition-all duration-300 cursor-pointer active:scale-95"
-                    >
-                      
-                      <span>{locale === 'de' ?  "mehr ansehen" : "see more"}</span>
-                   
-                      <IconArrowRight size={14} />
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Main Title */}
-                <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
-                  {locale === 'de' 
-                    ? 'Interaktive Bildschau' 
-                    : 'INTERACTIVE DETAIL ZOOM'}
-                </h1>
-                {/* Second Title */}
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-normal text-black dark:text-white tracking-tight leading-relaxed" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
-                  {locale === 'de' 
-                    ? 'Das Zoomfenster zeigt das mit dem Hochskalierer mit nur einem Klick auf TYPUS aufpolierte 8000 Pixel Ergebnis mit hoher, druckfertiger Detailtiefe.  Als Ausgangsbild (hier ausserhalb des Zoomfensters zu sehen) wurde ein mit Chat GPT Image2 generiertes 2.000 Pixel Bild verwendet.' 
-                    : 'The zoom window shows the 8000-pixel result, enhanced with a single click on TYPUS using the upscaler, resulting in high, print-ready detail. The original image (visible here outside the zoom window) was a 2000-pixel image generated with Chat GPT Image2.'}
-                </h1>
-
-                {/* Sub-text details */}
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base font-normal max-w-3xl leading-relaxed">
-                  {locale === 'de'
-                    ? 'Bewegen Sie Ihren Mauszeiger über die Bilder (oder tippen und halten Sie auf Touch-Geräten), um die 8K Texturverfeinerung live zu untersuchen.'
-                    : 'Hover your cursor over the images (or tap and hold on touch devices) to analyze the photorealistic 8K texture refinements live.'}
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Zoom Showcase Container */}
-            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
-              {isClient && <KernelZoomShowcaseUpscale />}
-            </div>
-
-            {/* Thumbnails to access sliders */}
-            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-8 border-b border-neutral-100 dark:border-neutral-900">
-              <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
-                  {locale === 'de' ? 'WEITERE BEISPIELE ANSEHEN' : 'EXPLORE MORE EXAMPLES'}
-                </p>
-                <UpscaleThumbnailNav
-                  basePath="/upscale-privacy/upscale-1"
-                  projects={batch1Projects}
-                  zoomThumbnailImage={batch1Projects[0].output1}
-                />
+            <div className="pt-24 pb-8" />
+            {/* Comparison Slider Showcase */}
+            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
+              <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
+                {isClient && <CompareWithAnimationUpscale projects={batch1Projects} basePath={`/${locale}/upscale-privacy/upscale-1`} />}
               </div>
             </div>
 
@@ -225,10 +153,6 @@ function Upscale1Content() {
               </p>
               <div className="max-w-xl mx-auto mb-8">
                 <div className="text-left bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[32px] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  
-                 
-
-                  {/* Image Container */}
                   <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
                     <img
                       src="/upscale-images copy/input/image-7.png"
@@ -236,8 +160,6 @@ function Upscale1Content() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-
-                  {/* Buttons Row */}
                   <div className="flex flex-col sm:flex-row items-center gap-4">
                     <Link
                       href={`/${locale}/upscale-privacy/upscale-2`}
@@ -247,7 +169,6 @@ function Upscale1Content() {
                       <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
                       <IconArrowRight size={14} />
                     </Link>
-
                     <Link
                       href={`/${locale}/pricing`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
@@ -259,26 +180,23 @@ function Upscale1Content() {
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </>
         )}
       </div>
-
       <FooterSection />
     </div>
   )
 }
 
-export default function Upscale1Page() {
+export default function Upscale1SlidersPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-[#fcfcfd] dark:bg-neutral-950 flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black dark:border-white"></div>
       </div>
     }>
-      <Upscale1Content />
+      <Upscale1SlidersContent />
     </Suspense>
   )
 }

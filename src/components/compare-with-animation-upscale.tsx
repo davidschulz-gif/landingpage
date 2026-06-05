@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
 import { ActionButton } from "./action-button";
 import { Compare } from "./ui/compare";
+import { UpscaleThumbnailNav } from "./upscale-thumbnail-nav";
+import { useSearchParams } from "next/navigation";
 
 export interface ComparisonProject {
   id: string;
@@ -20,14 +22,18 @@ export interface ComparisonProject {
 interface CompareWithAnimationProps {
   className?: string;
   projects?: ComparisonProject[];
+  basePath?: string; // e.g. '/upscale-privacy/upscale-1'
 }
 
 export const CompareWithAnimationUpscale = ({
   className,
   projects,
+  basePath = "/upscale-privacy/upscale-1",
 }: CompareWithAnimationProps) => {
   const t = useTranslations('Compare');
-  const [activeIndex, setActiveIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const initialSlide = searchParams ? parseInt(searchParams.get("slide") || "0", 10) : 0;
+  const [activeIndex, setActiveIndex] = useState(initialSlide);
   const locale = useLocale();
 
   // Unified list of 9 unique upscaled architectural projects
@@ -173,27 +179,15 @@ export const CompareWithAnimationUpscale = ({
               {locale === 'de' ? activeProject.descDe : activeProject.descEn}
             </div>
             
-            {/* 9 Project Thumbnails */}
-            <div className="mb-6 flex flex-wrap gap-2 max-w-md">
-              {projectsList.map((proj, index) => (
-                <div
-                  key={proj.id}
-                  className={cn(
-                    "h-12 w-16 sm:h-14 sm:w-20 md:h-16 md:w-24 cursor-pointer overflow-hidden transition-all duration-300 rounded border",
-                    activeIndex === index
-                      ? "opacity-100 border-black dark:border-white scale-105 shadow-md"
-                      : "opacity-50 border-neutral-200 dark:border-neutral-800 hover:opacity-90"
-                  )}
-                  onClick={() => setActiveIndex(index)}
-                >
-                  <img
-                    alt={locale === 'de' ? proj.titleDe : proj.titleEn}
-                    src={proj.output1}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Project Thumbnails via UpscaleThumbnailNav */}
+            <UpscaleThumbnailNav
+              basePath={basePath}
+              projects={projectsList}
+              activeIndex={activeIndex}
+              onSelect={setActiveIndex}
+              zoomThumbnailImage={projectsList[0].output1}
+              className="mb-6"
+            />
             
             <div className="w-full">
               <ActionButton href='/pricing' icon={
@@ -255,27 +249,16 @@ export const CompareWithAnimationUpscale = ({
               </p>
             </div>
 
-            {/* 9 Project Selector Thumbnails */}
-            <div className="flex gap-2 max-w-full overflow-x-auto py-1">
-              {projectsList.map((proj, index) => (
-                <div
-                  key={proj.id}
-                  className={cn(
-                    "h-12 w-16 sm:h-14 sm:w-20 md:h-16 md:w-24 cursor-pointer overflow-hidden transition-all duration-300 rounded border flex-shrink-0",
-                    activeIndex === index
-                      ? "opacity-100 border-black dark:border-white scale-105 shadow-md"
-                      : "opacity-50 border-neutral-200 dark:border-neutral-800 hover:opacity-90"
-                  )}
-                  onClick={() => setActiveIndex(index)}
-                >
-                  <img
-                    alt={locale === 'de' ? proj.titleDe : proj.titleEn}
-                    src={proj.output1}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Project Thumbnails via UpscaleThumbnailNav */}
+            <UpscaleThumbnailNav
+              basePath={basePath}
+              projects={projectsList}
+              activeIndex={activeIndex}
+              onSelect={setActiveIndex}
+              zoomThumbnailImage={projectsList[0].output1}
+              className="mb-6"
+              isDualOutputLayout
+            />
           </div>
 
           {/* Dual Sliders side-by-side both comparing to idential original input */}
