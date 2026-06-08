@@ -203,7 +203,8 @@
       "caseStudies": "Case Studies",
       "exclusiveOffers": "Exclusive offers and insights",
       "interactiveShowcase": "View 18 examples in the interactive slideshow",
-      "viewApp": "View the app for free"
+      "viewApp": "View the app for free",
+      "freeInitial": "Free initial consultation"
     }
   },
   "VideoShowcase": {
@@ -608,6 +609,7 @@
     "viewFreeBullet2": "Case Studies",
     "viewFreeBullet3": "Exclusive offers and insights",
     "viewFreeBullet4": "View 18 examples in the interactive slideshow",
+    "viewFreeBullet5": "Free initial consultation",
     "viewFreeEmailPlaceholder": "Enter your email",
     "viewFreeCta": "Learn more",
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",

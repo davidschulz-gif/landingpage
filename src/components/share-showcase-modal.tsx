@@ -198,6 +198,14 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                       {t('viewFreeBullet4')}
                     </span>
                   </div>
+                  <div className='flex items-center gap-3'>
+                    <div className='flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 shrink-0'>
+                      <IconCheck size={12} strokeWidth={3} />
+                    </div>
+                    <span className='text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 font-medium font-sans'>
+                      {t('viewFreeBullet5')}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Form */}

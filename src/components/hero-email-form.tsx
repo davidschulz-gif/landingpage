@@ -1,4 +1,4 @@
-import { apiUrl } from '@/lib/constants'
+import { apiUrl, appUrl } from '@/lib/constants'
 import {
   IconAlertCircle,
   IconCheck,
@@ -97,6 +97,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
 
       setEmail('')
       if (onSuccess) {
+        window.location.href =  appUrl;
         setTimeout(() => onSuccess(), 1200)
       }
     } catch (error: any) {
@@ -189,6 +190,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             t('features.caseStudies'),
             t('features.exclusiveOffers'),
             t('features.interactiveShowcase'),
+            t('features.freeInitial')
           ].map((feature, idx) => (
             <div
               key={idx}
