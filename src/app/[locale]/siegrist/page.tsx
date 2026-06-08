@@ -5,11 +5,13 @@ import { FooterSection } from '@/components/footer-section'
 import { ToastProvider } from '@/components/providers/toast-provider'
 import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { IconShare, IconTag } from '@tabler/icons-react'
 import { ShareShowcaseModal } from '@/components/share-showcase-modal'
 import { Link } from '@/i18n/navigation'
+import Image from 'next/image'
+import { VideoThumbnail } from '@/components/video-thumbnail'
 
 const SiegristTestimonialSection = dynamic(
     () =>
@@ -51,6 +53,7 @@ const previews: MobileImageItem[] = [
 
 export default function SiegristPage() {
     const locale = useLocale()
+    const tTestimonial = useTranslations('SiegristTestimonial')
     const [isClient, setIsClient] = useState(false)
     const [isShareModalOpen, setIsShareModalOpen] = useState(false)
 
@@ -287,6 +290,64 @@ export default function SiegristPage() {
                     <div className="max-w-5xl mx-auto px-4 pb-16 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
                         <ShareButton />
                         {/* <PricingButton /> */}
+                    </div>
+
+                    {/* Moved Sections: Project Reels & Next Article */}
+                    <div className="max-w-5xl mx-auto px-4 pb-16 space-y-12">
+                        {/* Reels Grid */}
+                        <div className="space-y-4">
+                            <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
+                                {locale === 'de' ? 'PROJEKT-REELS' : 'PROJECT REELS'}
+                            </h3>
+                            <div className="grid grid-cols-2 gap-4">
+                                <VideoThumbnail
+                                    href="https://www.instagram.com/p/DWgGKLNiN9P/"
+                                    imageSrc="/siegrist/saint-aubin.jpg"
+                                    title={tTestimonial('instagramTitle1')}
+                                    subtitle={tTestimonial('reelDescription1')}
+                                    handle="@siegristarchitectes"
+                                />
+                                <VideoThumbnail
+                                    href="https://www.instagram.com/p/DViepQmiAsG/"
+                                    imageSrc="/siegrist/venthone.jpg"
+                                    title={tTestimonial('instagramTitle2')}
+                                    subtitle={tTestimonial('reelDescription2')}
+                                    handle="@siegristarchitectes"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Next Article Card */}
+                        <div className="w-full text-left border border-neutral-200 bg-white hover:translate-y-[-2px] transition-transform duration-300 font-rail">
+                            <div className="flex flex-col md:flex-row font-rail">
+                                <div className="w-full md:w-[50%] p-4">
+                                    <div className="border border-neutral-100 h-full overflow-hidden relative min-h-[220px]">
+                                        <Image
+                                            src="/artical-page/1.jpg"
+                                            alt="AMA Awards Architecture"
+                                            fill
+                                            className="object-cover transition-transform duration-700 hover:scale-105"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="w-full md:w-[50%] p-6 flex flex-col justify-center">
+                                    <h2 className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-black mb-4 font-rail">
+                                        {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
+                                    </h2>
+                                    <div className="flex items-center gap-2 text-[9px] font-bold text-neutral-400 uppercase tracking-widest mb-6 font-rail">
+                                        <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                        <span className="text-neutral-200">|</span>
+                                        <span>{locale === 'de' ? '5 MIN LESEZEIT' : '5 MIN READ'}</span>
+                                    </div>
+                                    <Link
+                                        href={`/${locale}/ama-awards`}
+                                        className="inline-flex items-center w-fit gap-2 font-black text-[10px] bg-white text-black border border-neutral-200 px-6 py-3 uppercase tracking-widest hover:bg-gray-50 transition-colors rounded-none font-rail"
+                                    >
+                                        {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </main>
             </div>

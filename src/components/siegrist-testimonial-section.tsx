@@ -6,7 +6,6 @@ import { Instagram, ArrowLeft, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
-import { VideoThumbnail } from './video-thumbnail'
 
 export function SiegristTestimonialSection() {
     const t = useTranslations('SiegristTestimonial')
@@ -170,30 +169,6 @@ export function SiegristTestimonialSection() {
         </div>
     )
 
-    // Shared Reels Component
-    const ReelsMarkup = () => (
-        <div className="space-y-4">
-            <h3 className="font-black text-[10px] uppercase tracking-widest text-neutral-400">
-                {locale === 'de' ? 'PROJEKT-REELS' : 'PROJECT REELS'}
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-                <VideoThumbnail
-                    href="https://www.instagram.com/p/DWgGKLNiN9P/"
-                    imageSrc="/siegrist/saint-aubin.jpg"
-                    title={t('instagramTitle1')}
-                    subtitle={t('reelDescription1')}
-                    handle="@siegristarchitectes"
-                />
-                <VideoThumbnail
-                    href="https://www.instagram.com/p/DViepQmiAsG/"
-                    imageSrc="/siegrist/venthone.jpg"
-                    title={t('instagramTitle2')}
-                    subtitle={t('reelDescription2')}
-                    handle="@siegristarchitectes"
-                />
-            </div>
-        </div>
-    )
 
     // Shared Data Sheets Component
     const DataSheetsMarkup = () => (
@@ -246,10 +221,6 @@ export function SiegristTestimonialSection() {
                     {/* Image Slider */}
                     <ImageSliderMarkup />
 
-                    {/* Reels Grid */}
-                    <div className="pt-6">
-                        <ReelsMarkup />
-                    </div>
 
                     {/* Data Sheets Stack */}
                     <div className="pt-6">
@@ -342,12 +313,6 @@ export function SiegristTestimonialSection() {
                             </p>
                         </div>
 
-                        {/* Mobile-only secondary media stack (moved after all paragraphs) */}
-                        <div className="block lg:hidden space-y-8 pt-6 border-t border-neutral-100">
-                            <ReelsMarkup />
-                            {/* <AboutOfficeMarkup />
-                            <DataSheetsMarkup /> */}
-                        </div>
 
                     </div>
 
@@ -386,37 +351,6 @@ export function SiegristTestimonialSection() {
                         </Link>
                     </div>
 
-                    {/* Next Article Card */}
-                    <div className="w-full mt-12 text-left border border-neutral-200 bg-white hover:translate-y-[-2px] transition-transform duration-300 font-rail">
-                        <div className="flex flex-col md:flex-row font-rail">
-                            <div className="w-full md:w-[50%] p-4">
-                                <div className="border border-neutral-100 h-full overflow-hidden relative min-h-[220px]">
-                                    <Image
-                                        src="/artical-page/1.jpg"
-                                        alt="AMA Awards Architecture"
-                                        fill
-                                        className="object-cover transition-transform duration-700 hover:scale-105"
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full md:w-[50%] p-6 flex flex-col justify-center">
-                                <h2 className="text-sm sm:text-base font-extrabold uppercase tracking-widest text-black mb-4 font-rail">
-                                    {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
-                                </h2>
-                                <div className="flex items-center gap-2 text-[9px] font-bold text-neutral-400 uppercase tracking-widest mb-6 font-rail">
-                                    <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
-                                    <span className="text-neutral-200">|</span>
-                                    <span>{locale === 'de' ? '5 MIN LESEZEIT' : '5 MIN READ'}</span>
-                                </div>
-                                <Link
-                                    href={`/${locale}/ama-awards`}
-                                    className="inline-flex items-center w-fit gap-2 font-black text-[10px] bg-white text-black border border-neutral-200 px-6 py-3 uppercase tracking-widest hover:bg-gray-50 transition-colors rounded-none font-rail"
-                                >
-                                    {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
