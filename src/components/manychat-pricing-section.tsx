@@ -440,7 +440,7 @@ export function ManyChatPricingSection({
         return
       }
 
-      if (false && !selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
+      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
         console.log('Showing Trial Warning Modal')
         setShowTrialWarning(true)
         setIsModalOpen(false) // Close the main modal to show warning
@@ -2062,7 +2062,7 @@ function PricingCard({
                 {t('plusVat')}
               </div>
             )}
-            {false && isProfessional && !promoDiscount && (
+            {isProfessional && !promoDiscount && (
               <div className='text-emerald-600 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('freeTrial')}
               </div>
