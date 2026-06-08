@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { GoogleLogo } from '@/components/icons/google-logo'
 import HeroEmailForm from '@/components/hero-email-form'
+import TypusLogoBlack from './common/typus-logo-black'
 
 export function MainHero() {
   const t = useTranslations('BilderFlatrate')
@@ -44,7 +45,8 @@ export function MainHero() {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className='mb-0 flex flex-col items-center space-y-2'
           >
-            <div className='bg-black size-4'></div>
+            {/* <div className='bg-black size-4'></div> */}
+            <TypusLogoBlack className="size-9 mx-auto" /> 
             <span
               // id='typus-logo'
               className='text-center !font-logo'

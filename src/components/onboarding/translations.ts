@@ -159,9 +159,9 @@ export const onboardingTranslations = {
             { label: "3D-Künstler", value: "3D Artist" },
         ],
         moneySpentOptions: [
-            { label: "unter 500 EUR", value: "under 500 USD" },
-            { label: "500 - 1500 EUR", value: "500 - 1500 USD" },
-            { label: "mehr als 1500 EUR", value: "more than 1500 USD" },
+            { label: "unter 500 EUR", value: "unter 500 EUR" },
+            { label: "500 - 1500 EUR", value: "500 - 1500 EUR" },
+            { label: "mehr als 1500 EUR", value: "mehr als 1500 EUR" },
         ],
         timeOnRenderingsOptions: [
             { label: "Ein paar Stunden", value: "A few hours" },

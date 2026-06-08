@@ -453,16 +453,27 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                 <XIcon className="w-6 h-6" />
             </button>
 
-            <div className="flex w-full justify-center mb-4">
-                <div className="mb-0">
-                    <TypusLogoBlack className="size-9 mx-auto" />
-                    <h1 className="mt-2 text-center text-xl font-light tracking-[2.5px] uppercase">
-                        TYPUS.AI
-                    </h1>
-                    <p className="mt-2 text-center text-xs text-gray-600 font-medium">
-                        {t.tagline}
-                    </p>
-                </div>
+            <div className='mb-0 flex flex-col items-center space-y-2'>
+                        {/* <div className='bg-black size-4'></div> */}
+                        <TypusLogoBlack className="size-9 mx-auto" /> 
+                        <span
+                          // id='typus-logo'
+                          className='text-center !font-logo'
+                          style={{
+                            fontSize: '25px',
+                            fontWeight: 700,
+                            letterSpacing: '2.5px',
+                            lineHeight: '1.3em',
+                            color: '#000',
+                            textTransform: 'uppercase',
+                            fontFamily: 'var(--font-soyuz-grotesk)'
+                          }}
+                        >
+                          typus.AI
+                        </span>
+                         <p className="mt-2 text-center text-xs text-gray-600 font-medium">
+                          {t.tagline}
+                         </p>
             </div>
 
             <div className="w-full max-w-2xl bg-white p-8 md:p-12">
