@@ -22,7 +22,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
     const t = getOnboardingTranslations(locale)
     const [currentStep, setCurrentStep] = useState(1)
     const [showErrors, setShowErrors] = useState(false)
-    const totalSteps = 8
+    const totalSteps = 9
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -42,6 +42,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
         phoneNumber: '',
         whatsappConsent: false,
         privacyTermsConsent: false,
+        clickwrapAgreement: false,
     })
 
     // Match the app's progress calculation
@@ -76,6 +77,14 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
             }
         }
 
+        if (currentStep === 9) {
+            if (!formData.clickwrapAgreement) {
+                setShowErrors(true)
+                toast.error('You must agree to the 12-month minimum contract duration.')
+                return
+            }
+        }
+
         setShowErrors(false)
 
         if (currentStep < totalSteps) {
@@ -84,6 +93,9 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
             const finalData = { ...formData }
             if (formData.howDidYouHear === 'Other') {
                 finalData.howDidYouHear = `Other: ${formData.howDidYouHearOther.trim()}`
+            }
+            if (formData.clickwrapAgreement) {
+                (finalData as any).clickwrapAgreementText = "I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month."
             }
             onComplete(finalData)
         }
@@ -433,6 +445,44 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                                     </span>
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                )
+            case 9:
+                return (
+                    <div className="relative w-full mb-8">
+                        <h2 className="text-lg font-semibold text-gray-900 mb-6 text-center">
+                            {locale === 'de' ? 'Vertragslaufzeit & Bedingungen' : 'Contract Duration & Terms'}
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="p-4 bg-orange-50 border border-orange-200 rounded-none flex items-start gap-3">
+                                <Check className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                                <p className="text-sm text-orange-800 leading-relaxed font-medium">
+                                    {locale === 'de' 
+                                        ? 'Bitte bestätigen Sie die 12-monatige Vertragslaufzeit, um fortzufahren.' 
+                                        : 'Please confirm the 12-month contract duration to proceed.'}
+                                </p>
+                            </div>
+                            <label className="flex items-start space-x-3 cursor-pointer p-4 border rounded-none hover:bg-gray-50 transition-colors">
+                                <input
+                                    type="checkbox"
+                                    name="clickwrapAgreement"
+                                    checked={formData.clickwrapAgreement}
+                                    onChange={handleInputChange}
+                                    className="mt-1 w-5 h-5 border-gray-300 text-black focus:ring-black rounded-none flex-shrink-0"
+                                />
+                                <span className={cn("text-base leading-relaxed select-none", showErrors && !formData.clickwrapAgreement ? "text-red-600 font-medium" : "text-gray-800")}>
+                                    {locale === 'de' 
+                                        ? 'Ich stimme den Nutzungsbedingungen zu und akzeptiere eine Mindestvertragslaufzeit von 12 Monaten. Die monatlichen Gebühren werden jeden Monat automatisch abgebucht.'
+                                        : 'I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month.'}
+                                    <span className="text-red-500 ml-1">*</span>
+                                </span>
+                            </label>
+                            {showErrors && !formData.clickwrapAgreement && (
+                                <p className="text-red-500 text-sm mt-2">
+                                    {locale === 'de' ? 'Diese Zustimmung ist erforderlich.' : 'This agreement is required.'}
+                                </p>
+                            )}
                         </div>
                     </div>
                 )

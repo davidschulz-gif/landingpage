@@ -89,14 +89,14 @@ export const DoneForYouCombinedSection = () => {
               {/* </a> */}
             </div>
 
-            <div className='pt-6 flex justify-center lg:justify-start'>
+            {/* <div className='pt-6 flex justify-center lg:justify-start'>
               <ActionButton
                 href='/done-for-you'
                 icon={<ArrowRight className='w-4 h-4' />}
               >
                 {tPreview('button')}
               </ActionButton>
-            </div>
+            </div> */}
 
 
           </motion.div>

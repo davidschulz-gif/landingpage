@@ -371,7 +371,10 @@
           "editByChat": "EDIT BY CHAT",
           "highEndResults": "HIGH-END RESULTS",
           "upscale13k": "UPSCALE UP TO 8K",
-          "onboardingCall": "ONBOARDING VIDEO CALL"
+          "onboardingCall": "ONBOARDING VIDEO CALL",
+          "emailSupport": "EMAIL SUPPORT",
+          "satisfactionGuarantee": "Satisfaction guarantee via 1x free video session per month",
+          "contract12Months": "12-month contract term"
         }
       },
       "proSemi": {
@@ -505,19 +508,19 @@
       "content": "Happy to share – an interesting approach that can help in making designs tangible for clients.",
       "date": "Aug 9, 2024"
     },
-      "wiebke": {
+    "wiebke": {
       "name": "Wiebke Ahues",
       "role": "Architektin BDA",
       "content": "Please send a link.",
       "date": "2 Years"
     },
-      "killian": {
+    "killian": {
       "name": "Kilian A. Eckle",
       "role": "Founder RoofUz | Vorstand BDau.org | Serial Entrepreneur",
       "content": "Very useful",
       "date": "2 Years"
     },
-     "lena": {
+    "lena": {
       "name": "Lena Keilhofer",
       "role": "Architect",
       "content": "Sounds exciting and all the best for the Tech in Construction Award!",
@@ -733,7 +736,7 @@
     "multiFamilyHouse": "Multi-Family House"
   },
   "ConciergePricing": {
-    "title": "DONE FOR YOU Service - An external visualizer by your side.",
+    "title": "High-quality architectural AI for large-format prints",
     "subtitle": "We do it for you",
     "unlimitedRequests": "unlimited requests",
     "yearlyBilling": "Yearly Billing",
@@ -906,7 +909,7 @@
       "point3": "free & non-binding initial consultation"
     },
     "preview": {
-      "badge": "NEW: Done For You",
+      "badge": "High end AI App",
       "title": "The Image Flat Rate for Architecture Firms.",
       "subtitle": "Architecture visualizations. Fast. Personal. For a fixed price. Your personal visualization partner for architecture.",
       "button": "Learn More"

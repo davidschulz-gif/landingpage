@@ -22,6 +22,7 @@ import OnboardingWizard from './onboarding/onboarding-wizard'
 import { TestimonialsSection } from './testimonials-section'
 import Lottie from 'lottie-react'
 import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
+import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
 
 const professionalPlans = [
   {
@@ -88,6 +89,9 @@ const professionalPlans = [
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'ONBOARDING CALL', hasFeature: true },
+      { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
 ]
@@ -657,16 +661,19 @@ export function ManyChatPricingSection({
           name: t('plans.pro.name'), // PRO
           billingCycle: 'monthly' as const,
           fetchedData: fetchedPlan,
-          features: baseProPlan.features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
+          features: [
+            ...baseProPlan.features.map(f => ({
+              ...f,
+              text:
+                typeof f === 'string'
+                  ? f
+                  : t(
+                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
+                  ),
+              hasFeature: typeof f === 'object' ? f.hasFeature : true,
+            })),
+            { text: t('plans.pro.features.contract12Months'), hasFeature: true }
+          ],
         },
         {
           ...baseProPlan,
@@ -679,7 +686,7 @@ export function ManyChatPricingSection({
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -697,7 +704,7 @@ export function ManyChatPricingSection({
               typeof f === 'string'
                 ? f
                 : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : 'upscale13k'}`
+                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
                 ),
             hasFeature: typeof f === 'object' ? f.hasFeature : true,
           })),
@@ -1131,112 +1138,98 @@ export function ManyChatPricingSection({
         </div>}
 
         {/* Professional Plans Cards */}
-        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-4'>
+        {selectedPlanTier === 'explorer' ? (
+          <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-4'>
+            <div className='w-full max-w-xs z-30'>
+              <PricingCard
+                plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                isYearly={isYearly}
+                isProfessional={true}
+                isEurope={isEurope}
+                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                promoDiscount={profPromoDiscount}
+                isVat={isVat}
+              />
+            </div>
 
-          {selectedPlanTier === 'explorer' ? (
-            <>
-              <div className='w-full max-w-xs z-30'>
-                <PricingCard
-                  plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                  isYearly={isYearly}
-                  isProfessional={true}
-                  isEurope={isEurope}
-                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                  onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                  promoDiscount={profPromoDiscount}
-                  isVat={isVat}
-                />
-              </div>
+            {/* Overview Card: Missing Pro Features */}
+            <div className='w-full max-w-xs z-20'>
+              <div
+                className='h-full bg-white border border-black p-8 flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all'
+                style={{ minHeight: '580px' }}
+              >
+                <div className='mb-6 pb-4 border-b border-black/10'>
+                  <h3
+                    className='text-xl font-bold text-black leading-tight uppercase'
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('missingProFeaturesTitle')}
+                  </h3>
+                </div>
 
-              {/* Overview Card: Missing Pro Features */}
-              <div className='w-full max-w-xs z-20'>
-                <div
-                  className='h-full bg-white border border-black p-8 flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all'
-                  style={{ minHeight: '580px' }}
-                >
-                  <div className='mb-6 pb-4 border-b border-black/10'>
-                    <h3
-                      className='text-xl font-bold text-black leading-tight uppercase'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('missingProFeaturesTitle')}
-                    </h3>
-                  </div>
-
-                  <div className='space-y-4 flex-1'>
-                    {[
-                      t('plans.pro.features.credits1000'),
-                      t('plans.pro.features.resolution4k'),
-                      t('plans.pro.features.editByChat'),
-                      t('plans.pro.features.upscale13k'),
-                      t('plans.pro.features.onboardingCall')
-                    ].map((feature, idx) => (
-                      <div key={idx} className='flex items-start gap-3 group'>
-                        <div className='flex-shrink-0 w-5 h-5 bg-red-50 flex items-center justify-center mt-0.5 group-hover:bg-red-100 transition-colors border border-red-200'>
-                          <X size={12} className='text-red-500' />
-                        </div>
-                        <div className='flex-1'>
-                          <span
-                            className='text-[13px] font-bold text-black uppercase leading-tight'
-                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                          >
-                            {feature}
-                          </span>
-                        </div>
+                <div className='space-y-4 flex-1'>
+                  {[
+                    t('plans.pro.features.credits1000'),
+                    t('plans.pro.features.resolution4k'),
+                    t('plans.pro.features.editByChat'),
+                    t('plans.pro.features.upscale13k'),
+                    t('plans.pro.features.onboardingCall')
+                  ].map((feature, idx) => (
+                    <div key={idx} className='flex items-start gap-3 group'>
+                      <div className='flex-shrink-0 w-5 h-5 bg-red-50 flex items-center justify-center mt-0.5 group-hover:bg-red-100 transition-colors border border-red-200'>
+                        <X size={12} className='text-red-500' />
                       </div>
-                    ))}
-                  </div>
+                      <div className='flex-1'>
+                        <span
+                          className='text-[13px] font-bold text-black uppercase leading-tight'
+                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
+                          {feature}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                  <div className='mt-8 pt-4 border-t border-black/10'>
-                    <p className='text-xs text-gray-500 text-center font-medium italic'>
-                      {t('upgradeToPro')}
-                    </p>
-                  </div>
+                <div className='mt-8 pt-4 border-t border-black/10'>
+                  <p className='text-xs text-gray-500 text-center font-medium italic'>
+                    {t('upgradeToPro')}
+                  </p>
                 </div>
               </div>
-            </>
-          ) : (
-            currentProfPlans.map((plan, index) => (
-              <div key={index} className='w-full max-w-xs z-10 relative'>
-                {selectedPlanTier === 'pro' && index === 2 && (
-                  <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
-                    <div className='flex flex-col items-center gap-1'>
-
-                      {/* <Lottie animationData={HandDrawnArrow} loop={true} className='w-20 h-20' /> */}
-                      {/* <span className='text-[10px] font-bold text-black uppercase tracking-widest bg-yellow-400 px-2 py-0.5 whitespace-nowrap rotate-6 shadow-sm mb-1'>
-                        {t('bestDeal') || 'Best Deal'}
-                      </span> */}
-                      {/* <svg
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-black rotate-[140deg]"
-                      >
-                        <path d="M7 17L17 7" />
-                        <path d="M7 7h10v10" />
-                      </svg> */}
+            </div>
+          </div>
+        ) : (
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4'>
+            <div className='w-full xl:w-[400px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
+              <BookingDemoClassFormForPricingPage />
+            </div>
+            <div className='flex flex-wrap justify-center items-stretch flex-1 gap-8'>
+              {currentProfPlans.map((plan, index) => (
+                <div key={index} className='w-full max-w-xs z-10 relative'>
+                  {selectedPlanTier === 'pro' && index === 2 && (
+                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
+                      <div className='flex flex-col items-center gap-1'>
+                        {/* Empty to preserve structure if Lottie was here */}
+                      </div>
                     </div>
-                  </div>
-                )}
-                <PricingCard
-                  plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                  isYearly={isYearly}
-                  isProfessional={true}
-                  isEurope={isEurope}
-                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                  onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                  promoDiscount={profPromoDiscount}
-                  isVat={isVat}
-                />
-              </div>
-            ))
-          )}
-        </div>
+                  )}
+                  <PricingCard
+                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={isYearly}
+                    isProfessional={true}
+                    isEurope={isEurope}
+                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                    onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                    promoDiscount={profPromoDiscount}
+                    isVat={isVat}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
           </>
         )}
 

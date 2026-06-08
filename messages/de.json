@@ -371,7 +371,10 @@
           "editByChat": "BEARBEITUNG PER CHAT",
           "highEndResults": "HIGH-END ERGEBNISSE",
           "upscale13k": "HOCHSKALIERUNG BIS ZU 8K",
-          "onboardingCall": "ONBOARDING-VIDEO-ANRUF"
+          "onboardingCall": "ONBOARDING-VIDEO-ANRUF",
+          "emailSupport": "E-MAIL SUPPORT",
+          "satisfactionGuarantee": "Zufriedenheitsgarantie durch 1x kostenlose Video Sitzung pro Monat",
+          "contract12Months": "12-monatige Vertragslaufzeit"
         }
       },
       "proSemi": {
@@ -505,19 +508,19 @@
       "content": "Gerne von mir- ein interessanter Ansatz, der beim Erlebbarmachen von Entwürfen für Bauherren helfen kann.",
       "date": "9. Aug. 2024"
     },
-     "wiebke": {
+    "wiebke": {
       "name": "Wiebke Ahues",
       "role": "Architektin BDA",
       "content": "Bitte senden Sie einen Link.",
       "date": "2 Years ago"
     },
-     "killian": {
+    "killian": {
       "name": "Kilian A. Eckle",
       "role": "Founder RoofUz | Vorstand BDau.org | Serial Entrepreneur",
       "content": "Sehr nützlich",
       "date": "2 Years"
     },
-     "lena": {
+    "lena": {
       "name": "Lena Keilhofer",
       "role": "Architect",
       "content": "Klingt spannend und alles Gute für den Tech in Construction Award!",
@@ -733,7 +736,7 @@
     "multiFamilyHouse": "Mehrfamilienhaus"
   },
   "ConciergePricing": {
-    "title": "DONE FOR YOU Service - Ein externer Visualisierer an Ihrer Seite.",
+    "title": "Hochwertige Architektur-KI für großformatige Drucke",
     "subtitle": "Wir machen das fuer Sie",
     "unlimitedRequests": "unbegrenzt viele Anfragen",
     "yearlyBilling": "Jährliche Abrechnung",
@@ -906,7 +909,7 @@
       "point3": "kostenlose & unverbindliche Erstberatung"
     },
     "preview": {
-      "badge": "NEU: Done For You",
+      "badge": "Hochwertige KI-App",
       "title": "Die Bilder-Flat für Architekturbüros.",
       "subtitle": "Visualisierungen für Architektur. Schnell. Persönlich. Zum Festpreis. Ihr persönlicher Visualisierungs-Partner für Architektur.",
       "button": "Learn More"
