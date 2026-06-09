@@ -86,13 +86,13 @@ export function NavbarDemo() {
             link: '/overview-of-features',
             icon: Play,
           },
-          { title: t('service'), isSection: true },
-          {
-            title: tNav('solutions.bilderFlatrate.title'),
-            description: tNav('solutions.bilderFlatrate.description'),
-            link: '/done-for-you',
-            icon: ImageIcon,
-          },
+          // { title: t('service'), isSection: true },
+          // {
+          //   title: tNav('solutions.bilderFlatrate.title'),
+          //   description: tNav('solutions.bilderFlatrate.description'),
+          //   link: '/done-for-you',
+          //   icon: ImageIcon,
+          // },
         ],
       },
       {

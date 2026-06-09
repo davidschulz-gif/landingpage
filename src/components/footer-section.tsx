@@ -43,7 +43,7 @@ export function FooterSection() {
       { name: t('links.create'), href: '#create' },
       { name: t('links.edit'), href: '#edit' },
       { name: t('links.upscale'), href: '#upscale' },
-      { name: t('links.bilderFlatrate'), href: '/done-for-you' },
+      // { name: t('links.bilderFlatrate'), href: '/done-for-you' },
     ],
     community: [
       { name: t('links.tutorials'), href: '#tutorials' },

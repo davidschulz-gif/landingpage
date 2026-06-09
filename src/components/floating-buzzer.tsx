@@ -5,7 +5,13 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { PhoneCall } from 'lucide-react'
 
-export function FloatingBuzzer() {
+import { appUrl } from '@/lib/constants'
+
+interface FloatingBuzzerProps {
+  triggerPopup?: boolean;
+}
+
+export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
   const t = useTranslations('FloatingBuzzer')
   const [isVisible, setIsVisible] = useState(false)
 
@@ -23,7 +29,11 @@ export function FloatingBuzzer() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToBooking = () => {
+  const handleClick = () => {
+    if (triggerPopup) {
+      window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }));
+      return;
+    }
     const element = document.getElementById('booking-form')
     if (element) {
       const offset = 80 // Offset for navbar
@@ -60,7 +70,7 @@ export function FloatingBuzzer() {
               repeatDelay: 10,
               ease: "easeInOut"
             }}
-            onClick={scrollToBooking}
+            onClick={handleClick}
             className="z-[9999] rounded-2xl p-4 border border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
             style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             aria-label={t('text')}

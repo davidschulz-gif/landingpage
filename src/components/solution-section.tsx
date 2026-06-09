@@ -1,0 +1,208 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+import dynamic from 'next/dynamic'
+import { BanknoteIcon, CheckCircle2, Clock, MessageSquare, ArrowRight } from 'lucide-react'
+
+import { ActionButton } from '@/components/action-button'
+import aiPulseAnimation from '../../public/lottie/ai-pulse.json'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
+
+const FeatureShowcase = dynamic(
+  () => import('@/components/feature').then(mod => mod.FeatureShowcase),
+  { ssr: false }
+)
+
+const HowItWorks = dynamic(
+  () => import('@/components/how-it-works-done-for-you').then(mod => mod.HowItWorks),
+  { ssr: false }
+)
+
+export function SolutionSection() {
+  const t = useTranslations('BilderFlatrate')
+
+  return (
+    <div className="relative">
+      {/* Problem Section Wrapper */}
+      <div className="relative">
+        <div className="flex items-center justify-center overflow-hidden z-10">
+          <section className='w-full py-12 lg:py-20 bg-white dark:bg-black px-4'>
+            <div className='max-w-5xl mx-auto'>
+              <div className='mb-12 md:mb-16 text-center'>
+                <h2
+                  className='text-xl md:text-2xl font-bold text-neutral-900 dark:text-white leading-[1.3] mb-6'
+                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                >
+                  {t('problem.statusQuoHeader')}
+                </h2>
+              </div>
+
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
+                <div>
+                  <h2 className='text-lg md:text-xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight leading-tight'>
+                    {t('problem.title1')} <br /> {t('problem.title2')}
+                  </h2>
+
+                  <div className='space-y-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400'>
+                    <p className='font-medium text-neutral-800 dark:text-neutral-200'>{t('problem.subtitle')}</p>
+                    <ul className='space-y-4 mt-6'>
+                      {[t('problem.point1'), t('problem.point2'), t('problem.point3')].map((point, i) => (
+                        <li key={i} className='flex items-center gap-4'>
+                          <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
+                            <span className='text-[12px] text-red-600'>✕</span>
+                          </div>
+                          <span style={{ fontFamily: 'sans-serif' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className='mt-8 pt-6 border-t text-xl border-neutral-100 dark:border-neutral-900'>
+                      {t('problem.conclusion')}
+                    </p>
+                  </div>
+                </div>
+
+                <div className='bg-[#fcfcfd] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-100 dark:border-neutral-800 shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+                  <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
+                  <div className='space-y-8'>
+                    {[
+                      { icon: Clock, title: t('problem.meaning1Title'), desc: t('problem.meaning1Desc') },
+                      { icon: MessageSquare, title: t('problem.meaning2Title'), desc: t('problem.meaning2Desc') },
+                      { icon: BanknoteIcon, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
+                    ].map((item, i) => (
+                      <div key={i} className='flex gap-5'>
+                        <div className='mt-1 text-red-600 dark:text-red-500'>
+                          <item.icon className='w-5 h-5' />
+                        </div>
+                        <div>
+                          <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
+                          <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className='mt-10 p-4 border border-neutral-100 text-lg dark:border-neutral-800 bg-white dark:bg-black text-center  font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
+                    {t('problem.finalConclusion')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {/* Benefits Section */}
+      <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
+        <div className='max-w-7xl mx-auto'>
+          <div className='text-center mb-20'>
+            <h3 className='text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-white mb-6'>
+              {t('benefits.solutionHeader')}
+            </h3>
+            <div className='flex justify-center py-6'>
+              <div className='w-24 h-24 sm:w-32 sm:h-32 -my-4 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
+                <Lottie
+                  animationData={aiPulseAnimation}
+                  loop={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+            </div>
+            <h2 className='text-xl md:text-2xl font-bold mb-4 tracking-tight'>
+              {t('benefits.title')}
+            </h2>
+            <p className='text-sm md:text-base max-w-2xl mx-auto'>
+              {t('benefits.subtitle')}
+            </p>
+          </div>
+
+          <div className='overflow-hidden rounded-[50px] mb-12'>
+            <div>
+              <FeatureShowcase disableHeading={true} />
+            </div>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <div className='bg-neutral-900/50 p-8 md:p-12 border border-neutral-800'>
+              <ul className='space-y-8'>
+                {[1, 2, 3].map((i) => (
+                  <li key={i} className='flex items-start gap-5'>
+                    <CheckCircle2 className='w-5 h-5 text-neutral-400 shrink-0 mt-0.5' />
+                    <div>
+                      <h4 className='font-bold text-xs uppercase tracking-widest mb-2'>{t(`benefits.benefit${i}Title` as any)}</h4>
+                      <p style={{ fontFamily: 'sans-serif' }} className='text-white text-xs leading-relaxed'>{t(`benefits.benefit${i}Desc` as any)}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className='flex flex-col items-center justify-between gap-8 p-8 md:p-12 border border-neutral-800 text-center bg-white/5'>
+              <p className='text-lg md:text-xl font-normal leading-relaxed text-neutral-300'>
+                {t('benefits.summary1')} <br />
+                <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
+              </p>
+
+              <div className='w-full px-1 space-y-2 relative'>
+                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
+                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
+                    <img
+                      src='/Christian-Brehmer.png'
+                      alt={t('benefits.visualizerName')}
+                      className='w-full h-full object-cover object-top'
+                    />
+                  </div>
+                  <div>
+                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
+                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
+                    <p style={{ fontFamily: 'sans-serif' }} className='text-white text-[11px] leading-relaxed '>
+                      {t('benefits.visualizerBio')}
+                    </p>
+                  </div>
+                </div>
+
+                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
+                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
+                    <img
+                      src='/BjarneWeber.webp'
+                      alt={t('benefits.visualizer2Name')}
+                      className='w-full h-full object-cover object-top'
+                    />
+                  </div>
+                  <div>
+                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizer2Name')}</p>
+                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizer2Role')}</p>
+                    <p style={{ fontFamily: 'sans-serif' }} className='text-white text-[11px] leading-relaxed '>
+                      {t('benefits.visualizer2Bio')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='mt-16 flex justify-center'>
+            <div>
+              <ActionButton className='border-2' href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
+                {t('cta.button')}
+              </ActionButton>
+            </div>
+          </div>
+
+          {/* How It Works Section */}
+          <div className='mt-20 rounded-xl overflow-hidden '>
+            <div>
+              <HowItWorks />
+            </div>
+          </div>
+
+          <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-white'>
+            <span>{t('solution.tag1')}</span>
+            <span className='opacity-30'>/</span>
+            <span>{t('solution.tag2')}</span>
+            <span className='opacity-30'>/</span>
+            <span>{t('solution.tag3')}</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

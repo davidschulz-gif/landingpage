@@ -182,6 +182,13 @@ const ImageTemplates = dynamic(
   }
 )
 
+const SolutionSection = dynamic(
+  () => import('@/components/solution-section').then(mod => mod.SolutionSection),
+  {
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 // const VideoTemplates = dynamic(
 //   () => import('@/components/video-templates').then(mod => mod.VideoTemplates),
 //   {
@@ -196,6 +203,10 @@ const FeatureShowcase = dynamic(
     // ssr: false,
     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
   }
+)
+
+const FloatingBuzzer = dynamic(
+  () => import('@/components/floating-buzzer').then(mod => mod.FloatingBuzzer)
 )
 
 const LinkedinSlideshow = dynamic(
@@ -423,6 +434,10 @@ export default function Home() {
           <ImageTemplates />
         </Reveal>
 
+        {/* Solution Section */}
+        <SolutionSection />
+        
+
         {/* Use Cases Section */}
         <Reveal
           initial={{ opacity: 0, y: 60 }}
@@ -626,6 +641,9 @@ export default function Home() {
         >
           <FooterSection />
         </Reveal>
+
+        {/* Floating Buzzer that triggers the email popup */}
+        <FloatingBuzzer triggerPopup={true} />
 
         {/* Sticky Bottom Sheet Removed per Request */}
       </div>

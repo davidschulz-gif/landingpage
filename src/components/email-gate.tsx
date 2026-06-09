@@ -119,7 +119,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                   >
                     <div className="w-full h-[500px] sm:h-[600px] overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-sm mt-4">
                       <iframe 
-                        src="https://calendar.app.google/KE2o5r376raRDpow5" 
+                        src="https://calendar.app.google/SE4uynXtibyYmAe36" 
                         width="100%" 
                         height="100%" 
                         className="w-full h-full border-none"
