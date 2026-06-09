@@ -615,7 +615,9 @@
     "viewFreeCta": "Learn more",
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",
     "viewFreeFooterText": "No spam. Unsubscribe at any time.",
-    "viewFreePrivacyLink": "Data Privacy"
+    "viewFreePrivacyLink": "Data Privacy",
+    "phonePlaceholder": "Your WhatsApp / Phone number",
+    "errorPhone": "Phone number is required"
   },
   "FloatingBuzzer": {
     "text": "Request a Free Demo and Initial Consultation"

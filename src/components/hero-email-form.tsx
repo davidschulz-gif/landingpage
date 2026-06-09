@@ -8,6 +8,8 @@ import {
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 interface HeroEmailFormProps {
   showFeatures?: boolean;
@@ -20,18 +22,21 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isRequesting, setIsRequesting] = useState(false)
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
   const validateEmail = (value: string) => EMAIL_REGEX.test(value.trim())
 
   const handleSubmit = async () => {
-    const trimmed = email.trim()
-    if (!trimmed) {
+    const trimmedEmail = email.trim()
+    const trimmedPhone = phone.trim()
+    
+    if (!trimmedEmail || !trimmedPhone) {
       setSuccessMessage(null)
-      setErrorMessage(t('errors.required'))
+      setErrorMessage(t('errors.required') || 'Email and phone number are required.')
       return
     }
-    if (!validateEmail(trimmed)) {
+    if (!validateEmail(trimmedEmail)) {
       setSuccessMessage(null)
       setErrorMessage(t('errors.invalid'))
       return
@@ -55,7 +60,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({ email: trimmed }),
+          body: JSON.stringify({ email: trimmedEmail, phone: trimmedPhone }),
           signal: controller.signal,
         }
       )
@@ -84,18 +89,21 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
         (window as any).dataLayer.push({
           event: 'subscribe',
           user_data: {
-            email: trimmed,
+            email: trimmedEmail,
+            phone: trimmedPhone,
           },
         })
-        console.log('Pushed subscribe event to dataLayer with email:', {
+        console.log('Pushed subscribe event to dataLayer with email and phone:', {
           event: 'subscribe',
           user_data: {
-            email: trimmed,
+            email: trimmedEmail,
+            phone: trimmedPhone,
           },
         })
       }
 
       setEmail('')
+      setPhone('')
       if (onSuccess) {
         onSuccess()
       } else {
@@ -123,23 +131,37 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       className={`w-full max-w-5xl mx-auto ${showFeatures ? 'mt-4 px-4' : 'mt-2 px-0'}`}
     >
       <div className='w-full max-w-md mx-auto'>
-        <div className='flex flex-col sm:flex-row items-stretch gap-2.5'>
-          <input
-            type='email'
-            name='email'
-            required
-            placeholder={t('placeholder')}
-            aria-label='Email address'
-            className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 w-full'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            disabled={isRequesting}
-            aria-invalid={!!errorMessage}
-            aria-describedby={errorMessage ? 'hero-email-error' : undefined}
-          />
+        <div className='flex flex-col gap-2.5'>
+          <div className='flex flex-col sm:flex-row items-stretch gap-2.5'>
+            <input
+              type='email'
+              name='email'
+              required
+              placeholder={t('placeholder')}
+              aria-label='Email address'
+              className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 w-full'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              disabled={isRequesting}
+              aria-invalid={!!errorMessage}
+            />
+            <div className="flex-1 min-w-0 phone-input-container">
+              <PhoneInput
+                country={'de'}
+                value={phone}
+                onChange={p => setPhone(p)}
+                enableSearch={true}
+                placeholder='Phone number'
+                containerClass="w-full flex"
+                inputClass="!w-full !flex-1 !border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !text-sm !text-black !placeholder-gray-500 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-none"
+                buttonClass="!border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !rounded-none !border-r-0"
+                disabled={isRequesting}
+              />
+            </div>
+          </div>
           <button
             type='button'
-            className='w-full sm:w-auto !px-6 py-2.5 flex items-center justify-center flex-shrink-0 bg-white shadow-sm text-sm transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60 text-black border border-black/10'
+            className='w-full !px-6 py-2.5 flex items-center justify-center flex-shrink-0 bg-white shadow-sm text-sm transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60 text-black border border-black/10'
             onClick={handleSubmit}
             disabled={isRequesting}
           >

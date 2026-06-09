@@ -615,7 +615,9 @@
     "viewFreeCta": "Mehr erfahren",
     "viewFreeEnvelopeText": "Erfahre mehr über die App und erhalte Benachrichtigungen über neue Funktionen.",
     "viewFreeFooterText": "Kein Spam. Jederzeit abbestellbar.",
-    "viewFreePrivacyLink": "Datenschutz"
+    "viewFreePrivacyLink": "Datenschutz",
+    "phonePlaceholder": "Deine WhatsApp / Telefonnummer",
+    "errorPhone": "Telefonnummer ist erforderlich"
   },
   "FloatingBuzzer": {
     "text": "Kostenlose Demo und Erstgespräch anfragen"

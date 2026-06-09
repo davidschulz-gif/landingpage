@@ -7,6 +7,8 @@ import { useRouter } from '@/i18n/navigation'
 import { apiUrl } from '@/lib/constants'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const TRIGGER_DELAY_MS = 30000 // Set to 30s as requested
 
@@ -18,8 +20,9 @@ export default function BeforeYouGoPopup() {
   const [timerTriggered, setTimerTriggered] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [isConsented, setIsConsented] = useState(false)
-  const [errors, setErrors] = useState<{ email?: string; consent?: string }>({})
+  const [errors, setErrors] = useState<{ email?: string; phone?: string; consent?: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -113,16 +116,20 @@ export default function BeforeYouGoPopup() {
     setIsOpen(false)
     // Reset form state when closed
     setEmail('')
+    setPhone('')
     setIsConsented(false)
     setErrors({})
   }
 
   const validate = () => {
-    const newErrors: { email?: string; consent?: string } = {}
+    const newErrors: { email?: string; phone?: string; consent?: string } = {}
     if (!email) {
       newErrors.email = t('errorEmail')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = t('errorEmail')
+    }
+    if (!phone) {
+      newErrors.phone = t('errorPhone') || 'Phone number is required'
     }
     // Only validate consent if on the pricing page (which has the checkbox)
     if (isPricingPage && !isConsented) {
@@ -153,7 +160,7 @@ export default function BeforeYouGoPopup() {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({ email: trimmedEmail }),
+          body: JSON.stringify({ email: trimmedEmail, phone: phone.trim() }),
           signal: controller.signal,
         }
       )
@@ -169,12 +176,14 @@ export default function BeforeYouGoPopup() {
           event: 'subscribe',
           user_data: {
             email: trimmedEmail,
+            phone: phone.trim(),
           },
         })
-        console.log('Pushed subscribe event to dataLayer with email:', {
+        console.log('Pushed subscribe event to dataLayer with email and phone:', {
           event: 'subscribe',
           user_data: {
             email: trimmedEmail,
+            phone: phone.trim(),
           },
         })
       }
@@ -336,6 +345,26 @@ export default function BeforeYouGoPopup() {
                         />
                         {errors.email && (
                           <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                        )}
+                      </div>
+
+                      {/* Phone input */}
+                      <div className='mb-3 sm:mb-4 relative'>
+                        <PhoneInput
+                          country={'de'}
+                          value={phone}
+                          onChange={p => {
+                            setPhone(p)
+                            if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
+                          }}
+                          enableSearch={true}
+                          placeholder={t('phonePlaceholder') || 'Your phone number'}
+                          containerClass="w-full flex"
+                          inputClass={`!w-full !flex-1 !border-white/10 !bg-white/5 !text-sm !text-white !placeholder-white/30 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-xl !focus:border-white/30 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
+                          buttonClass="!border-white/10 !bg-white/5 !rounded-l-xl !border-r-0 hover:!bg-white/10"
+                        />
+                        {errors.phone && (
+                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
                         )}
                       </div>
 
@@ -525,6 +554,26 @@ export default function BeforeYouGoPopup() {
                         />
                         {errors.email && (
                           <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                        )}
+                      </div>
+
+                      {/* Phone input */}
+                      <div className='mb-3 sm:mb-4 relative'>
+                        <PhoneInput
+                          country={'de'}
+                          value={phone}
+                          onChange={p => {
+                            setPhone(p)
+                            if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
+                          }}
+                          enableSearch={true}
+                          placeholder={t('phonePlaceholder') || 'Your phone number'}
+                          containerClass="w-full flex"
+                          inputClass={`!w-full !flex-1 !border-neutral-200 !bg-white !text-sm !text-black !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-[44px] !rounded-lg sm:!rounded-xl !focus:border-neutral-400 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
+                          buttonClass="!border-neutral-200 !bg-white !rounded-l-lg sm:!rounded-l-xl !border-r-0 hover:!bg-neutral-50"
+                        />
+                        {errors.phone && (
+                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
                         )}
                       </div>
 
