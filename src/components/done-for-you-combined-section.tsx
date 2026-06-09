@@ -26,14 +26,7 @@ export const DoneForYouCombinedSection = () => {
               {tBooking('title')}
             </h2>
           </BreathingAnimationText>
-          <BreathingAnimationText animationType='black-gray'>
-            <p
-              className='text-neutral-500 max-w-2xl mx-auto text-sm md:text-base font-space-grotesk'
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-            >
-              {tBooking('subtitle')}
-            </p>
-          </BreathingAnimationText>
+          
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start'>

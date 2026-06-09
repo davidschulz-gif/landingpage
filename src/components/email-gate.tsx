@@ -25,10 +25,15 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const handleShowGate = (e: Event) => {
-      const customEvent = e as CustomEvent<{ redirectUrl?: string }>
+      const customEvent = e as CustomEvent<{ redirectUrl?: string, skipForm?: boolean }>
       const targetUrl = customEvent.detail?.redirectUrl || null
       setRedirectUrl(targetUrl)
       setShowGate(true)
+      if (customEvent.detail?.skipForm) {
+        setShowCalendar(true)
+      } else {
+        setShowCalendar(false)
+      }
       document.body.style.overflow = 'hidden'
     }
 

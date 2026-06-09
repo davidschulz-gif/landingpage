@@ -99,9 +99,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       if (onSuccess) {
         onSuccess()
       } else {
-        setTimeout(() => {
-          window.location.href = appUrl;
-        }, 1200)
+        window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl, skipForm: true } }))
       }
     } catch (error: any) {
       if (error?.name === 'AbortError') {
