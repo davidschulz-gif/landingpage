@@ -252,7 +252,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       <div className='flex flex-col items-start gap-8 my-3'>
         <ul className='space-y-2 text-left w-full'>
           {[
-            { icon: Image, key: 'point1' },
+            // { icon: Image, key: 'point1' },
             { icon: BarChart3, key: 'point2' },
             { icon: PhoneCall, key: 'point3' }
           ].map((item, i) => {
