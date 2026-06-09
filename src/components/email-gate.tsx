@@ -17,6 +17,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   const [redirectUrl, setRedirectUrl] = useState<string | null>(null)
+  const [showCalendar, setShowCalendar] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -39,15 +40,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
 
   const handleSuccess = () => {
     localStorage.setItem(STORAGE_KEY, '1')
-    setIsExiting(true)
-    document.body.style.overflow = ''
-    setTimeout(() => {
-      setShowGate(false)
-      setIsExiting(false)
-      if (redirectUrl) {
-        window.location.href = redirectUrl
-      }
-    }, 700)
+    setShowCalendar(true)
   }
 
   // SSR: render children immediately; gate appears only client-side
@@ -103,6 +96,14 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                     setTimeout(() => {
                       setShowGate(false)
                       setIsExiting(false)
+                      if (showCalendar) {
+                        setShowCalendar(false)
+                        if (redirectUrl) {
+                          window.location.href = redirectUrl
+                        } else {
+                          window.location.href = 'https://app.typus.ai/'
+                        }
+                      }
                     }, 700)
                   }}
                   className='absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300 hover:rotate-90 hover:scale-105'
@@ -110,7 +111,45 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                 >
                   <X className='w-5 h-5' />
                 </button>
-                {/* logo mark */}
+                {showCalendar ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="w-full space-y-4"
+                  >
+                    <div className="w-full h-[500px] sm:h-[600px] overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-sm mt-4">
+                      <iframe 
+                        src="https://calendar.app.google/KE2o5r376raRDpow5" 
+                        width="100%" 
+                        height="100%" 
+                        className="w-full h-full border-none"
+                        title="Google Calendar Booking"
+                      />
+                    </div>
+                    <button
+                      onClick={() => {
+                        setIsExiting(true)
+                        document.body.style.overflow = ''
+                        setTimeout(() => {
+                          setShowGate(false)
+                          setIsExiting(false)
+                          setShowCalendar(false)
+                          if (redirectUrl) {
+                            window.location.href = redirectUrl
+                          } else {
+                            window.location.href = 'https://app.typus.ai/'
+                          }
+                        }, 700)
+                      }}
+                      className="w-full py-3 bg-black dark:bg-white text-white dark:text-black text-sm transition-all cursor-pointer hover:bg-black/90 dark:hover:bg-white/90 font-bold uppercase tracking-widest rounded-lg"
+                      style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                    >
+                      {t('gate.continueToApp').includes('gate.continueToApp') ? "Continue to App" : t('gate.continueToApp')}
+                    </button>
+                  </motion.div>
+                ) : (
+                  <>
+                    {/* logo mark */}
                 <div className='mb-4 sm:mb-6 flex flex-col items-center gap-2'>
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -186,7 +225,9 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                   >
                     {t('gate.privacyLink')}
                   </a>
-                </p>
+                  </p>
+                  </>
+                )}
               </motion.div>
             </div>
           </motion.div>

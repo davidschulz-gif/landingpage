@@ -97,8 +97,11 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
 
       setEmail('')
       if (onSuccess) {
-        window.location.href =  appUrl;
-        setTimeout(() => onSuccess(), 1200)
+        onSuccess()
+      } else {
+        setTimeout(() => {
+          window.location.href = appUrl;
+        }, 1200)
       }
     } catch (error: any) {
       if (error?.name === 'AbortError') {

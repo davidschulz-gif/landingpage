@@ -1201,13 +1201,13 @@ export function ManyChatPricingSection({
             </div>
           </div>
         ) : (
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4'>
-            <div className='w-full xl:w-[400px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
+            <div className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
               <BookingDemoClassFormForPricingPage />
             </div>
-            <div className='flex flex-wrap justify-center items-stretch flex-1 gap-8'>
+            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-4 xl:gap-8'>
               {currentProfPlans.map((plan, index) => (
-                <div key={index} className='w-full max-w-xs z-10 relative'>
+                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {selectedPlanTier === 'pro' && index === 2 && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
                       <div className='flex flex-col items-center gap-1'>

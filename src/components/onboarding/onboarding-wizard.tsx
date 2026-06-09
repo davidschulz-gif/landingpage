@@ -95,7 +95,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                 finalData.howDidYouHear = `Other: ${formData.howDidYouHearOther.trim()}`
             }
             if (formData.clickwrapAgreement) {
-                (finalData as any).clickwrapAgreementText = "I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month."
+                (finalData as any).clickwrapAgreementText = "I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month. The contract begins upon successful completion of the checkout process."
             }
             onComplete(finalData)
         }
@@ -473,8 +473,8 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                                 />
                                 <span className={cn("text-base leading-relaxed select-none", showErrors && !formData.clickwrapAgreement ? "text-red-600 font-medium" : "text-gray-800")}>
                                     {locale === 'de' 
-                                        ? 'Ich stimme den Nutzungsbedingungen zu und akzeptiere eine Mindestvertragslaufzeit von 12 Monaten. Die monatlichen Gebühren werden jeden Monat automatisch abgebucht.'
-                                        : 'I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month.'}
+                                        ? 'Ich stimme den Nutzungsbedingungen zu und akzeptiere eine Mindestvertragslaufzeit von 12 Monaten. Die monatlichen Gebühren werden jeden Monat automatisch abgebucht. Der Vertrag beginnt mit dem erfolgreichen Abschluss des Bestellvorgangs.'
+                                        : 'I agree to the Terms of Service and accept a minimum contract duration of 12 months. The monthly fees will be charged automatically every month. The contract begins upon successful completion of the checkout process.'}
                                     <span className="text-red-500 ml-1">*</span>
                                 </span>
                             </label>
@@ -585,7 +585,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel }
                         onClick={handleNext}
                         className="flex items-center px-6 py-2 rounded-none bg-white shadow-sm border border-gray-200 text-sm transition-all cursor-pointer hover:shadow-md font-medium gap-2 min-w-[140px] justify-center"
                     >
-                        {isSkippable ? t.illDoThisLater : (currentStep === totalSteps ? t.complete : t.next)}
+                        {isSkippable ? t.illDoThisLater : t.next}
                         {currentStep === totalSteps ? (
                             <Check className="w-4 h-4" />
                         ) : (

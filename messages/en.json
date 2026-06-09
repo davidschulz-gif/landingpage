@@ -190,7 +190,8 @@
       "title": "View the app for free.",
       "subtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
       "privacy": "No spam. Unsubscribe at any time.",
-      "privacyLink": "Data Privacy"
+      "privacyLink": "Data Privacy", 
+      "continueToApp": "Continue to App"
     },
     "errors": {
       "required": "Please enter your email address.",
@@ -450,7 +451,7 @@
     "placeholder": "Email address",
     "continue": "Continue",
     "cancel": "Cancel",
-    "description": "We'll use this email to create your account and manage your subscription.",
+    "description": "We'll use this email to manage your subscription.",
     "errorInvalidEmail": "Please enter a valid email address.",
     "errorRequired": "Email is required.",
     "errorNotStudentEmail": "Student status is required to use student plans. You must subscribe using a valid educational email address. We reserve the right to verify your status and cancel your plan without notice if this offer is misused.",
