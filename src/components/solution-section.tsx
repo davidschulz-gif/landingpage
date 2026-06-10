@@ -29,14 +29,14 @@ export function SolutionSection() {
         <div className="flex items-center justify-center overflow-hidden z-10">
           <section className='w-full py-12 lg:py-20 bg-white dark:bg-black px-4'>
             <div className='max-w-5xl mx-auto'>
-              <div className='mb-12 md:mb-16 text-center'>
-                <h2
+              {/* <div className='mb-12 md:mb-16 text-center'> */}
+                {/* <h2
                   className='text-xl md:text-2xl font-bold text-neutral-900 dark:text-white leading-[1.3] mb-6'
                   style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                 >
                   {t('problem.statusQuoHeader')}
-                </h2>
-              </div>
+                </h2> */}
+              {/* </div> */}
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
                 <div>
@@ -115,9 +115,17 @@ export function SolutionSection() {
               {t('benefits.subtitle')}
             </p>
           </div>
+            
+            <div className='overflow-hidden rounded-[50px] mb-12'>
+            <div>
+              <FeatureShowcase disableHeading={true} />
+            </div>
+          </div>
+
 
         </div>
       </section>
+
     </div>
   )
 }

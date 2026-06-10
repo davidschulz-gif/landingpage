@@ -76,7 +76,7 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
             aria-label={t('text')}
           >
             <PhoneCall className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
-            <span className="relative font-bold text-lg md:text-xl uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[1200px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
+            <span className="relative font-bold text-sm md:text-base uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[1200px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
               {t('text')}
             </span>
           </motion.button>

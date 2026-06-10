@@ -197,13 +197,13 @@ const SolutionSection = dynamic(
 //   }
 // )
 
-const FeatureShowcase = dynamic(
-  () => import('@/components/feature').then(mod => mod.FeatureShowcase),
-  {
-    // ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const FeatureShowcase = dynamic(
+//   () => import('@/components/feature').then(mod => mod.FeatureShowcase),
+//   {
+//     // ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const FloatingBuzzer = dynamic(
   () => import('@/components/floating-buzzer').then(mod => mod.FloatingBuzzer)
@@ -448,13 +448,13 @@ export default function Home() {
         </Reveal>
 
         {/* Feature Section */}
-        <Reveal
+        {/* <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeatureShowcase />
-        </Reveal>
+        </Reveal> */}
 
         {/* Rights Section */}
         <Reveal
