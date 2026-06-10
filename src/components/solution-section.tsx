@@ -93,14 +93,14 @@ export function SolutionSection() {
       </div>
 
       {/* Benefits Section */}
-      <section className='relative z-20 py-24 lg:py-32 bg-black text-white px-4 overflow-hidden shadow-[0_-50px_100px_rgba(0,0,0,0.5)]'>
+      <section className='relative z-20 pt-12 lg:pt-20 bg-black text-white px-4 overflow-hidden '>
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-20'>
-            <h3 className='text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-white mb-6'>
+            <h3 className='text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-white mb-0'>
               {t('benefits.solutionHeader')}
             </h3>
             <div className='flex justify-center py-6'>
-              <div className='w-24 h-24 sm:w-32 sm:h-32 -my-4 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
+              <div className='w-24 h-24 sm:w-32 sm:h-32 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
                 <Lottie
                   animationData={aiPulseAnimation}
                   loop={true}
@@ -116,91 +116,6 @@ export function SolutionSection() {
             </p>
           </div>
 
-          <div className='overflow-hidden rounded-[50px] mb-12'>
-            <div>
-              <FeatureShowcase disableHeading={true} />
-            </div>
-          </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-            <div className='bg-neutral-900/50 p-8 md:p-12 border border-neutral-800'>
-              <ul className='space-y-8'>
-                {[1, 2, 3].map((i) => (
-                  <li key={i} className='flex items-start gap-5'>
-                    <CheckCircle2 className='w-5 h-5 text-neutral-400 shrink-0 mt-0.5' />
-                    <div>
-                      <h4 className='font-bold text-xs uppercase tracking-widest mb-2'>{t(`benefits.benefit${i}Title` as any)}</h4>
-                      <p style={{ fontFamily: 'sans-serif' }} className='text-white text-xs leading-relaxed'>{t(`benefits.benefit${i}Desc` as any)}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className='flex flex-col items-center justify-between gap-8 p-8 md:p-12 border border-neutral-800 text-center bg-white/5'>
-              <p className='text-lg md:text-xl font-normal leading-relaxed text-neutral-300'>
-                {t('benefits.summary1')} <br />
-                <span className='font-bold text-white uppercase tracking-wider text-sm mt-4 block'>{t('benefits.summary2')}</span>
-              </p>
-
-              <div className='w-full px-1 space-y-2 relative'>
-                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
-                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
-                    <img
-                      src='/Christian-Brehmer.png'
-                      alt={t('benefits.visualizerName')}
-                      className='w-full h-full object-cover object-top'
-                    />
-                  </div>
-                  <div>
-                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizerName')}</p>
-                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizerRole')}</p>
-                    <p style={{ fontFamily: 'sans-serif' }} className='text-white text-[11px] leading-relaxed '>
-                      {t('benefits.visualizerBio')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className='flex items-center gap-4 bg-white/5 border border-neutral-700 p-4 w-full text-left backdrop-blur-sm'>
-                  <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-600'>
-                    <img
-                      src='/BjarneWeber.webp'
-                      alt={t('benefits.visualizer2Name')}
-                      className='w-full h-full object-cover object-top'
-                    />
-                  </div>
-                  <div>
-                    <p className='text-white font-bold text-xs uppercase tracking-widest'>{t('benefits.visualizer2Name')}</p>
-                    <p className='text-neutral-500 text-[10px] uppercase tracking-wider mb-1'>{t('benefits.visualizer2Role')}</p>
-                    <p style={{ fontFamily: 'sans-serif' }} className='text-white text-[11px] leading-relaxed '>
-                      {t('benefits.visualizer2Bio')}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='mt-16 flex justify-center'>
-            <div>
-              <ActionButton className='border-2' href='#booking-form' icon={<ArrowRight className='w-4 h-4' />}>
-                {t('cta.button')}
-              </ActionButton>
-            </div>
-          </div>
-
-          {/* How It Works Section */}
-          <div className='mt-20 rounded-xl overflow-hidden '>
-            <div>
-              <HowItWorks />
-            </div>
-          </div>
-
-          <div className='mt-20 flex flex-wrap justify-center gap-6 text-sm font-bold uppercase tracking-[0.3em] text-white'>
-            <span>{t('solution.tag1')}</span>
-            <span className='opacity-30'>/</span>
-            <span>{t('solution.tag2')}</span>
-            <span className='opacity-30'>/</span>
-            <span>{t('solution.tag3')}</span>
-          </div>
         </div>
       </section>
     </div>
