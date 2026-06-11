@@ -253,7 +253,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <ul className='space-y-2 text-left w-full'>
           {[
             // { icon: Image, key: 'point1' },
-            { icon: BarChart3, key: 'point2' },
+            // { icon: BarChart3, key: 'point2' },
             { icon: PhoneCall, key: 'point3' }
           ].map((item, i) => {
             const Icon = item.icon

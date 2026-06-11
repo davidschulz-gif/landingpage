@@ -285,48 +285,7 @@ export default function BeforeYouGoPopup() {
                       {t('body')}
                     </p>
 
-                    {/* Offer highlights */}
-                    <div
-                      className='flex items-center justify-between mb-5 sm:mb-8 px-4 py-3 sm:px-5 sm:py-4 overflow-hidden relative bg-black border border-white/20 rounded-2xl'
-                    >
-                      <div
-                        className='absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,54,54,0.1),transparent_70%)]'
-                      />
-                      <div className='text-center relative z-10'>
-                        <div className='text-2xl sm:text-3xl font-light text-white'>4</div>
-                        <div style={{ fontFamily: 'sans-serif' }} className='text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
-                          {t('paidLabel')}
-                        </div>
-                      </div>
-                      <div
-                        className='text-white text-2xl font-thin relative z-10 scale-x-[1.8]'
-                      >
-                        →
-                      </div>
-                      <div className='text-center relative z-10'>
-                        <div className='text-2xl sm:text-3xl font-light text-white'>12</div>
-                        <div style={{ fontFamily: 'sans-serif' }} className='text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-white mt-1'>
-                          {t('accessLabel')}
-                        </div>
-                      </div>
-                      <div
-                        style={{ fontFamily: 'sans-serif' }}
-                        className='text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 py-1 sm:px-3 sm:py-1.5 relative z-10 bg-[#FFD700] text-black overflow-hidden shadow-[0_0_15px_rgba(255,215,0,0.5)]'
-                      >
-                        <span className='relative z-10'>{tPricing('bestOffer')}</span>
-                        <motion.div
-                          initial={{ x: '-150%' }}
-                          animate={{ x: '150%' }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 1.5,
-                            ease: "linear",
-                            repeatDelay: 2
-                          }}
-                          className='absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-20deg]'
-                        />
-                      </div>
-                    </div>
+                    {/* Offer highlights removed for new initial consultation text */}
 
                     {/* Unified Form */}
                     <form onSubmit={handleSubmit} className='mt-2'>
@@ -533,6 +492,14 @@ export default function BeforeYouGoPopup() {
                         </div>
                         <span className='text-xs sm:text-sm text-neutral-800 font-medium font-sans'>
                           {t('viewFreeBullet5')}
+                        </span>
+                      </div>
+                      <div className='flex items-center gap-3'>
+                        <div className='flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 shrink-0'>
+                          <IconCheck size={12} strokeWidth={3} />
+                        </div>
+                        <span className='text-xs sm:text-sm text-neutral-800 font-medium font-sans'>
+                          {t('viewFreeBullet6')}
                         </span>
                       </div>
                     </div>

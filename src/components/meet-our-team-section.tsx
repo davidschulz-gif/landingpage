@@ -7,13 +7,13 @@ import Image from 'next/image'
 import { BreathingAnimationText } from './breathing-animation-text'
 
 const teamMembers = [
-  {
-    id: 'julia',
-    name: 'JULIA GÖGE',
-    role: 'CONTENT MARKETING',
-    image: '/team/juliagoge.png',
-    linkedin: 'https://www.linkedin.com/in/julia-g%C3%B6ge-6256741a2/',
-  },
+  // {
+  //   id: 'julia',
+  //   name: 'JULIA GÖGE',
+  //   role: 'CONTENT MARKETING',
+  //   image: '/team/juliagoge.png',
+  //   linkedin: 'https://www.linkedin.com/in/julia-g%C3%B6ge-6256741a2/',
+  // },
   {
     id: 'dominik',
     name: 'DOMINIK DENNY',
@@ -60,7 +60,7 @@ export function MeetOurTeamSection() {
         </div>
 
         {/* Team Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto'>
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}

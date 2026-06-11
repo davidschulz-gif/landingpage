@@ -190,7 +190,7 @@
       "title": "View the app for free.",
       "subtitle": "Enter your email to receive information, case studies and exclusive offers – and discover the app for free.",
       "privacy": "No spam. Unsubscribe at any time.",
-      "privacyLink": "Data Privacy", 
+      "privacyLink": "Data Privacy",
       "continueToApp": "Continue to App"
     },
     "errors": {
@@ -203,9 +203,10 @@
       "info": "",
       "caseStudies": "Case Studies",
       "exclusiveOffers": "Exclusive offers and insights",
-      "interactiveShowcase": "View 18 examples in the interactive slideshow",
+      "interactiveShowcase": "See 18 examples of the upscaling process for large-format prints",
       "viewApp": "View the app for free",
-      "freeInitial": "Free initial consultation"
+      "freeInitial": "Free initial consultation",
+      "interactiveTutorial": "Interactive Tutorial"
     }
   },
   "VideoShowcase": {
@@ -360,8 +361,11 @@
           "emailSupport": "EMAIL SUPPORT",
           "imageEditing": "IMAGE EDITING",
           "limitedUpscaling": "LIMITED UPSCALING",
-          "creditTopUps": "CREDIT TOP UPS"
-        }
+          "creditTopUps": "CREDIT TOP UPS",
+          "webinars": "Live Webinars 2x per month",
+          "videoSession": "1:1 Live Video Session 1x per month"
+        },
+        "targetAudience": "For Solopreneurs"
       },
       "pro": {
         "name": "PRO ONE",
@@ -376,8 +380,11 @@
           "onboardingCall": "ONBOARDING VIDEO CALL",
           "emailSupport": "EMAIL SUPPORT",
           "satisfactionGuarantee": "Satisfaction guarantee via 1x free video session per month",
-          "contract12Months": "12-month contract term"
-        }
+          "contract12Months": "12-month contract term",
+          "webinars": "Live Webinars 2x per month",
+          "videoSession": "1:1 Live Video Session 1x per month"
+        },
+        "targetAudience": "For Architecture Firms"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -386,7 +393,13 @@
         "name": "PRO COMPLETE"
       },
       "enterprise": {
-        "name": "ENTERPRISE"
+        "name": "ENTERPRISE",
+        "features": {
+          "customCredits": "CUSTOM CREDITS",
+          "unlimitedJobs": "UNLIMITED CONCURRENT JOBS",
+          "dedicatedSupport": "DEDICATED SUPPORT",
+          "customIntegrations": "CUSTOM INTEGRATIONS"
+        }
       },
       "student": {
         "name": "STARTER",
@@ -444,7 +457,10 @@
       "upscaleCredits40": "40 credits",
       "upscaleCredits50": "50 credits",
       "upscaleCredits80": "80 credits"
-    }
+    },
+    "enterpriseCustom": "Custom",
+    "enterpriseBillingInfo": "Let's talk about your needs",
+    "enterpriseBookCall": "Book a Call"
   },
   "SubscriptionModal": {
     "title": "Enter your email to continue",
@@ -591,9 +607,9 @@
     }
   },
   "BeforeYouGo": {
-    "badge": "LIMITED TIME OFFER",
-    "title": "Before you go, have you seen the phenomenal offer for PRO Complete?",
-    "body": "Pay what you'd normally spend in 4 months and get 12 full months of access. This is a limited-time offer, and the price will increase gradually—meaning it will never be as low as it is now.",
+    "badge": "Free Initial Consultation",
+    "title": "Have you already booked a free initial consultation with us?",
+    "body": "We would be happy to discuss together whether and how we can support you as a partner for AI.",
     "cta": "See PRO Complete Offer",
     "dismiss": "No, I'll pay more later",
     "paidLabel": "months paid",
@@ -609,8 +625,9 @@
     "viewFreeBullet1": "View the app for free",
     "viewFreeBullet2": "Case Studies",
     "viewFreeBullet3": "Exclusive offers and insights",
-    "viewFreeBullet4": "View 18 examples in the interactive slideshow",
+    "viewFreeBullet4": "See 18 examples of the upscaling process for large-format prints",
     "viewFreeBullet5": "Free initial consultation",
+    "viewFreeBullet6": "Interactive Tutorial",
     "viewFreeEmailPlaceholder": "Enter your email",
     "viewFreeCta": "Learn more",
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",

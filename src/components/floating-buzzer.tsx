@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
-import { PhoneCall } from 'lucide-react'
+import { BarChart3, PhoneCall } from 'lucide-react'
 
 import { appUrl } from '@/lib/constants'
 
@@ -57,7 +57,7 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className='fixed bottom-10 right-0 z-[999] w-full max-w-fit px-4 flex justify-center'
+          className='fixed bottom-[100px] md:bottom-10 right-0 z-[999] w-full max-w-fit px-4 flex justify-center'
         >
           <motion.button
             animate={{
@@ -75,7 +75,7 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
             style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             aria-label={t('text')}
           >
-            <PhoneCall className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
+            <BarChart3 className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
             <span className="relative font-bold text-sm md:text-base uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[1200px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
               {t('text')}
             </span>

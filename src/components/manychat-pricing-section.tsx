@@ -23,6 +23,7 @@ import { TestimonialsSection } from './testimonials-section'
 import Lottie from 'lottie-react'
 import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
 import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
+import { FloatingBuzzer } from '@/components/floating-buzzer'
 
 const professionalPlans = [
   {
@@ -40,6 +41,7 @@ const professionalPlans = [
       { text: 'IMAGE EDITING', hasFeature: true },
       { text: 'LIMITED UPSCALING', hasFeature: true },
       { text: 'CREDIT TOP UPS', hasFeature: true },
+      { text: 'Live Webinars 2x pro Monat', hasFeature: true },
     ],
   },
   {
@@ -92,6 +94,20 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING CALL', hasFeature: true },
       { text: 'SATISFACTION GUARANTEE', hasFeature: true },
+      { text: 'Live Webinars 2x pro Monat', hasFeature: true },
+      { text: '1:1 Live Video Sitzung 1x pro Monat', hasFeature: true },
+    ],
+  },
+  {
+    id: 'enterprise',
+    name: 'ENTERPRISE',
+    monthlyPrice: { eur: 'Custom', usd: 'Custom' },
+    planType: 'ENTERPRISE',
+    features: [
+      { text: 'CUSTOM CREDITS', hasFeature: true },
+      { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
+      { text: 'DEDICATED SUPPORT', hasFeature: true },
+      { text: 'CUSTOM INTEGRATIONS', hasFeature: true },
     ],
   },
 ]
@@ -180,8 +196,6 @@ export function ManyChatPricingSection({
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(true)
-  // Selected plan tier: 'explorer' | 'pro' | 'enterprise'
-  const [selectedPlanTier, setSelectedPlanTier] = useState<'explorer' | 'pro' | 'enterprise'>('pro')
   const locale = useLocale();
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
@@ -632,88 +646,57 @@ export function ManyChatPricingSection({
 
   // Get translated Professional plans
   const getProfessionalPlans = () => {
-    if (selectedPlanTier === 'explorer') {
-      const fetchedPlan = findFetchedPlan('EXPLORER', false)
-      return [
-        {
-          ...professionalPlans[0], // EXPLORER
-          name: t('plans.explorer.name'),
-          fetchedData: fetchedPlan,
-          features: professionalPlans[0].features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-      ]
-    } else if (selectedPlanTier === 'pro') {
-      // Return 3 PRO plans: monthly, 6-monthly, yearly
-      const baseProPlan = professionalPlans[1]
-      const fetchedPlan = findFetchedPlan('PRO', false)
-      return [
-        {
-          ...baseProPlan,
-          name: t('plans.pro.name'), // PRO
-          billingCycle: 'monthly' as const,
-          fetchedData: fetchedPlan,
-          features: [
-            ...baseProPlan.features.map(f => ({
-              ...f,
-              text:
-                typeof f === 'string'
-                  ? f
-                  : t(
-                    `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
-                  ),
-              hasFeature: typeof f === 'object' ? f.hasFeature : true,
-            })),
-            { text: t('plans.pro.features.contract12Months'), hasFeature: true }
-          ],
-        },
-        {
-          ...baseProPlan,
-          name: t('plans.proSemi.name'), // PRO SEMI
-          billingCycle: 'sixMonthly' as const,
-          fetchedData: fetchedPlan,
-          features: baseProPlan.features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-        {
-          ...baseProPlan,
-          name: t('plans.proComplete.name'), // PRO COMPLETE
-          billingCycle: 'yearly' as const,
-          popular: true,
-          badgeTextKey: 'bestOffer',
-          fetchedData: fetchedPlan,
-          features: baseProPlan.features.map(f => ({
-            ...f,
-            text:
-              typeof f === 'string'
-                ? f
-                : t(
-                  `plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`
-                ),
-            hasFeature: typeof f === 'object' ? f.hasFeature : true,
-          })),
-        },
-      ]
-    } else {
-      // ENTERPRISE - disabled
-      return []
+    // We display all 3 plans: Pro (formerly Explorer), Business (formerly Pro), and Enterprise.
+    const explorerFetchedData = findFetchedPlan('EXPLORER', false)
+    const proFetchedData = findFetchedPlan('PRO', false)
+    
+    // Pro (Old Explorer)
+    const proPlan = {
+      ...professionalPlans[0], // EXPLORER data
+      name: 'PRO', // Overriding translation to explicitly display PRO
+      fetchedData: explorerFetchedData,
+      features: professionalPlans[0].features.map(f => ({
+        ...f,
+        text: typeof f === 'string' ? f : (f.text.includes('Live Webinars') ? t('plans.explorer.features.webinars') : f.text.includes('Live Video') ? t('plans.explorer.features.videoSession') : t(`plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`)),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: t('plans.explorer.targetAudience'),
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const) // Set cycle based on toggle
     }
+
+    // Business (Old Pro)
+    const baseProPlan = professionalPlans[1]
+    const businessPlan = {
+      ...baseProPlan,
+      name: 'BUSINESS', // The user called it Business, we can hardcode or use translation if exists. Let's hardcode 'BUSINESS' for now
+      popular: true,
+      badgeTextKey: 'bestOffer',
+      fetchedData: proFetchedData,
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
+      features: baseProPlan.features.map(f => ({
+        ...f,
+        text: typeof f === 'string' ? f : (f.text.includes('Live Webinars') ? t('plans.pro.features.webinars') : f.text.includes('Live Video') ? t('plans.pro.features.videoSession') : t(`plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`)),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: t('plans.pro.targetAudience'),
+    }
+
+    // Enterprise
+    const baseEnterprisePlan = professionalPlans[2]
+    const enterprisePlan = {
+      ...baseEnterprisePlan,
+      name: t('plans.enterprise.name'),
+      fetchedData: null,
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
+      features: baseEnterprisePlan.features.map(f => ({
+        ...f,
+        // using simple text or placeholder translation
+        text: typeof f === 'string' ? f : t(`plans.enterprise.features.${f.text.includes('CUSTOM CREDITS') ? 'customCredits' : f.text.includes('UNLIMITED') ? 'unlimitedJobs' : f.text.includes('DEDICATED') ? 'dedicatedSupport' : 'customIntegrations'}`),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+    }
+
+    return [proPlan, businessPlan, enterprisePlan]
   }
 
   // Get translated Education plans
@@ -973,34 +956,26 @@ export function ManyChatPricingSection({
             {t('selfServiceTitle')}
           </h2>
 
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-2 mb-2'>
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6'>
             <button
-              onClick={() => setSelectedPlanTier('explorer')}
-              className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'explorer'
+              onClick={() => setIsYearly(true)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
                 ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                : 'text-black hover:text-black'
                 }`}
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
-              {t('plans.explorer.name')}
+              {t('yearlyBilling')}
             </button>
             <button
-              onClick={() => setSelectedPlanTier('pro')}
-              className={`px-6 py-2 text-sm font-medium transition-colors ${selectedPlanTier === 'pro'
+              onClick={() => setIsYearly(false)}
+              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
                 ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black bg-white/50 hover:bg-white/70'
+                : 'text-black hover:text-black'
                 }`}
               style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
             >
-              PRO
-            </button>
-            <button
-              onClick={() => setSelectedPlanTier('enterprise')}
-              disabled
-              className='px-6 py-2 text-sm font-medium transition-colors text-gray-400 bg-white/30 cursor-not-allowed opacity-50'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('plans.enterprise.name')}
+              {t('monthlyBilling')}
             </button>
           </div>
           {/* Promo Code Input on Page */}
@@ -1096,7 +1071,6 @@ export function ManyChatPricingSection({
             </div>
           </div> */}
 
-          {/* {selectedPlanTier !== 'explorer' && ( */}
             <div className='flex justify-center mb-8 w-full '>
               <div className={`${profPromoDiscount ? 'border-red-500' : 'border-black'} max-w-2xl w-full text-xs text-gray-500 text-center border  py-3`}>
                 {profPromoDiscount ? (
@@ -1115,9 +1089,8 @@ export function ManyChatPricingSection({
                 )}
               </div>
             </div>
-          {/* )} */}
         </div>
-        {selectedPlanTier !== 'explorer' && <div className='flex flex-col gap-1 mb-8 text-center'>
+        <div className='flex flex-col gap-1 mb-8 text-center'>
           <div className='flex items-center justify-center gap-2'>
             <div className='flex flex-col gap-1 items-center'>
               <p
@@ -1135,80 +1108,17 @@ export function ManyChatPricingSection({
               <Lottie animationData={HandDrawnArrow} loop={true} className='w-40 h-40' />
             </div>
           </div>
-        </div>}
+        </div>
 
         {/* Professional Plans Cards */}
-        {selectedPlanTier === 'explorer' ? (
-          <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-4'>
-            <div className='w-full max-w-xs z-30'>
-              <PricingCard
-                plan={currentProfPlans[0] as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                isYearly={isYearly}
-                isProfessional={true}
-                isEurope={isEurope}
-                currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                promoDiscount={profPromoDiscount}
-                isVat={isVat}
-              />
-            </div>
-
-            {/* Overview Card: Missing Pro Features */}
-            <div className='w-full max-w-xs z-20'>
-              <div
-                className='h-full bg-white border border-black p-8 flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all'
-                style={{ minHeight: '580px' }}
-              >
-                <div className='mb-6 pb-4 border-b border-black/10'>
-                  <h3
-                    className='text-xl font-bold text-black leading-tight uppercase'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('missingProFeaturesTitle')}
-                  </h3>
-                </div>
-
-                <div className='space-y-4 flex-1'>
-                  {[
-                    t('plans.pro.features.credits1000'),
-                    t('plans.pro.features.resolution4k'),
-                    t('plans.pro.features.editByChat'),
-                    t('plans.pro.features.upscale13k'),
-                    t('plans.pro.features.onboardingCall')
-                  ].map((feature, idx) => (
-                    <div key={idx} className='flex items-start gap-3 group'>
-                      <div className='flex-shrink-0 w-5 h-5 bg-red-50 flex items-center justify-center mt-0.5 group-hover:bg-red-100 transition-colors border border-red-200'>
-                        <X size={12} className='text-red-500' />
-                      </div>
-                      <div className='flex-1'>
-                        <span
-                          className='text-[13px] font-bold text-black uppercase leading-tight'
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                        >
-                          {feature}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className='mt-8 pt-4 border-t border-black/10'>
-                  <p className='text-xs text-gray-500 text-center font-medium italic'>
-                    {t('upgradeToPro')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
-            <div className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
+            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
               <BookingDemoClassFormForPricingPage />
             </div>
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-4 xl:gap-8'>
               {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
-                  {selectedPlanTier === 'pro' && index === 2 && (
+                  {index === 1 && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
                       <div className='flex flex-col items-center gap-1'>
                         {/* Empty to preserve structure if Lottie was here */}
@@ -1229,7 +1139,6 @@ export function ManyChatPricingSection({
               ))}
             </div>
           </div>
-        )}
           </>
         )}
 
@@ -1569,97 +1478,7 @@ export function ManyChatPricingSection({
           </motion.div>
         )}
       </AnimatePresence>
-      {/* First Buyer Kick Off Button */}
-      {!showOnboarding && !isModalOpen && !showTrialWarning && !showKickOffModal && !profPromoDiscount && (
-
-        <motion.button
-          animate={{
-            scale: [1, 1.05, 1],
-            rotate: [0, -2, 2, -2, 2, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatDelay: 10,
-            ease: "easeInOut"
-          }}
-          onClick={() => setShowKickOffModal(true)}
-          className="fixed right-10 bottom-10 -translate-y-1/2 z-[9999] rounded-2xl p-4 border border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
-          style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-          aria-label={"First Buyer Kick Off"}
-        >
-          <Gift className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
-          <span className="relative font-bold text-2xl uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[400px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
-            First Buyer Kick Off
-          </span>
-        </motion.button>
-
-
-      )}
-
-      {/* First Buyer Kick Off Modal */}
-      <AnimatePresence>
-        {showKickOffModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm'
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className='bg-white p-10 shadow-2xl flex flex-col items-center gap-6 max-w-lg w-full relative rounded-lg'
-            >
-              <button
-                className='absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors'
-                onClick={() => setShowKickOffModal(false)}
-              >
-                <IconX size={24} />
-              </button>
-
-              <h2 className='text-2xl font-bold text-black text-center'>
-                First-time buyer discount: €70 OFF
-              </h2>
-
-              <p className='text-sm text-gray-600 text-center px-4'>
-                If you’re new, kickstart your journey with <strong>€70 off</strong> — just enter the code in the promo field.
-              </p>
-
-              <div className='text-7xl font-bold tracking-tighter text-black my-4' style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}>
-                KICK
-              </div>
-
-              <div className='w-full flex flex-col gap-4 mt-2'>
-                <Button
-                  onClick={() => {
-                    setProfPromoCode('KICK')
-                    setProfPromoError(null)
-                    setProfPromoSuccess(null)
-                    setProfPromoDiscount(null)
-                    setShowKickOffModal(false)
-                    // Scroll to Top to see the effect
-                    window.scrollTo({ top: 0, behavior: 'smooth' })
-                  }}
-                  className='w-full bg-black text-white hover:bg-neutral-800 py-6 text-sm font-bold uppercase tracking-widest'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  Apply Promo Code
-                </Button>
-
-                <button
-                  onClick={() => setShowKickOffModal(false)}
-                  className='text-xs text-gray-400 hover:text-black transition-colors underline'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  Maybe later
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <FloatingBuzzer triggerPopup={false} />
       {showOnboarding && (
         <OnboardingWizard
           email={userEmail}
@@ -1713,33 +1532,58 @@ function PricingCard({
         fetchedData?: any
       }
 
-      // EXPLORER only has MONTHLY
+      // ENTERPRISE
+      if (profPlan.planType === 'ENTERPRISE') {
+        return {
+          mainPrice: t('enterpriseCustom'),
+          period: '',
+          billingInfo: t('enterpriseBillingInfo'),
+          stripePriceId: '',
+        }
+      }
+
+      // EXPLORER (Now Pro)
       if (profPlan.planType === 'EXPLORER') {
-        let monthlyPrice = isEurope
+        let mainPrice = isEurope
           ? profPlan.monthlyPrice?.eur || ''
           : profPlan.monthlyPrice?.usd || ''
+        
+        // If yearly, multiply by 12 or use yearly equivalent if available
+        if (profPlan.billingCycle === 'yearly') {
+          // If we had fetched data for EXPLORER yearly, we would use it, but typically it was monthly only.
+          // Let's multiply by 12 for the yearly cycle for display purposes, or use fetched if available.
+          if (fetchedData && fetchedData.prices?.yearly) {
+             const yPrice = fetchedData.prices.yearly
+             mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
+          } else {
+             // Basic fallback multiplying string numbers
+             const num = parseInt(mainPrice.replace(/[^0-9]/g, ''), 10)
+             if (!isNaN(num)) {
+               mainPrice = `${currencySymbol}${num}`
+             }
+          }
+        } else {
+          if (fetchedData && fetchedData.prices?.monthly) {
+            mainPrice = `${currencySymbol}${fetchedData.prices.monthly / 100}`
+          }
+        }
 
         let stripePriceId = ''
-
         if (fetchedData) {
-          const price = fetchedData.prices?.monthly
-          if (price) {
-            monthlyPrice = `${currencySymbol}${price / 100}`
-          }
-          stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
+          stripePriceId = profPlan.billingCycle === 'yearly' ? (fetchedData.stripePrices?.YEARLY || '') : (fetchedData.stripePrices?.MONTHLY || '')
         }
 
         return {
-          mainPrice: monthlyPrice,
+          mainPrice: mainPrice,
           period: '/month',
-          billingInfo: t('billedMonthly'),
+          billingInfo: profPlan.billingCycle === 'yearly' ? t('billedYearly') : t('billedMonthly'),
           stripePriceId,
         }
       }
 
-      // PRO has MONTHLY, SIX_MONTHLY, YEARLY - use billingCycle from plan
+      // PRO (Now Business)
       if (profPlan.planType === 'PRO') {
-        const billingCycle = profPlan.billingCycle || 'yearly'
+        const billingCycle = profPlan.billingCycle || (isYearly ? 'yearly' : 'monthly')
         const proWithDiscount = profPlan as (typeof professionalPlans)[1] & {
           fetchedData?: any
         }
@@ -1960,7 +1804,7 @@ function PricingCard({
 
   return (
     <div
-      className='flex h-[580px] mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group'
+      className='flex h-[720px] mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group'
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
@@ -1997,11 +1841,17 @@ function PricingCard({
       {/* Header Section */}
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
-          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-2 block text-black'
+          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
           style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
           {plan.name}
         </span>
+        
+        {(plan as any).targetAudience && (
+          <span className='text-[13px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block'>
+            {(plan as any).targetAudience}
+          </span>
+        )}
 
         {/* Discount badge above price - period discount for 6-mo/yearly */}
         {priceInfo.discount?.periodDiscountPercent != null && (
@@ -2031,12 +1881,20 @@ function PricingCard({
               </>
             ) : (
               <div className='flex items-baseline justify-center gap-1'>
-                <span className='text-3xl sm:text-4xl font-bold text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                  {priceInfo.mainPrice}
-                </span>
-                <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                  {priceInfo.period}
-                </span>
+                {priceInfo.mainPrice === t('enterpriseCustom') ? (
+                  <span className='text-[13px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block mt-2 mb-2'>
+                    {priceInfo.mainPrice}
+                  </span>
+                ) : (
+                  <>
+                    <span className='text-3xl sm:text-4xl font-bold text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      {priceInfo.mainPrice}
+                    </span>
+                    <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      {priceInfo.period}
+                    </span>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -2098,15 +1956,28 @@ function PricingCard({
 
       {/* Button Section - Fixed at Bottom */}
       <div className='mt-auto'>
-        <Button
-          onClick={() => onSubscribe(plan, priceInfo)}
-          className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
-          style={{
-            fontFamily: "'Soyuz Grotesk', sans-serif",
-          }}
-        >
-          {t('subscribe')}
-        </Button>
+        {plan.id === 'enterprise' ? (
+          <Link
+            href="mailto:contact@typus.ai" // Or redirect to a contact form
+            className='bg-black text-white cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
+            style={{
+              fontFamily: "'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            {/* Provide simple translation fallback */}
+            {t('enterpriseBookCall')}
+          </Link>
+        ) : (
+          <Button
+            onClick={() => onSubscribe(plan, priceInfo)}
+            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
+            style={{
+              fontFamily: "'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            {t('subscribe')}
+          </Button>
+        )}
       </div>
     </div>
   )

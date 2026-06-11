@@ -212,6 +212,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             t('features.viewApp'),
             t('features.caseStudies'),
             t('features.exclusiveOffers'),
+            t('features.interactiveTutorial'),
             t('features.interactiveShowcase'),
             t('features.freeInitial')
           ].map((feature, idx) => (

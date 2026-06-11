@@ -190,7 +190,7 @@
       "title": "Entdecken Sie die App kostenlos.",
       "subtitle": "Tragen Sie Ihre E-Mail ein, um Informationen, Case Studies und exklusive Angebote zu erhalten – und die App kostenlos zu entdecken.",
       "privacy": "Kein Spam. Abmeldung jederzeit möglich.",
-      "privacyLink": "Datenschutz", 
+      "privacyLink": "Datenschutz",
       "continueToApp": "Weiter zur App"
     },
     "errors": {
@@ -204,8 +204,9 @@
       "caseStudies": "Case Studies",
       "exclusiveOffers": "Exklusive Angebote und Einblicke",
       "freeInitial": "kostenloses Erstgespräch",
-      "interactiveShowcase": "18 Beispiele in der interaktiven Bildschau ansehen",
-      "viewApp": "App ansehen"
+      "interactiveShowcase": "18 Beispiele des Hochskalierers für großformatige Drucke sehen",
+      "viewApp": "App ansehen",
+      "interactiveTutorial": "Interaktives Tutorial"
     }
   },
   "VideoShowcase": {
@@ -360,8 +361,11 @@
           "emailSupport": "E-MAIL-SUPPORT",
           "imageEditing": "BILDBEARBEITUNG",
           "limitedUpscaling": "BEGRENZTE HOCHSKALIERUNG",
-          "creditTopUps": "CREDIT-AUFLADUNGEN"
-        }
+          "creditTopUps": "CREDIT-AUFLADUNGEN",
+          "webinars": "Live Webinars 2x pro Monat",
+          "videoSession": "1:1 Live Video Sitzung 1x pro Monat"
+        },
+        "targetAudience": "Für Solo-Selbstständige"
       },
       "pro": {
         "name": "PRO ONE",
@@ -376,8 +380,11 @@
           "onboardingCall": "ONBOARDING-VIDEO-ANRUF",
           "emailSupport": "E-MAIL SUPPORT",
           "satisfactionGuarantee": "Zufriedenheitsgarantie durch 1x kostenlose Video Sitzung pro Monat",
-          "contract12Months": "12-monatige Vertragslaufzeit"
-        }
+          "contract12Months": "12-monatige Vertragslaufzeit",
+          "webinars": "Live Webinars 2x pro Monat",
+          "videoSession": "1:1 Live Video Sitzung 1x pro Monat"
+        },
+        "targetAudience": "Für Architekturbüros"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -386,7 +393,13 @@
         "name": "PRO COMPLETE"
       },
       "enterprise": {
-        "name": "ENTERPRISE"
+        "name": "ENTERPRISE",
+        "features": {
+          "customCredits": "INDIVIDUELLE CREDITS",
+          "unlimitedJobs": "UNBEGRENZTE GLEICHZEITIGE JOBS",
+          "dedicatedSupport": "DEDIZIERTER SUPPORT",
+          "customIntegrations": "INDIVIDUELLE INTEGRATIONEN"
+        }
       },
       "student": {
         "name": "STARTER",
@@ -444,7 +457,10 @@
       "upscaleCredits40": "40 Credits",
       "upscaleCredits50": "50 Credits",
       "upscaleCredits80": "80 Credits"
-    }
+    },
+    "enterpriseCustom": "Individuell",
+    "enterpriseBillingInfo": "Lassen Sie uns über Ihre Anforderungen sprechen",
+    "enterpriseBookCall": "Termin buchen"
   },
   "SubscriptionModal": {
     "title": "Geben Sie Ihre E-Mail-Adresse ein, um fortzufahren",
@@ -591,9 +607,9 @@
     }
   },
   "BeforeYouGo": {
-    "badge": "LIMITIERTES ANGEBOT",
-    "title": "Bevor du gehst: Hast du schon das fantastische Angebot für PRO Complete gesehen?",
-    "body": "Zahle, was du normalerweise in 4 Monaten ausgibst, und erhalte 12 volle Monate Zugang. Dieses Angebot ist zeitlich begrenzt, und der Preis wird schrittweise steigen – das bedeutet, er wird nicht wieder so niedrig sein wie jetzt.",
+    "badge": "Kostenloses Erstgespräch",
+    "title": "Haben Sie bereits ein kostenloses Erstgespräch mit uns gebucht?",
+    "body": "Gerne besprechen wir gemeinsam, ob und inwiefern wir Ihnen als Partner für KI zur Seite stehen können.",
     "cta": "PRO Complete Angebot ansehen",
     "dismiss": "Nein, ich zahle lieber später mehr",
     "paidLabel": "Monate gezahlt",
@@ -609,8 +625,9 @@
     "viewFreeBullet1": "Entdecke die App kostenlos",
     "viewFreeBullet2": "Fallstudien",
     "viewFreeBullet3": "Exklusive Angebote und Einblicke",
-    "viewFreeBullet4": "18 Beispiele in der interaktiven Bildschau ansehen",
+    "viewFreeBullet4": "18 Beispiele des Hochskalierers für großformatige Drucke sehen",
     "viewFreeBullet5": "kostenloses Erstgespräch",
+    "viewFreeBullet6": "Interaktives Tutorial",
     "viewFreeEmailPlaceholder": "Deine E-Mail-Adresse",
     "viewFreeCta": "Mehr erfahren",
     "viewFreeEnvelopeText": "Erfahre mehr über die App und erhalte Benachrichtigungen über neue Funktionen.",
