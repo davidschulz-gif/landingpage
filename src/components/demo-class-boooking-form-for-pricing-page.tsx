@@ -253,8 +253,8 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <ul className='space-y-2 text-left w-full'>
           {[
             // { icon: Image, key: 'point1' },
-            // { icon: BarChart3, key: 'point2' },
-            { icon: PhoneCall, key: 'point3' }
+            { icon: BarChart3, key: 'point4',id:4 },
+            // { icon: PhoneCall, key: 'point3',id:2 }
           ].map((item, i) => {
             const Icon = item.icon
             return (
@@ -263,7 +263,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
                   <Icon className='w-3 h-3 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
                 </div>
                 <span className='text-[14px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
-                  {t(`cta.point${i + 1}` as any)}
+                  {t(`cta.point${item.id}` as any)}
                 </span>
               </li>
             )

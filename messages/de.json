@@ -304,7 +304,7 @@
   "Pricing": {
     "selectPlanCTA": "Abo auswählen & loslegen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
-    "selfServiceTitle": "KI App für Architekten - Self Service",
+    "selfServiceTitle": "KI App für Architekten - Self ServiceZufriedenheitsgarantie über Live Webinars. Wir schulen Sie oder Ihre Mitarbeitenden",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Kostenloses Erstgespräch",
@@ -336,7 +336,7 @@
     "first6MonthsCharged": "{amount} ersten 6 Monate abgerechnet",
     "firstYearCharged": "{amount} jährlich abgerechnet",
     "discountBadge": "-50% Spare {amount}",
-    "periodDiscountBadge": "Rabatt {percent}%; Spare {amount}",
+    "periodDiscountBadge": "Off {percent}% as compare to monthly",
     "bestDealBanner": "Unser bester Deal — nur für kurze Zeit.",
     "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
     "plans": {
@@ -356,7 +356,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "ALLES VOM STARTER",
-          "credits150": "150 CREDITS /Monat (z.B. 50 Basisbilder und 10 Verfeinerungen)",
+          "credits150": "150 CREDITS / Monat (z.B. 50 Basis-Bilder und 10 Verfeinerungen)",
           "resolution4k": "4K AUFLÖSUNG (2 GLEICHZEITIGE JOBS)",
           "emailSupport": "E-MAIL-SUPPORT",
           "imageEditing": "BILDBEARBEITUNG",
@@ -368,23 +368,27 @@
         "targetAudience": "Für Solo-Selbstständige"
       },
       "pro": {
-        "name": "PRO ONE",
+        "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS /Monat (66-333 Bilder (siehe Übersicht zum Kreditabzug unten))",
+          "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
           "resolution4k": "4K AUFLÖSUNG",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
           "highEndResults": "HIGH-END ERGEBNISSE",
           "upscale13k": "HOCHSKALIERUNG BIS ZU 8K",
-          "onboardingCall": "ONBOARDING-VIDEO-ANRUF",
+          "onboardingCall": "ONBOARDING VIDEO-CALL",
           "emailSupport": "E-MAIL SUPPORT",
-          "satisfactionGuarantee": "Zufriedenheitsgarantie durch 1x kostenlose Video Sitzung pro Monat",
+          "liveWebinars": "LIVE WEBINARS 2X PRO MONAT",
+          "oneOnOneCall": "1:1 LIVE VIDEO SITZUNG 1X PRO MONAT",
+          "satisfactionGuarantee": "Zufriedenheitsgarantie über 1x kostenlose Videositzung pro Monat",
           "contract12Months": "12-monatige Vertragslaufzeit",
           "webinars": "Live Webinars 2x pro Monat",
-          "videoSession": "1:1 Live Video Sitzung 1x pro Monat"
+          "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
+          "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
+          "teamAccess": "TEAM-ZUGANG"
         },
-        "targetAudience": "Für Architekturbüros"
+        "targetAudience": "Für Solo-Selbstständige"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -433,6 +437,29 @@
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
           "resolution13k": "AUFLÖSUNG BIS ZU 8K"
         }
+      },
+      "business": {
+        "name": "BUSINESS",
+        "features": {
+          "everythingFromExplorer": "ALLES VOM EXPLORER",
+          "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
+          "resolution4k": "4K AUFLÖSUNG",
+          "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
+          "editByChat": "BEARBEITUNG PER CHAT",
+          "highEndResults": "HIGH-END ERGEBNISSE",
+          "upscale13k": "HOCHSKALIERUNG BIS ZU 8K",
+          "onboardingCall": "ONBOARDING VIDEO-CALL",
+          "emailSupport": "E-MAIL SUPPORT",
+          "liveWebinars": "LIVE WEBINARS 2X PRO MONAT",
+          "oneOnOneCall": "1:1 LIVE VIDEO SITZUNG 1X PRO MONAT",
+          "satisfactionGuarantee": "Zufriedenheitsgarantie über 1x kostenlose Videositzung pro Monat",
+          "contract12Months": "12-monatige Vertragslaufzeit",
+          "webinars": "Live Webinars 2x pro Monat",
+          "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
+          "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
+          "teamAccess": "TEAM-ZUGANG"
+        },
+        "targetAudience": "Für Architekturbüros"
       }
     },
     "creditDeduction": {
@@ -603,7 +630,8 @@
       "t": "Ihr Partner für KI",
       "point1": "kostenloser Test des Services mit einem individuellen Input das Sie uns schicken",
       "point2": "kostenlose Bedarfsanalyse",
-      "point3": "kostenlose & unverbindliche Erstberatung"
+      "point3": "kostenlose & unverbindliche Erstberatung",
+      "point4": "Individuelle Bedarfsanalyse"
     }
   },
   "BeforeYouGo": {
@@ -928,7 +956,8 @@
       "button": "Kostenlose Demo und Erstgespräch anfragen",
       "point1": "kostenloser Test des Services mit einem individuellen Input das Sie uns schicken",
       "point2": "kostenlose Bedarfsanalyse",
-      "point3": "kostenlose & unverbindliche Erstberatung"
+      "point3": "kostenlose & unverbindliche Erstberatung",
+      "point4": "Individuelle Bedarfsanalyse"
     },
     "preview": {
       "badge": "Hochwertige KI-App",

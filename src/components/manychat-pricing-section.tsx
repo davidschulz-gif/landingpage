@@ -27,36 +27,65 @@ import { FloatingBuzzer } from '@/components/floating-buzzer'
 
 const professionalPlans = [
   {
-    id: 'explorer',
-    name: 'EXPLORER',
-    monthlyPrice: { eur: '€49', usd: '$57' },
-    planType: 'EXPLORER',
-    features: [
-      {
-        text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
-        hasFeature: true,
+    id: 'pro',
+    name: 'PRO',
+    monthlyPrice: { eur: '€249', usd: '$57' },
+    yearlyPrice: { eur: '€2490', usd: '$684' },
+    yearlyMonthlyPrice: { eur: '€207.50', usd: '$57' },
+    planType: 'PRO',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€249', usd: '$57' },
+        introPeriodKey: 'billedMonthly',
       },
-      { text: '2K RESOLUTION (2 CONCURRENT JOB)', hasFeature: true },
+      sixMonthly: {
+        discountedMonthly: { eur: '€249', usd: '$57' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€1494', usd: '$342' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€1494', usd: '$342' },
+        introPeriodKey: 'billedEvery6Months',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€207.50', usd: '$57' },
+        periodDiscountPercent:16.67,
+        periodSaveAmount: { eur: '€498', usd: '$0' },
+        originalCycle: { eur: '€2988', usd: '$684' },
+        discountPercent: 16.67,
+        saveAmountCycle: { eur: '€498', usd: '$0' },
+        introFirstPeriod: { eur: '€2490', usd: '$684' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: false,
+      },
+    },
+    features: [
+      { text: '1000 CREDITS /month', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      { text: '4 CONCURRENT JOBS', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: true },
+      { text: 'HIGH-END RESULTS', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'IMAGE EDITING', hasFeature: true },
-      { text: 'LIMITED UPSCALING', hasFeature: true },
-      { text: 'CREDIT TOP UPS', hasFeature: true },
-      { text: 'Live Webinars 2x pro Monat', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
+      // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
   {
-    id: 'pro',
-    name: 'PRO',
-    monthlyPrice: { eur: '€99', usd: '$117' },
+    id: 'business',
+    name: 'BUSINESS',
+    monthlyPrice: { eur: '€499', usd: '$117' },
     sixMonthPrice: { eur: '€294', usd: '$337' },
-    yearlyPrice: { eur: '€468', usd: '$668' },
+    yearlyPrice: { eur: '€4990', usd: '$668' },
     sixMonthMonthlyPrice: { eur: '€49', usd: '$56' },
-    yearlyMonthlyPrice: { eur: '€39', usd: '$46' },
-    planType: 'PRO',
+    yearlyMonthlyPrice: { eur: '€415.83', usd: '$46' },
+    planType: 'BUSINESS',
     // Discount display: original (crossed out), discounted (green), badges, intro price
     discount: {
       monthly: {
-        discountedMonthly: { eur: '€99', usd: '$117' },
+        discountedMonthly: { eur: '€499', usd: '$117' },
         introPeriodKey: 'billedMonthly',
       },
       sixMonthly: {
@@ -70,32 +99,30 @@ const professionalPlans = [
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
-        discountedMonthly: { eur: '€29', usd: '$35' },
-        periodDiscountPercent: 70,
-        periodSaveAmount: { eur: '€840', usd: '$983' },
-        originalCycle: { eur: '€1188', usd: '$1404' },
-        discountPercent: 70,
-        saveAmountCycle: { eur: '€840', usd: '$983' },
-        introFirstPeriod: { eur: '€348', usd: '$421' },
+        discountedMonthly: { eur: '€415.83', usd: '$55.67' },
+        periodDiscountPercent: 16.67,
+        periodSaveAmount: { eur: '€998', usd: '$736' },
+        originalCycle: { eur: '€5988', usd: '$1404' },
+        discountPercent: 17,
+        saveAmountCycle: { eur: '€998', usd: '$736' },
+        introFirstPeriod: { eur: '€4990', usd: '$668' },
         introPeriodKey: 'billedYearly',
         bestDeal: true,
       },
     },
     features: [
-      {
-        text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
-        hasFeature: true,
-      },
+      { text: '5000 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'ONBOARDING CALL', hasFeature: true },
-      { text: 'SATISFACTION GUARANTEE', hasFeature: true },
-      { text: 'Live Webinars 2x pro Monat', hasFeature: true },
-      { text: '1:1 Live Video Sitzung 1x pro Monat', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: true },
+      { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
+      // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
   {
@@ -199,7 +226,7 @@ export function ManyChatPricingSection({
   const locale = useLocale();
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
-  const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('usd');
+  const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
   const [isVat, setIsVat] = useState<boolean>(true);
   const [locationContinent, setLocationContinent] = useState<string | null>(null);
   const [locationCountryCode, setLocationCountryCode] = useState<string | null>(null);
@@ -458,13 +485,13 @@ export function ManyChatPricingSection({
         return
       }
 
-      if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
-        console.log('Showing Trial Warning Modal')
-        setShowTrialWarning(true)
-        setIsModalOpen(false) // Close the main modal to show warning
-        setIsRedirecting(false)
-        return
-      }
+      // if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
+      //   console.log('Showing Trial Warning Modal')
+      //   setShowTrialWarning(true)
+      //   setIsModalOpen(false) // Close the main modal to show warning
+      //   setIsRedirecting(false)
+      //   return
+      // }
 
       const billingCycleMap: Record<string, string> = {
         monthly: 'MONTHLY',
@@ -646,39 +673,57 @@ export function ManyChatPricingSection({
 
   // Get translated Professional plans
   const getProfessionalPlans = () => {
-    // We display all 3 plans: Pro (formerly Explorer), Business (formerly Pro), and Enterprise.
-    const explorerFetchedData = findFetchedPlan('EXPLORER', false)
+    // We display all 3 plans: PRO, BUSINESS, and ENTERPRISE.
     const proFetchedData = findFetchedPlan('PRO', false)
+    const businessFetchedData = findFetchedPlan('BUSINESS', false)
     
-    // Pro (Old Explorer)
+    const mapFeatureText = (f: any) => {
+      if (typeof f === 'string') return f;
+      if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
+      if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
+      if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
+      
+      const key = f.text.includes('4K') ? 'resolution4k' : 
+                  f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
+                  f.text.includes('EDIT BY CHAT') ? 'editByChat' : 
+                  f.text.includes('HIGH-END') ? 'highEndResults' : 
+                  f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : 
+                  f.text.includes('ONBOARDING VIDEO CALL') ? 'onboardingCall' : 
+                  f.text.includes('LIVE WEBINARS') ? 'liveWebinars' : 
+                  f.text.includes('1:1 LIVE VIDEO') ? 'oneOnOneCall' : 
+                  f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k';
+      return t(`plans.pro.features.${key}`);
+    };
+
+    // Pro
     const proPlan = {
-      ...professionalPlans[0], // EXPLORER data
-      name: 'PRO', // Overriding translation to explicitly display PRO
-      fetchedData: explorerFetchedData,
+      ...professionalPlans[0], 
+      name: 'PRO',
+      fetchedData: proFetchedData,
       features: professionalPlans[0].features.map(f => ({
         ...f,
-        text: typeof f === 'string' ? f : (f.text.includes('Live Webinars') ? t('plans.explorer.features.webinars') : f.text.includes('Live Video') ? t('plans.explorer.features.videoSession') : t(`plans.explorer.features.${f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('4K') && f.text.includes('2 CONCURRENT') ? 'resolution4k' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('IMAGE EDITING') ? 'imageEditing' : f.text.includes('LIMITED UPSCALING') ? 'limitedUpscaling' : 'creditTopUps'}`)),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-      targetAudience: t('plans.explorer.targetAudience'),
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const) // Set cycle based on toggle
-    }
-
-    // Business (Old Pro)
-    const baseProPlan = professionalPlans[1]
-    const businessPlan = {
-      ...baseProPlan,
-      name: 'BUSINESS', // The user called it Business, we can hardcode or use translation if exists. Let's hardcode 'BUSINESS' for now
-      popular: true,
-      badgeTextKey: 'bestOffer',
-      fetchedData: proFetchedData,
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
-      features: baseProPlan.features.map(f => ({
-        ...f,
-        text: typeof f === 'string' ? f : (f.text.includes('Live Webinars') ? t('plans.pro.features.webinars') : f.text.includes('Live Video') ? t('plans.pro.features.videoSession') : t(`plans.pro.features.${f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4K') ? 'resolution4k' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('EDIT BY CHAT') ? 'editByChat' : f.text.includes('HIGH-END') ? 'highEndResults' : f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : f.text.includes('ONBOARDING CALL') ? 'onboardingCall' : f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k'}`)),
+        text: mapFeatureText(f),
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
       })),
       targetAudience: t('plans.pro.targetAudience'),
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const) // Set cycle based on toggle
+    }
+
+    // Business
+    const baseBusinessPlan = professionalPlans[1]
+    const businessPlan = {
+      ...baseBusinessPlan,
+      name: 'BUSINESS',
+      popular: true,
+      badgeTextKey: 'bestOffer',
+      fetchedData: businessFetchedData,
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
+      features: baseBusinessPlan.features.map(f => ({
+        ...f,
+        text: mapFeatureText(f),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: t('plans.business.targetAudience'),
     }
 
     // Enterprise
@@ -898,16 +943,6 @@ export function ManyChatPricingSection({
 
           {isYearly && (
             <div className='flex flex-col gap-1 mb-8 text-center'>
-              <p
-                className='text-black text-xl font-bold uppercase'
-              >
-                {t('temporaryOfferTitle')}
-              </p>
-              <p
-                className='text-black dark:text-white text-2xl sm:text-3xl md:text-[38px] font-black tracking-tight leading-tight'
-              >
-                {t('temporaryOfferSubtitle')}
-              </p>
             </div>
           )}
         </div>
@@ -920,7 +955,7 @@ export function ManyChatPricingSection({
                 plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                 isYearly={isYearly}
                 isProfessional={false}
-                isEurope={isEurope}
+                isEurope={planCurrency === 'eur'}
                 currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                 onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
                 promoDiscount={eduPromoDiscount}
@@ -1071,7 +1106,7 @@ export function ManyChatPricingSection({
             </div>
           </div> */}
 
-            <div className='flex justify-center mb-8 w-full '>
+            {/* <div className='flex justify-center mb-8 w-full '>
               <div className={`${profPromoDiscount ? 'border-red-500' : 'border-black'} max-w-2xl w-full text-xs text-gray-500 text-center border  py-3`}>
                 {profPromoDiscount ? (
                   <span className='text-red-600'>
@@ -1088,26 +1123,9 @@ export function ManyChatPricingSection({
                   </span>
                 )}
               </div>
-            </div>
+            </div> */}
         </div>
         <div className='flex flex-col gap-1 mb-8 text-center'>
-          <div className='flex items-center justify-center gap-2'>
-            <div className='flex flex-col gap-1 items-center'>
-              <p
-                className='text-black text-xl font-bold uppercase'
-              >
-                {t('temporaryOfferTitle')}
-              </p>
-              <p
-                className='text-black dark:text-white text-2xl sm:text-3xl md:text-[38px] font-black tracking-tight leading-tight'
-              >
-                {t('temporaryOfferSubtitle')}
-              </p>
-            </div>
-            <div className='w-40 h-40 rotate-[-50deg] hidden md:block '>
-              <Lottie animationData={HandDrawnArrow} loop={true} className='w-40 h-40' />
-            </div>
-          </div>
         </div>
 
         {/* Professional Plans Cards */}
@@ -1129,7 +1147,7 @@ export function ManyChatPricingSection({
                     plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
                     isYearly={isYearly}
                     isProfessional={true}
-                    isEurope={isEurope}
+                    isEurope={planCurrency === 'eur'}
                     currencySymbol={planCurrency === 'eur' ? '€' : '$'}
                     onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
                     promoDiscount={profPromoDiscount}
@@ -1542,25 +1560,33 @@ function PricingCard({
         }
       }
 
-      // EXPLORER (Now Pro)
-      if (profPlan.planType === 'EXPLORER') {
+      // PRO
+      if (profPlan.planType === 'PRO') {
         let mainPrice = isEurope
           ? profPlan.monthlyPrice?.eur || ''
           : profPlan.monthlyPrice?.usd || ''
         
+        let billingInfo = t('billedMonthly')
+        let discount = undefined
+
         // If yearly, multiply by 12 or use yearly equivalent if available
         if (profPlan.billingCycle === 'yearly') {
-          // If we had fetched data for EXPLORER yearly, we would use it, but typically it was monthly only.
-          // Let's multiply by 12 for the yearly cycle for display purposes, or use fetched if available.
           if (fetchedData && fetchedData.prices?.yearly) {
              const yPrice = fetchedData.prices.yearly
              mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
+             billingInfo = `${t('billedYearly')} (${currencySymbol}${yPrice / 100}/year)`
           } else {
-             // Basic fallback multiplying string numbers
-             const num = parseInt(mainPrice.replace(/[^0-9]/g, ''), 10)
-             if (!isNaN(num)) {
-               mainPrice = `${currencySymbol}${num}`
-             }
+             mainPrice = isEurope ? profPlan.yearlyMonthlyPrice?.eur || '' : profPlan.yearlyMonthlyPrice?.usd || ''
+             const yPriceTotal = isEurope ? profPlan.yearlyPrice?.eur || '' : profPlan.yearlyPrice?.usd || ''
+             billingInfo = `${t('billedYearly')} (${yPriceTotal}/year)`
+          }
+          
+          const d = profPlan.discount?.yearly
+          if (d && d.periodDiscountPercent != null) {
+            discount = {
+              periodDiscountPercent: d.periodDiscountPercent,
+              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
+            }
           }
         } else {
           if (fetchedData && fetchedData.prices?.monthly) {
@@ -1576,13 +1602,14 @@ function PricingCard({
         return {
           mainPrice: mainPrice,
           period: '/month',
-          billingInfo: profPlan.billingCycle === 'yearly' ? t('billedYearly') : t('billedMonthly'),
+          billingInfo: billingInfo,
+          discount: discount,
           stripePriceId,
         }
       }
 
-      // PRO (Now Business)
-      if (profPlan.planType === 'PRO') {
+      // BUSINESS
+      if (profPlan.planType === 'BUSINESS') {
         const billingCycle = profPlan.billingCycle || (isYearly ? 'yearly' : 'monthly')
         const proWithDiscount = profPlan as (typeof professionalPlans)[1] & {
           fetchedData?: any
@@ -1911,11 +1938,6 @@ function PricingCard({
             {isVat && (
               <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('plusVat')}
-              </div>
-            )}
-            {isProfessional && !promoDiscount && (
-              <div className='text-emerald-600 font-semibold mt-1.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                {t('freeTrial')}
               </div>
             )}
           </div>

@@ -9,11 +9,13 @@ import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { BarChart3 } from 'lucide-react'
 
 const TRIGGER_DELAY_MS = 30000 // Set to 30s as requested
 
 export default function BeforeYouGoPopup() {
   const t = useTranslations('BeforeYouGo')
+  const tDemo = useTranslations('BookingDemoClassForm')
   const tPricing = useTranslations('Pricing')
 
   const [isOpen, setIsOpen] = useState(false)
@@ -279,13 +281,21 @@ export default function BeforeYouGoPopup() {
 
                     {/* Body */}
                     <p
-                      className='text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 text-white/90 font-normal'
+                      className='text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 text-white/90 font-normal'
                       style={{ fontFamily: 'sans-serif' }}
                     >
                       {t('body')}
                     </p>
 
-                    {/* Offer highlights removed for new initial consultation text */}
+                    {/* Feature Highlight */}
+                    <div className='flex items-center gap-3 mb-4 sm:mb-6'>
+                      <div className='w-6 h-6 bg-white/5 flex items-center justify-center flex-shrink-0 rounded-none border border-white/10'>
+                        <BarChart3 className='w-3 h-3 text-white' strokeWidth={1.5} />
+                      </div>
+                      <span className='text-[13px] font-medium text-white/90 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+                        {tDemo('cta.point4')}
+                      </span>
+                    </div>
 
                     {/* Unified Form */}
                     <form onSubmit={handleSubmit} className='mt-2'>
