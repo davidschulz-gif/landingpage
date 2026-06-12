@@ -336,7 +336,7 @@
     "first6MonthsCharged": "{amount} ersten 6 Monate abgerechnet",
     "firstYearCharged": "{amount} jährlich abgerechnet",
     "discountBadge": "-50% Spare {amount}",
-    "periodDiscountBadge": "Off {percent}% as compare to monthly",
+    "periodDiscountBadge": "Discount {percent}%; Save {amount}",
     "bestDealBanner": "Unser bester Deal — nur für kurze Zeit.",
     "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
     "plans": {
