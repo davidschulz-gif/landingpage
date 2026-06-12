@@ -63,7 +63,7 @@ const professionalPlans = [
     features: [
       { text: '1000 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
-      { text: '4 CONCURRENT JOBS', hasFeature: true },
+      // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
@@ -113,7 +113,7 @@ const professionalPlans = [
     features: [
       { text: '5000 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
-      { text: '4 CONCURRENT JOBS', hasFeature: true },
+      // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
@@ -132,7 +132,7 @@ const professionalPlans = [
     planType: 'ENTERPRISE',
     features: [
       { text: 'CUSTOM CREDITS', hasFeature: true },
-      { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
+      // { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
       { text: 'DEDICATED SUPPORT', hasFeature: true },
       { text: 'CUSTOM INTEGRATIONS', hasFeature: true },
     ],
@@ -715,7 +715,7 @@ export function ManyChatPricingSection({
       ...baseBusinessPlan,
       name: 'BUSINESS',
       popular: true,
-      badgeTextKey: 'bestOffer',
+      badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
       fetchedData: businessFetchedData,
       billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
       features: baseBusinessPlan.features.map(f => ({
@@ -1831,7 +1831,7 @@ function PricingCard({
 
   return (
     <div
-      className='flex h-[720px] mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group'
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[720px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
@@ -1979,8 +1979,11 @@ function PricingCard({
       {/* Button Section - Fixed at Bottom */}
       <div className='mt-auto'>
         {plan.id === 'enterprise' ? (
-          <Link
-            href="mailto:contact@typus.ai" // Or redirect to a contact form
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent('open-before-you-go'));
+            }}
             className='bg-black text-white cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
@@ -1988,7 +1991,7 @@ function PricingCard({
           >
             {/* Provide simple translation fallback */}
             {t('enterpriseBookCall')}
-          </Link>
+          </button>
         ) : (
           <Button
             onClick={() => onSubscribe(plan, priceInfo)}

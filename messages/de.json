@@ -304,7 +304,7 @@
   "Pricing": {
     "selectPlanCTA": "Abo auswählen & loslegen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
-    "selfServiceTitle": "KI App für Architekten - Self ServiceZufriedenheitsgarantie über Live Webinars. Wir schulen Sie oder Ihre Mitarbeitenden",
+    "selfServiceTitle": "KI App für Architekten - Zufriedenheitsgarantie über Live Webinars. Wir schulen Sie oder Ihre Mitarbeitenden",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Kostenloses Erstgespräch",
@@ -463,7 +463,7 @@
       }
     },
     "creditDeduction": {
-      "title": "credit deduction overview",
+      "title": "Credit-Abzug Übersicht",
       "imageGeneration": "Bilderstellung",
       "videoGeneration": "Videoerstellung",
       "imageUpscaling": "Bild Hochskalierung",

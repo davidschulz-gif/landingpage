@@ -114,6 +114,19 @@ export default function BeforeYouGoPopup() {
     }
   }, [mounted, isOpen])
 
+  // Custom Event listener
+  useEffect(() => {
+    if (!mounted) return
+
+    const handleCustomEvent = () => {
+      console.warn('BYG Event- custom event open-before-you-go triggered')
+      show('Custom Event')
+    }
+
+    window.addEventListener('open-before-you-go', handleCustomEvent)
+    return () => window.removeEventListener('open-before-you-go', handleCustomEvent)
+  }, [mounted, isOpen])
+
   const handleClose = () => {
     setIsOpen(false)
     // Reset form state when closed

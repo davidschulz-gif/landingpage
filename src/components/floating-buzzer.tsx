@@ -34,19 +34,8 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
       window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }));
       return;
     }
-    const element = document.getElementById('booking-form')
-    if (element) {
-      const offset = 80 // Offset for navbar
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = element.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      const offsetPosition = elementPosition - offset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
+    
+    window.dispatchEvent(new CustomEvent('open-before-you-go'));
   }
 
   return (
@@ -75,7 +64,7 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
             style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
             aria-label={t('text')}
           >
-            <BarChart3 className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
+            <PhoneCall className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />
             <span className="relative font-bold text-sm md:text-base uppercase tracking-widest whitespace-nowrap overflow-hidden max-w-0 opacity-0 group-hover:max-w-[1200px] group-hover:opacity-100 transition-all duration-500 ease-in-out pl-0 group-hover:pl-4">
               {t('text')}
             </span>
