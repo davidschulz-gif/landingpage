@@ -11,7 +11,8 @@ import {
   IconMail,
 } from '@tabler/icons-react'
 import { apiUrl } from '@/lib/constants'
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 interface ShareShowcaseModalProps {
   isOpen: boolean
   onClose: () => void
@@ -21,6 +22,7 @@ interface ShareShowcaseModalProps {
 
 export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowcaseModalProps) {
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -39,9 +41,10 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const trimmed = email.trim()
+    const trimmedPhone = phone.trim()
 
-    if (!trimmed) {
-      setErrorMessage(errorRequired)
+    if (!trimmed || !trimmedPhone) {
+      setErrorMessage(isDe ? 'Bitte geben Sie E-Mail und Telefonnummer ein.' : 'Please enter email and phone number.')
       return
     }
     if (!validateEmail(trimmed)) {
@@ -62,7 +65,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({ email: trimmed }),
+        body: JSON.stringify({ email: trimmed, phone: trimmedPhone }),
         signal: controller.signal,
       })
 
@@ -86,6 +89,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
           event: 'subscribe',
           user_data: {
             email: trimmed,
+            phone: trimmedPhone,
           },
         })
       }
@@ -219,8 +223,8 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                 {/* Form */}
                 <form onSubmit={handleEmailSubmit} className='w-full text-left font-sans'>
                   {/* Email input + Submit button (side-by-side) */}
-                  <div className="flex flex-col sm:flex-row gap-3 mb-4 w-full">
-                    <div className="flex-grow relative">
+                  <div className="flex flex-col  gap-3 mb-4 w-full">
+                    <div className="flex-1 min-w-0 relative">
                       <input
                         type='email'
                         placeholder={t('viewFreeEmailPlaceholder')}
@@ -234,11 +238,27 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                         required
                       />
                     </div>
+                    
+                    <div className="flex-1 min-w-0 phone-input-container">
+                      <PhoneInput
+                        country={'de'}
+                        value={phone}
+                        onChange={p => setPhone(p)}
+                        enableSearch={true}
+                        placeholder={isDe ? 'Telefonnummer' : 'Phone number'}
+                        containerClass="w-full flex"
+                        inputClass="!w-full !flex-1 !border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !text-sm !text-black dark:!text-white !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-full min-h-[44px] sm:min-h-[48px] !rounded-lg sm:!rounded-xl"
+                        buttonClass="!border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !rounded-l-lg sm:!rounded-l-xl"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </div>
 
+                  <div className="flex justify-center mb-4">
                     <button
                       type='submit'
                       disabled={isSubmitting}
-                      className='flex items-center justify-center shrink-0 sm:w-auto px-6 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-black dark:text-white hover:bg-neutral-50 dark:hover:bg-neutral-800 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-lg sm:rounded-xl shadow-sm gap-2'
+                      className='flex items-center justify-center w-full sm:w-auto px-8 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-lg sm:rounded-xl shadow-sm gap-2'
                     >
                       {isSubmitting && <IconLoader2 className="animate-spin size-4" />}
                       <span>{t('viewFreeCta')}</span>
