@@ -262,8 +262,8 @@ export function ManyChatPricingSection({
   const [pendingOrderData, setPendingOrderData] = useState<any>(null)
   const [onboardingData, setOnboardingData] = useState<any>(null)
   const [marketingConsent, setMarketingConsent] = useState(true)
-  const [privacyConsent, setPrivacyConsent] = useState(true)
-  const [termsConsent, setTermsConsent] = useState(true)
+  const [privacyConsent, setPrivacyConsent] = useState(false)
+  const [termsConsent, setTermsConsent] = useState(false)
 
   const router = useRouter()
   const tModal = useTranslations('SubscriptionModal')
@@ -1351,7 +1351,7 @@ export function ManyChatPricingSection({
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='bg-black p-8 shadow-2xl flex flex-col gap-6 max-w-md w-full relative'
+              className='bg-black p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative'
             >
               <button
                 className='absolute top-4 right-4 text-white hover:text-white transition-colors'
@@ -1409,7 +1409,7 @@ export function ManyChatPricingSection({
                     </span>
                   </label>
 
-                  {/* <label className='flex items-start gap-3 cursor-pointer group'>
+                  <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
                       type='checkbox'
                       className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
@@ -1422,11 +1422,6 @@ export function ManyChatPricingSection({
                     />
                     <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
                       {tModal.rich('agbPrivacyConsent', {
-                        termsLink: (chunks) => (
-                          <Link href='https://app.typus.ai/terms' target='_blank' className='text-white underline hover:text-gray-200'>
-                            {chunks}
-                          </Link>
-                        ),
                         privacyPolicy: (chunks) => (
                           <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
                             {chunks}
@@ -1434,7 +1429,7 @@ export function ManyChatPricingSection({
                         )
                       })}
                     </span>
-                  </label> */}
+                  </label>
                 </div>
 
                 <div className='flex flex-col gap-3 mt-4'>
