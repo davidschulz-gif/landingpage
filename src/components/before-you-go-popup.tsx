@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { BarChart3 } from 'lucide-react'
+import Link from 'next/link'
 
 const TRIGGER_DELAY_MS = 30000 // Set to 30s as requested
 
@@ -24,6 +25,7 @@ export default function BeforeYouGoPopup() {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [isConsented, setIsConsented] = useState(false)
+  const [marketingConsent, setMarketingConsent] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; phone?: string; consent?: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -371,12 +373,42 @@ export default function BeforeYouGoPopup() {
                             />
                           </div>
                           <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
-                            {t('privacyConsent')}
+                            {t.rich('privacyConsent', {
+                              privacyPolicy: (chunks) => (
+                                <Link href='https://app.typus.ai/data-privacy' target='_blank' className='underline hover:text-white transition-colors'>
+                                  {chunks}
+                                </Link>
+                              )
+                            })}
                           </span>
                         </label>
                         {errors.consent && (
                           <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
                         )}
+                      </div>
+
+                      {/* Marketing consent checkbox */}
+                      <div className='mb-4 sm:mb-6'>
+                        <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
+                          <div className='relative flex items-center mt-0.5 shrink-0'>
+                            <input
+                              type='checkbox'
+                              checked={marketingConsent}
+                              onChange={(e) => setMarketingConsent(e.target.checked)}
+                              disabled={isSubmitting}
+                              className='peer hidden'
+                            />
+                            <div className='w-4 h-4 border border-white/40 peer-checked:bg-white peer-checked:border-white transition-all duration-200' />
+                            <IconCheck
+                              size={12}
+                              className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
+                              strokeWidth={3}
+                            />
+                          </div>
+                          <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
+                            {t('marketingConsent')}
+                          </span>
+                        </label>
                       </div>
 
                       {/* Submit button */}
