@@ -23,8 +23,8 @@ const teamMembers = [
   },
   {
     id: 'adavkayser',
-    role: 'Account Managerin',
-    name: 'Ada von Kayser',
+    role: 'ACCOUNT MANAGERIN',
+    name: 'ADA VON KAYSER',
     image: '/team/adavkayser.jpeg',
     linkedin: 'https://www.linkedin.com/in/adavkayser/'
   },

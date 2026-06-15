@@ -103,11 +103,11 @@ export const DoneForYouCombinedSection = () => {
             viewport={{ once: true, margin: '-50px' }}
           >
             <div className='w-full space-y-6'>
-              <h4
+              {/* <h4
                 className='text-lg md:text-xl font-bold text-black dark:text-white font-space-grotesk text-center lg:text-left'
               >
                 {tPricing('bookDemo')}
-              </h4>
+              </h4> */}
 
               <div className='bg-white dark:bg-black w-full p-6 lg:p-12 shadow-[0_10px_40px_rgba(0,0,0,0.02)] border border-neutral-100 dark:border-neutral-900 rounded-none'>
                 <BookingDemoClassForm showTitle={false} />

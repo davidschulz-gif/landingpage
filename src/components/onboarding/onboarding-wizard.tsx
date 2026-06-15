@@ -15,21 +15,30 @@ interface OnboardingWizardProps {
     locale: string
     onComplete: (data: any) => void
     onCancel: () => void
+    initialData?: any
 }
 
-export default function OnboardingWizard({ email, locale, onComplete, onCancel }: OnboardingWizardProps) {
+export default function OnboardingWizard({ email, locale, onComplete, onCancel, initialData }: OnboardingWizardProps) {
     const t = getOnboardingTranslations(locale)
     const [showErrors, setShowErrors] = useState(false)
+    let defaultFirstName = initialData?.firstName || ''
+    let defaultLastName = initialData?.lastName || ''
+    if (!defaultFirstName && !defaultLastName && initialData?.fullName) {
+        const parts = initialData.fullName.split(' ')
+        defaultFirstName = parts[0] || ''
+        defaultLastName = parts.slice(1).join(' ') || ''
+    }
+
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        companyName: '',
-        phoneNumber: '',
-        streetAndNumber: '',
-        city: '',
-        postcode: '',
-        state: '',
-        country: '',
+        firstName: defaultFirstName,
+        lastName: defaultLastName,
+        companyName: initialData?.onboarding?.companyName || initialData?.companyName || '',
+        phoneNumber: initialData?.onboarding?.phoneNumber || initialData?.onboarding?.phone || initialData?.phoneNumber || initialData?.phone || '',
+        streetAndNumber: initialData?.onboarding?.streetAndNumber || initialData?.streetAndNumber || '',
+        city: initialData?.onboarding?.city || initialData?.city || '',
+        postcode: initialData?.onboarding?.postcode || initialData?.onboarding?.postalCode || initialData?.postcode || initialData?.postalCode || '',
+        state: initialData?.onboarding?.state || initialData?.state || '',
+        country: initialData?.onboarding?.country || initialData?.country || '',
     })
 
     const handleNext = () => {

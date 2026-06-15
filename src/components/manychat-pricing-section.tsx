@@ -508,11 +508,10 @@ export function ManyChatPricingSection({
       setIsModalOpen(false)
       setShowTrialWarning(false)
 
-      if (verifyData.existsUser || verifyData.existsPublicOnBoarding) {
-        await handleOnboardingComplete(verifyData.data || null)
-      } else {
-        setShowOnboarding(true)
+      if (verifyData.data) {
+        setOnboardingData(verifyData.data)
       }
+      setShowOnboarding(true)
     } catch (error: any) {
       console.error('Checkout error:', error)
       const errorMessage = error.message || 'An unexpected error occurred'
@@ -1530,6 +1529,7 @@ export function ManyChatPricingSection({
         <OnboardingWizard
           email={userEmail}
           locale={locale}
+          initialData={onboardingData}
           onComplete={handleOnboardingComplete}
           onCancel={() => setShowOnboarding(false)}
         />
