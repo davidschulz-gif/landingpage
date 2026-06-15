@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import OnboardingWizard from './onboarding/onboarding-wizard'
+import { OrderOverviewModal } from './order-overview-modal'
 import { TestimonialsSection } from './testimonials-section'
 import Lottie from 'lottie-react'
 import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
@@ -257,6 +258,8 @@ export function ManyChatPricingSection({
   const [showTrialWarning, setShowTrialWarning] = useState(false)
   const [showKickOffModal, setShowKickOffModal] = useState(false)
   const [showOnboarding, setShowOnboarding] = useState(false)
+  const [showOrderModal, setShowOrderModal] = useState(false)
+  const [pendingOrderData, setPendingOrderData] = useState<any>(null)
   const [onboardingData, setOnboardingData] = useState<any>(null)
   const [marketingConsent, setMarketingConsent] = useState(true)
   const [privacyConsent, setPrivacyConsent] = useState(false)
@@ -624,6 +627,27 @@ export function ManyChatPricingSection({
         console.log('🎯 Final Tracking Cookies (including GCLID):', trackingCookies);
         return trackingCookies;
       };
+
+      if (selectedPlanForModal.planType === 'PRO' || selectedPlanForModal.planType === 'BUSINESS') {
+        const planId = `${selectedPlanForModal.planType.toLowerCase()}-${selectedPlanForModal.billingCycle.toLowerCase()}`
+        
+        const checkoutData = {
+          priceId: selectedPlanForModal.priceId,
+          email: userEmail,
+          isEducational: selectedPlanForModal.isEducational,
+          discountId: selectedPlanForModal.isEducational ? eduPromoDiscount?.couponId : profPromoDiscount?.couponId,
+          code: selectedPlanForModal.isEducational ? eduPromoCode : profPromoCode,
+          billingCycle: mappedBillingCycle,
+          planType: selectedPlanForModal.planType,
+          trackingCookies: getTrackingCookies()
+        }
+        
+        setPendingOrderData({ planId, checkoutData })
+        setShowOrderModal(true)
+        // Hide onboarding if it was open
+        setShowOnboarding(false)
+        return
+      }
 
       const response = await fetch(`${apiBaseUrl}checkout`, {
         method: 'POST',
@@ -1497,7 +1521,17 @@ export function ManyChatPricingSection({
         )}
       </AnimatePresence>
       <FloatingBuzzer triggerPopup={false} />
-      {showOnboarding && (
+
+      {showOrderModal && pendingOrderData && (
+        <OrderOverviewModal
+          locale={locale}
+          planId={pendingOrderData.planId}
+          checkoutData={pendingOrderData.checkoutData}
+          onClose={() => setShowOrderModal(false)}
+        />
+      )}
+
+      {showOnboarding && !showOrderModal && (
         <OnboardingWizard
           email={userEmail}
           locale={locale}

@@ -2596,11 +2596,12 @@
   },
   "ThankYou": {
     "title": "Thank You!",
+    "contractUrl":"DOWNLOAD CONTRACT CONFIRMATION",
     "message": "Your purchase was successful. You can now go ahead and use the app.",
     "orderReference": "Order reference",
     "backToHome": "Return to Home",
     "createAccount": "Create Account",
-    "logIn": "Log In",
+    "logIn": "CREATE ACCOUNT",
     "doNotHavePlan": "Do not have a plan",
     "detailsTitle": "Purchase Details",
     "name": "Name",
@@ -2608,7 +2609,8 @@
     "transactionId": "Transaction ID",
     "amount": "Amount",
     "currency": "Currency",
-    "plan": "Plan"
+    "plan": "Plan",
+    "loading": "Loading..."
   },
   "FeatureShowcase": {
     "title": "Beyond Generation",

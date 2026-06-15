@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
@@ -14,6 +14,7 @@ function ThankYouContent() {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
   const [user, setUser] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Function to report conversion to Google Ads
   // const reportGoogleAdsConversion = (userData: any) => {
@@ -29,6 +30,7 @@ function ThankYouContent() {
   // };
 
   const fetchCheckoutSession = async (sessionId: string) => {
+    setIsLoading(true)
     try {
       const res = await fetch(
         `${apiUrl}/api/subscription/checkout/retrieve/${sessionId}`
@@ -57,7 +59,8 @@ function ThankYouContent() {
             quantity: s?.item?.quantity
           },
           plan: s?.item?.name, // Extracting plan name for display
-          metadata: s?.metadata // Store metadata for GTM
+          metadata: s?.metadata, // Store metadata for GTM
+          subscription: s?.subscription 
         });
 
       }
@@ -65,6 +68,8 @@ function ThankYouContent() {
     } catch (error) {
       console.error('❌ Fetch session error:', error);
       return null;
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -192,10 +197,23 @@ function ThankYouContent() {
     }
   }, [user])
 
+  if (isLoading) {
+    return (
+      <div className="min-h-[80vh] flex flex-col items-center justify-center px-4">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-gray-500 font-medium tracking-widest uppercase">
+            {t('loading')}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4">
-      <div className="max-w-md w-full text-center space-y-6">
-        <div className="flex justify-center">
+      {user &&  <div className="max-w-md w-full text-center space-y-6">
+       <div className="flex justify-center">
           <CheckCircle className="w-20 h-20 text-green-500" />
         </div>
         <h1
@@ -243,24 +261,30 @@ function ThankYouContent() {
           </div>
         )}
 
-        <div className="pt-8">
-          {user?.email ? <Link href={`${appUrl}/login?email=${encodeURIComponent(user?.email)}`}>
-            <Button
-              className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-            >
-              {t('logIn')}
-            </Button>
-          </Link> : <Link href={`${landingPageUrl}/pricing`}>
-            <Button
-              className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-            >
-              {t('doNotHavePlan')}
-            </Button>
-          </Link>}
+        <div className="pt-8 flex flex-col items-center gap-4">
+          {user?.email && (
+            <Link href={`${appUrl}/login?email=${encodeURIComponent(user?.email)}`}>
+              <Button
+                className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
+                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              >
+                {t('logIn')}
+              </Button>
+            </Link>
+          ) }
+
+          {user?.subscription && (
+            <Link href={`${user?.subscription?.contractUrl}`} target="_blank" rel="noopener noreferrer">
+              <Button
+                className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
+                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              >
+                {t('contractUrl')}
+              </Button>
+            </Link>
+          )}
         </div>
-      </div>
+      </div>}
     </div>
   )
 }

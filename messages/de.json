@@ -2596,10 +2596,11 @@
   },
   "ThankYou": {
     "title": "Vielen Dank!",
+    "contractUrl":"VERTRAGSBESTÄTIGUNG HERUNTERLADEN",
     "message": "Ihr Kauf war erfolgreich. Sie können die App jetzt nutzen.",
     "orderReference": "Bestellreferenz",
     "backToHome": "Zurück zur Startseite",
-    "logIn": "Anmelden",
+    "logIn": "ACCOUNT ERSTELLEN",
     "createAccount": "Konto erstellen",
     "doNotHavePlan": "Haben Sie keinen Plan?",
     "detailsTitle": "Kaufdetails",
@@ -2608,7 +2609,8 @@
     "transactionId": "Transaktions-ID",
     "amount": "Betrag",
     "currency": "Währung",
-    "plan": "Plan"
+    "plan": "Plan",
+    "loading": "Lade..."
   },
   "FeatureShowcase": {
     "title": "Über die Generierung hinaus",
