@@ -345,7 +345,7 @@ export function getOrderPageData(planId: string, locale: string) {
         'Knowledge of and consent to the Terms and Conditions'
       ],
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Hinweis' : 'Note',
+      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
         isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (PRO)' : 'Conclusion of a paid SaaS subscription (PRO)',
         isDe ? 'Mindestvertragslaufzeit von 12 Monaten' : 'Minimum contract term of 12 months',
@@ -521,7 +521,7 @@ export function getOrderPageData(planId: string, locale: string) {
         'Knowledge of and consent to the Terms and Conditions'
       ],
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Hinweis' : 'Note',
+      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
         isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (BUSINESS)' : 'Conclusion of a paid SaaS subscription (BUSINESS)',
         isDe ? 'Mindestvertragslaufzeit von 12 Monaten' : 'Minimum contract term of 12 months',
