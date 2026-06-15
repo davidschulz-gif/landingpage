@@ -246,7 +246,7 @@ export function SiegristTestimonialSection() {
                     </div>
 
                     {/* Lead Paragraph with thick vertical red line */}
-                    <p className="text-[17px] md:text-lg font-bold leading-relaxed text-neutral-950 font-rail mb-4  py-1 select-none">
+                    <p className="whitespace-pre-line text-[17px] md:text-lg font-bold leading-relaxed text-neutral-950 font-rail mb-4  py-1 select-none">
                         {renderHighlightedText(t('p1'))}
                     </p>
 
