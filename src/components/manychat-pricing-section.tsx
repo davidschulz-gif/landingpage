@@ -1154,7 +1154,7 @@ export function ManyChatPricingSection({
 
         {/* Professional Plans Cards */}
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
-            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd]'>
+            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd] rounded-2xl overflow-hidden'>
               <BookingDemoClassFormForPricingPage />
             </div>
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-4 xl:gap-8'>
@@ -1860,7 +1860,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[720px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group`}
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[720px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
@@ -2006,14 +2006,14 @@ function PricingCard({
       </div>
 
       {/* Button Section - Fixed at Bottom */}
-      <div className='mt-auto'>
+      <div className='mt-auto '>
         {plan.id === 'enterprise' ? (
           <button
             onClick={(e) => {
               e.preventDefault();
               window.dispatchEvent(new CustomEvent('open-before-you-go'));
             }}
-            className='bg-black text-white cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
+            className='bg-black text-white cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}
@@ -2024,7 +2024,7 @@ function PricingCard({
         ) : (
           <Button
             onClick={() => onSubscribe(plan, priceInfo)}
-            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200'
+            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}

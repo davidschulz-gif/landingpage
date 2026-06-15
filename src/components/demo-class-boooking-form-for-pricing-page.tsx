@@ -197,7 +197,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
     }
   }
 
-  const inputClasses = 'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-60 transition-all focus:border-gray-400 shadow-sm rounded-none'
+  const inputClasses = 'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-60 transition-all focus:border-gray-400 shadow-sm rounded-xl'
   const errorClasses = 'border-red-500 dark:border-red-500'
 
   const ErrorMessage = ({ error }: { error: string | null }) => {
@@ -286,7 +286,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             <IconArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
             <span>{t('backAction')}</span>
           </button>
-          <div className="w-full h-[600px] overflow-hidden rounded-none border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
+          <div className="w-full h-[600px] overflow-hidden rounded-xl border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
             <iframe
               src="https://calendar.app.google/SE4uynXtibyYmAe36"
               width="100%"
@@ -395,7 +395,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
 
           <button
             type='submit'
-            className='w-full py-3 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
+            className='w-full py-3 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-xl mt-2'
             style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             disabled={isRequesting}
           >
@@ -408,7 +408,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       {errorMessage && (
         <div
           role='alert'
-          className='mt-3 flex items-center gap-2 text-[11px] text-red-600 bg-red-50/50 p-2 border border-red-100'
+          className='mt-3 flex items-center gap-2 text-[11px] text-red-600 bg-red-50/50 p-2 border border-red-100 rounded-xl'
         >
           <IconAlertCircle size={14} />
           <span>{errorMessage}</span>
@@ -417,7 +417,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       {successMessage && (
         <div
           role='status'
-          className='mt-3 flex items-center gap-2 text-[11px] text-green-600 bg-green-50/50 p-2 border border-green-100'
+          className='mt-3 flex items-center gap-2 text-[11px] text-green-600 bg-green-50/50 p-2 border border-green-100 rounded-xl'
         >
           <IconCheck size={14} />
           <span>{successMessage}</span>
