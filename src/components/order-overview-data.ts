@@ -714,6 +714,372 @@ export function getOrderPageData(planId: string, locale: string) {
       noteTitle: isDe ? 'Hinweis' : 'Note',
       noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI BUSINESS wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI BUSINESS will be unlocked automatically after successful payment.'
     }
+  } else if (planId === 'solo-monthly') {
+    return {
+      title: isDe ? 'Typus AI SOLO – Vertragsübersicht & Bestellung' : 'Typus AI SOLO – Contract Overview & Order',
+      offer: isDe ? 'Angebot: Typus AI SOLO' : 'Offer: Typus AI SOLO',
+      audience: isDe ? 'Für Solo-Selbstständige, Architekt:innen, Designer und kreative Professionals.' : 'For solo self-employed, freelance architects, designers and creative professionals.',
+      pricingTitle: isDe ? 'Preis' : 'Price',
+      pricingMain: isDe ? '169,00 € / Monat' : '€169.00 / month',
+      pricingList: isDe ? [
+        'Monatlich abgerechnet',
+        'Zuzüglich 19 % MwSt.',
+        'Mindestvertragslaufzeit: 12 Monate'
+      ] : [
+        'Billed monthly',
+        'Plus 19% VAT',
+        'Minimum contract term: 12 months'
+      ],
+      pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für Architekturvisualisierung.' : 'Paid SaaS subscription for architectural visualization.',
+      scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+      scopeDesc: isDe ? [
+        'Typus AI SOLO ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
+        'Die Plattform ist insbesondere für Solo-Selbstständige, freiberuflich tätige Architekt, Designer und kleinere Planungseinheiten konzipiert, die Visualisierungen im Rahmen einzelner Projekte oder klar abgegrenzter Aufgabenstellungen erstellen.',
+        'Der Leistungsfokus liegt auf der effizienten Erstellung, Iteration und Verfeinerung von Architekturvisualisierungen innerhalb einzelner Projekte oder überschaubarer Projektkontexte.',
+        'Typus AI PRO ist darauf ausgelegt, einen flexiblen kreativen Arbeitsprozess zu unterstützen und eine schnelle Umsetzung sowie Optimierung einzelner Visualisierungsaufgaben zu ermöglichen, ohne den Fokus auf umfangreiche Parallelisierung oder großvolumige Produktionspipelines zu legen.',
+        'Die Plattform verwendet KI-Modelle von Drittanbietern, die kontinuierlich entsprechend dem aktuellen Stand der Technik aktualisiert und weiterentwickelt werden. Diese Modelle werden dem Kunden in ihrer jeweils aktuellen Version innerhalb der Plattform bereitgestellt.',
+        'Typus.ai unterscheidet sich insbesondere dadurch, dass die Plattform speziell für Architektur-Anwendungen entwickelt wurde. Während generische KI-Tools meist lediglich eine einfache Prompt-Eingabe bieten und der Nutzer sämtliche Anforderungen manuell in Textform beschreiben muss, stellt Typus.ai eine speziell auf Architekten zugeschnittene Benutzeroberfläche mit intelligenten Assistenzfunktionen bereit.',
+        'Dazu gehören unter anderem:',
+        '• Intuitive Prompt-Engineering-Hilfen über strukturierte Dropdown-Menüs',
+        '• Architektur-spezifische Eingabemasken und Workflows',
+        '• Multi-Prompting-Funktionen zur gezielten Material- und Texturzuweisung',
+        '• Unterstützung bei der Weiterentwicklung eines Bildes zu konsistenten Bildserien mit Diagrammen und kohärenten Kameraperspektiven',
+        '• Interaktive Tutorials und geführte Anwendungsprozesse',
+        '• Kontinuierliche Integration der aktuell leistungsstärksten KI-Modelle am Markt'
+      ] : [
+        'Typus AI SOLO is a specialized software platform for AI-supported architectural visualization.',
+        'The platform is specifically designed for solo self-employed, freelance architects, designers and smaller planning units that create visualizations within individual projects or clearly defined tasks.',
+        'The performance focus is on the efficient creation, iteration and refinement of architectural visualizations within individual projects or manageable project contexts.',
+        'Typus AI PRO is designed to support a flexible creative work process and enable the rapid implementation and optimization of individual visualization tasks without focusing on extensive parallelization or large-volume production pipelines.',
+        'The platform uses third-party AI models that are continuously updated and further developed in accordance with the current state of the art. These models are made available to the customer in their respective current versions within the platform.',
+        'Typus.ai differs in particular in that the platform was developed specifically for architectural applications. While generic AI tools mostly only offer a simple prompt input and the user has to describe all requirements manually in text form, Typus.ai provides a user interface specially tailored to architects with intelligent assistance functions.',
+        'These include:',
+        '• Intuitive prompt engineering aids via structured drop-down menus',
+        '• Architecture-specific input masks and workflows',
+        '• Multi-prompting functions for targeted material and texture assignment',
+        '• Support in further developing an image into consistent image series with diagrams and coherent camera perspectives',
+        '• Interactive tutorials and guided application processes',
+        '• Continuous integration of the currently most powerful AI models on the market'
+      ],
+      creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+      creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+      includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+      includedCreditsMain: isDe ? '500 Credits pro Monat' : '500 Credits per month',
+      includedCreditsSub: null,
+      creditNoticeTitle: isDe ? 'Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+      creditNoticeDesc: isDe ? 'Im Solo-Abonnement können nicht genutzte Credits in die Folgemonate übertragen und für bis zu drei aufeinanderfolgende Abrechnungsmonate (ein Quartal) angespart werden. Nach Ablauf von drei Monaten ab ihrer jeweiligen Gutschrift verfallen die betreffenden Credits automatisch.' : 'In the Solo subscription, unused credits can be carried over to the following months and saved for up to three consecutive billing months (one quarter). After three months from their respective credit, the relevant credits expire automatically.',
+      creditNoticeListTitle: isDe ? 'Nicht genutzte Credits:' : 'Unused credits:',
+      creditNoticeList: isDe ? [
+        'können innerhalb eines Zeitraums von bis zu drei Monaten kumuliert werden,',
+        'verfallen nach Ablauf von drei Monaten,',
+        'sind nicht auszahlbar und nicht auf andere Nutzerkonten übertragbar.'
+      ] : [
+        'can be accumulated within a period of up to three months,',
+        'expire after three months,',
+        'are not paid out and not transferable to other user accounts.'
+      ],
+      creditNoticeFooter: null,
+      extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+      extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem oder projektbedingt gesteigertem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased or project-related demand, there is the possibility to purchase additional credits separately.',
+      extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+      extraCreditsList: isDe ? [
+        'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+        'können flexibel im Rahmen der Plattform genutzt werden',
+        'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+      ] : [
+        'are credited to the user account immediately',
+        'can be used flexibly within the platform',
+        'are valid and transferable beyond the respective billing month'
+      ],
+      extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+      tables: [
+        {
+          title: isDe ? 'Bilderstellung' : 'Image Generation',
+          items: isDe ? ['1K → 3 Credits', '2K → 9 Credits', '4K → 15 Credits'] : ['1K → 3 Credits', '2K → 9 Credits', '4K → 15 Credits']
+        },
+        {
+          title: isDe ? 'Videoerstellung' : 'Video Generation',
+          items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+        },
+        {
+          title: 'Upscaling',
+          items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+        }
+      ],
+      usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+      usageCategoryDesc: isDe ? [
+        'Die enthaltenen 5.000 Credits ermöglichen eine deutlich erhöhte Nutzung gegenüber dem PRO-Tarif und sind für den professionellen Büro- und Projektbetrieb ausgelegt.',
+        'Die Richtwerte entsprechen ca. 30–150 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
+        'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
+        'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
+      ] : [
+        'The included 5,000 credits enable a significantly increased usage compared to the PRO tariff and are designed for professional office and project operations.',
+        'The guidelines correspond to approx. 30-150 images per month, depending on usage, model selection, and settings.',
+        'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
+        'The actual number of generated results depends on the models used, parameters, and system load.',
+        'The credit deduction system can change if the technical requirements of the AI models used or the required computing power change.'
+      ],
+      supportTitle: isDe ? 'Support, Live-Webinare und Zufriedenheitsorientierung' : 'Support, Live Webinars and Satisfaction Orientation',
+      supportDesc: isDe ? [
+        'Es werden regelmäßig Live-Webinare zur Einführung, Schulung und Vertiefung der Plattformnutzung angeboten.',
+        'Diese Live-Webinare dienen der strukturierten Vermittlung von Anwendungswissen und Best Practices für die Nutzung von Typus AI im Bereich der Architekturvisualisierung. Gleichzeitig bieten sie den Teilnehmer die Möglichkeit, Fragen zur Anwendung, zu Workflows sowie zu projektbezogenen Einsatzszenarien zu stellen.',
+        'Die Webinare finden als Gruppen-Live-Calls mit mehreren Typus AI Kunden statt. Hierdurch entsteht ein dynamischer Austausch zwischen den Nutzer, insbesondere hinsichtlich unterschiedlicher Anwendungsfälle, Arbeitsweisen und Projektkontexte.'
+      ] : [
+        'Live webinars are regularly offered for the introduction, training, and deepening of platform usage.',
+        'These live webinars serve the structured transfer of application knowledge and best practices for the use of Typus AI in the field of architectural visualization. At the same time, they offer participants the opportunity to ask questions about the application, workflows, and project-related deployment scenarios.',
+        'The webinars take place as group live calls with several Typus AI customers. This creates a dynamic exchange between users, particularly with regard to different use cases, ways of working, and project contexts.'
+      ],
+      satisfactionTitle: isDe ? 'Hinweis zur Zufriedenheitsorientierung' : 'Note on Satisfaction Orientation',
+      satisfactionDesc: isDe ? [
+        'Die bereitgestellten Live-Webinare sowie 1:1 Sessions dienen der bestmöglichen Unterstützung der Nutzer bei der Anwendung von Typus AI und sind Ausdruck des fortlaufenden Bemühens, den Kunden einen maximalen Nutzen aus dem jeweiligen Abonnement zu ermöglichen.',
+        'Sie stellen kein garantiertes Ergebnis im Sinne einer bestimmten individuellen Erfolgserwartung dar.',
+        'Ein Anspruch auf Rückerstattung des Abonnemententgelts aufgrund der Teilnahme oder Nichtteilnahme an Webinaren oder Live-Sessions besteht nicht.',
+        'Die angebotenen Unterstützungsformate sind als freiwillige, ergänzende Serviceleistung zur Verbesserung der Anwendungserfahrung zu verstehen.'
+      ] : [
+        'The live webinars and 1:1 sessions provided serve to optimally support users in their application of Typus AI and are an expression of the ongoing effort to enable customers to gain maximum benefit from the respective subscription.',
+        'They do not constitute a guaranteed result in the sense of a specific individual expectation of success.',
+        'There is no entitlement to a refund of the subscription fee due to participation or non-participation in webinars or live sessions.',
+        'The offered support formats are to be understood as voluntary, supplementary services to improve the application experience.'
+      ],
+      includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+      includedFeaturesList: isDe ? [
+        'Erstellen von Bildern in 2K-4K Bildauflösung',
+        'Bearbeitung per Chat (Prompt-Optimierung und Iteration)',
+        'Hochwertige KI-gestützte Rendering-Ergebnisse',
+        'E-Mail Support',
+        'Onboarding Video-Call (1:1 Einführung)',
+        'Live-Webinare (2× pro Monat)'
+      ] : [
+        'Creation of images in 2K-4K resolution',
+        'Chat-based editing (Prompt optimization & iteration)',
+        'High-quality AI-supported rendering results',
+        'E-Mail Support',
+        'Onboarding Video Call (1:1 Introduction)',
+        'Live Webinars (2x per month)'
+      ],
+      fundingTitle: isDe ? 'Hinweise zur Entwicklung des Förderprojekts' : 'Notes on the Development of the Funding Project',
+      fundingDesc: isDe ? [
+        'Ein durch das EFRE-Programm der Europäischen Union für regionale Entwicklung gefördertes Forschungs- und Entwicklungsprojekt befindet sich derzeit in Entwicklung.',
+        'Dieses Projekt ist nicht Bestandteil des aktuellen Angebots und wird derzeit nicht vertrieben oder bereitgestellt, da es sich noch in der Entwicklungsphase befindet.',
+        'Die geplante Veröffentlichung ist voraussichtlich Ende 2026.',
+        'Nach Veröffentlichung ist vorgesehen, dass Kunden von Typus AI PRO als Beta-Nutzer Zugang zu diesem System erhalten können.',
+        'Details hierzu sind in den AGB geregelt.'
+      ] : [
+        'A research and development project funded by the ERDF program of the European Union for Regional Development is currently under development.',
+        'This project is not part of the current offer and is currently not distributed or provided, as it is still in the development phase.',
+        'The planned release is expected to be at the end of 2026.',
+        'After release, it may be planned that customers of Typus AI PRO can gain access to this system as beta users.',
+        'Details can be found in the Terms and Conditions.'
+      ],
+      termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+      termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein verbindlicher Nutzungsvertrag zustande.' : 'By completing the order process, a binding user agreement is formed.',
+      termsList: isDe ? [
+        'Mindestlaufzeit: 12 Monate',
+        'Kündigungsfrist: 30 Tage zum Laufzeitende',
+        'Automatische Verlängerung um weitere 12 Monate nach Ablauf der Mindestlaufzeit'
+      ] : [
+        'Minimum contract term: 12 months',
+        'Cancellation period: 30 days to the end of the term',
+        'Automatic renewal for further 12 months after expiration of the minimum term'
+      ],
+      agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+      agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+      agbList: null,
+      agbLink: agbLink,
+      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      checkboxes: [
+        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 169 € / Monat ab' : 'I am taking out a paid subscription for €169 / month',
+        isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
+        isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+      ],
+      noteTitle: isDe ? 'Hinweis' : 'Note',
+      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI will be unlocked automatically after successful payment.'
+    }
+  } else if (planId === 'solo-yearly') {
+    return {
+      title: isDe ? 'Typus AI SOLO – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI SOLO – Contract Overview & Order (Annual Billing)',
+      offer: isDe ? 'Angebot: Typus AI SOLO' : 'Offer: Typus AI SOLO',
+      audience: isDe ? 'Für Solo-Selbstständige, Architekt:innen, Designer und kreative Professionals.' : 'For solo self-employed, freelance architects, designers and creative professionals.',
+      pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
+      pricingMain: isDe ? '€135,20 / Monat (jährlich abgerechnet)' : '€135.20 / month (billed annually)',
+      pricingList: isDe ? [
+        '€1.622,40 / Jahr Gesamtbetrag',
+        'Regulärer Monatspreis: €169 (monatliche Alternative)',
+        'Ersparnis: ca. 20 % (€405,60 pro Jahr)',
+        'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
+        'Mindestvertragslaufzeit: 12 Monate',
+        'Abrechnung erfolgt jährlich im Voraus'
+      ] : [
+        '€1,622.40 / year total amount',
+        'Regular monthly price: €169 (monthly alternative)',
+        'Savings: approx. 20% (€405.60 per year)',
+        'Plus 19% statutory VAT',
+        'Minimum contract term: 12 months',
+        'Billing is done annually in advance'
+      ],
+      pricingDesc: isDe ? 'Es handelt sich um ein kostenpflichtiges Software-as-a-Service-Abonnement zur Nutzung einer KI-gestützten Plattform für Architekturvisualisierung.' : 'This is a paid Software-as-a-Service subscription for the use of an AI-supported platform for architectural visualization.',
+      scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+      scopeDesc: isDe ? [
+        'Typus AI ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
+        'Der Leistungsfokus liegt auf der effizienten Erstellung, Iteration und Verfeinerung von Architekturvisualisierungen innerhalb einzelner Projekte. Typus AI ist darauf ausgelegt, einen flexiblen kreativen Arbeitsprozess zu unterstützen und eine schnelle Umsetzung sowie Optimierung einzelner Visualisierungsaufgaben zu ermöglichen.',
+        'Die Plattform verwendet KI-Modelle von Drittanbietern, die kontinuierlich entsprechend dem aktuellen Stand der Technik aktualisiert und weiterentwickelt werden. Diese Modelle werden dem Kunden in ihrer jeweils aktuellen Version innerhalb der Plattform bereitgestellt.',
+        'Typus.ai unterscheidet sich insbesondere dadurch, dass die Plattform speziell für Architektur-Anwendungen entwickelt wurde. Während generische KI-Tools meist lediglich eine einfache Prompt-Eingabe bieten und der Nutzer sämtliche Anforderungen manuell in Textform beschreiben muss, stellt Typus.ai eine speziell auf Architekten zugeschnittene Benutzeroberfläche mit intelligenten Assistenzfunktionen bereit.',
+        'Dazu gehören unter anderem:',
+        '• Intuitive Prompt-Engineering-Hilfen über strukturierte Dropdown-Menüs',
+        '• Architektur-spezifische Eingabemasken und Workflows',
+        '• Multi-Prompting-Funktionen zur gezielten Material- und Texturzuweisung',
+        '• Unterstützung bei der Weiterentwicklung eines Bildes zu konsistenten Bildserien mit Diagrammen und kohärenten Kameraperspektiven',
+        '• Interaktive Tutorials und geführte Anwendungsprozesse',
+        '• Kontinuierliche Integration der aktuell leistungsstärksten KI-Modelle am Markt'
+      ] : [
+        'Typus AI is a specialized software platform for AI-supported architectural visualization.',
+        'The performance focus is on the efficient creation, iteration and refinement of architectural visualizations within individual projects. Typus AI is designed to support a flexible creative work process and enable rapid implementation and optimization of individual visualization tasks.',
+        'The platform uses third-party AI models that are continuously updated and further developed in accordance with the current state of the art. These models are made available to the customer in their respective current versions within the platform.',
+        'Typus.ai differs in particular in that the platform was developed specifically for architectural applications. While generic AI tools mostly only offer a simple prompt input and the user has to describe all requirements manually in text form, Typus.ai provides a user interface specially tailored to architects with intelligent assistance functions.',
+        'These include:',
+        '• Intuitive prompt engineering aids via structured drop-down menus',
+        '• Architecture-specific input masks and workflows',
+        '• Multi-prompting functions for targeted material and texture assignment',
+        '• Support in further developing an image into consistent image series with diagrams and coherent camera perspectives',
+        '• Interactive tutorials and guided application processes',
+        '• Continuous integration of the currently most powerful AI models on the market'
+      ],
+      creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+      creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+      includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+      includedCreditsMain: isDe ? '500 Credits pro Monat' : '500 Credits per month',
+      includedCreditsSub: null,
+      creditNoticeTitle: isDe ? 'Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+      creditNoticeDesc: isDe ? 'Im Solo-Abonnement können nicht genutzte Credits in die Folgemonate übertragen und für bis zu drei aufeinanderfolgende Abrechnungsmonate (ein Quartal) angespart werden. Nach Ablauf von drei Monaten ab ihrer jeweiligen Gutschrift verfallen die betreffenden Credits automatisch.' : 'In the Solo subscription, unused credits can be carried over to the following months and saved for up to three consecutive billing months (one quarter). After three months from their respective credit, the relevant credits expire automatically.',
+      creditNoticeListTitle: isDe ? 'Nicht genutzte Credits:' : 'Unused credits:',
+      creditNoticeList: isDe ? [
+        'können innerhalb eines Zeitraums von bis zu drei Monaten kumuliert werden,',
+        'verfallen nach Ablauf von drei Monaten,',
+        'sind nicht auszahlbar und nicht auf andere Nutzerkonten übertragbar.'
+      ] : [
+        'can be accumulated within a period of up to three months,',
+        'expire after three months,',
+        'are not paid out and not transferable to other user accounts.'
+      ],
+      creditNoticeFooter: null,
+      extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+      extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem oder projektbedingt gesteigertem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased or project-related demand, there is the possibility to purchase additional credits separately.',
+      extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+      extraCreditsList: isDe ? [
+        'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+        'können flexibel im Rahmen der Plattform genutzt werden',
+        'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+      ] : [
+        'are credited to the user account immediately',
+        'can be used flexibly within the platform',
+        'are valid and transferable beyond the respective billing month'
+      ],
+      extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+      tables: [
+        {
+          title: isDe ? 'Bilderstellung' : 'Image Generation',
+          items: isDe ? ['1K → 3 Credits', '2K → 9 Credits', '4K → 15 Credits'] : ['1K → 3 Credits', '2K → 9 Credits', '4K → 15 Credits']
+        },
+        {
+          title: isDe ? 'Videoerstellung' : 'Video Generation',
+          items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+        },
+        {
+          title: 'Upscaling',
+          items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+        }
+      ],
+      usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+      usageCategoryDesc: isDe ? [
+        'Die enthaltenen 5.000 Credits ermöglichen eine deutlich erhöhte Nutzung gegenüber dem PRO-Tarif und sind für den professionellen Büro- und Projektbetrieb ausgelegt.',
+        'Die Richtwerte entsprechen ca. 30–150 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
+        'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
+        'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
+      ] : [
+        'The included 5,000 credits enable a significantly increased usage compared to the PRO tariff and are designed for professional office and project operations.',
+        'The guidelines correspond to approx. 30-150 images per month, depending on usage, model selection, and settings.',
+        'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
+        'The actual number of generated results depends on the models used, parameters, and system load.',
+        'The credit deduction system can change if the technical requirements of the AI models used or the required computing power change.'
+      ],
+      supportTitle: isDe ? 'Support, Live-Webinare und Zufriedenheitsorientierung' : 'Support, Live Webinars and Satisfaction Orientation',
+      supportDesc: isDe ? [
+        'Es werden regelmäßig Live-Webinare zur Einführung, Schulung und Vertiefung der Plattformnutzung angeboten.',
+        'Diese Live-Webinare dienen der strukturierten Vermittlung von Anwendungswissen und Best Practices für die Nutzung von Typus AI im Bereich der Architekturvisualisierung. Gleichzeitig bieten sie den Teilnehmer die Möglichkeit, Fragen zur Anwendung, zu Workflows sowie zu projektbezogenen Einsatzszenarien zu stellen.',
+        'Die Webinare finden als Gruppen-Live-Calls mit mehreren Typus AI Kunden statt. Hierdurch entsteht ein dynamischer Austausch zwischen den Nutzer, insbesondere hinsichtlich unterschiedlicher Anwendungsfälle, Arbeitsweisen und Projektkontexte.'
+      ] : [
+        'Live webinars are regularly offered for the introduction, training, and deepening of platform usage.',
+        'These live webinars serve the structured transfer of application knowledge and best practices for the use of Typus AI in the field of architectural visualization. At the same time, they offer participants the opportunity to ask questions about the application, workflows, and project-related deployment scenarios.',
+        'The webinars take place as group live calls with several Typus AI customers. This creates a dynamic exchange between users, particularly with regard to different use cases, ways of working, and project contexts.'
+      ],
+      satisfactionTitle: isDe ? 'Hinweis zur Zufriedenheitsorientierung' : 'Note on Satisfaction Orientation',
+      satisfactionDesc: isDe ? [
+        'Die bereitgestellten Live-Webinare sowie 1:1 Sessions dienen der bestmöglichen Unterstützung der Nutzer bei der Anwendung von Typus AI und sind Ausdruck des fortlaufenden Bemühens, den Kunden einen maximalen Nutzen aus dem jeweiligen Abonnement zu ermöglichen.',
+        'Sie stellen kein garantiertes Ergebnis im Sinne einer bestimmten individuellen Erfolgserwartung dar.',
+        'Ein Anspruch auf Rückerstattung des Abonnemententgelts aufgrund der Teilnahme oder Nichtteilnahme an Webinaren oder Live-Sessions besteht nicht.',
+        'Die angebotenen Unterstützungsformate sind als freiwillige, ergänzende Serviceleistung zur Verbesserung der Anwendungserfahrung zu verstehen.'
+      ] : [
+        'The live webinars and 1:1 sessions provided serve to optimally support users in their application of Typus AI and are an expression of the ongoing effort to enable customers to gain maximum benefit from the respective subscription.',
+        'They do not constitute a guaranteed result in the sense of a specific individual expectation of success.',
+        'There is no entitlement to a refund of the subscription fee due to participation or non-participation in webinars or live sessions.',
+        'The offered support formats are to be understood as voluntary, supplementary services to improve the application experience.'
+      ],
+      includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+      includedFeaturesList: isDe ? [
+        'Erstellen von Bildern in 2K-4K Bildauflösung',
+        'Bearbeitung per Chat (Prompt-Optimierung und Iteration)',
+        'Hochwertige KI-gestützte Rendering-Ergebnisse',
+        'E-Mail Support',
+        'Onboarding Video-Call (1:1 Einführung)',
+        'Live-Webinare (2× pro Monat)'
+      ] : [
+        'Creation of images in 2K-4K resolution',
+        'Chat-based editing (Prompt optimization & iteration)',
+        'High-quality AI-supported rendering results',
+        'E-Mail Support',
+        'Onboarding Video Call (1:1 Introduction)',
+        'Live Webinars (2x per month)'
+      ],
+      fundingTitle: isDe ? 'Hinweise zur Entwicklung des Förderprojekts' : 'Notes on the Development of the Funding Project',
+      fundingDesc: isDe ? [
+        'Ein durch das EFRE-Programm der Europäischen Union für regionale Entwicklung gefördertes Forschungs- und Entwicklungsprojekt befindet sich derzeit in Entwicklung.',
+        'Dieses Projekt ist nicht Bestandteil des aktuellen Angebots und wird derzeit nicht vertrieben oder bereitgestellt, da es sich noch in der Entwicklungsphase befindet.',
+        'Die geplante Veröffentlichung ist voraussichtlich Ende 2026.',
+        'Nach Veröffentlichung ist vorgesehen, dass Kunden von Typus AI PRO als Beta-Nutzer Zugang zu diesem System erhalten können.',
+        'Details hierzu sind in den AGB geregelt.'
+      ] : [
+        'A research and development project funded by the ERDF program of the European Union for Regional Development is currently under development.',
+        'This project is not part of the current offer and is currently not distributed or provided, as it is still in the development phase.',
+        'The planned release is expected to be at the end of 2026.',
+        'After release, it may be planned that customers of Typus AI PRO can gain access to this system as beta users.',
+        'Details can be found in the Terms and Conditions.'
+      ],
+      termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+      termsDesc: null,
+      termsList: isDe ? [
+        'Mindestvertragslaufzeit: 12 Monate',
+        'Kündigungsfrist: 30 Tage zum Laufzeitende',
+        'Automatische Verlängerung um jeweils 12 Monate'
+      ] : [
+        'Minimum contract term: 12 months',
+        'Cancellation period: 30 days to the end of the term',
+        'Automatic renewal for 12 months each'
+      ],
+      agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+      agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+      agbList: null,
+      agbLink: agbLink,
+      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      checkboxes: [
+        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 169 € / Monat ab' : 'I am taking out a paid subscription for €169 / month',
+        isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
+        isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+      ],
+      noteTitle: isDe ? 'Hinweis' : 'Note',
+      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI will be unlocked automatically after successful payment.'
+    }
   }
 
   return null

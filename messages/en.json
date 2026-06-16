@@ -371,6 +371,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
+          "credits500": "500 CREDITS /month (33-166 images (see credit deduction overview below))",
           "credits1000": "1000 CREDITS /month (66-333 images (see credit deduction overview below))",
           "resolution4k": "4K RESOLUTION",
           "concurrentJobs4": "4 CONCURRENT JOBS",

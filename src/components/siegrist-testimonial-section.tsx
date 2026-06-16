@@ -245,6 +245,10 @@ export function SiegristTestimonialSection() {
                         <div className="w-32 md:w-[450px] h-[6px] bg-yellow-500  mt-3"></div>
                     </div>
 
+                    <h2 className="text-xl md:text-2xl font-bold text-neutral-800 font-rail mb-6">
+                        {locale === 'de' ? 'So nutzt Siegrist Architects KI für Wettbewerbsvisualisierungen' : 'How Siegrist Architects use AI for competition visualizations'}
+                    </h2>
+
                     {/* Lead Paragraph with thick vertical red line */}
                     <p className="whitespace-pre-line text-[17px] md:text-lg font-bold leading-relaxed text-neutral-950 font-rail mb-4  py-1 select-none">
                         {renderHighlightedText(t('p1'))}

@@ -28,22 +28,22 @@ interface PreviewImage {
 }
 
 const upscalerPreviews: PreviewImage[] = [
-  { id: 1, titleDe: "Moderne Villa", titleEn: "Modern Villa", src: "/upscaler-moblie/image-1.png" },
+  { id: 1, titleDe: "Nachhaltiger Wohnungsbau", titleEn: "Sustainable housing", src: "/upscaler-moblie/image-1.png" },
   { id: 2, titleDe: "Urbanes Loft", titleEn: "Urban Loft", src: "/upscaler-moblie/image-2.png" },
-  { id: 3, titleDe: "Penthouse-Terrasse", titleEn: "Penthouse Terrace", src: "/upscaler-moblie/image-3.png" },
+  { id: 3, titleDe: "Vorstadt Reihenhaus", titleEn: "Suburban terraced house", src: "/upscaler-moblie/image-3.png" },
   { id: 4, titleDe: "Monolithischer Betonturm", titleEn: "Monolithic Concrete Tower", src: "/upscaler-moblie/image-4.png" },
   { id: 5, titleDe: "Glasfassade", titleEn: "Glass Facade", src: "/upscaler-moblie/image-5.png" },
-  { id: 6, titleDe: "Ziegel-Wohnhaus", titleEn: "Brick Residence", src: "/upscaler-moblie/image-6.png" },
-  { id: 7, titleDe: "Konzept-Pavillon", titleEn: "Conceptual Pavilion", src: "/upscaler-moblie/image-7.png" },
+  { id: 6, titleDe: "Kunststeinfassade", titleEn: "Artificial Stone Facade", src: "/upscaler-moblie/image-6.png" },
+  { id: 7, titleDe: "Fassadendetails", titleEn: "Facade details", src: "/upscaler-moblie/image-7.png" },
   { id: 8, titleDe: "Büro am Ufer", titleEn: "Waterfront Office", src: "/upscaler-moblie/image-8.png" },
   { id: 9, titleDe: "Innenhof-Eingang", titleEn: "Courtyard Entrance", src: "/upscaler-moblie/image-9.png" },
-  { id: 10, titleDe: "Minimalistische Küche", titleEn: "Minimalist Kitchen", src: "/upscaler-moblie/image-10.png" },
-  { id: 11, titleDe: "Historische Sanierung", titleEn: "Historic Renovation", src: "/upscaler-moblie/image-11.png" },
+  { id: 10, titleDe: "Saniertes Mehrfamilienhaus", titleEn: "Renovated apartment building", src: "/upscaler-moblie/image-10.png" },
+  { id: 11, titleDe: "Holzfassade", titleEn: "Wooden Facade", src: "/upscaler-moblie/image-11.png" },
   { id: 12, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: "/upscaler-moblie/image-12.png" },
-  { id: 13, titleDe: "Holzdach-Konstruktion", titleEn: "Timber Roof Structure", src: "/upscaler-moblie/image-13.png" },
-  { id: 14, titleDe: "Brutalistische Bibliothek", titleEn: "Brutalist Library", src: "/upscaler-moblie/image-14.png" },
+  { id: 13, titleDe: "Innenraum", titleEn: "Interior", src: "/upscaler-moblie/image-13.png" },
+  { id: 14, titleDe: "Maserung Holzfassade", titleEn: "Grain of wooden facade", src: "/upscaler-moblie/image-14.png" },
   { id: 15, titleDe: "Vorstadt-Reihenhaus", titleEn: "Suburban Townhouse", src: "/upscaler-moblie/image-15.png" },
-  { id: 16, titleDe: "Industrielle Werkstatt", titleEn: "Industrial Workshop", src: "/upscaler-moblie/image-16.png" },
+  { id: 16, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: "/upscaler-moblie/image-16.png" },
   { id: 17, titleDe: "Architektur-Studio", titleEn: "Architectural Studio", src: "/upscaler-moblie/image-17.png" }
 ]
 

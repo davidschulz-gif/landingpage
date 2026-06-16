@@ -28,6 +28,41 @@ import { FloatingBuzzer } from '@/components/floating-buzzer'
 
 const professionalPlans = [
   {
+    id: 'solo',
+    name: 'SOLO',
+    monthlyPrice: { eur: '€169', usd: '$169' },
+    yearlyPrice: { eur: '€1622.40', usd: '$1622.40' },
+    yearlyMonthlyPrice: { eur: '€135.20', usd: '$135.20' },
+    planType: 'SOLO',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€169', usd: '$169' },
+        introPeriodKey: 'billedMonthly',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€135.20', usd: '$135.20' },
+        periodDiscountPercent: 20,
+        periodSaveAmount: { eur: '€405.60', usd: '$405.60' },
+        originalCycle: { eur: '€2028', usd: '$2028' },
+        discountPercent: 20,
+        saveAmountCycle: { eur: '€405.60', usd: '$405.60' },
+        introFirstPeriod: { eur: '€1622.40', usd: '$1622.40' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: false,
+      },
+    },
+    features: [
+      { text: '500 CREDITS /month', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: true },
+      { text: 'HIGH-END RESULTS', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: true },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
+    ],
+  },
+  {
     id: 'pro',
     name: 'PRO',
     monthlyPrice: { eur: '€249', usd: '$57' },
@@ -627,7 +662,7 @@ export function ManyChatPricingSection({
         return trackingCookies;
       };
 
-      if (selectedPlanForModal.planType === 'PRO' || selectedPlanForModal.planType === 'BUSINESS') {
+      if (selectedPlanForModal.planType === 'PRO' || selectedPlanForModal.planType === 'BUSINESS' || selectedPlanForModal.planType === 'SOLO') {
         const planId = `${selectedPlanForModal.planType.toLowerCase()}-${selectedPlanForModal.billingCycle.toLowerCase()}`
         
         const checkoutData = {
@@ -696,12 +731,14 @@ export function ManyChatPricingSection({
 
   // Get translated Professional plans
   const getProfessionalPlans = () => {
-    // We display all 3 plans: PRO, BUSINESS, and ENTERPRISE.
+    // We display all 4 plans: SOLO, PRO, BUSINESS, and ENTERPRISE.
+    const soloFetchedData = findFetchedPlan('SOLO', false)
     const proFetchedData = findFetchedPlan('PRO', false)
     const businessFetchedData = findFetchedPlan('BUSINESS', false)
     
     const mapFeatureText = (f: any) => {
       if (typeof f === 'string') return f;
+      if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits500');
       if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
@@ -718,12 +755,28 @@ export function ManyChatPricingSection({
       return t(`plans.pro.features.${key}`);
     };
 
+    // Solo
+    const baseSoloPlan = professionalPlans[0]
+    const soloPlan = {
+      ...baseSoloPlan,
+      name: 'SOLO',
+      fetchedData: soloFetchedData,
+      features: baseSoloPlan.features.map(f => ({
+        ...f,
+        text: mapFeatureText(f),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
+    }
+
     // Pro
+    const baseProPlan = professionalPlans[1]
     const proPlan = {
-      ...professionalPlans[0], 
+      ...baseProPlan, 
       name: 'PRO',
       fetchedData: proFetchedData,
-      features: professionalPlans[0].features.map(f => ({
+      features: baseProPlan.features.map(f => ({
         ...f,
         text: mapFeatureText(f),
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
@@ -733,7 +786,7 @@ export function ManyChatPricingSection({
     }
 
     // Business
-    const baseBusinessPlan = professionalPlans[1]
+    const baseBusinessPlan = professionalPlans[2]
     const businessPlan = {
       ...baseBusinessPlan,
       name: 'BUSINESS',
@@ -750,7 +803,7 @@ export function ManyChatPricingSection({
     }
 
     // Enterprise
-    const baseEnterprisePlan = professionalPlans[2]
+    const baseEnterprisePlan = professionalPlans[3]
     const enterprisePlan = {
       ...baseEnterprisePlan,
       name: t('plans.enterprise.name'),
@@ -764,7 +817,7 @@ export function ManyChatPricingSection({
       })),
     }
 
-    return [proPlan, businessPlan, enterprisePlan]
+    return [soloPlan, proPlan, businessPlan, enterprisePlan]
   }
 
   // Get translated Education plans
@@ -1589,8 +1642,8 @@ function PricingCard({
         }
       }
 
-      // PRO
-      if (profPlan.planType === 'PRO') {
+      // PRO and SOLO
+      if (profPlan.planType === 'PRO' || profPlan.planType === 'SOLO') {
         let mainPrice = isEurope
           ? profPlan.monthlyPrice?.eur || ''
           : profPlan.monthlyPrice?.usd || ''
