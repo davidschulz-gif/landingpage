@@ -304,7 +304,7 @@
   "Pricing": {
     "selectPlanCTA": "Select plan & get started",
     "professionalPlans": "Professional Plans",
-    "selfServiceTitle": "AI App for Architects - Including live webinars... We train you or your employees.",
+    "selfServiceTitle": "AI App for Architects - Including live webinars.\nWe train you or your employees.",
     "missingProFeaturesTitle": "Features that are missing in Explorer but included in the Pro plan:",
     "upgradeToPro": "Upgrade to Pro to unlock these features",
     "educationPlans": "Education Plans",
@@ -389,7 +389,7 @@
           "credits5000": "5000 CREDITS /month (Unlimited)",
           "teamAccess": "TEAM ACCESS"
         },
-        "targetAudience": "For Solopreneurs"
+        "targetAudience": "For Small Teams"
       },
       "proSemi": {
         "name": "PRO SEMI"

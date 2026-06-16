@@ -64,19 +64,17 @@ export const ComparisonSection = () => {
           <TrendingUp size={16} />
           {t('badge')}
         </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-3xl md:text-5xl  font-bold leading-tight mb-6"
-        >
-          {t('title').split('\n').map((line, i) => (
-            <span key={i} className="block">{line}</span>
-          ))}
-        </motion.h2>
-
+ <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          <div className="">
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+              {t('title')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+              {t('subtitle')}
+            </p>
+          </div>
+        </div>
+{/* 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +83,7 @@ export const ComparisonSection = () => {
           className="text-xl md:text-2xl text-gray-800 max-w-2xl"
         >
           {t('subtitle')}
-        </motion.p>
+        </motion.p> */}
       </div>
 
       {/* Comparison Table / Mobile Cards */}

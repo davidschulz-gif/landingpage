@@ -76,38 +76,7 @@ export default function PricingPage() {
             <NavbarDemo />
 
             <main className="pt-4">
-                {/* Announcement Marquee */}
-                <div className='relative bg-black  md:mt-[10px] py-2 overflow-hidden  border-b border-white/10'>
-                    <div className='flex items-center'>
-                        <motion.div
-                            animate={{ x: [0, -2000] }}
-                            transition={{
-                                repeat: Infinity,
-                                duration: 30,
-                                ease: 'linear'
-                            }}
-                            className='flex whitespace-nowrap text-white text-[11px] font-bold uppercase tracking-[0.1em] gap-8'
-                            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                        >
-                            {[...Array(4)].map((_, i) => (
-                                <span key={i} className='flex gap-8 items-center'>
-                                    <span className='text-emerald-400'>| FIRST BUYER DISCOUNT €70 OFF |</span>
-                                    <span>NEW MODELS: RUNWAY GEN-4.5 • GROK IMAGINE VIDEO • GPT IMAGE 2 • GOOGLE IMAGEN 4 ULTRA • SEEDREAM 5.0 LITE • KLING V3 VIDEO • KLING V3 OMNI VIDEO • GOOGLE VEO 3.1 • WAN VIDEO 2.2 • GOOGLE/UPSCALER • RECRAFT-AI/RECRAFT-CRISP-UPSCALE • SORA 2 • SORA 2 PRO • FLUX 2 PRO • RUNWAY GEN-4.5 • GROK IMAGINE VIDEO</span>
-                                </span>
-                            ))}
-                        </motion.div>
-                    </div>
 
-                    {/* Fixed View Now Button */}
-                    <div className='absolute right-0 top-0 bottom-0 flex items-center px-8 z-20 bg-black shadow-[-20px_0_30px_rgba(0,0,0,0.8)]'>
-                        <Button
-                            className='bg-white text-black hover:bg-gray-100 text-[10px] font-black tracking-widest px-6 py-2 rounded-none uppercase transition-all'
-                            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                        >
-                            VIEW NOW
-                        </Button>
-                    </div>
-                </div>
 
                 <div className='max-w-7xl mx-auto px-4 mt-4'>
                     <Link

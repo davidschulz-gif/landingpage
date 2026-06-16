@@ -56,10 +56,11 @@ const professionalPlans = [
       { text: '4K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
-      { text: 'UPSCALE UP TO 8K', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: false },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
     ],
   },
   {
@@ -106,6 +107,7 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
       // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
@@ -258,7 +260,7 @@ export function ManyChatPricingSection({
 }) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isYearly, setIsYearly] = useState(true)
+  const [isYearly, setIsYearly] = useState(false)
   const locale = useLocale();
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
@@ -732,7 +734,7 @@ export function ManyChatPricingSection({
   // Get translated Professional plans
   const getProfessionalPlans = () => {
     // We display all 4 plans: SOLO, PRO, BUSINESS, and ENTERPRISE.
-    const soloFetchedData = findFetchedPlan('SOLO', false)
+    const soloFetchedData = findFetchedPlan('SOLO', false) as any
     const proFetchedData = findFetchedPlan('PRO', false)
     const businessFetchedData = findFetchedPlan('BUSINESS', false)
     
@@ -939,7 +941,7 @@ export function ManyChatPricingSection({
           <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
+              className={`px-10 py-4 text-lg font-medium transition-colors ${isYearly
                 ? 'bg-white text-black shadow-md'
                 : 'text-black hover:text-black'
                 }`}
@@ -948,7 +950,7 @@ export function ManyChatPricingSection({
             </button>
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
+              className={`px-10 py-4 text-lg font-medium transition-colors ${!isYearly
                 ? 'bg-white text-black shadow-md'
                 : 'text-black hover:text-black'
                 }`}
@@ -1053,7 +1055,7 @@ export function ManyChatPricingSection({
     >
 
 
-      <div className='w-full max-w-7xl mx-auto px-4 relative z-10 pt-0'>
+      <div className='w-full  mx-auto px-4 relative z-10 pt-0'>
         {/* Educational Plans at the top if requested */}
         {showOnly === 'educational' && renderEducationSection()}
 
@@ -1061,16 +1063,19 @@ export function ManyChatPricingSection({
         {showOnly !== 'educational' && (
           <>
             <div className='text-center mb-2 relative z-40'>
-          <h2
+          {/* <h2
             className='text-[30px] font-black mt-10 mb-8 text-black'
           >
             {t('selfServiceTitle')}
-          </h2>
+          </h2> */}
+           <h2 className="text-2xl mt-10 mb-8 text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-[1.5] whitespace-pre-line">
+              {t('selfServiceTitle')}
+            </h2>
 
           <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6'>
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${isYearly
+              className={`px-10 py-4 text-lg font-medium transition-colors ${isYearly
                 ? 'bg-white text-black shadow-md'
                 : 'text-black hover:text-black'
                 }`}
@@ -1080,7 +1085,7 @@ export function ManyChatPricingSection({
             </button>
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-6 py-2  text-sm font-medium transition-colors ${!isYearly
+              className={`px-10 py-4 text-lg font-medium transition-colors ${!isYearly
                 ? 'bg-white text-black shadow-md'
                 : 'text-black hover:text-black'
                 }`}
@@ -1089,12 +1094,46 @@ export function ManyChatPricingSection({
               {t('monthlyBilling')}
             </button>
           </div>
+        </div>
+        <div className='flex flex-col gap-1 mb-8 text-center'>
+        </div>
+
+        {/* Professional Plans Cards */}
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-1 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
+            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd] rounded-2xl overflow-hidden'>
+              <BookingDemoClassFormForPricingPage />
+            </div>
+            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-1'>
+              {currentProfPlans.map((plan, index) => (
+                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
+                  {index === 1 && (
+                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
+                      <div className='flex flex-col items-center gap-1'>
+                        {/* Empty to preserve structure if Lottie was here */}
+                      </div>
+                    </div>
+                  )}
+                  <PricingCard
+                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={isYearly}
+                    isProfessional={true}
+                    isEurope={planCurrency === 'eur'}
+                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                    onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                    promoDiscount={profPromoDiscount}
+                    isVat={isVat}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Promo Code Input on Page */}
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
             <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
                 type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
                 placeholder={tModal('promoCodePlaceholder')}
                 value={profPromoCode}
                 onChange={(e) => {
@@ -1109,7 +1148,7 @@ export function ManyChatPricingSection({
               <Button
                 onClick={() => handleVerifyPromoCode('prof')}
                 disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
+                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1128,9 +1167,6 @@ export function ManyChatPricingSection({
               </div>
             )}
             {profPromoDiscount && (
-              // <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px]'>
-              //   <span className='font-normal uppercase'>{profPromoDiscount.name}:</span> {profPromoDiscount.type === 'percentage' ? `${profPromoDiscount.value}% OFF` : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
-              // </div>
               <div className='mt-2 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
                 <span className='font-medium normal-case'>
                   {profPromoDiscount.name}:
@@ -1160,79 +1196,6 @@ export function ManyChatPricingSection({
               </div>
             </div>
           )}
-
-          {/* <div className='flex flex-col items-center mb-12 w-full'>
-            <div className={`rounded-none p-3 mb-4 max-w-2xl w-full border transition-all duration-300 ${profPromoDiscount ? 'bg-red-50 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'bg-site-white border-black'}`}>
-              <p className={`text-center font-medium text-sm font-space-grotesk ${profPromoDiscount ? 'text-red-700' : 'text-gray-900'}`}>
-                {profPromoDiscount ? (
-                  <span className='font-bold uppercase tracking-tight'>
-                    {locale === 'de'
-                      ? 'Die Testversion ist nicht gültig, wenn der Gutscheincode angewendet wird'
-                      : 'The trial is not valid when the promo code is applied'}
-                  </span>
-                ) : (
-                  <>
-                    <span className='font-bold text-black'>
-                      {t('freeTrial')}
-                    </span>{' '}
-                    {t('freeTrialDescription')}
-                  </>
-                )}
-              </p>
-            </div>
-          </div> */}
-
-            {/* <div className='flex justify-center mb-8 w-full '>
-              <div className={`${profPromoDiscount ? 'border-red-500' : 'border-black'} max-w-2xl w-full text-xs text-gray-500 text-center border  py-3`}>
-                {profPromoDiscount ? (
-                  <span className='text-red-600'>
-                    {locale === 'de'
-                      ? 'Die Testversion ist nicht gültig, wenn der Gutscheincode angewendet wird'
-                      : 'The trial is not valid when a promo code is applied'}
-                  </span>
-                ) : (
-                  <span>
-                    <span className='font-medium text-gray-700'>
-                      {t('freeTrial')}
-                    </span>{' '}
-                    {t('freeTrialDescription')}
-                  </span>
-                )}
-              </div>
-            </div> */}
-        </div>
-        <div className='flex flex-col gap-1 mb-8 text-center'>
-        </div>
-
-        {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-8 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
-            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd] rounded-2xl overflow-hidden'>
-              <BookingDemoClassFormForPricingPage />
-            </div>
-            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-4 xl:gap-8'>
-              {currentProfPlans.map((plan, index) => (
-                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
-                  {index === 1 && (
-                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
-                      <div className='flex flex-col items-center gap-1'>
-                        {/* Empty to preserve structure if Lottie was here */}
-                      </div>
-                    </div>
-                  )}
-                  <PricingCard
-                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={isYearly}
-                    isProfessional={true}
-                    isEurope={planCurrency === 'eur'}
-                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                    onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
-                    promoDiscount={profPromoDiscount}
-                    isVat={isVat}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
           </>
         )}
 
@@ -1619,6 +1582,7 @@ function PricingCard({
   isVat = true,
 }: PricingCardProps) {
   const t = useTranslations('Pricing')
+  const locale = useLocale()
 
   // For professional plans, show pricing based on plan and billing cycle
   const getPriceDisplay = () => {
@@ -1964,7 +1928,7 @@ function PricingCard({
 
         {/* Discount badge above price - period discount for 6-mo/yearly */}
         {priceInfo.discount?.periodDiscountPercent != null && (
-          <div className='bg-emerald-600 text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1.5 rounded-full mb-2.5 shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
         )}
@@ -1976,15 +1940,15 @@ function PricingCard({
               <>
                 {'originalPrice' in priceInfo.discount && (
                   <div className='text-[12px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                    {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period}
+                    {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className='text-3xl sm:text-4xl font-bold text-emerald-600 tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className='text-3xl sm:text-4xl font-normal text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
                   <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                    {priceInfo.period}
+                    {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </span>
                 </div>
               </>
@@ -1996,11 +1960,11 @@ function PricingCard({
                   </span>
                 ) : (
                   <>
-                    <span className='text-3xl sm:text-4xl font-bold text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className='text-3xl sm:text-4xl font-normal text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                       {priceInfo.mainPrice}
                     </span>
                     <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                      {priceInfo.period}
+                      {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                     </span>
                   </>
                 )}
@@ -2041,9 +2005,9 @@ function PricingCard({
                 className='flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0'
               >
                 {hasFeature ? (
-                  <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-black' />
+                  <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-emerald-600' />
                 ) : (
-                  <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-black/30' />
+                  <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-red-600' />
                 )}
                 <span
                   className={`leading-tight text-left flex-1 ${hasFeature ? 'text-black' : 'text-black/40'

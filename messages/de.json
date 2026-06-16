@@ -304,7 +304,7 @@
   "Pricing": {
     "selectPlanCTA": "Abo auswählen & loslegen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
-    "selfServiceTitle": "KI App für Architekten - inklusive Live Webinare... Wir schulen Sie oder Ihre Mitarbeitenden",
+    "selfServiceTitle": "KI App für Architekten - inklusive Live Webinare.\nWir schulen Sie oder Ihre Mitarbeitenden",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Kostenloses Erstgespräch",
@@ -336,7 +336,7 @@
     "first6MonthsCharged": "{amount} ersten 6 Monate abgerechnet",
     "firstYearCharged": "{amount} jährlich abgerechnet",
     "discountBadge": "-50% Spare {amount}",
-    "periodDiscountBadge": "Discount {percent}%; Save {amount}",
+    "periodDiscountBadge": "Rabatt {percent}%; Spare {amount}",
     "bestDealBanner": "Unser bester Deal — nur für kurze Zeit.",
     "saveWithAnnual": "Sparen Sie {amount} mit jährlicher Abrechnung",
     "plans": {
@@ -389,7 +389,7 @@
           "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
           "teamAccess": "TEAM-ZUGANG"
         },
-        "targetAudience": "Für Solo-Selbstständige"
+        "targetAudience": "Für kleine Teams"
       },
       "proSemi": {
         "name": "PRO SEMI"
