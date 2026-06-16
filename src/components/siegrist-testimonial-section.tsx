@@ -159,7 +159,11 @@ export function SiegristTestimonialSection() {
                     
                     {/* Bottom Caption overlay inside the image container */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent text-white p-5 pt-12 text-[12.5px] leading-relaxed font-rail rounded-none border-0">
-                        <div>{slides[activeSlide].caption}</div>
+                       
+                        <div className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-1">
+                            {locale === 'de' ? 'Architektur: Siegrist Architectes' : 'Architecture: Siegrist Architectes'}
+                        </div>
+                         <div>{slides[activeSlide].caption}</div>
                         <div className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-1.5">
                             {locale === 'de' ? `Foto: ${slides[activeSlide].credit}` : `Photo: ${slides[activeSlide].credit}`}
                         </div>
