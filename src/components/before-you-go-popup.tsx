@@ -24,9 +24,12 @@ export default function BeforeYouGoPopup() {
   const [mounted, setMounted] = useState(false)
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [step, setStep] = useState<1 | 2>(1)
   const [isConsented, setIsConsented] = useState(false)
   const [marketingConsent, setMarketingConsent] = useState(false)
-  const [errors, setErrors] = useState<{ email?: string; phone?: string; consent?: string }>({})
+  const [errors, setErrors] = useState<{ email?: string; phone?: string; consent?: string; firstName?: string; lastName?: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -134,19 +137,32 @@ export default function BeforeYouGoPopup() {
     // Reset form state when closed
     setEmail('')
     setPhone('')
+    setFirstName('')
+    setLastName('')
+    setStep(1)
     setIsConsented(false)
     setErrors({})
   }
 
-  const validate = () => {
-    const newErrors: { email?: string; phone?: string; consent?: string } = {}
+  const validateStep1 = () => {
+    const newErrors: { email?: string } = {}
     if (!email) {
       newErrors.email = t('errorEmail')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = t('errorEmail')
     }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const validateStep2 = () => {
+    const newErrors: { phone?: string; consent?: string; firstName?: string; lastName?: string } = {}
+    if (!firstName) newErrors.firstName = tDemo('errorRequired') || 'Required'
+    if (!lastName) newErrors.lastName = tDemo('errorRequired') || 'Required'
     if (!phone) {
       newErrors.phone = t('errorPhone') || 'Phone number is required'
+    } else if (phone.length < 5) {
+      newErrors.phone = t('errorPhone') || 'Invalid phone number'
     }
     // Only validate consent if on the pricing page (which has the checkbox)
     if (isPricingPage && !isConsented) {
@@ -156,13 +172,12 @@ export default function BeforeYouGoPopup() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmitStep1 = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!validate()) return
+    if (!validateStep1()) return
 
     setIsSubmitting(true)
     const trimmedEmail = email.trim()
-    console.log('[BYG] Form submitted:', { email: trimmedEmail, isConsented })
 
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 10000)
@@ -177,7 +192,49 @@ export default function BeforeYouGoPopup() {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({ email: trimmedEmail, phone: phone.trim() }),
+          body: JSON.stringify({ email: trimmedEmail }),
+          signal: controller.signal,
+        }
+      )
+
+      if (!response.ok) {
+        console.warn('[BYG] API response not OK:', response.statusText)
+        setStep(2)
+      } else {
+        setStep(2)
+      }
+    } catch (error: any) {
+      console.error('[BYG] API submission error:', error)
+      setStep(2) // proceed anyway
+    } finally {
+      clearTimeout(timeoutId)
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleSubmitStep2 = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!validateStep2()) return
+
+    setIsSubmitting(true)
+    const trimmedEmail = email.trim()
+    const trimmedPhone = phone.trim()
+    const trimmedFirstName = firstName.trim()
+    const trimmedLastName = lastName.trim()
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000)
+
+    try {
+      const response = await fetch(
+        `${apiUrl}/api/bigmailer/add-lead`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({ email: trimmedEmail, phone: trimmedPhone, firstName: trimmedFirstName, lastName: trimmedLastName }),
           signal: controller.signal,
         }
       )
@@ -185,45 +242,30 @@ export default function BeforeYouGoPopup() {
       if (!response.ok) {
         console.warn('[BYG] API response not OK:', response.statusText)
       } else {
-
         // Push event to dataLayer
-      if (typeof window !== 'undefined') {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: 'subscribe',
-          user_data: {
-            email: trimmedEmail,
-            phone: phone.trim(),
-          },
-        })
-        console.log('Pushed subscribe event to dataLayer with email and phone:', {
-          event: 'subscribe',
-          user_data: {
-            email: trimmedEmail,
-            phone: phone.trim(),
-          },
-        })
-      }
+        if (typeof window !== 'undefined') {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: 'subscribe',
+            user_data: {
+              email: trimmedEmail,
+              phone: trimmedPhone,
+              firstName: trimmedFirstName,
+              lastName: trimmedLastName,
+            },
+          })
+        }
         console.log('[BYG] API success')
       }
     } catch (error: any) {
-      if (error?.name === 'AbortError') {
-        console.error('[BYG] API Timeout')
-      } else {
-        console.error('[BYG] API submission error:', error)
-      }
-      // Non-blocking: we still proceed to the offer/pricing/register
+      console.error('[BYG] API submission error:', error)
     } finally {
       clearTimeout(timeoutId)
       setIsSubmitting(false)
       setIsOpen(false)
 
       if (isPricingPage) {
-        // Stay on pricing page/reload or redirect
         router.push('/pricing')
-      } else {
-        // Prefill email in registration form
-        // window.location.href = `https://app.typus.ai/register?email=${encodeURIComponent(trimmedEmail)}`
       }
     }
   }
@@ -313,103 +355,141 @@ export default function BeforeYouGoPopup() {
                     </div>
 
                     {/* Unified Form */}
-                    <form onSubmit={handleSubmit} className='mt-2'>
-                      {/* Email input */}
-                      <div className='mb-3 sm:mb-4'>
-                        <input
-                          type='email'
-                          placeholder={t('emailPlaceholder')}
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value)
-                            if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
-                          }}
-                          className={`w-full px-4 py-2.5 sm:py-3 bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
-                          required
-                        />
-                        {errors.email && (
-                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
-                        )}
-                      </div>
-
-                      {/* Phone input */}
-                      <div className='mb-3 sm:mb-4 relative'>
-                        <PhoneInput
-                          country={'de'}
-                          value={phone}
-                          onChange={p => {
-                            setPhone(p)
-                            if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
-                          }}
-                          enableSearch={true}
-                          placeholder={t('phonePlaceholder') || 'Your phone number'}
-                          containerClass="w-full flex"
-                          inputClass={`!w-full !flex-1 !border-white/10 !bg-white/5 !text-sm !text-white !placeholder-white/30 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-xl !focus:border-white/30 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
-                          buttonClass="!border-white/10 !bg-white/5 !rounded-l-xl !border-r-0 hover:!bg-white/10"
-                        />
-                        {errors.phone && (
-                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
-                        )}
-                      </div>
-
-                      {/* Consent checkbox */}
-                      <div className='mb-4 sm:mb-6'>
-                        <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
-                          <div className='relative flex items-center mt-0.5 shrink-0'>
-                            <input
-                              type='checkbox'
-                              checked={isConsented}
-                              onChange={(e) => {
-                                setIsConsented(e.target.checked)
-                                if (errors.consent) setErrors(prev => ({ ...prev, consent: undefined }))
+                    <form onSubmit={step === 1 ? handleSubmitStep1 : handleSubmitStep2} className='mt-2'>
+                      {step === 1 ? (
+                        <div className='mb-3 sm:mb-4'>
+                          <input
+                            type='email'
+                            placeholder={t('emailPlaceholder') || 'Email address'}
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value)
+                              if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+                            }}
+                            className={`w-full px-4 py-2.5 sm:py-3 bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
+                            required
+                          />
+                          {errors.email && (
+                            <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                          )}
+                        </div>
+                      ) : (
+                        <>
+                          <div className='mb-3 sm:mb-4 flex flex-col sm:flex-row gap-3'>
+                            <div className='flex-1'>
+                              <input
+                                type='text'
+                                placeholder={t('firstNamePlaceholder') || 'First Name'}
+                                value={firstName}
+                                onChange={(e) => {
+                                  setFirstName(e.target.value)
+                                  if (errors.firstName) setErrors(prev => ({ ...prev, firstName: undefined }))
+                                }}
+                                className={`w-full px-4 py-2.5 sm:py-3 bg-white/5 border ${errors.firstName ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
+                                required
+                              />
+                              {errors.firstName && <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.firstName}</p>}
+                            </div>
+                            <div className='flex-1'>
+                              <input
+                                type='text'
+                                placeholder={t('lastNamePlaceholder') || 'Last Name'}
+                                value={lastName}
+                                onChange={(e) => {
+                                  setLastName(e.target.value)
+                                  if (errors.lastName) setErrors(prev => ({ ...prev, lastName: undefined }))
+                                }}
+                                className={`w-full px-4 py-2.5 sm:py-3 bg-white/5 border ${errors.lastName ? 'border-red-500/50' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors text-sm rounded-xl px-4`}
+                                required
+                              />
+                              {errors.lastName && <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.lastName}</p>}
+                            </div>
+                          </div>
+                          
+                          {/* Phone input */}
+                          <div className='mb-3 sm:mb-4 relative'>
+                            <PhoneInput
+                              country={'de'}
+                              value={phone}
+                              onChange={p => {
+                                setPhone(p)
+                                if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
                               }}
-                              className='peer hidden'
+                              enableSearch={true}
+                              placeholder={t('phonePlaceholder') || 'Your phone number'}
+                              containerClass="w-full flex"
+                              inputClass={`!w-full !flex-1 !border-white/10 !bg-white/5 !text-sm !text-white !placeholder-white/30 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-xl !focus:border-white/30 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
+                              buttonClass="!border-white/10 !bg-white/5 !rounded-l-xl !border-r-0 hover:!bg-white/10"
                             />
-                            <div className={`w-4 h-4 border ${errors.consent ? 'border-red-500' : 'border-white/40'} peer-checked:bg-white peer-checked:border-white transition-all duration-200`} />
-                            <IconCheck
-                              size={12}
-                              className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
-                              strokeWidth={3}
-                            />
+                            {errors.phone && (
+                              <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
+                            )}
                           </div>
-                          <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
-                            {t.rich('privacyConsent', {
-                              privacyPolicy: (chunks) => (
-                                <Link href='https://app.typus.ai/data-privacy' target='_blank' className='underline hover:text-white transition-colors'>
-                                  {chunks}
-                                </Link>
-                              )
-                            })}
-                          </span>
-                        </label>
-                        {errors.consent && (
-                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
-                        )}
-                      </div>
 
-                      {/* Marketing consent checkbox */}
-                      <div className='mb-4 sm:mb-6'>
-                        <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
-                          <div className='relative flex items-center mt-0.5 shrink-0'>
-                            <input
-                              type='checkbox'
-                              checked={marketingConsent}
-                              onChange={(e) => setMarketingConsent(e.target.checked)}
-                              disabled={isSubmitting}
-                              className='peer hidden'
-                            />
-                            <div className='w-4 h-4 border border-white/40 peer-checked:bg-white peer-checked:border-white transition-all duration-200' />
-                            <IconCheck
-                              size={12}
-                              className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
-                              strokeWidth={3}
-                            />
+                          <p className='text-[11px] text-white/60 mb-4 sm:mb-6 font-normal leading-tight'>
+                            {t('phoneNameReason')}
+                          </p>
+
+                          {/* Consent checkbox */}
+                          <div className='mb-4 sm:mb-6'>
+                            <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
+                              <div className='relative flex items-center mt-0.5 shrink-0'>
+                                <input
+                                  type='checkbox'
+                                  checked={isConsented}
+                                  onChange={(e) => {
+                                    setIsConsented(e.target.checked)
+                                    if (errors.consent) setErrors(prev => ({ ...prev, consent: undefined }))
+                                  }}
+                                  className='peer hidden'
+                                />
+                                <div className={`w-4 h-4 border ${errors.consent ? 'border-red-500' : 'border-white/40'} peer-checked:bg-white peer-checked:border-white transition-all duration-200`} />
+                                <IconCheck
+                                  size={12}
+                                  className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
+                                  strokeWidth={3}
+                                />
+                              </div>
+                              <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
+                                {t.rich('privacyConsent', {
+                                  privacyPolicy: (chunks) => (
+                                    <Link href='https://app.typus.ai/data-privacy' target='_blank' className='underline hover:text-white transition-colors'>
+                                      {chunks}
+                                    </Link>
+                                  )
+                                })}
+                              </span>
+                            </label>
+                            {errors.consent && (
+                              <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.consent}</p>
+                            )}
                           </div>
-                          <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
+
+                          {/* Marketing consent checkbox */}
+                          <div className='mb-4 sm:mb-6'>
+                            <label className='flex items-start gap-2.5 sm:gap-3 cursor-pointer group'>
+                              <div className='relative flex items-center mt-0.5 shrink-0'>
+                                <input
+                                  type='checkbox'
+                                  checked={marketingConsent}
+                                  onChange={(e) => setMarketingConsent(e.target.checked)}
+                                  disabled={isSubmitting}
+                                  className='peer hidden'
+                                />
+                                <div className='w-4 h-4 border border-white/40 peer-checked:bg-white peer-checked:border-white transition-all duration-200' />
+                                <IconCheck
+                                  size={12}
+                                  className='absolute inset-0 m-auto text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200'
+                                  strokeWidth={3}
+                                />
+                              </div>
+                              <span className='text-[11px] text-white/60 leading-tight select-none group-hover:text-white transition-colors font-normal'>
                             {t('marketingConsent')}
                           </span>
                         </label>
                       </div>
+                      </>
+                      )}
 
                       {/* Submit button */}
                       <button
@@ -560,44 +640,78 @@ export default function BeforeYouGoPopup() {
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit} className='w-full text-left'>
-                      {/* Email input */}
-                      <div className='mb-3 sm:mb-4'>
-                        <input
-                          type='email'
-                          placeholder={t('viewFreeEmailPlaceholder')}
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value)
-                            if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
-                          }}
-                          className={`w-full px-4 py-2.5 sm:py-3 bg-white border ${errors.email ? 'border-red-500/50' : 'border-neutral-200'} text-black placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors text-sm rounded-lg sm:rounded-xl`}
-                          required
-                        />
-                        {errors.email && (
-                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
-                        )}
-                      </div>
-
-                      {/* Phone input */}
-                      <div className='mb-3 sm:mb-4 relative'>
-                        <PhoneInput
-                          country={'de'}
-                          value={phone}
-                          onChange={p => {
-                            setPhone(p)
-                            if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
-                          }}
-                          enableSearch={true}
-                          placeholder={t('phonePlaceholder') || 'Your phone number'}
-                          containerClass="w-full flex"
-                          inputClass={`!w-full !flex-1 !border-neutral-200 !bg-white !text-sm !text-black !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-[44px] !rounded-lg sm:!rounded-xl !focus:border-neutral-400 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
-                          buttonClass="!border-neutral-200 !bg-white !rounded-l-lg sm:!rounded-l-xl !border-r-0 hover:!bg-neutral-50"
-                        />
-                        {errors.phone && (
-                          <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
-                        )}
-                      </div>
+                    <form onSubmit={step === 1 ? handleSubmitStep1 : handleSubmitStep2} className='w-full text-left'>
+                      {step === 1 ? (
+                        <div className='mb-3 sm:mb-4'>
+                          <input
+                            type='email'
+                            placeholder={t('viewFreeEmailPlaceholder')}
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value)
+                              if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+                            }}
+                            className={`w-full px-4 py-2.5 sm:py-3 bg-white border ${errors.email ? 'border-red-500/50' : 'border-neutral-200'} text-black placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                            required
+                          />
+                          {errors.email && (
+                            <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.email}</p>
+                          )}
+                        </div>
+                      ) : (
+                        <>
+                          <div className='mb-3 sm:mb-4 flex flex-col sm:flex-row gap-3'>
+                            <div className='flex-1'>
+                              <input
+                                type='text'
+                                placeholder={t('firstNamePlaceholder') || 'First Name'}
+                                value={firstName}
+                                onChange={(e) => {
+                                  setFirstName(e.target.value)
+                                  if (errors.firstName) setErrors(prev => ({ ...prev, firstName: undefined }))
+                                }}
+                                className={`w-full px-4 py-2.5 sm:py-3 bg-white border ${errors.firstName ? 'border-red-500/50' : 'border-neutral-200'} text-black placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                                required
+                              />
+                              {errors.firstName && <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.firstName}</p>}
+                            </div>
+                            <div className='flex-1'>
+                              <input
+                                type='text'
+                                placeholder={t('lastNamePlaceholder') || 'Last Name'}
+                                value={lastName}
+                                onChange={(e) => {
+                                  setLastName(e.target.value)
+                                  if (errors.lastName) setErrors(prev => ({ ...prev, lastName: undefined }))
+                                }}
+                                className={`w-full px-4 py-2.5 sm:py-3 bg-white border ${errors.lastName ? 'border-red-500/50' : 'border-neutral-200'} text-black placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                                required
+                              />
+                              {errors.lastName && <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.lastName}</p>}
+                            </div>
+                          </div>
+                          
+                          {/* Phone input */}
+                          <div className='mb-3 sm:mb-4 relative'>
+                            <PhoneInput
+                              country={'de'}
+                              value={phone}
+                              onChange={p => {
+                                setPhone(p)
+                                if (errors.phone) setErrors(prev => ({ ...prev, phone: undefined }))
+                              }}
+                              enableSearch={true}
+                              placeholder={t('phonePlaceholder') || 'Your phone number'}
+                              containerClass="w-full flex"
+                              inputClass={`!w-full !flex-1 !border-neutral-200 !bg-white !text-sm !text-black !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-[44px] !rounded-lg sm:!rounded-xl !focus:border-neutral-400 transition-colors ${errors.phone ? '!border-red-500/50' : ''}`}
+                              buttonClass="!border-neutral-200 !bg-white !rounded-l-lg sm:!rounded-l-xl !border-r-0 hover:!bg-neutral-50"
+                            />
+                            {errors.phone && (
+                              <p className='text-red-500 text-[10px] mt-1.5 ml-0.5'>{errors.phone}</p>
+                            )}
+                          </div>
+                        </>
+                      )}
 
                       {/* Submit button */}
                       <button
@@ -626,7 +740,7 @@ export default function BeforeYouGoPopup() {
                       <div className='flex items-start gap-2.5 text-neutral-500 mb-6 px-1'>
                         <IconMail size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />
                         <span className='text-[11px] leading-snug font-normal font-sans'>
-                          {t('viewFreeEnvelopeText')}
+                          {step === 1 ? t('viewFreeEnvelopeText') : t('phoneNameReason')}
                         </span>
                       </div>
 

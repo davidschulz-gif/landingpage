@@ -23,6 +23,9 @@ interface ShareShowcaseModalProps {
 export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowcaseModalProps) {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [step, setStep] = useState<1 | 2>(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -38,13 +41,12 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
   const validateEmail = (value: string) => EMAIL_REGEX.test(value.trim())
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleEmailSubmitStep1 = async (e: React.FormEvent) => {
     e.preventDefault()
     const trimmed = email.trim()
-    const trimmedPhone = phone.trim()
 
-    if (!trimmed || !trimmedPhone) {
-      setErrorMessage(isDe ? 'Bitte geben Sie E-Mail und Telefonnummer ein.' : 'Please enter email and phone number.')
+    if (!trimmed) {
+      setErrorMessage(isDe ? 'Bitte geben Sie Ihre E-Mail-Adresse ein.' : 'Please enter your email address.')
       return
     }
     if (!validateEmail(trimmed)) {
@@ -65,21 +67,58 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({ email: trimmed, phone: trimmedPhone }),
+        body: JSON.stringify({ email: trimmed }),
         signal: controller.signal,
       })
 
-      let data: any = null
-      const contentType = response.headers.get('content-type') || ''
-      if (contentType.includes('application/json')) {
-        try {
-          data = await response.json()
-        } catch {}
+      if (!response.ok) {
+        throw new Error('Request failed')
       }
 
+      setStep(2)
+    } catch (error: any) {
+      if (error?.name === 'AbortError') {
+        setErrorMessage(errorTimeout)
+      } else {
+        setErrorMessage(error?.message || errorUnexpected)
+      }
+    } finally {
+      clearTimeout(timeoutId)
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleEmailSubmitStep2 = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const trimmed = email.trim()
+    const trimmedPhone = phone.trim()
+    const trimmedFirstName = firstName.trim()
+    const trimmedLastName = lastName.trim()
+
+    if (!trimmedPhone || !trimmedFirstName || !trimmedLastName) {
+      setErrorMessage(isDe ? 'Bitte füllen Sie alle Felder aus.' : 'Please fill in all fields.')
+      return
+    }
+
+    setIsSubmitting(true)
+    setErrorMessage(null)
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000)
+
+    try {
+      const response = await fetch(`${apiUrl}/api/bigmailer/add-lead?interactive=true`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ email: trimmed, phone: trimmedPhone, firstName: trimmedFirstName, lastName: trimmedLastName }),
+        signal: controller.signal,
+      })
+
       if (!response.ok) {
-        const serverMessage = data?.message || response.statusText || 'Request failed'
-        throw new Error(serverMessage)
+        throw new Error('Request failed')
       }
 
       // Push event to dataLayer
@@ -90,6 +129,8 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
           user_data: {
             email: trimmed,
             phone: trimmedPhone,
+            firstName: trimmedFirstName,
+            lastName: trimmedLastName,
           },
         })
       }
@@ -221,38 +262,72 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleEmailSubmit} className='w-full text-left font-sans'>
-                  {/* Email input + Submit button (side-by-side) */}
-                  <div className="flex flex-col  gap-3 mb-4 w-full">
-                    <div className="flex-1 min-w-0 relative">
-                      <input
-                        type='email'
-                        placeholder={t('viewFreeEmailPlaceholder')}
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value)
-                          if (errorMessage) setErrorMessage(null)
-                        }}
-                        disabled={isSubmitting}
-                        className={`w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-neutral-900 border ${errorMessage ? 'border-red-500/50' : 'border-neutral-200 dark:border-neutral-800'} text-black dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors text-sm rounded-lg sm:rounded-xl`}
-                        required
-                      />
+                <form onSubmit={step === 1 ? handleEmailSubmitStep1 : handleEmailSubmitStep2} className='w-full text-left font-sans'>
+                  {step === 1 ? (
+                    <div className="flex flex-col gap-3 mb-4 w-full">
+                      <div className="flex-1 min-w-0 relative">
+                        <input
+                          type='email'
+                          placeholder={t('viewFreeEmailPlaceholder')}
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value)
+                            if (errorMessage) setErrorMessage(null)
+                          }}
+                          disabled={isSubmitting}
+                          className={`w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-neutral-900 border ${errorMessage ? 'border-red-500/50' : 'border-neutral-200 dark:border-neutral-800'} text-black dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                          required
+                        />
+                      </div>
                     </div>
-                    
-                    <div className="flex-1 min-w-0 phone-input-container">
-                      <PhoneInput
-                        country={'de'}
-                        value={phone}
-                        onChange={p => setPhone(p)}
-                        enableSearch={true}
-                        placeholder={isDe ? 'Telefonnummer' : 'Phone number'}
-                        containerClass="w-full flex"
-                        inputClass="!w-full !flex-1 !border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !text-sm !text-black dark:!text-white !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-full min-h-[44px] sm:min-h-[48px] !rounded-lg sm:!rounded-xl"
-                        buttonClass="!border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !rounded-l-lg sm:!rounded-l-xl"
-                        disabled={isSubmitting}
-                      />
+                  ) : (
+                    <div className="flex flex-col gap-3 mb-4 w-full">
+                      <div className='flex flex-col sm:flex-row gap-3'>
+                        <div className="flex-1 min-w-0 relative">
+                          <input
+                            type='text'
+                            placeholder={t('firstNamePlaceholder') || 'First Name'}
+                            value={firstName}
+                            onChange={(e) => {
+                              setFirstName(e.target.value)
+                              if (errorMessage) setErrorMessage(null)
+                            }}
+                            disabled={isSubmitting}
+                            className={`w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-neutral-900 border ${errorMessage ? 'border-red-500/50' : 'border-neutral-200 dark:border-neutral-800'} text-black dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                            required
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0 relative">
+                          <input
+                            type='text'
+                            placeholder={t('lastNamePlaceholder') || 'Last Name'}
+                            value={lastName}
+                            onChange={(e) => {
+                              setLastName(e.target.value)
+                              if (errorMessage) setErrorMessage(null)
+                            }}
+                            disabled={isSubmitting}
+                            className={`w-full px-4 py-2.5 sm:py-3 bg-white dark:bg-neutral-900 border ${errorMessage ? 'border-red-500/50' : 'border-neutral-200 dark:border-neutral-800'} text-black dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-600 transition-colors text-sm rounded-lg sm:rounded-xl`}
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="flex-1 min-w-0 phone-input-container">
+                        <PhoneInput
+                          country={'de'}
+                          value={phone}
+                          onChange={p => setPhone(p)}
+                          enableSearch={true}
+                          placeholder={isDe ? 'Telefonnummer' : 'Phone number'}
+                          containerClass="w-full flex"
+                          inputClass="!w-full !flex-1 !border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !text-sm !text-black dark:!text-white !placeholder-neutral-400 !outline-none disabled:!opacity-60 !pl-[48px] !h-full min-h-[44px] sm:min-h-[48px] !rounded-lg sm:!rounded-xl"
+                          buttonClass="!border-neutral-200 dark:!border-neutral-800 !bg-white dark:!bg-neutral-900 !rounded-l-lg sm:!rounded-l-xl"
+                          disabled={isSubmitting}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="flex justify-center mb-4">
                     <button
@@ -276,7 +351,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                   <div className='flex items-start gap-2.5 text-neutral-500 dark:text-neutral-400 mb-6 px-1'>
                     <IconMail size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />
                     <span className='text-[11px] leading-snug font-normal font-sans'>
-                      {t('viewFreeEnvelopeText')}
+                      {step === 1 ? t('viewFreeEnvelopeText') : t('phoneNameReason')}
                     </span>
                   </div>
 

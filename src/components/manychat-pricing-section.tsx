@@ -1099,11 +1099,11 @@ export function ManyChatPricingSection({
         </div>
 
         {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-1 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd] rounded-2xl overflow-hidden'>
               <BookingDemoClassFormForPricingPage />
             </div>
-            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-1'>
+            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-3'>
               {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {index === 1 && (
@@ -1877,7 +1877,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[720px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[650px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',

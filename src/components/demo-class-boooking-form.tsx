@@ -27,7 +27,8 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
   const [errors, setErrors] = useState<Record<string, string | null>>({})
 
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     position: '',
     email: '',
     companyName: '',
@@ -84,7 +85,8 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
   const validateForm = () => {
     const newErrors: Record<string, string | null> = {}
 
-    if (!formData.name.trim()) newErrors.name = t('errors.nameRequired')
+    if (!formData.firstName.trim()) newErrors.firstName = t('errors.nameRequired') || 'Required'
+    if (!formData.lastName.trim()) newErrors.lastName = t('errors.nameRequired') || 'Required'
     if (!formData.position.trim()) newErrors.position = t('errors.positionRequired')
     if (!formData.companyName.trim()) newErrors.companyName = t('errors.companyNameRequired')
     if (!formData.phoneNumber.trim() || formData.phoneNumber.length < 5) newErrors.phoneNumber = t('errors.phoneNumberRequired')
@@ -130,7 +132,8 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
             Accept: 'application/json',
           },
           body: JSON.stringify({
-            name: formData.name,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
             position: formData.position,
             email: formData.email,
             ...(formData.companyName && { company: formData.companyName }),
@@ -164,13 +167,14 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
           event: 'generate_lead',
           form_name: 'book_demo_call',
           lead_email: formData.email,
-          lead_name: formData.name,
+          lead_name: `${formData.firstName} ${formData.lastName}`.trim(),
           lead_company: formData.companyName,
           lead_phone: formattedPhoneNumber,
         })
       }
       setFormData({
-        name: '',
+        firstName: '',
+        lastName: '',
         position: '',
         email: '',
         companyName: '',
@@ -248,17 +252,31 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       ) : (
         <form onSubmit={handleSubmit} className='space-y-4' noValidate>
           {/* ... existing form fields ... */}
-          <div className='flex flex-col'>
-            <input
-              type='text'
-              name='name'
-              placeholder={t('namePlaceholder')}
-              className={cn(inputClasses, errors.name && errorClasses)}
-              value={formData.name}
-              onChange={handleChange}
-              disabled={isRequesting}
-            />
-            <ErrorMessage error={errors.name} />
+          <div className='flex gap-3'>
+            <div className='flex-1 flex flex-col'>
+              <input
+                type='text'
+                name='firstName'
+                placeholder={t('firstNamePlaceholder') || 'First Name'}
+                className={cn(inputClasses, errors.firstName && errorClasses)}
+                value={formData.firstName}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <ErrorMessage error={errors.firstName} />
+            </div>
+            <div className='flex-1 flex flex-col'>
+              <input
+                type='text'
+                name='lastName'
+                placeholder={t('lastNamePlaceholder') || 'Last Name'}
+                className={cn(inputClasses, errors.lastName && errorClasses)}
+                value={formData.lastName}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <ErrorMessage error={errors.lastName} />
+            </div>
           </div>
           <div className='flex flex-col'>
             <input
@@ -345,7 +363,6 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
           <button
             type='submit'
             className='w-full py-4 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-none mt-2'
-            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             disabled={isRequesting}
           >
             <span>{tPricing('bookDemo')}</span>

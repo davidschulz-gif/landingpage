@@ -23,17 +23,71 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
   const [isRequesting, setIsRequesting] = useState(false)
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [step, setStep] = useState<1 | 2>(1)
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
   const validateEmail = (value: string) => EMAIL_REGEX.test(value.trim())
 
-  const handleSubmit = async () => {
+  const handleSubmitStep1 = async () => {
+    const trimmedEmail = email.trim()
+    
+    if (!trimmedEmail) {
+      setSuccessMessage(null)
+      setErrorMessage(t('errors.required') || 'Email is required.')
+      return
+    }
+    if (!validateEmail(trimmedEmail)) {
+      setSuccessMessage(null)
+      setErrorMessage(t('errors.invalid'))
+      return
+    }
+
+    if (isRequesting) return
+
+    setIsRequesting(true)
+    setErrorMessage(null)
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 15000)
+
+    try {
+      const response = await fetch(
+        `${apiUrl}/api/bigmailer/add-lead`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({ email: trimmedEmail }),
+          signal: controller.signal,
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Request failed')
+      }
+
+      setStep(2)
+    } catch (error: any) {
+      setErrorMessage(error?.message || t('errors.unexpected'))
+    } finally {
+      clearTimeout(timeoutId)
+      setIsRequesting(false)
+    }
+  }
+
+  const handleSubmitStep2 = async () => {
     const trimmedEmail = email.trim()
     const trimmedPhone = phone.trim()
+    const trimmedFirstName = firstName.trim()
+    const trimmedLastName = lastName.trim()
     
-    if (!trimmedEmail || !trimmedPhone) {
+    if (!trimmedPhone || !trimmedFirstName || !trimmedLastName) {
       setSuccessMessage(null)
-      setErrorMessage(t('errors.required') || 'Email and phone number are required.')
+      setErrorMessage(t('errors.required') || 'All fields are required.')
       return
     }
     if (!validateEmail(trimmedEmail)) {
@@ -60,7 +114,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify({ email: trimmedEmail, phone: trimmedPhone }),
+          body: JSON.stringify({ email: trimmedEmail, phone: trimmedPhone, firstName: trimmedFirstName, lastName: trimmedLastName }),
           signal: controller.signal,
         }
       )
@@ -91,19 +145,17 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           user_data: {
             email: trimmedEmail,
             phone: trimmedPhone,
-          },
-        })
-        console.log('Pushed subscribe event to dataLayer with email and phone:', {
-          event: 'subscribe',
-          user_data: {
-            email: trimmedEmail,
-            phone: trimmedPhone,
+            firstName: trimmedFirstName,
+            lastName: trimmedLastName,
           },
         })
       }
 
       setEmail('')
       setPhone('')
+      setFirstName('')
+      setLastName('')
+      setStep(1)
       if (onSuccess) {
         onSuccess()
       } else {
@@ -132,40 +184,65 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
     >
       <div className='w-full max-w-md mx-auto'>
         <div className='flex flex-col gap-2.5'>
-          <div className='flex flex-col sm:flex-row items-stretch gap-2.5'>
-            <input
-              type='email'
-              name='email'
-              required
-              placeholder={t('placeholder')}
-              aria-label='Email address'
-              className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 w-full'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              disabled={isRequesting}
-              aria-invalid={!!errorMessage}
-            />
-            <div className="flex-1 min-w-0 phone-input-container">
-              <PhoneInput
-                country={'de'}
-                value={phone}
-                onChange={p => setPhone(p)}
-                enableSearch={true}
-                placeholder='Phone number'
-                containerClass="w-full flex"
-                inputClass="!w-full !flex-1 !border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !text-sm !text-black !placeholder-gray-500 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-none"
-                buttonClass="!border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !rounded-none !border-r-0"
+          <div className={`flex flex-col sm:flex-row items-stretch gap-2.5 ${step === 2 ? 'sm:flex-wrap' : ''}`}>
+            {step === 1 ? (
+              <input
+                type='email'
+                name='email'
+                required
+                placeholder={t('placeholder')}
+                aria-label='Email address'
+                className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 w-full'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 disabled={isRequesting}
+                aria-invalid={!!errorMessage}
               />
-            </div>
+            ) : (
+              <>
+                <input
+                  type='text'
+                  required
+                  placeholder={t('firstNamePlaceholder')}
+                  aria-label='First Name'
+                  className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 min-w-[140px]'
+                  value={firstName}
+                  onChange={e => setFirstName(e.target.value)}
+                  disabled={isRequesting}
+                />
+                <input
+                  type='text'
+                  required
+                  placeholder={t('lastNamePlaceholder')}
+                  aria-label='Last Name'
+                  className='flex-1 border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/10 px-4 py-2.5 text-sm text-black placeholder-gray-500 outline-none disabled:opacity-60 min-w-[140px]'
+                  value={lastName}
+                  onChange={e => setLastName(e.target.value)}
+                  disabled={isRequesting}
+                />
+                <div className="flex-1 min-w-[200px] phone-input-container w-full sm:w-auto">
+                  <PhoneInput
+                    country={'de'}
+                    value={phone}
+                    onChange={p => setPhone(p)}
+                    enableSearch={true}
+                    placeholder='Phone number'
+                    containerClass="w-full flex"
+                    inputClass="!w-full !flex-1 !border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !text-sm !text-black !placeholder-gray-500 !outline-none disabled:!opacity-60 !pl-[48px] !h-[42px] !rounded-none"
+                    buttonClass="!border-black/10 dark:!border-white/20 !bg-white/70 dark:!bg-white/10 !rounded-none !border-r-0"
+                    disabled={isRequesting}
+                  />
+                </div>
+              </>
+            )}
           </div>
           <button
             type='button'
             className='w-full !px-6 py-2.5 flex items-center justify-center flex-shrink-0 bg-white shadow-sm text-sm transition-colors cursor-pointer hover:shadow-md font-medium gap-2 hover:opacity-90 disabled:opacity-60 text-black border border-black/10'
-            onClick={handleSubmit}
+            onClick={step === 1 ? handleSubmitStep1 : handleSubmitStep2}
             disabled={isRequesting}
           >
-            <span>{t('learnMore')}</span>
+            <span>{step === 1 ? t('learnMore') : t('submitDetails')}</span>
             {isRequesting ? (
               <IconLoader2 className='animate-spin ms-1 size-4' />
             ) : (
@@ -200,7 +277,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             className='text-[11px] text-gray-600 dark:text-gray-300 leading-normal'
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
-            {t('description')}
+            {step === 1 ? t('description') : t('phoneNameReason')}
           </span>
         </div>
       </div>

@@ -182,8 +182,12 @@
     }
   },
   "HeroEmailForm": {
-    "placeholder": "Enter your email",
+    "placeholder": "Enter your email address",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
     "learnMore": "Learn more",
+    "submitDetails": "Submit details",
     "description": "Learn more about the app and get notified about new features.",
     "success": "Verification link sent. Please check your email.",
     "gate": {
@@ -604,7 +608,8 @@
   },
   "BookingDemoClassForm": {
     "placeholder": "Enter your Email",
-    "namePlaceholder": "Name",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
     "positionPlaceholder": "Position",
     "companyPlaceholder": "Company Name",
     "phoneLabel": "Phone Number",
@@ -663,6 +668,9 @@
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",
     "viewFreeFooterText": "No spam. Unsubscribe at any time.",
     "viewFreePrivacyLink": "Data Privacy",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
     "phonePlaceholder": "Your WhatsApp / Phone number",
     "errorPhone": "Phone number is required"
   },

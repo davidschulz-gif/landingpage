@@ -183,7 +183,11 @@
   },
   "HeroEmailForm": {
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "firstNamePlaceholder": "Vorname",
+    "lastNamePlaceholder": "Nachname",
+    "phoneNameReason": "Wir verwenden Ihre Telefonnummer, um Sie zu kontaktieren und Ihre Anforderungen sowie mögliche Einsatzmöglichkeiten von KI in der Architektur besser zu verstehen.",
     "learnMore": "Mehr erfahren",
+    "submitDetails": "Details absenden",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
     "success": "Bestätigung wurde gesendet. Bitte prüfen Sie Ihre E-Mail.",
     "gate": {
@@ -604,7 +608,8 @@
   },
   "BookingDemoClassForm": {
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
-    "namePlaceholder": "Name",
+    "firstNamePlaceholder": "Vorname",
+    "lastNamePlaceholder": "Nachname",
     "positionPlaceholder": "Position",
     "companyPlaceholder": "Unternehmensname",
     "phoneLabel": "Telefonnummer",
@@ -663,6 +668,9 @@
     "viewFreeEnvelopeText": "Erfahre mehr über die App und erhalte Benachrichtigungen über neue Funktionen.",
     "viewFreeFooterText": "Kein Spam. Jederzeit abbestellbar.",
     "viewFreePrivacyLink": "Datenschutz",
+    "firstNamePlaceholder": "Vorname",
+    "lastNamePlaceholder": "Nachname",
+    "phoneNameReason": "Wir verwenden Ihre Telefonnummer, um Sie zu kontaktieren und Ihre Anforderungen sowie mögliche Einsatzmöglichkeiten von KI in der Architektur besser zu verstehen.",
     "phonePlaceholder": "Deine WhatsApp / Telefonnummer",
     "errorPhone": "Telefonnummer ist erforderlich"
   },

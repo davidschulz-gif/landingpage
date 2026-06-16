@@ -12,6 +12,7 @@ import FormPhoneInput from './form/FormPhoneInput'
 import { apiUrl } from '@/lib/constants'
 import { BreathingAnimationText } from './breathing-animation-text'
 import { BarChart3, Image, PhoneCall } from 'lucide-react'
+import { Button } from './ui/button'
 
 interface BookingDemoClassFormProps {
   className?: string
@@ -30,7 +31,8 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
   const [errors, setErrors] = useState<Record<string, string | null>>({})
 
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     position: '',
     email: '',
     companyName: '',
@@ -87,7 +89,8 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
   const validateForm = () => {
     const newErrors: Record<string, string | null> = {}
 
-    if (!formData.name.trim()) newErrors.name = t('errors.nameRequired')
+    if (!formData.firstName.trim()) newErrors.firstName = t('errors.nameRequired') || 'Required'
+    if (!formData.lastName.trim()) newErrors.lastName = t('errors.nameRequired') || 'Required'
     if (!formData.position.trim()) newErrors.position = t('errors.positionRequired')
     if (!formData.companyName.trim()) newErrors.companyName = t('errors.companyNameRequired')
     if (!formData.phoneNumber.trim() || formData.phoneNumber.length < 5) newErrors.phoneNumber = t('errors.phoneNumberRequired')
@@ -133,7 +136,8 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             Accept: 'application/json',
           },
           body: JSON.stringify({
-            name: formData.name,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
             position: formData.position,
             email: formData.email,
             ...(formData.companyName && { company: formData.companyName }),
@@ -167,13 +171,14 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           event: 'generate_lead',
           form_name: 'book_demo_call',
           lead_email: formData.email,
-          lead_name: formData.name,
+          lead_name: `${formData.firstName} ${formData.lastName}`.trim(),
           lead_company: formData.companyName,
           lead_phone: formattedPhoneNumber,
         })
       }
       setFormData({
-        name: '',
+        firstName: '',
+        lastName: '',
         position: '',
         email: '',
         companyName: '',
@@ -299,17 +304,31 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       ) : (
         <form onSubmit={handleSubmit} className='space-y-4' noValidate>
           {/* ... existing form fields ... */}
-          <div className='flex flex-col'>
-            <input
-              type='text'
-              name='name'
-              placeholder={t('namePlaceholder')}
-              className={cn(inputClasses, errors.name && errorClasses)}
-              value={formData.name}
-              onChange={handleChange}
-              disabled={isRequesting}
-            />
-            <ErrorMessage error={errors.name} />
+          <div className='flex gap-3'>
+            <div className='flex-1 flex flex-col'>
+              <input
+                type='text'
+                name='firstName'
+                placeholder={t('firstNamePlaceholder') || 'First Name'}
+                className={cn(inputClasses, errors.firstName && errorClasses)}
+                value={formData.firstName}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <ErrorMessage error={errors.firstName} />
+            </div>
+            <div className='flex-1 flex flex-col'>
+              <input
+                type='text'
+                name='lastName'
+                placeholder={t('lastNamePlaceholder') || 'Last Name'}
+                className={cn(inputClasses, errors.lastName && errorClasses)}
+                value={formData.lastName}
+                onChange={handleChange}
+                disabled={isRequesting}
+              />
+              <ErrorMessage error={errors.lastName} />
+            </div>
           </div>
           <div className='flex flex-col'>
             <input
@@ -393,15 +412,25 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             </div>
           </div>
 
-          <button
+          {/* <button
             type='submit'
             className='w-full py-3 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-xl mt-2'
-            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             disabled={isRequesting}
           >
             <span>{tPricing('bookDemo')}</span>
             {isRequesting && <IconLoader2 className='animate-spin size-4' />}
-          </button>
+          </button> */}
+          <Button
+           type='submit'
+             disabled={isRequesting}
+            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
+            style={{
+              fontFamily: "'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            <span>{tPricing('bookDemo')}</span>
+            {isRequesting && <IconLoader2 className='animate-spin size-4' />}
+          </Button>
         </form>
       )}
 
