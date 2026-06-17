@@ -163,9 +163,9 @@
     "doneForYouService": "Done-For-You Service",
     "rating": "4.5/5",
     "reviewsCount": "based on 90+ reviews",
-    "appOfferTitle": "APP OFFER",
+    "appOfferTitle": "PROFESSIONAL",
     "serviceOfferTitle": "SERVICE OFFER",
-    "educationOfferTitle": "EDUCATION PLANS",
+    "educationOfferTitle": "ACADEMIC",
     "features": {
       "createAccount": "CREATE A FREE ACCOUNT",
       "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",
@@ -306,12 +306,13 @@
     "descriptionText": "Transform your architectural drawings into stunning photorealistic visualizations with AI precision."
   },
   "Pricing": {
-    "selectPlanCTA": "Select plan & get started",
+    "selectPlanCTA": "View prices",
     "professionalPlans": "Professional Plans",
-    "selfServiceTitle": "AI App for Architects - Including live webinars.\nWe train you or your employees.",
+    "selfServiceTitle": "AI for architecture - Including live webinars.\nWe train you or your employees.",
+    "selfServiceSubtitle": "Book a free initial consultation and benefit from attractive discounts with yearly billing.",
     "missingProFeaturesTitle": "Features that are missing in Explorer but included in the Pro plan:",
     "upgradeToPro": "Upgrade to Pro to unlock these features",
-    "educationPlans": "Education Plans",
+    "educationPlans": "For students",
     "bookDemo": "Free initial consultation",
     "professional": "Professional",
     "education": "Education",
@@ -525,7 +526,7 @@
   "PricingCTA": {
     "title": "Flexible Plans for Every Need",
     "description": "Choose the perfect plan for your architectural visualization workflow. From individuals to large institutions, we have you covered.",
-    "button": "Select plan & get started"
+    "button": "View prices"
   },
   "Team": {
     "title": "Meet Our Team",

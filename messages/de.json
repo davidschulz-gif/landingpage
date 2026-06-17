@@ -163,9 +163,9 @@
     "doneForYouService": "Done-For-You Service",
     "rating": "4.5/5",
     "reviewsCount": "basierend auf 90+ Bewertungen",
-    "appOfferTitle": "APP ANGEBOT",
+    "appOfferTitle": "PROFESIONEL",
     "serviceOfferTitle": "SERVICE ANGEBOT",
-    "educationOfferTitle": "BILDUNGSPLÄNE",
+    "educationOfferTitle": "AKADEMISCH",
     "features": {
       "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
       "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
@@ -306,13 +306,14 @@
     "descriptionText": "Transformieren Sie Ihre architektonischen Zeichnungen in atemberaubende fotorealistische Visualisierungen mit KI-Präzision."
   },
   "Pricing": {
-    "selectPlanCTA": "Abo auswählen & loslegen",
+    "selectPlanCTA": "Preise ansehen",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
-    "selfServiceTitle": "KI App für Architekten - inklusive Live Webinare.\nWir schulen Sie oder Ihre Mitarbeitenden",
+    "selfServiceTitle": "KI für Architektur - inklusive Live Webinare.\nWir schulen Sie oder Ihre Mitarbeitenden",
+    "selfServiceSubtitle": "Kostenloses Erstgespräch buchen und von attraktiven Vergünstigungen bei jährlicher Abrechnung profitieren.",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Kostenloses Erstgespräch",
-    "educationPlans": "BILDUNGSPLÄNE",
+    "educationPlans": "Für Studierende",
     "professional": "Professionell",
     "education": "Bildung",
     "freeTrial": "1-tägige kostenlose Testversion",
@@ -525,7 +526,7 @@
   "PricingCTA": {
     "title": "Flexible Pläne für jeden Bedarf",
     "description": "Wählen Sie den perfekten Plan für Ihren Architektur-Visualisierungs-Workflow. Von Einzelpersonen bis hin zu großen Institutionen, wir haben für Sie gesorgt.",
-    "button": "Abo auswählen & loslegen"
+    "button": "Preise ansehen"
   },
   "Team": {
     "title": "Lernen Sie Unser Team Kennen",

@@ -163,18 +163,18 @@ const professionalPlans = [
       // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
-  {
-    id: 'enterprise',
-    name: 'ENTERPRISE',
-    monthlyPrice: { eur: 'Custom', usd: 'Custom' },
-    planType: 'ENTERPRISE',
-    features: [
-      { text: 'CUSTOM CREDITS', hasFeature: true },
-      // { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
-      { text: 'DEDICATED SUPPORT', hasFeature: true },
-      { text: 'CUSTOM INTEGRATIONS', hasFeature: true },
-    ],
-  },
+  // {
+  //   id: 'enterprise',
+  //   name: 'ENTERPRISE',
+  //   monthlyPrice: { eur: 'Custom', usd: 'Custom' },
+  //   planType: 'ENTERPRISE',
+  //   features: [
+  //     { text: 'CUSTOM CREDITS', hasFeature: true },
+  //     // { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
+  //     { text: 'DEDICATED SUPPORT', hasFeature: true },
+  //     { text: 'CUSTOM INTEGRATIONS', hasFeature: true },
+  //   ],
+  // },
 ]
 
 const educationPlans = [
@@ -418,6 +418,14 @@ export function ManyChatPricingSection({
 
 
   const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
+    // if (!isEdu && (plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS')) {
+    //   const billingCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly')
+    //   const code = profPromoCode || ''
+    //   const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
+    //   router.push(url)
+    //   return
+    // }
+
     const code = isEdu ? eduPromoCode : profPromoCode
     const discount = isEdu ? eduPromoDiscount : profPromoDiscount
     const setError = isEdu ? setEduPromoError : setProfPromoError
@@ -806,20 +814,20 @@ export function ManyChatPricingSection({
 
     // Enterprise
     const baseEnterprisePlan = professionalPlans[3]
-    const enterprisePlan = {
-      ...baseEnterprisePlan,
-      name: t('plans.enterprise.name'),
-      fetchedData: null,
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
-      features: baseEnterprisePlan.features.map(f => ({
-        ...f,
-        // using simple text or placeholder translation
-        text: typeof f === 'string' ? f : t(`plans.enterprise.features.${f.text.includes('CUSTOM CREDITS') ? 'customCredits' : f.text.includes('UNLIMITED') ? 'unlimitedJobs' : f.text.includes('DEDICATED') ? 'dedicatedSupport' : 'customIntegrations'}`),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-    }
+    // const enterprisePlan = {
+    //   ...baseEnterprisePlan,
+    //   name: t('plans.enterprise.name'),
+    //   fetchedData: null,
+    //   billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
+    //   features: baseEnterprisePlan.features.map(f => ({
+    //     ...f,
+    //     // using simple text or placeholder translation
+    //     text: typeof f === 'string' ? f : t(`plans.enterprise.features.${f.text.includes('CUSTOM CREDITS') ? 'customCredits' : f.text.includes('UNLIMITED') ? 'unlimitedJobs' : f.text.includes('DEDICATED') ? 'dedicatedSupport' : 'customIntegrations'}`),
+    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
+    //   })),
+    // }
 
-    return [soloPlan, proPlan, businessPlan, enterprisePlan]
+    return [soloPlan, proPlan, businessPlan]
   }
 
   // Get translated Education plans
@@ -1050,7 +1058,7 @@ export function ManyChatPricingSection({
     <section
       ref={containerRef}
       className='min-h-screen relative pt-0 pb-20'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#ffffff' }}
       id='pricing'
     >
 
@@ -1062,17 +1070,20 @@ export function ManyChatPricingSection({
         {/* Professional Section */}
         {showOnly !== 'educational' && (
           <>
-            <div className='text-center mb-2 relative z-40'>
-          {/* <h2
-            className='text-[30px] font-black mt-10 mb-8 text-black'
-          >
-            {t('selfServiceTitle')}
-          </h2> */}
-           <h2 className="text-3xl mt-10 mb-8 text-center sm:text-3xl md:text-[40px] font-normal text-black dark:text-white tracking-tight leading-[1.5] whitespace-pre-line">
-              {t('selfServiceTitle')}
-            </h2>
+            <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
+              <h2 className="text-center mt-10 mb-4 heading-primary">
+                {t('selfServiceTitle')}
+              </h2>
+              <p className=' max-w-2xl mx-auto px-4 subheading-primary' >
+                {t('selfServiceSubtitle')}
+              </p>
+              
+              {/* Lottie Arrow pointing to the right/booking form */}
+              <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
+                <Lottie animationData={HandDrawnArrow} loop={true} />
+              </div>
 
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6'>
+          {/* <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6'>
             <button
               onClick={() => setIsYearly(true)}
               className={`px-10 py-4 text-lg font-medium transition-colors ${isYearly
@@ -1093,16 +1104,14 @@ export function ManyChatPricingSection({
             >
               {t('monthlyBilling')}
             </button>
-          </div>
-        </div>
+          </div>*/}
+        </div> 
         <div className='flex flex-col gap-1 mb-8 text-center'>
         </div>
 
         {/* Professional Plans Cards */}
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
-            <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-[#fcfcfd] rounded-2xl overflow-hidden'>
-              <BookingDemoClassFormForPricingPage />
-            </div>
+           
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-3'>
               {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
@@ -1126,11 +1135,14 @@ export function ManyChatPricingSection({
                 </div>
               ))}
             </div>
+             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
+              <BookingDemoClassFormForPricingPage />
+            </div>
           </div>
 
           {/* Promo Code Input on Page */}
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
-            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
+            {/* <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
                 type='text'
                 className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
@@ -1153,7 +1165,7 @@ export function ManyChatPricingSection({
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
-            </div>
+            </div> */}
             {profPromoError && (
               <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
                 <IconAlertCircle size={14} />
