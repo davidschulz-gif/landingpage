@@ -187,7 +187,7 @@
     "lastNamePlaceholder": "Nachname",
     "phoneNameReason": "Wir verwenden Ihre Telefonnummer, um Sie zu kontaktieren und Ihre Anforderungen sowie mögliche Einsatzmöglichkeiten von KI in der Architektur besser zu verstehen.",
     "learnMore": "Mehr erfahren",
-    "submitDetails": "Details absenden",
+    "submitDetails": "Weiter",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
     "success": "Bestätigung wurde gesendet. Bitte prüfen Sie Ihre E-Mail.",
     "gate": {
@@ -288,7 +288,7 @@
     }
   },
   "Compare": {
-    "title": "HOCHSKALIERUNG BIS ZU 8K AUFLÖSUNG",
+    "title": "Hochskalierung Bis ZU 8K Auflosung",
     "description": "Sehen Sie die dramatische Transformation von einfachen CAD-Dateien zu fotorealistischen Architekturvisualisierungen",
     "aiTransformation": "KI-gestützte Transformation",
     "startCreating": "Plan kaufen und loslegen",
@@ -528,19 +528,19 @@
     "button": "Abo auswählen & loslegen"
   },
   "Team": {
-    "title": "LERNEN SIE UNSER TEAM KENNEN"
+    "title": "Lernen Sie Unser Team Kennen"
   },
   "Articles": {
-    "title": "PRESSEARTIKEL",
+    "title": "Presseartikel",
     "readFullArticle": "VOLLSTÄNDIGEN ARTIKEL LESEN",
     "companyEvolution": "TYPUS.AI hat verschiedene Phasen schnell durchlaufen und hieß früher YANUS / Präi"
   },
   "CreatorShowcase": {
-    "title": "CREATOR-SHOWCASE",
+    "title": "Creator-Showcase",
     "subtitle": "Entdecken Sie, wie Architekten und Designer Typus.AI nutzen, um ihre Workflows zu transformieren."
   },
   "Reviews": {
-    "title": "WAS UNSERE NUTZER SAGEN",
+    "title": "Was Unsere Nutzer Sagen",
     "viewAllReviews": "Alle Bewertungen ansehen"
   },
   "Testimonials": {
@@ -2520,7 +2520,7 @@
     }
   },
   "Industry": {
-    "title": "typus.ai branchenübergreifend",
+    "title": "typus.ai Branchenübergreifend",
     "subtitle": "typus.ai ist für alle, die professionell Visuals erstellen — vom Designstudio bis zum Handwerksbetrieb.",
     "viewAll": "Alle Branchen entdecken",
     "cards": {

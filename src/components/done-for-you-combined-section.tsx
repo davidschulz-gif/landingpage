@@ -17,7 +17,7 @@ export const DoneForYouCombinedSection = () => {
       <div className='relative mx-auto max-w-5xl px-4 md:px-6 z-10'>
 
         {/* Section Header */}
-        <div className='text-center mb-16 lg:mb-24 space-y-4'>
+        {/* <div className='text-center mb-16 lg:mb-24 space-y-4'>
           <BreathingAnimationText animationType='black-gray' className='font-space-grotesk'>
             <h2
               className='text-[20px] md:text-[26px] lg:text-[30px] font-normal text-black dark:text-white uppercase tracking-[0.2em]'
@@ -27,7 +27,15 @@ export const DoneForYouCombinedSection = () => {
             </h2>
           </BreathingAnimationText>
           
-        </div>
+        </div> */}
+
+         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          {/* <div className=""> */}
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+              {tBooking('title')}
+            </h2>
+            
+          </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start'>
 
@@ -45,7 +53,7 @@ export const DoneForYouCombinedSection = () => {
               {tPreview('badge')}
             </div>
 
-            <h3
+            {/* <h3
               className='text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-black dark:text-white leading-[1.3] font-space-grotesk'
             >
               {tPreview('title')}
@@ -53,7 +61,17 @@ export const DoneForYouCombinedSection = () => {
 
             <p className='text-sm md:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-lg mx-auto lg:mx-0 font-space-grotesk'>
               {tPreview('subtitle')}
+            </p> */}
+
+             {/* <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4"> */}
+          {/* <div className=""> */}
+            <h2 className="text-2xl  text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+               {tPreview('title')}
+            </h2>
+            <p className="text-gray-500 text-left  dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+          {tPreview('subtitle')}
             </p>
+          {/* </div> */}
 
             {/* Esra Aslan Profile Card */}
             <div className='w-full max-w-sm mt-8 mx-auto lg:mx-0'>

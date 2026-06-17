@@ -1068,7 +1068,7 @@ export function ManyChatPricingSection({
           >
             {t('selfServiceTitle')}
           </h2> */}
-           <h2 className="text-2xl mt-10 mb-8 text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-[1.5] whitespace-pre-line">
+           <h2 className="text-3xl mt-10 mb-8 text-center sm:text-3xl md:text-[40px] font-normal text-black dark:text-white tracking-tight leading-[1.5] whitespace-pre-line">
               {t('selfServiceTitle')}
             </h2>
 

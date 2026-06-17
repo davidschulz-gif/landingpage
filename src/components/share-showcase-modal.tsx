@@ -13,6 +13,7 @@ import {
 import { apiUrl } from '@/lib/constants'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { MailIcon, PhoneCall } from 'lucide-react'
 interface ShareShowcaseModalProps {
   isOpen: boolean
   onClose: () => void
@@ -349,8 +350,8 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
 
                   {/* Envelope disclaimers and notes */}
                   <div className='flex items-start gap-2.5 text-neutral-500 dark:text-neutral-400 mb-6 px-1'>
-                    <IconMail size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />
-                    <span className='text-[11px] leading-snug font-normal font-sans'>
+                   {step === 1 ? <MailIcon size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' /> :  <PhoneCall size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />}
+                                           <span className='text-[11px] leading-snug font-normal font-sans'>
                       {step === 1 ? t('viewFreeEnvelopeText') : t('phoneNameReason')}
                     </span>
                   </div>

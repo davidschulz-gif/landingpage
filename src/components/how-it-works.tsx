@@ -60,19 +60,30 @@ const HowItWorksWithoutOptimization: React.FC = () => {
     ], [t]);
 
     return (
-        <section className="py-16 md:py-20 bg-white relative overflow-hidden font-space-grotesk">
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden ">
             {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F7F7F7]/50 -skew-x-12 transform origin-top translate-x-1/2 -z-10" />
+            {/* <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F7F7F7]/50 -skew-x-12 transform origin-top translate-x-1/2 -z-10" /> */}
 
-            <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-24">
-                <div className="text-center space-y-4">
-                    <h2 className="text-4xl font-bold text-gray-900 tracking-tight">
-                        {t('title')}
-                    </h2>
-                    <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
-                        {t('subtitle')}
-                    </p>
-                </div>
+            {/* <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-24"> */}
+                
+                <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          <div className="">
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+             {t('title')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+              {t('subtitle')}
+            </p>
+          </div>
+        </div>
+         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+            {/* <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+              {t('title')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+               {t('subtitle')}
+            </p> */}
+        {/* </div> */}
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div className="order-2 lg:order-1 space-y-16">

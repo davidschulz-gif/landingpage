@@ -108,7 +108,7 @@ export function SolutionSection() {
                 />
               </div>
             </div>
-            <h2 className='text-xl md:text-2xl font-bold mb-4 tracking-tight'>
+            <h2 className='text-3xl md:text-4xl font-bold mb-4 tracking-tight'>
               {t('benefits.title')}
             </h2>
             <p className='text-sm md:text-base max-w-2xl mx-auto'>

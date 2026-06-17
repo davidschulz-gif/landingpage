@@ -51,7 +51,7 @@ export function MeetOurTeamSection() {
     <section className='py-10' style={{ backgroundColor: '#fcfcfd' }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Header */}
-        <div className='text-center mb-12'>
+        {/* <div className='text-center mb-12'>
           <BreathingAnimationText animationType='black-gray'>
             <motion.h2
               className='text-[30px] text-gray-900 mb-3 font-normal'
@@ -64,7 +64,15 @@ export function MeetOurTeamSection() {
               {t('title')}
             </motion.h2>
           </BreathingAnimationText>
-        </div>
+        </div> */}
+
+         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          {/* <div className=""> */}
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+               {t('title')}
+            </h2>
+           
+          </div>
 
         {/* Team Grid */}
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'>

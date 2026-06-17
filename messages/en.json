@@ -187,7 +187,7 @@
     "lastNamePlaceholder": "Last Name",
     "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
     "learnMore": "Learn more",
-    "submitDetails": "Submit details",
+    "submitDetails": "Further",
     "description": "Learn more about the app and get notified about new features.",
     "success": "Verification link sent. Please check your email.",
     "gate": {
@@ -288,7 +288,7 @@
     }
   },
   "Compare": {
-    "title": "UPSCALE UP TO 8K RESOLUTION",
+    "title": "Upscale up to 8K Resolution",
     "description": "See the dramatic transformation from basic CAD files to photorealistic architectural visualizations",
     "aiTransformation": "AI-Powered Transformation",
     "startCreating": "Buy Plan and Start Creating Now",
@@ -528,19 +528,19 @@
     "button": "Select plan & get started"
   },
   "Team": {
-    "title": "MEET OUR TEAM"
+    "title": "Meet Our Team"
   },
   "Articles": {
-    "title": "PRESS ARTICLES",
+    "title": "Press Articles",
     "readFullArticle": "READ FULL ARTICLE",
     "companyEvolution": "TYPUS.AI has gone through different stages fast and was formerly called YANUS / Präi"
   },
   "CreatorShowcase": {
-    "title": "CREATOR SHOWCASE",
+    "title": "Creator Showcase",
     "subtitle": "Discover how architects and designers are using Typus.AI to transform their workflows."
   },
   "Reviews": {
-    "title": "WHAT OUR USERS SAY",
+    "title": "What Our Users Say",
     "viewAllReviews": "View All Reviews"
   },
   "Testimonials": {

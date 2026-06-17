@@ -125,31 +125,21 @@ export const FeaturesSection = () => {
   return (
     <section className='relative mx-auto flex max-w-[100%] md:max-w-[70%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
       {/* Section Header */}
-      <motion.div
-        className='mb-8 md:mb-10 text-center'
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        viewport={{ once: true, margin: '-50px' }}
-      >
-        <BreathingAnimationText animationType='black-gray'>
-          <h2 className='mb-3 md:mb-4 text-xl md:text-2xl font-semibold !leading-tight text-neutral-800 dark:text-neutral-200'>
-            <span className='text-black dark:text-white font-semibold'>
-              {t('introTitle')}
-            </span>
-          </h2>
-        </BreathingAnimationText>
-        <motion.div
-          className='mx-auto text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed space-y-2 md:max-w-4xl'
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          viewport={{ once: true, margin: '-50px' }}
-        >
-          <p style={{ fontFamily: 'sans-serif' }}>{t('introText1')}</p>
-          <p style={{ fontFamily: 'sans-serif' }}>{t('introText2')}</p>
-        </motion.div>
-      </motion.div>
+      
+
+       <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          {/* <div className=""> */}
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+               {t('introTitle')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+          {t('introText1')}
+            </p>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+          {t('introText2')}
+            </p>
+          </div>
+
 
       {/* Features Grid */}
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4'>

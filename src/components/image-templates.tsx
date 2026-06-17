@@ -119,11 +119,22 @@ export const ImageTemplates: React.FC = () => {
     ]
 
     return (
-        <div className="max-w-7xl mx-auto py-1 px-6 sm:px-10 space-y-8 w-full">
-            <div className="text-center space-y-2">
+        <div className="max-w-7xl mx-auto py-1 pt-12 px-6 sm:px-10 space-y-8 w-full">
+            {/* <div className="text-center space-y-2">
                 <h2 className="text-4xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
                 <p className="text-lg text-gray-500 font-light">{t('subtitle')}</p>
-            </div>
+            </div> */}
+
+             <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          <div className="">
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+              {t('title')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+             {t('subtitle')}
+            </p>
+          </div>
+        </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[160px] md:auto-rows-[220px]">
                 {/* Dynamic Templates for the Grid */}

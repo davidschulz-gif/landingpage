@@ -65,7 +65,18 @@ export const FAQSection = () => {
   return (
     <section className='py-24 px-6 bg-white'>
       <div className='mx-auto max-w-4xl'>
-        <div className='mb-16'>
+
+         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+          <div className="">
+            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+             {t('title')}
+            </h2>
+            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+               {t('subtitle')}
+            </p>
+          </div>
+        </div>
+        {/* <div className='mb-16'>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +94,7 @@ export const FAQSection = () => {
           >
             {t('subtitle')}
           </motion.p>
-        </div>
+        </div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

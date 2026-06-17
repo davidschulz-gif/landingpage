@@ -88,7 +88,7 @@ export const RightsSection = () => {
           >
             {t('badge')}
           </motion.span>
-          <motion.h2 
+          {/* <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -96,7 +96,11 @@ export const RightsSection = () => {
             className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-gray-900 break-words"
           >
             {t('title')}
-          </motion.h2>
+          </motion.h2> */}
+          <h2 className="text-2xl text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+               {t('title')}
+            </h2>
+          
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

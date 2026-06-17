@@ -12,7 +12,7 @@ export function KernelZoomShowcase() {
 
   const translations = {
     en: {
-      title: "IMAGE UPSCALING UP TO 8K RESOLUTION",
+      title: "Image Upscaling Up to 8K Resolution",
       subtitle: "See the dramatic transformation from simple CAD files to photorealistic architectural visualizations",
       zoomText: "HOVER OR TAP & HOLD TO ENHANCE",
       detailsResolved: "DETAILS RESOLVED: 100%",
@@ -23,7 +23,7 @@ export function KernelZoomShowcase() {
       backToPresentation: "◀ Back to Auto-Presentation"
     },
     de: {
-      title: "HOCHSKALIERUNG BIS ZU 8K AUFLÖSUNG",
+      title: "Hochskalierung Bis ZU 8K Auflosung",
       subtitle: "Sehen Sie die dramatische Transformation von einfachen CAD-Dateien zu fotorealistischen Architekturvisualisierungen",
       zoomText: "HOVER ODER TIPPEN & HALTEN ZUM VERBESSERN",
       detailsResolved: "DETAILS AUFGELÖST: 100%",

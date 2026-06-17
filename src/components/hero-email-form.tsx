@@ -6,6 +6,7 @@ import {
   IconMail,
 } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
+import { MailIcon, PhoneCall } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
@@ -272,8 +273,8 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
           </div>
         )}
         <div className='mt-2.5 flex items-start gap-2 text-left'>
-          <IconMail size={18} className='text-gray-600 dark:text-gray-400 mt-0.5 flex-shrink-0' />
-          <span
+         {step === 1 ? <MailIcon size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' /> :  <PhoneCall size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />}
+                                 <span
             className='text-[11px] text-gray-600 dark:text-gray-300 leading-normal'
             style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
           >
