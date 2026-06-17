@@ -163,7 +163,7 @@
     "doneForYouService": "Done-For-You Service",
     "rating": "4.5/5",
     "reviewsCount": "basierend auf 90+ Bewertungen",
-    "appOfferTitle": "PROFESIONEL",
+    "appOfferTitle": "PROFESIONELL",
     "serviceOfferTitle": "SERVICE ANGEBOT",
     "educationOfferTitle": "AKADEMISCH",
     "features": {
@@ -186,7 +186,7 @@
     "firstNamePlaceholder": "Vorname",
     "lastNamePlaceholder": "Nachname",
     "phoneNameReason": "Wir verwenden Ihre Telefonnummer, um Sie zu kontaktieren und Ihre Anforderungen sowie mögliche Einsatzmöglichkeiten von KI in der Architektur besser zu verstehen.",
-    "learnMore": "Mehr erfahren",
+    "learnMore": "Kostenlose Demo erhalten & mehr erfahren",
     "submitDetails": "Weiter",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
     "success": "Bestätigung wurde gesendet. Bitte prüfen Sie Ihre E-Mail.",
@@ -210,6 +210,7 @@
       "freeInitial": "kostenloses Erstgespräch",
       "interactiveShowcase": "18 Beispiele des Hochskalierers für großformatige Drucke sehen",
       "viewApp": "App ansehen",
+      "viewLiveDemo": "1:1 Live Demo",
       "interactiveTutorial": "Interaktives Tutorial"
     }
   },
@@ -619,7 +620,7 @@
     "newsletterLabel": "Ich möchte Marketing-E-Mails und Updates zu neuen Funktionen erhalten",
     "privacyLabel": "Ich stimme der Datenschutzerklärung zu",
     "bookDemo": "Demo-Anruf buchen",
-    "learnMore": "Mehr erfahren",
+    "learnMore": "Kostenlose Demo erhalten & mehr erfahren",
     "description": "Erfahren Sie mehr über die App und werden Sie über neue Features benachrichtigt.",
     "errors": {
       "required": "Dieses Feld ist erforderlich",
@@ -665,6 +666,8 @@
     "viewFreeBullet4": "18 Beispiele des Hochskalierers für großformatige Drucke sehen",
     "viewFreeBullet5": "kostenloses Erstgespräch",
     "viewFreeBullet6": "Interaktives Tutorial",
+    "viewFreeBullet7": "1:1 Videositzung",
+    "viewFreeBullet8": "1:1 Live Demo",
     "viewFreeEmailPlaceholder": "Deine E-Mail-Adresse",
     "viewFreeCta": "Mehr erfahren",
     "viewFreeEnvelopeText": "Erfahre mehr über die App und erhalte Benachrichtigungen über neue Funktionen.",

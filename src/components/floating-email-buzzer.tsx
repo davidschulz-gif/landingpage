@@ -58,7 +58,7 @@ export function FloatingEmailBuzzer() {
               </span>
             </div>
             <span className="text-[9px] sm:text-xs md:text-sm font-bold tracking-wider uppercase leading-tight sm:leading-none" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-              {t('learnMore')} & {t('features.viewApp')}
+              {t('learnMore')}
             </span>
           </motion.button>
         </motion.div>

@@ -186,7 +186,7 @@
     "firstNamePlaceholder": "First Name",
     "lastNamePlaceholder": "Last Name",
     "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
-    "learnMore": "Learn more",
+    "learnMore": "Get a free demo & learn more",
     "submitDetails": "Further",
     "description": "Learn more about the app and get notified about new features.",
     "success": "Verification link sent. Please check your email.",
@@ -210,7 +210,8 @@
       "interactiveShowcase": "See 18 examples of the upscaling process for large-format prints",
       "viewApp": "View the app for free",
       "freeInitial": "Free initial consultation",
-      "interactiveTutorial": "Interactive Tutorial"
+      "interactiveTutorial": "Interactive Tutorial",
+      "viewLiveDemo": "1:1 Live Demo"
     }
   },
   "VideoShowcase": {
@@ -619,7 +620,7 @@
     "newsletterLabel": "I would like to receive marketing emails and updates about new features",
     "privacyLabel": "I agree to the privacy policy",
     "bookDemo": "Book a Demo Call",
-    "learnMore": "Learn more",
+    "learnMore": "Get a free demo & learn more",
     "description": "Learn more about the app and get notified about new features.",
     "errors": {
       "required": "This field is required",
@@ -665,6 +666,8 @@
     "viewFreeBullet4": "See 18 examples of the upscaling process for large-format prints",
     "viewFreeBullet5": "Free initial consultation",
     "viewFreeBullet6": "Interactive Tutorial",
+    "viewFreeBullet7": "1:1 Video Session",
+    "viewFreeBullet8": "1:1 Live Demo",
     "viewFreeEmailPlaceholder": "Enter your email",
     "viewFreeCta": "Learn more",
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",

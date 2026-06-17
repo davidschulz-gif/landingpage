@@ -1,6 +1,6 @@
 'use client'
 
-import { IconArrowRight, IconCheck, IconClock, IconX, IconMail } from '@tabler/icons-react'
+import { IconArrowRight, IconCheck, IconClock, IconX, IconMail, IconVideo } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useRouter } from '@/i18n/navigation'
@@ -344,14 +344,24 @@ export default function BeforeYouGoPopup() {
                       {t('body')}
                     </p>
 
-                    {/* Feature Highlight */}
-                    <div className='flex items-center gap-3 mb-4 sm:mb-6'>
-                      <div className='w-6 h-6 bg-white/5 flex items-center justify-center flex-shrink-0 rounded-none border border-white/10'>
-                        <BarChart3 className='w-3 h-3 text-white' strokeWidth={1.5} />
+                    {/* Feature Highlights */}
+                    <div className='flex flex-col gap-2 mb-4 sm:mb-6'>
+                      <div className='flex items-center gap-3'>
+                        <div className='w-6 h-6 bg-white/5 flex items-center justify-center flex-shrink-0 rounded-none border border-white/10'>
+                          <BarChart3 className='w-3 h-3 text-white' strokeWidth={1.5} />
+                        </div>
+                        <span className='text-[13px] font-medium text-white/90 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+                          {tDemo('cta.point4')}
+                        </span>
                       </div>
-                      <span className='text-[13px] font-medium text-white/90 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
-                        {tDemo('cta.point4')}
-                      </span>
+                      <div className='flex items-center gap-3'>
+                        <div className='w-6 h-6 bg-white/5 flex items-center justify-center flex-shrink-0 rounded-none border border-white/10'>
+                          <IconVideo className='w-3 h-3 text-white' strokeWidth={1.5} size={12} />
+                        </div>
+                        <span className='text-[13px] font-medium text-white/90 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+                          {t('viewFreeBullet7')}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Unified Form */}
@@ -635,6 +645,14 @@ export default function BeforeYouGoPopup() {
                         </div>
                         <span className='text-xs sm:text-sm text-neutral-800 font-medium font-sans'>
                           {t('viewFreeBullet6')}
+                        </span>
+                      </div>
+                      <div className='flex items-center gap-3'>
+                        <div className='flex items-center justify-center w-5 h-5 rounded-full bg-blue-50 text-blue-600 shrink-0'>
+                          <IconVideo size={11} strokeWidth={2.5} />
+                        </div>
+                        <span className='text-xs sm:text-sm text-neutral-800 font-medium font-sans'>
+                          {t('viewFreeBullet7')}
                         </span>
                       </div>
                     </div>
