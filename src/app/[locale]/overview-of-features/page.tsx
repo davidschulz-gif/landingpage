@@ -18,6 +18,14 @@ const StickySliderSection = dynamic(
   }
 )
 
+const IndustrySection = dynamic(
+  () => import('@/components/industry-section').then(mod => mod.IndustrySection),
+  {
+    // ssr: false,
+    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+  }
+)
+
 export default function OverviewOfFeaturesPage() {
   const locale = useLocale()
   const [isClient, setIsClient] = useState(false)
@@ -30,6 +38,15 @@ export default function OverviewOfFeaturesPage() {
     <div className='relative w-full bg-[#fcfcfd] min-h-screen flex flex-col justify-between'>
       <div>
         <NavbarDemo />
+
+     {/* <Reveal
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+        > */}
+          <IndustrySection />
+        {/* </Reveal> */}
+
 
         {/* Hero Title Block */}
         <div className="pt-32 pb-8 bg-[#fcfcfd] text-center px-4">

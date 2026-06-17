@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { LinkedinIcon } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { BreathingAnimationText } from './breathing-animation-text'
@@ -19,6 +20,7 @@ const teamMembers = [
     name: 'DOMINIK DENNY',
     role: 'ACCOUNT MANAGER',
     image: '/DominikDenny.png',
+    subtext: "führt mit Ihnen eine individuelle Bedarfsanalyse durch.",
     linkedin: '#',
   },
   {
@@ -26,6 +28,7 @@ const teamMembers = [
     role: 'ACCOUNT MANAGERIN',
     name: 'ADA VON KAYSER',
     image: '/team/adavkayser.jpeg',
+    subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: 'https://www.linkedin.com/in/adavkayser/'
   },
   // {
@@ -68,8 +71,9 @@ export function MeetOurTeamSection() {
 
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           {/* <div className=""> */}
-            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
-               {t('title')}
+
+              <h2 className="text-3xl sm:text-5xl md:text-6xl text-center font-normal text-black dark:text-white  leading-none mb-4">
+              {t('title')}
             </h2>
            
           </div>
@@ -128,6 +132,8 @@ export function MeetOurTeamSection() {
                     </p>
                   </BreathingAnimationText>
 
+               
+
                   {/* LinkedIn Link */}
                   <motion.a
                     href={member.linkedin}
@@ -140,11 +146,29 @@ export function MeetOurTeamSection() {
                   >
                     <LinkedinIcon className='w-4 h-4' />
                   </motion.a>
+
+                   { member?.subtext &&  <p
+                      className='text-sm text-black mb-6'
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      {member?.subtext}
+                    </p>}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+      <div className='flex justify-center mt-12'>
+         <Link
+            href='/pricing'
+            className='bg-black text-white cursor-pointer text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl px-6 py-3 inline-block'
+            style={{
+              fontFamily: "'Soyuz Grotesk', sans-serif",
+            }}
+          >
+            <span>{t('button')}</span>
+          </Link>
+      </div>
       </div>
     </section>
   )

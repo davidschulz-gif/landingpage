@@ -97,10 +97,12 @@ export const RightsSection = () => {
           >
             {t('title')}
           </motion.h2> */}
-          <h2 className="text-2xl text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+          {/* <h2 className="text-2xl text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
                {t('title')}
+            </h2> */}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl text-center font-normal text-black dark:text-white  leading-none mb-4">
+              {t('title')}
             </h2>
-          
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

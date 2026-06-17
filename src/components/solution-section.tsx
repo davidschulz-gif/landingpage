@@ -104,9 +104,12 @@ export function SolutionSection() {
       <section className='relative z-20 pt-12 lg:pt-20 bg-black text-white px-4 overflow-hidden '>
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-20'>
-            <h3 className='text-lg md:text-xl uppercase text-white mb-0'>
+            {/* <h3 className='text-lg md:text-xl uppercase text-white mb-0'>
               {t('benefits.solutionHeader')}
-            </h3>
+            </h3> */}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl text-center font-normal text-white  leading-none mb-4">
+             {t('benefits.solutionHeader')}
+            </h2>
             <div className='flex justify-center py-6'>
               <div className='w-24 h-24 sm:w-32 sm:h-32 relative flex items-center justify-center rounded-[40px]  shadow-[0_0_30px_rgba(0,0,0,0.1)] dark:bg-transparent dark:shadow-none'>
                 <Lottie

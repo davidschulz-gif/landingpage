@@ -124,13 +124,13 @@ const RightsSection = dynamic(
 //   }
 // )
 
-const IndustrySection = dynamic(
-  () => import('@/components/industry-section').then(mod => mod.IndustrySection),
-  {
-    // ssr: false,
-    loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
-  }
-)
+// const IndustrySection = dynamic(
+//   () => import('@/components/industry-section').then(mod => mod.IndustrySection),
+//   {
+//     // ssr: false,
+//     loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const FAQSection = dynamic(
   () => import('@/components/faq-section').then(mod => mod.FAQSection),
@@ -158,13 +158,13 @@ const FeaturesSection = dynamic(
 )
 
 
-const DoneForYouCombinedSection = dynamic(
-  () => import('@/components/done-for-you-combined-section').then(mod => mod.DoneForYouCombinedSection),
-  {
-    // ssr: false,
-    loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
-  }
-)
+// const DoneForYouCombinedSection = dynamic(
+//   () => import('@/components/done-for-you-combined-section').then(mod => mod.DoneForYouCombinedSection),
+//   {
+//     // ssr: false,
+//     loading: () => <div className='h-64 bg-gray-100 animate-pulse' />,
+//   }
+// )
 
 const HowItWorks = dynamic(
   () => import('@/components/how-it-works').then(mod => mod.HowItWorks),
@@ -535,23 +535,23 @@ export default function Home() {
         </Reveal> */}
 
         {/* Done For You Combined Section */}
-        <Reveal
+        {/* <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <DoneForYouCombinedSection />
-        </Reveal>
+        </Reveal> */}
 
         {/* Industry Section */}
-        <Reveal
+        {/* <Reveal
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
         >
           <IndustrySection />
-        </Reveal>
+        </Reveal> */}
 
         {/* Pricing CTA Section */}
         <Reveal
