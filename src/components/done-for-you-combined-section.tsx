@@ -29,13 +29,13 @@ export const DoneForYouCombinedSection = () => {
           
         </div> */}
 
-         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-          {/* <div className=""> */}
+         {/* <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
+         
             <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
               {tBooking('title')}
             </h2>
             
-          </div>
+          </div> */}
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start'>
 

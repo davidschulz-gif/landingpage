@@ -38,6 +38,14 @@ export function SolutionSection() {
                 </h2> */}
               {/* </div> */}
 
+               <div className="">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl text-center font-normal text-black dark:text-white  leading-none mb-4">
+              {t('problem.dasProblem')}
+            </h2>
+          
+          {/* </div> */}
+        </div>
+
               <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
                 <div>
                   <h2 className='text-lg md:text-xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight leading-tight'>
@@ -96,7 +104,7 @@ export function SolutionSection() {
       <section className='relative z-20 pt-12 lg:pt-20 bg-black text-white px-4 overflow-hidden '>
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-20'>
-            <h3 className='text-lg md:text-xl font-bold uppercase tracking-[0.2em] text-white mb-0'>
+            <h3 className='text-lg md:text-xl uppercase text-white mb-0'>
               {t('benefits.solutionHeader')}
             </h3>
             <div className='flex justify-center py-6'>
@@ -108,7 +116,7 @@ export function SolutionSection() {
                 />
               </div>
             </div>
-            <h2 className='text-3xl md:text-4xl font-bold mb-4 tracking-tight'>
+            <h2 className='text-3xl md:text-4xl  mb-4 '>
               {t('benefits.title')}
             </h2>
             <p className='text-sm md:text-base max-w-2xl mx-auto'>

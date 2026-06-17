@@ -52,7 +52,7 @@ const UseCaseCard = ({
 
       <div className="mb-4 relative z-10">
         <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{badge}</span>
-        <h3 className="text-2xl font-bold mt-2 text-gray-900 break-words">{title}</h3>
+        <h3 className="text-2xl mt-2 text-black break-words">{title}</h3>
       </div>
 
       <p className="text-gray-800 text-md leading-relaxed mb-6 flex-grow relative z-10 break-words">
@@ -152,8 +152,8 @@ export const UseCasesSection = () => {
 
          {/* <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4"> */}
           <div className="mb-10">
-            <h2 className="text-2xl text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
-               {t('title')}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl text-left font-normal text-black dark:text-white  leading-none mb-4">
+              {t('title')}
             </h2>
             <p className="text-gray-500 text-left dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
           {t('subtitle')}

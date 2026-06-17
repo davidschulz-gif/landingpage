@@ -98,7 +98,7 @@
     "amaAwards": "Testimonials"
   },
   "ImageTemplates": {
-    "title": "Bildvorlagen",
+    "title": "Hochwertige Architektur-KI für großformatige Drucke",
     "subtitle": "Entdecken Sie Architekturstile und starten Sie Ihr Projekt.",
     "items": {
       "architectural": {
@@ -885,6 +885,7 @@
       "subtitle": "Die Realität in der Branche - typische Marktpreise:",
       "point1": "500 € pro Bild – absolutes Minimum",
       "point2": "1.500 € durchschnittlicher Marktpreis",
+      "dasProblem": "Das Problem",
       "point3": "2.000–3.000 € für hochwertige Renderings",
       "conclusion": "Und jedes Bild wird einzeln abgerechnet.",
       "statusQuoHeader": "Mit Typus erhalten Sie Visualisierungen im Abo statt pro Projekt. Statt jedes Bild einzeln extern zu beauftragen, können Sie Visualisierungen intern erstellen. Ein persönlicher Visualisierungs-Spezialist betreut und schult Sie oder Ihr Teammitglied.",
@@ -2520,7 +2521,7 @@
     }
   },
   "Industry": {
-    "title": "typus.ai Branchenübergreifend",
+    "title": "Branchenübergreifend",
     "subtitle": "typus.ai ist für alle, die professionell Visuals erstellen — vom Designstudio bis zum Handwerksbetrieb.",
     "viewAll": "Alle Branchen entdecken",
     "cards": {
@@ -2932,7 +2933,7 @@
   },
   "LinkedinSlideshow": {
     "badge": "Community Insights",
-    "title": "Was Fuhrende Stimmen Sagen",
+    "title": "Was führende Stimmen in der Branche sagen",
     "subtitle": "Aktuelle Beiträge und Insights von LinkedIn",
     "viewOnLinkedin": "Auf LinkedIn ansehen"
   }

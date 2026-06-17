@@ -53,7 +53,7 @@ const IndustryCard = ({
         <div className="w-12 h-12 shrink-0 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors">
           <Icon size={24} />
         </div>
-        <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+        <h3 className="text-xl  text-gray-900">{title}</h3>
       </div>
 
       <p style={{ fontFamily: 'sans-serif' }} className="text-gray-700 text-sm leading-relaxed flex-grow">

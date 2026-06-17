@@ -575,7 +575,7 @@ export default function BeforeYouGoPopup() {
 
                     {/* Headline */}
                     <h2
-                      className='text-xl sm:text-2xl font-bold leading-snug mb-3 text-black tracking-tight font-sans'
+                      className='text-xl sm:text-2xl  leading-snug mb-3 text-black tracking-tight font-sans'
                     >
                       {t('viewFreeTitle')}
                     </h2>

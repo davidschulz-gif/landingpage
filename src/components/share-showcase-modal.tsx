@@ -198,7 +198,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
               <>
                 {/* Headline */}
                 <h2
-                  className='text-xl sm:text-2xl font-bold leading-snug mb-3 text-black dark:text-white tracking-tight font-sans text-center'
+                  className='text-xl sm:text-2xl  leading-snug mb-3 text-black dark:text-white tracking-tight font-sans text-center'
                 >
                   {t('viewFreeTitle')}
                 </h2>

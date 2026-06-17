@@ -23,7 +23,7 @@ export function KernelZoomShowcase() {
       backToPresentation: "◀ Back to Auto-Presentation"
     },
     de: {
-      title: "Hochskalierung Bis ZU 8K Auflosung",
+      title: "Hochskalierung bis zu 8k Auflösung",
       subtitle: "Sehen Sie die dramatische Transformation von einfachen CAD-Dateien zu fotorealistischen Architekturvisualisierungen",
       zoomText: "HOVER ODER TIPPEN & HALTEN ZUM VERBESSERN",
       detailsResolved: "DETAILS AUFGELÖST: 100%",
@@ -133,7 +133,7 @@ export function KernelZoomShowcase() {
         {/* Header Block */}
         <div className="max-w-3xl mx-auto mb-6 md:mb-8 px-4">
           
-          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-normal text-black dark:text-white tracking-tight leading-none mb-4">
             {t.title}
           </h2>
           <p className="text-neutral-500 dark:text-neutral-400 text-sm md:text-base font-medium font-sans max-w-2xl mx-auto">
