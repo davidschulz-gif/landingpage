@@ -96,7 +96,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                                     {step.icon}
                                 </div>
                                 <div className="space-y-3">
-                                    <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                                    <h3 className="subheading-primary">{step.title}</h3>
                                     <p className="text-lg text-gray-500 font-light leading-relaxed max-w-md">{step.description}</p>
                                 </div>
                             </div>

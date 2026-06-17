@@ -48,7 +48,7 @@ export function SolutionSection() {
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
                 <div>
-                  <h2 className='text-lg md:text-xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight leading-tight'>
+                  <h2 className='subheading-primary'>
                     {t('problem.title1')} <br /> {t('problem.title2')}
                   </h2>
 
@@ -83,14 +83,14 @@ export function SolutionSection() {
                           <item.icon className='w-5 h-5' />
                         </div>
                         <div>
-                          <h4 className='font-bold text-md text-neutral-900 dark:text-white uppercase tracking-wider mb-1'>{item.title}</h4>
+                          <h4 className='subheading-primary mb-1'>{item.title}</h4>
                           <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className='mt-10 p-4 border border-neutral-100 text-lg dark:border-neutral-800 bg-white dark:bg-black text-center  font-bold uppercase tracking-[0.1em] text-neutral-800 dark:text-neutral-200'>
+                  <div className='mt-10 p-4 subheading-primary text-center'>
                     {t('problem.finalConclusion')}
                   </div>
                 </div>

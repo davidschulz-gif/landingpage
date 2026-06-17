@@ -19,7 +19,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
         onClick={onClick}
         className='flex w-full items-center justify-between py-6 text-left transition-colors hover:text-gray-600'
       >
-        <span className='text-md md:text-lg font-bold text-gray-900'>{question}</span>
+        <span className='subheading-primary'>{question}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
@@ -68,7 +68,7 @@ export const FAQSection = () => {
 
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           <div className="">
-            <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
+            <h2 className="text-center heading-primary mb-4">
              {t('title')}
             </h2>
             <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">

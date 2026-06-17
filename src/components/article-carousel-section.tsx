@@ -291,7 +291,7 @@ export function ArticleCarouselSection() {
                       <div className='p-6'>
                         <BreathingAnimationText animationType='black-gray'>
                           <h3
-                            className='text-lg uppercase font-semibold text-gray-900 mb-3 line-clamp-2'
+                            className='subheading-primary mb-3'
                             style={{
                               fontFamily: "'Soyuz Grotesk', sans-serif",
                             }}

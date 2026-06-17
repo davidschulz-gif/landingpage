@@ -32,7 +32,7 @@ const RightCard = ({
 
       <div className="mb-4 relative z-10">
         <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{title}</span>
-        <h3 className="text-2xl font-bold mt-2 text-gray-900 break-words">{subtitle}</h3>
+        <h3 className="mt-2 subheading-primary">{subtitle}</h3>
       </div>
 
       <p className="text-gray-600 text-md leading-relaxed relative z-10 break-words">
@@ -126,7 +126,7 @@ export const RightsSection = () => {
           className="bg-gray-50/50 backdrop-blur-sm border border-gray-100 p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
-            <h4 className="text-md md:text-xl font-bold text-gray-900">
+            <h4 className="subheading-primary">
               {t('banner.privacy')}
             </h4>
           </div>

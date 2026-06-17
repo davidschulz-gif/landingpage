@@ -175,7 +175,7 @@ export const FeaturesSection = () => {
 
               {/* Content Section */}
               <div className='flex-1 p-3 md:p-4 flex flex-col min-w-0'>
-                <h3 className='mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-neutral-900 dark:text-neutral-100 leading-tight line-clamp-1'>
+                <h3 className='mb-1.5 md:mb-2 subheading-primary line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
                 <div style={{ fontFamily: 'sans-serif' }} className='flex-1'>
