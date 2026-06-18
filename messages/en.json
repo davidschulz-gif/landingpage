@@ -308,6 +308,7 @@
   },
   "Pricing": {
     "selectPlanCTA": "View prices",
+    "getFreeDemoCTA": "Get a free demo",
     "professionalPlans": "Professional Plans",
     "selfServiceTitle": "AI for architecture - Including live webinars.\nWe train you or your employees.",
     "selfServiceSubtitle": "Book a free initial consultation and benefit from attractive discounts with yearly billing.",
@@ -666,10 +667,10 @@
     "viewFreeBullet4": "See 18 examples of the upscaling process for large-format prints",
     "viewFreeBullet5": "Free initial consultation",
     "viewFreeBullet6": "Interactive Tutorial",
-    "viewFreeBullet7": "1:1 Video Session",
-    "viewFreeBullet8": "1:1 Live Demo",
+    "viewFreeBullet7": "Free 1:1 video session needs analysis",
+    "viewFreeBullet8": "Free 1:1 live demo of the app",
     "viewFreeEmailPlaceholder": "Enter your email",
-    "viewFreeCta": "Learn more",
+    "viewFreeCta": "Kostenlose Demo erhalten",
     "viewFreeEnvelopeText": "Learn more about the app and get notified about new features.",
     "viewFreeFooterText": "No spam. Unsubscribe at any time.",
     "viewFreePrivacyLink": "Data Privacy",
@@ -677,7 +678,19 @@
     "lastNamePlaceholder": "Last Name",
     "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
     "phonePlaceholder": "Your WhatsApp / Phone number",
-    "errorPhone": "Phone number is required"
+    "errorPhone": "Phone number is required",
+    "step2Cta": "Continue",
+    "step3Title": "Book your demo appointment and your individual needs analysis now.",
+    "step3Subtitle": "Book a free call now \u2013 tailored to your needs.",
+    "bookBothInstruction": "Book your two free appointments",
+    "dominikName": "DOMINIK DENNY",
+    "dominikRole": "ACCOUNT MANAGER",
+    "dominikDesc": "conducts an individual needs analysis with you.",
+    "dominikCta": "Book a call with Dominik",
+    "adaName": "ADA VON KAYSER",
+    "adaRole": "ACCOUNT MANAGERIN",
+    "adaDesc": "shows you the app in a free video call.",
+    "adaCta": "Book a Live Demo with Ada"
   },
   "FloatingBuzzer": {
     "text": "Free initial consultation"

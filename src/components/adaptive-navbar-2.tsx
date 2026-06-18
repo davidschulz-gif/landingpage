@@ -36,6 +36,10 @@ export function NavbarDemo() {
   const isDoneForYou = pathname.includes('/done-for-you')
   const locale = useLocale()
   
+  const handleOpenDemo = () => {
+    window.dispatchEvent(new CustomEvent('open-before-you-go'))
+  }
+
   const handleTabClick = (link: string) => {
     if (link.startsWith('/#')) {
       const tabId = link.split('#')[1]
@@ -334,12 +338,12 @@ export function NavbarDemo() {
           )}
         </div>
         <div className='flex items-center gap-6 h-full'>
-          <Link
-            href={`/pricing`}
-            className='bg-black text-white px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-black transition-colors duration-200'
+          <button
+            onClick={handleOpenDemo}
+            className='bg-black text-white px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-800 transition-colors duration-200 cursor-pointer'
           >
-            {tPricing('selectPlanCTA')}
-          </Link>
+            {tPricing('getFreeDemoCTA')}
+          </button>
           {/* <Link
             href={isDoneForYou ? '/' : '/done-for-you'}
             className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
@@ -733,15 +737,13 @@ export function NavbarDemo() {
           
           {/* CTA Buttons */}
           <div className='flex flex-col gap-3 mt-6 pt-2 font-sans'>
-            <NavbarButton
-              href={`/pricing`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant='dark'
-              className='w-full rounded-xl py-3 justify-center text-[14px] font-semibold tracking-wide'
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); handleOpenDemo() }}
+              className='w-full rounded-xl py-3 bg-black text-white text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-800 transition-colors duration-200'
               style={{ fontFamily: 'inherit' }}
             >
-              {tPricing('selectPlanCTA')}
-            </NavbarButton>
+              {tPricing('getFreeDemoCTA')}
+            </button>
             {/* <NavbarButton
               href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}

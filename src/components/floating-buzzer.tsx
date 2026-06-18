@@ -5,13 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { BarChart3, PhoneCall } from 'lucide-react'
 
-import { appUrl } from '@/lib/constants'
-
-interface FloatingBuzzerProps {
-  triggerPopup?: boolean;
-}
-
-export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
+export function FloatingBuzzer() {
   const t = useTranslations('FloatingBuzzer')
   const [isVisible, setIsVisible] = useState(false)
 
@@ -30,12 +24,7 @@ export function FloatingBuzzer({ triggerPopup }: FloatingBuzzerProps = {}) {
   }, [])
 
   const handleClick = () => {
-    if (triggerPopup) {
-      window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }));
-      return;
-    }
-    
-    window.dispatchEvent(new CustomEvent('open-before-you-go'));
+    window.dispatchEvent(new CustomEvent('open-before-you-go'))
   }
 
   return (

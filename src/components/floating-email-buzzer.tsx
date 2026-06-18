@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Mail } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { appUrl } from '@/lib/constants'
 
 export function FloatingEmailBuzzer() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,7 +23,7 @@ export function FloatingEmailBuzzer() {
   }, [])
 
   const handleClick = () => {
-    window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }))
+    window.dispatchEvent(new CustomEvent('open-before-you-go'))
   }
 
   return (
