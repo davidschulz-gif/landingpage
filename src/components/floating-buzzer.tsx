@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { BarChart3, PhoneCall } from 'lucide-react'
 
-export function FloatingBuzzer() {
+export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
   const t = useTranslations('FloatingBuzzer')
   const [isVisible, setIsVisible] = useState(false)
 
