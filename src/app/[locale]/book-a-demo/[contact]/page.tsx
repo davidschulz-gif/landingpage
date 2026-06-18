@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Cross, CrossIcon, X } from 'lucide-react';
+import TypusLogoBlack from '@/components/common/typus-logo-black';
 
 const DOMINIK_CALENDAR = 'https://calendar.app.google/SE4uynXtibyYmAe36';
 const ADA_CALENDAR = 'https://calendar.app.google/yU8G7Q6Lzmp6SfUEA';
@@ -54,13 +55,26 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
         {/* Header */}
         <div className="mb-8 flex flex-col items-center text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mb-4 flex flex-col items-center space-y-1.5"
+            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+            className='mb-0 flex flex-col items-center space-y-2'
           >
-            <div className="bg-black size-4" />
-            <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '2.5px', color: '#000', textTransform: 'uppercase', fontFamily: 'var(--font-soyuz-grotesk)' }}>
+            {/* <div className='bg-black size-4'></div> */}
+            <TypusLogoBlack className="size-9 mx-auto" /> 
+            <span
+              // id='typus-logo'
+              className='text-center !font-logo'
+              style={{
+                fontSize: '25px',
+                fontWeight: 700,
+                letterSpacing: '2.5px',
+                lineHeight: '1.3em',
+                color: '#000',
+                textTransform: 'uppercase',
+                fontFamily: 'var(--font-soyuz-grotesk)'
+              }}
+            >
               typus.AI
             </span>
           </motion.div>
@@ -68,9 +82,10 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
           <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-center max-w-xl text-neutral-900">
             {t('step3Title')}
           </h3>
-          <p className="text-sm text-center mb-5 font-medium leading-relaxed text-neutral-600">
-            {t('bookBothInstruction')}
-          </p>
+          <div className="text-sm text-center mb-5 font-medium leading-relaxed text-neutral-600 flex flex-col items-center gap-1">
+            <p>- {t('bookBothInstruction1')}</p>
+            <p>- {t('bookBothInstruction2')}</p>
+          </div>
         </div>
 
         <button 
@@ -146,6 +161,16 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
                 {t('adaCta')}
               </div>
+            </button>
+
+            {/* Case Study Button */}
+            <button
+              type="button"
+              onClick={() => router.push(`/${locale}/siegrist`)}
+              className="w-full mt-2 py-3.5 rounded-2xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border border-neutral-200 shadow-sm group"
+            >
+              {t('caseStudyBtn')}
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </button>
 
           </div>

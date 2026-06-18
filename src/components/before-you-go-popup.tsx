@@ -20,6 +20,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { BarChart3, MailIcon } from 'lucide-react'
 import Image from 'next/image'
+import TypusLogoBlack from './common/typus-logo-black'
 
 const TRIGGER_DELAY_MS = 30000
 const DOMINIK_CALENDAR = 'https://calendar.app.google/SE4uynXtibyYmAe36'
@@ -228,7 +229,10 @@ export default function BeforeYouGoPopup() {
   const BookingCards = ({ dark }: { dark?: boolean }) => (
     <div className='w-full flex flex-col items-center transition-all duration-500'>
       <h3 className={`text-base font-semibold mb-2 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
-      <p className={`text-[11px] text-center mb-5 font-medium leading-relaxed ${dark ? 'text-white/70' : 'text-neutral-600'}`}>{t('bookBothInstruction')}</p>
+      <div className={`text-[11px] text-center mb-5 font-medium leading-relaxed flex flex-col items-center gap-1 ${dark ? 'text-white/70' : 'text-neutral-600'}`}>
+        <p>- {t('bookBothInstruction1')}</p>
+        <p>- {t('bookBothInstruction2')}</p>
+      </div>
 
       <div className='flex flex-col lg:flex-row gap-4 items-center justify-center w-full transition-all duration-500'>
         {/* Dominik Calendar */}
@@ -291,6 +295,18 @@ export default function BeforeYouGoPopup() {
               <IconVideo size={12} strokeWidth={2} />
               {t('adaCta')}
             </div>
+          </button>
+
+          {/* Case Study Button */}
+          <button
+            type="button"
+            onClick={() => { setIsOpen(false); router.push(`/${pathname?.split('/')[1] || 'de'}/siegrist`); }}
+            className={`w-full mt-2 py-3.5 rounded-2xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm group
+              ${dark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-white' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border-neutral-200'}
+            `}
+          >
+            {t('caseStudyBtn')}
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
           </button>
         </div>
 
@@ -461,13 +477,26 @@ export default function BeforeYouGoPopup() {
                   <div className='px-6 py-6 sm:px-8 sm:py-8 flex flex-col items-center text-center'>
                     {/* Logo */}
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: 'easeOut' }}
-                      className='mb-4 flex flex-col items-center space-y-1.5'
+                      transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                      className='mb-0 flex flex-col items-center space-y-2'
                     >
-                      <div className='bg-black size-4' />
-                      <span style={{ fontSize: '22px', fontWeight: 700, letterSpacing: '2.5px', color: '#000', textTransform: 'uppercase', fontFamily: 'var(--font-soyuz-grotesk)' }}>
+                      {/* <div className='bg-black size-4'></div> */}
+                      <TypusLogoBlack className="size-9 mx-auto" /> 
+                      <span
+                        // id='typus-logo'
+                        className='text-center !font-logo'
+                        style={{
+                          fontSize: '25px',
+                          fontWeight: 700,
+                          letterSpacing: '2.5px',
+                          lineHeight: '1.3em',
+                          color: '#000',
+                          textTransform: 'uppercase',
+                          fontFamily: 'var(--font-soyuz-grotesk)'
+                        }}
+                      >
                         typus.AI
                       </span>
                     </motion.div>
