@@ -4,10 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { BarChart3, PhoneCall } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
   const t = useTranslations('FloatingBuzzer')
   const [isVisible, setIsVisible] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,9 @@ export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent('open-before-you-go'))
   }
+
+  const shouldHide = pathname?.includes('/book-a-demo') || pathname?.includes('/pricing/order')
+  if (shouldHide) return null
 
   return (
     <AnimatePresence>

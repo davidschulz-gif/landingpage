@@ -61,7 +61,8 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
             className='mb-0 flex flex-col items-center space-y-2'
           >
             {/* <div className='bg-black size-4'></div> */}
-            <TypusLogoBlack className="size-9 mx-auto" /> 
+            <img src={"typus_logos/logo typus_highres.png"} />
+            {/* <TypusLogoBlack className="size-9 mx-auto" /> 
             <span
               // id='typus-logo'
               className='text-center !font-logo'
@@ -76,7 +77,7 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
               }}
             >
               typus.AI
-            </span>
+            </span> */}
           </motion.div>
 
           <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-center max-w-xl text-neutral-900">

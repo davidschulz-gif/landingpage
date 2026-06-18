@@ -4,10 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Mail } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { usePathname } from 'next/navigation'
 
 export function FloatingEmailBuzzer() {
   const [isVisible, setIsVisible] = useState(false)
   const t = useTranslations('HeroEmailForm')
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,9 @@ export function FloatingEmailBuzzer() {
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent('open-before-you-go'))
   }
+
+  const shouldHide = pathname?.includes('/book-a-demo') || pathname?.includes('/pricing/order')
+  if (shouldHide) return null
 
   return (
     <AnimatePresence>

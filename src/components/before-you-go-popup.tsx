@@ -169,6 +169,7 @@ export default function BeforeYouGoPopup() {
 
   if (!mounted) return null
   if (pathname?.includes('/book-a-demo')) return null
+  if (pathname?.includes('/pricing/order')) return null
 
   // ── Step indicator ──────────────────────────────────────────────────────
   const StepDots = ({ dark }: { dark?: boolean }) => (
@@ -483,23 +484,10 @@ export default function BeforeYouGoPopup() {
                       className='mb-0 flex flex-col items-center space-y-2'
                     >
                       {/* <div className='bg-black size-4'></div> */}
-                      <TypusLogoBlack className="size-9 mx-auto" /> 
-                      <span
-                        // id='typus-logo'
-                        className='text-center !font-logo'
-                        style={{
-                          fontSize: '25px',
-                          fontWeight: 700,
-                          letterSpacing: '2.5px',
-                          lineHeight: '1.3em',
-                          color: '#000',
-                          textTransform: 'uppercase',
-                          fontFamily: 'var(--font-soyuz-grotesk)'
-                        }}
-                      >
-                        typus.AI
-                      </span>
-                    </motion.div>
+
+                      <img src={"typus_logos/logo typus_highres.png"} />
+
+                      </motion.div>
 
                     {/* Title — steps 1-2 */}
                     {step <= 2 && (
