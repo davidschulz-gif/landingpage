@@ -159,15 +159,18 @@ export function MeetOurTeamSection() {
           ))}
         </div>
       <div className='flex justify-center mt-12'>
-         <Link
-            href='/pricing'
+         <button
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent('open-before-you-go'));
+            }}
             className='bg-black text-white cursor-pointer text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl px-6 py-3 inline-block'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}
           >
             <span>{t('button')}</span>
-          </Link>
+          </button>
       </div>
       </div>
     </section>

@@ -54,7 +54,7 @@ export function NavbarDemo() {
     const hasProvided = localStorage.getItem('typus_email_provided')
     if (!hasProvided) {
       e.preventDefault()
-      window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl } }))
+      window.dispatchEvent(new CustomEvent('open-before-you-go'))
     }
   }
 

@@ -13,6 +13,7 @@ import { apiUrl } from '@/lib/constants'
 import { BreathingAnimationText } from './breathing-animation-text'
 import { BarChart3, Image, PhoneCall } from 'lucide-react'
 import { Button } from './ui/button'
+import { useRouter } from '@/i18n/navigation'
 
 interface BookingDemoClassFormProps {
   className?: string
@@ -29,6 +30,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
   const [isRequesting, setIsRequesting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string | null>>({})
+  const router = useRouter()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -164,6 +166,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
 
       setSuccessMessage(t('success'))
       setIsSubmitted(true)
+      router.push('/book-a-demo/dominik-denny')
 
       // GTM: fire generate_lead conversion event (picked up by Google Ads & Meta tags in GTM)
       if (typeof window !== 'undefined' && (window as any).dataLayer) {

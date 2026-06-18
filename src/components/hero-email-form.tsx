@@ -8,6 +8,7 @@ import {
 import { motion } from 'framer-motion'
 import { Mail, MailIcon, PhoneCall } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -27,6 +28,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [step, setStep] = useState<1 | 2>(1)
+  const router = useRouter();
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
   const validateEmail = (value: string) => EMAIL_REGEX.test(value.trim())
@@ -160,7 +162,8 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       if (onSuccess) {
         onSuccess()
       } else {
-        window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: appUrl, skipForm: true } }))
+        router.push('/book-a-demo/ada-von-kayser')
+        // window.dispatchEvent(new CustomEvent('open-before-you-go'))
       }
     } catch (error: any) {
       if (error?.name === 'AbortError') {
