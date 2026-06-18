@@ -54,31 +54,17 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
       <div className="relative bg-white rounded-[32px] border border-neutral-100 shadow-2xl p-6 sm:p-8 w-full max-w-5xl">
         {/* Header */}
         <div className="mb-8 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className='mb-0 flex flex-col items-center space-y-2'
-          >
-            {/* <div className='bg-black size-4'></div> */}
-            <img src={"typus_logos/logo typus_highres.png"} />
-            {/* <TypusLogoBlack className="size-9 mx-auto" /> 
-            <span
-              // id='typus-logo'
-              className='text-center !font-logo'
-              style={{
-                fontSize: '25px',
-                fontWeight: 700,
-                letterSpacing: '2.5px',
-                lineHeight: '1.3em',
-                color: '#000',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-soyuz-grotesk)'
-              }}
-            >
-              typus.AI
-            </span> */}
-          </motion.div>
+           <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                      className='mb-0 flex flex-col items-center space-y-2'
+                    >
+                      {/* <div className='bg-black size-4'></div> */}
+
+                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto0 w-50  mx-auto" alt="Typus AI" />
+
+                      </motion.div>
 
           <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-center max-w-xl text-neutral-900">
             {t('step3Title')}
