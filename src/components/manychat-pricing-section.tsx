@@ -418,13 +418,13 @@ export function ManyChatPricingSection({
 
 
   const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
-    // if (!isEdu && (plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS')) {
-    //   const billingCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly')
-    //   const code = profPromoCode || ''
-    //   const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
-    //   router.push(url)
-    //   return
-    // }
+    if (!isEdu && (plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS')) {
+      const billingCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly')
+      const code = profPromoCode || ''
+      const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
+      router.push(url)
+      return
+    }
 
     const code = isEdu ? eduPromoCode : profPromoCode
     const discount = isEdu ? eduPromoDiscount : profPromoDiscount
