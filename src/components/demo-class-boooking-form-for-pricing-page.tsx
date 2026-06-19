@@ -243,7 +243,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       {/* Advisor Profile Card */}
       <div className='w-full my-0.5 p-1'>
         <div className='flex items-center gap-4 rounded-xl bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-1 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
-          <div className='w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
+          <div className='w-30 h-30 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
             <img
               src='/DominikDenny.png'
               alt={tBilder('benefits.advisorName')}
