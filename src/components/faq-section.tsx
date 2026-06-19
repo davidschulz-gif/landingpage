@@ -53,7 +53,7 @@ export const FAQSection = () => {
     'setupTime',
     // 'freeImages',
     'technicalKnowledge',
-    'cancellation',
+    // 'cancellation',
     // // 'customModels',
     'dataSecurity',
     // // 'ownModels',
