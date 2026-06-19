@@ -767,18 +767,18 @@ export function ManyChatPricingSection({
 
     // Solo
     const baseSoloPlan = professionalPlans[0]
-    const soloPlan = {
-      ...baseSoloPlan,
-      name: 'SOLO',
-      fetchedData: soloFetchedData,
-      features: baseSoloPlan.features.map(f => ({
-        ...f,
-        text: mapFeatureText(f),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-      targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
-    }
+    // const soloPlan = {
+    //   ...baseSoloPlan,
+    //   name: 'SOLO',
+    //   fetchedData: soloFetchedData,
+    //   features: baseSoloPlan.features.map(f => ({
+    //     ...f,
+    //     text: mapFeatureText(f),
+    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
+    //   })),
+    //   targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
+    //   billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
+    // }
 
     // Pro
     const baseProPlan = professionalPlans[1]
@@ -827,7 +827,7 @@ export function ManyChatPricingSection({
     //   })),
     // }
 
-    return [soloPlan, proPlan, businessPlan]
+    return [ proPlan, businessPlan]
   }
 
   // Get translated Education plans
@@ -1110,9 +1110,9 @@ export function ManyChatPricingSection({
         </div>
 
         {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1400px] mx-auto'>
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1100px] mx-auto'>
            
-            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-3'>
+            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
               {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {index === 1 && (
