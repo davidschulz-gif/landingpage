@@ -263,7 +263,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
             </div>
-            <span className="text-[9px] sm:text-xs md:text-sm font-bold tracking-wider uppercase leading-tight sm:leading-none" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+            <span className="text-[9px] sm:text-xs md:text-sm font-bold tracking-wider uppercase leading-tight sm:leading-none whitespace-nowrap" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
               {step === 1 ? t('learnMore') : t('submitDetails')}
             </span>
             {isRequesting ? (
