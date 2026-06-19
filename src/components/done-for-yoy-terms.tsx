@@ -362,7 +362,7 @@ const DoneForYouTerms = () => {
 
                         {/* Copyright */}
                         <p className="text-sm text-gray-600">
-                            COPYRIGHT © 2025 | TYPUS.AI ™
+                            COPYRIGHT © 2026 | TYPUS.AI ™
                         </p>
                     </div>
                 </div>
