@@ -24,7 +24,7 @@ import TypusLogoBlack from './common/typus-logo-black'
 
 const TRIGGER_DELAY_MS = 30000
 const DOMINIK_CALENDAR = 'https://calendar.app.google/SE4uynXtibyYmAe36'
-const ADA_CALENDAR = 'https://calendar.app.google/yU8G7Q6Lzmp6SfUEA'
+const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7'
 
 type Step = 1 | 2 | 3 | 4
 
