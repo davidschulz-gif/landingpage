@@ -1,8 +1,792 @@
-export function getOrderPageData(planId: string, locale: string) {
+export function getOrderPageData(planId: string, locale: string, isEducational: boolean = false) {
   const isDe = locale === 'de'
 
   // Common bits
   const agbLink = isDe ? 'https://app.typus.ai/terms' : 'https://app.typus.ai/en/terms'
+
+  if (isEducational) {
+    if (planId === 'starter-monthly') {
+      return {
+        title: isDe ? 'Typus AI STARTER – Vertragsübersicht & Bestellung' : 'Typus AI STARTER – Contract Overview & Order',
+        offer: isDe ? 'Angebot: Typus AI STARTER (Akademisch)' : 'Offer: Typus AI STARTER (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '6,00 € / Monat' : '€6.00 / month',
+        pricingList: isDe ? [
+          'Monatlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Jederzeit kündbar (keine Mindestlaufzeit)'
+        ] : [
+          'Billed monthly',
+          'Plus 19% VAT',
+          'Cancel anytime (no minimum contract term)'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI STARTER ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung im akademischen Umfeld.',
+          'Die Plattform ist für Studierende und Lehrende konzipiert, die Visualisierungen für Semesterarbeiten, akademische Projekte und Lernzwecke erstellen.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI STARTER is a specialized software platform for AI-supported architectural visualization in the academic environment.',
+          'The platform is designed for students and educators who create visualizations for term papers, academic projects and learning purposes.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '50 Credits pro Monat' : '50 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 50 Credits ermöglichen grundlegende Renderings und Ausprobieren im studentischen Alltag.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 50 credits enable basic renderings and experimentation in a student\'s daily routine.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Support & Hilfe' : 'Support & Help',
+        supportDesc: isDe ? [
+          'Bei technischen Problemen oder Fragen zur Plattform steht unser E-Mail-Support zur Verfügung.'
+        ] : [
+          'For technical issues or questions about the platform, our email support is available.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          '50 Credits / Monat',
+          'Zusatzcredits zubuchbar',
+          'Unbegrenzte gleichzeitige Jobs',
+          'Integrierter Refiner',
+          'Jederzeit kündbar',
+          'Sichere Zahlung über Stripe',
+          'Alle Plugin-Integrationen'
+        ] : [
+          '50 Credits / month',
+          'Optional credit top-ups',
+          'Unlimited concurrent jobs',
+          'Integrated refiner',
+          'Cancel anytime',
+          'Secure payment on Stripe',
+          'All plugin integrations'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Laufzeit: Laufender Monat (monatlich verlängernd)',
+          'Kündigung: Jederzeit zum Ende des Abrechnungszeitraums kündbar'
+        ] : [
+          'Term: Current month (renewing monthly)',
+          'Cancellation: Cancel at any time to the end of the billing period'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 6 € / Monat ab' : 'I conclude a paid subscription for €6 / month',
+          isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    } else if (planId === 'starter-yearly') {
+      return {
+        title: isDe ? 'Typus AI STARTER – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI STARTER – Contract Overview & Order (Annual Billing)',
+        offer: isDe ? 'Angebot: Typus AI STARTER (Akademisch)' : 'Offer: Typus AI STARTER (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '18,00 € / Jahr (entspricht 1,50 € / Monat)' : '€18.00 / year (equivalent to €1.50 / month)',
+        pricingList: isDe ? [
+          'Jährlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Mindestvertragslaufzeit: 12 Monate'
+        ] : [
+          'Billed annually',
+          'Plus 19% VAT',
+          'Minimum contract term: 12 months'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI STARTER ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung im akademischen Umfeld.',
+          'Die Plattform ist für Studierende und Lehrende konzipiert, die Visualisierungen für Semesterarbeiten, akademische Projekte und Lernzwecke erstellen.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI STARTER is a specialized software platform for AI-supported architectural visualization in the academic environment.',
+          'The platform is designed for students and educators who create visualizations for term papers, academic projects and learning purposes.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '50 Credits pro Monat' : '50 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 50 Credits ermöglichen grundlegende Renderings und Ausprobieren im studentischen Alltag.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 50 credits enable basic renderings and experimentation in a student\'s daily routine.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Support & Hilfe' : 'Support & Help',
+        supportDesc: isDe ? [
+          'Bei technischen Problemen oder Fragen zur Plattform steht unser E-Mail-Support zur Verfügung.'
+        ] : [
+          'For technical issues or questions about the platform, our email support is available.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          '50 Credits / Monat',
+          'Zusatzcredits zubuchbar',
+          'Unbegrenzte gleichzeitige Jobs',
+          'Integrierter Refiner',
+          'Jährliche Abrechnung (Ersparnis)',
+          'Sichere Zahlung über Stripe',
+          'Alle Plugin-Integrationen'
+        ] : [
+          '50 Credits / month',
+          'Optional credit top-ups',
+          'Unlimited concurrent jobs',
+          'Integrated refiner',
+          'Annual billing (Savings)',
+          'Secure payment on Stripe',
+          'All plugin integrations'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Mindestlaufzeit: 12 Monate',
+          'Kündigungsfrist: 30 Tage zum Laufzeitende',
+          'Automatische Verlängerung um jeweils 12 Monate'
+        ] : [
+          'Minimum term: 12 months',
+          'Cancellation period: 30 days to the end of the term',
+          'Automatic renewal for 12 months each'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 18 € / Jahr ab' : 'I conclude a paid subscription for €18 / year',
+          isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    } else if (planId === 'explorer-monthly') {
+      return {
+        title: isDe ? 'Typus AI EXPLORER – Vertragsübersicht & Bestellung' : 'Typus AI EXPLORER – Contract Overview & Order',
+        offer: isDe ? 'Angebot: Typus AI EXPLORER (Akademisch)' : 'Offer: Typus AI EXPLORER (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '12,00 € / Monat' : '€12.00 / month',
+        pricingList: isDe ? [
+          'Monatlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Jederzeit kündbar (keine Mindestlaufzeit)'
+        ] : [
+          'Billed monthly',
+          'Plus 19% VAT',
+          'Cancel anytime (no minimum contract term)'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI EXPLORER ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung im akademischen Umfeld.',
+          'Die Plattform bietet erweiterte Credits und Funktionen für Studenten und Lehrende für anspruchsvollere Semesterarbeiten und Projekte.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI EXPLORER is a specialized software platform for AI-supported architectural visualization in the academic environment.',
+          'The platform offers expanded credits and features for students and educators for more demanding coursework and projects.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '150 Credits pro Monat' : '150 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 150 Credits ermöglichen erweiterte Renderings und detailreiche Ausarbeitungen.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 150 credits enable advanced renderings and detailed elaborations.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Support & Hilfe' : 'Support & Help',
+        supportDesc: isDe ? [
+          'Bei technischen Problemen oder Fragen zur Plattform steht unser E-Mail-Support zur Verfügung.'
+        ] : [
+          'For technical issues or questions about the platform, our email support is available.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          'Alles aus dem Starter-Tarif',
+          '150 Credits / Monat',
+          '2 gleichzeitige Jobs',
+          'Auflösung bis zu 4K',
+          'Keine Warteschlange',
+          'Jederzeit kündbar',
+          'Sichere Zahlung über Stripe'
+        ] : [
+          'Everything from Starter',
+          '150 Credits / month',
+          '2 concurrent jobs',
+          'Resolution up to 4K',
+          'No queue',
+          'Cancel anytime',
+          'Secure payment on Stripe'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Laufzeit: Laufender Monat (monatlich verlängernd)',
+          'Kündigung: Jederzeit zum Ende des Abrechnungszeitraums kündbar'
+        ] : [
+          'Term: Current month (renewing monthly)',
+          'Cancellation: Cancel at any time to the end of the billing period'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 12 € / Monat ab' : 'I conclude a paid subscription for €12 / month',
+          isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    } else if (planId === 'explorer-yearly') {
+      return {
+        title: isDe ? 'Typus AI EXPLORER – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI EXPLORER – Contract Overview & Order (Annual Billing)',
+        offer: isDe ? 'Angebot: Typus AI EXPLORER (Akademisch)' : 'Offer: Typus AI EXPLORER (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '36,00 € / Jahr (entspricht 3,00 € / Monat)' : '€36.00 / year (equivalent to €3.00 / month)',
+        pricingList: isDe ? [
+          'Jährlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Mindestvertragslaufzeit: 12 Monate'
+        ] : [
+          'Billed annually',
+          'Plus 19% VAT',
+          'Minimum contract term: 12 months'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI EXPLORER ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung im akademischen Umfeld.',
+          'Die Plattform bietet erweiterte Credits und Funktionen für Studenten und Lehrende für anspruchsvollere Semesterarbeiten und Projekte.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI EXPLORER is a specialized software platform for AI-supported architectural visualization in the academic environment.',
+          'The platform offers expanded credits and features for students and educators for more demanding coursework and projects.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '150 Credits pro Monat' : '150 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 150 Credits ermöglichen erweiterte Renderings und detailreiche Ausarbeitungen.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 150 credits enable advanced renderings and detailed elaborations.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Support & Hilfe' : 'Support & Help',
+        supportDesc: isDe ? [
+          'Bei technischen Problemen oder Fragen zur Plattform steht unser E-Mail-Support zur Verfügung.'
+        ] : [
+          'For technical issues or questions about the platform, our email support is available.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          'Alles aus dem Starter-Tarif',
+          '150 Credits / Monat',
+          '2 gleichzeitige Jobs',
+          'Auflösung bis zu 4K',
+          'Keine Warteschlange',
+          'Jährliche Abrechnung (Ersparnis)',
+          'Sichere Zahlung über Stripe'
+        ] : [
+          'Everything from Starter',
+          '150 Credits / month',
+          '2 concurrent jobs',
+          'Resolution up to 4K',
+          'No queue',
+          'Annual billing (Savings)',
+          'Secure payment on Stripe'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Mindestlaufzeit: 12 Monate',
+          'Kündigungsfrist: 30 Tage zum Laufzeitende',
+          'Automatische Verlängerung um jeweils 12 Monate'
+        ] : [
+          'Minimum term: 12 months',
+          'Cancellation period: 30 days to the end of the term',
+          'Automatic renewal for 12 months each'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 36 € / Jahr ab' : 'I conclude a paid subscription for €36 / year',
+          isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    } else if (planId === 'pro-monthly') {
+      return {
+        title: isDe ? 'Typus AI PRO (Akademisch) – Vertragsübersicht & Bestellung' : 'Typus AI PRO (Academic) – Contract Overview & Order',
+        offer: isDe ? 'Angebot: Typus AI PRO (Akademisch)' : 'Offer: Typus AI PRO (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '18,00 € / Monat' : '€18.00 / month',
+        pricingList: isDe ? [
+          'Monatlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Jederzeit kündbar (keine Mindestlaufzeit)'
+        ] : [
+          'Billed monthly',
+          'Plus 19% VAT',
+          'Cancel anytime (no minimum contract term)'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI PRO ist das leistungsstärkste akademische Angebot für KI-gestützte Architekturvisualisierung.',
+          'Die Plattform bietet eine hohe Credit-Kapazität und Premium-Features wie die Generierung in bis zu 8K und Live Video-Support für anspruchsvollste akademische Projekte und Ausbildungen.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI PRO is the most powerful academic offer for AI-supported architectural visualization.',
+          'The platform offers high credit capacity and premium features like generation up to 8K and live video support for the most demanding academic projects and courses.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 1.000 Credits ermöglichen umfangreiche Visualisierungsprojekte und Renderings für Abschlussarbeiten.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 1,000 credits enable extensive visualization projects and renderings for thesis work.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Premium Support' : 'Premium Support',
+        supportDesc: isDe ? [
+          'Beinhaltet E-Mail-Support sowie Premium 1:1 Live Video-Anruf Support bei komplexen Fragen.'
+        ] : [
+          'Includes email support and premium 1:1 live video call support for complex questions.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          'Alles aus dem Explorer-Tarif',
+          '1.000 Credits / Monat',
+          '4 gleichzeitige Jobs',
+          'Premium Live Video-Support',
+          'Erhöhte Generierungsgeschwindigkeit',
+          'Auflösung bis zu 8K',
+          'Jederzeit kündbar'
+        ] : [
+          'Everything from Explorer',
+          '1,000 Credits / month',
+          '4 concurrent jobs',
+          'Premium live video call support',
+          'Increased generation speed',
+          'Resolution up to 8K',
+          'Cancel anytime'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Laufzeit: Laufender Monat (monatlich verlängernd)',
+          'Kündigung: Jederzeit zum Ende des Abrechnungszeitraums kündbar'
+        ] : [
+          'Term: Current month (renewing monthly)',
+          'Cancellation: Cancel at any time to the end of the billing period'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 18 € / Monat ab' : 'I conclude a paid subscription for €18 / month',
+          isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    } else if (planId === 'pro-yearly') {
+      return {
+        title: isDe ? 'Typus AI PRO (Akademisch) – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI PRO (Academic) – Contract Overview & Order (Annual Billing)',
+        offer: isDe ? 'Angebot: Typus AI PRO (Akademisch)' : 'Offer: Typus AI PRO (Academic)',
+        audience: isDe ? 'Für Studierende, Dozierende und akademische Zwecke.' : 'For students, educators and academic purposes.',
+        pricingTitle: isDe ? 'Preis' : 'Price',
+        pricingMain: isDe ? '54,00 € / Jahr (entspricht 4,50 € / Monat)' : '€54.00 / year (equivalent to €4.50 / month)',
+        pricingList: isDe ? [
+          'Jährlich abgerechnet',
+          'Zuzüglich 19 % MwSt.',
+          'Mindestvertragslaufzeit: 12 Monate'
+        ] : [
+          'Billed annually',
+          'Plus 19% VAT',
+          'Minimum contract term: 12 months'
+        ],
+        pricingDesc: isDe ? 'Kostenpflichtiges SaaS-Abonnement für akademische Architekturvisualisierung.' : 'Paid SaaS subscription for academic architectural visualization.',
+        scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
+        scopeDesc: isDe ? [
+          'Typus AI PRO ist das akademische Premium-Angebot für KI-gestützte Architekturvisualisierung.',
+          'Die Plattform bietet eine hohe Credit-Kapazität und Premium-Features wie die Generierung in bis zu 8K und Live Video-Support für anspruchsvollste akademische Projekte und Ausbildungen.',
+          'Die Modelle werden kontinuierlich dem aktuellen Stand der Technik angepasst.'
+        ] : [
+          'Typus AI PRO is the academic premium offer for AI-supported architectural visualization.',
+          'The platform offers high credit capacity and premium features like generation up to 8K and live video support for the most demanding academic projects and courses.',
+          'The models are continuously adapted to the current state of the art.'
+        ],
+        creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
+        creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
+        includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
+        includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
+        includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im studentischen Workflow)' : '(Guideline: typical usage in a student workflow)',
+        creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
+        creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
+        creditNoticeListTitle: isDe ? 'Nicht genutzte, im Rahmen des Abonnements enthaltene Credits:' : 'Unused credits included in the subscription:',
+        creditNoticeList: isDe ? [
+          'werden nicht in den Folgemonat übertragen',
+          'können nicht angespart oder kumuliert werden'
+        ] : [
+          'are not carried over to the following month',
+          'cannot be saved or accumulated'
+        ],
+        creditNoticeFooter: isDe ? 'Die Nutzung ist jeweils auf den laufenden Abrechnungszeitraum beschränkt.' : 'Usage is limited to the current billing period.',
+        extraCreditsTitle: isDe ? 'Zusatzcredits (optional)' : 'Additional Credits (optional)',
+        extraCreditsDesc: isDe ? 'Bei kurzfristig erhöhtem Bedarf besteht die Möglichkeit, zusätzliche Credits separat zu erwerben.' : 'In the event of short-term increased demand, there is the possibility to purchase additional credits separately.',
+        extraCreditsListTitle: isDe ? 'Diese zusätzlich erworbenen Credits:' : 'These additionally purchased credits:',
+        extraCreditsList: isDe ? [
+          'werden dem Nutzerkonto unmittelbar gutgeschrieben',
+          'können flexibel im Rahmen der Plattform genutzt werden',
+          'sind über den jeweiligen Abrechnungsmonat hinaus gültig und übertragbar'
+        ] : [
+          'are credited to the user account immediately',
+          'can be used flexibly within the platform',
+          'are valid and transferable beyond the respective billing month'
+        ],
+        extraCreditsFooter: isDe ? 'Nicht genutzte Zusatzcredits bleiben erhalten und können zu einem späteren Zeitpunkt verwendet werden.' : 'Unused additional credits are retained and can be used at a later time.',
+        tables: [
+          {
+            title: isDe ? 'Bilderstellung' : 'Image Generation',
+            items: isDe ? ['1K Auflösung → 3 Credits', '2K Auflösung → 9 Credits', '4K Auflösung → 15 Credits'] : ['1K Resolution → 3 Credits', '2K Resolution → 9 Credits', '4K Resolution → 15 Credits']
+          },
+          {
+            title: isDe ? 'Videoerstellung' : 'Video Generation',
+            items: isDe ? ['4–5 Sekunden → 65 Credits', '8–10 Sekunden → 125 Credits', '12 Sekunden → 175 Credits'] : ['4-5 Seconds → 65 Credits', '8-10 Seconds → 125 Credits', '12 Seconds → 175 Credits']
+          },
+          {
+            title: 'Upscaling',
+            items: ['2x → 20 Credits', '4x → 40 Credits', '8x → 50 Credits', '16x → 80 Credits']
+          }
+        ],
+        usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
+        usageCategoryDesc: isDe ? [
+          'Die enthaltenen 1.000 Credits ermöglichen umfangreiche Visualisierungsprojekte und Renderings für Abschlussarbeiten.',
+          'Die tatsächliche Anzahl generierter Ergebnisse hängt von der Modellwahl und Parametern ab.'
+        ] : [
+          'The included 1,000 credits enable extensive visualization projects and renderings for thesis work.',
+          'The actual number of generated results depends on the model choice and parameters.'
+        ],
+        supportTitle: isDe ? 'Premium Support' : 'Premium Support',
+        supportDesc: isDe ? [
+          'Beinhaltet E-Mail-Support sowie Premium 1:1 Live Video-Anruf Support bei komplexen Fragen.'
+        ] : [
+          'Includes email support and premium 1:1 live video call support for complex questions.'
+        ],
+        includedFeaturesTitle: isDe ? 'Inklusive Leistungen' : 'Included Services',
+        includedFeaturesList: isDe ? [
+          'Alles aus dem Explorer-Tarif',
+          '1.000 Credits / Monat',
+          '4 gleichzeitige Jobs',
+          'Premium Live Video-Support',
+          'Erhöhte Generierungsgeschwindigkeit',
+          'Auflösung bis zu 8K',
+          'Jährliche Abrechnung (Ersparnis)'
+        ] : [
+          'Everything from Explorer',
+          '1,000 Credits / month',
+          '4 concurrent jobs',
+          'Premium live video call support',
+          'Increased generation speed',
+          'Resolution up to 8K',
+          'Annual billing (Savings)'
+        ],
+        fundingTitle: isDe ? 'Hinweise zur Entwicklung' : 'Development Notes',
+        fundingDesc: isDe ? [
+          'Typus AI wird fortlaufend weiterentwickelt, um modernste KI-Visualisierungstechnologie für die Ausbildung bereitzustellen.'
+        ] : [
+          'Typus AI is continuously developed to provide state-of-the-art AI visualization technology for education.'
+        ],
+        termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
+        termsDesc: isDe ? 'Durch Abschluss des Bestellvorgangs kommt ein Nutzungsvertrag zustande.' : 'By completing the order process, a user agreement is concluded.',
+        termsList: isDe ? [
+          'Mindestlaufzeit: 12 Monate',
+          'Kündigungsfrist: 30 Tage zum Laufzeitende',
+          'Automatische Verlängerung um jeweils 12 Monate'
+        ] : [
+          'Minimum term: 12 months',
+          'Cancellation period: 30 days to the end of the term',
+          'Automatic renewal for 12 months each'
+        ],
+        agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
+        agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
+        agbLink: agbLink,
+        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        checkboxes: [
+          isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 54 € / Jahr ab' : 'I conclude a paid subscription for €54 / year',
+          isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
+          isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
+        ],
+        noteTitle: isDe ? 'Hinweis' : 'Note',
+        noteDesc: isDe ? 'Der Zugang zu Typus AI wird nach erfolgreicher Zahlung und Überprüfung des Studentenstatus freigeschaltet.' : 'Access to Typus AI will be unlocked after successful payment and verification of student status.'
+      }
+    }
+  }
 
   if (planId === 'pro-monthly') {
     return {

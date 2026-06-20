@@ -418,10 +418,10 @@ export function ManyChatPricingSection({
 
 
   const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
-    if (!isEdu && (plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS')) {
+    if (isEdu || plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS' || plan.planType === 'STARTER' || plan.planType === 'EXPLORER') {
       const billingCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly')
-      const code = profPromoCode || ''
-      const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
+      const code = isEdu ? (eduPromoCode || '') : (profPromoCode || '')
+      const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${isEdu ? '&isEducational=true' : ''}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
       router.push(url)
       return
     }
