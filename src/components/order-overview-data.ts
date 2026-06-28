@@ -794,7 +794,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI PRO' : 'Offer: Typus AI PRO',
       audience: isDe ? 'Für Solo-Selbstständige, Architekt:innen, Designer und kreative Professionals.' : 'For solo self-employed, architects, designers and creative professionals.',
       pricingTitle: isDe ? 'Preis' : 'Price',
-      pricingMain: isDe ? '249,00 € / Monat' : '€249.00 / month',
+      pricingMain: isDe ? '149,00 € / Monat' : '€149.00 / month',
       pricingList: isDe ? [
         'Monatlich abgerechnet',
         'Zuzüglich 19 % MwSt.',
@@ -822,7 +822,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
+      includedCreditsMain: isDe ? '1.200 Credits pro Monat' : '1,200 Credits per month',
       includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im Solo-Workflow innerhalb eines Fair-Use-Rahmens der Plattform)' : '(Guideline: typical usage in a solo workflow within a fair use framework of the platform)',
       creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
@@ -864,14 +864,14 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 5.000 Credits ermöglichen eine deutlich erhöhte Nutzung gegenüber dem PRO-Tarif und sind für den professionellen Büro- und Projektbetrieb ausgelegt.',
-        'Die Richtwerte entsprechen ca. 66–333 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Die enthaltenen 1.200 Credits ermöglichen eine effiziente Nutzung und sind für den professionellen Projektbetrieb ausgelegt.',
+        'Die Richtwerte entsprechen ca. 80–400 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
       ] : [
-        'The included 5,000 credits enable significantly increased usage compared to the PRO tariff and are designed for professional office and project operations.',
-        'The guidelines correspond to approx. 66-333 images per month, depending on usage, model selection, and settings.',
+        'The included 1,200 credits enable efficient usage and are designed for professional project operations.',
+        'The guidelines correspond to approx. 80-400 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
         'The actual number of generated results depends on the models used, parameters, and system load.',
         'The credit deduction system can change if the technical requirements of the AI models used or the required computing power change.'
@@ -953,7 +953,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbLink: agbLink,
       finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
-        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 249 € / Monat ab' : 'I am concluding a paid subscription for €249 / month',
+        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 149 € / Monat ab' : 'I am concluding a paid subscription for €149 / month',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
         isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
       ],
@@ -966,17 +966,17 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI PRO' : 'Offer: Typus AI PRO',
       audience: isDe ? 'Für Solo-Selbstständige, freiberuflich tätige Architekt:innen, Designer:innen und kreative Professionals.' : 'For solo self-employed, freelance architects, designers and creative professionals.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
-      pricingMain: isDe ? '€196 / Monat' : '€196 / month',
+      pricingMain: isDe ? '€119,17 / Monat' : '€119.17 / month',
       pricingList: isDe ? [
-        'Jährliche Abrechnung: €2.352 / Jahr',
-        'Regulärer Monatspreis: €235 / Monat (jährlich rabattiert)',
-        'Ersparnis: ca. 20 % (€636 pro Jahr)',
+        'Jährliche Abrechnung: €1.430 / Jahr',
+        'Regulärer Monatspreis: €149 / Monat (jährlich rabattiert)',
+        'Ersparnis: ca. 20 % (€358 pro Jahr)',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
         'Mindestvertragslaufzeit: 12 Monate'
       ] : [
-        'Annual billing: €2,352 / year',
-        'Regular monthly price: €235 / month (annual discount)',
-        'Savings: approx. 20% (€636 per year)',
+        'Annual billing: €1,430 / year',
+        'Regular monthly price: €149 / month (annual discount)',
+        'Savings: approx. 20% (€358 per year)',
         'Plus 19% statutory VAT',
         'Minimum contract term: 12 months'
       ],
@@ -998,7 +998,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung der Plattform erfolgt auf Basis eines Credit-Systems. Die nachfolgende Übersicht dient ausschließlich der Orientierung. Die tatsächliche Auslastung kann je nach Modell, Parametrierung, Eingabequalität und Systemlast variieren.' : 'Platform usage is based on a credit system. The following overview serves solely for orientation. Actual utilization may vary depending on model, parameterization, input quality, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
+      includedCreditsMain: isDe ? '1.200 Credits pro Monat' : '1,200 Credits per month',
       includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im Solo-Workflow innerhalb eines Fair-Use-Rahmens der Plattform)' : '(Guideline: typical usage in a solo workflow within a fair use framework of the platform)',
       creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungszeitraum dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing period.',
@@ -1042,14 +1042,14 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 1.000 Credits ermöglichen eine effiziente Nutzung der Plattform für Einzelanwender:innen im professionellen Architektur- und Designkontext.',
-        'Die Richtwerte entsprechen einer geschätzten Kapazität von ca. 66–333 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Die enthaltenen 1.200 Credits ermöglichen eine effiziente Nutzung der Plattform für Einzelanwender:innen im professionellen Architektur- und Designkontext.',
+        'Die Richtwerte entsprechen einer geschätzten Kapazität von ca. 80–400 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann angepasst werden, sofern sich technische Anforderungen der eingesetzten KI-Modelle oder deren Rechenaufwand ändern.'
       ] : [
-        'The included 1,000 credits enable efficient use of the platform for single users in a professional architecture and design context.',
-        'The guidelines correspond to an estimated capacity of approx. 66-333 images per month, depending on usage, model selection, and settings.',
+        'The included 1,200 credits enable efficient use of the platform for single users in a professional architecture and design context.',
+        'The guidelines correspond to an estimated capacity of approx. 80-400 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure.',
         'The actual number of generated results depends on the models used, parameters, and system load.',
         'The credit deduction system can be adjusted if the technical requirements of the AI models used or their computing power change.'
@@ -1144,7 +1144,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI BUSINESS' : 'Offer: Typus AI BUSINESS',
       audience: isDe ? 'Für Architekturbüros, Planungsbüros und Designstudios mit organisatorischer oder projektbezogener Teamstruktur.' : 'For architecture firms, planning offices, and design studios with organizational or project-based team structures.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
-      pricingMain: isDe ? '399,00 € / Monat' : '€399.00 / month',
+      pricingMain: isDe ? '299,00 € / Monat' : '€299.00 / month',
       pricingList: isDe ? [
         'Monatliche Abrechnung',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
@@ -1320,18 +1320,18 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI BUSINESS' : 'Offer: Typus AI BUSINESS',
       audience: isDe ? 'Für Architekturbüros, Planungsbüros und Designstudios mit organisatorischer oder projektbezogener Struktur.' : 'For architecture firms, planning offices, and design studios with organizational or project-based structures.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
-      pricingMain: isDe ? '€319,25 / Monat (jährlich abgerechnet)' : '€319.25 / month (billed annually)',
+      pricingMain: isDe ? '€239,17 / Monat (jährlich abgerechnet)' : '€239.17 / month (billed annually)',
       pricingList: isDe ? [
-        '€3.831 / Jahr Gesamtbetrag',
-        'Regulärer Monatspreis: €399 (monatliche Alternative)',
-        'Ersparnis: ca. 20 % (€957 pro Jahr)',
+        '€2.870 / Jahr Gesamtbetrag',
+        'Regulärer Monatspreis: €299 (monatliche Alternative)',
+        'Ersparnis: ca. 20 % (€718 pro Jahr)',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
         'Mindestvertragslaufzeit: 12 Monate',
         'Abrechnung erfolgt jährlich im Voraus'
       ] : [
-        '€3,831 / year total amount',
-        'Regular monthly price: €399 (monthly alternative)',
-        'Savings: approx. 20% (€957 per year)',
+        '€2,870 / year total amount',
+        'Regular monthly price: €299 (monthly alternative)',
+        'Savings: approx. 20% (€718 per year)',
         'Plus 19% statutory VAT',
         'Minimum contract term: 12 months',
         'Billing occurs annually in advance'
@@ -1504,7 +1504,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI SOLO' : 'Offer: Typus AI SOLO',
       audience: isDe ? 'Für Solo-Selbstständige, Architekt:innen, Designer und kreative Professionals.' : 'For solo self-employed, freelance architects, designers and creative professionals.',
       pricingTitle: isDe ? 'Preis' : 'Price',
-      pricingMain: isDe ? '169,00 € / Monat' : '€169.00 / month',
+      pricingMain: isDe ? '59,00 € / Monat' : '€59.00 / month',
       pricingList: isDe ? [
         'Monatlich abgerechnet',
         'Zuzüglich 19 % MwSt.',
@@ -1548,7 +1548,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '500 Credits pro Monat' : '500 Credits per month',
+      includedCreditsMain: isDe ? '200 Credits pro Monat' : '200 Credits per month',
       includedCreditsSub: null,
       creditNoticeTitle: isDe ? 'Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Im Solo-Abonnement können nicht genutzte Credits in die Folgemonate übertragen und für bis zu drei aufeinanderfolgende Abrechnungsmonate (ein Quartal) angespart werden. Nach Ablauf von drei Monaten ab ihrer jeweiligen Gutschrift verfallen die betreffenden Credits automatisch.' : 'In the Solo subscription, unused credits can be carried over to the following months and saved for up to three consecutive billing months (one quarter). After three months from their respective credit, the relevant credits expire automatically.',
@@ -1592,14 +1592,14 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 5.000 Credits ermöglichen eine deutlich erhöhte Nutzung gegenüber dem PRO-Tarif und sind für den professionellen Büro- und Projektbetrieb ausgelegt.',
-        'Die Richtwerte entsprechen ca. 30–150 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Die enthaltenen 200 Credits ermöglichen Renderings und Skizzen im Solo-Workflow.',
+        'Die Richtwerte entsprechen ca. 13–66 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
       ] : [
-        'The included 5,000 credits enable a significantly increased usage compared to the PRO tariff and are designed for professional office and project operations.',
-        'The guidelines correspond to approx. 30-150 images per month, depending on usage, model selection, and settings.',
+        'The included 200 credits enable renderings and sketches in a solo workflow.',
+        'The guidelines correspond to approx. 13-66 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
         'The actual number of generated results depends on the models used, parameters, and system load.',
         'The credit deduction system can change if the technical requirements of the AI models used or the required computing power change.'
@@ -1673,7 +1673,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbLink: agbLink,
       finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
-        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 169 € / Monat ab' : 'I am taking out a paid subscription for €169 / month',
+        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 59 € / Monat ab' : 'I am taking out a paid subscription for €59 / month',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
         isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
       ],
@@ -1686,18 +1686,18 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       offer: isDe ? 'Angebot: Typus AI SOLO' : 'Offer: Typus AI SOLO',
       audience: isDe ? 'Für Solo-Selbstständige, Architekt:innen, Designer und kreative Professionals.' : 'For solo self-employed, freelance architects, designers and creative professionals.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
-      pricingMain: isDe ? '€135,20 / Monat (jährlich abgerechnet)' : '€135.20 / month (billed annually)',
+      pricingMain: isDe ? '€46,40 / Monat (jährlich abgerechnet)' : '€46.40 / month (billed annually)',
       pricingList: isDe ? [
-        '€1.622,40 / Jahr Gesamtbetrag',
-        'Regulärer Monatspreis: €169 (monatliche Alternative)',
-        'Ersparnis: ca. 20 % (€405,60 pro Jahr)',
+        '€556,80 / Jahr Gesamtbetrag',
+        'Regulärer Monatspreis: €59 (monatliche Alternative)',
+        'Ersparnis: ca. 21 % (€151,20 pro Jahr)',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
         'Mindestvertragslaufzeit: 12 Monate',
         'Abrechnung erfolgt jährlich im Voraus'
       ] : [
-        '€1,622.40 / year total amount',
-        'Regular monthly price: €169 (monthly alternative)',
-        'Savings: approx. 20% (€405.60 per year)',
+        '€556.80 / year total amount',
+        'Regular monthly price: €59 (monthly alternative)',
+        'Savings: approx. 21% (€151.20 per year)',
         'Plus 19% statutory VAT',
         'Minimum contract term: 12 months',
         'Billing is done annually in advance'
@@ -1732,7 +1732,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '500 Credits pro Monat' : '500 Credits per month',
+      includedCreditsMain: isDe ? '200 Credits pro Monat' : '200 Credits per month',
       includedCreditsSub: null,
       creditNoticeTitle: isDe ? 'Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Im Solo-Abonnement können nicht genutzte Credits in die Folgemonate übertragen und für bis zu drei aufeinanderfolgende Abrechnungsmonate (ein Quartal) angespart werden. Nach Ablauf von drei Monaten ab ihrer jeweiligen Gutschrift verfallen die betreffenden Credits automatisch.' : 'In the Solo subscription, unused credits can be carried over to the following months and saved for up to three consecutive billing months (one quarter). After three months from their respective credit, the relevant credits expire automatically.',
@@ -1776,14 +1776,14 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 5.000 Credits ermöglichen eine deutlich erhöhte Nutzung gegenüber dem PRO-Tarif und sind für den professionellen Büro- und Projektbetrieb ausgelegt.',
-        'Die Richtwerte entsprechen ca. 30–150 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
+        'Die enthaltenen 200 Credits ermöglichen Renderings und Skizzen im Solo-Workflow.',
+        'Die Richtwerte entsprechen ca. 13–66 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
       ] : [
-        'The included 5,000 credits enable a significantly increased usage compared to the PRO tariff and are designed for professional office and project operations.',
-        'The guidelines correspond to approx. 30-150 images per month, depending on usage, model selection, and settings.',
+        'The included 200 credits enable renderings and sketches in a solo workflow.',
+        'The guidelines correspond to approx. 13-66 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
         'The actual number of generated results depends on the models used, parameters, and system load.',
         'The credit deduction system can change if the technical requirements of the AI models used or the required computing power change.'
@@ -1857,7 +1857,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbLink: agbLink,
       finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
-        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 169 € / Monat ab' : 'I am taking out a paid subscription for €169 / month',
+        isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 556,80 € / Jahr ab' : 'I am taking out a paid subscription for €556.80 / year',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
         isDe ? 'Ich akzeptiere die AGB' : 'I accept the Terms and Conditions'
       ],
