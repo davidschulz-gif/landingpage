@@ -786,6 +786,8 @@ export function ManyChatPricingSection({
       ...baseProPlan, 
       name: 'PRO',
       fetchedData: proFetchedData,
+      popular: true,
+      badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
       features: baseProPlan.features.map(f => ({
         ...f,
         text: mapFeatureText(f),
@@ -800,8 +802,8 @@ export function ManyChatPricingSection({
     const businessPlan = {
       ...baseBusinessPlan,
       name: 'BUSINESS',
-      popular: true,
-      badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
+      // popular: true,
+      // badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
       fetchedData: businessFetchedData,
       billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
       features: baseBusinessPlan.features.map(f => ({
