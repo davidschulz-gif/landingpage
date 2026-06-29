@@ -822,7 +822,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung erfolgt über ein Credit-System. Die folgende Übersicht dient als Richtwert zur Orientierung. Die tatsächliche Ausgabemenge kann je nach Modell, Prompt, Parameter und Systemlast variieren.' : 'Usage is based on a credit system. The following overview serves as a guideline. Actual output volume may vary depending on model, prompt, parameters, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '1.200 Credits pro Monat' : '1,200 Credits per month',
+      includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
       includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im Solo-Workflow innerhalb eines Fair-Use-Rahmens der Plattform)' : '(Guideline: typical usage in a solo workflow within a fair use framework of the platform)',
       creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungsmonat dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing month.',
@@ -864,13 +864,13 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 1.200 Credits ermöglichen eine effiziente Nutzung und sind für den professionellen Projektbetrieb ausgelegt.',
+        'Die enthaltenen 1.000 Credits ermöglichen eine effiziente Nutzung und sind für den professionellen Projektbetrieb ausgelegt.',
         'Die Richtwerte entsprechen ca. 80–400 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur. Insbesondere Video- und Upscaling-Funktionen führen zu einem erhöhten Ressourcenverbrauch.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den jeweils verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann sich ändern, wenn sich die technischen Anforderungen der eingesetzten KI-Modelle oder die erforderliche Rechenleistung ändern.'
       ] : [
-        'The included 1,200 credits enable efficient usage and are designed for professional project operations.',
+        'The included 1,000 credits enable efficient usage and are designed for professional project operations.',
         'The guidelines correspond to approx. 80-400 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure. Video and upscaling functions in particular lead to increased resource consumption.',
         'The actual number of generated results depends on the models used, parameters, and system load.',
@@ -998,7 +998,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       creditSystemTitle: isDe ? 'Credit-System (Nutzungsbasis)' : 'Credit System (Usage Basis)',
       creditSystemDesc: isDe ? 'Die Nutzung der Plattform erfolgt auf Basis eines Credit-Systems. Die nachfolgende Übersicht dient ausschließlich der Orientierung. Die tatsächliche Auslastung kann je nach Modell, Parametrierung, Eingabequalität und Systemlast variieren.' : 'Platform usage is based on a credit system. The following overview serves solely for orientation. Actual utilization may vary depending on model, parameterization, input quality, and system load.',
       includedCreditsTitle: isDe ? 'Enthaltene Credits' : 'Included Credits',
-      includedCreditsMain: isDe ? '1.200 Credits pro Monat' : '1,200 Credits per month',
+      includedCreditsMain: isDe ? '1.000 Credits pro Monat' : '1,000 Credits per month',
       includedCreditsSub: isDe ? '(Richtwert: typische Nutzung im Solo-Workflow innerhalb eines Fair-Use-Rahmens der Plattform)' : '(Guideline: typical usage in a solo workflow within a fair use framework of the platform)',
       creditNoticeTitle: isDe ? 'Wichtiger Hinweis zur Credit-Nutzung' : 'Important Note on Credit Usage',
       creditNoticeDesc: isDe ? 'Die monatlich enthaltenen Credits stellen ein laufendes Nutzungskontingent für den jeweiligen Abrechnungszeitraum dar.' : 'The monthly included credits represent a continuous usage contingent for the respective billing period.',
@@ -1042,13 +1042,13 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       usageCategoryTitle: isDe ? 'Nutzungseinordnung' : 'Usage Classification',
       usageCategoryDesc: isDe ? [
-        'Die enthaltenen 1.200 Credits ermöglichen eine effiziente Nutzung der Plattform für Einzelanwender:innen im professionellen Architektur- und Designkontext.',
+        'Die enthaltenen 1.000 Credits ermöglichen eine effiziente Nutzung der Plattform für Einzelanwender:innen im professionellen Architektur- und Designkontext.',
         'Die Richtwerte entsprechen einer geschätzten Kapazität von ca. 80–400 Bildern pro Monat, abhängig von Nutzung, Modellwahl und Einstellungen.',
         'Bei gemischter Nutzung (Bild-, Video- und Upscaling-Anwendungen) reduziert sich die verfügbare Kapazität entsprechend der jeweiligen Credit-Verbrauchsstruktur.',
         'Die tatsächliche Anzahl generierbarer Ergebnisse ist abhängig von den verwendeten Modellen, Parametern und der Systemauslastung.',
         'Die Credit-Abzugssystematik kann angepasst werden, sofern sich technische Anforderungen der eingesetzten KI-Modelle oder deren Rechenaufwand ändern.'
       ] : [
-        'The included 1,200 credits enable efficient use of the platform for single users in a professional architecture and design context.',
+        'The included 1,000 credits enable efficient use of the platform for single users in a professional architecture and design context.',
         'The guidelines correspond to an estimated capacity of approx. 80-400 images per month, depending on usage, model selection, and settings.',
         'With mixed usage (image, video, and upscaling applications), the available capacity is reduced according to the respective credit consumption structure.',
         'The actual number of generated results depends on the models used, parameters, and system load.',

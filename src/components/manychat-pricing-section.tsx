@@ -52,13 +52,13 @@ const professionalPlans = [
       },
     },
     features: [
-      { text: '500 CREDITS /month', hasFeature: true },
+      { text: '200 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: false },
       { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
     ],
@@ -748,7 +748,7 @@ export function ManyChatPricingSection({
     
     const mapFeatureText = (f: any) => {
       if (typeof f === 'string') return f;
-      if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits500');
+      if (f.text.includes('200 CREDITS')) return t('plans.pro.features.credits200');
       if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
