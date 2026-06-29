@@ -767,18 +767,18 @@ export function ManyChatPricingSection({
 
     // Solo
     const baseSoloPlan = professionalPlans[0]
-    // const soloPlan = {
-    //   ...baseSoloPlan,
-    //   name: 'SOLO',
-    //   fetchedData: soloFetchedData,
-    //   features: baseSoloPlan.features.map(f => ({
-    //     ...f,
-    //     text: mapFeatureText(f),
-    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
-    //   })),
-    //   targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
-    //   billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
-    // }
+    const soloPlan = {
+      ...baseSoloPlan,
+      name: 'SOLO',
+      fetchedData: soloFetchedData,
+      features: baseSoloPlan.features.map(f => ({
+        ...f,
+        text: mapFeatureText(f),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
+      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
+    }
 
     // Pro
     const baseProPlan = professionalPlans[1]
@@ -827,7 +827,7 @@ export function ManyChatPricingSection({
     //   })),
     // }
 
-    return [ proPlan, businessPlan]
+    return [ soloPlan, proPlan, businessPlan]
   }
 
   // Get translated Education plans
@@ -1135,7 +1135,7 @@ export function ManyChatPricingSection({
                 </div>
               ))}
             </div>
-             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
+             <div id='booking-form' className='w-full xl:w-[250px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
               <BookingDemoClassFormForPricingPage />
             </div>
           </div>
