@@ -2001,7 +2001,7 @@ function PricingCard({
               </div>
             )}
             {((plan as any).billingCycle === 'monthly' || (!(plan as any).billingCycle && !isYearly)) && (
-              <div className="font-bold text-gray-700 mt-1" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div className="font-bold text-[14px] text-gray-800 mt-1.5" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                 {t('cancelMonthly')}
               </div>
             )}
