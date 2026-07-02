@@ -394,7 +394,7 @@ export default function BeforeYouGoPopup() {
                     {step === 1 && (
                       <div className='flex flex-col gap-2 mb-5'>
                         {([
-                          { icon: <BarChart3 size={12} strokeWidth={1.5} className='text-white' />, label: tDemo('cta.point4') },
+                          // { icon: <BarChart3 size={12} strokeWidth={1.5} className='text-white' />, label: tDemo('cta.point4') },
                           { icon: <IconVideo size={12} strokeWidth={1.5} className='text-white' />, label: t('viewFreeBullet7') },
                           { icon: <IconDeviceDesktopShare size={12} strokeWidth={1.5} className='text-white' />, label: t('viewFreeBullet8') },
                         ] as const).map(({ icon, label }) => (

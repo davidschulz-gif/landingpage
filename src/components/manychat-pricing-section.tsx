@@ -2000,6 +2000,11 @@ function PricingCard({
                 {t('plusVat')}
               </div>
             )}
+            {((plan as any).billingCycle === 'monthly' || (!(plan as any).billingCycle && !isYearly)) && (
+              <div className="font-bold text-gray-700 mt-1" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {t('cancelMonthly')}
+              </div>
+            )}
           </div>
         </div>
       </div>
