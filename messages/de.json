@@ -156,7 +156,7 @@
     "descriptions": [
       "Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
       "Was ChatGPT für Text ist, ist typus.ai für die Architekturvisualisierung. Skizze rein, Präsentationsbild raus – in Minuten.",
-      "Eine externe Visualisierung kostet 500–1500 EURO. Mit typus.ai erstellen Sie hunderte Varianten pro Monat — ab 99 EURO."
+      "Eine externe Visualisierung kostet 500–1500 EURO. Mit typus.ai erstellen Sie hunderte Varianten — ab 29.5€ pro Monat."
     ],
     "getStarted": "Loslegen",
     "goToApp": "Zur App",
@@ -310,7 +310,7 @@
     "selectPlanCTA": "Preise ansehen",
     "getFreeDemoCTA": "Kostenlose Demo erhalten",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
-    "selfServiceTitle": "KI für Architektur - inklusive Live Webinare.\nWir schulen Sie oder Ihre Mitarbeitenden",
+    "selfServiceTitle": "KI für Architektur - inklusive Live Webinare.\nWir begleiten Sie bis zum Ergebnis.",
     "selfServiceSubtitle": "Attraktive Vergünstigungen möglich bei:\n- Jährlicher Abrechnung\n- 12-monatiger Vertragslaufzeit\n- Erwerb mehrerer Lizenzen\n\nBuchen Sie jetzt ein kostenloses Erstgespräch und lassen Sie sich ein individuelles Angebot erstellen.",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
@@ -373,7 +373,7 @@
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat"
         },
-        "targetAudience": "Für Solo-Selbstständige"
+        "targetAudience": "Für Architekturbüros 0-1 MA"
       },
       "pro": {
         "name": "PRO",
@@ -399,7 +399,7 @@
           "teamAccess": "TEAM-ZUGANG",
           "upTo5Accounts": "BIS ZU 5 KONTEN"
         },
-        "targetAudience": "Für kleine Teams"
+        "targetAudience": "Für Architekturbüros 1-5 MA"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -471,7 +471,7 @@
           "teamAccess": "TEAM-ZUGANG",
           "upTo5Accounts": "BIS ZU 5 KONTEN"
         },
-        "targetAudience": "Für Architekturbüros"
+        "targetAudience": "Für Architekturbüros 5-20MA"
       }
     },
     "creditDeduction": {
@@ -684,9 +684,9 @@
     "phonePlaceholder": "Deine WhatsApp / Telefonnummer",
     "errorPhone": "Telefonnummer ist erforderlich",
     "step2Cta": "Weiter",
-    "step3Title": "Buchen Sie nun 2 kostenlose Termine.",
+    "step3Title": "Buchen Sie nun einen Termin für Ihre kostenlose Live Demo.",
     "step3Subtitle": "Buche jetzt ein kostenloses Gespräch - ganz nach deinen Bedürfnissen.",
-    "bookBothInstruction1": "1x Live Demo mit Ada von Kayser",
+    "bookBothInstruction1": "1x Live Demo mit",
     "bookBothInstruction2": "1x individuelle Bedarfsanalyse",
     "caseStudyBtn": "Fallbeispiel KI im Architekturwettbewerb",
     "dominikName": "DOMINIK DENNY",
@@ -899,7 +899,7 @@
       "subtitles": [
         "Transformieren Sie Ihre CAD-Dateien und Skizzen in fotorealistische Renderings.",
         "Was ChatGPT für Text ist, ist typus.ai für die Architekturvisualisierung. Skizze rein, Präsentationsbild raus – in Minuten.",
-        "Eine externe Visualisierung kostet 500–1500 EURO. Mit typus.ai erstellen Sie hunderte Varianten pro Monat — ab 99 EURO."
+        "Eine externe Visualisierung kostet 500–1500 EURO. Mit typus.ai erstellen Sie hunderte Varianten — ab 29.5€ pro Monat."
       ],
       "cta": "Mehr erfahren"
     },

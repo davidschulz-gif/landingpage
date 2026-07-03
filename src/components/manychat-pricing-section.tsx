@@ -254,10 +254,12 @@ const apiBaseUrl = `${apiUrl}/api/subscription/public/`
 
 export function ManyChatPricingSection({ 
   isStandalone = false,
-  showOnly = 'all'
+  showOnly = 'all',
+  verificationToken,
 }: { 
   isStandalone?: boolean
   showOnly?: 'regular' | 'educational' | 'all'
+  verificationToken?: string
 }) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
@@ -307,6 +309,54 @@ export function ManyChatPricingSection({
   const tModal = useTranslations('SubscriptionModal')
   const isEurope = useIsEurope();
   console.log("isEurope", isEurope);
+
+  // Handle email verification token from URL (sent by server when user clicks email link)
+  useEffect(() => {
+    if (!verificationToken) return
+
+    const verifyToken = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}verify-token`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: verificationToken })
+        })
+        const resData = await response.json()
+        if (response.ok) {
+          setUserEmail(resData.email || '')
+          if (resData.universityName) setUniversityName(resData.universityName)
+          if (resData.data) setOnboardingData(resData.data)
+
+          // Reconstruct selectedPlanForModal from token data
+          const planType = (resData.plan || 'PRO').toUpperCase()
+          const billingCycle = resData.billing || 'monthly'
+          const isEdu = resData.isEducational ?? false
+
+          // Find the price ID from fetched plans (will be set once plans load)
+          // We set the plan info now; priceId will be filled in after plans load
+          setSelectedPlanForModal({
+            planType,
+            billingCycle,
+            priceId: null,
+            isEducational: isEdu,
+          })
+
+          // Clean the token from the URL without a page reload
+          const cleanUrl = window.location.pathname
+          window.history.replaceState({}, '', cleanUrl)
+
+          setShowOnboarding(true)
+        } else {
+          toast.error(resData.message || 'Verification link is invalid or has expired.')
+        }
+      } catch (err) {
+        console.error('Failed to verify token:', err)
+        toast.error('Verification failed due to a network error.')
+      }
+    }
+
+    verifyToken()
+  }, [verificationToken])
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
@@ -418,15 +468,9 @@ export function ManyChatPricingSection({
   }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo])
 
 
-  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
-    if (isEdu || plan.planType === 'SOLO' || plan.planType === 'PRO' || plan.planType === 'BUSINESS' || plan.planType === 'STARTER' || plan.planType === 'EXPLORER') {
-      const billingCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly')
-      const code = isEdu ? (eduPromoCode || '') : (profPromoCode || '')
-      const url = `/${locale}/pricing/order?plan=${plan.planType.toLowerCase()}&billing=${billingCycle.toLowerCase()}${isEdu ? '&isEducational=true' : ''}${code ? `&promoCode=${encodeURIComponent(code)}` : ''}`
-      router.push(url)
-      return
-    }
 
+  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
+    // All plans now use the email-modal → email-verification → onboarding → checkout flow
     const code = isEdu ? eduPromoCode : profPromoCode
     const discount = isEdu ? eduPromoDiscount : profPromoDiscount
     const setError = isEdu ? setEduPromoError : setProfPromoError
@@ -511,7 +555,13 @@ export function ManyChatPricingSection({
       const verifyResponse = await fetch(`${apiBaseUrl}verify-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: userEmail.trim(), isEducational: selectedPlanForModal.isEducational ? true : false }),
+        body: JSON.stringify({
+          email: userEmail.trim(),
+          isEducational: selectedPlanForModal.isEducational ? true : false,
+          plan: selectedPlanForModal.planType?.toLowerCase(),
+          billing: selectedPlanForModal.billingCycle?.toLowerCase(),
+          language: locale,
+        }),
       })
       const verifyData = await verifyResponse.json()
       console.log('Verify Data:', verifyData)
@@ -673,26 +723,8 @@ export function ManyChatPricingSection({
         return trackingCookies;
       };
 
-      if (selectedPlanForModal.planType === 'PRO' || selectedPlanForModal.planType === 'BUSINESS' || selectedPlanForModal.planType === 'SOLO') {
-        const planId = `${selectedPlanForModal.planType.toLowerCase()}-${selectedPlanForModal.billingCycle.toLowerCase()}`
-        
-        const checkoutData = {
-          priceId: selectedPlanForModal.priceId,
-          email: userEmail,
-          isEducational: selectedPlanForModal.isEducational,
-          discountId: selectedPlanForModal.isEducational ? eduPromoDiscount?.couponId : profPromoDiscount?.couponId,
-          code: selectedPlanForModal.isEducational ? eduPromoCode : profPromoCode,
-          billingCycle: mappedBillingCycle,
-          planType: selectedPlanForModal.planType,
-          trackingCookies: getTrackingCookies()
-        }
-        
-        setPendingOrderData({ planId, checkoutData })
-        setShowOrderModal(true)
-        // Hide onboarding if it was open
-        setShowOnboarding(false)
-        return
-      }
+      // All plans go directly to Stripe checkout — no contract overview modal
+
 
       const response = await fetch(`${apiBaseUrl}checkout`, {
         method: 'POST',
@@ -778,7 +810,7 @@ export function ManyChatPricingSection({
         text: mapFeatureText(f),
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
       })),
-      targetAudience: "For Solopreneurs", // Defaulting, you can add translation if needed
+      targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
       billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
     }
 
@@ -933,6 +965,26 @@ export function ManyChatPricingSection({
       // setLoading(false);
     }
   };
+
+  // After plans load, fill in the priceId if it was set from a token (was null)
+  useEffect(() => {
+    if (!selectedPlanForModal || selectedPlanForModal.priceId !== null) return
+    if (!plans && !educationalPlans) return
+
+    const source = selectedPlanForModal.isEducational ? educationalPlans : plans
+    if (!source) return
+
+    const targetPlan = source.find((p: any) => p.planType === selectedPlanForModal.planType)
+    if (!targetPlan) return
+
+    const stripePrices = targetPlan.stripePrices || {}
+    const billingCycle = selectedPlanForModal.billingCycle?.toLowerCase()
+    const priceId = billingCycle === 'yearly' ? stripePrices.YEARLY : stripePrices.MONTHLY
+
+    if (priceId) {
+      setSelectedPlanForModal((prev: any) => ({ ...prev, priceId }))
+    }
+  }, [plans, educationalPlans, selectedPlanForModal])
 
 
   const renderEducationSection = () => {
@@ -1893,7 +1945,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[650px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[680px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',

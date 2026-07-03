@@ -71,7 +71,7 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
           </h3>
           <div className="text-sm text-center mb-5 font-medium leading-relaxed text-neutral-600 flex flex-col items-center gap-1">
             <p>- {t('bookBothInstruction1')}</p>
-            <p>- {t('bookBothInstruction2')}</p>
+            {/* <p>- {t('bookBothInstruction2')}</p> */}
           </div>
         </div>
 

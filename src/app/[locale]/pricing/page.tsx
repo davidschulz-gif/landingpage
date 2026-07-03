@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -29,6 +30,7 @@ const DetailedFeaturesSection = dynamic(
         loading: () => <div className='h-96 bg-gray-100 animate-pulse' />,
     }
 )
+
 const ReviewsSection = dynamic(
     () => import('@/components/reviews-section').then(mod => mod.ReviewsSection),
     {
@@ -63,6 +65,8 @@ const LinkedinSlideshow = dynamic(
 export default function PricingPage() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
+    const searchParams = useSearchParams()
+    const token = searchParams.get('token')
     const [viewMode, setViewMode] = useState<'app' | 'education'>('app')
 
     useEffect(() => {
@@ -77,7 +81,6 @@ export default function PricingPage() {
 
             <main className="pt-4">
 
-
                 <div className='max-w-7xl mx-auto px-4 mt-4'>
                     <Link
                         href={`/${locale}`}
@@ -88,35 +91,35 @@ export default function PricingPage() {
                     </Link>
                 </div>
 
-                <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
-                    <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
-                        {['education', 'app'].map((mode) => (
-                            <button
-                                key={mode}
-                                onClick={() => setViewMode(mode as any)}
-                                className={`relative z-10 px-5 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
-                                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                            >
-                                {viewMode === mode && (
-                                    <motion.div
-                                        layoutId='pricing-toggle'
-                                        className='absolute inset-0 bg-white rounded-full shadow-md'
-                                        initial={false}
-                                        transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                                    />
-                                )}
-                                <span className='relative z-20'>
-                                    {mode === 'app'
-                                        ? tHero('appOfferTitle')
-                                        : tHero('educationOfferTitle')}
-                                </span>
-                            </button>
-                        ))}
+                {/* Only show the tab toggle if there is no token (token auto-selects the plan) */}
+                {!token && (
+                    <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
+                        <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
+                            {['education', 'app'].map((mode) => (
+                                <button
+                                    key={mode}
+                                    onClick={() => setViewMode(mode as any)}
+                                    className={`relative z-10 px-5 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
+                                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                                >
+                                    {viewMode === mode && (
+                                        <motion.div
+                                            layoutId='pricing-toggle'
+                                            className='absolute inset-0 bg-white rounded-full shadow-md'
+                                            initial={false}
+                                            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                    <span className='relative z-20'>
+                                        {mode === 'app'
+                                            ? tHero('appOfferTitle')
+                                            : tHero('educationOfferTitle')}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
-
-
-
+                )}
 
                 <AnimatePresence mode="wait">
                     {viewMode === 'app' ? (
@@ -127,7 +130,7 @@ export default function PricingPage() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <ManyChatPricingSection isStandalone={true} showOnly="regular" />
+                            <ManyChatPricingSection isStandalone={true} showOnly="regular" verificationToken={token || undefined} />
                         </motion.div>
                     ) : (
                         <motion.div
@@ -137,12 +140,12 @@ export default function PricingPage() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <ManyChatPricingSection isStandalone={true} showOnly="educational" />
+                            <ManyChatPricingSection isStandalone={true} showOnly="educational" verificationToken={token || undefined} />
                         </motion.div>
                     )}
                 </AnimatePresence>
 
-                <LinkedinSlideshow/> 
+                <LinkedinSlideshow />
 
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}
@@ -163,7 +166,7 @@ export default function PricingPage() {
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }} // Reduced from 0.8s
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                     viewport={{ once: true, margin: '-100px' }}
                 >
                     <ReviewsSection />

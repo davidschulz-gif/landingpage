@@ -156,7 +156,7 @@
     "descriptions": [
       "Transform your CAD files and sketches into photorealistic renders.",
       "What ChatGPT is for text is typus.ai for architecture visualization. Sketch in, presentation picture out — in minutes.",
-      "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 117."
+      "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from 29.5€"
     ],
     "getStarted": "Get Started",
     "goToApp": "Go to App",
@@ -310,7 +310,7 @@
     "selectPlanCTA": "View prices",
     "getFreeDemoCTA": "Get a free demo",
     "professionalPlans": "Professional Plans",
-    "selfServiceTitle": "AI for architecture - Including live webinars.\nWe train you or your employees.",
+    "selfServiceTitle": "AI for architecture - Including live webinars.\nWe guide you through to the result.",
     "selfServiceSubtitle": "Attractive discounts available for:\n- Annual billing\n- 12-month contract term\n- Purchase of multiple licenses\n\nBook a free consultation now and let us create a custom offer for you.",
     "missingProFeaturesTitle": "Features that are missing in Explorer but included in the Pro plan:",
     "upgradeToPro": "Upgrade to Pro to unlock these features",
@@ -373,7 +373,7 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month"
         },
-        "targetAudience": "For Solopreneurs"
+        "targetAudience": "For Architecture Firms 0-1MA"
       },
       "pro": {
         "name": "PRO",
@@ -399,7 +399,7 @@
           "teamAccess": "TEAM ACCESS",
           "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
-        "targetAudience": "For Small Teams"
+        "targetAudience": "For Architecture Firms 1-5 Employees"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -471,7 +471,7 @@
           "teamAccess": "TEAM ACCESS",
           "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
-        "targetAudience": "For Architecture Firms"
+        "targetAudience": "For Architecture Firms 5-20MA"
       }
     },
     "creditDeduction": {
@@ -684,9 +684,9 @@
     "phonePlaceholder": "Your WhatsApp / Phone number",
     "errorPhone": "Phone number is required",
     "step2Cta": "Continue",
-    "step3Title": "Book 2 free appointments now.",
+    "step3Title": "Now book an appointment for your free live demo.",
     "step3Subtitle": "Book a free call now \u2013 tailored to your needs.",
-    "bookBothInstruction1": "1x Live Demo with Ada von Kayser",
+    "bookBothInstruction1": "1x Live Demo with",
     "bookBothInstruction2": "1x individual needs analysis",
     "caseStudyBtn": "Case Study: AI in Architectural Competitions",
     "dominikName": "DOMINIK DENNY",
@@ -899,7 +899,7 @@
       "subtitles": [
         "Transform your CAD files and sketches into photorealistic renders.",
         "What ChatGPT is for text is typus.ai for architecture visualization. Sketch in, presentation picture out — in minutes.",
-        "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from USD 117."
+        "An external visualization costs USD 500–1500. With typus.ai you create hundreds of variants per month — from 29.5€"
       ],
       "cta": "Learn more"
     },

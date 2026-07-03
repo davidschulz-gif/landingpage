@@ -232,7 +232,7 @@ export default function BeforeYouGoPopup() {
       <h3 className={`text-base font-semibold mb-2 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
       <div className={`text-[11px] text-center mb-5 font-medium leading-relaxed flex flex-col items-center gap-1 ${dark ? 'text-white/70' : 'text-neutral-600'}`}>
         <p>- {t('bookBothInstruction1')}</p>
-        <p>- {t('bookBothInstruction2')}</p>
+        {/* <p>- {t('bookBothInstruction2')}</p> */}
       </div>
 
       <div className='flex flex-col lg:flex-row gap-4 items-center justify-center w-full transition-all duration-500'>
