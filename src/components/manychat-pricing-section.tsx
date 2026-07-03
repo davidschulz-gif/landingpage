@@ -1078,7 +1078,7 @@ export function ManyChatPricingSection({
               <h2 className="text-center mt-10 mb-4 heading-primary">
                 {t('selfServiceTitle')}
               </h2>
-              <p className=' max-w-2xl mx-auto px-4 subheading-primary' >
+              <p className='max-w-2xl mx-auto px-4 subheading-primary whitespace-pre-line'>
                 {t('selfServiceSubtitle')}
               </p>
               
