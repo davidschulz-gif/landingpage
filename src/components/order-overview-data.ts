@@ -1140,11 +1140,11 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
     }
   } else if (planId === 'business-monthly') {
     return {
-      title: isDe ? 'Typus AI BUSINESS – Vertragsübersicht & Bestellung' : 'Typus AI BUSINESS – Contract Overview & Order',
-      offer: isDe ? 'Angebot: Typus AI BUSINESS' : 'Offer: Typus AI BUSINESS',
+      title: isDe ? 'Typus AI TEAM – Vertragsübersicht & Bestellung' : 'Typus AI TEAM – Contract Overview & Order',
+      offer: isDe ? 'Angebot: Typus AI TEAM' : 'Offer: Typus AI TEAM',
       audience: isDe ? 'Für Architekturbüros, Planungsbüros und Designstudios mit organisatorischer oder projektbezogener Teamstruktur.' : 'For architecture firms, planning offices, and design studios with organizational or project-based team structures.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
-      pricingMain: isDe ? '299,00 € / Monat' : '€299.00 / month',
+      pricingMain: isDe ? '149 € / Monat' : '€149 / month',
       pricingList: isDe ? [
         'Monatliche Abrechnung',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
@@ -1157,17 +1157,17 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingDesc: isDe ? 'Es handelt sich um ein kostenpflichtiges Software-as-a-Service-Abonnement zur Nutzung einer KI-gestützten Plattform für Architekturvisualisierung.' : 'This is a paid Software-as-a-Service subscription for the use of an AI-supported platform for architectural visualization.',
       scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
       scopeDesc: isDe ? [
-        'Typus AI BUSINESS ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
+        'Typus AI TEAM ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
         'Die Plattform ist insbesondere für professionelle Planungseinheiten konzipiert, die regelmäßig eine hohe Anzahl an Visualisierungen für unterschiedliche Projekte erstellen und mehrere Entwurfs-, Planungs- und Präsentationsprozesse parallel bearbeiten.',
         'Der Leistungsfokus liegt auf der effizienten Erstellung, Iteration und Skalierung von Architekturvisualisierungen über mehrere Projekte hinweg innerhalb eines strukturierten digitalen Workflows.',
-        'Typus AI BUSINESS ist darauf ausgelegt, eine hohe Produktionslast effizient zu verarbeiten und parallele Projektanforderungen zu unterstützen, um insbesondere wiederkehrende Visualisierungs- und Überarbeitungsprozesse zu beschleunigen.',
+        'Typus AI TEAM ist darauf ausgelegt, eine hohe Produktionslast effizient zu verarbeiten und parallele Projektanforderungen zu unterstützen, um insbesondere wiederkehrende Visualisierungs- und Überarbeitungsprozesse zu beschleunigen.',
         'Die Plattform verwendet KI-Modelle von Drittanbietern, die kontinuierlich entsprechend dem aktuellen Stand der Technik aktualisiert und weiterentwickelt werden. Diese Modelle werden dem Kunden in ihrer jeweils aktuellen Version innerhalb der Plattform bereitgestellt.',
         'Die Nutzung ist ausschließlich auf Mitarbeiter:innen desselben Unternehmens beschränkt. Eine Weitergabe von Zugangsdaten oder eine Nutzung durch Dritte außerhalb des Unternehmens ist nicht gestattet.'
       ] : [
-        'Typus AI BUSINESS is a specialized software platform for AI-supported architectural visualization.',
+        'Typus AI TEAM is a specialized software platform for AI-supported architectural visualization.',
         'The platform is specifically designed for professional planning units that regularly create a high number of visualizations for different projects and process several design, planning, and presentation processes in parallel.',
         'The performance focus is on the efficient creation, iteration, and scaling of architectural visualizations across multiple projects within a structured digital workflow.',
-        'Typus AI BUSINESS is designed to process a high production load efficiently and support parallel project requirements in order to accelerate recurring visualization and revision processes in particular.',
+        'Typus AI TEAM is designed to process a high production load efficiently and support parallel project requirements in order to accelerate recurring visualization and revision processes in particular.',
         'The platform uses third-party AI models that are continuously updated and further developed in accordance with the current state of the art. These models are made available to the customer in their respective current versions within the platform.',
         'Usage is strictly limited to employees of the same company. Sharing access data or use by third parties outside the company is not permitted.'
       ],
@@ -1230,21 +1230,21 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       ],
       supportTitle: isDe ? 'Support, Live-Webinare und Zufriedenheitsorientierung' : 'Support, Live Webinars and Satisfaction Orientation',
       supportDesc: isDe ? [
-        'Im Rahmen des Typus AI PRO- und BUSINESS-Abonnements werden regelmäßig Live-Webinare zur Einführung, Schulung und Vertiefung der Plattformnutzung angeboten.',
+        'Im Rahmen des Typus AI PRO- und TEAM-Abonnements werden regelmäßig Live-Webinare zur Einführung, Schulung und Vertiefung der Plattformnutzung angeboten.',
         'Diese Live-Webinare dienen der strukturierten Vermittlung von Anwendungswissen und Best Practices für die Nutzung von Typus AI im Bereich der Architekturvisualisierung. Gleichzeitig bieten sie den Teilnehmer die Möglichkeit, Fragen zur Anwendung, zu Workflows sowie zu projektbezogenen Einsatzszenarien zu stellen.',
         'Die Webinare finden als Gruppen-Live-Calls mit mehreren Typus AI Kund statt. Hierdurch entsteht ein dynamischer Austausch zwischen den Nutzer, insbesondere hinsichtlich unterschiedlicher Anwendungsfälle, Arbeitsweisen und Projektkontexte.'
       ] : [
-        'As part of the Typus AI PRO and BUSINESS subscriptions, live webinars are regularly offered for the introduction, training, and deepening of platform usage.',
+        'As part of the Typus AI PRO and TEAM subscriptions, live webinars are regularly offered for the introduction, training, and deepening of platform usage.',
         'These live webinars serve the structured transfer of application knowledge and best practices for the use of Typus AI in the field of architectural visualization. At the same time, they offer participants the opportunity to ask questions about the application, workflows, and project-related deployment scenarios.',
         'The webinars take place as group live calls with several Typus AI customers. This creates a dynamic exchange between users, particularly with regard to different use cases, ways of working, and project contexts.'
       ],
-      satisfactionTitle: isDe ? 'BUSINESS-Erweiterung (1:1 Live Sessions)' : 'BUSINESS Extension (1:1 Live Sessions)',
+      satisfactionTitle: isDe ? 'TEAM-Erweiterung (1:1 Live Sessions)' : 'TEAM Extension (1:1 Live Sessions)',
       satisfactionDesc: isDe ? [
-        'Im BUSINESS-Tarif werden die Live-Webinare durch zusätzliche individuelle 1:1 Live-Video-Sessions ergänzt.',
+        'Im TEAM-Tarif werden die Live-Webinare durch zusätzliche individuelle 1:1 Live-Video-Sessions ergänzt.',
         'Diese Einzelsessions ermöglichen eine vertiefte, projektspezifische Betreuung sowie die gezielte Besprechung individueller Workflows und Anwendungsfragen.',
         'Insbesondere bei sensiblen oder vertraulichen Projekten besteht die Möglichkeit, diese Themen im Rahmen eines privaten 1:1 Live-Calls außerhalb der Gruppenformate zu behandeln.'
       ] : [
-        'In the BUSINESS tariff, the live webinars are supplemented by additional individual 1:1 live video sessions.',
+        'In the TEAM tariff, the live webinars are supplemented by additional individual 1:1 live video sessions.',
         'These individual sessions enable in-depth, project-specific support as well as the targeted discussion of individual workflows and application questions.',
         'Particularly for sensitive or confidential projects, it is possible to discuss these topics in a private 1:1 live call outside the group formats.'
       ],
@@ -1296,28 +1296,28 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
       agbDesc: isDe ? 'Mit Abschluss der Bestellung bestätigt der Kunde:' : 'By completing the order, the customer confirms:',
       agbList: isDe ? [
-        'Abschluss eines kostenpflichtigen SaaS-Abonnements (BUSINESS)',
+        'Abschluss eines kostenpflichtigen SaaS-Abonnements (TEAM)',
         'Mindestvertragslaufzeit von 12 Monaten',
         'Kenntnisnahme und Zustimmung zu den AGB'
       ] : [
-        'Conclusion of a paid SaaS subscription (BUSINESS)',
+        'Conclusion of a paid SaaS subscription (TEAM)',
         'Minimum contract term of 12 months',
         'Knowledge of and consent to the Terms and Conditions'
       ],
       agbLink: agbLink,
       finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
-        isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (BUSINESS)' : 'Conclusion of a paid SaaS subscription (BUSINESS)',
+        isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (TEAM)' : 'Conclusion of a paid SaaS subscription (TEAM)',
         isDe ? 'Mindestvertragslaufzeit von 12 Monaten' : 'Minimum contract term of 12 months',
         isDe ? 'Kenntnisnahme und Zustimmung zu den AGB' : 'Knowledge and consent to the Terms and Conditions'
       ],
       noteTitle: isDe ? 'Hinweis' : 'Note',
-      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI BUSINESS wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI BUSINESS will be unlocked automatically after successful payment.'
+      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI TEAM wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI TEAM will be unlocked automatically after successful payment.'
     }
   } else if (planId === 'business-yearly') {
     return {
-      title: isDe ? 'Typus AI BUSINESS – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI BUSINESS – Contract Overview & Order (Annual Billing)',
-      offer: isDe ? 'Angebot: Typus AI BUSINESS' : 'Offer: Typus AI BUSINESS',
+      title: isDe ? 'Typus AI TEAM – Vertragsübersicht & Bestellung (Jährliche Abrechnung)' : 'Typus AI TEAM – Contract Overview & Order (Annual Billing)',
+      offer: isDe ? 'Angebot: Typus AI TEAM' : 'Offer: Typus AI TEAM',
       audience: isDe ? 'Für Architekturbüros, Planungsbüros und Designstudios mit organisatorischer oder projektbezogener Struktur.' : 'For architecture firms, planning offices, and design studios with organizational or project-based structures.',
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
       pricingMain: isDe ? '€239,17 / Monat (jährlich abgerechnet)' : '€239.17 / month (billed annually)',
@@ -1339,16 +1339,16 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingDesc: isDe ? 'Es handelt sich um ein kostenpflichtiges Software-as-a-Service-Abonnement zur Nutzung einer KI-gestützten Plattform für Architekturvisualisierung.' : 'This is a paid Software-as-a-Service subscription for the use of an AI-supported platform for architectural visualization.',
       scopeTitle: isDe ? 'Leistungsumfang' : 'Scope of Services',
       scopeDesc: isDe ? [
-        'Typus AI BUSINESS ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
+        'Typus AI TEAM ist eine spezialisierte Softwareplattform für KI-gestützte Architekturvisualisierung.',
         'Die Plattform ist insbesondere für Architekturbüros, Planungsbüros und Designstudios konzipiert, die regelmäßig eine hohe Anzahl an Visualisierungen für unterschiedliche Projekte erstellen und mehrere Entwurfs-, Planungs- und Präsentationsprozesse parallel bearbeiten.',
         'Der Leistungsfokus liegt auf der effizienten Erstellung, Iteration und Skalierung von Architekturvisualisierungen über mehrere Projekte hinweg innerhalb eines strukturierten digitalen Workflows.',
-        'Typus AI BUSINESS ist darauf ausgelegt, eine hohe Produktionslast effizient zu verarbeiten und parallele Projektanforderungen zu unterstützen, um insbesondere wiederkehrende Visualisierungs- und Überarbeitungsprozesse zu beschleunigen.',
+        'Typus AI TEAM ist darauf ausgelegt, eine hohe Produktionslast effizient zu verarbeiten und parallele Projektanforderungen zu unterstützen, um insbesondere wiederkehrende Visualisierungs- und Überarbeitungsprozesse zu beschleunigen.',
         'Die Plattform verwendet KI-Modelle von Drittanbietern, die kontinuierlich entsprechend dem aktuellen Stand der Technik aktualisiert und weiterentwickelt werden. Diese Modelle werden dem Kunden in jeweils aktueller Version innerhalb der Plattform bereitgestellt.'
       ] : [
-        'Typus AI BUSINESS is a specialized software platform for AI-supported architectural visualization.',
+        'Typus AI TEAM is a specialized software platform for AI-supported architectural visualization.',
         'The platform is specifically designed for architecture firms, planning offices, and design studios that regularly create a high number of visualizations for different projects and process several design, planning, and presentation processes in parallel.',
         'The performance focus is on the efficient creation, iteration, and scaling of architectural visualizations across multiple projects within a structured digital workflow.',
-        'Typus AI BUSINESS is designed to process a high production load efficiently and support parallel project requirements in order to accelerate recurring visualization and revision processes in particular.',
+        'Typus AI TEAM is designed to process a high production load efficiently and support parallel project requirements in order to accelerate recurring visualization and revision processes in particular.',
         'The platform uses third-party AI models that are continuously updated and further developed in accordance with the current state of the art. These models are made available to the customer in their respective current versions within the platform.'
       ],
       creditSystemTitle: isDe ? 'Nutzungsumfang' : 'Scope of Use',
@@ -1420,12 +1420,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'These serve to impart application knowledge and best practices in the area of architectural visualization and enable the exchange on different ways of working and project contexts.',
         'The webinars are conducted as group live calls with multiple users.'
       ],
-      satisfactionTitle: isDe ? 'BUSINESS-Erweiterung (1:1 Live Sessions)' : 'BUSINESS Extension (1:1 Live Sessions)',
+      satisfactionTitle: isDe ? 'TEAM-Erweiterung (1:1 Live Sessions)' : 'TEAM Extension (1:1 Live Sessions)',
       satisfactionDesc: isDe ? [
-        'Im BUSINESS-Tarif werden zusätzlich individuelle 1:1 Live-Video-Sessions bereitgestellt.',
+        'Im TEAM-Tarif werden zusätzlich individuelle 1:1 Live-Video-Sessions bereitgestellt.',
         'Diese dienen der vertieften, projektbezogenen Betreuung sowie der individuellen Besprechung von Workflows und Anwendungsfragen. Bei sensiblen Projekten können Inhalte im Rahmen eines privaten Einzelcalls behandelt werden.'
       ] : [
-        'In the BUSINESS tariff, additional individual 1:1 live video sessions are provided.',
+        'In the TEAM tariff, additional individual 1:1 live video sessions are provided.',
         'These serve for in-depth, project-specific support as well as the individual discussion of workflows and application questions. For sensitive projects, content can be handled in a private 1:1 call.'
       ],
       satisfactionNoticeTitle: isDe ? 'Hinweis zur Zufriedenheitsorientierung' : 'Note on Satisfaction Orientation',
@@ -1465,13 +1465,13 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Ein durch das EFRE-Programm der Europäischen Union gefördertes Forschungs- und Entwicklungsprojekt befindet sich derzeit in Entwicklung.',
         'Dieses Projekt ist nicht Bestandteil des aktuellen Angebots und wird derzeit nicht vertrieben oder bereitgestellt.',
         'Die geplante Veröffentlichung ist voraussichtlich Ende 2026.',
-        'Nach Veröffentlichung kann vorgesehen sein, dass Kunden von Typus AI BUSINESS als Beta-Nutzer Zugang zu diesem System erhalten. Dies erfolgt ausschließlich nach Verfügbarkeit.',
+        'Nach Veröffentlichung kann vorgesehen sein, dass Kunden von Typus AI TEAM als Beta-Nutzer Zugang zu diesem System erhalten. Dies erfolgt ausschließlich nach Verfügbarkeit.',
         'Details hierzu sind in den AGB geregelt.'
       ] : [
         'A research and development project funded by the ERDF program of the European Union is currently under development.',
         'This project is not part of the current offer and is currently not distributed or provided.',
         'The planned release is expected to be at the end of 2026.',
-        'After release, it may be planned that customers of Typus AI BUSINESS gain access to this system as beta users. This is exclusively subject to availability.',
+        'After release, it may be planned that customers of Typus AI TEAM gain access to this system as beta users. This is exclusively subject to availability.',
         'Details can be found in the Terms and Conditions.'
       ],
       termsTitle: isDe ? 'Vertragsbedingungen' : 'Contract Terms',
@@ -1491,12 +1491,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbLink: agbLink,
       finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
       checkboxes: [
-        isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (BUSINESS)' : 'Conclusion of a paid SaaS subscription (BUSINESS)',
+        isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (TEAM)' : 'Conclusion of a paid SaaS subscription (TEAM)',
         isDe ? 'Kenntnis der jährlichen Abrechnung und Mindestlaufzeit' : 'Knowledge of the annual billing and minimum term',
         isDe ? 'Zustimmung zu den AGB' : 'Consent to the Terms and Conditions'
       ],
       noteTitle: isDe ? 'Hinweis' : 'Note',
-      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI BUSINESS wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI BUSINESS will be unlocked automatically after successful payment.'
+      noteDesc: isDe ? 'Diese Bestellung stellt einen verbindlichen Vertragsschluss dar. Der Zugang zu Typus AI TEAM wird nach erfolgreicher Zahlung automatisch freigeschaltet.' : 'This order constitutes a binding contract. Access to Typus AI TEAM will be unlocked automatically after successful payment.'
     }
   } else if (planId === 'solo-monthly') {
     return {
