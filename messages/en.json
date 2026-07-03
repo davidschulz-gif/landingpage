@@ -396,7 +396,8 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (Unlimited)",
-          "teamAccess": "TEAM ACCESS"
+          "teamAccess": "TEAM ACCESS",
+          "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
         "targetAudience": "For Small Teams"
       },
@@ -449,7 +450,7 @@
         }
       },
       "business": {
-        "name": "BUSINESS",
+        "name": "TEAM",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
           "credits1000": "1000 CREDITS /month (66-333 images (see credit deduction overview below))",
@@ -467,7 +468,8 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (Unlimited)",
-          "teamAccess": "TEAM ACCESS"
+          "teamAccess": "TEAM ACCESS",
+          "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
         "targetAudience": "For Architecture Firms"
       }

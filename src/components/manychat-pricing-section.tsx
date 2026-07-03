@@ -113,7 +113,7 @@ const professionalPlans = [
   },
   {
     id: 'business',
-    name: 'BUSINESS',
+    name: 'TEAM',
     monthlyPrice: { eur: '€499', usd: '$117' },
     sixMonthPrice: { eur: '€294', usd: '$337' },
     yearlyPrice: { eur: '€4990', usd: '$668' },
@@ -158,6 +158,7 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'TEAM ACCESS', hasFeature: true },
+      { text: 'UP TO 5 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
       // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
@@ -752,6 +753,7 @@ export function ManyChatPricingSection({
       if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
+      if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
       
       const key = f.text.includes('4K') ? 'resolution4k' : 
                   f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
@@ -801,7 +803,7 @@ export function ManyChatPricingSection({
     const baseBusinessPlan = professionalPlans[2]
     const businessPlan = {
       ...baseBusinessPlan,
-      name: 'BUSINESS',
+      name: 'TEAM',
       // popular: true,
       // badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
       fetchedData: businessFetchedData,

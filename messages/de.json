@@ -396,7 +396,8 @@
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
           "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
-          "teamAccess": "TEAM-ZUGANG"
+          "teamAccess": "TEAM-ZUGANG",
+          "upTo5Accounts": "BIS ZU 5 KONTEN"
         },
         "targetAudience": "Für kleine Teams"
       },
@@ -449,7 +450,7 @@
         }
       },
       "business": {
-        "name": "BUSINESS",
+        "name": "TEAM",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
           "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
@@ -467,7 +468,8 @@
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
           "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
-          "teamAccess": "TEAM-ZUGANG"
+          "teamAccess": "TEAM-ZUGANG",
+          "upTo5Accounts": "BIS ZU 5 KONTEN"
         },
         "targetAudience": "Für Architekturbüros"
       }
