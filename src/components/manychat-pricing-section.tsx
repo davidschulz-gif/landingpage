@@ -1139,31 +1139,36 @@ export function ManyChatPricingSection({
                 <Lottie animationData={HandDrawnArrow} loop={true} />
               </div>
 
-          {/* <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 mt-6'>
-            <button
-              onClick={() => setIsYearly(true)}
-              className={`px-10 py-4 text-lg font-medium transition-colors ${isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('yearlyBilling')}
-            </button>
-            <button
-              onClick={() => setIsYearly(false)}
-              className={`px-10 py-4 text-lg font-medium transition-colors ${!isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-            >
-              {t('monthlyBilling')}
-            </button>
-          </div>*/}
+          {/* Billing Toggle */}
+          <div className='flex justify-center mt-8 mb-2'>
+            <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative'>
+              {[false, true].map((yearly) => (
+                <button
+                  key={String(yearly)}
+                  onClick={() => setIsYearly(yearly)}
+                  className={`relative z-10 px-6 py-2.5 text-sm font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${isYearly === yearly ? 'text-black' : 'text-neutral-500 hover:text-neutral-700'}`}
+                >
+                  {isYearly === yearly && (
+                    <span
+                      className='absolute inset-0 bg-white rounded-full shadow-md'
+                      style={{ zIndex: -1 }}
+                    />
+                  )}
+                  <span className='relative'>
+                    {yearly ? (
+                      <span className='flex items-center gap-2'>
+                        {t('yearlyBilling')}
+                        <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-20%</span>
+                      </span>
+                    ) : (
+                      t('monthlyBilling')
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div> 
-        <div className='flex flex-col gap-1 mb-8 text-center'>
-        </div>
 
         {/* Professional Plans Cards */}
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1100px] mx-auto'>
