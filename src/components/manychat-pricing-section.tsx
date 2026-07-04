@@ -31,6 +31,10 @@ const professionalPlans = [
     id: 'solo',
     name: 'SOLO',
     monthlyPrice: { eur: '€169', usd: '$169' },
+    threeMonthlyPrice: { eur: '€450', usd: '$450' },
+    threeMonthlyMonthlyPrice: { eur: '€150', usd: '$150' },
+    sixMonthPrice: { eur: '€900', usd: '$900' },
+    sixMonthMonthlyPrice: { eur: '€150', usd: '$150' },
     yearlyPrice: { eur: '€1622.40', usd: '$1622.40' },
     yearlyMonthlyPrice: { eur: '€135.20', usd: '$135.20' },
     planType: 'SOLO',
@@ -38,6 +42,26 @@ const professionalPlans = [
       monthly: {
         discountedMonthly: { eur: '€169', usd: '$169' },
         introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€150', usd: '$150' },
+        periodDiscountPercent: 11,
+        periodSaveAmount: { eur: '€57', usd: '$57' },
+        originalCycle: { eur: '€507', usd: '$507' },
+        discountPercent: 11,
+        saveAmountCycle: { eur: '€57', usd: '$57' },
+        introFirstPeriod: { eur: '€450', usd: '$450' },
+        introPeriodKey: 'billedEvery3Months',
+      },
+      sixMonthly: {
+        discountedMonthly: { eur: '€150', usd: '$150' },
+        periodDiscountPercent: 11,
+        periodSaveAmount: { eur: '€114', usd: '$114' },
+        originalCycle: { eur: '€1014', usd: '$1014' },
+        discountPercent: 11,
+        saveAmountCycle: { eur: '€114', usd: '$114' },
+        introFirstPeriod: { eur: '€900', usd: '$900' },
+        introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
         discountedMonthly: { eur: '€135.20', usd: '$135.20' },
@@ -67,6 +91,10 @@ const professionalPlans = [
     id: 'pro',
     name: 'PRO',
     monthlyPrice: { eur: '€249', usd: '$57' },
+    threeMonthlyPrice: { eur: '€199', usd: '$199' },
+    threeMonthlyMonthlyPrice: { eur: '€66.33', usd: '$66.33' },
+    sixMonthPrice: { eur: '€294', usd: '$294' },
+    sixMonthMonthlyPrice: { eur: '€49.00', usd: '$49.00' },
     yearlyPrice: { eur: '€2490', usd: '$684' },
     yearlyMonthlyPrice: { eur: '€207.50', usd: '$57' },
     planType: 'PRO',
@@ -75,19 +103,29 @@ const professionalPlans = [
         discountedMonthly: { eur: '€249', usd: '$57' },
         introPeriodKey: 'billedMonthly',
       },
+      threeMonthly: {
+        discountedMonthly: { eur: '€66.33', usd: '$66.33' },
+        periodDiscountPercent: 33,
+        periodSaveAmount: { eur: '€98', usd: '$98' },
+        originalCycle: { eur: '€297', usd: '$297' },
+        discountPercent: 33,
+        saveAmountCycle: { eur: '€98', usd: '$98' },
+        introFirstPeriod: { eur: '€199', usd: '$199' },
+        introPeriodKey: 'billedEvery3Months',
+      },
       sixMonthly: {
-        discountedMonthly: { eur: '€249', usd: '$57' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€1494', usd: '$342' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€1494', usd: '$342' },
+        discountedMonthly: { eur: '€49.00', usd: '$49.00' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€300', usd: '$300' },
+        originalCycle: { eur: '€594', usd: '$594' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€300', usd: '$300' },
+        introFirstPeriod: { eur: '€294', usd: '$294' },
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
         discountedMonthly: { eur: '€207.50', usd: '$57' },
-        periodDiscountPercent:20,
+        periodDiscountPercent: 20,
         periodSaveAmount: { eur: '€636', usd: '$0' },
         originalCycle: { eur: '€2988', usd: '$684' },
         discountPercent: 20,
@@ -115,16 +153,28 @@ const professionalPlans = [
     id: 'business',
     name: 'TEAM',
     monthlyPrice: { eur: '€499', usd: '$117' },
+    threeMonthlyPrice: { eur: '€1299', usd: '$1299' },
+    threeMonthlyMonthlyPrice: { eur: '€433', usd: '$433' },
     sixMonthPrice: { eur: '€294', usd: '$337' },
     yearlyPrice: { eur: '€4990', usd: '$668' },
     sixMonthMonthlyPrice: { eur: '€49', usd: '$56' },
     yearlyMonthlyPrice: { eur: '€415.83', usd: '$46' },
-    planType: 'BUSINESS',
+    planType: 'TEAM',
     // Discount display: original (crossed out), discounted (green), badges, intro price
     discount: {
       monthly: {
         discountedMonthly: { eur: '€499', usd: '$117' },
         introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€433', usd: '$433' },
+        periodDiscountPercent: 13,
+        periodSaveAmount: { eur: '€198', usd: '$198' },
+        originalCycle: { eur: '€1497', usd: '$1497' },
+        discountPercent: 13,
+        saveAmountCycle: { eur: '€198', usd: '$198' },
+        introFirstPeriod: { eur: '€1299', usd: '$1299' },
+        introPeriodKey: 'billedEvery3Months',
       },
       sixMonthly: {
         discountedMonthly: { eur: '€49', usd: '$56' },
@@ -161,21 +211,8 @@ const professionalPlans = [
       { text: 'UP TO 5 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
-      // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
     ],
   },
-  // {
-  //   id: 'enterprise',
-  //   name: 'ENTERPRISE',
-  //   monthlyPrice: { eur: 'Custom', usd: 'Custom' },
-  //   planType: 'ENTERPRISE',
-  //   features: [
-  //     { text: 'CUSTOM CREDITS', hasFeature: true },
-  //     // { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
-  //     { text: 'DEDICATED SUPPORT', hasFeature: true },
-  //     { text: 'CUSTOM INTEGRATIONS', hasFeature: true },
-  //   ],
-  // },
 ]
 
 const educationPlans = [
@@ -264,6 +301,7 @@ export function ManyChatPricingSection({
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(false)
+  const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>('monthly')
   const locale = useLocale();
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
@@ -407,6 +445,7 @@ export function ManyChatPricingSection({
     try {
       const billingCycleMap: Record<string, string> = {
         monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
         sixMonthly: 'SIX_MONTHLY',
         yearly: 'YEARLY',
       }
@@ -594,6 +633,7 @@ export function ManyChatPricingSection({
 
       const billingCycleMap: Record<string, string> = {
         monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
         sixMonthly: 'SIX_MONTHLY',
         yearly: 'YEARLY',
       }
@@ -658,6 +698,7 @@ export function ManyChatPricingSection({
 
       const billingCycleMap: Record<string, string> = {
         monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
         sixMonthly: 'SIX_MONTHLY',
         yearly: 'YEARLY',
       }
@@ -774,10 +815,10 @@ export function ManyChatPricingSection({
 
   // Get translated Professional plans
   const getProfessionalPlans = () => {
-    // We display all 4 plans: SOLO, PRO, BUSINESS, and ENTERPRISE.
+    // We display all 4 plans: SOLO, PRO, TEAM, and ENTERPRISE.
     const soloFetchedData = findFetchedPlan('SOLO', false) as any
     const proFetchedData = findFetchedPlan('PRO', false)
-    const businessFetchedData = findFetchedPlan('BUSINESS', false)
+    const businessFetchedData = findFetchedPlan('TEAM', false)
     
     const mapFeatureText = (f: any) => {
       if (typeof f === 'string') return f;
@@ -811,7 +852,7 @@ export function ManyChatPricingSection({
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
       })),
       targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const)
+      billingCycle: profBillingCycle
     }
 
     // Pro
@@ -821,14 +862,14 @@ export function ManyChatPricingSection({
       name: 'PRO',
       fetchedData: proFetchedData,
       popular: true,
-      badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
+      badgeTextKey: profBillingCycle === 'yearly' ? 'bestOffer' : 'mostPopular',
       features: baseProPlan.features.map(f => ({
         ...f,
         text: mapFeatureText(f),
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
       })),
       targetAudience: t('plans.pro.targetAudience'),
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const) // Set cycle based on toggle
+      billingCycle: profBillingCycle
     }
 
     // Business
@@ -836,32 +877,15 @@ export function ManyChatPricingSection({
     const businessPlan = {
       ...baseBusinessPlan,
       name: 'TEAM',
-      // popular: true,
-      // badgeTextKey: isYearly ? 'bestOffer' : 'mostPopular',
       fetchedData: businessFetchedData,
-      billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
       features: baseBusinessPlan.features.map(f => ({
         ...f,
         text: mapFeatureText(f),
         hasFeature: typeof f === 'object' ? f.hasFeature : true,
       })),
       targetAudience: t('plans.business.targetAudience'),
+      billingCycle: profBillingCycle
     }
-
-    // Enterprise
-    const baseEnterprisePlan = professionalPlans[3]
-    // const enterprisePlan = {
-    //   ...baseEnterprisePlan,
-    //   name: t('plans.enterprise.name'),
-    //   fetchedData: null,
-    //   billingCycle: isYearly ? ('yearly' as const) : ('monthly' as const),
-    //   features: baseEnterprisePlan.features.map(f => ({
-    //     ...f,
-    //     // using simple text or placeholder translation
-    //     text: typeof f === 'string' ? f : t(`plans.enterprise.features.${f.text.includes('CUSTOM CREDITS') ? 'customCredits' : f.text.includes('UNLIMITED') ? 'unlimitedJobs' : f.text.includes('DEDICATED') ? 'dedicatedSupport' : 'customIntegrations'}`),
-    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
-    //   })),
-    // }
 
     return [ soloPlan, proPlan, businessPlan]
   }
@@ -978,8 +1002,11 @@ export function ManyChatPricingSection({
     if (!targetPlan) return
 
     const stripePrices = targetPlan.stripePrices || {}
-    const billingCycle = selectedPlanForModal.billingCycle?.toLowerCase()
-    const priceId = billingCycle === 'yearly' ? stripePrices.YEARLY : stripePrices.MONTHLY
+    const billingCycle = selectedPlanForModal.billingCycle
+    const priceId = billingCycle === 'yearly' ? stripePrices.YEARLY :
+                    billingCycle === 'sixMonthly' ? stripePrices.SIX_MONTHLY :
+                    billingCycle === 'threeMonthly' ? stripePrices.THREE_MONTHLY :
+                    stripePrices.MONTHLY
 
     if (priceId) {
       setSelectedPlanForModal((prev: any) => ({ ...prev, priceId }))
@@ -1141,25 +1168,29 @@ export function ManyChatPricingSection({
 
           {/* Billing Toggle */}
           <div className='flex justify-center mt-8 mb-2'>
-            <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative'>
-              {[false, true].map((yearly) => (
+            <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
+              {(['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => (
                 <button
-                  key={String(yearly)}
-                  onClick={() => setIsYearly(yearly)}
-                  className={`relative z-10 px-6 py-2.5 text-sm font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${isYearly === yearly ? 'text-black' : 'text-neutral-500 hover:text-neutral-700'}`}
+                  key={cycle}
+                  onClick={() => setProfBillingCycle(cycle)}
+                  className={`relative z-10 px-4 sm:px-6 py-2.5 text-[11px] sm:text-sm font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${profBillingCycle === cycle ? 'text-black' : 'text-neutral-500 hover:text-neutral-700'}`}
                 >
-                  {isYearly === yearly && (
+                  {profBillingCycle === cycle && (
                     <span
                       className='absolute inset-0 bg-white rounded-full shadow-md'
                       style={{ zIndex: -1 }}
                     />
                   )}
                   <span className='relative'>
-                    {yearly ? (
+                    {cycle === 'yearly' ? (
                       <span className='flex items-center gap-2'>
                         {t('yearlyBilling')}
                         <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-20%</span>
                       </span>
+                    ) : cycle === 'threeMonthly' ? (
+                      t('threeMonthlyBilling')
+                    ) : cycle === 'sixMonthly' ? (
+                      t('sixMonthlyBilling')
                     ) : (
                       t('monthlyBilling')
                     )}
@@ -1184,8 +1215,8 @@ export function ManyChatPricingSection({
                     </div>
                   )}
                   <PricingCard
-                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={isYearly}
+                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={profBillingCycle === 'yearly'}
                     isProfessional={true}
                     isEurope={planCurrency === 'eur'}
                     currencySymbol={planCurrency === 'eur' ? '€' : '$'}
@@ -1634,12 +1665,12 @@ type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
 }
 
 interface PricingCardProps {
-  plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }
+  plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }
   isYearly: boolean
   isProfessional: boolean
   isEurope: boolean
   currencySymbol: string
-  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
+  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
   promoDiscount?: any
   isVat?: boolean
 }
@@ -1664,10 +1695,8 @@ function PricingCard({
     // const currencySymbol = isUsd ? '$' : '€' // Now passed as prop
 
     if (isProfessional) {
-      const profPlan = plan as (typeof professionalPlans)[0] & {
-        billingCycle?: 'monthly' | 'sixMonthly' | 'yearly'
-        fetchedData?: any
-      }
+      const profPlan = plan as any
+      const fetchedData = plan.fetchedData
 
       // ENTERPRISE
       if (profPlan.planType === 'ENTERPRISE') {
@@ -1679,43 +1708,86 @@ function PricingCard({
         }
       }
 
-      // PRO and SOLO
-      if (profPlan.planType === 'PRO' || profPlan.planType === 'SOLO') {
-        let mainPrice = isEurope
-          ? profPlan.monthlyPrice?.eur || ''
-          : profPlan.monthlyPrice?.usd || ''
-        
-        let billingInfo = t('billedMonthly')
+      // SOLO, PRO, TEAM
+      if (profPlan.planType === 'PRO' || profPlan.planType === 'SOLO' || profPlan.planType === 'TEAM') {
+        const billingCycle = profPlan.billingCycle || 'monthly'
+
+        let mainPrice = ''
+        let billingInfo = ''
+        let stripePriceId = ''
         let discount = undefined
 
-        // If yearly, multiply by 12 or use yearly equivalent if available
-        if (profPlan.billingCycle === 'yearly') {
-          if (fetchedData && fetchedData.prices?.yearly) {
-             const yPrice = fetchedData.prices.yearly
-             mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
-             billingInfo = `${t('billedYearly')} (${currencySymbol}${yPrice / 100}/year)`
-          } else {
-             mainPrice = isEurope ? profPlan.yearlyMonthlyPrice?.eur || '' : profPlan.yearlyMonthlyPrice?.usd || ''
-             const yPriceTotal = isEurope ? profPlan.yearlyPrice?.eur || '' : profPlan.yearlyPrice?.usd || ''
-             billingInfo = `${t('billedYearly')} (${yPriceTotal}/year)`
-          }
-          
-          const d = profPlan.discount?.yearly
-          if (d && d.periodDiscountPercent != null) {
-            discount = {
-              periodDiscountPercent: d.periodDiscountPercent,
-              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
-            }
-          }
+        let mPriceVal = 0
+        let cyclePriceVal = 0
+        let monthsCount = 1
+
+        if (fetchedData && fetchedData.prices?.monthly) {
+          mPriceVal = fetchedData.prices.monthly / 100
         } else {
-          if (fetchedData && fetchedData.prices?.monthly) {
-            mainPrice = `${currencySymbol}${fetchedData.prices.monthly / 100}`
-          }
+          const fallbackMPrice = isEurope ? profPlan.monthlyPrice?.eur : profPlan.monthlyPrice?.usd
+          mPriceVal = parseFloat(fallbackMPrice?.replace(/[^0-9.]/g, '') || '0')
         }
 
-        let stripePriceId = ''
-        if (fetchedData) {
-          stripePriceId = profPlan.billingCycle === 'yearly' ? (fetchedData.stripePrices?.YEARLY || '') : (fetchedData.stripePrices?.MONTHLY || '')
+        if (billingCycle === 'monthly') {
+          monthsCount = 1
+          cyclePriceVal = mPriceVal
+          mainPrice = `${currencySymbol}${mPriceVal}`
+          billingInfo = t('billedMonthly')
+          stripePriceId = (fetchedData ? fetchedData.stripePrices?.MONTHLY : profPlan.discount?.monthly?.stripePriceId) || ''
+        } else if (billingCycle === 'threeMonthly') {
+          monthsCount = 3
+          if (fetchedData && fetchedData.prices?.threeMonthly) {
+            cyclePriceVal = fetchedData.prices.threeMonthly / 100
+            stripePriceId = fetchedData.stripePrices?.THREE_MONTHLY || ''
+          } else {
+            const fallbackCyclePrice = isEurope ? profPlan.threeMonthlyPrice?.eur : profPlan.threeMonthlyPrice?.usd
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.threeMonthly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 3) * 100) / 100}`
+          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery3Months')}`
+        } else if (billingCycle === 'sixMonthly') {
+          monthsCount = 6
+          if (fetchedData && fetchedData.prices?.sixMonthly) {
+            cyclePriceVal = fetchedData.prices.sixMonthly / 100
+            stripePriceId = fetchedData.stripePrices?.SIX_MONTHLY || ''
+          } else {
+            const fallbackCyclePrice = isEurope
+              ? profPlan.sixMonthPrice?.eur || profPlan.sixMonthlyPrice?.eur || ''
+              : profPlan.sixMonthPrice?.usd || profPlan.sixMonthlyPrice?.usd || ''
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.sixMonthly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 6) * 100) / 100}`
+          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery6Months')}`
+        } else {
+          // yearly
+          monthsCount = 12
+          if (fetchedData && fetchedData.prices?.yearly) {
+            cyclePriceVal = fetchedData.prices.yearly / 100
+            stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+          } else {
+            const fallbackCyclePrice = isEurope ? profPlan.yearlyPrice?.eur : profPlan.yearlyPrice?.usd
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.yearly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 12) * 100) / 100}`
+          billingInfo = `${t('billedYearly')} (${currencySymbol}${cyclePriceVal}/year)`
+        }
+
+        const originalCycleVal = mPriceVal * monthsCount
+        if (monthsCount > 1 && originalCycleVal > cyclePriceVal) {
+          const saveAmountVal = originalCycleVal - cyclePriceVal
+          const discountPercentVal = Math.round((saveAmountVal / originalCycleVal) * 100)
+
+          discount = {
+            originalCycle: `${currencySymbol}${originalCycleVal % 1 === 0 ? originalCycleVal : originalCycleVal.toFixed(2)}`,
+            discountPercent: discountPercentVal,
+            saveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
+            periodDiscountPercent: discountPercentVal,
+            periodSaveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
+            bestDeal: billingCycle === 'yearly' && profPlan.planType === 'TEAM',
+          }
         }
 
         return {
@@ -1727,106 +1799,6 @@ function PricingCard({
         }
       }
 
-      // BUSINESS
-      if (profPlan.planType === 'BUSINESS') {
-        const billingCycle = profPlan.billingCycle || (isYearly ? 'yearly' : 'monthly')
-        const proWithDiscount = profPlan as (typeof professionalPlans)[1] & {
-          fetchedData?: any
-        }
-        const discountData = proWithDiscount.discount?.[billingCycle]
-
-        let mainPrice = ''
-        let billingInfo = ''
-        let stripePriceId = ''
-        let discount = undefined
-
-        if (billingCycle === 'monthly') {
-          mainPrice = isEurope
-            ? profPlan.monthlyPrice?.eur || ''
-            : profPlan.monthlyPrice?.usd || ''
-          billingInfo = t('billedMonthly')
-
-          if (fetchedData) {
-            const price = fetchedData.prices?.monthly
-            if (price) mainPrice = `${currencySymbol}${price / 100}`
-            stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
-          }
-
-          const d = discountData
-          if (d) {
-            if (!fetchedData) {
-              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
-            }
-          }
-        } else if (billingCycle === 'sixMonthly') {
-          mainPrice = isEurope
-            ? profPlan.sixMonthMonthlyPrice?.eur || ''
-            : profPlan.sixMonthMonthlyPrice?.usd || ''
-          const cyclePrice = isEurope
-            ? profPlan.sixMonthPrice?.eur || ''
-            : profPlan.sixMonthPrice?.usd || ''
-          billingInfo = `${cyclePrice} ${t('billedEvery6Months')}`
-
-          if (fetchedData) {
-            const mPrice = fetchedData.prices?.sixMonthly ? Math.round(fetchedData.prices.sixMonthly / 6) / 100 : null
-            const cPrice = fetchedData.prices?.sixMonthly ? fetchedData.prices.sixMonthly / 100 : null
-            if (mPrice) mainPrice = `${currencySymbol}${mPrice}`
-            if (cPrice) billingInfo = `${currencySymbol}${cPrice} ${t('billedEvery6Months')}`
-            stripePriceId = fetchedData.stripePrices?.SIX_MONTHLY || ''
-          }
-
-          const d = discountData
-          if (d && 'originalCycle' in d) {
-            if (!fetchedData) {
-              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
-              billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedEvery6Months')}`
-            }
-            discount = {
-              originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
-              discountPercent: d.discountPercent,
-              saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd,
-              periodDiscountPercent: d.periodDiscountPercent,
-              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
-            }
-          }
-        } else {
-          mainPrice = isEurope
-            ? profPlan.yearlyMonthlyPrice?.eur || ''
-            : profPlan.yearlyMonthlyPrice?.usd || ''
-          const cyclePrice = isEurope
-            ? profPlan.yearlyPrice?.eur || ''
-            : profPlan.yearlyPrice?.usd || ''
-          billingInfo = `${t('billedYearly')} (${cyclePrice}/year)`
-
-          if (fetchedData) {
-            const mPrice = fetchedData.prices?.yearly ? Math.round(fetchedData.prices.yearly / 12) / 100 : null
-            const cPrice = fetchedData.prices?.yearly ? fetchedData.prices.yearly / 100 : null
-            if (mPrice) mainPrice = `${currencySymbol}${mPrice}`
-            if (cPrice) billingInfo = `${t('billedYearly')} (${currencySymbol}${cPrice}/year)`
-            stripePriceId = fetchedData.stripePrices?.YEARLY || ''
-          }
-
-          const d = discountData
-          if (d && 'bestDeal' in d) {
-            if (!fetchedData) {
-              mainPrice = isEurope ? d.discountedMonthly.eur : d.discountedMonthly.usd
-              billingInfo = `${isEurope ? d.introFirstPeriod.eur : d.introFirstPeriod.usd} ${t('billedYearly')}`
-            }
-            discount = {
-              originalCycle: isEurope ? d.originalCycle.eur : d.originalCycle.usd,
-              discountPercent: d.discountPercent,
-              saveAmount: isEurope ? d.saveAmountCycle.eur : d.saveAmountCycle.usd,
-              periodDiscountPercent: d.periodDiscountPercent,
-              periodSaveAmount: isEurope ? d.periodSaveAmount.eur : d.periodSaveAmount.usd,
-              bestDeal: d.bestDeal,
-            }
-          }
-        }
-
-        return { mainPrice, period: '/month', billingInfo, discount, stripePriceId }
-      }
-
-      // Fallback (should not happen)
       return {
         mainPrice: '',
         period: '/month',
