@@ -397,7 +397,10 @@
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (Unlimited)",
           "teamAccess": "TEAM ACCESS",
-          "upTo5Accounts": "UP TO 5 ACCOUNTS"
+          "upTo5Accounts": "UP TO 5 ACCOUNTS",
+          "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
+          "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
+          "upTo520Accounts": "UP TO 5-20 ACCOUNTS"
         },
         "targetAudience": "For Architecture Firms 1-5 MA"
       },
@@ -469,7 +472,10 @@
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (Unlimited)",
           "teamAccess": "TEAM ACCESS",
-          "upTo5Accounts": "UP TO 5 ACCOUNTS"
+          "upTo5Accounts": "UP TO 5 ACCOUNTS",
+          "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
+          "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
+          "upTo520Accounts": "UP TO 5-20 ACCOUNTS"
         },
         "targetAudience": "For Architecture Firms 5-20 MA"
       }

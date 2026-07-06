@@ -397,7 +397,10 @@
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
           "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
           "teamAccess": "TEAM-ZUGANG",
-          "upTo5Accounts": "BIS ZU 5 KONTEN"
+          "upTo5Accounts": "BIS ZU 5 KONTEN",
+          "upTo01Accounts": "BIS ZU 0-1 KONTEN",
+          "upTo15Accounts": "BIS ZU 1-5 KONTEN",
+          "upTo520Accounts": "BIS ZU 5-20 KONTEN"
         },
         "targetAudience": "Für Architekturbüros 1-5 MA"
       },
@@ -469,7 +472,10 @@
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
           "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
           "teamAccess": "TEAM-ZUGANG",
-          "upTo5Accounts": "BIS ZU 5 KONTEN"
+          "upTo5Accounts": "BIS ZU 5 KONTEN",
+          "upTo01Accounts": "BIS ZU 0-1 KONTEN",
+          "upTo15Accounts": "BIS ZU 1-5 KONTEN",
+          "upTo520Accounts": "BIS ZU 5-20 KONTEN"
         },
         "targetAudience": "Für Architekturbüros 5-20 MA"
       }

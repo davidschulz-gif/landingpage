@@ -83,6 +83,8 @@ const professionalPlans = [
       { text: 'UPSCALE UP TO 8K', hasFeature: false },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
+      { text: 'TEAM ACCESS', hasFeature: false },
+      { text: 'UP TO 0-1 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
     ],
@@ -144,6 +146,8 @@ const professionalPlans = [
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: true },
+      { text: 'UP TO 1-5 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
       // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
@@ -208,7 +212,7 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'TEAM ACCESS', hasFeature: true },
-      { text: 'UP TO 5 ACCOUNTS', hasFeature: true },
+      { text: 'UP TO 5-20 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
     ],
@@ -828,6 +832,9 @@ export function ManyChatPricingSection({
       if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
+      if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
+      if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');
+      if (f.text.includes('UP TO 5-20 ACCOUNTS')) return t('plans.pro.features.upTo520Accounts');
       if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
       
       const key = f.text.includes('4K') ? 'resolution4k' : 
