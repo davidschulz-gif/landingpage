@@ -91,6 +91,18 @@ export default function OrderPage() {
     fetchPlans()
   }, [isEurope])
 
+  // Sync window.isCheckoutActive state to prevent BeforeYouGoPopup interference
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).isCheckoutActive = true;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        (window as any).isCheckoutActive = false;
+      }
+    };
+  }, [])
+
   useEffect(() => {
     const verifyToken = async () => {
       const tokenParam = searchParams.get('token')
@@ -917,6 +929,7 @@ export default function OrderPage() {
           initialData={onboardingData}
           onComplete={handleOnboardingComplete}
           onCancel={() => setShowOnboarding(false)}
+          isSubmitting={isSubmitting}
         />
       )}
 

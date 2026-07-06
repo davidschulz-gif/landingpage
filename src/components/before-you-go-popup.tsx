@@ -50,6 +50,7 @@ export default function BeforeYouGoPopup() {
   const router = useRouter()
 
   const isPricingPage = pathname?.endsWith('/pricing') || pathname?.includes('/pricing')
+  const isExcludedRoute = pathname?.includes('upscale-privacy')
 
   useEffect(() => {
     setMounted(true)
@@ -60,23 +61,34 @@ export default function BeforeYouGoPopup() {
 
   const show = (_triggerType: string) => {
     if (isOpen) return
+
+    // Suppress if checkout process is initiated/active or on the checkout order page
+    if (typeof window !== 'undefined' && (window as any).isCheckoutActive) {
+      console.log('Suppressing BeforeYouGoPopup because checkout is active')
+      return
+    }
+    if (pathname?.includes('/pricing/order')) {
+      console.log('Suppressing BeforeYouGoPopup on order page')
+      return
+    }
+
     setIsOpen(true)
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
   }
 
-  // Trigger 1: 30-second timer
+  // Trigger 1: 30-second timer (disabled on excluded routes)
   useEffect(() => {
-    if (timerTriggered || !mounted) return
+    if (timerTriggered || !mounted || isExcludedRoute) return
     timeoutRef.current = setTimeout(() => {
       setTimerTriggered(true)
       show('30s Timer')
     }, TRIGGER_DELAY_MS)
     return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
-  }, [timerTriggered, mounted])
+  }, [timerTriggered, mounted, isExcludedRoute])
 
-  // Trigger 2: Exit intent
+  // Trigger 2: Exit intent (disabled on excluded routes)
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || isExcludedRoute) return
     const handleMouseLeave = (e: MouseEvent) => {
       const fromTop = e.clientY <= 0 || e.pageY <= 0 || (e.relatedTarget === null && e.target === document)
       if (fromTop) show('Exit Intent')
@@ -90,7 +102,7 @@ export default function BeforeYouGoPopup() {
       window.removeEventListener('mouseleave', handleMouseLeave)
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [mounted, isOpen])
+  }, [mounted, isOpen, isExcludedRoute])
 
   // Trigger 3: Custom event
   useEffect(() => {
@@ -226,100 +238,16 @@ export default function BeforeYouGoPopup() {
     );
   }
 
-  // ── Step 3: Booking choice cards ────────────────────────────────────────
+  // ── Step 3: Direct calendar ─────────────────────────────────────────────
   const BookingCards = ({ dark }: { dark?: boolean }) => (
     <div className='w-full flex flex-col items-center transition-all duration-500'>
-      <h3 className={`text-base font-semibold mb-2 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
-      <div className={`text-[11px] text-center mb-5 font-medium leading-relaxed flex flex-col items-center gap-1 ${dark ? 'text-white/70' : 'text-neutral-600'}`}>
-        <p>- {t('bookBothInstruction1')}</p>
-        {/* <p>- {t('bookBothInstruction2')}</p> */}
-      </div>
-
-      <div className='flex flex-col lg:flex-row gap-4 items-center justify-center w-full transition-all duration-500'>
-        {/* Dominik Calendar */}
-        {openCalendars.dominik && (
-          <div className='flex-1 w-full min-w-[300px] lg:min-w-[400px] animate-in fade-in slide-in-from-right-8 duration-500'>
-            {CalendarIframe({ who: 'dominik', dark })}
-          </div>
-        )}
-
-        <div className='flex flex-col gap-3 w-full max-w-[280px] shrink-0'>
-          {/* ── Dominik Card ── */}
-          <button
-            type='button'
-            onClick={() => { setIsOpen(false); router.push(`/${pathname?.split('/')[1] || 'de'}/book-a-demo/dominik-denny`); }}
-            className={`flex-1 flex flex-col items-center text-center rounded-2xl p-5 border transition-all duration-300 group cursor-pointer
-              ${dark
-                ? (openCalendars.dominik ? 'bg-white/10 border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]' : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/25')
-                : (openCalendars.dominik ? 'bg-white border-black shadow-lg ring-1 ring-black' : 'bg-neutral-50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-lg')
-              }`}
-          >
-            {/* Photo */}
-            <div className={`relative w-16 h-16 rounded-full overflow-hidden mb-3 ring-2 ring-offset-2 transition-all duration-300 group-hover:scale-105 ${openCalendars.dominik ? (dark ? 'ring-white/40 grayscale-0' : 'ring-black grayscale-0') : 'ring-neutral-200 group-hover:ring-neutral-400'}`}>
-              <Image src='/DominikDenny.png' alt='Dominik Denny' fill className={`object-cover transition-all duration-500 ${openCalendars.dominik ? '' : 'grayscale group-hover:grayscale-0'}`} />
-            </div>
-            <p className={`text-[10px] font-bold tracking-[0.12em] mb-0.5 ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('dominikName')}</p>
-            <p className={`text-[9px] tracking-[0.1em] mb-3 ${dark ? 'text-white/40' : 'text-neutral-400'}`}>{t('dominikRole')}</p>
-            <p className={`text-[11px] leading-snug mb-4 ${dark ? 'text-white/65' : 'text-neutral-500'}`}>{t('dominikDesc')}</p>
-            <div className={`flex items-center justify-center gap-1.5 w-full py-2.5 px-3 text-[11px] font-semibold rounded-xl transition-all duration-200
-              ${dark
-                ? (openCalendars.dominik ? 'bg-white text-black' : 'bg-white/10 text-white border border-white/20 group-hover:bg-white group-hover:text-black')
-                : (openCalendars.dominik ? 'bg-black text-white' : 'bg-white text-neutral-900 border border-neutral-200 group-hover:bg-black group-hover:text-white group-hover:border-black')
-              }`}>
-              <IconCalendar size={12} strokeWidth={2} />
-              {t('dominikCta')}
-            </div>
-          </button>
-
-          {/* ── Ada Card ── */}
-          <button
-            type='button'
-            onClick={() => { setIsOpen(false); router.push(`/${pathname?.split('/')[1] || 'de'}/book-a-demo/ada-von-kayser`); }}
-            className={`flex-1 flex flex-col items-center text-center rounded-2xl p-5 border transition-all duration-300 group cursor-pointer
-              ${dark
-                ? (openCalendars.ada ? 'bg-white/10 border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.1)]' : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/25')
-                : (openCalendars.ada ? 'bg-white border-black shadow-lg ring-1 ring-black' : 'bg-neutral-50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-lg')
-              }`}
-          >
-            {/* Photo */}
-            <div className={`relative w-16 h-16 rounded-full overflow-hidden mb-3 ring-2 ring-offset-2 transition-all duration-300 group-hover:scale-105 ${openCalendars.ada ? (dark ? 'ring-white/40 grayscale-0' : 'ring-black grayscale-0') : 'ring-neutral-200 group-hover:ring-neutral-400'}`}>
-              <Image src='/team/adavkayser.jpeg' alt='Ada Von Kayser' fill className={`object-cover transition-all duration-500 ${openCalendars.ada ? '' : 'grayscale group-hover:grayscale-0'}`} />
-            </div>
-            <p className={`text-[10px] font-bold tracking-[0.12em] mb-0.5 ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('adaName')}</p>
-            <p className={`text-[9px] tracking-[0.1em] mb-3 ${dark ? 'text-white/40' : 'text-neutral-400'}`}>{t('adaRole')}</p>
-            <p className={`text-[11px] leading-snug mb-4 ${dark ? 'text-white/65' : 'text-neutral-500'}`}>{t('adaDesc')}</p>
-            <div className={`flex items-center justify-center gap-1.5 w-full py-2.5 px-3 text-[11px] font-semibold rounded-xl transition-all duration-200
-              ${dark
-                ? (openCalendars.ada ? 'bg-white text-black' : 'bg-white/10 text-white border border-white/20 group-hover:bg-white group-hover:text-black')
-                : (openCalendars.ada ? 'bg-black text-white' : 'bg-white text-neutral-900 border border-neutral-200 group-hover:bg-black group-hover:text-white group-hover:border-black')
-              }`}>
-              <IconVideo size={12} strokeWidth={2} />
-              {t('adaCta')}
-            </div>
-          </button>
-
-          {/* Case Study Button */}
-          <button
-            type="button"
-            onClick={() => { setIsOpen(false); router.push(`/${pathname?.split('/')[1] || 'de'}/siegrist`); }}
-            className={`w-full mt-2 py-3.5 rounded-2xl text-[11px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm group
-              ${dark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-white' : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border-neutral-200'}
-            `}
-          >
-            {t('caseStudyBtn')}
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </button>
-        </div>
-
-        {/* Ada Calendar */}
-        {openCalendars.ada && (
-          <div className='flex-1 min-w-[300px] lg:min-w-[400px] animate-in fade-in slide-in-from-left-8 duration-500'>
-            {CalendarIframe({ who: 'ada', dark })}
-          </div>
-        )}
+      <h3 className={`text-base font-semibold mb-4 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
+      <div className='w-full'>
+        {CalendarIframe({ who: 'dominik', dark })}
       </div>
     </div>
   )
+
 
   // ── Shared form elements ────────────────────────────────────────────────
   const SubmitBtn = ({ label, dark }: { label: string; dark?: boolean }) => (

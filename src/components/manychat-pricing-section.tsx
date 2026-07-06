@@ -307,8 +307,12 @@ export function ManyChatPricingSection({
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isYearly, setIsYearly] = useState(false)
-  const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>('monthly')
+  const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>(showBillingToggle ? 'yearly' : 'monthly')
   const locale = useLocale();
+
+  useEffect(() => {
+    setProfBillingCycle(showBillingToggle ? 'yearly' : 'monthly')
+  }, [showBillingToggle])
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
   const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
@@ -353,6 +357,18 @@ export function ManyChatPricingSection({
   const tModal = useTranslations('SubscriptionModal')
   const isEurope = useIsEurope();
   console.log("isEurope", isEurope);
+
+  // Sync window.isCheckoutActive state to prevent BeforeYouGoPopup interference
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).isCheckoutActive = isModalOpen || showOnboarding || showOrderModal;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        (window as any).isCheckoutActive = false;
+      }
+    };
+  }, [isModalOpen, showOnboarding, showOrderModal]);
 
   // Handle email verification token from URL (sent by server when user clicks email link)
   useEffect(() => {
@@ -1195,7 +1211,7 @@ export function ManyChatPricingSection({
                     {cycle === 'yearly' ? (
                       <span className='flex items-center gap-2'>
                         {t('yearlyBilling')}
-                        <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-20%</span>
+                        <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-50%</span>
                       </span>
                     ) : cycle === 'threeMonthly' ? (
                       t('threeMonthlyBilling')
@@ -1663,6 +1679,7 @@ export function ManyChatPricingSection({
           initialData={onboardingData}
           onComplete={handleOnboardingComplete}
           onCancel={() => setShowOnboarding(false)}
+          isSubmitting={isRedirecting}
         />
       )}
     </section>

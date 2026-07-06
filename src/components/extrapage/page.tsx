@@ -71,6 +71,18 @@ export default function OrderPage() {
     fetchPlans()
   }, [isEurope])
 
+  // Sync window.isCheckoutActive state to prevent BeforeYouGoPopup interference
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).isCheckoutActive = isEmailModalOpen || showOnboarding;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        (window as any).isCheckoutActive = false;
+      }
+    };
+  }, [isEmailModalOpen, showOnboarding])
+
   const fetchPlans = async () => {
     try {
       const response = await fetch(`${apiBaseUrl}plans?currency=${isEurope ? 'eur' : 'usd'}`, {
@@ -686,6 +698,7 @@ export default function OrderPage() {
           initialData={onboardingData}
           onComplete={handleOnboardingComplete}
           onCancel={() => setShowOnboarding(false)}
+          isSubmitting={isSubmitting}
         />
       )}
 

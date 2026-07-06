@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, XIcon } from 'lucide-react'
+import { ArrowRight, XIcon, Loader2 } from 'lucide-react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import TypusLogoBlack from '@/components/common/typus-logo-black'
@@ -16,9 +16,10 @@ interface OnboardingWizardProps {
     onComplete: (data: any) => void
     onCancel: () => void
     initialData?: any
+    isSubmitting?: boolean
 }
 
-export default function OnboardingWizard({ email, locale, onComplete, onCancel, initialData }: OnboardingWizardProps) {
+export default function OnboardingWizard({ email, locale, onComplete, onCancel, initialData, isSubmitting = false }: OnboardingWizardProps) {
     const t = getOnboardingTranslations(locale)
     const [showErrors, setShowErrors] = useState(false)
     let defaultFirstName = initialData?.firstName || ''
@@ -41,7 +42,9 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
         country: initialData?.onboarding?.country || initialData?.country || '',
     })
 
-    const handleNext = () => {
+    const [isPending, setIsPending] = useState(false)
+
+    const handleNext = async () => {
         if (!formData.firstName.trim() || !formData.lastName.trim()) {
             setShowErrors(true)
             toast.error(t.firstNameAndLastNameRequired)
@@ -61,7 +64,14 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
         }
 
         setShowErrors(false)
-        onComplete(formData)
+        setIsPending(true)
+        try {
+            await onComplete(formData)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsPending(false)
+        }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -278,11 +288,21 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
                 <div className="flex justify-end items-center mt-10 pt-6 border-t border-gray-100">
                     <button
                         onClick={handleNext}
-                        className="flex items-center px-8 py-3.5 bg-black text-white text-sm font-bold uppercase tracking-widest rounded transition-all hover:bg-gray-900 shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full sm:w-auto justify-center"
+                        disabled={isSubmitting || isPending}
+                        className="flex items-center px-8 py-3.5 bg-black text-white text-sm font-bold uppercase tracking-widest rounded transition-all hover:bg-gray-900 shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full sm:w-auto justify-center disabled:opacity-75 disabled:cursor-not-allowed"
                         style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     >
-                        {locale === 'de' ? 'WEITER ZUR ANGEBOTSÜBERSICHT' : 'GO TO THE OFFER OVERVIEW'}
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        {isSubmitting || isPending ? (
+                            <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                {locale === 'de' ? 'LÄDT...' : 'LOADING...'}
+                            </>
+                        ) : (
+                            <>
+                                {locale === 'de' ? 'WEITER ZUR ANGEBOTSÜBERSICHT' : 'GO TO THE OFFER OVERVIEW'}
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                            </>
+                        )}
                     </button>
                 </div>
             </div>
