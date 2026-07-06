@@ -293,10 +293,12 @@ export function ManyChatPricingSection({
   isStandalone = false,
   showOnly = 'all',
   verificationToken,
+  showBillingToggle = false,
 }: { 
   isStandalone?: boolean
   showOnly?: 'regular' | 'educational' | 'all'
   verificationToken?: string
+  showBillingToggle?: boolean
 }) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
@@ -1166,7 +1168,8 @@ export function ManyChatPricingSection({
                 <Lottie animationData={HandDrawnArrow} loop={true} />
               </div>
 
-          {/* Billing Toggle */}
+          {/* Billing Toggle — only shown when ?disscountPlans=true */}
+          {showBillingToggle && (
           <div className='flex justify-center mt-8 mb-2'>
             <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
               {(['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => (
@@ -1199,6 +1202,7 @@ export function ManyChatPricingSection({
               ))}
             </div>
           </div>
+          )}
         </div> 
 
         {/* Professional Plans Cards */}
@@ -1960,7 +1964,7 @@ function PricingCard({
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
           className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
-          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
         >
           {plan.name}
         </span>

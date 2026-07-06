@@ -67,6 +67,7 @@ export default function PricingPage() {
     const locale = useLocale();
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
+    const showBillingToggle = searchParams.get('disscountPlans') === 'true'
     const [viewMode, setViewMode] = useState<'app' | 'education'>('app')
 
     useEffect(() => {
@@ -130,7 +131,7 @@ export default function PricingPage() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <ManyChatPricingSection isStandalone={true} showOnly="regular" verificationToken={token || undefined} />
+                            <ManyChatPricingSection isStandalone={true} showOnly="regular" verificationToken={token || undefined} showBillingToggle={showBillingToggle} />
                         </motion.div>
                     ) : (
                         <motion.div
