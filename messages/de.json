@@ -6,7 +6,7 @@
     "login": "ANMELDEN",
     "signUp": "REGISTRIEREN",
     "explorePlatform": "Entdecken Sie unsere KI-gestützte Architekturvisualisierungsplattform",
-    "seePricing": "Preise ansehen",
+    "seePricing": "Abos ansehen & loslegen",
     "app": "APP",
     "service": "SERVICE",
     "goToApp": "Zur App",
@@ -307,7 +307,7 @@
     "descriptionText": "Transformieren Sie Ihre architektonischen Zeichnungen in atemberaubende fotorealistische Visualisierungen mit KI-Präzision."
   },
   "Pricing": {
-    "selectPlanCTA": "Preise ansehen",
+    "selectPlanCTA": "Abos ansehen & loslegen",
     "getFreeDemoCTA": "Kostenlose Demo erhalten",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
     "selfServiceTitle": "KI für Architektur - inklusive Live Webinare.\nWir begleiten Sie bis zum Ergebnis.",
@@ -320,10 +320,10 @@
     "education": "Bildung",
     "freeTrial": "1-tägige kostenlose Testversion",
     "freeTrialDescription": "für professionelle Architekten | Registrieren Sie sich mit einem Firmen-E-Mail-Konto, um zu beginnen.",
-    "yearlyBilling": "Jährliche Abrechnung",
-    "monthlyBilling": "Monatliche Abrechnung",
-    "threeMonthlyBilling": "3-monatliche Abrechnung",
-    "sixMonthlyBilling": "6-monatliche Abrechnung",
+    "yearlyBilling": "JAHRESABO",
+    "monthlyBilling": "1 MONAT",
+    "threeMonthlyBilling": "3 MONATE",
+    "sixMonthlyBilling": "6 MONATE",
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie 50%",
     "temporaryOfferTitle": "Befristetes Angebot: Zahlen Sie, was Sie normalerweise in 4 Monaten ausgeben würden",
     "temporaryOfferSubtitle": "Erhalten Sie 12 volle Monate Zugriff.",
@@ -379,10 +379,10 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits500": "500 CREDITS / Monat (33-166 Bilder (siehe Credit-Abzug Übersicht unten))",
-          "credits200": "200 CREDITS / Monat (33-166 Bilder (siehe Credit-Abzug Übersicht unten))",
+          "credits500": "500 CREDITS / Monat (15–66 Bilder (siehe Credit-Abzug Übersicht unten))",
+          "credits200": "200 CREDITS / Monat (15–66 Bilder (siehe Credit-Abzug Übersicht unten))",
           "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
-          "resolution4k": "4K AUFLÖSUNG",
+          "resolution4k": "4K HIGH-END ERGEBNISSE",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
           "highEndResults": "HIGH-END ERGEBNISSE",
@@ -471,7 +471,7 @@
           "teamAccess": "TEAM-ZUGANG",
           "upTo5Accounts": "BIS ZU 5 KONTEN"
         },
-        "targetAudience": "Für Architekturbüros 5-20MA"
+        "targetAudience": "Für Architekturbüros 5-20 MA"
       }
     },
     "creditDeduction": {
@@ -532,7 +532,7 @@
   "PricingCTA": {
     "title": "Flexible Pläne für jeden Bedarf",
     "description": "Wählen Sie den perfekten Plan für Ihren Architektur-Visualisierungs-Workflow. Von Einzelpersonen bis hin zu großen Institutionen, wir haben für Sie gesorgt.",
-    "button": "Preise ansehen"
+    "button": "Abos ansehen & loslegen"
   },
   "Team": {
     "title": "Lernen Sie Unser Team Kennen",
@@ -823,8 +823,8 @@
     "title": "Hochwertige Architektur-KI für großformatige Drucke",
     "subtitle": "Wir machen das fuer Sie",
     "unlimitedRequests": "unbegrenzt viele Anfragen",
-    "yearlyBilling": "Jährliche Abrechnung",
-    "monthlyBilling": "Monatliche Abrechnung",
+    "yearlyBilling": "JAHRESABO",
+    "monthlyBilling": "1 MONAT",
     "billedYearly": "Jährlich abgerechnet",
     "billedMonthly": "Monatlich abgerechnet",
     "switchToYearly": "Wechseln Sie zu jährlich und sparen Sie",

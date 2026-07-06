@@ -307,7 +307,7 @@
     "descriptionText": "Transform your architectural drawings into stunning photorealistic visualizations with AI precision."
   },
   "Pricing": {
-    "selectPlanCTA": "View prices",
+    "selectPlanCTA": "SEE PRICES and GET STARTED",
     "getFreeDemoCTA": "Get a free demo",
     "professionalPlans": "Professional Plans",
     "selfServiceTitle": "AI for architecture - Including live webinars.\nWe guide you through to the result.",
@@ -320,10 +320,10 @@
     "education": "Education",
     "freeTrial": "1-day free trial",
     "freeTrialDescription": "for professional Architects | Sign up with company email account to get started.",
-    "yearlyBilling": "Yearly Billing",
-    "monthlyBilling": "Monthly Billing",
-    "threeMonthlyBilling": "3-Monthly Billing",
-    "sixMonthlyBilling": "6-Monthly Billing",
+    "yearlyBilling": "ANNUAL",
+    "monthlyBilling": "1 MONTH",
+    "threeMonthlyBilling": "3 MONTHS",
+    "sixMonthlyBilling": "6 MONTHS",
     "switchToYearly": "Switch to Yearly to save 50%",
     "temporaryOfferTitle": "Temporary offer: Pay what you’d normally spend in 4 months",
     "temporaryOfferSubtitle": "Get 12 full months of access.",
@@ -373,16 +373,16 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month"
         },
-        "targetAudience": "For Architecture Firms 0-1MA"
+        "targetAudience": "For Architecture Firms 0-1 MA"
       },
       "pro": {
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits500": "500 CREDITS /month (33-166 images (see credit deduction overview below))",
-          "credits200": "200 CREDITS /month (33-166 images (see credit deduction overview below))",
+          "credits500": "500 CREDITS /month (15–66 images (see credit deduction overview below))",
+          "credits200": "200 CREDITS /month (15–66 images (see credit deduction overview below))",
           "credits1000": "1000 CREDITS /month (66-333 images (see credit deduction overview below))",
-          "resolution4k": "4K RESOLUTION",
+          "resolution4k": "4K HIGH-END RESULTS",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "editByChat": "EDIT BY CHAT",
           "highEndResults": "HIGH-END RESULTS",
@@ -399,7 +399,7 @@
           "teamAccess": "TEAM ACCESS",
           "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
-        "targetAudience": "For Architecture Firms 1-5 Employees"
+        "targetAudience": "For Architecture Firms 1-5 MA"
       },
       "proSemi": {
         "name": "PRO SEMI"
@@ -471,7 +471,7 @@
           "teamAccess": "TEAM ACCESS",
           "upTo5Accounts": "UP TO 5 ACCOUNTS"
         },
-        "targetAudience": "For Architecture Firms 5-20MA"
+        "targetAudience": "For Architecture Firms 5-20 MA"
       }
     },
     "creditDeduction": {
@@ -532,7 +532,7 @@
   "PricingCTA": {
     "title": "Flexible Plans for Every Need",
     "description": "Choose the perfect plan for your architectural visualization workflow. From individuals to large institutions, we have you covered.",
-    "button": "View prices"
+    "button": "SEE PRICES and GET STARTED"
   },
   "Team": {
     "title": "Meet Our Team",
@@ -823,8 +823,8 @@
     "title": "High-quality architectural AI for large-format prints",
     "subtitle": "We do it for you",
     "unlimitedRequests": "unlimited requests",
-    "yearlyBilling": "Yearly Billing",
-    "monthlyBilling": "Monthly Billing",
+    "yearlyBilling": "ANNUAL SUB",
+    "monthlyBilling": "1 MONTH",
     "billedYearly": "Billed yearly",
     "billedMonthly": "Billed monthly",
     "switchToYearly": "Switch to Yearly and save",

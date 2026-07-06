@@ -79,7 +79,7 @@ const professionalPlans = [
       { text: '200 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
-      { text: 'HIGH-END RESULTS', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: false },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
@@ -140,7 +140,7 @@ const professionalPlans = [
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
-      { text: 'HIGH-END RESULTS', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
@@ -203,7 +203,7 @@ const professionalPlans = [
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
-      { text: 'HIGH-END RESULTS', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
@@ -833,7 +833,7 @@ export function ManyChatPricingSection({
       const key = f.text.includes('4K') ? 'resolution4k' : 
                   f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
                   f.text.includes('EDIT BY CHAT') ? 'editByChat' : 
-                  f.text.includes('HIGH-END') ? 'highEndResults' : 
+                  // f.text.includes('HIGH-END') ? 'highEndResults' : 
                   f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : 
                   f.text.includes('ONBOARDING VIDEO CALL') ? 'onboardingCall' : 
                   f.text.includes('LIVE WEBINARS') ? 'liveWebinars' : 
