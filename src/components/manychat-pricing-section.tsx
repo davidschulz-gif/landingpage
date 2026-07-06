@@ -1950,7 +1950,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[680px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[700px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
