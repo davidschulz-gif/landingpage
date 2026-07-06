@@ -2,11 +2,10 @@
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { IconDeviceMobile, IconShare, IconCopy, IconCheck, IconTag } from '@tabler/icons-react'
-import { ShareShowcaseModal } from '@/components/share-showcase-modal'
 import { Link } from '@/i18n/navigation'
 
 interface MobileImageItem {
@@ -20,7 +19,6 @@ export default function UpscaleMobilePage() {
   const locale = useLocale()
   const [isClient, setIsClient] = useState(false)
   const [copied, setCopied] = useState(false)
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false)
 
   // 17 mobile preview images from /public/upscaler-moblie
   const previews: MobileImageItem[] = [
@@ -47,9 +45,11 @@ export default function UpscaleMobilePage() {
     setIsClient(true)
   }, [])
 
-  // Trigger custom share link popup
+  // Trigger the global BeforeYouGoPopup (used site-wide)
   const handleShareLink = () => {
-    setIsShareModalOpen(true)
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('open-before-you-go'))
+    }
   }
 
   // Reusable button component to avoid code duplication
@@ -272,16 +272,6 @@ export default function UpscaleMobilePage() {
 
       <FooterSection />
 
-      <AnimatePresence>
-        {isShareModalOpen && (
-          <ShareShowcaseModal
-            isOpen={isShareModalOpen}
-            onClose={() => setIsShareModalOpen(false)}
-            url={isClient ? `${window.location.origin}/${locale}/upscale` : ''}
-            locale={locale}
-          />
-        )}
-      </AnimatePresence>
     </div>
   )
 }

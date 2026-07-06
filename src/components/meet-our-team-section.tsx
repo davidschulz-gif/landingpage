@@ -38,13 +38,13 @@ const teamMembers = [
   //   image: '/BjarneWeber.webp',
   //   linkedin: '#',
   // },
-  {
-    id: 'marc-langer',
-    name: 'MARC LANGER',
-    role: 'SALES',
-    image: '/marc-langer.png',
-    linkedin: 'https://www.linkedin.com/in/marc-langer-b78338356/',
-  },
+  // {
+  //   id: 'marc-langer',
+  //   name: 'MARC LANGER',
+  //   role: 'SALES',
+  //   image: '/marc-langer.png',
+  //   linkedin: 'https://www.linkedin.com/in/marc-langer-b78338356/',
+  // },
 ]
 
 export function MeetOurTeamSection() {
@@ -79,7 +79,7 @@ export function MeetOurTeamSection() {
           </div>
 
         {/* Team Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto'>
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
