@@ -18,7 +18,7 @@ export function PricingCTASection() {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl md:text-4xl font-normal text-black mb-6 tracking-tight" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+                    <h2 className="heading-primary mb-6">
                         {t('title')}
                     </h2>
                     <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto font-space-grotesk">

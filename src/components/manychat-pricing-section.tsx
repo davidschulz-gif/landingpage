@@ -1044,13 +1044,7 @@ export function ManyChatPricingSection({
       <>
         {/* Education Section */}
         <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
-          <h2
-            className='text-[30px] font-normal text-black mt-10 mb-2'
-            style={{
-              fontFamily:
-                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
-            }}
-          >
+          <h2 className='heading-primary mt-10 mb-2'>
             {t('educationPlans')}
           </h2>
 

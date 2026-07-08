@@ -72,7 +72,7 @@ export function MeetOurTeamSection() {
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           {/* <div className=""> */}
 
-              <h2 className="text-3xl sm:text-5xl md:text-6xl text-center font-normal text-black dark:text-white  leading-none mb-4">
+              <h2 className="text-center heading-primary mb-4">
               {t('title')}
             </h2>
            
