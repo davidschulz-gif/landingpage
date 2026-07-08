@@ -257,10 +257,19 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         </div>
       </div>
 
-      <div className='mt-2.5 mb-1.5 text-left px-1'>
-        <p className='text-[11px] sm:text-[11.5px] text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans font-medium'>
+      <div className='mt-2.5 mb-2.5 text-left px-1'>
+        <p className='text-[12.5px] sm:text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans font-medium'>
           {tPricing('selfServiceSubtitle')}
         </p>
+      </div>
+
+      <div className='flex items-center gap-3 text-left w-full mt-1 mb-4 px-1'>
+        <div className='w-5 h-5 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-100 dark:border-neutral-800 shadow-sm'>
+          <BarChart3 className='w-3 h-3 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
+        </div>
+        <span className='text-[13px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+          {t('cta.point4')}
+        </span>
       </div>
       {/* </motion.div> */}
       {isSubmitted ? (

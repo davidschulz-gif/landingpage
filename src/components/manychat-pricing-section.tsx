@@ -1182,16 +1182,11 @@ export function ManyChatPricingSection({
               <h2 className="text-center mt-10 mb-4 heading-primary">
                 {t('selfServiceTitle')}
               </h2>
-              {/* {!showBillingToggle && ( */}
-                <p className='max-w-2xl mx-auto px-4 subheading-primary whitespace-pre-line'>
-                  {t('selfServiceSubtitle')}
-                </p>
-              {/* )} */}
               
               {/* Lottie Arrow pointing to the right/booking form */}
-              <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
+              {/* <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
                 <Lottie animationData={HandDrawnArrow} loop={true} />
-              </div>
+              </div> */}
 
           {/* Billing Toggle — only shown when ?disscountPlans=true */}
           {showBillingToggle && (

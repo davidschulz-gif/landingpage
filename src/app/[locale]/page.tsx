@@ -445,6 +445,15 @@ export default function Home() {
         {/* Solution Section */}
         <SolutionSection />
         
+         {/* 3D Integrations Section */}
+        <Reveal
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ThreeDIntegrations />
+        </Reveal>
 
         {/* Use Cases Section */}
         <Reveal
@@ -579,16 +588,6 @@ export default function Home() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeaturesSection />
-        </Reveal>
-
-        {/* 3D Integrations Section */}
-        <Reveal
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <ThreeDIntegrations />
         </Reveal>
 
         {/* Meet Our Team Section */}

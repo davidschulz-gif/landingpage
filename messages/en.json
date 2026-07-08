@@ -396,7 +396,7 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (330-1665 images)",
-          "teamAccess": "TEAM ACCESS",
+          "teamAccess": "TEAM ACCESS (up to 5 accounts)",
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
           "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
@@ -471,7 +471,7 @@
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
           "credits5000": "5000 CREDITS /month (330-1665 images)",
-          "teamAccess": "TEAM ACCESS",
+          "teamAccess": "TEAM ACCESS (up to 5 accounts)",
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
           "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
@@ -2970,7 +2970,7 @@
     "benefits": {
       "planning": {
         "title": "Connection to your Planning Software",
-        "description": "Use formats like IFC, RVT, SKP, and 3DM via Speckle. Pelicad integrates seamlessly into your existing CAD workflow."
+        "description": "Use formats like IFC, RVT, SKP, and 3DM via Speckle. TYPUS.AI integrates seamlessly into your existing CAD workflow."
       },
       "control": {
         "title": "Control over Geometry and Details",
