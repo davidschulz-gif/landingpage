@@ -226,11 +226,11 @@ export default function BeforeYouGoPopup() {
   const CalendarIframe = ({ who, dark }: { who: 'dominik' | 'ada'; dark?: boolean }) => {
     const url = who === 'dominik' ? DOMINIK_CALENDAR : ADA_CALENDAR;
     return (
-      <div className={`relative w-full h-full min-h-[480px] rounded-2xl overflow-hidden border ${dark ? 'border-white/10' : 'border-neutral-200'}`}>
+      <div className={`relative w-full h-full min-h-[480px] rounded-2xl overflow-hidden border bg-white ${dark ? 'border-white/10' : 'border-neutral-200'}`}>
         {iframeLoading[who] && (
-          <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 ${dark ? 'bg-white/5' : 'bg-neutral-50'}`}>
-            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className={`w-6 h-6 rounded-full border-2 border-t-transparent ${dark ? 'border-white/40' : 'border-neutral-300'}`} />
-            <p className={`text-[11px] ${dark ? 'text-white/40' : 'text-neutral-400'}`}>Kalender wird geladen…</p>
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white">
+            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="w-6 h-6 rounded-full border-2 border-t-transparent border-neutral-300" />
+            <p className="text-[11px] text-neutral-400">Kalender wird geladen…</p>
           </div>
         )}
         <iframe src={url} title='Book a call' width='100%' height='100%' style={{ border: 'none', display: 'block', minHeight: '480px' }} onLoad={() => setIframeLoading(prev => ({ ...prev, [who]: false }))} allow='camera; microphone' />
@@ -241,7 +241,7 @@ export default function BeforeYouGoPopup() {
   // ── Step 3: Direct calendar ─────────────────────────────────────────────
   const BookingCards = ({ dark }: { dark?: boolean }) => (
     <div className='w-full flex flex-col items-center transition-all duration-500'>
-      <h3 className={`text-base font-semibold mb-4 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
+      <h3 className={`heading-primary text-base font-normal mb-4 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
       <div className='w-full'>
         {CalendarIframe({ who: 'dominik', dark })}
       </div>

@@ -205,7 +205,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
     }
   }
 
-  const inputClasses = 'w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-60 transition-all focus:border-gray-400 shadow-sm rounded-xl'
+  const inputClasses = 'w-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-900 placeholder-gray-400 outline-none disabled:opacity-60 transition-all focus:border-gray-400 shadow-sm rounded-lg'
   const errorClasses = 'border-red-500 dark:border-red-500'
 
   const ErrorMessage = ({ error }: { error: string | null }) => {
@@ -224,7 +224,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
       className={cn(
-        'w-full max-w-lg mx-auto',
+        'w-full max-w-lg mx-auto p-4 pb-5',
         className
       )}
     >
@@ -257,28 +257,10 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         </div>
       </div>
 
-      <div className='flex flex-col items-start gap-8 my-3'>
-        <ul className='space-y-2 text-left w-full'>
-          {[
-            // { icon: Image, key: 'point1' },
-            { icon: BarChart3, key: 'point4',id:4 },
-            // { icon: PhoneCall, key: 'point3',id:2 }
-          ].map((item, i) => {
-            const Icon = item.icon
-            return (
-              <li key={i} className='flex items-center gap-4 group'>
-                <div className='w-6 h-6 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-100 dark:border-neutral-800 shadow-sm transition-colors group-hover:bg-neutral-100 dark:group-hover:bg-neutral-800'>
-                  <Icon className='w-3 h-3 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
-                </div>
-                <span className='text-[14px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
-                  {t(`cta.point${item.id}` as any)}
-                </span>
-              </li>
-            )
-          })}
-        </ul>
-
-
+      <div className='mt-2.5 mb-1.5 text-left px-1'>
+        <p className='text-[11px] sm:text-[11.5px] text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans font-medium'>
+          {tPricing('selfServiceSubtitle')}
+        </p>
       </div>
       {/* </motion.div> */}
       {isSubmitted ? (
@@ -305,7 +287,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           </div>
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className='space-y-4' noValidate>
+        <form onSubmit={handleSubmit} className='space-y-2.5' noValidate>
           {/* ... existing form fields ... */}
           <div className='flex gap-3'>
             <div className='flex-1 flex flex-col'>
@@ -379,37 +361,53 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             onChange={handlePhoneChange}
             error={errors.phoneNumber}
             disabled={isRequesting}
+            inputStyle={{
+              height: '32px',
+              fontSize: '12px',
+              borderRadius: '8px',
+              paddingLeft: '50px',
+              borderColor: '#e5e7eb',
+              fontFamily: 'inherit',
+            }}
+            buttonStyle={{
+              height: '32px',
+              width: '40px',
+              borderColor: '#e5e7eb',
+              borderRight: 'none',
+              backgroundColor: 'transparent',
+              borderRadius: '8px 0 0 8px',
+            }}
           />
 
           <div className="">
-            <div className='flex items-start gap-3 px-1'>
+            <div className='flex items-start gap-2 px-1'>
               <input
                 type='checkbox'
                 id='newsletter'
                 name='newsletter'
-                className='mt-1 size-4 border-gray-300 accent-black cursor-pointer rounded-sm'
+                className='mt-0.5 size-3.5 border-gray-300 accent-black cursor-pointer rounded-sm'
                 checked={formData.newsletter}
                 onChange={handleChange}
                 disabled={isRequesting}
               />
-              <label htmlFor='newsletter' className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
+              <label htmlFor='newsletter' className='text-[10px] text-gray-600 cursor-pointer select-none leading-tight'>
                 {t('newsletterLabel')}
               </label>
             </div>
           </div>
 
           <div className="">
-            <div className='flex items-start gap-3 px-1'>
+            <div className='flex items-start gap-2 px-1'>
               <input
                 type='checkbox'
                 id='privacy'
                 name='privacy'
-                className='mt-1 size-4 border-gray-300 accent-black cursor-pointer rounded-sm'
+                className='mt-0.5 size-3.5 border-gray-300 accent-black cursor-pointer rounded-sm'
                 checked={formData.privacy}
                 onChange={handleChange}
                 disabled={isRequesting}
               />
-              <label htmlFor='privacy' onClick={() => window.open('https://app.typus.ai/data-privacy', '_blank')} className='text-xs text-gray-600 cursor-pointer select-none leading-tight'>
+              <label htmlFor='privacy' onClick={() => window.open('https://app.typus.ai/data-privacy', '_blank')} className='text-[10px] text-gray-600 cursor-pointer select-none leading-tight'>
                 {t('privacyLabel')}
               </label>
             </div>

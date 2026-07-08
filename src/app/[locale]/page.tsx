@@ -157,6 +157,14 @@ const FeaturesSection = dynamic(
   }
 )
 
+const ThreeDIntegrations = dynamic(
+  () =>
+    import('@/components/three-d-integrations').then(mod => mod.ThreeDIntegrations),
+  {
+    loading: () => <div className='h-96 bg-gray-100 dark:bg-neutral-800 animate-pulse' />,
+  }
+)
+
 
 // const DoneForYouCombinedSection = dynamic(
 //   () => import('@/components/done-for-you-combined-section').then(mod => mod.DoneForYouCombinedSection),
@@ -571,6 +579,16 @@ export default function Home() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <FeaturesSection />
+        </Reveal>
+
+        {/* 3D Integrations Section */}
+        <Reveal
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <ThreeDIntegrations />
         </Reveal>
 
         {/* Meet Our Team Section */}

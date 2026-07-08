@@ -146,7 +146,7 @@ const professionalPlans = [
       { text: 'UPSCALE UP TO 8K', hasFeature: true },
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
-      { text: 'TEAM ACCESS', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: false },
       { text: 'UP TO 1-5 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
@@ -848,10 +848,10 @@ export function ManyChatPricingSection({
       if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
-      if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
-      if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');
-      if (f.text.includes('UP TO 5-20 ACCOUNTS')) return t('plans.pro.features.upTo520Accounts');
-      if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
+      // if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
+      // if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');
+      // if (f.text.includes('UP TO 5-20 ACCOUNTS')) return t('plans.pro.features.upTo520Accounts');
+      // if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
       
       const key = f.text.includes('4K') ? 'resolution4k' : 
                   f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
@@ -1182,9 +1182,11 @@ export function ManyChatPricingSection({
               <h2 className="text-center mt-10 mb-4 heading-primary">
                 {t('selfServiceTitle')}
               </h2>
-              <p className='max-w-2xl mx-auto px-4 subheading-primary whitespace-pre-line'>
-                {t('selfServiceSubtitle')}
-              </p>
+              {/* {!showBillingToggle && ( */}
+                <p className='max-w-2xl mx-auto px-4 subheading-primary whitespace-pre-line'>
+                  {t('selfServiceSubtitle')}
+                </p>
+              {/* )} */}
               
               {/* Lottie Arrow pointing to the right/booking form */}
               <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
@@ -1229,7 +1231,7 @@ export function ManyChatPricingSection({
         </div> 
 
         {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-3 mb-4 px-4 xl:px-0 max-w-[1100px] mx-auto'>
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
            
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
               {currentProfPlans.map((plan, index) => (
@@ -1254,7 +1256,7 @@ export function ManyChatPricingSection({
                 </div>
               ))}
             </div>
-             <div id='booking-form' className='w-full xl:w-[250px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
+             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
               <BookingDemoClassFormForPricingPage />
             </div>
           </div>

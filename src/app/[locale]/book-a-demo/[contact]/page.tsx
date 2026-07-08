@@ -66,7 +66,7 @@ export default function BookADemoPage({ params }: { params: Promise<{ contact: s
 
                       </motion.div>
 
-          <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-center max-w-xl text-neutral-900">
+          <h3 className="heading-primary mb-2 text-center max-w-xl text-neutral-900">
             {t('step3Title')}
           </h3>
           <div className="text-sm text-center mb-5 font-medium leading-relaxed text-neutral-600 flex flex-col items-center gap-1">

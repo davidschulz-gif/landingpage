@@ -311,7 +311,7 @@
     "getFreeDemoCTA": "Kostenlose Demo erhalten",
     "professionalPlans": "PROFESSIONELLE PLÄNE",
     "selfServiceTitle": "KI für Architektur - inklusive Live Webinare.\nWir begleiten Sie bis zum Ergebnis.",
-    "selfServiceSubtitle": "Attraktive Vergünstigungen möglich bei:\n- Jährlicher Abrechnung\n- 12-monatiger Vertragslaufzeit\n- Erwerb mehrerer Lizenzen\n\nBuchen Sie jetzt ein kostenloses Erstgespräch und lassen Sie sich ein individuelles Angebot erstellen.",
+    "selfServiceSubtitle": "Attraktive Vergünstigungen möglich beim Erwerb mehrerer Lizenzen. Buchen Sie jetzt ein kostenloses Erstgespräch und lassen Sie sich ein individuelles Angebot erstellen.",
     "missingProFeaturesTitle": "Funktionen, die im Explorer fehlen, aber im Pro-Plan enthalten sind:",
     "upgradeToPro": "Upgrade auf Pro, um diese Funktionen freizuschalten",
     "bookDemo": "Kostenloses Erstgespräch",
@@ -379,9 +379,9 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits500": "500 CREDITS / Monat (15–66 Bilder (siehe Credit-Abzug Übersicht unten))",
-          "credits200": "200 CREDITS / Monat (15–66 Bilder (siehe Credit-Abzug Übersicht unten))",
-          "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
+          "credits500": "500 CREDITS / Monat (15–66 Bilder)",
+          "credits200": "200 CREDITS / Monat (15–66 Bilder)",
+          "credits1000": "1000 CREDITS / Monat (66-333 Bilder)",
           "resolution4k": "4K HIGH-END ERGEBNISSE",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
@@ -395,7 +395,7 @@
           "contract12Months": "12-monatige Vertragslaufzeit",
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
-          "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
+          "credits5000": "5000 CREDITS / Monat (330-1665 Bilder)",
           "teamAccess": "TEAM-ZUGANG",
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
@@ -422,7 +422,7 @@
       "student": {
         "name": "STARTER",
         "features": {
-          "credits50": "50 CREDITS /Monat (3-16 Bilder (siehe Übersicht zum Kreditabzug unten))",
+          "credits50": "50 CREDITS /Monat (3-16 Bilder)",
           "optCreditsTopUps": "OPT. CREDIT-AUFLADUNGEN",
           "unlimitedJobs": "UNBEGRENZTE GLEICHZEITIGE JOBS",
           "integratedRefiner": "INTEGRIERTER REFINER",
@@ -435,7 +435,7 @@
         "name": "EXPLORER",
         "features": {
           "everythingFromStarter": "ALLES VOM STARTER",
-          "credits150": "150 CREDITS /Monat (10-50 Bilder (siehe Übersicht zum Kreditabzug unten))",
+          "credits150": "150 CREDITS /Monat (10-50 Bilder)",
           "concurrentJobs2": "2 GLEICHZEITIGE JOBS",
           "resolution4k": "AUFLÖSUNG BIS ZU 4K",
           "noQueue": "KEINE WARTESCHLANGE"
@@ -445,7 +445,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS /Monat (66-333 Bilder (siehe Übersicht zum Kreditabzug unten))",
+          "credits1000": "1000 CREDITS /Monat (66-333 Bilder)",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
@@ -456,7 +456,7 @@
         "name": "TEAM",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS / Monat (66-333 Bilder (siehe Credit-Abzug Übersicht unten))",
+          "credits1000": "1000 CREDITS / Monat (66-333 Bilder)",
           "resolution4k": "4K AUFLÖSUNG",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
@@ -470,7 +470,7 @@
           "contract12Months": "12-monatige Vertragslaufzeit",
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
-          "credits5000": "5000 CREDITS / Monat (Unbegrenzt)",
+          "credits5000": "5000 CREDITS / Monat (330-1665 Bilder)",
           "teamAccess": "TEAM-ZUGANG",
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
@@ -692,7 +692,7 @@
     "step2Cta": "Weiter",
     "step3Title": "Buchen Sie nun einen Termin für Ihre kostenlose Live Demo.",
     "step3Subtitle": "Buche jetzt ein kostenloses Gespräch - ganz nach deinen Bedürfnissen.",
-    "bookBothInstruction1": "1x Live Demo mit",
+    "bookBothInstruction1": "1x Live Demo",
     "bookBothInstruction2": "1x individuelle Bedarfsanalyse",
     "caseStudyBtn": "Fallbeispiel KI im Architekturwettbewerb",
     "dominikName": "DOMINIK DENNY",
@@ -2966,5 +2966,90 @@
     "title": "Was führende Stimmen in der Branche sagen",
     "subtitle": "Aktuelle Beiträge und Insights von LinkedIn",
     "viewOnLinkedin": "Auf LinkedIn ansehen"
+  },
+  "Integrations": {
+    "header": "3D Integrationen",
+    "benefits": {
+      "planning": {
+        "title": "Anbindung an Ihre Planungssoftware",
+        "description": "Nutzen Sie Formate wie IFC, RVT, SKP und 3DM über Speckle. Pelicad fügt sich nahtlos in Ihren bestehenden CAD-Workflow ein."
+      },
+      "control": {
+        "title": "Kontrolle über Geometrie und Details",
+        "description": "Bearbeiten Sie Fassade, Materialien, Fenster, Licht, Begrünung oder Atmosphäre gezielt. Ihr 3D-Modell bleibt die Grundlage des Renderings."
+      },
+      "security": {
+        "title": "Sicherer Umgang mit Projektdaten",
+        "description": "Ihre Daten sind sicher gespeichert, wandern nicht in die USA und werden nicht für KI-Trainings verwendet."
+      }
+    },
+    "acc": {
+      "title": "ACC",
+      "description": "Automatischer Abgleich bei jeder Projektänderung, wodurch historische Modellerkenntnisse und Echtzeit-Analysen freigeschaltet werden."
+    },
+    "ifc": {
+      "title": "IFC",
+      "description": "Importieren Sie IFC-Modelle in Speckle, um sie sofort zu erkunden und leistungsstarke Modellanalysen freizuschalten, die zu besseren Projektergebnissen beitragen."
+    },
+    "revit": {
+      "title": "Revit",
+      "description": "Verbinden Sie Revit mit Speckle, um Zusammenarbeit, Präsentationen und leistungsstarke Analysen freizuschalten, die zu besseren Projektergebnissen beitragen."
+    },
+    "powerbi": {
+      "title": "Power BI",
+      "description": "Laden Sie Ihre 3D-Modelle in Power BI, um die Designkoordination und Business-Intelligence-Workflows zu verbessern."
+    },
+    "rhino": {
+      "title": "Rhino",
+      "description": "Verbinden Sie Rhino mit Speckle, um Zusammenarbeit, Präsentationen und leistungsstarke Analysen freizuschalten, die zu besseren Projektergebnissen beitragen."
+    },
+    "sketchup": {
+      "title": "SketchUp",
+      "description": "Verwandeln Sie SketchUp-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "navisworks": {
+      "title": "Navisworks",
+      "description": "Veröffentlichen Sie Navisworks-Modelle, um die Designkoordination und Business-Intelligence-Workflows zu verbessern."
+    },
+    "grasshopper": {
+      "title": "Grasshopper",
+      "description": "Verwandeln Sie Grasshopper-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "blender": {
+      "title": "Blender",
+      "description": "Verwandeln Sie Blender-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "archicad": {
+      "title": "Archicad",
+      "description": "Verwandeln Sie Archicad-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "civil3d": {
+      "title": "Civil 3D",
+      "description": "Veröffentlichen und laden Sie Civil 3D-Modelle, um die Designkoordination und Business-Intelligence-Workflows zu verbessern."
+    },
+    "autocad": {
+      "title": "AutoCAD",
+      "description": "Verwandeln Sie AutoCAD-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "etabs": {
+      "title": "ETABS",
+      "description": "Veröffentlichen Sie ETABS-Modelle, um die Designkoordination und Business-Intelligence-Workflows zu verbessern."
+    },
+    "tekla": {
+      "title": "Tekla",
+      "description": "Verwandeln Sie Tekla-Modelle in vernetzte, datenreiche 3D-Assets, die zwischen Tools fließen, Analysen unterstützen und sich bei Designänderungen automatisch synchronisieren."
+    },
+    "vectorworks": {
+      "title": "Vectorworks",
+      "description": "Veröffentlichen und laden Sie Vectorworks-Modelle, um die Designkoordination und Business-Intelligence-Workflows zu verbessern."
+    },
+    "databricks": {
+      "title": "Databricks",
+      "description": "Verbinden Sie Databricks-Tabellen mit Speckle, um Unternehmensdaten mit AEC-Modellkontext, KI-Chat und Projektanalysen zu kombinieren."
+    },
+    "snowflake": {
+      "title": "Snowflake",
+      "description": "Verbinden Sie Snowflake-Daten mit Speckle, um Unternehmensdaten mit AEC-Modellkontext, KI-Chat und Projektanalysen zu kombinieren."
+    }
   }
 }

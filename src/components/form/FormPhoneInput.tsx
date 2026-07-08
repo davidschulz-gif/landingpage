@@ -12,6 +12,9 @@ interface FormPhoneInputProps {
   error?: string | null;
   disabled?: boolean;
   errorClassName?: string;
+  inputStyle?: React.CSSProperties;
+  buttonStyle?: React.CSSProperties;
+  containerStyle?: React.CSSProperties;
 }
 
 export default function FormPhoneInput({
@@ -22,10 +25,13 @@ export default function FormPhoneInput({
   onChange,
   error,
   disabled,
-  errorClassName
+  errorClassName,
+  inputStyle,
+  buttonStyle,
+  containerStyle
 }: FormPhoneInputProps) {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col" style={containerStyle}>
       {label && (
         <label htmlFor={name} className="hidden">
           {label}
@@ -43,6 +49,8 @@ export default function FormPhoneInput({
         country='de'
         value={value}
         disabled={disabled}
+        inputStyle={inputStyle}
+        buttonStyle={buttonStyle}
       />
       {error && (
         <div className={`mt-1 flex items-center gap-1.5 text-[10px] text-red-600 ${errorClassName || ''}`}>
