@@ -78,7 +78,7 @@ export function BlogTestimonialSection() {
                     {t('badge')}
                 </div>
 
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-light mb-8 leading-[1.35] tracking-wide text-gray-900 uppercase">
+                <h1 className="heading-primary mb-8">
                     {t('sectionTitle')}
                 </h1>
 

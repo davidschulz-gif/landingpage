@@ -243,7 +243,7 @@ export function SiegristTestimonialSection() {
                     
                     {/* Title with signature Bauwelt yellow accent underline */}
                     <div className="relative pb-2 mb-6 select-none">
-                        <h1 className="text-3xl md:text-4xl lg:text-[42px] font-black leading-tight tracking-tight text-neutral-900 font-rail">
+                        <h1 className="heading-primary leading-tight tracking-tight text-neutral-900 font-rail">
                             {t('sectionTitle')}
                         </h1>
                         <div className="w-32 md:w-[450px] h-[6px] bg-yellow-500  mt-3"></div>

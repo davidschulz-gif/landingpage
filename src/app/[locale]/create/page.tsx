@@ -295,10 +295,7 @@ export default function CreateFeatureLandingPage() {
               <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
                 <IconUpload className="w-6 h-6 text-neutral-800 dark:text-neutral-200" />
               </div>
-              <h2 
-                className="text-2xl sm:text-3xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec1Title}
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
@@ -333,10 +330,7 @@ export default function CreateFeatureLandingPage() {
               <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
                 <IconAdjustments className="w-6 h-6 text-neutral-800 dark:text-neutral-200" />
               </div>
-              <h2 
-                className="text-2xl sm:text-3xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec2Title}
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
@@ -353,10 +347,7 @@ export default function CreateFeatureLandingPage() {
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
                 <IconSparkles className="w-5 h-5 text-neutral-800 dark:text-neutral-200" />
               </div>
-              <h2 
-                className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec3Title}
               </h2>
             </div>
@@ -376,10 +367,7 @@ export default function CreateFeatureLandingPage() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/10 text-black rounded-full text-[10px] font-bold uppercase tracking-wider">
                 {content.sec4Highlight}
               </span>
-              <h2 
-                className="text-2xl sm:text-3xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec4Title}
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
@@ -414,10 +402,7 @@ export default function CreateFeatureLandingPage() {
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
                 <IconLayersIntersect className="w-5 h-5 text-neutral-800 dark:text-neutral-200" />
               </div>
-              <h2 
-                className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec5Title}
               </h2>
             </div>
@@ -443,10 +428,7 @@ export default function CreateFeatureLandingPage() {
               <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
                 <IconPhoto className="w-6 h-6 text-neutral-800 dark:text-neutral-200" />
               </div>
-              <h2 
-                className="text-2xl sm:text-3xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec6Title}
               </h2>
               <div className="space-y-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -463,10 +445,7 @@ export default function CreateFeatureLandingPage() {
         {/* 8. FEINSCHLIFF SECTION */}
         <div className="py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
-            <h2 
-              className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-            >
+            <h2 className="heading-primary">
               {content.sec7Title}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed max-w-3xl">
@@ -482,10 +461,7 @@ export default function CreateFeatureLandingPage() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[9px] font-bold uppercase tracking-[0.2em]">
                 {content.sec8Badge}
               </span>
-              <h2 
-                className="text-3xl font-normal text-black dark:text-white tracking-tight"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
+              <h2 className="heading-primary">
                 {content.sec8Title}
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed">
@@ -578,10 +554,7 @@ export default function CreateFeatureLandingPage() {
         {/* 10. FINAL OUTRO SECTION */}
         <div className="py-24 px-4 bg-neutral-50 dark:bg-neutral-900/20 border-t border-neutral-100 dark:border-neutral-900">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 
-              className="text-3xl sm:text-4xl font-normal text-black dark:text-white tracking-tight"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-            >
+            <h2 className="heading-primary">
               {content.outroTitle}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">

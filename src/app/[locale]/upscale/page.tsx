@@ -202,7 +202,7 @@ export default function UpscaleMobilePage() {
         <div className="py-12 border-t border-neutral-100 dark:border-neutral-900 px-4 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
             <div className="space-y-4">
-              <h2 className="text-2xl font-normal text-black dark:text-white tracking-tight leading-snug" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h2 className="heading-primary mb-4">
                 {locale === 'de'
                   ? 'Materialverfeinerung statt nur stumpfes Vergrößern'
                   : 'Material Refinement Rather Than Plain Enlargement'}
