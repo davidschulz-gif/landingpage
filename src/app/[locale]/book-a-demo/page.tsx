@@ -7,7 +7,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 
-const DOMINIK_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6';
+const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7';
+const ANNIKA_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6';
 
 export default function BookADemoPage() {
   const t = useTranslations('BeforeYouGo');
@@ -15,13 +16,21 @@ export default function BookADemoPage() {
   const router = useRouter();
   
   const [mounted, setMounted] = useState(false);
+  const [activeWho, setActiveWho] = useState<'ada' | 'annika'>('ada');
   const [iframeLoading, setIframeLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Effect to reset iframe loading when calendar changes
+  useEffect(() => {
+    setIframeLoading(true);
+  }, [activeWho]);
+
   if (!mounted) return null;
+
+  const currentCalendarUrl = activeWho === 'ada' ? ADA_CALENDAR : ANNIKA_CALENDAR;
 
   return (
     <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-4 sm:p-8">
@@ -66,7 +75,7 @@ export default function BookADemoPage() {
                 </div>
               )}
               <iframe 
-                src={DOMINIK_CALENDAR} 
+                src={currentCalendarUrl} 
                 title="Book a call" 
                 width="100%" 
                 height="100%" 
@@ -78,22 +87,45 @@ export default function BookADemoPage() {
           </div>
 
           {/* Cards Column */}
-          <div className="flex flex-col gap-4 w-full max-w-[320px] shrink-0">
+          <div className="flex flex-col gap-4 w-full max-w-[340px] sm:max-w-[440px] shrink-0">
             
+            {/* Profiles Side-by-Side Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+              {/* Ada Profile Card */}
+              <button
+                type="button"
+                onClick={() => setActiveWho('ada')}
+                className={`flex flex-col items-center text-center rounded-2xl p-4 border transition-all duration-300 group cursor-pointer
+                  ${activeWho === 'ada' 
+                    ? 'bg-white border-black shadow-lg ring-1 ring-black scale-[1.01]' 
+                    : 'bg-neutral-50/50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-md opacity-75 hover:opacity-100'}
+                `}
+              >
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mb-3 border-2 border-white shadow-sm ring-1 ring-neutral-200">
+                  <Image src="/team/adavkayser.jpeg" alt="Ada von Kayser" fill className="object-cover" />
+                </div>
+                <h4 className="text-[10px] font-bold tracking-[0.05em] uppercase text-neutral-900 leading-tight mb-1">{t('adaName')}</h4>
+                <p className="text-[8px] font-semibold tracking-wider uppercase text-neutral-400 mb-2">{t('adaRole')}</p>
+                <p className="text-[10px] text-neutral-500 leading-relaxed font-serif px-1">{t('adaDesc')}</p>
+              </button>
 
-
-            {/* Annika Profile Card */}
-            <div className="flex-1 flex flex-col items-center text-center rounded-2xl p-5 border bg-white border-neutral-200 shadow-sm hover:shadow-md transition-all select-none">
-              <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden mb-4 border-2 border-white shadow-sm ring-1 ring-neutral-200">
-                <Image src="/team/annika fleig.png" alt="Annika Fleig" fill className="object-cover" />
-              </div>
-              <h4 className="text-[11px] font-bold tracking-[0.1em] uppercase text-neutral-900">{t('annikaName')}</h4>
-              <p className="text-[9px] font-semibold tracking-wider uppercase text-neutral-400 mb-3">{t('annikaRole')}</p>
-              <p className="text-[11px] text-neutral-500 leading-relaxed mb-4 font-serif px-2">{t('annikaDesc')}</p>
-              <div className="w-full mt-auto py-2.5 rounded-xl bg-neutral-950 text-white text-[11px] font-medium flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                {t('annikaCta')}
-              </div>
+              {/* Annika Profile Card */}
+              <button
+                type="button"
+                onClick={() => setActiveWho('annika')}
+                className={`flex flex-col items-center text-center rounded-2xl p-4 border transition-all duration-300 group cursor-pointer
+                  ${activeWho === 'annika' 
+                    ? 'bg-white border-black shadow-lg ring-1 ring-black scale-[1.01]' 
+                    : 'bg-neutral-50/50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-md opacity-75 hover:opacity-100'}
+                `}
+              >
+                <div className="relative w-14 h-14 rounded-full overflow-hidden mb-3 border-2 border-white shadow-sm ring-1 ring-neutral-200">
+                  <Image src="/team/annika fleig.png" alt="Annika Fleig" fill className="object-cover" />
+                </div>
+                <h4 className="text-[10px] font-bold tracking-[0.05em] uppercase text-neutral-900 leading-tight mb-1">{t('annikaName')}</h4>
+                <p className="text-[8px] font-semibold tracking-wider uppercase text-neutral-400 mb-2">{t('annikaRole')}</p>
+                <p className="text-[10px] text-neutral-500 leading-relaxed font-serif px-1">{t('annikaDesc')}</p>
+              </button>
             </div>
 
             {/* Case Study Button */}
