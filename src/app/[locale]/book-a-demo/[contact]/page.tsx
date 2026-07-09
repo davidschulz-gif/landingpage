@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { Cross, CrossIcon, X } from 'lucide-react';
 import TypusLogoBlack from '@/components/common/typus-logo-black';
 
-const DOMINIK_CALENDAR = 'https://calendar.app.google/SE4uynXtibyYmAe36';
+const DOMINIK_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6';
 const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7';
 
 export default function BookADemoPage({ params }: { params: Promise<{ contact: string; locale: string }> }) {

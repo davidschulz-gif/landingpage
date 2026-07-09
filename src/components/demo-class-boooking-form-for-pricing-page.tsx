@@ -166,7 +166,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
 
       setSuccessMessage(t('success'))
       setIsSubmitted(true)
-      router.push('/book-a-demo/dominik-denny')
+      router.push('/book-a-demo')
 
       // GTM: fire generate_lead conversion event (picked up by Google Ads & Meta tags in GTM)
       if (typeof window !== 'undefined' && (window as any).dataLayer) {

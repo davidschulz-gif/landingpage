@@ -8,7 +8,7 @@ import {
 import { motion } from 'framer-motion'
 import { Mail, MailIcon, PhoneCall } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
 import { useState } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -162,7 +162,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
       if (onSuccess) {
         onSuccess()
       } else {
-        router.push('/book-a-demo/ada-von-kayser')
+        router.push('/book-a-demo')
         // window.dispatchEvent(new CustomEvent('open-before-you-go'))
       }
     } catch (error: any) {

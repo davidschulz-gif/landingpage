@@ -702,7 +702,11 @@
     "adaName": "ADA VON KAYSER",
     "adaRole": "ACCOUNT MANAGERIN",
     "adaDesc": "shows you the app in a free video call.",
-    "adaCta": "Book a Live Demo with Ada"
+    "adaCta": "Book a Live Demo with Ada",
+    "annikaName": "ANNIKA FLEIG",
+    "annikaRole": "ACCOUNT MANAGERIN",
+    "annikaDesc": "shows you the app in a free video call",
+    "annikaCta": "Book a Live Demo with Annika"
   },
   "FloatingBuzzer": {
     "text": "Free initial consultation"

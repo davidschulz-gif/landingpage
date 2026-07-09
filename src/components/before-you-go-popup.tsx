@@ -23,7 +23,7 @@ import Image from 'next/image'
 import TypusLogoBlack from './common/typus-logo-black'
 
 const TRIGGER_DELAY_MS = 30000
-const DOMINIK_CALENDAR = 'https://calendar.app.google/SE4uynXtibyYmAe36'
+const DOMINIK_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6'
 const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7'
 
 type Step = 1 | 2 | 3 | 4

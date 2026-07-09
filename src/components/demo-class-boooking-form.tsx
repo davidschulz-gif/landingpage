@@ -241,7 +241,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
           </button>
           <div className="w-full h-[600px] overflow-hidden rounded-none border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
             <iframe
-              src="https://calendar.app.google/SE4uynXtibyYmAe36"
+              src="https://calendar.app.google/MGAqUYdnXJEoTCyL6"
               width="100%"
               height="100%"
               className="w-full h-full border-none"
