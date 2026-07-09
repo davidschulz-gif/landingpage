@@ -43,7 +43,7 @@ const teamMembers = [
     role: 'ACCOUNT MANAGERIN',
     name: 'ANNIKA FLEIG',
     image: '/team/annika fleig.png',
-    subtext: "",
+    subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: '#'
   }
   // {
