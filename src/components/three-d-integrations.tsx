@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Link2, Sliders, ShieldCheck } from 'lucide-react'
 
-const renderLogo = (hasLogo: string) => {
+export const renderLogo = (hasLogo: string) => {
   switch (hasLogo) {
     case 'acc':
       return (

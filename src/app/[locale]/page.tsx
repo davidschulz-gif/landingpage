@@ -5,6 +5,7 @@ import { NavbarDemo } from '@/components/adaptive-navbar-2'
 // import { HeroParallax } from '@/components/hero-parallax'
 import { MainHero } from '@/components/main-hero'
 import { TrustedBySection } from '@/components/trusted-by-section'
+import { IntegrationsMarquee } from '@/components/integrations-marquee'
 // import { ToastProvider } from '@/components/providers/toast-provider'
 // import { SplashScreen } from '@/components/splash-screen'
 // import { VideoShowcaseSection } from '@/components/video-showcase-section'
@@ -410,6 +411,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <MainHero />
+
+        {/* 3D Integrations Marquee */}
+        <IntegrationsMarquee />
 
         {/* Trust Logos (Certified By, GPU Engine, As Seen On, Finalist) */}
         {/* <motion.div
