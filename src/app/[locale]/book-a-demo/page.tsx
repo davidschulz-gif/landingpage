@@ -16,21 +16,15 @@ export default function BookADemoPage() {
   const router = useRouter();
   
   const [mounted, setMounted] = useState(false);
-  const [activeWho, setActiveWho] = useState<'ada' | 'annika'>('ada');
   const [iframeLoading, setIframeLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Effect to reset iframe loading when calendar changes
-  useEffect(() => {
-    setIframeLoading(true);
-  }, [activeWho]);
-
   if (!mounted) return null;
 
-  const currentCalendarUrl = activeWho === 'ada' ? ADA_CALENDAR : ANNIKA_CALENDAR;
+  const currentCalendarUrl = ANNIKA_CALENDAR;
 
   return (
     <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-4 sm:p-8">
@@ -89,54 +83,26 @@ export default function BookADemoPage() {
           {/* Cards Column */}
           <div className="flex flex-col gap-4 w-full max-w-[340px] sm:max-w-[440px] shrink-0">
             
-            {/* Profiles Side-by-Side Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
-              {/* Ada Profile Card */}
-              <button
-                type="button"
-                onClick={() => setActiveWho('ada')}
-                className={`flex flex-col items-center text-center rounded-2xl p-4 border transition-all duration-300 group cursor-pointer
-                  ${activeWho === 'ada' 
-                    ? 'bg-white border-black shadow-lg ring-1 ring-black scale-[1.01]' 
-                    : 'bg-neutral-50/50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-md opacity-75 hover:opacity-100'}
-                `}
-              >
-                <div className="relative w-14 h-14 rounded-full overflow-hidden mb-3 border-2 border-white shadow-sm ring-1 ring-neutral-200">
+            {/* Team Profile Card */}
+            <div className="flex flex-col items-center text-center rounded-2xl p-6 border bg-white border-black shadow-lg ring-1 ring-black w-full">
+              <div className="flex flex-row items-center justify-center gap-4 mb-4">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm ring-1 ring-neutral-200">
                   <Image src="/team/adavkayser.jpeg" alt="Ada von Kayser" fill className="object-cover" />
                 </div>
-                <h4 className="text-[10px] font-bold tracking-[0.05em] uppercase text-neutral-900 leading-tight mb-1">{t('adaName')}</h4>
-                <p className="text-[8px] font-semibold tracking-wider uppercase text-neutral-400 mb-2">{t('adaRole')}</p>
-                <p className="text-[10px] text-neutral-500 leading-relaxed font-serif px-1">{t('adaDesc')}</p>
-              </button>
-
-              {/* Annika Profile Card */}
-              <button
-                type="button"
-                onClick={() => setActiveWho('annika')}
-                className={`flex flex-col items-center text-center rounded-2xl p-4 border transition-all duration-300 group cursor-pointer
-                  ${activeWho === 'annika' 
-                    ? 'bg-white border-black shadow-lg ring-1 ring-black scale-[1.01]' 
-                    : 'bg-neutral-50/50 border-neutral-200 hover:border-neutral-300 hover:bg-white hover:shadow-md opacity-75 hover:opacity-100'}
-                `}
-              >
-                <div className="relative w-14 h-14 rounded-full overflow-hidden mb-3 border-2 border-white shadow-sm ring-1 ring-neutral-200">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm ring-1 ring-neutral-200">
                   <Image src="/team/annika fleig.png" alt="Annika Fleig" fill className="object-cover" />
                 </div>
-                <h4 className="text-[10px] font-bold tracking-[0.05em] uppercase text-neutral-900 leading-tight mb-1">{t('annikaName')}</h4>
-                <p className="text-[8px] font-semibold tracking-wider uppercase text-neutral-400 mb-2">{t('annikaRole')}</p>
-                <p className="text-[10px] text-neutral-500 leading-relaxed font-serif px-1">{t('annikaDesc')}</p>
-              </button>
+              </div>
+              <h4 className="text-[12px] font-bold tracking-[0.05em] uppercase text-neutral-900 leading-tight mb-1">
+                ADA VON KAYSER & ANNIKA FLEIG
+              </h4>
+              <p className="text-[10px] font-semibold tracking-wider uppercase text-neutral-400 mb-2">
+                ACCOUNT MANAGERINNEN
+              </p>
+              <p className="text-[12px] text-neutral-500 leading-relaxed font-serif px-1">
+                {t('annikaDesc')}
+              </p>
             </div>
-
-            {/* Case Study Button */}
-            <button
-              type="button"
-              onClick={() => router.push(`/${locale}/siegrist`)}
-              className="w-full mt-2 py-3.5 rounded-2xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-[11px] font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border border-neutral-200 shadow-sm group"
-            >
-              {t('caseStudyBtn')}
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-            </button>
 
           </div>
         </div>
