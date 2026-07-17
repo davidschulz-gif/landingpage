@@ -1137,9 +1137,7 @@ export function ManyChatPricingSection({
 
         {/* Education Plans Cards */}
         <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
-          {currentEduPlans
-            .filter((plan) => isYearly || plan.planType !== 'EXPLORER')
-            .map((plan, index) => (
+          {currentEduPlans.map((plan, index) => (
               <div key={index} className='w-full max-w-xs z-30'>
                 <PricingCard
                   plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
