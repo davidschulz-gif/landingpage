@@ -1223,7 +1223,8 @@ export function ManyChatPricingSection({
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
            
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
-              {currentProfPlans.map((plan, index) => (
+              {currentProfPlans.filter((plan) =>profBillingCycle === 'sixMonthly' || profBillingCycle === 'threeMonthly' || profBillingCycle === 'yearly' || plan.planType !== 'SOLO')
+              .map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {index === 1 && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
