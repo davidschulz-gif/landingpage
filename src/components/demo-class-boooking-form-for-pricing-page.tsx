@@ -258,7 +258,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       </div>
 
       <div className='mt-2.5 mb-2.5 text-left px-1'>
-        <p className='text-[12.5px] sm:text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans font-medium'>
+        <p className='whitespace-pre-line text-[12.5px] sm:text-[13px] text-neutral-600 dark:text-neutral-400 leading-relaxed font-sans font-medium'>
           {tPricing('selfServiceSubtitle')}
         </p>
       </div>
