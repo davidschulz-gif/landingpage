@@ -76,7 +76,7 @@ const professionalPlans = [
       },
     },
     features: [
-      { text: '200 CREDITS /month', hasFeature: true },
+      { text: '500 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       // { text: 'HIGH-END RESULTS', hasFeature: true },
@@ -138,7 +138,7 @@ const professionalPlans = [
       },
     },
     features: [
-      { text: '1000 CREDITS /month', hasFeature: true },
+      { text: '2000 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
@@ -203,7 +203,7 @@ const professionalPlans = [
       },
     },
     features: [
-      { text: '5000 CREDITS /month', hasFeature: true },
+      { text: '10000 CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
@@ -306,7 +306,7 @@ export function ManyChatPricingSection({
 }) {
   const t = useTranslations('Pricing')
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isYearly, setIsYearly] = useState(false)
+  const [isYearly, setIsYearly] = useState(true)
   const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>(showBillingToggle ? 'yearly' : 'monthly')
   const locale = useLocale();
 
@@ -844,9 +844,9 @@ export function ManyChatPricingSection({
     
     const mapFeatureText = (f: any) => {
       if (typeof f === 'string') return f;
-      if (f.text.includes('200 CREDITS')) return t('plans.pro.features.credits200');
-      if (f.text.includes('1000 CREDITS')) return t('plans.pro.features.credits1000');
-      if (f.text.includes('5000 CREDITS')) return t('plans.pro.features.credits5000');
+      if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits200');
+      if (f.text.includes('2000 CREDITS')) return t('plans.pro.features.credits1000');
+      if (f.text.includes('10000 CREDITS')) return t('plans.pro.features.credits5000');
       if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
       // if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
       // if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');

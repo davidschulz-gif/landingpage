@@ -1,4 +1,4 @@
-{
+﻿{
   "HomePage": {
     "title": "Hallo Welt!"
   },
@@ -380,8 +380,8 @@
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
           "credits500": "500 CREDITS / Monat (15–66 Bilder)",
-          "credits200": "200 CREDITS / Monat (15–66 Bilder)",
-          "credits1000": "1000 CREDITS / Monat (66-333 Bilder)",
+          "credits200": "500 CREDITS / Monat (50-150 Bilder)",
+          "credits1000": "2000 CREDITS / Monat (150-700 Bilder)",
           "resolution4k": "4K HIGH-END ERGEBNISSE",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
@@ -395,7 +395,7 @@
           "contract12Months": "12-monatige Vertragslaufzeit",
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
-          "credits5000": "5000 CREDITS / Monat (330-1665 Bilder)",
+          "credits5000": "10000 CREDITS / Monat (700-3500 Bilder)",
           "teamAccess": "TEAM-ZUGANG (5 Accounts)",
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
@@ -445,7 +445,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS /Monat (66-333 Bilder)",
+          "credits1000": "2000 CREDITS /Monat (150-700 Bilder)",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
@@ -456,7 +456,7 @@
         "name": "TEAM",
         "features": {
           "everythingFromExplorer": "ALLES VOM EXPLORER",
-          "credits1000": "1000 CREDITS / Monat (66-333 Bilder)",
+          "credits1000": "2000 CREDITS / Monat (150-700 Bilder)",
           "resolution4k": "4K AUFLÖSUNG",
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "editByChat": "BEARBEITUNG PER CHAT",
@@ -470,7 +470,7 @@
           "contract12Months": "12-monatige Vertragslaufzeit",
           "webinars": "Live Webinars 2x pro Monat",
           "videoSession": "1:1 Live Video Sitzung 1x pro Monat",
-          "credits5000": "5000 CREDITS / Monat (330-1665 Bilder)",
+          "credits5000": "10000 CREDITS / Monat (700-3500 Bilder)",
           "teamAccess": "TEAM-ZUGANG (5 Accounts)",
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
@@ -3057,3 +3057,4 @@
     }
   }
 }
+

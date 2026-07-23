@@ -1,4 +1,4 @@
-{
+﻿{
   "HomePage": {
     "title": "Hello world!"
   },
@@ -380,8 +380,8 @@
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
           "credits500": "500 CREDITS /month (15–66 images)",
-          "credits200": "200 CREDITS /month (15–66 images)",
-          "credits1000": "1000 CREDITS /month (66-333 images)",
+          "credits200": "500 CREDITS /month (50-150 images)",
+          "credits1000": "2000 CREDITS /month (150-700 images)",
           "resolution4k": "4K HIGH-END RESULTS",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "editByChat": "EDIT BY CHAT",
@@ -395,7 +395,7 @@
           "contract12Months": "12-month contract term",
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
-          "credits5000": "5000 CREDITS /month (330-1665 images)",
+          "credits5000": "10000 CREDITS /month (700-3500 images)",
           "teamAccess": "TEAM ACCESS (5 accounts)",
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
@@ -445,7 +445,7 @@
         "name": "PRO",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits1000": "1000 CREDITS /month (66-333 images)",
+          "credits1000": "2000 CREDITS /month (150-700 images)",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",
@@ -456,7 +456,7 @@
         "name": "TEAM",
         "features": {
           "everythingFromExplorer": "EVERYTHING FROM EXPLORER",
-          "credits1000": "1000 CREDITS /month (66-333 images)",
+          "credits1000": "2000 CREDITS /month (150-700 images)",
           "resolution4k": "4K RESOLUTION",
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "editByChat": "EDIT BY CHAT",
@@ -470,7 +470,7 @@
           "contract12Months": "12-month contract term",
           "webinars": "Live Webinars 2x per month",
           "videoSession": "1:1 Live Video Session 1x per month",
-          "credits5000": "5000 CREDITS /month (330-1665 images)",
+          "credits5000": "10000 CREDITS /month (700-3500 images)",
           "teamAccess": "TEAM ACCESS (5 accounts)",
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
@@ -3055,3 +3055,4 @@
     }
   }
 }
+
