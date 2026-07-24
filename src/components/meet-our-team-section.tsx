@@ -45,6 +45,15 @@ const teamMembers = [
     image: '/team/annika fleig.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: '#'
+  },
+
+   {
+    id: 'marie-kristin-foerste',
+    role: 'ACCOUNT MANAGERIN',
+    name: 'Marie-Kristin Förste',
+    image: '/team/marie-kristin-foerste.jpg',
+    subtext: "zeigt Ihnen die App in einem Video Call.",
+    linkedin: '#'
   }
   // {
   //   id: 'marc-langer',
@@ -87,7 +96,7 @@ export function MeetOurTeamSection() {
           </div>
 
         {/* Team Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto'>
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
