@@ -309,6 +309,32 @@ export function ManyChatPricingSection({
   const [isYearly, setIsYearly] = useState(true)
   const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>(showBillingToggle ? 'yearly' : 'monthly')
   const locale = useLocale();
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    const targetDate = new Date('2026-07-31T23:59:59').getTime()
+
+    const updateTimer = () => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        return
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+      setTimeLeft({ days, hours, minutes, seconds })
+    }
+
+    updateTimer()
+    const interval = setInterval(updateTimer, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     setProfBillingCycle(showBillingToggle ? 'yearly' : 'monthly')
@@ -1173,6 +1199,24 @@ export function ManyChatPricingSection({
         {showOnly !== 'educational' && (
           <>
             <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
+              {/* Countdown Timer */}
+              <div className='flex justify-center items-center gap-3 mb-6'>
+                {[
+                  { label: locale === 'de' ? 'Tage' : 'Days', value: timeLeft.days },
+                  { label: locale === 'de' ? 'Stunden' : 'Hours', value: timeLeft.hours },
+                  { label: locale === 'de' ? 'Minuten' : 'Minutes', value: timeLeft.minutes },
+                  { label: locale === 'de' ? 'Sekunden' : 'Seconds', value: timeLeft.seconds },
+                ].map((item, idx) => (
+                  <div key={idx} className='flex flex-col items-center bg-neutral-950 text-white rounded-xl px-4 py-2 min-w-[70px] shadow-lg border border-neutral-900'>
+                    <span className='text-xl sm:text-2xl font-bold tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      {String(item.value).padStart(2, '0')}
+                    </span>
+                    <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
               <h2 className="text-center mt-10 mb-4 heading-primary">
                 {t('selfServiceTitle')}
               </h2>
