@@ -1,4 +1,4 @@
-﻿{
+{
   "HomePage": {
     "title": "Hallo Welt!"
   },
@@ -706,7 +706,9 @@
     "annikaName": "ANNIKA FLEIG",
     "annikaRole": "ACCOUNT MANAGERIN",
     "annikaDesc": "zeigen Ihnen die App in einem kostenlosen Video Call",
-    "annikaCta": "Live Demo mit Annika buchen"
+    "annikaCta": "Live Demo mit Annika buchen",
+    "viewAppWithoutAccount": "Direkt zur App (ohne Account fortfahren)",
+    "bookingOptional": "Das Buchen eines Termins ist optional und nicht erforderlich."
   },
   "FloatingBuzzer": {
     "text": "Kostenloses Erstgespräch"

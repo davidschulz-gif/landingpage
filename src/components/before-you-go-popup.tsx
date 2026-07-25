@@ -242,6 +242,22 @@ export default function BeforeYouGoPopup() {
   const BookingCards = ({ dark }: { dark?: boolean }) => (
     <div className='w-full flex flex-col items-center transition-all duration-500'>
       <h3 className={`heading-primary text-base font-normal mb-4 text-center max-w-sm ${dark ? 'text-white' : 'text-neutral-900'}`}>{t('step3Title')}</h3>
+      
+      {/* Highly Noticeable Button to Proceed directly to the App */}
+      <div className='w-full mb-6 px-1'>
+        <a
+          href='https://app.typus.ai/'
+          className='flex items-center justify-center gap-2 w-full py-3.5 px-6 text-sm sm:text-base font-bold uppercase tracking-wider rounded-xl active:scale-[0.98] transition-all duration-300 shadow-lg border-2 border-transparent bg-emerald-600 hover:bg-emerald-500 text-white'
+          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+        >
+          {t('viewAppWithoutAccount')}
+          <IconArrowRight size={16} strokeWidth={2.5} />
+        </a>
+        <p className={`text-center text-[10px] sm:text-[11px] mt-2 font-medium leading-tight ${dark ? 'text-white/50' : 'text-neutral-500'}`}>
+          {t('bookingOptional')}
+        </p>
+      </div>
+
       <div className='w-full'>
         {CalendarIframe({ who: 'dominik', dark })}
       </div>
