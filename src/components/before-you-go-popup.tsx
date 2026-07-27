@@ -13,7 +13,7 @@ import {
 } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { apiUrl } from '@/lib/constants'
+import { apiUrl, appUrl } from '@/lib/constants'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import PhoneInput from 'react-phone-input-2'
@@ -246,7 +246,7 @@ export default function BeforeYouGoPopup() {
       {/* Highly Noticeable Button to Proceed directly to the App */}
       <div className='w-full mb-6 px-1'>
         <a
-          href='https://app.typus.ai/'
+          href={appUrl}
           className='flex items-center justify-center gap-2 w-full py-3.5 px-6 text-sm sm:text-base font-bold uppercase tracking-wider rounded-xl active:scale-[0.98] transition-all duration-300 shadow-lg border-2 border-transparent bg-emerald-600 hover:bg-emerald-500 text-white'
           style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
         >
