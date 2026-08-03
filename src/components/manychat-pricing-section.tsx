@@ -1200,7 +1200,7 @@ export function ManyChatPricingSection({
           <>
             <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
               {/* Countdown Timer */}
-              <div className='flex justify-center items-center gap-3 mb-6'>
+              {/* <div className='flex justify-center items-center gap-3 mb-6'>
                 {[
                   { label: locale === 'de' ? 'Tage' : 'Days', value: timeLeft.days },
                   { label: locale === 'de' ? 'Stunden' : 'Hours', value: timeLeft.hours },
@@ -1216,7 +1216,7 @@ export function ManyChatPricingSection({
                     </span>
                   </div>
                 ))}
-              </div>
+              </div> */}
               <h2 className="text-center mt-10 mb-4 heading-primary">
                 {t('selfServiceTitle')}
               </h2>
