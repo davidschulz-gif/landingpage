@@ -185,13 +185,15 @@ export function FooterSection() {
         </div>
 
         <div className='flex flex-wrap gap-4 md:gap-8 justify-center mt-10 w-full items-center px-4'>
-          <Image
-            className='h-12 w-auto md:h-16 md:w-auto object-contain'
-            src='/bdbau.png'
-            alt=''
-            width={200}
-            height={200}
-          />
+          <Link href="https://bdbau.org/mitglieder/" target="_blank" rel="noopener noreferrer">
+            <Image
+              className='h-12 w-auto md:h-16 md:w-auto object-contain'
+              src='/bdbau.png'
+              alt=''
+              width={200}
+              height={200}
+            />
+          </Link>
           <div
             className={`flex items-center justify-center transition-transform ${locale === 'en' ? 'scale-[1.6] sm:scale-[2.5] px-6 sm:px-10' : ''
               }`}

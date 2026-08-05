@@ -510,14 +510,16 @@ export function NavbarDemo() {
                   ))}
                 </div>
 
-                <div className='absolute bottom-0 right-0 gap-4 flex items-center'>
-                  <Image
-                    className='h-12 w-auto object-contain'
-                    src='/bdbau.png'
-                    alt=''
-                    width={200}
-                    height={200}
-                  />
+                <div className='absolute bottom-0 right-0 gap-4 flex items-center z-50'>
+                  <Link href="https://bdbau.org/mitglieder/" target="_blank" rel="noopener noreferrer" className="block cursor-pointer hover:opacity-80 transition-opacity relative z-50">
+                    <Image
+                      className='h-12 w-auto object-contain'
+                      src='/bdbau.png'
+                      alt=''
+                      width={200}
+                      height={200}
+                    />
+                  </Link>
                   <Image
                     className='h-9 w-auto'
                     src={
