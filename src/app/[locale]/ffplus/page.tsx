@@ -21,19 +21,19 @@ export default function FFplusPage() {
                     transition={{ duration: 0.5 }}
                     className="space-y-6"
                 >
-                    <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                    <h1 className="heading-primary">
                         {t('title')}
                     </h1>
                     
-                    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('intro')}
                     </p>
 
-                    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('unlike')}
                     </p>
 
-                    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('together')}
                     </p>
                 </motion.div>
@@ -44,10 +44,10 @@ export default function FFplusPage() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="space-y-4"
                 >
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="heading-primary">
                         {t('why_title')}
                     </h2>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('why_desc')}
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
@@ -56,7 +56,7 @@ export default function FFplusPage() {
                         <li>{t('why_list_3')}</li>
                         <li>{t('why_list_4')}</li>
                     </ul>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('why_end')}
                     </p>
                 </motion.div>
@@ -67,16 +67,16 @@ export default function FFplusPage() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="space-y-4"
                 >
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="heading-primary">
                         {t('what_title')}
                     </h2>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('what_desc_1')}
                     </p>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('what_desc_2')}
                     </p>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('what_desc_3')}
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
@@ -86,7 +86,7 @@ export default function FFplusPage() {
                         <li>{t('what_list_4')}</li>
                         <li>{t('what_list_5')}</li>
                     </ul>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('what_end')}
                     </p>
                 </motion.div>
@@ -97,10 +97,10 @@ export default function FFplusPage() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="space-y-4"
                 >
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="heading-primary">
                         {t('benefits_title')}
                     </h2>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('benefits_desc')}
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
@@ -119,13 +119,13 @@ export default function FFplusPage() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="space-y-4"
                 >
-                    <h2 className="text-3xl font-semibold">
+                    <h2 className="heading-primary">
                         {t('vision_title')}
                     </h2>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('vision_desc_1')}
                     </p>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('vision_desc_2')}
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700 dark:text-gray-300">
@@ -133,7 +133,7 @@ export default function FFplusPage() {
                         <li>{t('vision_list_2')}</li>
                         <li>{t('vision_list_3')}</li>
                     </ul>
-                    <p className="text-lg text-gray-700 dark:text-gray-300">
+                    <p className="subheading-primary">
                         {t('vision_end')}
                     </p>
                 </motion.div>
