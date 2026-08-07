@@ -378,6 +378,7 @@ export function ManyChatPricingSection({
   const [marketingConsent, setMarketingConsent] = useState(true)
   const [privacyConsent, setPrivacyConsent] = useState(false)
   const [termsConsent, setTermsConsent] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
 
   const router = useRouter()
   const tModal = useTranslations('SubscriptionModal')
@@ -608,6 +609,7 @@ export function ManyChatPricingSection({
       isEducational: isEdu
     })
     setIsModalOpen(true)
+    setEmailSent(false)
     setModalError(null)
     const searchParams = new URL(window.location.href).searchParams
     const urlPromoCode = searchParams.get('promoCode')
@@ -687,15 +689,25 @@ export function ManyChatPricingSection({
       }
       const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
 
-      // 2. Show Onboarding Wizard instead of proceeding to checkout immediately
-      setIsRedirecting(false)
-      setIsModalOpen(false)
-      setShowTrialWarning(false)
-
-      if (verifyData.data) {
-        setOnboardingData(verifyData.data)
+      // 2. Handle email verification response
+      if (verifyData.emailVerified) {
+        if (verifyData.universityName) {
+          setUniversityName(verifyData.universityName)
+        }
+        if (verifyData.data) {
+          setOnboardingData(verifyData.data)
+        }
+        setIsRedirecting(false)
+        setIsModalOpen(false)
+        setShowTrialWarning(false)
+        setShowOnboarding(true)
+      } else if (verifyData.emailSent) {
+        setEmailSent(true)
+        setIsRedirecting(false)
+      } else {
+        setModalError('Verification failed. Please try again.')
+        setIsRedirecting(false)
       }
-      setShowOnboarding(true)
     } catch (error: any) {
       console.error('Checkout error:', error)
       const errorMessage = error.message || 'An unexpected error occurred'
@@ -1542,99 +1554,119 @@ export function ManyChatPricingSection({
                 <IconX size={20} />
               </button>
 
-              <div className='flex flex-col gap-2'>
-                <h3
-                  className='text-xl font-bold text-white uppercase tracking-wider'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                >
-                  {tModal('title')}
-                </h3>
-                <p className='text-sm text-white'>
-                  {tModal('description')}
-                </p>
-              </div>
-
-              <div className='space-y-4'>
-                <div className='relative'>
-                  <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                    <IconMail className='h-5 w-5 text-white' />
+              {emailSent ? (
+                <div className='flex flex-col items-center gap-4 py-8'>
+                  <div className='w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-2'>
+                    <IconMail size={32} />
                   </div>
-                  <input
-                    type='email'
-                    className='block w-full pl-10 pr-3 py-3 border border-white bg-black text-white text-sm focus:outline-none focus:ring-1 focus:ring-white transition-all'
-                    placeholder={tModal('placeholder')}
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
-                    disabled={isRedirecting}
-                  />
+                  <h3 className='text-xl font-bold text-center text-white' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    Check your inbox
+                  </h3>
+                  <p className='text-center text-gray-300 text-sm'>
+                    We've sent a verification link to<br/>
+                    <span className='font-semibold text-white'>{userEmail}</span>
+                  </p>
+                  <p className='text-center text-gray-400 text-xs mt-2'>
+                    You can close this window now. The link will take you directly to the next step.
+                  </p>
                 </div>
-
-                {modalError && (
-                  <div className='flex items-center gap-2 text-red-500 text-xs mt-1'>
-                    <IconAlertCircle size={14} />
-                    <span>{modalError}</span>
+              ) : (
+                <>
+                  <div className='flex flex-col gap-2'>
+                    <h3
+                      className='text-xl font-bold text-white uppercase tracking-wider'
+                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    >
+                      {tModal('title')}
+                    </h3>
+                    <p className='text-sm text-white'>
+                      {tModal('description')}
+                    </p>
                   </div>
-                )}
 
-                <div className='flex flex-col gap-3 pt-2'>
-                  <label className='flex items-start gap-3 cursor-pointer group'>
-                    <input
-                      type='checkbox'
-                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
-                      checked={marketingConsent}
-                      onChange={(e) => setMarketingConsent(e.target.checked)}
-                      disabled={isRedirecting}
-                    />
-                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
-                      {tModal('marketingConsent')}
-                    </span>
-                  </label>
+                  <div className='space-y-4'>
+                    <div className='relative'>
+                      <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                        <IconMail className='h-5 w-5 text-white' />
+                      </div>
+                      <input
+                        type='email'
+                        className='block w-full pl-10 pr-3 py-3 border border-white bg-black text-white text-sm focus:outline-none focus:ring-1 focus:ring-white transition-all'
+                        placeholder={tModal('placeholder')}
+                        value={userEmail}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
+                        disabled={isRedirecting}
+                      />
+                    </div>
 
-                  <label className='flex items-start gap-3 cursor-pointer group'>
-                    <input
-                      type='checkbox'
-                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
-                      checked={termsConsent && privacyConsent}
-                      onChange={(e) => {
-                        setTermsConsent(e.target.checked)
-                        setPrivacyConsent(e.target.checked)
-                      }}
-                      disabled={isRedirecting}
-                    />
-                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
-                      {tModal.rich('agbPrivacyConsent', {
-                        privacyPolicy: (chunks) => (
-                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
-                            {chunks}
-                          </Link>
-                        )
-                      })}
-                    </span>
-                  </label>
-                </div>
+                    {modalError && (
+                      <div className='flex items-center gap-2 text-red-500 text-xs mt-1'>
+                        <IconAlertCircle size={14} />
+                        <span>{modalError}</span>
+                      </div>
+                    )}
 
-                <div className='flex flex-col gap-3 mt-4'>
-                  <Button
-                    onClick={() => handleContinue()}
-                    disabled={isRedirecting || !privacyConsent || !termsConsent}
-                    className='bg-white text-black hover:bg-white w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {isRedirecting ? (
-                      <IconLoader2 className='animate-spin mr-2' size={16} />
-                    ) : null}
-                    {tModal('continue')}
-                  </Button>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {tModal('cancel')}
-                  </button>
-                </div>
-              </div>
+                    <div className='flex flex-col gap-3 pt-2'>
+                      <label className='flex items-start gap-3 cursor-pointer group'>
+                        <input
+                          type='checkbox'
+                          className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                          checked={marketingConsent}
+                          onChange={(e) => setMarketingConsent(e.target.checked)}
+                          disabled={isRedirecting}
+                        />
+                        <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                          {tModal('marketingConsent')}
+                        </span>
+                      </label>
+
+                      <label className='flex items-start gap-3 cursor-pointer group'>
+                        <input
+                          type='checkbox'
+                          className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                          checked={termsConsent && privacyConsent}
+                          onChange={(e) => {
+                            setTermsConsent(e.target.checked)
+                            setPrivacyConsent(e.target.checked)
+                          }}
+                          disabled={isRedirecting}
+                        />
+                        <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                          {tModal.rich('agbPrivacyConsent', {
+                            privacyPolicy: (chunks) => (
+                              <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                                {chunks}
+                              </Link>
+                            )
+                          })}
+                        </span>
+                      </label>
+                    </div>
+
+                    <div className='flex flex-col gap-3 mt-4'>
+                      <Button
+                        onClick={() => handleContinue()}
+                        disabled={isRedirecting || !privacyConsent || !termsConsent}
+                        className='bg-white text-black hover:bg-white w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
+                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {isRedirecting ? (
+                          <IconLoader2 className='animate-spin mr-2' size={16} />
+                        ) : null}
+                        {tModal('continue')}
+                      </Button>
+                      <button
+                        onClick={() => setIsModalOpen(false)}
+                        className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
+                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {tModal('cancel')}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
