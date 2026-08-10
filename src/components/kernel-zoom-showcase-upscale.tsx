@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 
 export function KernelZoomShowcaseUpscale() {
   const params = useParams()
@@ -161,11 +162,6 @@ export function KernelZoomShowcaseUpscale() {
   // Pure hardware-accelerated CSS style definitions
   // Background shows input image (ChatGPT 2K) unblurred
   const backgroundStyle: React.CSSProperties = {
-    position: 'absolute',
-    inset: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
     userSelect: 'none',
     pointerEvents: 'none',
     transformOrigin: 'center',
@@ -277,12 +273,15 @@ export function KernelZoomShowcaseUpscale() {
           >
             {/* Background Image shows low-res input image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <img
+              <Image
                 key={activeIndex}
                 src={images[activeIndex].input}
                 style={backgroundStyle}
-                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none origin-center"
+                className="object-cover select-none pointer-events-none origin-center"
                 alt="Original low-res input render"
+                fill
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                priority
               />
             </div>
 
@@ -295,12 +294,16 @@ export function KernelZoomShowcaseUpscale() {
                 className="absolute rounded-[24px] sm:rounded-[32px] border-2 pointer-events-none shadow-[0_0_40px_rgba(0,0,0,0.25)] z-20 flex flex-col justify-between p-3.5 overflow-hidden"
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 rounded-[22px] sm:rounded-[30px] bg-neutral-900 pointer-events-none">
-                  <img
-                    src={images[activeIndex].output}
-                    style={innerImageStyle}
-                    className="object-cover select-none pointer-events-none origin-center"
-                    alt="Upscaled razor-sharp detail focus"
-                  />
+                  <div style={innerImageStyle}>
+                    <Image
+                      src={images[activeIndex].output}
+                      className="object-cover select-none pointer-events-none origin-center"
+                      alt="Upscaled razor-sharp detail focus"
+                      fill
+                      sizes="(max-width: 1200px) 100vw, 1200px"
+                      priority
+                    />
+                  </div>
                 </div>
 
                 <div className="flex justify-start">

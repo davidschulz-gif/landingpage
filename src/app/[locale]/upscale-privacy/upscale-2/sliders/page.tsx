@@ -164,7 +164,7 @@ function Upscale2SlidersContent() {
             {/* Comparison Slider Showcase 2 */}
             <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
               <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
-                {isClient && <CompareWithAnimationUpscale projects={batch2Projects} basePath={`/${locale}/upscale-privacy/upscale-2`} />}
+                {isClient && <CompareWithAnimationUpscale projects={batch2Projects} basePath={`/upscale-privacy/upscale-2`} />}
               </div>
             </div>
 
@@ -184,7 +184,7 @@ function Upscale2SlidersContent() {
                   </div>
                   <div className="flex flex-col sm:flex-row items-center gap-4">
                     <Link
-                      href={`/${locale}/upscale-privacy/upscale-1`}
+                      href={`/upscale-privacy/upscale-1`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
                       style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     >

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
@@ -231,7 +232,7 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <img
+              <Image
                 alt="first image"
                 src={firstImage}
                 className={cn(
@@ -239,6 +240,9 @@ export const Compare = ({
                   firstImageClassName
                 )}
                 draggable={false}
+                fill
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                priority
               />
             </motion.div>
           ) : null}
@@ -247,15 +251,26 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         {secondImage ? (
-          <motion.img
+          <motion.div
             className={cn(
-              "absolute top-0 left-0 z-[19] w-full h-full select-none object-cover object-left-top",
+              "absolute top-0 left-0 z-[19] w-full h-full select-none overflow-hidden",
               secondImageClassname
             )}
-            alt="second image"
-            src={secondImage}
-            draggable={false}
-          />
+            initial={{ opacity: 1 }}
+          >
+            <Image
+              className={cn(
+                "absolute top-0 left-0 z-[19] w-full h-full select-none object-cover object-left-top",
+                secondImageClassname
+              )}
+              alt="second image"
+              src={secondImage}
+              draggable={false}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+            />
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </div>

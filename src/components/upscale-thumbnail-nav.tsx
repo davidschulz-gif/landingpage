@@ -4,6 +4,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type { ComparisonProject } from './compare-with-animation-upscale'
 
@@ -54,10 +55,12 @@ export function UpscaleThumbnailNav({
               : "opacity-50 border-neutral-200 dark:border-neutral-800 hover:opacity-90"
           )}
         >
-          <img
+          <Image
             alt="Zoom Showcase"
             src={zoomThumbnailImage}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100px, 150px"
+            className="object-cover"
           />
           {/* Overlay icon to indicate Zoom */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -71,17 +74,19 @@ export function UpscaleThumbnailNav({
         <div
           key={proj.id}
           className={cn(
-            "h-12 w-16 sm:h-14 sm:w-20 md:h-16 md:w-24 cursor-pointer overflow-hidden transition-all duration-300 rounded border flex-shrink-0",
+            "h-12 w-16 sm:h-14 sm:w-20 md:h-16 md:w-24 cursor-pointer overflow-hidden transition-all duration-300 rounded border flex-shrink-0 relative",
             activeIndex === index
               ? "opacity-100 border-black dark:border-white scale-105 shadow-md"
               : "opacity-50 border-neutral-200 dark:border-neutral-800 hover:opacity-90"
           )}
           onClick={() => handleSliderClick(index)}
         >
-          <img
+          <Image
             alt={locale === 'de' ? proj.titleDe : proj.titleEn}
             src={proj.output1}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100px, 150px"
+            className="object-cover"
           />
         </div>
       ))}

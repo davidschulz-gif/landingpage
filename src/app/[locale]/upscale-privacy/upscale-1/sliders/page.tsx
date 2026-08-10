@@ -242,7 +242,7 @@ function Upscale1SlidersContent() {
             {/* Comparison Slider Showcase */}
             <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
               <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
-                {isClient && <CompareWithAnimationUpscale projects={batch1Projects} basePath={`/${locale}/upscale-privacy/upscale-1`} />}
+                {isClient && <CompareWithAnimationUpscale projects={batch1Projects} basePath={`/upscale-privacy/upscale-1`} />}
               </div>
             </div>
 
