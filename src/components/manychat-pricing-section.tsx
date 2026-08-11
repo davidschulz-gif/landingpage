@@ -1309,7 +1309,7 @@ export function ManyChatPricingSection({
 
           {/* Promo Code Input on Page */}
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
-            {/* <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
                 type='text'
                 className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
@@ -1332,7 +1332,7 @@ export function ManyChatPricingSection({
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
-            </div> */}
+            </div>
             {profPromoError && (
               <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
                 <IconAlertCircle size={14} />
@@ -1860,8 +1860,13 @@ function PricingCard({
           // yearly
           monthsCount = 12
           if (fetchedData && fetchedData.prices?.yearly) {
-            cyclePriceVal = fetchedData.prices.yearly / 100
-            stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+            if (promoDiscount && fetchedData.originalPrices?.yearly) {
+              cyclePriceVal = fetchedData.originalPrices.yearly / 100
+              stripePriceId = fetchedData.stripeBasePrices?.YEARLY || fetchedData.stripePrices?.YEARLY || ''
+            } else {
+              cyclePriceVal = fetchedData.prices.yearly / 100
+              stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+            }
           } else {
             const fallbackCyclePrice = isEurope ? profPlan.yearlyPrice?.eur : profPlan.yearlyPrice?.usd
             cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
