@@ -84,7 +84,6 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
       { text: 'TEAM ACCESS', hasFeature: false },
-      { text: 'UP TO 0-1 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
     ],
@@ -147,7 +146,6 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'TEAM ACCESS', hasFeature: false },
-      { text: 'UP TO 1-5 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
       // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
@@ -212,7 +210,6 @@ const professionalPlans = [
       { text: 'EMAIL SUPPORT', hasFeature: true },
       { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
       { text: 'TEAM ACCESS', hasFeature: true },
-      { text: 'UP TO 5-20 ACCOUNTS', hasFeature: true },
       { text: 'LIVE WEBINARS 2X/MONTH', hasFeature: true },
       { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
     ],
@@ -2093,7 +2090,15 @@ function PricingCard({
         } else {
           (priceInfo.discount as any).periodDiscountPercent = Math.round(((val - newVal) / val) * 100);
         }
-        const savingsVal = val - newVal;
+        let currentCycleMonths = 1;
+        if (plan.billingCycle === 'sixMonthly') {
+          currentCycleMonths = 6;
+        } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
+          currentCycleMonths = 12;
+        } else if (plan.billingCycle === 'threeMonthly') {
+          currentCycleMonths = 3;
+        }
+        const savingsVal = (val - newVal) * currentCycleMonths;
         (priceInfo.discount as any).periodSaveAmount = `${currencySymbol}${savingsVal % 1 === 0 ? savingsVal : savingsVal.toFixed(2)}`;
       }
     }
