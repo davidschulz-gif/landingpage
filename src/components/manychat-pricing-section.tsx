@@ -1154,22 +1154,22 @@ export function ManyChatPricingSection({
             )}
             {eduPromoDiscount && (
               <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}% OFF` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
+                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}${tModal('discountOffCaps')}` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
                 {eduPromoDiscount.validPlans && eduPromoDiscount.validPlans.length > 0 ? (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    Applicable to: {eduPromoDiscount.validPlans.join(', ')}
+                    {tModal('applicableTo')} {eduPromoDiscount.validPlans.join(', ')}
                     {eduPromoDiscount.validBillingCycles && eduPromoDiscount.validBillingCycles.length > 0 
                       ? ` (${Array.from(new Set(eduPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
                       : ''}
                   </div>
                 ) : (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    Applicable to: All Plans
+                    {tModal('applicableTo')} {tModal('allPlans')}
                   </div>
                 )}
                 {eduPromoDiscount.maxRedemptions && (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} coupons left
+                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} {tModal('couponsLeft')}
                   </div>
                 )}
               </div>
@@ -1295,40 +1295,6 @@ export function ManyChatPricingSection({
             </div>
           </div>
           )}
-        </div> 
-
-        {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
-           
-            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
-              {currentProfPlans
-              .filter((plan) => !(profBillingCycle === 'monthly' && plan.name === 'SOLO'))
-              .map((plan, index) => (
-                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
-                  {index === 1 && (
-                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
-                      <div className='flex flex-col items-center gap-1'>
-                        {/* Empty to preserve structure if Lottie was here */}
-                      </div>
-                    </div>
-                  )}
-                  <PricingCard
-                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={profBillingCycle === 'yearly'}
-                    isProfessional={true}
-                    isEurope={planCurrency === 'eur'}
-                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                    onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, false, isEligible)}
-                    promoDiscount={profPromoDiscount}
-                    isVat={isVat}
-                  />
-                </div>
-              ))}
-            </div>
-             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
-              <BookingDemoClassFormForPricingPage />
-            </div>
-          </div>
 
           {/* Promo Code Input on Page */}
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
@@ -1369,35 +1335,73 @@ export function ManyChatPricingSection({
               </div>
             )}
             {profPromoDiscount && (
-              <div className='mt-2 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
-                <span className='font-medium normal-case'>
-                  {profPromoDiscount.name}:
-                </span>{' '}
-                <span className='font-normal'>
-                  {profPromoDiscount.type === 'percentage'
-                    ? `${profPromoDiscount.value}% off`
-                    : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
-                </span>
-                {profPromoDiscount.validPlans && profPromoDiscount.validPlans.length > 0 ? (
-                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
-                    Applicable to: {profPromoDiscount.validPlans.join(', ')}
-                    {profPromoDiscount.validBillingCycles && profPromoDiscount.validBillingCycles.length > 0 
-                      ? ` (${Array.from(new Set(profPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
-                      : ''}
-                  </div>
-                ) : (
-                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
-                    Applicable to: All Plans
-                  </div>
-                )}
+              <div className='mt-2 flex flex-col sm:flex-row gap-2'>
+                <div className='flex-1 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
+                  <span className='font-medium normal-case'>
+                    {profPromoDiscount.name}:
+                  </span>{' '}
+                  <span className='font-normal'>
+                    {profPromoDiscount.type === 'percentage'
+                      ? `${profPromoDiscount.value}${tModal('discountOff')}`
+                      : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
+                  </span>
+                  {profPromoDiscount.validPlans && profPromoDiscount.validPlans.length > 0 ? (
+                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                      {tModal('applicableTo')} {profPromoDiscount.validPlans.join(', ')}
+                      {profPromoDiscount.validBillingCycles && profPromoDiscount.validBillingCycles.length > 0 
+                        ? ` (${Array.from(new Set(profPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
+                        : ''}
+                    </div>
+                  ) : (
+                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                      {tModal('applicableTo')} {tModal('allPlans')}
+                    </div>
+                  )}
+                </div>
                 {profPromoDiscount.maxRedemptions && (
-                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
-                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} coupons left
+                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base font-bold rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {tModal('couponsLeft')}
                   </div>
                 )}
               </div>
             )}
           </div>
+        </div> 
+
+        {/* Professional Plans Cards */}
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+           
+            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
+              {currentProfPlans
+              .filter((plan) => !(profBillingCycle === 'monthly' && plan.name === 'SOLO'))
+              .map((plan, index) => (
+                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
+                  {index === 1 && (
+                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
+                      <div className='flex flex-col items-center gap-1'>
+                        {/* Empty to preserve structure if Lottie was here */}
+                      </div>
+                    </div>
+                  )}
+                  <PricingCard
+                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={profBillingCycle === 'yearly'}
+                    isProfessional={true}
+                    isEurope={planCurrency === 'eur'}
+                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                    onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, false, isEligible)}
+                    promoDiscount={profPromoDiscount}
+                    isVat={isVat}
+                  />
+                </div>
+              ))}
+            </div>
+             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
+              <BookingDemoClassFormForPricingPage />
+            </div>
+          </div>
+
+
 
           {subscribeError && (
             <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>

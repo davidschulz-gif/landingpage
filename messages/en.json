@@ -524,6 +524,11 @@
     "promoCodeError": "Invalid or expired promo code.",
     "promoCodeNotForEdu": "This promo code is not applicable for Education Plans.",
     "verifying": "Verifying...",
+    "applicableTo": "Applicable to:",
+    "allPlans": "All Plans",
+    "couponsLeft": "coupons left",
+    "discountOff": "% off",
+    "discountOffCaps": "% OFF",
     "TrialWarningModal": {
       "title": "Free Trial Not Available",
       "description": "The 1-day free trial is only available for users with professional email accounts. You can still subscribe, but the trial period will not be applied.",

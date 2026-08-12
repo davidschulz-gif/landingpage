@@ -524,6 +524,11 @@
     "promoCodeError": "Ungültiger oder abgelaufener Gutscheincode.",
     "promoCodeNotForEdu": "Dieser Gutscheincode ist nicht für Bildungspläne anwendbar.",
     "verifying": "Verifizieren...",
+    "applicableTo": "Gilt für:",
+    "allPlans": "Alle Pläne",
+    "couponsLeft": "Gutscheine übrig",
+    "discountOff": "% Rabatt",
+    "discountOffCaps": "% RABATT",
     "TrialWarningModal": {
       "title": "Kostenlose Testversion nicht verfügbar",
       "description": "Die 1-tägige kostenlose Testversion ist nur für Benutzer mit geschäftlichen E-Mail-Konten verfügbar. Sie können trotzdem abonnieren, aber der Testzeitraum wird nicht angewendet.",
