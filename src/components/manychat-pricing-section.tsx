@@ -1242,7 +1242,8 @@ export function ManyChatPricingSection({
           {showBillingToggle && (
           <div className='flex justify-center mt-8 mb-2'>
             <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
-              {(['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => (
+              {/* (['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => ( */}
+              {(['monthly', 'yearly'] as const).map((cycle) => (
                 <button
                   key={cycle}
                   onClick={() => setProfBillingCycle(cycle)}
@@ -1260,11 +1261,7 @@ export function ManyChatPricingSection({
                         {t('yearlyBilling')}
                         <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-50%</span>
                       </span>
-                    ) : cycle === 'threeMonthly' ? (
-                      t('threeMonthlyBilling')
-                    ) : cycle === 'sixMonthly' ? (
-                      t('sixMonthlyBilling')
-                    ) : (
+                    )  : (
                       t('monthlyBilling')
                     )}
                   </span>
@@ -1280,6 +1277,7 @@ export function ManyChatPricingSection({
            
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
               {currentProfPlans
+              .filter((plan) => !(profBillingCycle === 'monthly' && plan.name === 'SOLO'))
               .map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {index === 1 && (
