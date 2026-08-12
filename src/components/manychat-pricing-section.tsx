@@ -479,7 +479,9 @@ export function ManyChatPricingSection({
     const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
 
     if (isEdu && code.trim().toUpperCase() === 'KICK') {
-      setError(tModal('promoCodeNotForEdu'))
+      const errorMsg = tModal('promoCodeNotForEdu');
+      setError(errorMsg)
+      toast.error(errorMsg)
       return
     }
 
@@ -525,10 +527,14 @@ export function ManyChatPricingSection({
         setDiscount(data.discount)
         setSuccess(tModal('promoCodeSuccess'))
       } else {
-        setError(data.message || tModal('promoCodeError'))
+        const errorMsg = data.message || tModal('promoCodeError');
+        setError(errorMsg)
+        toast.error(errorMsg)
       }
     } catch (error) {
-      setError(tModal('promoCodeError'))
+      const errorMsg = tModal('promoCodeError');
+      setError(errorMsg)
+      toast.error(errorMsg)
     } finally {
       setIsVerifyingPromo(false)
     }
@@ -1053,7 +1059,7 @@ export function ManyChatPricingSection({
       // setIsEligibleForTrial(plansData.isEligibleForTrial);
     } catch (error) {
       console.error('Failed to fetch plans:', error);
-      // toast.error(t.failedToLoadPlans);
+      toast.error('Failed to load pricing plans. Please try again later.');
     } finally {
       // setLoading(false);
     }
@@ -1162,6 +1168,11 @@ export function ManyChatPricingSection({
                 ) : (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
                     Applicable to: All Plans
+                  </div>
+                )}
+                {eduPromoDiscount.maxRedemptions && (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} coupons left
                   </div>
                 )}
               </div>
@@ -1380,6 +1391,11 @@ export function ManyChatPricingSection({
                 ) : (
                   <div className='mt-1 text-emerald-700/80 text-[11px]'>
                     Applicable to: All Plans
+                  </div>
+                )}
+                {profPromoDiscount.maxRedemptions && (
+                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} coupons left
                   </div>
                 )}
               </div>
@@ -2070,6 +2086,15 @@ function PricingCard({
             }
           }
         }
+        
+        // Populate the badge with the manual promo discount info
+        if (promoDiscount.type === 'percentage') {
+          (priceInfo.discount as any).periodDiscountPercent = promoDiscount.value;
+        } else {
+          (priceInfo.discount as any).periodDiscountPercent = Math.round(((val - newVal) / val) * 100);
+        }
+        const savingsVal = val - newVal;
+        (priceInfo.discount as any).periodSaveAmount = `${currencySymbol}${savingsVal % 1 === 0 ? savingsVal : savingsVal.toFixed(2)}`;
       }
     }
   }
@@ -2125,8 +2150,8 @@ function PricingCard({
           </span>
         )}
 
-        {/* Discount badge above price - period discount for 6-mo/yearly */}
-        {priceInfo.discount?.periodDiscountPercent != null && (
+        {/* Discount badge above price - manual promo discount */}
+        {isEligibleForPromo && priceInfo.discount?.periodDiscountPercent != null && (
           <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
@@ -2138,12 +2163,12 @@ function PricingCard({
             {priceInfo.discount ? (
               <>
                 {'originalPrice' in priceInfo.discount && (
-                  <div className='text-[12px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
                   <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
