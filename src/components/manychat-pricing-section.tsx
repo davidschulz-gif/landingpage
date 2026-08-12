@@ -557,11 +557,16 @@ export function ManyChatPricingSection({
 
 
 
-  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean) => {
+  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean, isEligibleForPromo: boolean = true) => {
     // All plans now use the email-modal → email-verification → onboarding → checkout flow
-    const code = isEdu ? eduPromoCode : profPromoCode
-    const discount = isEdu ? eduPromoDiscount : profPromoDiscount
+    let code = isEdu ? eduPromoCode : profPromoCode
+    let discount = isEdu ? eduPromoDiscount : profPromoDiscount
     const setError = isEdu ? setEduPromoError : setProfPromoError
+
+    if (!isEligibleForPromo) {
+      code = ''
+      discount = null
+    }
 
     if (discount && discount.couponId) {
       setSubscribeError(null)
@@ -606,7 +611,8 @@ export function ManyChatPricingSection({
       planType: plan.planType,
       billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
       priceId: priceInfo.stripePriceId,
-      isEducational: isEdu
+      isEducational: isEdu,
+      eligiblePromoCode: code || null
     })
     setIsModalOpen(true)
     setEmailSent(false)
@@ -837,7 +843,7 @@ export function ManyChatPricingSection({
           planType: selectedPlanForModal.planType,
           billingCycle: mappedBillingCycle,
           isEducational: selectedPlanForModal.isEducational,
-          promoCode: selectedPlanForModal.isEducational ? (eduPromoDiscount ? eduPromoCode.trim() : null) : (profPromoDiscount ? profPromoCode.trim() : null),
+          promoCode: selectedPlanForModal.eligiblePromoCode || null,
           currency: planCurrency,
           cancelUrl: window.location.href,
           marketingConsent,
@@ -1146,6 +1152,18 @@ export function ManyChatPricingSection({
             {eduPromoDiscount && (
               <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
                 <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}% OFF` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
+                {eduPromoDiscount.validPlans && eduPromoDiscount.validPlans.length > 0 ? (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    Applicable to: {eduPromoDiscount.validPlans.join(', ')}
+                    {eduPromoDiscount.validBillingCycles && eduPromoDiscount.validBillingCycles.length > 0 
+                      ? ` (${Array.from(new Set(eduPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
+                      : ''}
+                  </div>
+                ) : (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    Applicable to: All Plans
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -1183,7 +1201,7 @@ export function ManyChatPricingSection({
                   isProfessional={false}
                   isEurope={planCurrency === 'eur'}
                   currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                  onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, true)}
+                  onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, true, isEligible)}
                   promoDiscount={eduPromoDiscount}
                   isVat={isVat}
                 />
@@ -1292,7 +1310,7 @@ export function ManyChatPricingSection({
                     isProfessional={true}
                     isEurope={planCurrency === 'eur'}
                     currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                    onSubscribe={(plan, priceInfo) => handleSubscribe(plan, priceInfo, false)}
+                    onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, false, isEligible)}
                     promoDiscount={profPromoDiscount}
                     isVat={isVat}
                   />
@@ -1352,6 +1370,18 @@ export function ManyChatPricingSection({
                     ? `${profPromoDiscount.value}% off`
                     : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
                 </span>
+                {profPromoDiscount.validPlans && profPromoDiscount.validPlans.length > 0 ? (
+                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                    Applicable to: {profPromoDiscount.validPlans.join(', ')}
+                    {profPromoDiscount.validBillingCycles && profPromoDiscount.validBillingCycles.length > 0 
+                      ? ` (${Array.from(new Set(profPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
+                      : ''}
+                  </div>
+                ) : (
+                  <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                    Applicable to: All Plans
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -1763,7 +1793,7 @@ interface PricingCardProps {
   isProfessional: boolean
   isEurope: boolean
   currencySymbol: string
-  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }, priceInfo: any) => void
+  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }, priceInfo: any, isEligibleForPromo?: boolean) => void
   promoDiscount?: any
   isVat?: boolean
 }
@@ -1961,8 +1991,22 @@ function PricingCard({
   }
 
   const priceInfo = getPriceDisplay()
+  let isEligibleForPromo = !!promoDiscount;
+  if (promoDiscount && promoDiscount.validStripePriceIds && promoDiscount.validStripePriceIds.length > 0) {
+    // If the coupon has product restrictions via Stripe API
+    isEligibleForPromo = !!(priceInfo.stripePriceId && promoDiscount.validStripePriceIds.includes(priceInfo.stripePriceId));
+  } else if (promoDiscount) {
+    // Rely purely on the backend's provided logic for coupon validPlans/validBillingCycles
+    if (promoDiscount.validPlans && promoDiscount.validPlans.length > 0) {
+      isEligibleForPromo = isEligibleForPromo && promoDiscount.validPlans.includes(plan.name);
+    }
+    if (promoDiscount.validBillingCycles && promoDiscount.validBillingCycles.length > 0) {
+      const currentCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly');
+      isEligibleForPromo = isEligibleForPromo && (promoDiscount.validBillingCycles.includes(currentCycle.toUpperCase()) || promoDiscount.validBillingCycles.includes(currentCycle.toLowerCase()));
+    }
+  }
 
-  if (promoDiscount && priceInfo.mainPrice) {
+  if (isEligibleForPromo && priceInfo.mainPrice) {
     const numericMatch = priceInfo.mainPrice.match(/[\d,.]+/);
     if (numericMatch) {
       let numericStr = numericMatch[0].replace(',', '.');
@@ -2099,7 +2143,7 @@ function PricingCard({
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${promoDiscount || (priceInfo.discount as any)?.isYearlyDefault ? 'text-green-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
                   <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
@@ -2115,7 +2159,7 @@ function PricingCard({
                   </span>
                 ) : (
                   <>
-                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${promoDiscount || (priceInfo.discount as any)?.isYearlyDefault ? 'text-green-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                       {priceInfo.mainPrice}
                     </span>
                     <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
@@ -2200,7 +2244,7 @@ function PricingCard({
           </button>
         ) : (
           <Button
-            onClick={() => onSubscribe(plan, priceInfo)}
+            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
             className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
