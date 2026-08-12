@@ -1892,6 +1892,12 @@ function PricingCard({
             periodSaveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
             bestDeal: billingCycle === 'yearly' && profPlan.planType === 'TEAM',
           }
+
+          if (billingCycle === 'yearly' && fetchedData && fetchedData.originalPrices?.yearly) {
+            const baseVal = (fetchedData.originalPrices.yearly / 100) / 12;
+            (discount as any).originalPrice = `${currencySymbol}${baseVal % 1 === 0 ? baseVal : baseVal.toFixed(2)}`;
+            (discount as any).isYearlyDefault = true;
+          }
         }
 
         return {
@@ -2093,7 +2099,7 @@ function PricingCard({
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className='text-3xl sm:text-4xl font-normal text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${promoDiscount || (priceInfo.discount as any)?.isYearlyDefault ? 'text-green-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {priceInfo.mainPrice}
                   </span>
                   <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
@@ -2109,7 +2115,7 @@ function PricingCard({
                   </span>
                 ) : (
                   <>
-                    <span className='text-3xl sm:text-4xl font-normal text-black tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${promoDiscount || (priceInfo.discount as any)?.isYearlyDefault ? 'text-green-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                       {priceInfo.mainPrice}
                     </span>
                     <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
