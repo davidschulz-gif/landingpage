@@ -1259,9 +1259,8 @@ export function ManyChatPricingSection({
                     {cycle === 'yearly' ? (
                       <span className='flex items-center gap-2'>
                         {t('yearlyBilling')}
-                        <span className='bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide'>-50%</span>
                       </span>
-                    )  : (
+                    ) : (
                       t('monthlyBilling')
                     )}
                   </span>
@@ -1874,7 +1873,13 @@ function PricingCard({
           billingInfo = `${t('billedYearly')} (${currencySymbol}${cyclePriceVal}/year)`
         }
 
-        const originalCycleVal = mPriceVal * monthsCount
+        let originalCycleVal = mPriceVal * monthsCount
+        
+        // If it's a yearly plan and we have the true base price from the backend, use it!
+        if (billingCycle === 'yearly' && fetchedData && fetchedData.originalPrices?.yearly) {
+          originalCycleVal = fetchedData.originalPrices.yearly / 100
+        }
+
         if (monthsCount > 1 && originalCycleVal > cyclePriceVal) {
           const saveAmountVal = originalCycleVal - cyclePriceVal
           const discountPercentVal = Math.round((saveAmountVal / originalCycleVal) * 100)
