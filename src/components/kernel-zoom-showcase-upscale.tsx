@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
-import Image from 'next/image'
 
 export function KernelZoomShowcaseUpscale() {
   const params = useParams()
@@ -271,17 +270,13 @@ export function KernelZoomShowcaseUpscale() {
                 : 'cursor-zoom-in'
             }`}
           >
-            {/* Background Image shows low-res input image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <Image
+              <img
                 key={activeIndex}
                 src={images[activeIndex].input}
                 style={backgroundStyle}
-                className="object-cover select-none pointer-events-none origin-center"
+                className="w-full h-full object-cover select-none pointer-events-none origin-center"
                 alt="Original low-res input render"
-                fill
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                priority
               />
             </div>
 
@@ -295,13 +290,10 @@ export function KernelZoomShowcaseUpscale() {
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 rounded-[22px] sm:rounded-[30px] bg-neutral-900 pointer-events-none">
                   <div style={innerImageStyle}>
-                    <Image
+                    <img
                       src={images[activeIndex].output}
-                      className="object-cover select-none pointer-events-none origin-center"
+                      className="w-full h-full object-cover select-none pointer-events-none origin-center"
                       alt="Upscaled razor-sharp detail focus"
-                      fill
-                      sizes="(max-width: 1200px) 100vw, 1200px"
-                      priority
                     />
                   </div>
                 </div>

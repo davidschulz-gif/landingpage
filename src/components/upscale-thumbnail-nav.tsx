@@ -4,7 +4,6 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type { ComparisonProject } from './compare-with-animation-upscale'
 
@@ -55,12 +54,10 @@ export function UpscaleThumbnailNav({
               : "opacity-50 border-neutral-200 dark:border-neutral-800 hover:opacity-90"
           )}
         >
-          <Image
+          <img
             alt="Zoom Showcase"
             src={zoomThumbnailImage}
-            fill
-            sizes="(max-width: 768px) 100px, 150px"
-            className="object-cover"
+            className="w-full h-full object-cover"
           />
           {/* Overlay icon to indicate Zoom */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -81,12 +78,10 @@ export function UpscaleThumbnailNav({
           )}
           onClick={() => handleSliderClick(index)}
         >
-          <Image
+          <img
             alt={locale === 'de' ? proj.titleDe : proj.titleEn}
             src={proj.output1}
-            fill
-            sizes="(max-width: 768px) 100px, 150px"
-            className="object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
       ))}

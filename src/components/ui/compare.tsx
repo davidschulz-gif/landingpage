@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { IconDotsVertical } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
@@ -232,7 +231,7 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <Image
+              <img
                 alt="first image"
                 src={firstImage}
                 className={cn(
@@ -240,9 +239,6 @@ export const Compare = ({
                   firstImageClassName
                 )}
                 draggable={false}
-                fill
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                priority
               />
             </motion.div>
           ) : null}
@@ -258,7 +254,7 @@ export const Compare = ({
             )}
             initial={{ opacity: 1 }}
           >
-            <Image
+            <img
               className={cn(
                 "absolute top-0 left-0 z-[19] w-full h-full select-none object-cover object-left-top",
                 secondImageClassname
@@ -266,9 +262,6 @@ export const Compare = ({
               alt="second image"
               src={secondImage}
               draggable={false}
-              fill
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
             />
           </motion.div>
         ) : null}

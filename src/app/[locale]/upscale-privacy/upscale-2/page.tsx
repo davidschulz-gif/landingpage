@@ -8,8 +8,6 @@ import dynamic from 'next/dynamic'
 import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IconArrowLeft, IconTag, IconArrowRight } from '@tabler/icons-react'
-import Image from 'next/image'
-import batch1Preview from '../../../../../public/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png'
 import { KernelZoomShowcaseUpscale2 } from '@/components/kernel-zoom-showcase-upscale-2'
 import type { ComparisonProject } from '@/components/compare-with-animation-upscale'
 import { useIsMobile } from '@/hooks/use-mobile'
@@ -233,12 +231,10 @@ function Upscale2Content() {
                  
                   {/* Image Container */}
                   <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
-                    <Image
-                      src={batch1Preview}
+                    <img
+                      src="/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png"
                       alt="Batch 1 preview"
                       className="w-full h-full object-cover"
-                      placeholder="blur"
-                      sizes="(max-width: 1200px) 100vw, 1200px"
                     />
                   </div>
 

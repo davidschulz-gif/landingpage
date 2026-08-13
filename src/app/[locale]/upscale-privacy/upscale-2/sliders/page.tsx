@@ -9,8 +9,6 @@ import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IconArrowLeft, IconArrowRight, IconLock, IconTag } from '@tabler/icons-react'
 import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import batch1Preview from '../../../../../../public/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png'
 import { apiUrl } from '@/lib/constants'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { DesktopOnlyView } from '@/components/desktop-only-view'
@@ -178,12 +176,10 @@ function Upscale2SlidersContent() {
               <div className="max-w-xl mx-auto mb-8">
                 <div className="text-left bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[32px] p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                   <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
-                    <Image
-                      src={batch1Preview}
+                    <img
+                      src="/upscale-images/input/ChatGPT Image 2. Juni 2026, 10_07_17.png"
                       alt="Batch 1 preview"
                       className="w-full h-full object-cover"
-                      placeholder="blur"
-                      sizes="(max-width: 1200px) 100vw, 1200px"
                     />
                   </div>
                   <div className="flex flex-col sm:flex-row items-center gap-4">
