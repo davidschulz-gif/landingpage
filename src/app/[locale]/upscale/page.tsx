@@ -8,11 +8,30 @@ import { useState, useEffect } from 'react'
 import { IconDeviceMobile, IconShare, IconCopy, IconCheck, IconTag } from '@tabler/icons-react'
 import { Link } from '@/i18n/navigation'
 
+import Image, { StaticImageData } from 'next/image'
+import img1 from '../../../../public/upscaler-moblie/image-1.png'
+import img2 from '../../../../public/upscaler-moblie/image-2.png'
+import img3 from '../../../../public/upscaler-moblie/image-3.png'
+import img4 from '../../../../public/upscaler-moblie/image-4.png'
+import img5 from '../../../../public/upscaler-moblie/image-5.png'
+import img6 from '../../../../public/upscaler-moblie/image-6.png'
+import img7 from '../../../../public/upscaler-moblie/image-7.png'
+import img8 from '../../../../public/upscaler-moblie/image-8.png'
+import img9 from '../../../../public/upscaler-moblie/image-9.png'
+import img10 from '../../../../public/upscaler-moblie/image-10.png'
+import img11 from '../../../../public/upscaler-moblie/image-11.png'
+import img12 from '../../../../public/upscaler-moblie/image-12.png'
+import img13 from '../../../../public/upscaler-moblie/image-13.png'
+import img14 from '../../../../public/upscaler-moblie/image-14.png'
+import img15 from '../../../../public/upscaler-moblie/image-15.png'
+import img16 from '../../../../public/upscaler-moblie/image-16.png'
+import img17 from '../../../../public/upscaler-moblie/image-17.png'
+
 interface MobileImageItem {
   id: number
   titleDe: string
   titleEn: string
-  src: string
+  src: StaticImageData
 }
 
 export default function UpscaleMobilePage() {
@@ -22,23 +41,23 @@ export default function UpscaleMobilePage() {
 
   // 17 mobile preview images from /public/upscaler-moblie
   const previews: MobileImageItem[] = [
-    { id: 1, titleDe: "Nachhaltiger Wohnungsbau", titleEn: "Sustainable housing", src: "/upscaler-moblie/image-1.png" },
-    { id: 2, titleDe: "Urbanes Loft", titleEn: "Urban Loft", src: "/upscaler-moblie/image-2.png" },
-    { id: 3, titleDe: "Vorstadt Reihenhaus", titleEn: "Suburban terraced house", src: "/upscaler-moblie/image-3.png" },
-    { id: 4, titleDe: "Monolithischer Betonturm", titleEn: "Monolithic Concrete Tower", src: "/upscaler-moblie/image-4.png" },
-    { id: 5, titleDe: "Glasfassade", titleEn: "Glass Facade", src: "/upscaler-moblie/image-5.png" },
-    { id: 6, titleDe: "Kunststeinfassade", titleEn: "Artificial Stone Facade", src: "/upscaler-moblie/image-6.png" },
-    { id: 7, titleDe: "Fassadendetails", titleEn: "Facade details", src: "/upscaler-moblie/image-7.png" },
-    { id: 8, titleDe: "Büro am Ufer", titleEn: "Waterfront Office", src: "/upscaler-moblie/image-8.png" },
-    { id: 9, titleDe: "Innenhof-Eingang", titleEn: "Courtyard Entrance", src: "/upscaler-moblie/image-9.png" },
-    { id: 10, titleDe: "Saniertes Mehrfamilienhaus", titleEn: "Renovated apartment building", src: "/upscaler-moblie/image-10.png" },
-    { id: 11, titleDe: "Holzfassade", titleEn: "Wooden Facade", src: "/upscaler-moblie/image-11.png" },
-    { id: 12, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: "/upscaler-moblie/image-12.png" },
-    { id: 13, titleDe: "Innenraum", titleEn: "Interior", src: "/upscaler-moblie/image-13.png" },
-    { id: 14, titleDe: "Maserung Holzfassade", titleEn: "Grain of wooden facade", src: "/upscaler-moblie/image-14.png" },
-    { id: 15, titleDe: "Vorstadt-Reihenhaus", titleEn: "Suburban Townhouse", src: "/upscaler-moblie/image-15.png" },
-    { id: 16, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: "/upscaler-moblie/image-16.png" },
-    { id: 17, titleDe: "Architektur-Studio", titleEn: "Architectural Studio", src: "/upscaler-moblie/image-17.png" }
+    { id: 1, titleDe: "Nachhaltiger Wohnungsbau", titleEn: "Sustainable housing", src: img1 },
+    { id: 2, titleDe: "Urbanes Loft", titleEn: "Urban Loft", src: img2 },
+    { id: 3, titleDe: "Vorstadt Reihenhaus", titleEn: "Suburban terraced house", src: img3 },
+    { id: 4, titleDe: "Monolithischer Betonturm", titleEn: "Monolithic Concrete Tower", src: img4 },
+    { id: 5, titleDe: "Glasfassade", titleEn: "Glass Facade", src: img5 },
+    { id: 6, titleDe: "Kunststeinfassade", titleEn: "Artificial Stone Facade", src: img6 },
+    { id: 7, titleDe: "Fassadendetails", titleEn: "Facade details", src: img7 },
+    { id: 8, titleDe: "Büro am Ufer", titleEn: "Waterfront Office", src: img8 },
+    { id: 9, titleDe: "Innenhof-Eingang", titleEn: "Courtyard Entrance", src: img9 },
+    { id: 10, titleDe: "Saniertes Mehrfamilienhaus", titleEn: "Renovated apartment building", src: img10 },
+    { id: 11, titleDe: "Holzfassade", titleEn: "Wooden Facade", src: img11 },
+    { id: 12, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: img12 },
+    { id: 13, titleDe: "Innenraum", titleEn: "Interior", src: img13 },
+    { id: 14, titleDe: "Maserung Holzfassade", titleEn: "Grain of wooden facade", src: img14 },
+    { id: 15, titleDe: "Vorstadt-Reihenhaus", titleEn: "Suburban Townhouse", src: img15 },
+    { id: 16, titleDe: "Mehrfamilienhaus", titleEn: "Apartment building", src: img16 },
+    { id: 17, titleDe: "Architektur-Studio", titleEn: "Architectural Studio", src: img17 }
   ]
 
   useEffect(() => {
@@ -173,11 +192,12 @@ export default function UpscaleMobilePage() {
 
                   {/* Image Container */}
                   <div className="relative w-full bg-neutral-100 dark:bg-neutral-950 overflow-hidden flex-1 flex items-center justify-center">
-                    <img
+                    <Image
                       src={item.src}
                       alt={locale === 'de' ? item.titleDe : item.titleEn}
                       className="w-full h-auto object-cover select-none"
-                      loading="lazy"
+                      placeholder="blur"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                 </div>

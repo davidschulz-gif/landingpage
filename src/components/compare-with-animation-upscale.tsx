@@ -226,9 +226,11 @@ export const CompareWithAnimationUpscale = ({
               secondImageClassname="object-cover w-full h-full"
               slideMode="drag"
               showHandlebar={true}
-              style={{
-                aspectRatio: activeProject.aspectRatio
-              }}
+                  style={{
+                    aspectRatio: activeProject.aspectRatio,
+                    maxHeight: '75vh',
+                    maxWidth: `calc(75vh * (${activeProject.aspectRatio}))`
+                  }}
             />
           </div>
         </div>
@@ -277,7 +279,9 @@ export const CompareWithAnimationUpscale = ({
                   slideMode="drag"
                   showHandlebar={true}
                   style={{
-                    aspectRatio: activeProject.aspectRatio
+                    aspectRatio: activeProject.aspectRatio,
+                    maxHeight: '65vh',
+                    maxWidth: `calc(65vh * (${activeProject.aspectRatio}))`
                   }}
                 />
               </div>
@@ -307,7 +311,9 @@ export const CompareWithAnimationUpscale = ({
                   slideMode="drag"
                   showHandlebar={true}
                   style={{
-                    aspectRatio: activeProject.id === 'urban-loft' ? "4480/5600" : activeProject.aspectRatio
+                    aspectRatio: activeProject.id === 'urban-loft' ? "4480/5600" : activeProject.aspectRatio,
+                    maxHeight: '65vh',
+                    maxWidth: `calc(65vh * (${activeProject.id === 'urban-loft' ? "4480/5600" : activeProject.aspectRatio}))`
                   }}
                 />
               </div>

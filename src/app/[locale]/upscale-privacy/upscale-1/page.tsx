@@ -9,6 +9,8 @@ import { Suspense, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IconArrowLeft, IconArrowRight, IconLock, IconTag } from '@tabler/icons-react'
 import { useSearchParams } from 'next/navigation'
+import Image from 'next/image'
+import batch2Preview from '../../../../../public/upscale-images copy/input/image-7.png'
 import { apiUrl } from '@/lib/constants'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { DesktopOnlyView } from '@/components/desktop-only-view'
@@ -330,10 +332,12 @@ function Upscale1Content() {
 
                   {/* Image Container */}
                   <div className="relative w-full aspect-[16/10] bg-neutral-100 dark:bg-neutral-950 overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-900/60 mb-6">
-                    <img
-                      src="/upscale-images copy/input/image-7.png"
+                    <Image
+                      src={batch2Preview}
                       alt="Batch 2 preview"
                       className="w-full h-full object-cover"
+                      placeholder="blur"
+                      sizes="(max-width: 1200px) 100vw, 1200px"
                     />
                   </div>
 
