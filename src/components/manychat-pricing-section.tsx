@@ -1168,7 +1168,7 @@ export function ManyChatPricingSection({
                 )}
                 {eduPromoDiscount.maxRedemptions && (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} {tModal('couponsLeft')}
+                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
                   </div>
                 )}
               </div>
@@ -1359,7 +1359,7 @@ export function ManyChatPricingSection({
                 </div>
                 {profPromoDiscount.maxRedemptions && (
                   <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base font-bold rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {tModal('couponsLeft')}
+                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
                   </div>
                 )}
               </div>
