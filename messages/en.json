@@ -344,7 +344,7 @@
     "first6MonthsCharged": "{amount} first 6 months charged",
     "firstYearCharged": "{amount} yearly charged",
     "discountBadge": "-50% Save {amount}",
-    "periodDiscountBadge": "Discount {percent}%; Save {amount}",
+    "periodDiscountBadge": "Discount {percent}% for 1st Year; Save {amount}",
     "bestDealBanner": "Our best deal — for a limited time.",
     "saveWithAnnual": "Save {amount} with annual billing",
     "plans": {

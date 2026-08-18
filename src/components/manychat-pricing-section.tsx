@@ -91,13 +91,13 @@ const professionalPlans = [
   {
     id: 'pro',
     name: 'PRO',
-    monthlyPrice: { eur: '€99', usd: '$99' },
+    monthlyPrice: { eur: '€149', usd: '$149' },
     threeMonthlyPrice: { eur: '€297', usd: '$297' },
     threeMonthlyMonthlyPrice: { eur: '€99', usd: '$99' },
     sixMonthPrice: { eur: '€594', usd: '$594' },
     sixMonthMonthlyPrice: { eur: '€99', usd: '$99' },
-    yearlyPrice: { eur: '€891', usd: '$891' },
-    yearlyMonthlyPrice: { eur: '€74.25', usd: '$74.25' },
+    yearlyPrice: { eur: '€894', usd: '$894' },
+    yearlyMonthlyPrice: { eur: '€74.50', usd: '$74.50' },
     planType: 'PRO',
     discount: {
       monthly: {
@@ -125,13 +125,13 @@ const professionalPlans = [
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
-        discountedMonthly: { eur: '€74.25', usd: '$74.25' },
-        periodDiscountPercent: 25,
-        periodSaveAmount: { eur: '€297', usd: '$297' },
-        originalCycle: { eur: '€1188', usd: '$1188' },
-        discountPercent: 25,
-        saveAmountCycle: { eur: '€297', usd: '$297' },
-        introFirstPeriod: { eur: '€891', usd: '$891' },
+        discountedMonthly: { eur: '€74.50', usd: '$74.50' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€894', usd: '$894' },
+        originalCycle: { eur: '€1788', usd: '$1788' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€894', usd: '$894' },
+        introFirstPeriod: { eur: '€894', usd: '$894' },
         introPeriodKey: 'billedYearly',
         bestDeal: false,
       },
@@ -159,8 +159,8 @@ const professionalPlans = [
     threeMonthlyMonthlyPrice: { eur: '€199', usd: '$199' },
     sixMonthPrice: { eur: '€1194', usd: '$1194' },
     sixMonthMonthlyPrice: { eur: '€199', usd: '$199' },
-    yearlyPrice: { eur: '€1910.40', usd: '$1910.40' },
-    yearlyMonthlyPrice: { eur: '€159.20', usd: '$159.20' },
+    yearlyPrice: { eur: '€1194', usd: '$1194' },
+    yearlyMonthlyPrice: { eur: '€99.50', usd: '$99.50' },
     planType: 'TEAM',
     discount: {
       monthly: {
@@ -188,13 +188,13 @@ const professionalPlans = [
         introPeriodKey: 'billedEvery6Months',
       },
       yearly: {
-        discountedMonthly: { eur: '€159.20', usd: '$159.20' },
-        periodDiscountPercent: 20,
-        periodSaveAmount: { eur: '€477.60', usd: '$477.60' },
+        discountedMonthly: { eur: '€99.50', usd: '$99.50' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€1194', usd: '$1194' },
         originalCycle: { eur: '€2388', usd: '$2388' },
-        discountPercent: 20,
-        saveAmountCycle: { eur: '€477.60', usd: '$477.60' },
-        introFirstPeriod: { eur: '€1910.40', usd: '$1910.40' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€1194', usd: '$1194' },
+        introFirstPeriod: { eur: '€1194', usd: '$1194' },
         introPeriodKey: 'billedYearly',
         bestDeal: true,
       },
@@ -2158,8 +2158,8 @@ function PricingCard({
           </span>
         )}
 
-        {/* Discount badge above price - manual promo discount */}
-        {isEligibleForPromo && priceInfo.discount?.periodDiscountPercent != null && (
+        {/* Discount badge above price - manual promo discount or default discount */}
+        {priceInfo.discount?.periodDiscountPercent != null && (
           <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
