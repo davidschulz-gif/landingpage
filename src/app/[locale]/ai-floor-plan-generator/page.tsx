@@ -12,6 +12,7 @@ import {
   IconHome,
   IconArrowRight
 } from '@tabler/icons-react'
+import { appUrl } from '@/lib/constants'
 
 export default function AIFloorPlanGeneratorLandingPage() {
   const locale = useLocale()
@@ -149,7 +150,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
               </p>
               <div className="pt-4">
                 <Link
-                  href={`/${locale}/create/aiFloorplan`}
+                  href={`${appUrl}/floor-plan`}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-lg"
                 >
                   {content.cta}
@@ -303,7 +304,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
             </p>
             <div className="pt-4">
                <Link
-                  href={`/${locale}/create/aiFloorplan`}
+                  href={`${appUrl}/floor-plan`}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-lg"
                 >
                   {content.cta}
