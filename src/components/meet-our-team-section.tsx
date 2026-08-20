@@ -50,11 +50,19 @@ const teamMembers = [
    {
     id: 'marie-kristin-foerste',
     role: 'ACCOUNT MANAGERIN',
-    name: 'Marie-Kristin Förste',
+    name: 'MARIE-KRISTIN FÖRSTE',
     image: '/team/marie-kristin-foerste.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: '#'
-  }
+  },
+   {
+    id: 'pascal-helfer',
+    role: 'ACCOUNT MANAGERIN',
+    name: 'PASCAL HELFER',
+    image: '/team/pascal-helfer.png',
+    subtext: "zeigt Ihnen die App in einem Video Call.",
+    linkedin: '#'
+  },
   // {
   //   id: 'marc-langer',
   //   name: 'MARC LANGER',
@@ -152,7 +160,7 @@ export function MeetOurTeamSection() {
                
 
                   {/* LinkedIn Link */}
-                  <motion.a
+               {member.linkedin !== '#'  &&   <motion.a
                     href={member.linkedin}
                     target='_blank'
                     rel='noopener noreferrer'
@@ -162,7 +170,7 @@ export function MeetOurTeamSection() {
                     aria-label={member.name}
                   >
                     <LinkedinIcon className='w-4 h-4' />
-                  </motion.a>
+                  </motion.a>}
 
                    { member?.subtext &&  <p
                       className='text-sm text-black mb-6'
