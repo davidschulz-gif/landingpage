@@ -25,7 +25,7 @@ const teamMembers = [
   },
   {
     id: 'adavkayser', 
-    role: 'ACCOUNT MANAGERIN',
+    role: 'ACCOUNT MANAGER',
     name: 'ADA VON KAYSER',
     image: '/team/adavkayser.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
@@ -40,7 +40,7 @@ const teamMembers = [
   // },
   {
     id: 'annika-fleig',
-    role: 'ACCOUNT MANAGERIN',
+    role: 'ACCOUNT MANAGER',
     name: 'ANNIKA FLEIG',
     image: '/team/annika fleig.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
@@ -49,7 +49,7 @@ const teamMembers = [
 
    {
     id: 'marie-kristin-foerste',
-    role: 'ACCOUNT MANAGERIN',
+    role: 'ACCOUNT MANAGER',
     name: 'MARIE-KRISTIN FÖRSTE',
     image: '/team/marie-kristin-foerste.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
@@ -57,7 +57,7 @@ const teamMembers = [
   },
    {
     id: 'pascal-helfer',
-    role: 'ACCOUNT MANAGERIN',
+    role: 'ACCOUNT MANAGER',
     name: 'PASCAL HELFER',
     image: '/team/pascal-helfer.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
@@ -104,7 +104,7 @@ export function MeetOurTeamSection() {
           </div>
 
         {/* Team Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto'>
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
