@@ -83,7 +83,7 @@ export const IntegrationsMarquee = () => {
               className="flex items-center gap-3 px-5 py-2.5 mx-3 bg-white dark:bg-neutral-900/60 border border-neutral-200/50 dark:border-neutral-800/80 rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.02)] whitespace-nowrap flex-shrink-0"
             >
               {/* Logo Wrapper forcing child SVG scaling */}
-              <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 [&>svg]:w-full [&>svg]:h-full">
+              <div className="h-6 min-w-6 flex items-center justify-center flex-shrink-0 [&>svg]:w-full [&>svg]:h-full [&>img]:h-full [&>img]:w-auto [&>img]:max-w-none [&>img]:object-contain">
                 {renderLogo(platform.hasLogo)}
               </div>
               <span className="text-[13px] font-bold text-neutral-800 dark:text-neutral-200 tracking-tight font-sans">
