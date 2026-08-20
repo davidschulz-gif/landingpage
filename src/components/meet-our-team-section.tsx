@@ -24,10 +24,10 @@ const teamMembers = [
     linkedin: '#',
   },
   {
-    id: 'adavkayser',
+    id: 'adavkayser', 
     role: 'ACCOUNT MANAGERIN',
     name: 'ADA VON KAYSER',
-    image: '/team/adavkayser.jpeg',
+    image: '/team/adavkayser.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: 'https://www.linkedin.com/in/adavkayser/'
   },
@@ -51,7 +51,7 @@ const teamMembers = [
     id: 'marie-kristin-foerste',
     role: 'ACCOUNT MANAGERIN',
     name: 'Marie-Kristin Förste',
-    image: '/team/marie-kristin-foerste.jpg',
+    image: '/team/marie-kristin-foerste.png',
     subtext: "zeigt Ihnen die App in einem Video Call.",
     linkedin: '#'
   }
