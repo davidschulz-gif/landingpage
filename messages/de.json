@@ -528,6 +528,8 @@
     "allPlans": "Alle Pläne",
     "couponLeft": "Gutschein übrig",
     "couponsLeft": "Gutscheine übrig",
+    "weeklyCouponTitle": "GUTSCHEIN FÜR DIE NÄCHSTE WOCHE: {code}",
+    "weeklyCouponValidUntil": "Gültig bis: {date}",
     "discountOff": "% Rabatt",
     "discountOffCaps": "% RABATT",
     "TrialWarningModal": {
