@@ -528,6 +528,8 @@
     "allPlans": "All Plans",
     "couponLeft": "coupon left",
     "couponsLeft": "coupons left",
+    "weeklyCouponTitle": "COUPON FOR THE NEXT WEEK: {code}",
+    "weeklyCouponValidUntil": "Valid until: {date}",
     "discountOff": "% off",
     "discountOffCaps": "% OFF",
     "TrialWarningModal": {

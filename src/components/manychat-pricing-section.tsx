@@ -1364,8 +1364,17 @@ export function ManyChatPricingSection({
                 )}
               </div>
             )}
+            {/* Weekly Coupon Banner */}
+            <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
+              <p className='text-xl md:text-2xl font-bold uppercase tracking-wide text-black' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {tModal('weeklyCouponTitle', { code: 'ADA798' })}
+              </p>
+              <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
+                {tModal('weeklyCouponValidUntil', { date: 'August 28, 2026' })}
+              </p>
+            </div>
           </div>
-        </div> 
+        </div>
 
         {/* Professional Plans Cards */}
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
@@ -2008,19 +2017,16 @@ function PricingCard({
 
   const priceInfo = getPriceDisplay()
   let isEligibleForPromo = !!promoDiscount;
-  if (promoDiscount && promoDiscount.validStripePriceIds && promoDiscount.validStripePriceIds.length > 0) {
-    // If the coupon has product restrictions via Stripe API
-    isEligibleForPromo = !!(priceInfo.stripePriceId && promoDiscount.validStripePriceIds.includes(priceInfo.stripePriceId));
-  } else if (promoDiscount) {
-    // Rely purely on the backend's provided logic for coupon validPlans/validBillingCycles
-    if (promoDiscount.validPlans && promoDiscount.validPlans.length > 0) {
-      isEligibleForPromo = isEligibleForPromo && promoDiscount.validPlans.includes(plan.name);
+    if (promoDiscount) {
+      // Always enforce the plan name check to ensure discounts apply to the right visual cards
+      if (promoDiscount.validPlans && promoDiscount.validPlans.length > 0) {
+        isEligibleForPromo = isEligibleForPromo && promoDiscount.validPlans.includes(plan.name);
+      }
+      if (promoDiscount.validBillingCycles && promoDiscount.validBillingCycles.length > 0) {
+        const currentCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly');
+        isEligibleForPromo = isEligibleForPromo && (promoDiscount.validBillingCycles.includes(currentCycle.toUpperCase()) || promoDiscount.validBillingCycles.includes(currentCycle.toLowerCase()));
+      }
     }
-    if (promoDiscount.validBillingCycles && promoDiscount.validBillingCycles.length > 0) {
-      const currentCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly');
-      isEligibleForPromo = isEligibleForPromo && (promoDiscount.validBillingCycles.includes(currentCycle.toUpperCase()) || promoDiscount.validBillingCycles.includes(currentCycle.toLowerCase()));
-    }
-  }
 
   if (isEligibleForPromo && priceInfo.mainPrice) {
     const numericMatch = priceInfo.mainPrice.match(/[\d,.]+/);
