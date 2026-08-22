@@ -43,7 +43,7 @@ const teamMembers = [
     role: 'ACCOUNT MANAGER',
     name: 'ANNIKA FLEIG',
     image: '/team/annika fleig.png',
-    subtext: "zeigt Ihnen die App in einem Video Call.",
+    subtext: "",
     linkedin: '#'
   },
 
@@ -52,7 +52,7 @@ const teamMembers = [
     role: 'ACCOUNT MANAGER',
     name: 'MARIE-KRISTIN FÖRSTE',
     image: '/team/marie-kristin-foerste.png',
-    subtext: "zeigt Ihnen die App in einem Video Call.",
+    subtext: "",
     linkedin: '#'
   },
    {
@@ -60,7 +60,7 @@ const teamMembers = [
     role: 'ACCOUNT MANAGER',
     name: 'PASCAL HELFER',
     image: '/team/pascal-helfer.png',
-    subtext: "zeigt Ihnen die App in einem Video Call.",
+    subtext: "",
     linkedin: '#'
   },
   // {
