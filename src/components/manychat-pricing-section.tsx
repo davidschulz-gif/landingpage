@@ -1365,14 +1365,16 @@ export function ManyChatPricingSection({
               </div>
             )}
             {/* Weekly Coupon Banner */}
-            <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
-              <p className='text-xl md:text-2xl font-bold uppercase tracking-wide text-black' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
-                {tModal('weeklyCouponTitle', { code: 'ADA798' })}
-              </p>
-              <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
-                {tModal('weeklyCouponValidUntil', { date: 'August 28, 2026' })}
-              </p>
-            </div>
+            {profPromoDiscount && profPromoCode?.trim().toUpperCase() === 'ADA798' && (
+              <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
+                <p className='text-xl md:text-2xl font-bold uppercase tracking-wide text-black' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  {tModal('weeklyCouponTitle', { code: 'ADA798' })}
+                </p>
+                <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
+                  {tModal('weeklyCouponValidUntil', { date: 'August 28, 2026' })}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
