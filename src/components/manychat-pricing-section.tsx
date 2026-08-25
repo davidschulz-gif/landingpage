@@ -1367,9 +1367,9 @@ export function ManyChatPricingSection({
             {/* Weekly Coupon Banner */}
             {profPromoDiscount && profPromoCode?.trim().toUpperCase() === 'ADA678' && (
               <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
-                <p className='text-xl md:text-2xl font-bold uppercase tracking-wide text-black' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                {/* <p className='text-xl md:text-2xl font-bold uppercase tracking-wide text-black' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                   {tModal('weeklyCouponTitle', { code: 'ADA678' })}
-                </p>
+                </p> */}
                 <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
                   {tModal('weeklyCouponValidUntil', { date: 'August 28, 2026' })}
                 </p>
