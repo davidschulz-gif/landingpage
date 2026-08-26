@@ -344,7 +344,7 @@
     "first6MonthsCharged": "{amount} first 6 months charged",
     "firstYearCharged": "{amount} yearly charged",
     "discountBadge": "-50% Save {amount}",
-    "periodDiscountBadge": "Discount {percent}% for 1st Year; Save {amount}",
+    "periodDiscountBadge": "Discount {percent}%; Save {amount}",
     "bestDealBanner": "Our best deal — for a limited time.",
     "saveWithAnnual": "Save {amount} with annual billing",
     "plans": {
@@ -699,7 +699,7 @@
     "errorPhone": "Phone number is required",
     "step2Cta": "Continue",
     "step3Title": "Now book an appointment for your free live demo.",
-    "step3Subtitle": "Book a free call now \u2013 tailored to your needs.",
+    "step3Subtitle": "Book a free call now – tailored to your needs.",
     "bookBothInstruction1": "1x Live Demo",
     "bookBothInstruction2": "1x individual needs analysis",
     "caseStudyBtn": "Case Study: AI in Architectural Competitions",

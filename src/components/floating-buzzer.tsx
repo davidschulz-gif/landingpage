@@ -9,20 +9,48 @@ import { usePathname } from 'next/navigation'
 export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
   const t = useTranslations('FloatingBuzzer')
   const [isVisible, setIsVisible] = useState(false)
+  const [isFooterVisible, setIsFooterVisible] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
+    let observer: IntersectionObserver | null = null
+
+    const attachObserver = () => {
+      const footerEl = document.querySelector('footer')
+      if (footerEl && !observer) {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            setIsFooterVisible(entry.isIntersecting)
+          },
+          { root: null, threshold: 0 }
+        )
+        observer.observe(footerEl)
+      }
+    }
+
     const handleScroll = () => {
-      // Show buzzer after scrolling 300px
-      if (window.scrollY > 300) {
+      attachObserver()
+      const scrollY = window.scrollY
+      const innerHeight = window.innerHeight
+      const scrollHeight = document.documentElement.scrollHeight
+
+      const isPastHero = scrollY > 300
+      const isNearBottom = innerHeight + scrollY >= scrollHeight - 450
+
+      if (isPastHero && !isNearBottom) {
         setIsVisible(true)
       } else {
         setIsVisible(false)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (observer) observer.disconnect()
+    }
   }, [])
 
   const handleClick = () => {
@@ -32,9 +60,11 @@ export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
   const shouldHide = pathname?.includes('/book-a-demo') || pathname?.includes('/pricing/order')
   if (shouldHide) return null
 
+  const showCTA = isVisible && !isFooterVisible
+
   return (
     <AnimatePresence>
-      {isVisible && (
+      {showCTA && (
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
