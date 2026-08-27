@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
+import { FloorPlanPricingSection } from '@/components/floor-plan-pricing-section'
 import {
   IconWand,
   IconClock,
@@ -267,6 +268,8 @@ export default function AIFloorPlanGeneratorLandingPage() {
             </div>
           </div>
         </section>
+
+        
 
         {/* FAQ SECTION */}
         <section className="py-24 bg-white dark:bg-neutral-950 px-5">

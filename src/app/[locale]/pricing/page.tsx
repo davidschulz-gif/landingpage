@@ -14,6 +14,7 @@ import { ArrowLeft } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { FloorPlanPricingSection } from '@/components/floor-plan-pricing-section'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -69,7 +70,7 @@ export default function PricingPage() {
     const token = searchParams.get('token')
     // const showBillingToggle = searchParams.get('disscountPlans') === 'true'
     const showBillingToggle = true
-    const [viewMode, setViewMode] = useState<'app' | 'education'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
 
     useEffect(() => {
         if (window.location.hash === '#student-plan') {
@@ -97,7 +98,7 @@ export default function PricingPage() {
                 {!token && (
                     <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                         <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
-                            {['education', 'app'].map((mode) => (
+                            {['education', 'app', 'floorplan'].map((mode) => (
                                 <button
                                     key={mode}
                                     onClick={() => setViewMode(mode as any)}
@@ -114,8 +115,10 @@ export default function PricingPage() {
                                     )}
                                     <span className='relative z-20'>
                                         {mode === 'app'
-                                            ? tHero('appOfferTitle')
-                                            : tHero('educationOfferTitle')}
+                                              ? tHero('appOfferTitle')
+                                              : mode === 'floorplan'
+                                                ? 'FLOOR PLAN'
+                                                : tHero('educationOfferTitle')}
                                     </span>
                                 </button>
                             ))}
@@ -133,6 +136,16 @@ export default function PricingPage() {
                             transition={{ duration: 0.3 }}
                         >
                             <ManyChatPricingSection isStandalone={true} showOnly="regular" verificationToken={token || undefined} showBillingToggle={showBillingToggle} />
+                        </motion.div>
+                    ) : viewMode === 'floorplan' ? (
+                        <motion.div
+                            key="floorplan"
+                            initial={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <FloorPlanPricingSection />
                         </motion.div>
                     ) : (
                         <motion.div
