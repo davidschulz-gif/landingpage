@@ -279,11 +279,8 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-6">
+              <div className="lg:col-span-6 space-y-6">
                 <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
                   Gefördert und wissenschaftlich begleitet
                 </h3>
@@ -330,9 +327,9 @@ export default function ResearchProjectsPage() {
                 </div>
               </div>
 
-              {/* Right Column: JUPITER Supercomputer Rack Photo */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 shadow-md h-80 sm:h-96">
+              {/* Right Column: JUPITER Supercomputer Rack Photo (Bigger) */}
+              <div className="lg:col-span-6">
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 shadow-md h-96 sm:h-[460px] md:h-[500px]">
                   <Image
                     src="/jupiter_rack_photo.png"
                     alt="JUPITER High-Performance Supercomputer Racks at Forschungszentrum Jülich"
@@ -367,11 +364,8 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-6">
+              <div className="lg:col-span-6 space-y-6">
                 <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
                   Ihre Produkte werden Teil des KI-Modells
                 </h3>
@@ -410,9 +404,9 @@ export default function ResearchProjectsPage() {
                 </div>
               </div>
 
-              {/* Right Column: Pure Architectural House Building Render Image */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-md h-80 sm:h-96">
+              {/* Right Column: Pure Architectural House Building Render Image (Bigger) */}
+              <div className="lg:col-span-6">
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-md h-96 sm:h-[460px] md:h-[500px]">
                   <Image
                     src="/architectural_building_render.png"
                     alt="Fotorealistische Fassaden- & Materialvisualisierung - Modern Building Architecture Render"
@@ -433,9 +427,6 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase text-blue-600 dark:text-blue-400 font-bold">03</span>
               <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
@@ -488,9 +479,9 @@ export default function ResearchProjectsPage() {
                 </div>
               </div>
 
-              {/* Right Column: Clean Laptop Material Catalog UI Image */}
+              {/* Right Column: Clean Laptop Material Catalog UI Image (Bigger) */}
               <div className="lg:col-span-6">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xs h-72 sm:h-80 flex items-center justify-center p-3">
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xs h-80 sm:h-[420px] md:h-[460px] flex items-center justify-center p-3">
                   <Image
                     src="/laptop_material_catalog.png"
                     alt="Digital Material Catalog UI on Laptop - Typus.AI Workflow"
@@ -511,9 +502,6 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
               Ihre Vorteile auf einen Blick
             </h3>
@@ -547,9 +535,6 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.9 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <div className="space-y-2">
               <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
                 Was Sie einreichen können
@@ -586,9 +571,9 @@ export default function ResearchProjectsPage() {
                 </div>
               </div>
 
-              {/* Right Column: Material Samples Showcase Image & 3 Standards Badges */}
+              {/* Right Column: Material Samples Showcase Image & 3 Standards Badges (Bigger) */}
               <div className="lg:col-span-6 space-y-6">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xs h-72 sm:h-80 flex items-center justify-center p-3">
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xs h-80 sm:h-[420px] md:h-[460px] flex items-center justify-center p-3">
                   <Image
                     src="/material_samples_showcase.png"
                     alt="Digital Material Samples Showcase - High Resolution PBR"
@@ -628,9 +613,6 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 1.0 }}
             className="w-full space-y-10"
           >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
             <h3 className="heading-primary text-2xl md:text-4xl text-black dark:text-white">
               Was die Teilnahme beinhaltet
             </h3>
@@ -713,7 +695,7 @@ export default function ResearchProjectsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
-            className="w-full space-y-10"
+            className="w-full space-y-8"
           >
             {/* Partner Logos Header Bar */}
             <PartnerHeaderLogos />
@@ -722,36 +704,39 @@ export default function ResearchProjectsPage() {
               Integration in ein EU-konformes KI-Modell
             </h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
               {/* Main Package (5.000 €) */}
-              <div className="lg:col-span-7 p-8 md:p-10 rounded-3xl bg-white dark:bg-neutral-900 border-2 border-blue-600 shadow-lg space-y-8 relative overflow-hidden flex flex-col justify-between">
-                <div className="absolute top-0 right-0 px-6 py-2 bg-blue-600 text-white text-xs font-bold uppercase tracking-widest rounded-bl-2xl">
+              <div className="lg:col-span-7 p-6 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-md space-y-6 relative overflow-hidden flex flex-col justify-between">
+                <div className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[11px] font-bold uppercase tracking-widest rounded-bl-xl font-mono">
                   EMPFEHLUNG
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/80">
-                      <Database className="w-7 h-7" />
+                    <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400">
+                      <Database className="w-6 h-6" />
                     </div>
                     <div>
-                      <span className="text-xs font-mono uppercase text-blue-600 dark:text-blue-400 font-bold block">FÜR DIE GESAMTE PRODUKTPALETTE</span>
-                      <h4 className="heading-primary text-xl text-black dark:text-white">Integration in ein EU-konformes KI-Modell</h4>
+                      <h4 className="heading-primary text-lg md:text-xl text-black dark:text-white font-bold">
+                        Integration in ein EU-konformes KI-Modell
+                      </h4>
                     </div>
                   </div>
 
-                  <div className="flex items-baseline gap-3 pt-2">
-                    <span className="text-5xl md:text-6xl font-extrabold text-black dark:text-white font-mono">5.000 €</span>
-                    <span className="text-sm text-neutral-500 dark:text-neutral-400">netto zzgl. USt.</span>
+                  <div className="flex items-baseline gap-3 pt-1">
+                    <span className="text-4xl md:text-5xl font-extrabold text-black dark:text-white font-mono">5.000 €</span>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-400 font-mono">netto zzgl. USt.</span>
                   </div>
-                  <p className="subheading-primary text-sm text-neutral-700 dark:text-neutral-300">
-                    {isDe
-                      ? 'Vollständige Aufbereitung und Integration Ihrer gesamten Materialproduktpalette in unser EU-konformes KI-Modell.'
-                      : 'Complete processing and integration of your entire material product palette into our EU-compliant AI model.'}
-                  </p>
+
+                  <div>
+                    <span className="px-3.5 py-1 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 font-bold text-[11px] uppercase tracking-wider rounded-lg inline-block font-mono">
+                      FÜR DIE GESAMTE PRODUKTPALETTE
+                    </span>
+                  </div>
                 </div>
 
-                <div className="space-y-3.5">
+                {/* Feature List with Subtle Horizontal Divider Lines */}
+                <div className="divide-y divide-neutral-100 dark:divide-neutral-800/80">
                   {[
                     { icon: Sparkles, text: isDe ? 'Aufbereitung der Materialien für die KI-gestützte Visualisierung' : 'Material processing for AI-assisted visualization' },
                     { icon: FileCheck, text: isDe ? 'Strukturierung relevanter Produkt- und Materialdaten' : 'Structuring of product and material data' },
@@ -759,49 +744,54 @@ export default function ResearchProjectsPage() {
                     { icon: Brain, text: isDe ? 'Vorbereitung und Integration der Daten für das anwendungsspezifische KI-Modell' : 'Preparation and integration for application-specific AI model' },
                     { icon: ShieldCheck, text: isDe ? 'Qualitätskontrolle und Abstimmung der Produktdaten' : 'Quality control & alignment of product data' }
                   ].map((feat, i) => (
-                    <div key={i} className="flex items-center gap-3.5 text-sm text-neutral-800 dark:text-neutral-200">
-                      <feat.icon className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                    <div key={i} className="flex items-center gap-3 py-2.5 text-xs md:text-sm text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0">
+                      <feat.icon className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span>{feat.text}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="p-4.5 rounded-2xl bg-cyan-50/70 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-900/60 flex items-start gap-3.5 text-xs text-cyan-900 dark:text-cyan-200">
-                  <Gift className="w-5 h-5 text-cyan-600 dark:text-cyan-400 flex-shrink-0 mt-0.5" />
+                {/* Bonus Gift Box */}
+                <div className="p-4 rounded-2xl bg-blue-50/70 dark:bg-neutral-950 border border-blue-100 dark:border-neutral-800 flex items-start gap-3 text-xs text-neutral-800 dark:text-neutral-200">
+                  <Gift className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
-                    <strong className="font-bold text-cyan-900 dark:text-cyan-300 block uppercase">INKLUSIVE: KOSTENLOSE LISTUNG AUF TYPUS.AI BIS ZUM ROLLOUT</strong>
-                    <span className="text-neutral-600 dark:text-neutral-400 block">Keine zusätzlichen Listungsgebühren während der Entwicklungs- und Integrationsphase.</span>
+                    <strong className="font-bold text-blue-900 dark:text-blue-300 block uppercase tracking-wide text-[11px]">
+                      INKLUSIVE: KOSTENLOSE LISTUNG AUF TYPUS.AI BIS ZUM ROLLOUT
+                    </strong>
+                    <span className="text-neutral-600 dark:text-neutral-400 block text-[11px]">
+                      Keine zusätzlichen Listungsgebühren während der Entwicklungs- und Integrationsphase.
+                    </span>
                   </div>
                 </div>
 
                 <Link
                   href="/book-a-demo"
-                  className="w-full py-4 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold text-center block hover:bg-neutral-800 dark:hover:bg-neutral-200 transition text-base uppercase tracking-wider shadow-md"
+                  className="w-full py-3.5 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold text-center block hover:bg-neutral-800 dark:hover:bg-neutral-200 transition text-sm uppercase tracking-wider shadow-sm"
                 >
                   {isDe ? 'Jetzt Projekt anfragen' : 'Request Project Integration'}
                 </Link>
               </div>
 
               {/* Single Product Alternative (1.000 €) */}
-              <div className="lg:col-span-5 p-8 rounded-3xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-8 flex flex-col justify-between text-center">
+              <div className="lg:col-span-5 p-6 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between text-center">
                 <div className="space-y-5">
-                  <div className="w-14 h-14 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800/80 flex items-center justify-center mx-auto text-cyan-600 dark:text-cyan-400">
-                    <Box className="w-7 h-7" />
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+                    <Box className="w-6 h-6" />
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-xs font-mono uppercase text-cyan-600 dark:text-cyan-400 font-bold tracking-widest block">ALTERNATIVE</span>
-                    <h4 className="heading-primary text-lg text-black dark:text-white uppercase tracking-wider">EINZELPRODUKT</h4>
+                    <span className="text-xs font-mono uppercase text-blue-600 dark:text-blue-400 font-bold tracking-widest block">ALTERNATIVE</span>
+                    <h4 className="heading-primary text-base font-bold text-black dark:text-white uppercase tracking-wider">EINZELPRODUKT</h4>
                   </div>
 
-                  <div className="pt-1">
-                    <span className="text-4xl font-extrabold text-black dark:text-white font-mono">1.000 €</span>
-                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block pt-0.5">netto / Produkt</span>
+                  <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                    <span className="text-3xl md:text-4xl font-extrabold text-black dark:text-white font-mono">1.000 €</span>
+                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block pt-0.5 font-mono">netto / Produkt</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 space-y-4">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 flex items-center justify-center mx-auto">
+                <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800 space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
                     <LayoutGrid className="w-5 h-5" />
                   </div>
                   <p className="subheading-primary text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -813,11 +803,19 @@ export default function ResearchProjectsPage() {
 
                 <Link
                   href="/book-a-demo"
-                  className="w-full py-3.5 rounded-2xl bg-neutral-900 dark:bg-neutral-800 text-white font-bold text-center block hover:bg-black dark:hover:bg-neutral-700 transition text-sm uppercase tracking-wider"
+                  className="w-full py-3.5 rounded-2xl bg-neutral-900 dark:bg-neutral-800 text-white font-bold text-center block hover:bg-black dark:hover:bg-neutral-700 transition text-xs uppercase tracking-wider shadow-xs"
                 >
                   {isDe ? 'Einzelprodukt anfragen' : 'Request Single Product'}
                 </Link>
               </div>
+            </div>
+
+            {/* Bottom EU Funding Footer Badge */}
+            <div className="flex items-center gap-3 text-xs text-neutral-500 font-mono pt-4 border-t border-neutral-200 dark:border-neutral-800">
+              <span className="w-5 h-5 rounded-full border border-neutral-400 dark:border-neutral-600 flex items-center justify-center text-[10px] flex-shrink-0">
+                🇪🇺
+              </span>
+              <span>Gefördert im FFplus Programm der Europäischen Union</span>
             </div>
           </motion.div>
         </section>
