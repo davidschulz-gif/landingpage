@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
+import { ManyChatPricingSection } from '@/components/manychat-pricing-section'
 import { FloorPlanPricingSection } from '@/components/floor-plan-pricing-section'
 import { FloorPlanIframeSection } from '@/components/floor-plan-iframe-section'
 import {
@@ -273,7 +274,10 @@ export default function AIFloorPlanGeneratorLandingPage() {
           </div>
         </section>
 
-        
+        {/* PRICING SECTION */}
+        <section className="py-12 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900">
+          <ManyChatPricingSection isStandalone={true} showOnly="floorplan" />
+        </section>
 
         {/* FAQ SECTION */}
         <section className="py-24 bg-white dark:bg-neutral-950 px-5">
