@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button'
 import { Check } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
+import { useState, useEffect } from 'react'
+import { apiUrl } from '@/lib/constants'
 
 const floorPlanPackages = [
   {
@@ -56,6 +58,27 @@ const floorPlanPackages = [
 ]
 
 export function FloorPlanPricingSection() {
+  const [plansData, setPlansData] = useState<any[]>([]);
+  const apiBaseUrl = `${apiUrl}/api/subscription/public/`;
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}plans?currency=eur`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.floorPlans) { setPlansData(data.floorPlans); }
+        }
+      } catch (error) {
+        console.error('Error fetching floor plans:', error);
+      }
+    };
+    fetchPlans();
+  }, [apiBaseUrl]);
+
+  // Helper: get matching API plan by planType
+  const getApiPlan = (pkgName: string) =>
+    plansData.find(p => p.planType === pkgName);
   const t = useTranslations('Pricing')
   const locale = useLocale()
 
@@ -111,7 +134,13 @@ export function FloorPlanPricingSection() {
                       className='text-3xl sm:text-4xl font-normal tracking-tight text-black' 
                       style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     >
-                      €{pkg.price}
+                      €{(() => {
+                        const apiPlan = getApiPlan(pkg.name);
+                        if (apiPlan?.prices?.monthly) {
+                          return (apiPlan.prices.monthly / 100).toFixed(0);
+                        }
+                        return pkg.price;
+                      })()}
                     </span>
                     <span 
                       className='text-xs sm:text-sm text-gray-500' 
@@ -148,7 +177,14 @@ export function FloorPlanPricingSection() {
                 className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 transition-all duration-200 rounded-2xl'
                 style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                 disabled={true}
-                onClick={() => alert('Stripe integration pending for floor plan packages.')}
+                onClick={() => {
+                  const apiPlan = getApiPlan(pkg.name);
+                  if (apiPlan) {
+                    alert('Floor Plan Checkout will open for: ' + apiPlan.name);
+                  } else {
+                    alert('Stripe integration pending for floor plan packages.');
+                  }
+                }}
               >
                 {t('subscribe')}
               </Button>

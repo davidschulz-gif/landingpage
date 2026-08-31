@@ -296,7 +296,7 @@ export function ManyChatPricingSection({
   showBillingToggle = false,
 }: { 
   isStandalone?: boolean
-  showOnly?: 'regular' | 'educational' | 'all'
+  showOnly?: 'regular' | 'educational' | 'all' | 'floorplan'
   verificationToken?: string
   showBillingToggle?: boolean
 }) {
@@ -337,6 +337,7 @@ export function ManyChatPricingSection({
   }, [showBillingToggle])
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
+  const [floorPlans, setFloorPlans] = useState<any[]>([]);
   const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
   const [isVat, setIsVat] = useState<boolean>(true);
   const [locationContinent, setLocationContinent] = useState<string | null>(null);
@@ -414,6 +415,7 @@ export function ManyChatPricingSection({
           const planType = (resData.plan || 'PRO').toUpperCase()
           const billingCycle = resData.billing || 'monthly'
           const isEdu = resData.isEducational ?? false
+          const isFP = resData.isFloorPlan ?? false
 
           // Find the price ID from fetched plans (will be set once plans load)
           // We set the plan info now; priceId will be filled in after plans load
@@ -422,6 +424,7 @@ export function ManyChatPricingSection({
             billingCycle,
             priceId: null,
             isEducational: isEdu,
+            isFloorPlan: isFP,
           })
 
           // Clean the token from the URL without a page reload
@@ -614,6 +617,7 @@ export function ManyChatPricingSection({
       billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
       priceId: priceInfo.stripePriceId,
       isEducational: isEdu,
+      isFloorPlan: plan.isFloorPlan ? true : false,
       eligiblePromoCode: code || null
     })
     setIsModalOpen(true)
@@ -655,6 +659,7 @@ export function ManyChatPricingSection({
         body: JSON.stringify({
           email: userEmail.trim(),
           isEducational: selectedPlanForModal.isEducational ? true : false,
+          isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
           plan: selectedPlanForModal.planType?.toLowerCase(),
           billing: selectedPlanForModal.billingCycle?.toLowerCase(),
           language: locale,
@@ -845,6 +850,7 @@ export function ManyChatPricingSection({
           planType: selectedPlanForModal.planType,
           billingCycle: mappedBillingCycle,
           isEducational: selectedPlanForModal.isEducational,
+          isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
           promoCode: selectedPlanForModal.eligiblePromoCode || null,
           currency: planCurrency,
           cancelUrl: window.location.href,
@@ -1034,6 +1040,7 @@ export function ManyChatPricingSection({
 
       setPlans(plansData?.regularPlans);
       setEducationalPlans(plansData?.educationalPlans);
+      setFloorPlans(plansData?.floorPlans || []);
       setPlanCurrency(plansData?.currency);
       if (plansData?.location?.isVat !== undefined) {
         setIsVat(plansData.location.isVat);
@@ -1219,6 +1226,176 @@ export function ManyChatPricingSection({
     )
   }
 
+  const floorPlanStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
+    LITE: {
+      description: 'Für persönliche Projekte und gelegentliche Raumideen.',
+      features: [
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '800 monatliche Credits',
+        'Basis-Warteschlange',
+        'Bis zu 6 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        'Persönliche Projekte und leichte Kundenarbeit',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+    MEHR: {
+      description: 'Für Innenräume, Außenbereiche und Immobilien-Visuals.',
+      isPopular: true,
+      features: [
+        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '3.000 monatliche Credits',
+        'Schnellere Warteschlange',
+        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
+        'Bis zu 15 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+    PRO: {
+      description: 'Für Teams, Studios und umfangreiche Immobilienprojekte.',
+      features: [
+        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '9.999 monatliche Credits',
+        'Warteschlange mit höchster Priorität',
+        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
+        'Bis zu 30 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+  };
+
+  const renderFloorPlanSection = () => {
+    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
+
+    return (
+      <>
+        <div className='text-center mb-8 sm:mb-12'>
+          <h2 className='heading-primary'>Floor plans</h2>
+        </div>
+        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+          {floorPlans.map((plan: any) => {
+            const staticData = floorPlanStaticData[plan.planType] || {};
+            const monthlyPrice = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
+            const priceId = plan.stripePrices?.MONTHLY;
+
+            const priceInfo = {
+              mainPrice: `${currencySymbol}${monthlyPrice}`,
+              period: '/month',
+              billingInfo: t('billedMonthly'),
+              stripePriceId: priceId,
+            };
+
+            return (
+              <div
+                key={plan.planType}
+                className='flex h-auto lg:h-[700px] mb-4 flex-col p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl w-full max-w-sm mx-auto'
+                style={{ backgroundColor: '#ffffff', color: '#000000' }}
+              >
+                {staticData.isPopular && (
+                  <div className='absolute -top-2 left-0 z-30 origin-top-left'>
+                    <div className='relative transform -rotate-12'>
+                      <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
+                        <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
+                        <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
+                        <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
+                        <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
+                        <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
+                        <span
+                          className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
+                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        >
+                          {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
+                        </span>
+                      </div>
+                      <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
+                    </div>
+                  </div>
+                )}
+
+                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
+                  <span
+                    className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
+                    style={{ fontFamily: 'var(--font-ft-calhern), sans-serif' }}
+                  >
+                    {plan.planType}
+                  </span>
+
+                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
+                    {staticData.description || plan.description}
+                  </span>
+
+                  <div className='mb-3'>
+                    <div className='flex items-baseline justify-center gap-1'>
+                      <span
+                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
+                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {currencySymbol}{monthlyPrice}
+                      </span>
+                      <span
+                        className='text-xs sm:text-sm text-gray-500'
+                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {locale === 'de' ? '/Monat' : '/month'}
+                      </span>
+                    </div>
+                    <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
+                      <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                        {t('billedMonthly')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
+                  <ul className='space-y-4'>
+                    {(staticData.features || []).map((feature: string, idx: number) => (
+                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
+                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
+                        <span
+                          className='text-[10px] font-bold tracking-wider text-gray-900'
+                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className='mt-auto pt-4 border-t border-gray-100'>
+                  <button
+                    className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 transition-all duration-200 rounded-2xl'
+                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    onClick={() => handleSubscribe(
+                      {
+                        planType: plan.planType,
+                        billingCycle: 'monthly',
+                        isEducational: false,
+                        isFloorPlan: true,
+                        name: plan.name,
+                        fetchedData: plan,
+                      },
+                      priceInfo,
+                      false,
+                      true
+                    )}
+                  >
+                    {t('subscribe')}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>
+    );
+  };
+
   return (
     <section
       ref={containerRef}
@@ -1232,8 +1409,11 @@ export function ManyChatPricingSection({
         {/* Educational Plans at the top if requested */}
         {showOnly === 'educational' && renderEducationSection()}
 
+        {/* Floor Plan Section */}
+        {showOnly === 'floorplan' && renderFloorPlanSection()}
+
         {/* Professional Section */}
-        {showOnly !== 'educational' && (
+        {showOnly !== 'educational' && showOnly !== 'floorplan' && (
           <>
             <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
               {/* Countdown Timer */}

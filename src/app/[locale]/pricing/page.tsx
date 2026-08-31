@@ -7,14 +7,12 @@ import { FooterSection } from '@/components/footer-section'
 import { ToastProvider } from '@/components/providers/toast-provider'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import { useLocale } from 'next-intl'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { FloorPlanPricingSection } from '@/components/floor-plan-pricing-section'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -145,7 +143,7 @@ export default function PricingPage() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <FloorPlanPricingSection />
+                            <ManyChatPricingSection isStandalone={true} showOnly="floorplan" verificationToken={token || undefined} />
                         </motion.div>
                     ) : (
                         <motion.div
