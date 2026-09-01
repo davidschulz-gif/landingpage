@@ -13,6 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Zurück zur Startseite",
     "solutions": "LÖSUNGEN",
+    "research": "FORSCHUNG",
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
@@ -35,6 +36,10 @@
         "overviewOfFeatures": {
           "title": "Funktions-Übersicht",
           "description": "Entdecken Sie alle KI-Werkzeuge und Funktionen im Überblick"
+        },
+        "research": {
+          "title": "KI-Forschung (FFplus)",
+          "description": "Integration realer Bauprodukte in unser EU-konformes KI-Modell"
         },
         "bilderFlatrate": {
           "title": "Bilder-Flatrate",
@@ -612,6 +617,7 @@
       "create": "Erstellen",
       "edit": "Bearbeiten",
       "upscale": "Hochskalieren",
+      "research": "KI-Forschung (FFplus)",
       "tutorials": "Tutorials",
       "press": "Presse",
       "reviews": "Bewertungen",
@@ -3106,5 +3112,141 @@
     "footer_link": "ffplus-project.eu",
     "footer_desc_1": "FFplus ist eine europäische Initiative, die den Einsatz von High-Performance-Computing (HPC) und Künstlicher Intelligenz (KI) bei KMU und Start-ups in ganz Europa in den Vordergrund stellt und die geschäftlichen Vorteile und Auswirkungen der Einführung von HPC und KI in realen Geschäftsmodellen aufzeigt.",
     "footer_desc_2": "FFplus ist der Nachfolger früherer Fortissimo-Projekte (Fortissimo 1 und 2, FF4EuroHPC), die sich direkt damit befasst haben, wie Barrieren für KMU durch den Einsatz von HPC, HPDA oder KI zur Optimierung oder Entwicklung von Produkten oder Prozessen überwunden werden können und darauf abzielen, die globale Wettbewerbsfähigkeit der europäischen Industrie zu stärken."
+  },
+  "ResearchPage": {
+    "slide1": {
+      "activeUsers": "hat mehr als 2500 Aktive Nutzer"
+    },
+    "slide2": {
+      "awardDesc": "wurde bereits in der Pre-Seed-Phase als eines von vier Finalisten für den Digital Innovation Award 2024 ausgewählt. Der Preis wurde vom Bundesverband Digitales Bauwesen (BDBau) vergeben und würdigt herausragende technologische Innovationen in der Bauindustrie. Zudem wurden wir von Tech in Construction entsprechend anerkannt.",
+      "bdbauDesc": "ist Mitglied im Bundesverband Digitales Bauwesen. Wir fühlen uns geehrt, zu den Start-ups in Deutschland zu gehören, die die Digitalisierung der Bauindustrie vorantreiben – und dabei als Vertreter im Bereich KI-gestützter Bildgenerierung zu wirken."
+    },
+    "slide3": {
+      "desc": "Seither wurde die App in zahlreichen Fachzeitschriften publiziert und auf etablierten Messen vorgestellt."
+    },
+    "slide4": {
+      "desc": "2025 wurde ein Förderantrag für eine Kofinanzierung durch das EFRE/JTF-Programm NRW 2021-2027 bewilligt. Europa für Regionale Entwicklung."
+    },
+    "slide5": {
+      "badge": "SUPERCOMPUTER JUPITER EINGEWEIHT",
+      "title": "Europäisch ist Hochleistungsrechnen richtig gedacht",
+      "subtitle": "Am Forschungszentrum Jülich ist der neue Supercomputer eingeweiht worden. Er ist ein europäisches System – und das ist auch für die deutsche Forschung gut.",
+      "dateAuthor": "5. September 2025 um 15:36 Uhr / Von Johannes Hiltscher",
+      "tag": "JÜLICH FORSCHUNGSZENTRUM",
+      "caption": "Bild: Forschungszentrum Jülich / Ralf-Udo Thiele",
+      "source": "Quelle: golem.de / supercomputer-jupiter-eingeweiht"
+    },
+    "slide6": {
+      "title": "Gefördert und wissenschaftlich begleitet",
+      "statusApproved": "bewilligt",
+      "efreTitle": "EFRE / JTF NRW 2021–27",
+      "ffplusTitle": "FORTISSIMO PLUS (FFplus)",
+      "ffplusDesc": "Kooperation mit dem RWTH Aachen AI Center / Lehrstuhl für Computergraphik, Prof. Dr. rer. nat. Leif Kobbelt",
+      "partnerTitle": "Kooperationen & Partner",
+      "partnerDesc": "Lehrstuhl Bauinformatik, RWTH Aachen (Prof. Blankenbach)",
+      "deadline": "Einreichfrist: 15. Oktober",
+      "rackTag": "SUPERCOMPUTER RACKS",
+      "rackTitle": "JUPITER",
+      "rackSubtitle": "High-Performance AI-Factory Cluster Jülich × RWTH Aachen"
+    },
+    "slide7": {
+      "title": "Ihre Produkte werden Teil des KI-Modells",
+      "badge": "FFplus × RWTH Aachen",
+      "desc": "Wir entwickeln gemeinsam anwendungsspezifische KI-Modelle für Architekturvisualisierungen und trainieren diese auf JUPITER, einem europäischen AI-Factory-Supercomputer am Forschungszentrum Jülich.",
+      "coopLabel": "In Kooperation mit",
+      "professorName": "Prof. Dr. rer. nat. Leif Kobbelt",
+      "professorTitle": "Universitätsprofessor, Lehrstuhl für Computergraphik, Geometrie und Multimedia (Informatik 8), Instituts- und Lehrstuhlleitung RWTH Aachen University"
+    },
+    "videoSlide": {
+      "badge": "FORSCHUNG & EXZELLENZ",
+      "title": "Wissenschaftliche Vorträge von Prof. Dr. Leif Kobbelt",
+      "subtitle": "Einblicke in die Computergrafik und 3D-Geometrieverarbeitung am Lehrstuhl für Informatik 8 (Computergrafik) der RWTH Aachen.",
+      "video1Title": "Der Zauber der 3D-Computergrafik",
+      "video1Desc": "Vortrag von Prof. Dr. Leif Kobbelt über die Entstehung, Magie und Zukunft visueller Technologien in der Computergrafik.",
+      "video2Title": "Leibniz-Preisträger 2014 – Prof. Dr. Leif Kobbelt",
+      "video2Desc": "Auszeichnung mit dem Gottfried Wilhelm Leibniz-Preis für herausragende wissenschaftliche Spitzenforschung."
+    },
+    "slide8": {
+      "badge": "03",
+      "title": "Vom Materialkatalog in die Planung",
+      "subtitle": "Ihre Produkte werden direkt in den digitalen Planungsprozess integriert.",
+      "checklist": [
+        "Materialien in der Entwurfsphase auswählen",
+        "Reale Texturen und Oberflächen visualisieren",
+        "Produkte direkt in Architekturvisualisierungen einsetzen",
+        "Materialien frühzeitig mit konkreten Bauvorhaben verknüpfen"
+      ],
+      "advantageBadge": "Ihr Vorteil",
+      "advantageDesc": "Ihr Produkt wird nicht erst bei der Ausschreibung sichtbar, sondern bereits während der ersten Entwurfsentscheidung.",
+      "workflowBadge": "Direkt im Workflow",
+      "workflowDesc": "Ihre Materialien stehen Planenden in allen Phasen zur Verfügung – vom Entwurf bis zur Visualisierung."
+    },
+    "slide9": {
+      "title": "Ihre Vorteile auf einen Blick",
+      "items": [
+        { "num": "01", "title": "Frühe Produktpräsenz", "desc": "Sichtbarkeit bereits in der Entwurfsphase." },
+        { "num": "02", "title": "Digitaler Vertriebskanal", "desc": "Direkt im Planungsworkflow integriert." },
+        { "num": "03", "title": "KI-basierte Produktvisualisierung", "desc": "Reale Produkte in generativen Visualisierungen." },
+        { "num": "04", "title": "Zugang zu Architekt:innen", "desc": "Direkter Kontakt zu einer wachsenden Nutzergruppe." },
+        { "num": "05", "title": "Zukunftssichere Datenbasis", "desc": "Für BIM-, KI- und Visualisierungsworkflows." }
+      ]
+    },
+    "slide10": {
+      "title": "Was Sie einreichen können",
+      "subtitle": "Hochwertige, digitalisierte Materialdaten als Basis für realitätsnahe KI-Modelle.",
+      "inputs": [
+        { "title": "Hochauflösende Texturen", "desc": "Nahtlose, fotorealistische Materialtexturen" },
+        { "title": "Oberflächenmaterialien", "desc": "für Wand, Decke und Fassade" },
+        { "title": "Produktvarianten und relevante Oberflächen", "desc": "Verschiedene Oberflächen- & Farbvarianten" },
+        { "title": "Vorhandene digitale Produktdaten", "desc": "z. B. BIM- oder CAD-Daten, PBR-Maps" }
+      ],
+      "notice": "Je besser die digitalen Materialdaten, desto präziser können Ihre Produkte später visualisiert werden.",
+      "badge1": { "title": "Digital.", "subtitle": "Standardisiert." },
+      "badge2": { "title": "Planungsgerecht.", "subtitle": "BIM-ready." },
+      "badge3": { "title": "Zukunftsfähig.", "subtitle": "Nachhaltig." }
+    },
+    "slide11": {
+      "title": "Was die Teilnahme beinhaltet",
+      "card1Title": "Sie stellen bereit",
+      "card1Desc": "Digitale Materialproben und relevante Produktdaten.",
+      "card2Title": "Wir übernehmen",
+      "card2Desc": "Aufbereitung, Integration und technische Anbindung der Daten an unsere Plattform und das KI-Modell.",
+      "card3Title": "Ihre Produkte erhalten",
+      "card3List": [
+        "Kostenlose Listung auf der Plattform bis zum Rollout",
+        "Firmenlogo auf unserer Website",
+        "Integration in die digitale Materialdatenbank",
+        "Perspektivisch KI-gestützte Visualisierung Ihrer Produkte"
+      ],
+      "card4Title": "Für die einmalige Aufbereitung und",
+      "card4Desc": "Integration der Produktdaten fällt eine Setup-Gebühr an.",
+      "card5Title": "Gemeinsam zum Erfolg",
+      "card5Desc": "Stärken Sie die digitale Sichtbarkeit Ihrer Marke und gestalten Sie mit uns die Zukunft der Architekturvisualisierung."
+    },
+    "slide12": {
+      "title": "Integration in ein EU-konformes KI-Modell",
+      "recommendedBadge": "EMPFEHLUNG",
+      "mainTitle": "Integration in ein EU-konformes KI-Modell",
+      "mainPrice": "5.000 €",
+      "mainVat": "netto zzgl. USt.",
+      "mainScope": "FÜR DIE GESAMTE PRODUKTPALETTE",
+      "mainFeatures": [
+        "Aufbereitung der Materialien für die KI-gestützte Visualisierung",
+        "Strukturierung relevanter Produkt- und Materialdaten",
+        "Integration in die TYPUS.AI Materialbibliothek",
+        "Vorbereitung und Integration der Daten für das anwendungsspezifische KI-Modell",
+        "Qualitätskontrolle und Abstimmung der Produktdaten"
+      ],
+      "bonusTitle": "INKLUSIVE: KOSTENLOSE LISTUNG AUF TYPUS.AI BIS ZUM ROLLOUT",
+      "bonusDesc": "Keine zusätzlichen Listungsgebühren während der Entwicklungs- und Integrationsphase.",
+      "mainCta": "JETZT PROJEKT ANFRAGEN",
+      "altBadge": "ALTERNATIVE",
+      "altTitle": "EINZELPRODUKT",
+      "altPrice": "1.000 €",
+      "altVat": "netto / Produkt",
+      "altDesc": "Individuelle Digitalisierung, Aufbereitung und Integration eines einzelnen Produkts in die TYPUS.AI Materialbibliothek und den vorgesehenen KI-Workflow.",
+      "altCta": "EINZELPRODUKT ANFRAGEN",
+      "euFunding": "Gefördert im FFplus Programm der Europäischen Union"
+    }
   }
 }

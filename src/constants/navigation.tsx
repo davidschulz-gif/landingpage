@@ -21,6 +21,24 @@ export const navItems = [
           'Enhance image resolution and quality with AI-powered upscaling',
         link: '#upscale',
       },
+      {
+        title: 'Research (FFplus)',
+        description:
+          'AI research project for real building product visualization with RWTH Aachen',
+        link: '/research',
+      },
+    ],
+  },
+  {
+    name: 'RESEARCH',
+    link: '/research',
+    submenu: [
+      {
+        title: 'AI Research (FFplus)',
+        description:
+          'AI research project for real building product visualization with RWTH Aachen',
+        link: '/research',
+      },
     ],
   },
   {

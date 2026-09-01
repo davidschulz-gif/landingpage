@@ -13,6 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Return to Home",
     "solutions": "SOLUTIONS",
+    "research": "RESEARCH",
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
@@ -35,6 +36,10 @@
         "overviewOfFeatures": {
           "title": "Feature Overview",
           "description": "Discover all AI tools and features in one overview"
+        },
+        "research": {
+          "title": "AI Research (FFplus)",
+          "description": "Integration of real building products into our EU-compliant AI model"
         },
         "bilderFlatrate": {
           "title": "Image Flat Rate",
@@ -612,6 +617,7 @@
       "create": "Create",
       "edit": "Edit",
       "upscale": "Upscale",
+      "research": "AI Research (FFplus)",
       "tutorials": "Tutorials",
       "press": "Press",
       "reviews": "Reviews",
@@ -3104,5 +3110,141 @@
     "footer_link": "ffplus-project.eu",
     "footer_desc_1": "FFplus is a European initiative, highlighting the adoption of High-Performance Computing (HPC) and Artificial Intelligence (AI) for SMEs and Startups across Europe, showing the business benefits and impacts of adopting HPC and AI in real business models.",
     "footer_desc_2": "FFplus is a successor of previous Fortissimo projects (Fortissimo 1 and 2, FF4EuroHPC), which have directly addressed how to overcome the barriers for SMEs by utilising HPC, HPDA or AI to optimise or develop products or processes and aimed to strengthen the global competitiveness of European industry."
+  },
+  "ResearchPage": {
+    "slide1": {
+      "activeUsers": "has more than 2,500 active users"
+    },
+    "slide2": {
+      "awardDesc": "was selected during the pre-seed phase as one of four finalists for the Digital Innovation Award 2024 by the Federal Association of Digital Construction (BDBau). The award recognizes outstanding technological innovations in the construction industry. In addition, we were recognized by Tech in Construction.",
+      "bdbauDesc": "is a member of the Federal Association for Digital Construction. We are honored to be among the German start-ups driving the digitization of the construction industry as pioneers in AI-assisted image generation."
+    },
+    "slide3": {
+      "desc": "Since then, the app has been published in numerous trade journals and presented at established trade fairs."
+    },
+    "slide4": {
+      "desc": "In 2025, a funding application for co-financing through the EFRE/JTF NRW 2021-2027 program was approved. Europe for Regional Development."
+    },
+    "slide5": {
+      "badge": "SUPERCOMPUTER JUPITER INAUGURATED",
+      "title": "European High-Performance Computing Done Right",
+      "subtitle": "The new supercomputer was inaugurated at Forschungszentrum Jülich. It is a European system – and that is also great for German research.",
+      "dateAuthor": "September 5, 2025 at 3:36 PM / By Johannes Hiltscher",
+      "tag": "JÜLICH RESEARCH CENTER",
+      "caption": "Photo: Forschungszentrum Jülich / Ralf-Udo Thiele",
+      "source": "Source: golem.de / supercomputer-jupiter-eingeweiht"
+    },
+    "slide6": {
+      "title": "Funded & Scientifically Supported",
+      "statusApproved": "approved",
+      "efreTitle": "EFRE / JTF NRW 2021–27",
+      "ffplusTitle": "FORTISSIMO PLUS (FFplus)",
+      "ffplusDesc": "Collaboration with RWTH Aachen AI Center / Chair of Computer Graphics, Prof. Dr. rer. nat. Leif Kobbelt",
+      "partnerTitle": "Cooperations & Partners",
+      "partnerDesc": "Chair of Construction Informatics, RWTH Aachen (Prof. Blankenbach)",
+      "deadline": "Submission Deadline: October 15",
+      "rackTag": "SUPERCOMPUTER RACKS",
+      "rackTitle": "JUPITER",
+      "rackSubtitle": "High-Performance AI-Factory Cluster Jülich × RWTH Aachen"
+    },
+    "slide7": {
+      "title": "Your Products Become Part of the AI Model",
+      "badge": "FFplus × RWTH Aachen",
+      "desc": "We jointly develop application-specific AI models for architectural visualizations and train them on JUPITER, a European AI Factory supercomputer at Forschungszentrum Jülich.",
+      "coopLabel": "In Cooperation with",
+      "professorName": "Prof. Dr. rer. nat. Leif Kobbelt",
+      "professorTitle": "University Professor, Chair of Computer Graphics, Geometry and Multimedia (Computer Science 8), Institute & Chair Head at RWTH Aachen University"
+    },
+    "videoSlide": {
+      "badge": "RESEARCH & EXCELLENCE",
+      "title": "Scientific Lectures by Prof. Dr. Leif Kobbelt",
+      "subtitle": "Insights into computer graphics and 3D geometry processing at the Chair of Computer Science 8 (Computer Graphics) at RWTH Aachen University.",
+      "video1Title": "The Magic of 3D Computer Graphics",
+      "video1Desc": "Lecture by Prof. Dr. Leif Kobbelt on the creation, magic, and future of visual technologies in computer graphics.",
+      "video2Title": "Leibniz Laureate 2014 – Prof. Dr. Leif Kobbelt",
+      "video2Desc": "Awarded the Gottfried Wilhelm Leibniz Prize for outstanding scientific achievements."
+    },
+    "slide8": {
+      "badge": "03",
+      "title": "From Material Catalog to Design Planning",
+      "subtitle": "Your products are directly integrated into the digital planning process.",
+      "checklist": [
+        "Select materials during the concept phase",
+        "Visualize real textures and surface finishes",
+        "Use real products directly in architectural renderings",
+        "Link materials early with concrete construction projects"
+      ],
+      "advantageBadge": "Your Advantage",
+      "advantageDesc": "Your product becomes visible not during tendering, but right at the initial design decision.",
+      "workflowBadge": "Directly in the Workflow",
+      "workflowDesc": "Your materials are available to planners across all phases – from concept to visualization."
+    },
+    "slide9": {
+      "title": "Your Advantages at a Glance",
+      "items": [
+        { "num": "01", "title": "Early Product Presence", "desc": "Visibility right from the initial design phase." },
+        { "num": "02", "title": "Digital Distribution Channel", "desc": "Directly integrated into the planning workflow." },
+        { "num": "03", "title": "AI-Based Product Visualization", "desc": "Real products in generative visualizations." },
+        { "num": "04", "title": "Access to Architects", "desc": "Direct contact with a growing professional user base." },
+        { "num": "05", "title": "Future-Proof Data Base", "desc": "Ready for BIM, AI, and visualization workflows." }
+      ]
+    },
+    "slide10": {
+      "title": "What You Can Submit",
+      "subtitle": "High-quality, digitized material data as the foundation for realistic AI models.",
+      "inputs": [
+        { "title": "High-Resolution Textures", "desc": "Seamless, photorealistic material textures" },
+        { "title": "Surface Materials", "desc": "for walls, ceilings, and facades" },
+        { "title": "Product Variants & Surfaces", "desc": "Various surface & color options" },
+        { "title": "Existing Digital Product Data", "desc": "e.g., BIM or CAD data, PBR maps" }
+      ],
+      "notice": "The higher the quality of digital material data, the more precisely your products can be visualized later.",
+      "badge1": { "title": "Digital.", "subtitle": "Standardized." },
+      "badge2": { "title": "Planning-Ready.", "subtitle": "BIM-Ready." },
+      "badge3": { "title": "Future-Proof.", "subtitle": "Sustainable." }
+    },
+    "slide11": {
+      "title": "What Participation Includes",
+      "card1Title": "You Provide",
+      "card1Desc": "Digital material samples and relevant product data.",
+      "card2Title": "We Handle",
+      "card2Desc": "Processing, integration, and technical connection of data to our platform and AI model.",
+      "card3Title": "Your Products Receive",
+      "card3List": [
+        "Free platform listing until official rollout",
+        "Company logo on our website",
+        "Integration into digital material database",
+        "AI-supported visualization of your products in the pipeline"
+      ],
+      "card4Title": "For one-time processing and",
+      "card4Desc": "product data integration, a setup fee applies.",
+      "card5Title": "Succeeding Together",
+      "card5Desc": "Boost your brand's digital visibility and shape the future of architectural visualization with us."
+    },
+    "slide12": {
+      "title": "Integration into an EU-Compliant AI Model",
+      "recommendedBadge": "RECOMMENDED",
+      "mainTitle": "Integration into an EU-Compliant AI Model",
+      "mainPrice": "€5,000",
+      "mainVat": "net plus VAT",
+      "mainScope": "FOR THE ENTIRE PRODUCT RANGE",
+      "mainFeatures": [
+        "Material processing for AI-assisted visualization",
+        "Structuring of relevant product and material data",
+        "Integration into TYPUS.AI Material Library",
+        "Data preparation & integration for application-specific AI model",
+        "Quality control & alignment of product data"
+      ],
+      "bonusTitle": "INCLUDED: FREE LISTING ON TYPUS.AI UNTIL ROLLOUT",
+      "bonusDesc": "No additional listing fees during the development and integration phase.",
+      "mainCta": "REQUEST PROJECT INTEGRATION",
+      "altBadge": "ALTERNATIVE",
+      "altTitle": "SINGLE PRODUCT",
+      "altPrice": "€1,000",
+      "altVat": "net / product",
+      "altDesc": "Individual digitization, processing, and integration of a single product into the TYPUS.AI material library and AI workflow.",
+      "altCta": "REQUEST SINGLE PRODUCT",
+      "euFunding": "Funded under the European Union FFplus Program"
+    }
   }
 }

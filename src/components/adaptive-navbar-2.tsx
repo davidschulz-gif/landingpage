@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play, Sparkles, Pencil, Zap, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail } from 'lucide-react'
+import { Play, Sparkles, Pencil, Zap, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -90,6 +90,12 @@ export function NavbarDemo() {
             link: '/overview-of-features',
             icon: Play,
           },
+          {
+            title: tNav('solutions.research.title'),
+            description: tNav('solutions.research.description'),
+            link: '/research',
+            icon: FlaskConical,
+          },
           // { title: t('service'), isSection: true },
           // {
           //   title: tNav('solutions.bilderFlatrate.title'),
@@ -97,6 +103,18 @@ export function NavbarDemo() {
           //   link: '/done-for-you',
           //   icon: ImageIcon,
           // },
+        ],
+      },
+      {
+        name: t('research'),
+        link: '/research',
+        submenu: [
+          {
+            title: tNav('solutions.research.title'),
+            description: tNav('solutions.research.description'),
+            link: '/research',
+            icon: FlaskConical,
+          },
         ],
       },
       {
@@ -386,7 +404,7 @@ export function NavbarDemo() {
 
             <div className='relative max-w-[80%] mx-auto px-8 '>
               <div className='relative'>
-                <div className='grid grid-cols-5 gap-8'>
+                <div className='grid grid-cols-6 gap-6'>
                   {translatedNavItems.map((navItem, navIdx) => (
                     <div
                       key={`section-${navIdx}`}
