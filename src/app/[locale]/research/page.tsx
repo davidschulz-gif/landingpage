@@ -317,7 +317,7 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 2 SECTION: DIGITAL INNOVATION AWARD & BDBAU MEMBERSHIP */}
+        {/* SLIDE 2 SECTION: BDBAU MEMBERSHIP */}
         <section className="py-8 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -325,55 +325,29 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="w-full space-y-12"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-              {/* Left Column: Digital Innovation Award 2024 */}
-              <div className="space-y-6 flex flex-col justify-between h-full">
-                <div className="w-full h-80 sm:h-96 md:h-[460px] lg:h-[500px] shadow-xs flex items-center justify-center p-4 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200/80 dark:border-neutral-800">
-                  <Image
-                    src="/research_award_nomination.png"
-                    alt="Digitale Innovation Award 2024 Finalist Nomination - Tech in Construction"
-                    width={700}
-                    height={500}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-
-                <p
-                  className="subheading-primary text-sm md:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  <Link href={`/${locale}`} className="text-[#0086bf] hover:underline font-medium">
-                    TYPUS.AI
-                  </Link>{' '}
-                  {t('slide2.awardDesc')}
-                </p>
+            <div className="max-w-4xl mx-auto space-y-6 flex flex-col items-center text-center">
+              <div className="w-full h-80 sm:h-96 md:h-[460px] lg:h-[500px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800 relative bg-white dark:bg-neutral-900 shadow-xs flex items-center justify-center p-4">
+                <Image
+                  src="/research_bdbau_directory.png"
+                  alt="Bundesverband Digitales Bauwesen - Typus.AI Mitgliedschaft Directory"
+                  width={700}
+                  height={500}
+                  className="w-full h-full object-contain"
+                />
               </div>
 
-              {/* Right Column: BDBau Membership */}
-              <div className="space-y-6 flex flex-col justify-between h-full border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-10 md:pt-0 md:pl-12">
-                <div className="w-full h-80 sm:h-96 md:h-[460px] lg:h-[500px] rounded-3xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800 relative bg-white dark:bg-neutral-900 shadow-xs flex items-center justify-center p-4">
-                  <Image
-                    src="/research_bdbau_directory.png"
-                    alt="Bundesverband Digitales Bauwesen - Typus.AI Mitgliedschaft Directory"
-                    width={700}
-                    height={500}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+              <p
+                className="subheading-primary text-sm md:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                <Link href={`/${locale}`} className="text-[#0086bf] hover:underline font-medium">
+                  TYPUS.AI
+                </Link>{' '}
+                {t('slide2.bdbauDesc')}
+              </p>
 
-                <p
-                  className="subheading-primary text-sm md:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  <Link href={`/${locale}`} className="text-[#0086bf] hover:underline font-medium">
-                    TYPUS.AI
-                  </Link>{' '}
-                  {t('slide2.bdbauDesc')}
-                </p>
-
-                <div className="flex items-center gap-5 pt-2">
-                  <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={160} height={55} className="h-12 w-auto object-contain" />
-                </div>
+              <div className="flex items-center justify-center gap-5 pt-2">
+                <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={160} height={55} className="h-12 w-auto object-contain" />
               </div>
             </div>
           </motion.div>
@@ -590,30 +564,19 @@ export default function ResearchProjectsPage() {
                   {t('slide7.title')}
                 </h3>
 
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
-                  <div className="space-y-4 flex-1">
-                    <div
-                      className="text-sm sm:text-base uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide7.badge')}
-                    </div>
-                    <p
-                      className="subheading-primary text-base md:text-lg lg:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide7.desc')}
-                    </p>
+                <div className="space-y-4">
+                  <div
+                    className="text-sm sm:text-base uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('slide7.badge')}
                   </div>
-                  {/* Material Swatches Grid Image */}
-                  <div className="w-36 h-56 sm:w-44 sm:h-64 rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 flex-shrink-0 shadow-xs relative bg-white dark:bg-neutral-900 p-2">
-                    <Image
-                      src="/material_swatches_grid.png"
-                      alt="Material Textures Swatches Grid"
-                      fill
-                      className="object-contain rounded-2xl"
-                    />
-                  </div>
+                  <p
+                    className="subheading-primary text-base md:text-lg lg:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('slide7.desc')}
+                  </p>
                 </div>
 
                 <div className="p-7 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-4">
