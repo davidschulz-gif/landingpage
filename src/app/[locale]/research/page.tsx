@@ -37,13 +37,13 @@ import {
 } from 'lucide-react'
 
 const PartnerHeaderLogos = () => (
-  <div className="flex flex-wrap items-center justify-between gap-6 border-b border-neutral-200 dark:border-neutral-800 pb-6 pt-2">
-    <div className="flex items-center gap-6 md:gap-10 flex-wrap">
-      <Image src="/logo_ffplus_hires.png" alt="Fortissimo Plus" width={200} height={80} className="h-10 md:h-12 w-auto object-contain invert dark:invert-0" />
-      <Image src="/logo_eccc_hires.png" alt="ECCC European Cybersecurity Competence Centre" width={240} height={80} className="h-9 md:h-11 w-auto object-contain invert dark:invert-0" />
-      <Image src="/logo_eurohpc_hires.png" alt="EuroHPC Joint Undertaking" width={260} height={80} className="h-9 md:h-11 w-auto object-contain invert dark:invert-0" />
-      <Image src="/logo_chipsju_hires.png" alt="Chips JU" width={200} height={80} className="h-9 md:h-11 w-auto object-contain invert dark:invert-0" />
-      <Image src="/logo_rwth_hires.png" alt="RWTH Aachen University" width={280} height={80} className="h-9 md:h-11 w-auto object-contain invert dark:invert-0" />
+  <div className="flex flex-wrap items-center justify-between gap-6 border-b border-neutral-200 dark:border-neutral-800 pb-8 pt-4">
+    <div className="flex items-center justify-between w-full gap-6 sm:gap-8 md:gap-12 flex-wrap">
+      <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={360} height={140} className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain dark:invert" />
+      <Image src="/logo/logo_eccc.svg" alt="ECCC European Cybersecurity Competence Centre" width={400} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
+      <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC Joint Undertaking" width={420} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
+      <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={360} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
+      <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={450} height={140} className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain dark:invert" />
     </div>
   </div>
 )
@@ -777,102 +777,155 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 10 SECTION: WHAT YOU CAN SUBMIT */}
+        {/* SLIDE 10 SECTION: WAS SIE EINREICHEN KÖNNEN (DARK CARD ARCHITEXTURES & MATERIAL GUIDE STYLE) */}
         <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="w-full space-y-12"
+            className="w-full"
           >
-            <div className="space-y-3">
-              <h3
-                className="heading-primary"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
-                {t('slide10.title')}
-              </h3>
-              <p
-                className="subheading-primary text-base md:text-xl lg:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-              >
-                {t('slide10.subtitle')}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column (Input Types List) */}
-              <div className="lg:col-span-6 space-y-6">
-                {[
-                  { icon: Building2 },
-                  { icon: Layers },
-                  { icon: Database },
-                  { icon: FileCheck }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-5 md:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex items-center gap-5">
-                    <div className="p-3 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex-shrink-0">
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <div className="space-y-1">
-                      <div
-                        className="subheading-primary"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                      >
-                        {t(`slide10.inputs.${idx}.title`)}
-                      </div>
-                      <div
-                        className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                      >
-                        {t(`slide10.inputs.${idx}.desc`)}
-                      </div>
-                    </div>
+            <div className="w-full rounded-[2.5rem] bg-neutral-950 text-white p-8 md:p-12 lg:p-14 border border-neutral-800 shadow-2xl space-y-10 relative overflow-hidden">
+              
+              {/* Top Header Logos Bar */}
+              <div className="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-neutral-800/80">
+                <div className="flex items-center gap-5 md:gap-8 flex-wrap">
+                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
+                    <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={180} height={60} className="h-9 md:h-12 w-auto object-contain" />
                   </div>
-                ))}
-
-                {/* Quality Notice Box */}
-                <div
-                  className="p-5 md:p-6 rounded-3xl bg-blue-50/60 dark:bg-neutral-900 border border-blue-100 dark:border-neutral-800 flex items-center gap-4 text-sm md:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed font-medium"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                  <span>{t('slide10.notice')}</span>
+                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
+                    <Image src="/logo/logo_eccc.svg" alt="ECCC" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  </div>
+                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
+                    <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  </div>
+                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
+                    <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 border-l border-neutral-800 pl-6 hidden sm:flex">
+                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
+                    <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={220} height={60} className="h-9 md:h-12 w-auto object-contain" />
+                  </div>
                 </div>
               </div>
 
-              {/* Right Column: Material Samples Showcase Image & 3 Standards Badges (Bigger) */}
-              <div className="lg:col-span-6 space-y-8">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-lg h-[400px] sm:h-[520px] md:h-[600px] lg:h-[650px] flex items-center justify-center p-4">
-                  <Image
-                    src="/material_samples_showcase.png"
-                    alt="Digital Material Samples Showcase - High Resolution PBR"
-                    fill
-                    className="object-contain p-3"
-                  />
+              {/* Header Title & Subtitle */}
+              <div className="space-y-3">
+                <h3
+                  className="heading-primary"
+                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif", color: 'white' }}
+                >
+                  {t('slide10.title')}
+                </h3>
+                <p
+                  className="subheading-primary text-base md:text-xl lg:text-2xl text-neutral-300 leading-relaxed"
+                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: '#d4d4d4' }}
+                >
+                  {t('slide10.subtitle')}
+                </p>
+              </div>
+
+              {/* Main Content Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                {/* Left Column: 4 Feature Boxes + Quote Banner */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
+                    {[
+                      { icon: LayoutGrid, titleKey: 'slide10.inputs.0.title', descKey: 'slide10.inputs.0.desc' },
+                      { icon: Layers, titleKey: 'slide10.inputs.1.title', descKey: 'slide10.inputs.1.desc' },
+                      { icon: Box, titleKey: 'slide10.inputs.2.title', descKey: 'slide10.inputs.2.desc' },
+                      { icon: FileCheck, titleKey: 'slide10.inputs.3.title', descKey: 'slide10.inputs.3.desc' }
+                    ].map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-5 md:p-6 rounded-2xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-5 hover:border-neutral-700 transition"
+                      >
+                        <div className="p-3 rounded-xl bg-neutral-800 text-red-500 flex-shrink-0">
+                          <item.icon className="w-6 h-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <div
+                            className="subheading-primary"
+                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: 'white' }}
+                          >
+                            {t(item.titleKey)}
+                          </div>
+                          <div
+                            className="subheading-primary text-sm md:text-base text-neutral-400"
+                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: '#a3a3a3' }}
+                          >
+                            {t(item.descKey)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Highlight Quote Notice Box with Red Accent */}
+                  <div
+                    className="p-5 md:p-6 rounded-2xl bg-neutral-900/90 border border-red-500/30 flex items-start gap-4 text-xs md:text-sm text-neutral-300 leading-relaxed font-medium"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    <div className="p-2 rounded-lg bg-red-500/10 text-red-400 flex-shrink-0 mt-0.5">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <span>
+                      <strong className="text-red-400 font-bold block mb-1">QUALITÄTSHINWEIS:</strong>
+                      {t('slide10.notice')}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Bottom 3 Standards Badges */}
-                <div
-                  className="grid grid-cols-3 gap-4 text-center text-sm md:text-base"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                >
-                  <div className="p-4 md:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-1.5">
-                    <Database className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto" />
-                    <div className="text-black dark:text-white text-xs md:text-sm font-bold">{t('slide10.badge1.title')}</div>
-                    <div className="text-neutral-500 text-[11px] md:text-xs">{t('slide10.badge1.subtitle')}</div>
+                {/* Right Column: Hero Material Render Image & 3 Key Badges */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                  <div className="relative rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-xl h-[380px] sm:h-[460px] md:h-[500px] lg:h-[520px]">
+                    <Image
+                      src="/material_samples_showcase.png"
+                      alt="Digital Material Samples Showcase - High Resolution PBR"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent pointer-events-none" />
                   </div>
-                  <div className="p-4 md:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-1.5">
-                    <Building2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mx-auto" />
-                    <div className="text-black dark:text-white text-xs md:text-sm font-bold">{t('slide10.badge2.title')}</div>
-                    <div className="text-neutral-500 text-[11px] md:text-xs">{t('slide10.badge2.subtitle')}</div>
-                  </div>
-                  <div className="p-4 md:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-1.5">
-                    <ShieldCheck className="w-5 h-5 text-purple-600 dark:text-purple-400 mx-auto" />
-                    <div className="text-black dark:text-white text-xs md:text-sm font-bold">{t('slide10.badge3.title')}</div>
-                    <div className="text-neutral-500 text-[11px] md:text-xs">{t('slide10.badge3.subtitle')}</div>
+
+                  {/* Bottom 3 Standards Badges */}
+                  <div
+                    className="grid grid-cols-3 gap-3 md:gap-4 text-center"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
+                      <Database className="w-5 h-5 text-red-500 mx-auto" />
+                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge1.title')}</div>
+                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge1.subtitle')}</div>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
+                      <Building2 className="w-5 h-5 text-red-500 mx-auto" />
+                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge2.title')}</div>
+                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge2.subtitle')}</div>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
+                      <ShieldCheck className="w-5 h-5 text-red-500 mx-auto" />
+                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge3.title')}</div>
+                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge3.subtitle')}</div>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Footer EU FFplus Funding Tag */}
+              <div className="pt-6 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+                    Gefördert im FFplus Programm der Europäischen Union
+                  </span>
+                </div>
+                <div className="text-neutral-600 font-mono text-[11px] hidden sm:block">
+                  FFPLUS × TYPUS.AI
+                </div>
+              </div>
+
             </div>
           </motion.div>
         </section>
