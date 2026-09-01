@@ -68,14 +68,15 @@ export default function ResearchProjectsPage() {
             className="w-full flex flex-col items-center justify-center text-center space-y-10"
           >
             {/* Logo */}
-            <div className="flex items-center justify-center gap-4 sm:gap-6">
-              <div className="size-10 sm:size-12 md:size-14 bg-black dark:bg-white flex-shrink-0" />
-              <span
-                className="uppercase font-logo text-black dark:text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-[2.5px]"
-                style={{ letterSpacing: '2.5px' }}
-              >
-                typus.AI
-              </span>
+            <div className="flex items-center justify-center">
+              <Image
+                src="/typus_hero_logo.png"
+                alt="TYPUS.AI"
+                width={360}
+                height={110}
+                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain dark:invert"
+                priority
+              />
             </div>
 
             {/* Active Users Badge */}
@@ -181,25 +182,33 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="w-full space-y-12"
           >
-            <div className="text-center space-y-3 max-w-4xl mx-auto">
-              <span
-                className="text-xs uppercase text-purple-600 dark:text-purple-400 tracking-widest font-bold block"
+            {/* Prof. Dr. Leif Kobbelt Cooperation Card placed above videos */}
+            <div className="p-7 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-md space-y-4 max-w-3xl mx-auto">
+              <div
+                className="text-xs sm:text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
-                {t('videoSlide.badge')}
-              </span>
-              <h3
-                className="heading-primary"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
-                {t('videoSlide.title')}
-              </h3>
-              <p
-                className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-              >
-                {t('videoSlide.subtitle')}
-              </p>
+                {t('slide7.coopLabel')}
+              </div>
+              <div className="flex items-start gap-5">
+                <div className="p-3 rounded-2xl bg-black text-white flex-shrink-0 mt-0.5">
+                  <Image src="/cube_mesh_icon.png" alt="Cube Mesh Icon" width={40} height={40} className="w-9 h-9 object-contain" />
+                </div>
+                <div className="space-y-1.5">
+                  <h4
+                    className="heading-primary"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('slide7.professorName')}
+                  </h4>
+                  <p
+                    className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  >
+                    {t('slide7.professorTitle')}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* 2-Column Responsive Video Grid */}
@@ -346,8 +355,8 @@ export default function ResearchProjectsPage() {
                 {t('slide2.bdbauDesc')}
               </p>
 
-              <div className="flex items-center justify-center gap-5 pt-2">
-                <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={160} height={55} className="h-12 w-auto object-contain" />
+              <div className="flex items-center justify-center gap-5 pt-4">
+                <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={450} height={200} className="h-28 sm:h-36 md:h-44 w-auto object-contain dark:invert" />
               </div>
             </div>
           </motion.div>
@@ -366,10 +375,10 @@ export default function ResearchProjectsPage() {
                 <Image src="/logo/konferenzen-logo.png" alt="FAZ Konferenzen" width={220} height={80} className="h-14 md:h-18 w-auto object-contain dark:invert" />
               </div>
               <div className="flex items-center justify-center p-4">
-                <Image src="/logo/dab_logo.svg" alt="Deutsches Architektenblatt" width={220} height={80} className="h-16 md:h-20 w-auto object-contain dark:invert" />
+                <Image src="/logo/dab_logo.png" alt="Deutsches Architektenblatt" width={240} height={90} className="h-14 md:h-18 w-auto object-contain invert dark:invert-0" />
               </div>
               <div className="flex items-center justify-center p-4">
-                <Image src="/logo/80sek_black.png" alt="Neues Bauen 80 Sekunden" width={220} height={80} className="h-16 md:h-20 w-auto object-contain dark:invert" />
+                <Image src="/logo/80sek_black.png" alt="Neues Bauen 80 Sekunden" width={260} height={100} className="h-14 md:h-18 w-auto object-contain dark:invert" />
               </div>
               <div className="flex items-center justify-center p-4">
                 <Image src="/logo/baunetz_logo.png" alt="BauNetz" width={220} height={80} className="h-14 md:h-18 w-auto object-contain dark:invert" />
@@ -577,34 +586,6 @@ export default function ResearchProjectsPage() {
                   >
                     {t('slide7.desc')}
                   </p>
-                </div>
-
-                <div className="p-7 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-4">
-                  <div
-                    className="text-xs sm:text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                  >
-                    {t('slide7.coopLabel')}
-                  </div>
-                  <div className="flex items-start gap-5">
-                    <div className="p-3 rounded-2xl bg-black text-white flex-shrink-0 mt-0.5">
-                      <Image src="/cube_mesh_icon.png" alt="Cube Mesh Icon" width={40} height={40} className="w-9 h-9 object-contain" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4
-                        className="heading-primary"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                      >
-                        {t('slide7.professorName')}
-                      </h4>
-                      <p
-                        className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                      >
-                        {t('slide7.professorTitle')}
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -1088,7 +1069,7 @@ export default function ResearchProjectsPage() {
 
                   <div className="flex items-baseline gap-4 pt-2">
                     <span
-                      className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black dark:text-white tracking-tight"
+                      className="text-5xl md:text-6xl lg:text-7xl font-normal text-black dark:text-white tracking-tight"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.mainPrice')}
@@ -1142,7 +1123,7 @@ export default function ResearchProjectsPage() {
 
                 <Link
                   href="/book-a-demo"
-                  className="w-full py-4 md:py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black text-center block hover:bg-neutral-800 dark:hover:bg-neutral-200 transition text-base md:text-lg uppercase tracking-widest shadow-md font-bold"
+                  className="w-fit max-w-full mx-auto py-3 md:py-3.5 px-8 sm:px-10 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs md:text-sm font-medium uppercase tracking-wide shadow-sm"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.mainCta')}
@@ -1173,7 +1154,7 @@ export default function ResearchProjectsPage() {
 
                   <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800">
                     <span
-                      className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white tracking-tight"
+                      className="text-4xl md:text-5xl lg:text-6xl font-normal text-black dark:text-white tracking-tight"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altPrice')}
@@ -1200,7 +1181,7 @@ export default function ResearchProjectsPage() {
                 </div>
                 <Link
                   href="/book-a-demo"
-                  className="w-full py-4 md:py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black text-center block hover:bg-neutral-800 dark:hover:bg-neutral-200 transition text-sm md:text-base uppercase tracking-widest shadow-xs font-bold"
+                  className="w-fit max-w-full mx-auto py-3 md:py-3.5 px-8 sm:px-10 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs md:text-sm font-medium uppercase tracking-wide shadow-sm"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.altCta')}
