@@ -14,7 +14,7 @@ export function ViewerShowcase() {
   const getIframeSrc = () => {
     switch (activeTab) {
       case 'catalog':
-        return `${appUrl}/create?catalog=open`
+        return `${appUrl}/explore`
       case 'flyout':
         return `/${locale}/viewers/flyout`
       case 'product-page':
@@ -24,7 +24,7 @@ export function ViewerShowcase() {
       case 'texture-assignment-interior':
         return `${appUrl}/create?textures=open&mode=interior`
       default:
-        return `${appUrl}/create?catalog=open`
+        return `${appUrl}/explore`
     }
   }
 
