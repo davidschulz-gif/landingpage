@@ -3291,9 +3291,9 @@
     },
     "viewers": {
       "tab1": "1. Material-Katalog (Live-App)",
-      "tab2": "2. Produkt-Flyout-Modal",
-      "tab3": "3. KEIM Produkt-Detailseite",
-      "tab4": "4. Textur-Zuweisung",
+      "tab2": "2. Produkt-Flyout",
+      "tab3": "3. Produkt-Detailseite",
+      "tab4": "4. Texturzuweisung Außenraum",
       "fullscreen": "VOLLBILD",
       "openInFullscreen": "IM VOLLBILD ÖFFNEN",
       "iframeTitle": "Interaktive Typus.AI Viewer Vorschau",
@@ -3324,7 +3324,8 @@
       "textureSynthTitle": "Echtzeit-Texturierung auf Architektur-Renderings",
       "textureSynthSubtitle": "KI-Materialzuweisung & Render-Synthese",
       "synthBtn": "TEXTUR SYNTHESIEREN",
-      "chooseTexture": "WÄHLE EINE TEXTUR ZUR AUTOMATISCHEN ZUWEISUNG"
+      "chooseTexture": "WÄHLE EINE TEXTUR ZUR AUTOMATISCHEN ZUWEISUNG",
+      "tab5": "5. Texturzuweisung Innenraum"
     }
   }
 }

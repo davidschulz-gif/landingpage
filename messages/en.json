@@ -3289,9 +3289,9 @@
     },
     "viewers": {
       "tab1": "1. Material Catalog (Live App)",
-      "tab2": "2. Product Flyout Modal",
-      "tab3": "3. KEIM Product Detail Page",
-      "tab4": "4. Texture Assignment",
+      "tab2": "2. Product Flyout",
+      "tab3": "3. Product Detail Page",
+      "tab4": "4. Texture Assignment Exterior",
       "fullscreen": "FULLSCREEN",
       "openInFullscreen": "OPEN IN FULLSCREEN",
       "iframeTitle": "Interactive Typus.AI Viewer Showcase",
@@ -3322,7 +3322,8 @@
       "textureSynthTitle": "Real-time Texturing on Architectural Renderings",
       "textureSynthSubtitle": "AI Material Assignment & Render Synthesis",
       "synthBtn": "SYNTHESIZE TEXTURE",
-      "chooseTexture": "SELECT A TEXTURE FOR AUTOMATIC ASSIGNMENT"
+      "chooseTexture": "SELECT A TEXTURE FOR AUTOMATIC ASSIGNMENT",
+      "tab5": "5. Texture Assignment Interior"
     }
   }
 }
