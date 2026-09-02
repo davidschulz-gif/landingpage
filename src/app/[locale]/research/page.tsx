@@ -504,10 +504,10 @@ export default function ResearchProjectsPage() {
                     </div>
                     
                     <div className="flex items-center gap-6 flex-wrap">
-                      <Image src="/logo_dfki.png" alt="DFKI German Research Center for AI" width={160} height={50} className="h-10 md:h-12 w-auto object-contain" />
-                      <Image src="/logo_concular.png" alt="Concular" width={120} height={50} className="h-10 md:h-12 w-auto object-contain" />
-                      <Image src="/logo_zukunft_bau.png" alt="Zukunft Bau" width={160} height={50} className="h-9 md:h-11 w-auto object-contain" />
-                      <Image src="/logo_kmu_innovativ.png" alt="KMU-innovativ" width={160} height={50} className="h-9 md:h-11 w-auto object-contain" />
+                      <Image src="/logo_dfki.png" alt="DFKI German Research Center for AI" width={160} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
+                      <Image src="/logo_concular.png" alt="Concular" width={120} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
+                      <Image src="/logo_zukunft_bau.png" alt="Zukunft Bau" width={160} height={50} className="h-9 md:h-11 w-auto object-contain dark:invert" unoptimized />
+                      <Image src="/logo_kmu_innovativ.png" alt="KMU-innovativ" width={160} height={50} className="h-9 md:h-11 w-auto object-contain dark:invert" unoptimized />
                     </div>
 
                     <p
