@@ -2,6 +2,7 @@
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
+import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -705,6 +706,11 @@ export default function ResearchProjectsPage() {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Interactive Material & Texture Viewer Showcase */}
+            <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800">
+              <ViewerShowcase />
             </div>
           </motion.div>
         </section>

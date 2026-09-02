@@ -3182,26 +3182,67 @@
     "slide9": {
       "title": "Your Advantages at a Glance",
       "items": [
-        { "num": "01", "title": "Early Product Presence", "desc": "Visibility right from the initial design phase." },
-        { "num": "02", "title": "Digital Distribution Channel", "desc": "Directly integrated into the planning workflow." },
-        { "num": "03", "title": "AI-Based Product Visualization", "desc": "Real products in generative visualizations." },
-        { "num": "04", "title": "Access to Architects", "desc": "Direct contact with a growing professional user base." },
-        { "num": "05", "title": "Future-Proof Data Base", "desc": "Ready for BIM, AI, and visualization workflows." }
+        {
+          "num": "01",
+          "title": "Early Product Presence",
+          "desc": "Visibility right from the initial design phase."
+        },
+        {
+          "num": "02",
+          "title": "Digital Distribution Channel",
+          "desc": "Directly integrated into the planning workflow."
+        },
+        {
+          "num": "03",
+          "title": "AI-Based Product Visualization",
+          "desc": "Real products in generative visualizations."
+        },
+        {
+          "num": "04",
+          "title": "Access to Architects",
+          "desc": "Direct contact with a growing professional user base."
+        },
+        {
+          "num": "05",
+          "title": "Future-Proof Data Base",
+          "desc": "Ready for BIM, AI, and visualization workflows."
+        }
       ]
     },
     "slide10": {
       "title": "What You Can Submit",
       "subtitle": "High-quality, digitized material data as the foundation for realistic AI models.",
       "inputs": [
-        { "title": "High-Resolution Textures", "desc": "Seamless, photorealistic material textures" },
-        { "title": "Surface Materials", "desc": "for walls, ceilings, and facades" },
-        { "title": "Product Variants & Surfaces", "desc": "Various surface & color options" },
-        { "title": "Existing Digital Product Data", "desc": "e.g., BIM or CAD data, PBR maps" }
+        {
+          "title": "High-Resolution Textures",
+          "desc": "Seamless, photorealistic material textures"
+        },
+        {
+          "title": "Surface Materials",
+          "desc": "for walls, ceilings, and facades"
+        },
+        {
+          "title": "Product Variants & Surfaces",
+          "desc": "Various surface & color options"
+        },
+        {
+          "title": "Existing Digital Product Data",
+          "desc": "e.g., BIM or CAD data, PBR maps"
+        }
       ],
       "notice": "The higher the quality of digital material data, the more precisely your products can be visualized later.",
-      "badge1": { "title": "Digital.", "subtitle": "Standardized." },
-      "badge2": { "title": "Planning-Ready.", "subtitle": "BIM-Ready." },
-      "badge3": { "title": "Future-Proof.", "subtitle": "Sustainable." }
+      "badge1": {
+        "title": "Digital.",
+        "subtitle": "Standardized."
+      },
+      "badge2": {
+        "title": "Planning-Ready.",
+        "subtitle": "BIM-Ready."
+      },
+      "badge3": {
+        "title": "Future-Proof.",
+        "subtitle": "Sustainable."
+      }
     },
     "slide11": {
       "title": "What Participation Includes",
@@ -3245,6 +3286,43 @@
       "altDesc": "Individual digitization, processing, and integration of a single product into the TYPUS.AI material library and AI workflow.",
       "altCta": "REQUEST SINGLE PRODUCT",
       "euFunding": "Funded under the European Union FFplus Program"
+    },
+    "viewers": {
+      "tab1": "1. Material Catalog (Live App)",
+      "tab2": "2. Product Flyout Modal",
+      "tab3": "3. KEIM Product Detail Page",
+      "tab4": "4. Texture Assignment",
+      "fullscreen": "FULLSCREEN",
+      "openInFullscreen": "OPEN IN FULLSCREEN",
+      "iframeTitle": "Interactive Typus.AI Viewer Showcase",
+      "keimTitle": "KEIM Silanputz®",
+      "keimSub": "Mineral top coat plaster reinforced with silane for high-quality, durable facade design.",
+      "manufacturer": "KEIMFARBEN GMBH",
+      "backToOverview": "‹ BACK TO OVERVIEW",
+      "websiteBtn": "GO TO WEBSITE",
+      "contactBtn": "CONTACT",
+      "documentsTitle": "DOCUMENTS",
+      "variantsTitle": "VARIANTS",
+      "allVariants": "VIEW ALL VARIANTS (150+)",
+      "digitalMaterialData": "DIGITAL MATERIAL DATA",
+      "sphere3d": "3D SPHERE",
+      "download": "DOWNLOAD",
+      "remember": "SAVE",
+      "remembered": "SAVED",
+      "compare": "COMPARE",
+      "share": "SHARE",
+      "walls": "Walls",
+      "floors": "Floors",
+      "searchPlaceholder": "Search materials...",
+      "addWall": "ADD",
+      "addFloor": "ADD",
+      "noWalls": "NO WALLS SELECTED",
+      "noFloors": "NO FLOORS SELECTED",
+      "itemDetails": "ITEM DETAILS:",
+      "textureSynthTitle": "Real-time Texturing on Architectural Renderings",
+      "textureSynthSubtitle": "AI Material Assignment & Render Synthesis",
+      "synthBtn": "SYNTHESIZE TEXTURE",
+      "chooseTexture": "SELECT A TEXTURE FOR AUTOMATIC ASSIGNMENT"
     }
   }
 }
