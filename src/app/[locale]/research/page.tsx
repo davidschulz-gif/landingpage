@@ -138,6 +138,7 @@ export default function ResearchProjectsPage() {
                   alt="Feierliche Einweihung des Supercomputers JUPITER am Forschungszentrum Jülich"
                   fill
                   className="object-cover"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
                 
@@ -183,27 +184,27 @@ export default function ResearchProjectsPage() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="w-full space-y-12"
           >
-            {/* Prof. Dr. Leif Kobbelt Cooperation Card placed above videos */}
-            <div className="p-7 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-md space-y-4 max-w-3xl mx-auto">
+            {/* Prof. Dr. Leif Kobbelt Cooperation Card placed above videos (Compact) */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-sm space-y-2.5 max-w-xl mr-auto">
               <div
-                className="text-xs sm:text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
+                className="text-[11px] sm:text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
                 {t('slide7.coopLabel')}
               </div>
-              <div className="flex items-start gap-5">
-                <div className="p-3 rounded-2xl bg-black text-white flex-shrink-0 mt-0.5">
-                  <Image src="/cube_mesh_icon.png" alt="Cube Mesh Icon" width={40} height={40} className="w-9 h-9 object-contain" />
+              <div className="flex items-center gap-3.5">
+                <div className="p-2 rounded-xl bg-black text-white flex-shrink-0">
+                  <Image src="/cube_mesh_icon.png" alt="Cube Mesh Icon" width={28} height={28} className="w-6 h-6 object-contain" />
                 </div>
-                <div className="space-y-1.5">
+                <div className="space-y-0.5">
                   <h4
-                    className="heading-primary"
+                    className="heading-primary text-base sm:text-lg md:text-xl"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide7.professorName')}
                   </h4>
                   <p
-                    className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                    className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide7.professorTitle')}
@@ -395,33 +396,33 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 4 SECTION: EU & NRW STATE FUNDING */}
-        <section className="py-8 border-t border-neutral-200/60 dark:border-neutral-800">
+        {/* SLIDE 4 SECTION: EU & NRW STATE FUNDING (ULTRA COMPACT LOGOS) */}
+        <section className="py-2.5 sm:py-3 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full space-y-10 text-center"
+            className="w-full space-y-2 sm:space-y-3 text-center"
           >
-            <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16 py-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-1">
               <Image
                 src={locale === 'de' ? '/eu-kofinanziert-von-der-europaeischen-union.png' : '/eu-kofinanziert-von-der-europaeischen-union-en.png'}
                 alt="Kofinanziert von der Europäischen Union"
-                width={360}
-                height={100}
-                className="h-18 md:h-24 w-auto object-contain"
+                width={200}
+                height={50}
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain"
               />
               <Image
                 src="/Logo_MWIKE.jpg"
                 alt="Ministerium für Wirtschaft, Industrie, Klimaschutz und Energie NRW"
-                width={360}
-                height={100}
-                className="h-18 md:h-24 w-auto object-contain"
+                width={200}
+                height={50}
+                className="h-7 sm:h-8 md:h-9 w-auto object-contain"
               />
             </div>
 
             <p
-              className="subheading-primary text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-4xl mx-auto leading-relaxed"
+              className="subheading-primary text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 max-w-2xl mx-auto leading-tight"
               style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             >
               {t('slide4.desc')}
@@ -715,13 +716,13 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 9 SECTION: ADVANTAGES AT A GLANCE */}
-        <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
+        {/* SLIDE 9 SECTION: ADVANTAGES AT A GLANCE (COMPACT) */}
+        <section className="py-6 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="w-full space-y-12"
+            className="w-full space-y-6"
           >
             <h3
               className="heading-primary"
@@ -730,7 +731,7 @@ export default function ResearchProjectsPage() {
               {t('slide9.title')}
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
               {[
                 { icon: Megaphone },
                 { icon: ShoppingCart },
@@ -738,24 +739,24 @@ export default function ResearchProjectsPage() {
                 { icon: Users },
                 { icon: ShieldCheck }
               ].map((col, idx) => (
-                <div key={idx} className="p-7 md:p-8 lg:p-9 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between space-y-6 text-center hover:shadow-md transition">
-                  <col.icon className="w-10 h-10 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
-                  <div className="space-y-2">
+                <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs flex flex-col justify-between space-y-3.5 text-center hover:shadow-sm transition">
+                  <col.icon className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
+                  <div className="space-y-1">
                     <div
-                      className="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400"
+                      className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t(`slide9.items.${idx}.num`)}
                     </div>
                     <div
-                      className="subheading-primary"
+                      className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t(`slide9.items.${idx}.title`)}
                     </div>
                   </div>
                   <p
-                    className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                    className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t(`slide9.items.${idx}.desc`)}
@@ -766,49 +767,49 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 10 SECTION: WAS SIE EINREICHEN KÖNNEN (DARK CARD ARCHITEXTURES & MATERIAL GUIDE STYLE) */}
-        <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
+        {/* SLIDE 10 SECTION: WAS SIE EINREICHEN KÖNNEN (ULTRA COMPACT & REDUCED HEIGHT) */}
+        <section className="py-6 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
             className="w-full"
           >
-            <div className="w-full rounded-[2.5rem] bg-neutral-950 text-white p-8 md:p-12 lg:p-14 border border-neutral-800 shadow-2xl space-y-10 relative overflow-hidden">
+            <div className="w-full rounded-3xl bg-neutral-950 text-white p-5 sm:p-6 md:p-8 border border-neutral-800 shadow-xl space-y-5 relative overflow-hidden">
               
               {/* Top Header Logos Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-neutral-800/80">
-                <div className="flex items-center gap-5 md:gap-8 flex-wrap">
-                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
-                    <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={180} height={60} className="h-9 md:h-12 w-auto object-contain" />
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-neutral-800/80">
+                <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
+                  <div className="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-center shadow-xs">
+                    <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={140} height={40} className="h-6 sm:h-7 w-auto object-contain" />
                   </div>
-                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
-                    <Image src="/logo/logo_eccc.svg" alt="ECCC" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  <div className="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-center shadow-xs">
+                    <Image src="/logo/logo_eccc.svg" alt="ECCC" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
                   </div>
-                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
-                    <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  <div className="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-center shadow-xs">
+                    <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
                   </div>
-                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
-                    <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={180} height={60} className="h-8 md:h-11 w-auto object-contain" />
+                  <div className="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-center shadow-xs">
+                    <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
                   </div>
                 </div>
-                <div className="flex items-center gap-3 border-l border-neutral-800 pl-6 hidden sm:flex">
-                  <div className="bg-white rounded-2xl px-5 py-2.5 flex items-center justify-center shadow-md">
-                    <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={220} height={60} className="h-9 md:h-12 w-auto object-contain" />
+                <div className="flex items-center gap-3 border-l border-neutral-800 pl-4 hidden sm:flex">
+                  <div className="bg-white rounded-xl px-3.5 py-1.5 flex items-center justify-center shadow-xs">
+                    <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={160} height={40} className="h-6 sm:h-7 w-auto object-contain" />
                   </div>
                 </div>
               </div>
 
               {/* Header Title & Subtitle */}
-              <div className="space-y-3">
+              <div className="space-y-1.5">
                 <h3
-                  className="heading-primary"
+                  className="heading-primary text-lg sm:text-xl md:text-2xl"
                   style={{ fontFamily: "var(--font-ft-calhern), sans-serif", color: 'white' }}
                 >
                   {t('slide10.title')}
                 </h3>
                 <p
-                  className="subheading-primary text-base md:text-xl lg:text-2xl text-neutral-300 leading-relaxed"
+                  className="subheading-primary text-xs sm:text-sm md:text-base text-neutral-300 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: '#d4d4d4' }}
                 >
                   {t('slide10.subtitle')}
@@ -816,10 +817,10 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Main Content Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 items-stretch">
                 {/* Left Column: 4 Feature Boxes + Quote Banner */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                  <div className="space-y-4">
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-3">
+                  <div className="space-y-2">
                     {[
                       { icon: LayoutGrid, titleKey: 'slide10.inputs.0.title', descKey: 'slide10.inputs.0.desc' },
                       { icon: Layers, titleKey: 'slide10.inputs.1.title', descKey: 'slide10.inputs.1.desc' },
@@ -828,21 +829,21 @@ export default function ResearchProjectsPage() {
                     ].map((item, idx) => (
                       <div
                         key={idx}
-                        className="p-5 md:p-6 rounded-2xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-5 hover:border-neutral-700 transition"
+                        className="p-2.5 sm:p-3 rounded-lg bg-neutral-900/90 border border-neutral-800 flex items-center gap-3 hover:border-neutral-700 transition"
                       >
-                        <div className="p-3 rounded-xl bg-neutral-800 text-red-500 flex-shrink-0">
-                          <item.icon className="w-6 h-6" />
+                        <div className="p-1.5 rounded-md bg-neutral-800 text-neutral-300 flex-shrink-0">
+                          <item.icon className="w-4 h-4" />
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-0.5">
                           <div
-                            className="subheading-primary"
-                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: 'white' }}
+                            className="subheading-primary text-xs sm:text-sm font-bold text-white"
+                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                           >
                             {t(item.titleKey)}
                           </div>
                           <div
-                            className="subheading-primary text-sm md:text-base text-neutral-400"
-                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: '#a3a3a3' }}
+                            className="subheading-primary text-[11px] sm:text-xs text-neutral-400"
+                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                           >
                             {t(item.descKey)}
                           </div>
@@ -851,24 +852,24 @@ export default function ResearchProjectsPage() {
                     ))}
                   </div>
 
-                  {/* Highlight Quote Notice Box with Red Accent */}
+                  {/* Highlight Quote Notice Box with Neutral Accent */}
                   <div
-                    className="p-5 md:p-6 rounded-2xl bg-neutral-900/90 border border-red-500/30 flex items-start gap-4 text-xs md:text-sm text-neutral-300 leading-relaxed font-medium"
+                    className="p-2.5 sm:p-3 rounded-lg bg-neutral-900/90 border border-neutral-800 flex items-start gap-2.5 text-xs text-neutral-300 leading-snug font-medium"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
-                    <div className="p-2 rounded-lg bg-red-500/10 text-red-400 flex-shrink-0 mt-0.5">
-                      <Sparkles className="w-5 h-5" />
+                    <div className="p-1 rounded-md bg-neutral-800 text-neutral-300 flex-shrink-0 mt-0.5">
+                      <Sparkles className="w-3.5 h-3.5" />
                     </div>
                     <span>
-                      <strong className="text-red-400 font-bold block mb-1">QUALITÄTSHINWEIS:</strong>
+                      <strong className="text-white font-bold block mb-0.5 text-[11px]">QUALITÄTSHINWEIS:</strong>
                       {t('slide10.notice')}
                     </span>
                   </div>
                 </div>
 
                 {/* Right Column: Hero Material Render Image & 3 Key Badges */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                  <div className="relative rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-xl h-[380px] sm:h-[460px] md:h-[500px] lg:h-[520px]">
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-3">
+                  <div className="relative rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-md h-[200px] sm:h-[240px] md:h-[270px] lg:h-[290px]">
                     <Image
                       src="/material_samples_showcase.png"
                       alt="Digital Material Samples Showcase - High Resolution PBR"
@@ -881,37 +882,37 @@ export default function ResearchProjectsPage() {
 
                   {/* Bottom 3 Standards Badges */}
                   <div
-                    className="grid grid-cols-3 gap-3 md:gap-4 text-center"
+                    className="grid grid-cols-3 gap-2 text-center"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
-                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <Database className="w-5 h-5 text-red-500 mx-auto" />
-                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge1.title')}</div>
-                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge1.subtitle')}</div>
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
+                      <Database className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
+                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge1.title')}</div>
+                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge1.subtitle')}</div>
                     </div>
-                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <Building2 className="w-5 h-5 text-red-500 mx-auto" />
-                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge2.title')}</div>
-                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge2.subtitle')}</div>
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
+                      <Building2 className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
+                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge2.title')}</div>
+                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge2.subtitle')}</div>
                     </div>
-                    <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <ShieldCheck className="w-5 h-5 text-red-500 mx-auto" />
-                      <div className="text-white text-xs md:text-sm font-bold">{t('slide10.badge3.title')}</div>
-                      <div className="text-neutral-400 text-[11px] md:text-xs">{t('slide10.badge3.subtitle')}</div>
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
+                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge3.title')}</div>
+                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge3.subtitle')}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Footer EU FFplus Funding Tag */}
-              <div className="pt-6 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+              <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                   <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
                     Gefördert im FFplus Programm der Europäischen Union
                   </span>
                 </div>
-                <div className="text-neutral-600 font-mono text-[11px] hidden sm:block">
+                <div className="text-neutral-600 font-mono text-[10px] hidden sm:block">
                   FFPLUS × TYPUS.AI
                 </div>
               </div>
@@ -920,13 +921,13 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 11 SECTION: WHAT PARTICIPATION INCLUDES */}
-        <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
+        {/* SLIDE 11 SECTION: WHAT PARTICIPATION INCLUDES (COMPACT) */}
+        <section className="py-6 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
-            className="w-full space-y-12"
+            className="w-full space-y-6"
           >
             <h3
               className="heading-primary"
@@ -935,20 +936,20 @@ export default function ResearchProjectsPage() {
               {t('slide11.title')}
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
               {/* Card 1 */}
-              <div className="p-7 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between text-center hover:shadow-md transition">
-                <div className="space-y-5">
-                  <Handshake className="w-11 h-11 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
+                <div className="space-y-3">
+                  <Handshake className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary"
+                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card1Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card1Desc')}
@@ -956,18 +957,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 2 */}
-              <div className="p-7 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between text-center hover:shadow-md transition">
-                <div className="space-y-5">
-                  <Settings className="w-11 h-11 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
+                <div className="space-y-3">
+                  <Settings className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary"
+                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card2Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card2Desc')}
@@ -975,18 +976,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 3 */}
-              <div className="p-7 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between hover:shadow-md transition">
-                <div className="space-y-5 text-center">
-                  <Tag className="w-11 h-11 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between hover:shadow-sm transition">
+                <div className="space-y-3 text-center">
+                  <Tag className="w-7 h-7 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary"
+                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card3Title')}
                   </div>
                 </div>
                 <ul
-                  className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 space-y-2.5 list-disc pl-4 text-left leading-relaxed"
+                  className="subheading-primary text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 space-y-1.5 list-disc pl-3.5 text-left leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {[0, 1, 2, 3].map((idx) => (
@@ -996,18 +997,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 4 */}
-              <div className="p-7 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between text-center hover:shadow-md transition">
-                <div className="space-y-5">
-                  <Coins className="w-11 h-11 text-amber-500 mx-auto stroke-[1.5]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
+                <div className="space-y-3">
+                  <Coins className="w-7 h-7 text-amber-500 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary"
+                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card4Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium"
+                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug font-medium"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card4Desc')}
@@ -1015,18 +1016,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 5 */}
-              <div className="p-7 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-6 flex flex-col justify-between text-center hover:shadow-md transition">
-                <div className="space-y-5">
-                  <Rocket className="w-11 h-11 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
+                <div className="space-y-3">
+                  <Rocket className="w-7 h-7 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary"
+                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card5Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card5Desc')}
@@ -1036,13 +1037,13 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 12 SECTION: INTEGRATION PACKAGES & PRICING */}
-        <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
+        {/* SLIDE 12 SECTION: INTEGRATION PACKAGES & PRICING (ULTRA COMPACT) */}
+        <section className="py-6 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
-            className="w-full space-y-12"
+            className="w-full space-y-6 max-w-4xl mx-auto"
           >
             {/* Partner Logos Header Bar */}
             <PartnerHeaderLogos />
@@ -1051,24 +1052,24 @@ export default function ResearchProjectsPage() {
               {t('slide12.title')}
             </h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
               {/* Main Package (5.000 €) */}
-              <div className="lg:col-span-7 p-8 md:p-10 lg:p-12 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-8 relative overflow-hidden flex flex-col justify-between">
+              <div className="lg:col-span-7 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-xs space-y-4 relative overflow-hidden flex flex-col justify-between">
                 <div
-                  className="absolute top-0 right-0 px-5 py-2 bg-blue-600 text-white text-xs md:text-sm uppercase tracking-widest rounded-bl-2xl font-bold"
+                  className="absolute top-0 right-0 px-3 py-1 bg-blue-600 text-white text-[9px] sm:text-[10px] uppercase tracking-widest rounded-bl-xl font-bold"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.recommendedBadge')}
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400">
-                      <Database className="w-8 h-8" />
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400">
+                      <Database className="w-5 h-5" />
                     </div>
                     <div>
                       <h4
-                        className="subheading-primary"
+                        className="subheading-primary text-sm sm:text-base md:text-lg font-bold"
                         style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide12.mainTitle')}
@@ -1076,15 +1077,15 @@ export default function ResearchProjectsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-baseline gap-4 pt-2">
+                  <div className="flex items-baseline gap-2.5 pt-0.5">
                     <span
-                      className="text-5xl md:text-6xl lg:text-7xl font-normal text-black dark:text-white tracking-tight"
+                      className="text-2xl sm:text-3xl md:text-4xl font-normal text-black dark:text-white tracking-tight"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.mainPrice')}
                     </span>
                     <span
-                      className="text-sm md:text-base text-neutral-500 dark:text-neutral-400"
+                      className="text-xs text-neutral-500 dark:text-neutral-400"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.mainVat')}
@@ -1093,7 +1094,7 @@ export default function ResearchProjectsPage() {
 
                   <div>
                     <span
-                      className="px-4 py-1.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-xs md:text-sm uppercase tracking-wider rounded-xl inline-block font-bold"
+                      className="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-[10px] sm:text-[11px] uppercase tracking-wider rounded-md inline-block font-bold"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.mainScope')}
@@ -1102,27 +1103,27 @@ export default function ResearchProjectsPage() {
                 </div>
 
                 {/* Feature List with Subtle Horizontal Divider Lines */}
-                <div className="divide-y divide-neutral-100 dark:divide-neutral-800/80">
+                <div className="divide-y divide-neutral-100 dark:divide-neutral-800/80 text-xs">
                   {[Sparkles, FileCheck, Library, Brain, ShieldCheck].map((IconComp, idx) => (
-                    <div key={idx} className="flex items-center gap-4 py-3.5 text-base md:text-lg text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0">
-                      <IconComp className="w-5 h-5 md:w-6 md:h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                    <div key={idx} className="flex items-center gap-2.5 py-1.5 text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0">
+                      <IconComp className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>{t(`slide12.mainFeatures.${idx}`)}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Bonus Gift Box */}
-                <div className="p-5 md:p-6 rounded-2xl bg-blue-50/70 dark:bg-neutral-950 border border-blue-100 dark:border-neutral-800 flex items-start gap-4 text-sm md:text-base text-neutral-800 dark:text-neutral-200">
-                  <Gift className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-1">
+                <div className="p-3 rounded-lg bg-blue-50/70 dark:bg-neutral-950 border border-blue-100 dark:border-neutral-800 flex items-start gap-2.5 text-xs text-neutral-800 dark:text-neutral-200">
+                  <Gift className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
                     <strong
-                      className="text-blue-900 dark:text-blue-300 block uppercase tracking-wide text-xs md:text-sm"
+                      className="text-blue-900 dark:text-blue-300 block uppercase tracking-wide text-[10px] sm:text-[11px]"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.bonusTitle')}
                     </strong>
                     <span
-                      className="text-neutral-600 dark:text-neutral-400 block text-xs md:text-sm"
+                      className="text-neutral-600 dark:text-neutral-400 block text-[10px] sm:text-[11px]"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.bonusDesc')}
@@ -1132,7 +1133,7 @@ export default function ResearchProjectsPage() {
 
                 <Link
                   href="/book-a-demo"
-                  className="w-fit max-w-full mx-auto py-3 md:py-3.5 px-8 sm:px-10 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs md:text-sm font-medium uppercase tracking-wide shadow-sm"
+                  className="w-fit max-w-full mx-auto py-2 px-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs font-medium uppercase tracking-wide shadow-2xs"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.mainCta')}
@@ -1140,36 +1141,36 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Single Product Alternative (1.000 €) */}
-              <div className="lg:col-span-5 p-8 md:p-10 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-8 flex flex-col justify-between text-center">
-                <div className="space-y-6">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
-                    <Box className="w-7 h-7" />
+              <div className="lg:col-span-5 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center">
+                <div className="space-y-3">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+                    <Box className="w-4 h-4" />
                   </div>
 
-                  <div className="space-y-1.5">
+                  <div className="space-y-0.5">
                     <span
-                      className="text-xs sm:text-sm uppercase text-blue-600 dark:text-blue-400 tracking-widest block font-bold"
+                      className="text-[9px] sm:text-[10px] uppercase text-blue-600 dark:text-blue-400 tracking-widest block font-bold"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altBadge')}
                     </span>
                     <h4
-                      className="heading-primary"
+                      className="heading-primary text-sm sm:text-base md:text-lg font-bold"
                       style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altTitle')}
                     </h4>
                   </div>
 
-                  <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800">
+                  <div className="pt-1.5 border-t border-neutral-100 dark:border-neutral-800">
                     <span
-                      className="text-4xl md:text-5xl lg:text-6xl font-normal text-black dark:text-white tracking-tight"
+                      className="text-xl sm:text-2xl md:text-3xl font-normal text-black dark:text-white tracking-tight"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altPrice')}
                     </span>
                     <span
-                      className="text-sm md:text-base text-neutral-500 dark:text-neutral-400 block pt-1"
+                      className="text-[11px] text-neutral-500 dark:text-neutral-400 block pt-0.5"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altVat')}
@@ -1177,20 +1178,21 @@ export default function ResearchProjectsPage() {
                   </div>
                 </div>
 
-                <div className="p-5 md:p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800 space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
-                    <LayoutGrid className="w-6 h-6" />
+                <div className="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800 space-y-1.5">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+                    <LayoutGrid className="w-3.5 h-3.5" />
                   </div>
                   <p
-                    className="subheading-primary text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                    className="subheading-primary text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide12.altDesc')}
                   </p>
                 </div>
+
                 <Link
                   href="/book-a-demo"
-                  className="w-fit max-w-full mx-auto py-3 md:py-3.5 px-8 sm:px-10 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs md:text-sm font-medium uppercase tracking-wide shadow-sm"
+                  className="w-fit max-w-full mx-auto py-2 px-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs font-medium uppercase tracking-wide shadow-2xs"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.altCta')}
