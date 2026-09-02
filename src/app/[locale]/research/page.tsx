@@ -597,6 +597,7 @@ export default function ResearchProjectsPage() {
                     alt="Fotorealistische Fassaden- & Materialvisualisierung - Modern Building Architecture Render"
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
               </div>
@@ -700,6 +701,7 @@ export default function ResearchProjectsPage() {
                     alt="Digital Material Catalog UI on Laptop - Typus.AI Workflow"
                     fill
                     className="object-contain"
+                    unoptimized
                   />
                 </div>
               </div>
@@ -866,6 +868,7 @@ export default function ResearchProjectsPage() {
                       alt="Digital Material Samples Showcase - High Resolution PBR"
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent pointer-events-none" />
                   </div>
