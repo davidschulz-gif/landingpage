@@ -3252,7 +3252,7 @@
       "card2Desc": "Processing, integration, and technical connection of data to our platform and AI model.",
       "card3Title": "Your Products Receive",
       "card3List": [
-        "Free platform listing until official rollout",
+        "Free platform listing",
         "Company logo on our website",
         "Integration into digital material database",
         "AI-supported visualization of your products in the pipeline"
@@ -3276,8 +3276,8 @@
         "Data preparation & integration for application-specific AI model",
         "Quality control & alignment of product data"
       ],
-      "bonusTitle": "INCLUDED: FREE LISTING ON TYPUS.AI UNTIL ROLLOUT",
-      "bonusDesc": "No additional listing fees during the development and integration phase.",
+      "bonusTitle": "INCLUDED: FREE LISTING ON TYPUS.AI",
+      "bonusDesc": "No additional listing fees.",
       "mainCta": "REQUEST PROJECT INTEGRATION",
       "altBadge": "ALTERNATIVE",
       "altTitle": "SINGLE PRODUCT",

@@ -50,7 +50,10 @@ export default function BeforeYouGoPopup() {
   const router = useRouter()
 
   const isPricingPage = pathname?.endsWith('/pricing') || pathname?.includes('/pricing')
-  const isExcludedRoute = pathname?.includes('upscale-privacy')
+  const isExcludedRoute = pathname?.includes('upscale-privacy') || pathname?.includes('/research') || pathname?.includes('research')
+  const isResearchPage = pathname?.includes('/research') || pathname?.includes('research')
+
+  const isIframe = typeof window !== 'undefined' && window.self !== window.top
 
   useEffect(() => {
     setMounted(true)
@@ -59,16 +62,18 @@ export default function BeforeYouGoPopup() {
     }
   }, [])
 
+  if (isIframe || isResearchPage) return null
+
   const show = (_triggerType: string) => {
-    if (isOpen) return
+    if (isOpen || isIframe || isResearchPage) return
 
     // Suppress if checkout process is initiated/active or on the checkout order page
     if (typeof window !== 'undefined' && (window as any).isCheckoutActive) {
       console.log('Suppressing BeforeYouGoPopup because checkout is active')
       return
     }
-    if (pathname?.includes('/pricing/order')) {
-      console.log('Suppressing BeforeYouGoPopup on order page')
+    if (pathname?.includes('/pricing/order') || isResearchPage) {
+      console.log('Suppressing BeforeYouGoPopup on order or research page')
       return
     }
 

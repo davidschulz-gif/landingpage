@@ -57,7 +57,7 @@ export function FloatingEmailBuzzer() {
     window.dispatchEvent(new CustomEvent('open-before-you-go'))
   }
 
-  const shouldHide = pathname?.includes('/book-a-demo') || pathname?.includes('/pricing/order')
+  const shouldHide = pathname?.includes('/book-a-demo') || pathname?.includes('/pricing/order') || pathname?.includes('/research')
   if (shouldHide) return null
 
   const showCTA = isVisible && !isFooterVisible

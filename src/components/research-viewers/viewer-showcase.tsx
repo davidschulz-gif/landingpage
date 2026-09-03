@@ -31,94 +31,94 @@ export function ViewerShowcase() {
   const iframeSrc = getIframeSrc()
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       
       {/* Interactive Header Switcher Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-3 rounded-2xl bg-neutral-950 border border-neutral-800 text-white shadow-2xl">
-        <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex flex-wrap items-center justify-between gap-2 p-2 rounded-xl bg-neutral-950 border border-neutral-800 text-white shadow-xl">
+        <div className="flex items-center gap-1.5 flex-wrap">
           <button
             onClick={() => setActiveTab('catalog')}
-            className={`px-3.5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap ${
               activeTab === 'catalog'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
             }`}
           >
-            <Grid className="w-4 h-4" />
+            <Grid className="w-3.5 h-3.5" />
             <span>{t('tab1')}</span>
           </button>
 
           <button
             onClick={() => setActiveTab('flyout')}
-            className={`px-3.5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap ${
               activeTab === 'flyout'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
             }`}
           >
-            <Info className="w-4 h-4" />
+            <Info className="w-3.5 h-3.5" />
             <span>{t('tab2')}</span>
           </button>
 
           <button
             onClick={() => setActiveTab('product-page')}
-            className={`px-3.5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap ${
               activeTab === 'product-page'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
             }`}
           >
-            <Monitor className="w-4 h-4" />
+            <Monitor className="w-3.5 h-3.5" />
             <span>{t('tab3')}</span>
           </button>
 
           {/* Tab 4: Exterior Texture Assignment */}
           <button
             onClick={() => setActiveTab('texture-assignment-exterior')}
-            className={`px-3.5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap ${
               activeTab === 'texture-assignment-exterior'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
             }`}
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-3.5 h-3.5" />
             <span>{t('tab4')}</span>
           </button>
 
           {/* Tab 5: Interior Texture Assignment */}
           <button
             onClick={() => setActiveTab('texture-assignment-interior')}
-            className={`px-3.5 py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer whitespace-nowrap ${
               activeTab === 'texture-assignment-interior'
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-sm'
                 : 'text-neutral-400 hover:text-white hover:bg-neutral-800'
             }`}
           >
-            <Home className="w-4 h-4" />
+            <Home className="w-3.5 h-3.5" />
             <span>{t('tab5')}</span>
           </button>
         </div>
 
         {/* Fullscreen Link */}
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-3 text-xs pr-2">
           <a
             href={iframeSrc}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-blue-400 hover:underline uppercase tracking-wider font-bold"
+            className="flex items-center gap-1 text-blue-400 hover:underline uppercase tracking-wider font-bold text-[10px] sm:text-xs"
           >
             <span>{t('fullscreen')}</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </div>
 
       {/* Embedded App Iframe Container */}
-      <div className="w-full relative rounded-2xl overflow-hidden border border-neutral-300 dark:border-neutral-800 bg-white shadow-2xl">
+      <div className="w-full relative rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-800 bg-white shadow-xl">
         <iframe
           src={iframeSrc}
           key={activeTab}
-          className="w-full h-[560px] sm:h-[620px] md:h-[650px] border-0 rounded-2xl bg-white shadow-inner transition-all duration-300"
+          className="w-full h-[460px] sm:h-[500px] md:h-[530px] lg:h-[550px] border-0 rounded-xl bg-white shadow-inner transition-all duration-300"
           title={t('iframeTitle')}
         />
       </div>

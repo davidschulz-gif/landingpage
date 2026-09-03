@@ -1105,7 +1105,9 @@ export default function ResearchProjectsPage() {
                 </div>
 
                 <Link
-                  href="/book-a-demo"
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-fit max-w-full mx-auto py-2 px-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs font-medium uppercase tracking-wide shadow-2xs"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
@@ -1164,7 +1166,9 @@ export default function ResearchProjectsPage() {
                 </div>
 
                 <Link
-                  href="/book-a-demo"
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-fit max-w-full mx-auto py-2 px-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs font-medium uppercase tracking-wide shadow-2xs"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
