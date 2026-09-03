@@ -553,4 +553,9 @@
    .subheading-primary {
     @apply text-2xl text-black break-words;  
   }
+
+  .research-page-scope,
+  .research-page-scope * {
+    font-weight: 400 !important;
+  }
 }

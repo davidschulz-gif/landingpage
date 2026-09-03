@@ -55,7 +55,7 @@ export default function ResearchProjectsPage() {
   const isDe = locale === 'de'
 
   return (
-    <div className="relative w-full bg-[#fcfcfd] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
+    <div className="research-page-scope relative w-full bg-[#fcfcfd] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
       <NavbarDemo />
 
       <main className="max-w-[1500px] mx-auto px-4 md:px-8 space-y-28 pt-32 pb-24">
@@ -106,7 +106,7 @@ export default function ResearchProjectsPage() {
           >
             <div className="text-center space-y-3 max-w-4xl mx-auto">
               <span
-                className="text-xs uppercase text-emerald-600 dark:text-emerald-400 tracking-widest font-bold block"
+                className="text-xs uppercase text-emerald-600 dark:text-emerald-400 tracking-widest font-normal block"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
                 {t('slide5.badge')}
@@ -143,7 +143,7 @@ export default function ResearchProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
                 
                 <div
-                  className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 text-white text-xs tracking-wider bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/20 font-bold"
+                  className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 text-white text-xs tracking-wider bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/20 font-normal"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   <div className="w-2.5 h-2.5 rounded-full bg-blue-400" />
@@ -187,7 +187,7 @@ export default function ResearchProjectsPage() {
             {/* Prof. Dr. Leif Kobbelt Cooperation Card placed above videos (Compact) */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-sm space-y-2.5 max-w-xl mr-auto">
               <div
-                className="text-[11px] sm:text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
+                className="text-[11px] sm:text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-normal"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
                 {t('slide7.coopLabel')}
@@ -230,7 +230,7 @@ export default function ResearchProjectsPage() {
 
                   <div className="space-y-2 pt-2">
                     <div
-                      className="text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 font-bold"
+                      className="text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 font-normal"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       RWTH AACHEN VORTRAG
@@ -255,7 +255,7 @@ export default function ResearchProjectsPage() {
                     href="https://www.youtube.com/watch?v=_IZowy8X29c"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline font-bold"
+                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline font-normal"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     <span>Auf YouTube ansehen</span>
@@ -291,7 +291,7 @@ export default function ResearchProjectsPage() {
 
                   <div className="space-y-2 pt-2">
                     <div
-                      className="text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-bold"
+                      className="text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 font-normal"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       DFG LEIBNIZ-PREIS PORTRÄT
@@ -316,7 +316,7 @@ export default function ResearchProjectsPage() {
                     href="https://www.youtube.com/watch?v=-Ts-IGJiIGI"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline font-bold"
+                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline font-normal"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     <span>Auf YouTube ansehen</span>
@@ -341,9 +341,10 @@ export default function ResearchProjectsPage() {
                 <Image
                   src="/research_bdbau_directory.png"
                   alt="Bundesverband Digitales Bauwesen - Typus.AI Mitgliedschaft Directory"
-                  width={700}
-                  height={500}
+                  width={800}
+                  height={600}
                   className="w-full h-full object-contain"
+                  unoptimized
                 />
               </div>
 
@@ -469,16 +470,16 @@ export default function ResearchProjectsPage() {
                   {/* EFRE / JTF NRW Card */}
                   <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-between gap-4 shadow-xs">
                     <div className="flex items-center gap-4">
-                      <Image src="/logo_efre_jtf.png" alt="EFRE JTF NRW 2021-27" width={180} height={70} className="h-12 sm:h-14 w-auto object-contain" />
+                      <Image src="/logo_efre_jtf.png" alt="EFRE JTF NRW 2021-27" width={220} height={80} className="h-14 sm:h-16 md:h-18 w-auto object-contain dark:invert" unoptimized />
                       <div
-                        className="text-neutral-900 dark:text-white hidden sm:block font-bold text-xs md:text-sm"
+                        className="text-neutral-900 dark:text-white hidden sm:block font-normal text-xs md:text-sm"
                         style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide6.efreTitle')}
                       </div>
                     </div>
                     <span
-                      className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0"
+                      className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs font-normal uppercase tracking-wider shrink-0"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide6.statusApproved')}
@@ -491,14 +492,14 @@ export default function ResearchProjectsPage() {
                       <div className="flex items-center gap-3">
                         <Image src="/logo_ffplus_card.png" alt="FORTISSIMO PLUS" width={120} height={55} className="h-11 sm:h-13 w-auto object-contain" />
                         <div
-                          className="text-neutral-900 dark:text-white font-bold text-xs md:text-sm"
+                          className="text-neutral-900 dark:text-white font-normal text-xs md:text-sm"
                           style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                         >
                           {t('slide6.ffplusTitle')}
                         </div>
                       </div>
                       <span
-                        className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs font-bold uppercase tracking-wider shrink-0"
+                        className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs font-normal uppercase tracking-wider shrink-0"
                         style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide6.statusApproved')}
@@ -515,7 +516,7 @@ export default function ResearchProjectsPage() {
                   {/* Kooperationen & Partner Card */}
                   <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 space-y-4 shadow-xs">
                     <div
-                      className="uppercase text-xs tracking-wider text-purple-600 dark:text-purple-400 font-bold"
+                      className="uppercase text-xs tracking-wider text-purple-600 dark:text-purple-400 font-normal"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide6.partnerTitle')}
@@ -524,15 +525,15 @@ export default function ResearchProjectsPage() {
                     <div className="flex items-center gap-6 flex-wrap">
                       <Image src="/logo_dfki.png" alt="DFKI German Research Center for AI" width={160} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
                       <Image src="/logo_concular.png" alt="Concular" width={120} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
-                      <Image src="/logo_zukunft_bau.png" alt="Zukunft Bau" width={160} height={50} className="h-9 md:h-11 w-auto object-contain dark:invert" unoptimized />
-                      <Image src="/logo_kmu_innovativ.png" alt="KMU-innovativ" width={160} height={50} className="h-9 md:h-11 w-auto object-contain dark:invert" unoptimized />
+                      <Image src="/logo_zukunft_bau.png" alt="Zukunft Bau" width={320} height={100} className="h-12 md:h-14 lg:h-16 w-auto object-contain dark:invert" unoptimized />
+                      <Image src="/logo_kmu_innovativ.png" alt="KMU-innovativ" width={200} height={60} className="h-12 md:h-14 lg:h-16 w-auto object-contain dark:invert" unoptimized />
                     </div>
 
                     <p
                       className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800 pt-3"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
-                      {t('slide6.partnerDesc')} &bull; <span className="text-neutral-500 font-bold">{t('slide6.deadline')}</span>
+                      {t('slide6.partnerDesc')} &bull; <span className="text-neutral-500 font-normal">{t('slide6.deadline')}</span>
                     </p>
                   </div>
                 </div>
@@ -546,11 +547,12 @@ export default function ResearchProjectsPage() {
                     alt="JUPITER High-Performance Supercomputer Racks at Forschungszentrum Jülich"
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
                   
                   <div
-                    className="absolute top-4 right-4 text-xs text-white bg-black/60 px-3.5 py-1.5 rounded-full backdrop-blur-md border border-white/20 font-bold uppercase tracking-wider"
+                    className="absolute top-4 right-4 text-xs text-white bg-black/60 px-3.5 py-1.5 rounded-full backdrop-blur-md border border-white/20 font-normal uppercase tracking-wider"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide6.rackTag')}
@@ -558,7 +560,7 @@ export default function ResearchProjectsPage() {
 
                   <div className="absolute bottom-6 left-6 right-6 space-y-2">
                     <div
-                      className="text-4xl md:text-5xl font-black text-white tracking-widest"
+                      className="text-4xl md:text-5xl font-normal text-white tracking-widest"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide6.rackTitle')}
@@ -596,7 +598,7 @@ export default function ResearchProjectsPage() {
 
                 <div className="space-y-4">
                   <div
-                    className="text-sm sm:text-base uppercase tracking-widest text-blue-600 dark:text-blue-400 font-bold"
+                    className="text-sm sm:text-base uppercase tracking-widest text-blue-600 dark:text-blue-400 font-normal"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide7.badge')}
@@ -631,7 +633,7 @@ export default function ResearchProjectsPage() {
                     </div>
                     <div className="space-y-1">
                       <span
-                        className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
+                        className="text-xs text-black dark:text-white uppercase tracking-wider font-normal block"
                         style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide8.advantageBadge')}
@@ -651,7 +653,7 @@ export default function ResearchProjectsPage() {
                     </div>
                     <div className="space-y-1">
                       <span
-                        className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
+                        className="text-xs text-black dark:text-white uppercase tracking-wider font-normal block"
                         style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide8.workflowBadge')}
@@ -716,13 +718,13 @@ export default function ResearchProjectsPage() {
                   <col.icon className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div className="space-y-1">
                     <div
-                      className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400"
+                      className="text-xl sm:text-2xl font-normal text-blue-600 dark:text-blue-400"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t(`slide9.items.${idx}.num`)}
                     </div>
                     <div
-                      className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                      className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t(`slide9.items.${idx}.title`)}
@@ -809,7 +811,7 @@ export default function ResearchProjectsPage() {
                         </div>
                         <div className="space-y-0.5">
                           <div
-                            className="subheading-primary text-xs sm:text-sm font-bold text-white"
+                            className="subheading-primary text-xs sm:text-sm font-normal text-white"
                             style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                           >
                             {t(item.titleKey)}
@@ -834,7 +836,7 @@ export default function ResearchProjectsPage() {
                       <Sparkles className="w-3.5 h-3.5" />
                     </div>
                     <span>
-                      <strong className="text-white font-bold block mb-0.5 text-[11px]">QUALITÄTSHINWEIS:</strong>
+                      <strong className="text-white font-normal block mb-0.5 text-[11px]">QUALITÄTSHINWEIS:</strong>
                       {t('slide10.notice')}
                     </span>
                   </div>
@@ -860,17 +862,17 @@ export default function ResearchProjectsPage() {
                   >
                     <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
                       <Database className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
-                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge1.title')}</div>
+                      <div className="text-white text-[11px] sm:text-xs font-normal">{t('slide10.badge1.title')}</div>
                       <div className="text-neutral-400 text-[10px]">{t('slide10.badge1.subtitle')}</div>
                     </div>
                     <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
                       <Building2 className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
-                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge2.title')}</div>
+                      <div className="text-white text-[11px] sm:text-xs font-normal">{t('slide10.badge2.title')}</div>
                       <div className="text-neutral-400 text-[10px]">{t('slide10.badge2.subtitle')}</div>
                     </div>
                     <div className="p-2 sm:p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 space-y-0.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-neutral-300 mx-auto" />
-                      <div className="text-white text-[11px] sm:text-xs font-bold">{t('slide10.badge3.title')}</div>
+                      <div className="text-white text-[11px] sm:text-xs font-normal">{t('slide10.badge3.title')}</div>
                       <div className="text-neutral-400 text-[10px]">{t('slide10.badge3.subtitle')}</div>
                     </div>
                   </div>
@@ -915,7 +917,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3">
                   <Handshake className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card1Title')}
@@ -934,7 +936,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3">
                   <Settings className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card2Title')}
@@ -953,7 +955,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3 text-center">
                   <Tag className="w-7 h-7 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card3Title')}
@@ -974,7 +976,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3">
                   <Coins className="w-7 h-7 text-amber-500 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card4Title')}
@@ -993,7 +995,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3">
                   <Rocket className="w-7 h-7 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-bold text-neutral-900 dark:text-white"
+                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card5Title')}
@@ -1029,7 +1031,7 @@ export default function ResearchProjectsPage() {
               {/* Main Package (5.000 €) */}
               <div className="lg:col-span-7 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-xs space-y-4 relative overflow-hidden flex flex-col justify-between">
                 <div
-                  className="absolute top-0 right-0 px-3 py-1 bg-blue-600 text-white text-[9px] sm:text-[10px] uppercase tracking-widest rounded-bl-xl font-bold"
+                  className="absolute top-0 right-0 px-3 py-1 bg-blue-600 text-white text-[9px] sm:text-[10px] uppercase tracking-widest rounded-bl-xl font-normal"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide12.recommendedBadge')}
@@ -1042,7 +1044,7 @@ export default function ResearchProjectsPage() {
                     </div>
                     <div>
                       <h4
-                        className="subheading-primary text-sm sm:text-base md:text-lg font-bold"
+                        className="subheading-primary text-sm sm:text-base md:text-lg font-normal"
                         style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
                       >
                         {t('slide12.mainTitle')}
@@ -1067,7 +1069,7 @@ export default function ResearchProjectsPage() {
 
                   <div>
                     <span
-                      className="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-[10px] sm:text-[11px] uppercase tracking-wider rounded-md inline-block font-bold"
+                      className="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-[10px] sm:text-[11px] uppercase tracking-wider rounded-md inline-block font-normal"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.mainScope')}
@@ -1124,13 +1126,13 @@ export default function ResearchProjectsPage() {
 
                   <div className="space-y-0.5">
                     <span
-                      className="text-[9px] sm:text-[10px] uppercase text-blue-600 dark:text-blue-400 tracking-widest block font-bold"
+                      className="text-[9px] sm:text-[10px] uppercase text-blue-600 dark:text-blue-400 tracking-widest block font-normal"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altBadge')}
                     </span>
                     <h4
-                      className="heading-primary text-sm sm:text-base md:text-lg font-bold"
+                      className="heading-primary text-sm sm:text-base md:text-lg font-normal"
                       style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
                     >
                       {t('slide12.altTitle')}

@@ -118,7 +118,7 @@ export function ViewerShowcase() {
         <iframe
           src={iframeSrc}
           key={activeTab}
-          className="w-full h-[460px] sm:h-[500px] md:h-[530px] lg:h-[550px] border-0 rounded-xl bg-white shadow-inner transition-all duration-300"
+          className="w-full h-[500px] sm:h-[600px] md:h-[650px] lg:h-[700px] xl:h-[730px] border-0 rounded-xl bg-white shadow-inner transition-all duration-300"
           title={t('iframeTitle')}
         />
       </div>
