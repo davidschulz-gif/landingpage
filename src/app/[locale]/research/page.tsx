@@ -911,20 +911,20 @@ export default function ResearchProjectsPage() {
               {t('slide11.title')}
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
               {/* Card 1 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
-                <div className="space-y-3">
-                  <Handshake className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-2.5 flex flex-col justify-start text-center hover:shadow-sm transition">
+                <div className="space-y-1.5">
+                  <Handshake className="w-5 h-5 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
+                    className="text-xs sm:text-xs font-semibold text-neutral-900 dark:text-white leading-tight"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card1Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
+                  className="text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card1Desc')}
@@ -932,18 +932,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 2 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
-                <div className="space-y-3">
-                  <Settings className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-2.5 flex flex-col justify-start text-center hover:shadow-sm transition">
+                <div className="space-y-1.5">
+                  <Settings className="w-5 h-5 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
+                    className="text-xs sm:text-xs font-semibold text-neutral-900 dark:text-white leading-tight"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card2Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
+                  className="text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card2Desc')}
@@ -951,39 +951,39 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 3 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between hover:shadow-sm transition">
-                <div className="space-y-3 text-center">
-                  <Tag className="w-7 h-7 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-2.5 flex flex-col justify-start hover:shadow-sm transition">
+                <div className="space-y-1.5 text-center">
+                  <Tag className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
+                    className="text-xs sm:text-xs font-semibold text-neutral-900 dark:text-white leading-tight"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card3Title')}
                   </div>
                 </div>
                 <ul
-                  className="subheading-primary text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 space-y-1.5 list-disc pl-3.5 text-left leading-snug"
+                  className="text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 space-y-1 list-disc pl-3.5 text-left leading-tight"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
-                  {[0, 1, 2, 3].map((idx) => (
+                  {[0, 1].map((idx) => (
                     <li key={idx}>{t(`slide11.card3List.${idx}`)}</li>
                   ))}
                 </ul>
               </div>
 
               {/* Card 4 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
-                <div className="space-y-3">
-                  <Coins className="w-7 h-7 text-amber-500 mx-auto stroke-[1.5]" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-2.5 flex flex-col justify-start text-center hover:shadow-sm transition">
+                <div className="space-y-1.5">
+                  <Coins className="w-5 h-5 text-amber-500 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
+                    className="text-xs sm:text-xs font-semibold text-neutral-900 dark:text-white leading-tight"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card4Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug font-medium"
+                  className="text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card4Desc')}
@@ -991,18 +991,18 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Card 5 */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-4 flex flex-col justify-between text-center hover:shadow-sm transition">
-                <div className="space-y-3">
-                  <Rocket className="w-7 h-7 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
+              <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-2xs space-y-2.5 flex flex-col justify-start text-center hover:shadow-sm transition">
+                <div className="space-y-1.5">
+                  <Rocket className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
                   <div
-                    className="subheading-primary text-xs sm:text-sm font-normal text-neutral-900 dark:text-white"
+                    className="text-xs sm:text-xs font-semibold text-neutral-900 dark:text-white leading-tight"
                     style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                   >
                     {t('slide11.card5Title')}
                   </div>
                 </div>
                 <p
-                  className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
+                  className="text-[10px] sm:text-[11px] text-neutral-600 dark:text-neutral-400 leading-snug"
                   style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                 >
                   {t('slide11.card5Desc')}

@@ -3115,7 +3115,7 @@
   },
   "ResearchPage": {
     "slide1": {
-      "activeUsers": "hat mehr als 2.500 Architektinnen, Architekten und Architekturbüros als aktive Nutzer."
+      "activeUsers": "hat mehr als 2.500 Architektinnen, Architekten und Architekturbüros im DACH-Raum als aktive Nutzer."
     },
     "slide2": {
       "awardDesc": "wurde bereits in der Pre-Seed-Phase als eines von vier Finalisten für den Digital Innovation Award 2024 ausgewählt. Der Preis wurde vom Bundesverband Digitales Bauwesen (BDBau) vergeben und würdigt herausragende technologische Innovationen in der Bauindustrie. Zudem wurden wir von Tech in Construction entsprechend anerkannt.",
@@ -3252,12 +3252,10 @@
       "card1Desc": "Digitale Materialproben und relevante Produktdaten.",
       "card2Title": "Wir übernehmen",
       "card2Desc": "Aufbereitung, Integration und technische Anbindung der Daten an unsere Plattform und das KI-Modell.",
-      "card3Title": "Ihre Produkte erhalten",
+      "card3Title": "Integration Materialdatenbank",
       "card3List": [
         "Kostenlose Listung auf der Plattform",
-        "Firmenlogo auf unserer Website",
-        "Integration in die digitale Materialdatenbank",
-        "Perspektivisch KI-gestützte Visualisierung Ihrer Produkte"
+        "Firmenlogo auf unserer Website"
       ],
       "card4Title": "Für die einmalige Aufbereitung und",
       "card4Desc": "Integration der Produktdaten fällt eine Setup-Gebühr an.",
