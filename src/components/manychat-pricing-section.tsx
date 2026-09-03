@@ -2347,7 +2347,7 @@ function PricingCard({
         )}
 
         {/* Discount badge above price - manual promo discount or default discount */}
-        {priceInfo.discount?.periodDiscountPercent != null && (
+        {priceInfo.discount?.periodDiscountPercent != null && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
           <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
@@ -2358,7 +2358,7 @@ function PricingCard({
           <div className='flex flex-col items-center justify-center'>
             {priceInfo.discount ? (
               <>
-                {'originalPrice' in priceInfo.discount && (
+                {'originalPrice' in priceInfo.discount && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
                   <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </div>
