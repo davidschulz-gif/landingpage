@@ -14,17 +14,17 @@ export function ViewerShowcase() {
   const getIframeSrc = () => {
     switch (activeTab) {
       case 'catalog':
-        return `${appUrl}/explore`
+        return `${appUrl}/create?catalog=open`
       case 'flyout':
         return `/${locale}/viewers/flyout`
       case 'product-page':
         return `/${locale}/viewers/product-page`
       case 'texture-assignment-exterior':
-        return `${appUrl}/create?textures=open&mode=exterior`
+        return `${appUrl}/create?sessionId=-999&mode=exterior`
       case 'texture-assignment-interior':
-        return `${appUrl}/create?textures=open&mode=interior`
+        return `${appUrl}/create?sessionId=-998&mode=interior`
       default:
-        return `${appUrl}/explore`
+        return `${appUrl}/create?catalog=open`
     }
   }
 

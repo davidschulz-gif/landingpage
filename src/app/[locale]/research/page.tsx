@@ -354,11 +354,29 @@ export default function ResearchProjectsPage() {
                 <Link href={`/${locale}`} className="text-[#0086bf] hover:underline font-medium">
                   TYPUS.AI
                 </Link>{' '}
-                {t('slide2.bdbauDesc')}
+                {t.rich('slide2.bdbauDesc', {
+                  link: (chunks) => (
+                    <a
+                      href="https://bdbau.org/mitglieder/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-neutral-400 hover:decoration-neutral-900 dark:hover:decoration-white transition-all underline-offset-4 font-medium"
+                    >
+                      {chunks}
+                    </a>
+                  )
+                })}
               </p>
 
               <div className="flex items-center justify-center gap-5 pt-4">
-                <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={450} height={200} className="h-28 sm:h-36 md:h-44 w-auto object-contain dark:invert" />
+                <a
+                  href="https://bdbau.org/mitglieder/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition"
+                >
+                  <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={450} height={200} className="h-28 sm:h-36 md:h-44 w-auto object-contain dark:invert" />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -558,7 +576,7 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
-        {/* SLIDE 7 SECTION: PRODUCTS IN THE AI MODEL */}
+        {/* SLIDE 7 SECTION: PRODUCTS IN THE AI MODEL (INTEGRATED WITH WORKFLOW & ADVANTAGES) */}
         <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -567,7 +585,8 @@ export default function ResearchProjectsPage() {
             className="w-full space-y-12"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              <div className="lg:col-span-6 space-y-8">
+              {/* Left Column: Title, Subtitle, Checklist & 2 Info Cards */}
+              <div className="lg:col-span-6 space-y-6">
                 <h3
                   className="heading-primary"
                   style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
@@ -589,120 +608,74 @@ export default function ResearchProjectsPage() {
                     {t('slide7.desc')}
                   </p>
                 </div>
-              </div>
 
-              {/* Right Column: Pure Architectural House Building Render Image (Bigger) */}
-              <div className="lg:col-span-6">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-lg h-[450px] sm:h-[580px] md:h-[640px] lg:h-[680px]">
-                  <Image
-                    src="/architectural_building_render.png"
-                    alt="Fotorealistische Fassaden- & Materialvisualisierung - Modern Building Architecture Render"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-       
-
-        {/* SLIDE 8 SECTION: MATERIAL CATALOG TO PLANNING */}
-        <section className="py-12 border-t border-neutral-200/60 dark:border-neutral-800">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="w-full space-y-12"
-          >
-            <div className="space-y-3">
-              <span
-                className="text-sm sm:text-base uppercase text-blue-600 dark:text-blue-400 font-bold tracking-widest block"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-              >
-                {t('slide8.badge')}
-              </span>
-              <h3
-                className="heading-primary"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-              >
-                {t('slide8.title')}
-              </h3>
-              <p
-                className="subheading-primary text-base md:text-xl lg:text-2xl text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-              >
-                {t('slide8.subtitle')}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column (Checklist & Ihr Vorteil) */}
-              <div className="lg:col-span-5 space-y-6">
-                <div className="space-y-4">
+                {/* 4 Checklist Items */}
+                <div className="space-y-3 pt-2">
                   {[0, 1, 2, 3].map((idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-4 text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-medium"
+                      className="flex items-center gap-3.5 text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-medium"
                       style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
                     >
-                      <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                       <span>{t(`slide8.checklist.${idx}`)}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex items-start gap-4">
-                  <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5">
-                    <Target className="w-5 h-5" />
+                {/* 2 Info Cards (Ihr Vorteil & Direkt im Workflow) */}
+                <div className="space-y-4 pt-2">
+                  <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex items-start gap-4">
+                    <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5">
+                      <Target className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <span
+                        className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
+                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {t('slide8.advantageBadge')}
+                      </span>
+                      <p
+                        className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {t('slide8.advantageDesc')}
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <span
-                      className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide8.advantageBadge')}
-                    </span>
-                    <p
-                      className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide8.advantageDesc')}
-                    </p>
+
+                  <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex items-start gap-4">
+                    <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-neutral-800 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5">
+                      <Image src="/cube_mesh_icon.png" alt="3D Cube Icon" width={24} height={24} className="w-5 h-5 object-contain invert dark:invert-0" />
+                    </div>
+                    <div className="space-y-1">
+                      <span
+                        className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
+                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {t('slide8.workflowBadge')}
+                      </span>
+                      <p
+                        className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
+                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      >
+                        {t('slide8.workflowDesc')}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex items-start gap-4">
-                  <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-neutral-800 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5">
-                    <Image src="/cube_mesh_icon.png" alt="3D Cube Icon" width={24} height={24} className="w-5 h-5 object-contain invert dark:invert-0" />
-                  </div>
-                  <div className="space-y-1">
-                    <span
-                      className="text-xs text-black dark:text-white uppercase tracking-wider font-bold block"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide8.workflowBadge')}
-                    </span>
-                    <p
-                      className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-                    >
-                      {t('slide8.workflowDesc')}
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              {/* Right Column: Clean Laptop Material Catalog UI Image (MUCH LARGER) */}
-              <div className="lg:col-span-7">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl h-[480px] sm:h-[600px] md:h-[680px] lg:h-[750px] flex items-center justify-center p-2">
+              {/* Right Column: Pure Architectural House Building Render Image */}
+              <div className="lg:col-span-6">
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-lg h-[480px] sm:h-[600px] md:h-[680px] lg:h-[740px]">
                   <Image
-                    src="/laptop_material_catalog.png"
-                    alt="Digital Material Catalog UI on Laptop - Typus.AI Workflow"
+                    src="/architectural_building_render.png"
+                    alt="Fotorealistische Fassaden- & Materialvisualisierung - Modern Building Architecture Render"
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     unoptimized
                   />
                 </div>
