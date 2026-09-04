@@ -1192,6 +1192,504 @@ export default function ResearchProjectsPage() {
           </motion.div>
         </section>
 
+        {/* SLIDE 13 SECTION: MANUFACTURER PRICING PLANS (ARCHITEXTURES / MATERIAL GUIDE STYLE IN BLACK) */}
+        <section className="py-10 border-t border-neutral-200/60 dark:border-neutral-800">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="w-full space-y-8 max-w-7xl mx-auto px-2 sm:px-4"
+          >
+            {/* Header */}
+            <div className="space-y-2">
+              <h3
+                className="heading-primary "
+                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              >
+                {t('plans.sectionTitle')}
+              </h3>
+              <p
+                className="subheading-primary text-xs sm:text-sm text-neutral-500 dark:text-neutral-400"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                {t('plans.sectionSubtitle')}
+              </p>
+            </div>
+
+            {/* 4 Pricing Cards Grid with Corner Plus (+) Accents */}
+            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+              {/* Card 1: Essential */}
+              <div
+                className="relative p-5 sm:p-6 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/70 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -top-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+
+                <div className="space-y-4 text-left">
+                  <h4 className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-white">
+                    {t('plans.essential')}
+                  </h4>
+
+                  {/* Price */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.priceLabel')}
+                    </span>
+                    <span className="text-base sm:text-lg font-normal text-black dark:text-white block">
+                      125 €{t('plans.perMonth')}
+                    </span>
+                  </div>
+
+                  {/* Published Textures */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.publishedTexturesLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      50
+                    </span>
+                  </div>
+
+                  {/* File Formats */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.fileFormatsLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.highRes')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.formats.hatch')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.formats.pbr')}</li>
+                    </ul>
+                  </div>
+
+                  {/* Analytics */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.analyticsLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      30 {t('plans.days')}
+                    </span>
+                  </div>
+
+                  {/* Onboarding */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.onboardingLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      {t('plans.selfServe')}
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.featuresLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.leadCapture')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.monthlySummary')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.brandPage')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.artxPromotion')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.homepageFeature')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.customApp')}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                >
+                  {t('plans.getStarted')}
+                </Link>
+              </div>
+
+              {/* Card 2: Standard */}
+              <div
+                className="relative p-5 sm:p-6 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/70 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -top-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+
+                <div className="space-y-4 text-left">
+                  <h4 className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-white">
+                    {t('plans.standard')}
+                  </h4>
+
+                  {/* Price */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.priceLabel')}
+                    </span>
+                    <span className="text-base sm:text-lg font-normal text-black dark:text-white block">
+                      275 €{t('plans.perMonth')}
+                    </span>
+                  </div>
+
+                  {/* Published Textures */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.publishedTexturesLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      150
+                    </span>
+                  </div>
+
+                  {/* File Formats */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.fileFormatsLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.highRes')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.hatch')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.formats.pbr')}</li>
+                    </ul>
+                  </div>
+
+                  {/* Analytics */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.analyticsLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      90 {t('plans.days')}
+                    </span>
+                  </div>
+
+                  {/* Onboarding */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.onboardingLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      {t('plans.selfServe')}
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.featuresLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.leadCapture')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.monthlySummary')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.brandPage')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.artxPromotion')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.homepageFeature')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.customApp')}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                >
+                  {t('plans.getStarted')}
+                </Link>
+              </div>
+
+              {/* Card 3: Advanced */}
+              <div
+                className="relative p-5 sm:p-6 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/70 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -top-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+
+                <div className="space-y-4 text-left">
+                  <h4 className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-white">
+                    {t('plans.advanced')}
+                  </h4>
+
+                  {/* Price */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.priceLabel')}
+                    </span>
+                    <span className="text-base sm:text-lg font-normal text-black dark:text-white block">
+                      495 €{t('plans.perMonth')}
+                    </span>
+                  </div>
+
+                  {/* Published Textures */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.publishedTexturesLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      500
+                    </span>
+                  </div>
+
+                  {/* File Formats */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.fileFormatsLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.highRes')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.hatch')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.pbr')}</li>
+                    </ul>
+                  </div>
+
+                  {/* Analytics */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.analyticsLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      180 {t('plans.days')}
+                    </span>
+                  </div>
+
+                  {/* Onboarding */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.onboardingLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      {t('plans.selfServe')}
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.featuresLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.leadCapture')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.monthlySummary')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.brandPage')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.artxPromotion')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.homepageFeature')}</li>
+                      <li className="text-neutral-300 dark:text-neutral-700 font-normal">{t('plans.features.customApp')}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                >
+                  {t('plans.getStarted')}
+                </Link>
+              </div>
+
+              {/* Card 4: Custom */}
+              <div
+                className="relative p-5 sm:p-6 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/70 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6"
+                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              >
+                <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -top-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+
+                <div className="space-y-4 text-left">
+                  <h4 className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-white">
+                    {t('plans.custom')}
+                  </h4>
+
+                  {/* Price */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.priceLabel')}
+                    </span>
+                    <span className="text-base sm:text-lg font-normal text-black dark:text-white block">
+                      {t('plans.speakToSales')}
+                    </span>
+                  </div>
+
+                  {/* Published Textures */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.publishedTexturesLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      {t('plans.unlimited')}
+                    </span>
+                  </div>
+
+                  {/* File Formats */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.fileFormatsLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.highRes')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.hatch')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.formats.pbr')}</li>
+                    </ul>
+                  </div>
+
+                  {/* Analytics */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.analyticsLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      365 {t('plans.days')}
+                    </span>
+                  </div>
+
+                  {/* Onboarding */}
+                  <div className="space-y-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.onboardingLabel')}
+                    </span>
+                    <span className="text-sm font-normal text-black dark:text-white block">
+                      {t('plans.included')}
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <div className="space-y-1">
+                    <span className="text-[11px] uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-normal">
+                      {t('plans.featuresLabel')}
+                    </span>
+                    <ul className="text-xs space-y-0.5">
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.leadCapture')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.monthlySummary')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.brandPage')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.artxPromotion')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.homepageFeature')}</li>
+                      <li className="text-black dark:text-white font-normal">{t('plans.features.customApp')}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                >
+                  {t('plans.contactSales')}
+                </Link>
+              </div>
+            </div>
+
+            {/* SUBSCRIPTION ADD-ONS SECTION */}
+            <div
+              className="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4"
+              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+            >
+              <div className="relative flex items-center justify-between">
+                <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+                  {t('plans.addonsHeader')}
+                </span>
+                <span className="text-red-500 font-light text-xs font-mono select-none">+</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                {/* Add-on 1 */}
+                <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
+                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <div className="space-y-1 text-left">
+                    <span className="text-xs font-normal text-neutral-900 dark:text-white block">
+                      {t('plans.addon1Title')}
+                    </span>
+                    <span className="text-sm font-normal text-neutral-700 dark:text-neutral-300 block">
+                      {t('plans.addon1Sub')}
+                    </span>
+                  </div>
+                  <Link
+                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit py-1.5 px-3.5 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                  >
+                    {t('plans.contactSales')}
+                  </Link>
+                </div>
+
+                {/* Add-on 2 */}
+                <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
+                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <div className="space-y-1 text-left">
+                    <span className="text-xs font-normal text-neutral-900 dark:text-white block">
+                      {t('plans.addon2Title')}
+                    </span>
+                    <span className="text-sm font-normal text-neutral-700 dark:text-neutral-300 block">
+                      {t('plans.addon2Sub')}
+                    </span>
+                  </div>
+                  <Link
+                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit py-1.5 px-3.5 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                  >
+                    {t('plans.tryIt')}
+                  </Link>
+                </div>
+
+                {/* Add-on 3 */}
+                <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
+                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <div className="space-y-1 text-left">
+                    <span className="text-xs font-normal text-neutral-900 dark:text-white block">
+                      {t('plans.addon3Title')}
+                    </span>
+                  </div>
+                  <Link
+                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit py-1.5 px-3.5 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                  >
+                    {t('plans.contactSales')}
+                  </Link>
+                </div>
+
+                {/* Add-on 4 */}
+                <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
+                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <div className="space-y-1 text-left">
+                    <span className="text-xs font-normal text-neutral-900 dark:text-white block">
+                      {t('plans.addon4Title')}
+                    </span>
+                  </div>
+                  <Link
+                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit py-1.5 px-3.5 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-normal uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                  >
+                    {t('plans.contactSales')}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
       </main>
 
       {/* FOOTER */}

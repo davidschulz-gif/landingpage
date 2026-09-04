@@ -3324,6 +3324,49 @@
       "synthBtn": "TEXTUR SYNTHESIEREN",
       "chooseTexture": "WÄHLE EINE TEXTUR ZUR AUTOMATISCHEN ZUWEISUNG",
       "tab5": "5. Texturzuweisung Innenraum"
+    },
+    "plans": {
+      "sectionTitle": "Abonnement-Optionen für Materialhersteller",
+      "sectionSubtitle": "Transparente Pläne zur Veröffentlichung und Vermarktung Ihrer Texturen und Materialien",
+      "priceLabel": "Preis:",
+      "publishedTexturesLabel": "Veröffentlichte Texturen:",
+      "fileFormatsLabel": "Dateiformate:",
+      "analyticsLabel": "Analysen:",
+      "onboardingLabel": "Onboarding:",
+      "featuresLabel": "Funktionen:",
+      "perMonth": "/Monat",
+      "speakToSales": "Auf Anfrage",
+      "unlimited": "Unbegrenzt",
+      "days": "Tage",
+      "selfServe": "Self-Service",
+      "included": "Inklusive",
+      "getStarted": "JETZT STARTEN",
+      "contactSales": "VERTRIEB KONTAKTIEREN",
+      "tryIt": "JETZT TESTEN",
+      "formats": {
+        "highRes": "Hochauflösende Textur",
+        "hatch": "Schraffurmuster",
+        "pbr": "PBR-Maps"
+      },
+      "features": {
+        "leadCapture": "Lead-Erfassung",
+        "monthlySummary": "Monatliche E-Mail-Zusammenfassung",
+        "brandPage": "Marken-Texturseite",
+        "artxPromotion": "ARTX-Promotion",
+        "homepageFeature": "Homepage-Feature",
+        "customApp": "Benutzerdefinierte ARTX-App"
+      },
+      "essential": "Essential",
+      "standard": "Standard",
+      "advanced": "Advanced",
+      "custom": "Custom",
+      "addonsHeader": "ABONNEMENT-ZUSÄTZE",
+      "addon1Title": "Onboarding / Texturerstellung:",
+      "addon1Sub": "10 €/Textur",
+      "addon2Title": "Eingebettete ARTX-App:",
+      "addon2Sub": "350 €/Monat",
+      "addon3Title": "Individuelle Erscheinungsbild-Optionen:",
+      "addon4Title": "3D-gerenderte Szenen:"
     }
   }
 }

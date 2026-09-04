@@ -3322,6 +3322,49 @@
       "synthBtn": "SYNTHESIZE TEXTURE",
       "chooseTexture": "SELECT A TEXTURE FOR AUTOMATIC ASSIGNMENT",
       "tab5": "5. Texture Assignment Interior"
+    },
+    "plans": {
+      "sectionTitle": "Subscription Options for Material Manufacturers",
+      "sectionSubtitle": "Transparent plans for publishing and marketing your textures and materials",
+      "priceLabel": "Price:",
+      "publishedTexturesLabel": "Published Textures:",
+      "fileFormatsLabel": "File formats:",
+      "analyticsLabel": "Analytics:",
+      "onboardingLabel": "Onboarding:",
+      "featuresLabel": "Features:",
+      "perMonth": "/month",
+      "speakToSales": "Speak to sales",
+      "unlimited": "Unlimited",
+      "days": "days",
+      "selfServe": "Self serve",
+      "included": "Included",
+      "getStarted": "GET STARTED",
+      "contactSales": "SPEAK TO SALES",
+      "tryIt": "TRY IT",
+      "formats": {
+        "highRes": "High res texture",
+        "hatch": "Hatch patterns",
+        "pbr": "PBR maps"
+      },
+      "features": {
+        "leadCapture": "Lead capture",
+        "monthlySummary": "Monthly email summary",
+        "brandPage": "Brand texture page",
+        "artxPromotion": "ARTX promotion",
+        "homepageFeature": "Homepage feature",
+        "customApp": "Custom ARTX app"
+      },
+      "essential": "Essential",
+      "standard": "Standard",
+      "advanced": "Advanced",
+      "custom": "Custom",
+      "addonsHeader": "SUBSCRIPTION ADD-ONS",
+      "addon1Title": "Onboarding/texture creation:",
+      "addon1Sub": "10 €/texture",
+      "addon2Title": "Embedded ARTX app:",
+      "addon2Sub": "350 €/month",
+      "addon3Title": "Custom appearance options:",
+      "addon4Title": "3D rendered scenes:"
     }
   }
 }
