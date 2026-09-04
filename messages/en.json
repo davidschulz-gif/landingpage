@@ -3324,10 +3324,10 @@
       "tab5": "5. Texture Assignment Interior"
     },
     "plans": {
-      "sectionTitle": "Subscription Options for Material Manufacturers",
+      "sectionTitle": "Optional Add-On Subscriptions",
       "sectionSubtitle": "Transparent plans for publishing and marketing your textures and materials",
       "priceLabel": "Price:",
-      "publishedTexturesLabel": "Published Textures:",
+      "publishedTexturesLabel": "Prioritized Textures:",
       "fileFormatsLabel": "File formats:",
       "analyticsLabel": "Analytics:",
       "onboardingLabel": "Onboarding:",
@@ -3350,21 +3350,23 @@
         "leadCapture": "Lead capture",
         "monthlySummary": "Monthly email summary",
         "brandPage": "Brand texture page",
-        "artxPromotion": "ARTX promotion",
+        "artxPromotion": "TYPUS promotion",
         "homepageFeature": "Homepage feature",
-        "customApp": "Custom ARTX app"
+        "customApp": "Custom TYPUS Configurator"
       },
       "essential": "Essential",
       "standard": "Standard",
       "advanced": "Advanced",
       "custom": "Custom",
       "addonsHeader": "SUBSCRIPTION ADD-ONS",
-      "addon1Title": "Onboarding/texture creation:",
-      "addon1Sub": "10 €/texture",
-      "addon2Title": "Embedded ARTX app:",
+      "addon1Title": "Additionally listed products:",
+      "addon1Sub": "€5 bookable per additional product.",
+      "addon2Title": "Embedded TYPUS Configurator:",
       "addon2Sub": "350 €/month",
       "addon3Title": "Custom appearance options:",
-      "addon4Title": "3D rendered scenes:"
+      "addon4Title": "3D rendered scenes:",
+      "addon5Title": "Personal visualizer for you:",
+      "addon5Sub": "1,000 €/month"
     }
   }
 }

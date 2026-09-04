@@ -1648,13 +1648,16 @@ export default function ResearchProjectsPage() {
                   </Link>
                 </div>
 
-                {/* Add-on 3 */}
+                {/* Add-on 5: Persönlicher Visualisierer für Sie */}
                 <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
                   <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
                   <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
                   <div className="space-y-1 text-left">
                     <span className="text-xs font-normal text-neutral-900 dark:text-white block">
-                      {t('plans.addon3Title')}
+                      {t('plans.addon5Title')}
+                    </span>
+                    <span className="text-sm font-normal text-neutral-700 dark:text-neutral-300 block">
+                      {t('plans.addon5Sub')}
                     </span>
                   </div>
                   <Link
@@ -1667,13 +1670,13 @@ export default function ResearchProjectsPage() {
                   </Link>
                 </div>
 
-                {/* Add-on 4 */}
+                {/* Add-on 3 */}
                 <div className="relative p-4 rounded-xl bg-[#fcfcfc] dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3">
                   <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
                   <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
                   <div className="space-y-1 text-left">
                     <span className="text-xs font-normal text-neutral-900 dark:text-white block">
-                      {t('plans.addon4Title')}
+                      {t('plans.addon3Title')}
                     </span>
                   </div>
                   <Link

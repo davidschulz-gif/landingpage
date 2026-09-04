@@ -3326,10 +3326,10 @@
       "tab5": "5. Texturzuweisung Innenraum"
     },
     "plans": {
-      "sectionTitle": "Abonnement-Optionen für Materialhersteller",
+      "sectionTitle": "Optional zubuchbare Abonnements",
       "sectionSubtitle": "Transparente Pläne zur Veröffentlichung und Vermarktung Ihrer Texturen und Materialien",
       "priceLabel": "Preis:",
-      "publishedTexturesLabel": "Veröffentlichte Texturen:",
+      "publishedTexturesLabel": "Priorisierte Texturen:",
       "fileFormatsLabel": "Dateiformate:",
       "analyticsLabel": "Analysen:",
       "onboardingLabel": "Onboarding:",
@@ -3352,21 +3352,23 @@
         "leadCapture": "Lead-Erfassung",
         "monthlySummary": "Monatliche E-Mail-Zusammenfassung",
         "brandPage": "Marken-Texturseite",
-        "artxPromotion": "ARTX-Promotion",
+        "artxPromotion": "TYPUS-Promotion",
         "homepageFeature": "Homepage-Feature",
-        "customApp": "Benutzerdefinierte ARTX-App"
+        "customApp": "Benutzerdefinierter TYPUS-Konfigurator"
       },
       "essential": "Essential",
       "standard": "Standard",
       "advanced": "Advanced",
       "custom": "Custom",
       "addonsHeader": "ABONNEMENT-ZUSÄTZE",
-      "addon1Title": "Onboarding / Texturerstellung:",
-      "addon1Sub": "10 €/Textur",
-      "addon2Title": "Eingebettete ARTX-App:",
+      "addon1Title": "Zusätzlich gelistete Produkte:",
+      "addon1Sub": "5 € pro weiterem Produkt zubuchbar.",
+      "addon2Title": "Eingebetteter TYPUS-Konfigurator:",
       "addon2Sub": "350 €/Monat",
       "addon3Title": "Individuelle Erscheinungsbild-Optionen:",
-      "addon4Title": "3D-gerenderte Szenen:"
+      "addon4Title": "3D-gerenderte Szenen:",
+      "addon5Title": "Persönlicher Visualisierer für Sie:",
+      "addon5Sub": "1.000 €/Monat"
     }
   }
 }
