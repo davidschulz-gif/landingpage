@@ -805,7 +805,6 @@ function OrderContent() {
                     <h3 className='text-xl font-black text-white uppercase tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                       {locale === 'de' ? 'Posteingang prüfen' : 'Check your inbox'}
                     </h3>
-                    </p>
                   </div>
                   <Button
                     onClick={() => { setIsEmailModalOpen(false); setEmailSent(false); }}
