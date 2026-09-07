@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
@@ -17,7 +17,7 @@ import { ToastProvider } from '@/components/providers/toast-provider'
 
 const apiBaseUrl = `${apiUrl}/api/subscription/public/`
 
-export default function OrderPage() {
+function OrderContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const locale = useLocale()
@@ -800,15 +800,11 @@ export default function OrderPage() {
                   <div className='size-16 rounded-full bg-white/10 flex items-center justify-center text-white mb-2'>
                     <IconMail size={32} />
                   </div>
-                  <div className='flex flex-col gap-2'>
-                    <h3 className='text-xl text-white uppercase tracking-wider' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+
+                  <div className='space-y-2'>
+                    <h3 className='text-xl font-black text-white uppercase tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
                       {locale === 'de' ? 'Posteingang prüfen' : 'Check your inbox'}
                     </h3>
-                    <p className='text-sm text-gray-300 max-w-sm leading-relaxed'>
-                      {locale === 'de' 
-                        ? `Wir haben einen Bestätigungslink an ${userEmail} gesendet. Bitte klicken Sie auf den Link in der E-Mail, um fortzufahren.`
-                        : `We sent a verification link to ${userEmail}. Please click the link in the email to continue.`
-                      }
                     </p>
                   </div>
                   <Button
@@ -935,5 +931,17 @@ export default function OrderPage() {
 
       <ToastProvider />
     </div>
+  )
+}
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-[#fcfcfd]">
+        <Loader2 className="animate-spin text-black" size={40} />
+      </div>
+    }>
+      <OrderContent />
+    </Suspense>
   )
 }

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import dynamic from 'next/dynamic'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -61,7 +61,7 @@ const LinkedinSlideshow = dynamic(
 )
 
 
-export default function PricingPage() {
+function PricingContent() {
     const tHero = useTranslations('Hero')
     const locale = useLocale();
     const searchParams = useSearchParams()
@@ -71,7 +71,7 @@ export default function PricingPage() {
     const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
 
     useEffect(() => {
-        if (window.location.hash === '#student-plan') {
+        if (typeof window !== 'undefined' && window.location.hash === '#student-plan') {
             setViewMode('education')
         }
     }, [])
@@ -197,5 +197,17 @@ export default function PricingPage() {
             <FooterSection />
             <ToastProvider />
         </div>
+    )
+}
+
+export default function PricingPage() {
+    return (
+        <Suspense fallback={
+            <div className='min-h-screen w-full bg-white flex items-center justify-center'>
+                <div className='w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin' />
+            </div>
+        }>
+            <PricingContent />
+        </Suspense>
     )
 }
