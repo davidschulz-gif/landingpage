@@ -183,6 +183,62 @@ export default function ResearchProjectsPage() {
                 {t('slide1.activeUsers')}
               </p>
             </div>
+
+            {/* STATS BANNER SECTION (WHITE BACKGROUND, RED STRIPE & CROSSHAIRS, SIDE-BY-SIDE 1-ROW ANIMATED COUNT-UP) */}
+            <div
+              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden my-4 py-8 sm:py-10 px-6 sm:px-10 max-w-4xl mx-auto"
+              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+            >
+              {/* Red Accent Top Stripe */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#f05a47]" style={{ backgroundColor: '#f05a47' }} />
+
+              {/* Corner Plus (+) Accents in Coral Red (#f05a47) */}
+              <DottedPlusIcon className="absolute top-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute top-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute bottom-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute bottom-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center text-center divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80 dark:divide-neutral-800">
+                {/* Stat 1 */}
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
+                  <span
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    <AnimatedStatNumber value={t('stats.visitorsValue')} />
+                  </span>
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.visitorsLabel')}
+                  </span>
+                </div>
+
+                {/* Stat 2 */}
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
+                  <span
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    <AnimatedStatNumber value={t('stats.subscribersValue')} />
+                  </span>
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.subscribersLabel')}
+                  </span>
+                </div>
+
+                {/* Stat 3 */}
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
+                  <span
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    <AnimatedStatNumber value={t('stats.generationsValue')} />
+                  </span>
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.generationsLabel')}
+                  </span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </section>
 
@@ -1655,62 +1711,6 @@ export default function ResearchProjectsPage() {
                 >
                   {t('plans.contactSales')}
                 </Link>
-              </div>
-            </div>
-
-            {/* STATS BANNER SECTION (WHITE BACKGROUND, RED STRIPE & CROSSHAIRS, SIDE-BY-SIDE 1-ROW ANIMATED COUNT-UP) */}
-            <div
-              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden my-8 py-8 sm:py-10 px-6 sm:px-10"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
-            >
-              {/* Red Accent Top Stripe */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#f05a47]" style={{ backgroundColor: '#f05a47' }} />
-
-              {/* Corner Plus (+) Accents in Coral Red (#f05a47) */}
-              <DottedPlusIcon className="absolute top-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute top-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute bottom-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute bottom-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center text-center divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80 dark:divide-neutral-800">
-                {/* Stat 1 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                  >
-                    <AnimatedStatNumber value={t('stats.visitorsValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.visitorsLabel')}
-                  </span>
-                </div>
-
-                {/* Stat 2 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                  >
-                    <AnimatedStatNumber value={t('stats.subscribersValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.subscribersLabel')}
-                  </span>
-                </div>
-
-                {/* Stat 3 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
-                  >
-                    <AnimatedStatNumber value={t('stats.generationsValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.generationsLabel')}
-                  </span>
-                </div>
               </div>
             </div>
 
