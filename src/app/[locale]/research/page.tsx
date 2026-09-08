@@ -4,9 +4,67 @@ import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { useLocale, useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+
+function AnimatedStatNumber({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+  const [displayValue, setDisplayValue] = useState("0")
+
+  useEffect(() => {
+    if (!isInView) return
+
+    let numericTarget = 0
+    let suffix = ""
+
+    if (value.includes("50k")) {
+      numericTarget = 50
+      suffix = "k+"
+    } else if (value.includes("2.500") || value.includes("2,500")) {
+      numericTarget = 2500
+      suffix = "+"
+    } else if (value.includes("30k")) {
+      numericTarget = 30
+      suffix = "k+"
+    } else {
+      const match = value.match(/\d+/)
+      numericTarget = match ? parseInt(match[0]) : 0
+    }
+
+    const duration = 1800
+    const steps = 50
+    const stepTime = duration / steps
+    let currentStep = 0
+
+    const timer = setInterval(() => {
+      currentStep++
+      const progress = currentStep / steps
+      const easeProgress = 1 - Math.pow(1 - progress, 3)
+      const currentVal = Math.floor(easeProgress * numericTarget)
+
+      if (suffix === "+" && numericTarget > 999) {
+        const formatted = currentVal >= 1000 
+          ? `${Math.floor(currentVal / 1000)}.${(currentVal % 1000).toString().padStart(3, '0')}`
+          : currentVal.toString()
+        setDisplayValue(formatted + suffix)
+      } else {
+        setDisplayValue(currentVal + suffix)
+      }
+
+      if (currentStep >= steps) {
+        clearInterval(timer)
+        setDisplayValue(value)
+      }
+    }, stepTime)
+
+    return () => clearInterval(timer)
+  }, [isInView, value])
+
+  return <span ref={ref}>{displayValue}</span>
+}
 import {
   Cpu,
   Layers,
@@ -51,6 +109,21 @@ const PartnerHeaderLogos = () => (
   </div>
 )
 
+
+const DottedPlusIcon = ({ className = "w-3 h-3 text-[#f05a47]" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" fill="currentColor" className={className}>
+    <circle cx="50" cy="10" r="7.5" />
+    <circle cx="50" cy="30" r="7.5" />
+    <circle cx="50" cy="50" r="7.5" />
+    <circle cx="50" cy="70" r="7.5" />
+    <circle cx="50" cy="90" r="7.5" />
+    <circle cx="10" cy="50" r="7.5" />
+    <circle cx="30" cy="50" r="7.5" />
+    <circle cx="70" cy="50" r="7.5" />
+    <circle cx="90" cy="50" r="7.5" />
+  </svg>
+)
+
 export default function ResearchProjectsPage() {
   const locale = useLocale()
   const t = useTranslations('ResearchPage')
@@ -80,10 +153,10 @@ export default function ResearchProjectsPage() {
 
             {/* Main Logo Container Box with Corner (+) Accents */}
             <div className="relative p-8 sm:p-12 md:p-14 rounded-3xl bg-white/70 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-4xl w-full flex items-center justify-center">
-              <span className="absolute -top-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-              <span className="absolute -top-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-              <span className="absolute -bottom-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-              <span className="absolute -bottom-2 -right-2 text-red-500 font-light text-xs font-mono select-none">+</span>
+              <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
               <Image
                 src="/typus_hero_logo.png"
@@ -1269,10 +1342,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
-                <span className="absolute -top-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -top-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
+                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1348,10 +1421,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
-                <span className="absolute -top-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -top-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
+                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1428,10 +1501,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-blue-500 dark:border-blue-500 flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition ring-2 ring-blue-500/30"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
-                <span className="absolute -top-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -top-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
+                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white flex items-center justify-between">
@@ -1510,10 +1583,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
               >
-                <span className="absolute -top-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -top-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -left-2 text-red-500 font-light text-sm font-mono select-none">+</span>
-                <span className="absolute -bottom-2 -right-2 text-red-500 font-light text-sm font-mono select-none">+</span>
+                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1585,52 +1658,56 @@ export default function ResearchProjectsPage() {
               </div>
             </div>
 
-            {/* STATS BANNER SECTION (VERTICAL STACKED FORMATION - BLACK & WHITE ARCHITEXTURES THEME) */}
+            {/* STATS BANNER SECTION (WHITE BACKGROUND, RED STRIPE & CROSSHAIRS, SIDE-BY-SIDE 1-ROW ANIMATED COUNT-UP) */}
             <div
-              className="relative w-full rounded-2xl bg-neutral-950 dark:bg-black text-white py-14 sm:py-16 md:py-20 px-8 sm:px-12 border border-neutral-800 shadow-xl overflow-hidden my-10"
+              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden my-8 py-8 sm:py-10 px-6 sm:px-10"
               style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
             >
-              <span className="absolute top-3 left-3 text-red-500 font-light text-xs font-mono select-none">+</span>
-              <span className="absolute top-3 right-3 text-red-500 font-light text-xs font-mono select-none">+</span>
-              <span className="absolute bottom-3 left-3 text-red-500 font-light text-xs font-mono select-none">+</span>
-              <span className="absolute bottom-3 right-3 text-red-500 font-light text-xs font-mono select-none">+</span>
+              {/* Red Accent Top Stripe */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#f05a47]" style={{ backgroundColor: '#f05a47' }} />
 
-              <div className="flex flex-col items-center justify-center space-y-10 sm:space-y-12 md:space-y-14 text-center">
+              {/* Corner Plus (+) Accents in Coral Red (#f05a47) */}
+              <DottedPlusIcon className="absolute top-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute top-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute bottom-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute bottom-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center text-center divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80 dark:divide-neutral-800">
                 {/* Stat 1 */}
-                <div className="flex flex-col items-center justify-center space-y-1">
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
-                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
                     style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                   >
-                    {t('stats.visitorsValue')}
+                    <AnimatedStatNumber value={t('stats.visitorsValue')} />
                   </span>
-                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
                     {t('stats.visitorsLabel')}
                   </span>
                 </div>
 
                 {/* Stat 2 */}
-                <div className="flex flex-col items-center justify-center space-y-1">
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
-                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
                     style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                   >
-                    {t('stats.subscribersValue')}
+                    <AnimatedStatNumber value={t('stats.subscribersValue')} />
                   </span>
-                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
                     {t('stats.subscribersLabel')}
                   </span>
                 </div>
 
                 {/* Stat 3 */}
-                <div className="flex flex-col items-center justify-center space-y-1">
+                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
-                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
                     style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
                   >
-                    {t('stats.generationsValue')}
+                    <AnimatedStatNumber value={t('stats.generationsValue')} />
                   </span>
-                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
                     {t('stats.generationsLabel')}
                   </span>
                 </div>
@@ -1646,14 +1723,14 @@ export default function ResearchProjectsPage() {
                 <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                   {t('plans.addonsHeader')}
                 </span>
-                <span className="text-red-500 font-light text-xs font-mono select-none">+</span>
+                <DottedPlusIcon className="w-3 h-3 text-[#f05a47] shrink-0" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                 {/* Add-on 1 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
-                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon1Title')}
@@ -1674,8 +1751,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 2 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
-                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon2Title')}
@@ -1696,8 +1773,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 5: Persönlicher Visualisierer für Sie */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
-                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon5Title')}
@@ -1718,8 +1795,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 3 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1.5 -left-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
-                  <span className="absolute -bottom-1.5 -right-1.5 text-red-500 font-light text-xs font-mono select-none">+</span>
+                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon3Title')}
