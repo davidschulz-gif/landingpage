@@ -3369,6 +3369,14 @@
       "addon4Title": "3D-gerenderte Szenen:",
       "addon5Title": "Persönlicher Visualisierer für Sie:",
       "addon5Sub": "1.000 €/Monat"
+    },
+    "stats": {
+      "visitorsValue": "50k+",
+      "visitorsLabel": "Monatliche Besucher im DACH-Raum",
+      "subscribersValue": "2.500+",
+      "subscribersLabel": "Aktive Abonnenten",
+      "generationsValue": "30.025+",
+      "generationsLabel": "Generierte Bilder seit Beginn"
     }
   }
 }

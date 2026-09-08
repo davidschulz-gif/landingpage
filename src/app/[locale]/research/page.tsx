@@ -1585,6 +1585,58 @@ export default function ResearchProjectsPage() {
               </div>
             </div>
 
+            {/* STATS BANNER SECTION (VERTICAL STACKED FORMATION - BLACK & WHITE ARCHITEXTURES THEME) */}
+            <div
+              className="relative w-full rounded-2xl bg-neutral-950 dark:bg-black text-white py-14 sm:py-16 md:py-20 px-8 sm:px-12 border border-neutral-800 shadow-xl overflow-hidden my-10"
+              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+            >
+              <span className="absolute top-3 left-3 text-red-500 font-light text-xs font-mono select-none">+</span>
+              <span className="absolute top-3 right-3 text-red-500 font-light text-xs font-mono select-none">+</span>
+              <span className="absolute bottom-3 left-3 text-red-500 font-light text-xs font-mono select-none">+</span>
+              <span className="absolute bottom-3 right-3 text-red-500 font-light text-xs font-mono select-none">+</span>
+
+              <div className="flex flex-col items-center justify-center space-y-10 sm:space-y-12 md:space-y-14 text-center">
+                {/* Stat 1 */}
+                <div className="flex flex-col items-center justify-center space-y-1">
+                  <span
+                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    {t('stats.visitorsValue')}
+                  </span>
+                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.visitorsLabel')}
+                  </span>
+                </div>
+
+                {/* Stat 2 */}
+                <div className="flex flex-col items-center justify-center space-y-1">
+                  <span
+                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    {t('stats.subscribersValue')}
+                  </span>
+                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.subscribersLabel')}
+                  </span>
+                </div>
+
+                {/* Stat 3 */}
+                <div className="flex flex-col items-center justify-center space-y-1">
+                  <span
+                    className="text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white leading-none"
+                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  >
+                    {t('stats.generationsValue')}
+                  </span>
+                  <span className="text-sm sm:text-base text-neutral-300 dark:text-neutral-400 font-normal tracking-wide">
+                    {t('stats.generationsLabel')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
             {/* SUBSCRIPTION ADD-ONS SECTION */}
             <div
               className="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4"

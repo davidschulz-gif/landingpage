@@ -3367,6 +3367,14 @@
       "addon4Title": "3D rendered scenes:",
       "addon5Title": "Personal visualizer for you:",
       "addon5Sub": "1,000 €/month"
+    },
+    "stats": {
+      "visitorsValue": "50k+",
+      "visitorsLabel": "Monthly visitors in DACH region",
+      "subscribersValue": "2,500+",
+      "subscribersLabel": "Active subscribers",
+      "generationsValue": "30,025+",
+      "generationsLabel": "Total image generations since beginning"
     }
   }
 }
