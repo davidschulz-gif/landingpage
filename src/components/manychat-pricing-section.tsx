@@ -1289,7 +1289,7 @@ export function ManyChatPricingSection({
             return (
               <div
                 key={plan.planType}
-                className='flex h-auto lg:h-[700px] mb-4 flex-col p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl w-full max-w-sm mx-auto'
+                className='flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 border border-gray-200 relative group rounded-2xl w-full max-w-sm mx-auto'
                 style={{ backgroundColor: '#ffffff', color: '#000000' }}
               >
                 {staticData.isPopular && (
@@ -1366,7 +1366,7 @@ export function ManyChatPricingSection({
 
                 <div className='mt-auto pt-4 border-t border-gray-100'>
                   <button
-                    className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 transition-all duration-200 rounded-2xl'
+                    className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
                     style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
                     onClick={() => handleSubscribe(
                       {
@@ -2292,7 +2292,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[700px]'} mb-4 flex-col sm:md: p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 relative group rounded-2xl`}
+      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[700px]'} mb-4 flex-col sm:md: p-4 transition-all duration-300 hover:-translate-y-2 border border-gray-200 relative group rounded-2xl`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
@@ -2450,7 +2450,7 @@ function PricingCard({
               e.preventDefault();
               window.dispatchEvent(new CustomEvent('open-before-you-go'));
             }}
-            className='bg-black text-white cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
+            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}
@@ -2461,7 +2461,7 @@ function PricingCard({
         ) : (
           <Button
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
+            className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}

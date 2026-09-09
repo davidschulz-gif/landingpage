@@ -13,7 +13,8 @@ import {
   IconWand,
   IconClock,
   IconHome,
-  IconArrowRight
+  IconArrowRight,
+  IconSparkles
 } from '@tabler/icons-react'
 import { appUrl } from '@/lib/constants'
 
@@ -23,6 +24,19 @@ export default function AIFloorPlanGeneratorLandingPage() {
 
   useEffect(() => {
     setIsClient(true)
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const hasPlans = params.get('plans') === 'true' || params.get('plan') === 'true'
+      const hasHash = window.location.hash === '#floor-plan-pricing' || window.location.hash === '#plans'
+      if (hasPlans || hasHash) {
+        setTimeout(() => {
+          const el = document.getElementById('floor-plan-pricing') || document.getElementById('plans')
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 300)
+      }
+    }
   }, [])
 
   // Localized copy
@@ -75,7 +89,13 @@ export default function AIFloorPlanGeneratorLandingPage() {
       faq6a: 'Absolut! Fügen Sie einfach neue Etagen hinzu und gestalten Sie jede Etage unabhängig.',
 
       readyTitle: 'Bereit, das perfekte Layout zu gestalten?',
-      readyDesc: 'Schließen Sie sich Tausenden von Benutzern an, die Typus.AI verwenden, um ihre Traumräume mühelos zu visualisieren und zu planen.'
+      readyDesc: 'Schließen Sie sich Tausenden von Benutzern an, die Typus.AI verwenden, um ihre Traumräume mühelos zu visualisieren und zu planen.',
+
+      examplesTag: '3D-Beispiele',
+      examplesTitle: 'Hochwertige 3D-Grundrisse',
+      examplesSub: 'Entdecken Sie fotorealistische, hochauflösende 3D-Grundrisse, die in Sekundenschnelle mit Typus.AI generiert wurden.',
+      examplesCta: 'Eigenen 3D-Grundriss erstellen',
+      examplesAction: 'In 3D visualisieren'
     },
     en: {
       heroTitle: 'Instant AI Floor Plans for Smarter Home Design',
@@ -125,11 +145,62 @@ export default function AIFloorPlanGeneratorLandingPage() {
       faq6a: 'Absolutely! Simply add new floors and design each floor independently.',
 
       readyTitle: 'Ready to design the perfect layout?',
-      readyDesc: 'Join thousands of users who use Typus.AI to effortlessly visualize and plan their dream spaces.'
+      readyDesc: 'Join thousands of users who use Typus.AI to effortlessly visualize and plan their dream spaces.',
+
+      examplesTag: '3D Examples',
+      examplesTitle: 'High-Quality 3D Floor Plans',
+      examplesSub: 'Explore photorealistic, high-resolution 3D floor plans generated in seconds with Typus.AI.',
+      examplesCta: 'Create Your 3D Floor Plan',
+      examplesAction: 'Visualize in 3D'
     }
   }
 
   const content = locale === 'de' ? t.de : t.en
+
+  const floorPlanExamples = [
+    {
+      title: locale === 'de' ? 'Modernes Luxusapartment' : 'Modern Luxury Apartment',
+      category: locale === 'de' ? '3D-Schnittansicht' : '3D Cutaway',
+      specs: '120 m² • 2 Beds • 2 Baths',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section1_2.webp',
+      badge: locale === 'de' ? 'Offener Wohnbereich' : 'Open Living Area',
+    },
+    {
+      title: locale === 'de' ? 'Zeitgenössische Villa' : 'Contemporary Villa Layout',
+      category: locale === 'de' ? 'Vogelperspektive' : 'Aerial Perspective',
+      specs: '185 m² • 3 Beds • 2.5 Baths',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section2_1_2.webp',
+      badge: locale === 'de' ? 'Garten & Terrasse' : 'Garden & Terrace',
+    },
+    {
+      title: locale === 'de' ? 'Skandinavisches Einfamilienhaus' : 'Scandinavian Family Home',
+      category: locale === 'de' ? 'Isometrische Ansicht' : 'Isometric View',
+      specs: '140 m² • 3 Beds • 2 Baths',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section2_3_2.webp',
+      badge: locale === 'de' ? 'Holz & Naturlicht' : 'Warm Wood & Light',
+    },
+    {
+      title: locale === 'de' ? 'Urbane Penthouse-Suite' : 'Urban Penthouse Suite',
+      category: locale === 'de' ? 'Architektur-Render' : 'Architectural Render',
+      specs: '210 m² • 4 Beds • 3 Baths',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section2_4_2.webp',
+      badge: locale === 'de' ? 'En-Suite Bäder' : 'En-suite Baths',
+    },
+    {
+      title: locale === 'de' ? 'Minimalistisches Studio-Loft' : 'Minimalist Studio Loft',
+      category: locale === 'de' ? 'Kompakter Grundriss' : 'Compact Layout',
+      specs: '65 m² • 1 Bed • 1 Bath',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section2_3_1.webp',
+      badge: locale === 'de' ? 'Smarte Raumaufteilung' : 'Smart Space Flow',
+    },
+    {
+      title: locale === 'de' ? 'Offenes Mehrraumkonzept' : 'Open Multi-Room Plan',
+      category: locale === 'de' ? 'Raumtiefe & Fluss' : 'Spatial Depth',
+      specs: '160 m² • 3 Beds • 2 Baths',
+      image: 'https://d38b044pevnwc9.cloudfront.net/site/promeai/config/web/idealhouse/func/ai-tools/ai_plan_visualizer_section2_2_2.webp',
+      badge: locale === 'de' ? 'Moderne Möblierung' : 'Full Furnishing',
+    },
+  ]
 
   return (
     <div className='relative w-full bg-[#fcfcfd] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
@@ -176,6 +247,76 @@ export default function AIFloorPlanGeneratorLandingPage() {
         {/* LIVE IFRAME SHOWCASE SECTION */}
         <FloorPlanIframeSection locale={locale} />
 
+        {/* HIGH-QUALITY 3D FLOOR PLANS EXAMPLES SECTION */}
+        <section className="py-20 bg-neutral-900 text-white px-5 relative overflow-hidden border-t border-neutral-800">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-widest backdrop-blur-sm border border-white/10">
+                <IconSparkles className="w-3.5 h-3.5 text-amber-400" />
+                {content.examplesTag}
+              </span>
+              <h2 className="heading-primary text-white">
+                {content.examplesTitle}
+              </h2>
+              <p className="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+                {content.examplesSub}
+              </p>
+            </div>
+
+            {/* Grid of 6 3D Floor Plan Examples */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {floorPlanExamples.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="group bg-neutral-800/80 rounded-2xl overflow-hidden border border-neutral-700/60 hover:border-neutral-500 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/50 flex flex-col"
+                >
+                  <div className="relative aspect-[1.45] w-full overflow-hidden bg-neutral-950">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide border border-white/10">
+                      {item.category}
+                    </div>
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-md text-black text-[11px] font-bold">
+                      {item.badge}
+                    </div>
+                  </div>
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-neutral-400 mt-1">
+                        {item.specs}
+                      </p>
+                    </div>
+                    <Link
+                      href={`${appUrl}/floor-plan/plan-visualizer`}
+                      className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-amber-400 transition-colors pt-2 border-t border-neutral-700/50"
+                    >
+                      <span>{content.examplesAction}</span>
+                      <IconArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="mt-12 text-center">
+              <Link
+                href={`${appUrl}/floor-plan`}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-xl"
+              >
+                <span>{content.examplesCta}</span>
+                <IconArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* WHAT IS IT */}
         <section className="py-24 bg-white dark:bg-neutral-950 px-5 border-y border-neutral-100 dark:border-neutral-900">
           <div className="mx-auto w-full max-w-6xl text-center space-y-8">
@@ -185,8 +326,12 @@ export default function AIFloorPlanGeneratorLandingPage() {
             <p className="subheading-primary max-w-3xl mx-auto">
               {content.whatIsDesc}
             </p>
-            <div className="mt-12 w-full rounded-2xl overflow-hidden shadow-lg border border-neutral-200/50 dark:border-neutral-700/50">
-              <img src="https://ideal.house/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fai_floor_2.72fd4780.jpg&w=3840&q=75" alt="Floor plan example" className="w-full h-auto object-cover" />
+            <div className="mt-8 max-w-3xl mx-auto h-[220px] sm:h-[280px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg border border-neutral-200/50 dark:border-neutral-700/50">
+              <img
+                src="https://ideal.house/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fai_floor_2.72fd4780.jpg&w=3840&q=75"
+                alt="Floor plan example"
+                className="w-full h-full object-cover object-[center_35%]"
+              />
             </div>
           </div>
         </section>
@@ -275,7 +420,8 @@ export default function AIFloorPlanGeneratorLandingPage() {
         </section>
 
         {/* PRICING SECTION */}
-        <section className="py-12 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900">
+        <section id="floor-plan-pricing" className="py-12 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900 scroll-mt-20">
+          <div id="plans" />
           <ManyChatPricingSection isStandalone={true} showOnly="floorplan" />
         </section>
 

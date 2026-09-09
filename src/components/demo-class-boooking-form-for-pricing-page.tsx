@@ -433,7 +433,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           <Button
            type='submit'
              disabled={isRequesting}
-            className='bg-black text-white cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl'
+            className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: "'Soyuz Grotesk', sans-serif",
             }}

@@ -71,10 +71,16 @@ function PricingContent() {
     const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.location.hash === '#student-plan') {
-            setViewMode('education')
+        if (typeof window !== 'undefined') {
+            const hash = window.location.hash
+            const tabParam = searchParams.get('tab') || searchParams.get('mode') || searchParams.get('plan')
+            if (hash === '#floorplan' || tabParam === 'floorplan' || tabParam === 'floor-plan') {
+                setViewMode('floorplan')
+            } else if (hash === '#student-plan' || tabParam === 'education' || tabParam === 'student') {
+                setViewMode('education')
+            }
         }
-    }, [])
+    }, [searchParams])
 
     return (
         <div className='relative w-full bg-white'>
