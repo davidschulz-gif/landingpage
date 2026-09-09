@@ -122,7 +122,7 @@ export function BlogTestimonialSection() {
                         href="https://www.archdaily.com/985896/a-cliff-house-in-bali-and-a-waterfront-estate-in-greece-9-unbuilt-villas-submitted-to-archdaily"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all"
                     >
                         <Image src="/archdaily.png" alt="Archdail" width={20} height={20} className="rounded-full" />
                         {/* <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg> */}
@@ -132,7 +132,7 @@ export function BlogTestimonialSection() {
                         href="https://illustrarch.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-gray-800 text-xs font-black uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all"
                     >
                         <Image src="/illustrarch-logo.svg" alt="Illustrarch" width={14} height={14} className="rounded-full" />
                         Illustrarch
@@ -142,7 +142,7 @@ export function BlogTestimonialSection() {
                 <div className="flex justify-center mt-12 mb-4">
                     <Link
                         href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-transparent text-black border-2 border-[#e5e7eb] px-12 py-4 uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
                         {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
@@ -193,7 +193,7 @@ export function BlogTestimonialSection() {
                 <div className="flex justify-center mb-16">
                     <Link
                         href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-transparent text-black border-2 border-[#e5e7eb] px-12 py-4 uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
                         {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
@@ -258,7 +258,7 @@ export function BlogTestimonialSection() {
                 <div className="flex justify-center mb-16">
                     <Link
                         href={`/${locale}`}
-                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                        className="inline-flex w-fit items-center gap-2 font-black text-sm bg-transparent text-black border-2 border-[#e5e7eb] px-12 py-4 uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                     >
                         {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                     </Link>
@@ -341,7 +341,7 @@ export function BlogTestimonialSection() {
                 <h3 className="font-normal text-lg mb-4 uppercase tracking-tight leading-tight max-w-sm">Experience the future of architecture visualization</h3>
                 <Link
                     href={`/${locale}`}
-                    className="inline-flex items-center gap-2 font-black text-sm bg-black text-white border-2 border-black px-12 py-4 uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    className="inline-flex items-center gap-2 font-black text-sm bg-transparent text-black border-2 border-[#e5e7eb] px-12 py-4 uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                 >
                     {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                 </Link>
@@ -370,7 +370,7 @@ export function BlogTestimonialSection() {
                             </div>
                             <Link
                                 href={`/${locale}/siegrist`}
-                                className="inline-flex items-center w-fit gap-3 font-black text-xs bg-black text-white px-8 py-4 uppercase tracking-widest hover:bg-gray-800 transition-colors"
+                                className="inline-flex items-center w-fit gap-3 font-black text-xs bg-transparent text-black border border-[#e5e7eb] px-8 py-4 uppercase tracking-widest hover:bg-black/5 transition-colors"
                             >
                                 {locale === 'de' ? 'GANZEN ARTIKEL LESEN' : 'READ FULL ARTICLE'} &rarr;
                             </Link>

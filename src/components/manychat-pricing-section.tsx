@@ -677,11 +677,11 @@ export function ManyChatPricingSection({
         return
       }
 
-      if (selectedPlanForModal.isEducational && !verifyData.isUniversity) {
-        setModalError(tModal('errorNotStudentEmail'))
-        setIsRedirecting(false)
-        return
-      }
+      // if (selectedPlanForModal.isEducational) {
+      //   setModalError(tModal('errorNotStudentEmail'))
+      //   setIsRedirecting(false)
+      //   return
+      // }
 
       // if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
       //   console.log('Showing Trial Warning Modal')
@@ -1137,7 +1137,7 @@ export function ManyChatPricingSection({
               <Button
                 onClick={() => handleVerifyPromoCode('edu')}
                 disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
                 style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1366,7 +1366,7 @@ export function ManyChatPricingSection({
 
                 <div className='mt-auto pt-4 border-t border-gray-100'>
                   <button
-                    className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
+                    className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
                     style={{ fontFamily: 'Arial' }}
                     onClick={() => handleSubscribe(
                       {
@@ -1492,7 +1492,7 @@ export function ManyChatPricingSection({
               <Button
                 onClick={() => handleVerifyPromoCode('prof')}
                 disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
                 style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1557,9 +1557,7 @@ export function ManyChatPricingSection({
           <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
            
             <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
-              {currentProfPlans
-              .filter((plan) => !(profBillingCycle === 'monthly' && plan.name === 'SOLO'))
-              .map((plan, index) => (
+              {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
                   {index === 1 && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
@@ -1877,13 +1875,13 @@ export function ManyChatPricingSection({
                       <Button
                         onClick={() => handleContinue()}
                         disabled={isRedirecting || !privacyConsent || !termsConsent}
-                        className='bg-white text-black hover:bg-white w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
+                        className='w-full h-12 bg-white hover:bg-neutral-100 text-black font-bold text-xs uppercase tracking-widest transition-all rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {isRedirecting ? (
-                          <IconLoader2 className='animate-spin mr-2' size={16} />
+                          <IconLoader2 className='animate-spin mr-2 text-black' size={16} />
                         ) : null}
-                        {tModal('continue')}
+                        <span className='text-black font-bold'>{tModal('continue')}</span>
                       </Button>
                       <button
                         onClick={() => setIsModalOpen(false)}
@@ -1948,7 +1946,7 @@ export function ManyChatPricingSection({
                 </Button>
                 <Button
                   onClick={() => handleContinue(true)}
-                  className='flex-1 bg-black text-white hover:bg-neutral-800 uppercase text-[10px] font-bold tracking-wider py-3'
+                  className='flex-1 bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 uppercase text-[10px] font-bold tracking-wider py-3'
                   style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.proceed')}
@@ -2125,10 +2123,14 @@ function PricingCard({
             bestDeal: billingCycle === 'yearly' && profPlan.planType === 'TEAM',
           }
 
-          if (billingCycle === 'yearly' && fetchedData && fetchedData.originalPrices?.yearly) {
-            const baseVal = (fetchedData.originalPrices.yearly / 100) / 12;
-            (discount as any).originalPrice = `${currencySymbol}${baseVal % 1 === 0 ? baseVal : baseVal.toFixed(2)}`;
-            (discount as any).isYearlyDefault = true;
+          if (billingCycle === 'yearly') {
+            const baseVal = (fetchedData && fetchedData.originalPrices?.yearly)
+              ? (fetchedData.originalPrices.yearly / 100) / 12
+              : mPriceVal;
+            if (baseVal > (cyclePriceVal / 12)) {
+              (discount as any).originalPrice = `${currencySymbol}${baseVal % 1 === 0 ? baseVal : baseVal.toFixed(2)}`;
+              (discount as any).isYearlyDefault = true;
+            }
           }
         }
 
@@ -2342,7 +2344,7 @@ function PricingCard({
         )}
 
         {/* Discount badge above price - manual promo discount or default discount */}
-        {priceInfo.discount?.periodDiscountPercent != null && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
+        {priceInfo.discount?.periodDiscountPercent != null && (
           <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
@@ -2353,7 +2355,7 @@ function PricingCard({
           <div className='flex flex-col items-center justify-center'>
             {priceInfo.discount ? (
               <>
-                {'originalPrice' in priceInfo.discount && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
+                {'originalPrice' in priceInfo.discount && (
                   <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: 'Arial' }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </div>
@@ -2450,7 +2452,7 @@ function PricingCard({
               e.preventDefault();
               window.dispatchEvent(new CustomEvent('open-before-you-go'));
             }}
-            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
+            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: 'Arial',
             }}
@@ -2461,7 +2463,7 @@ function PricingCard({
         ) : (
           <Button
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
+            className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
             style={{
               fontFamily: 'Arial',
             }}

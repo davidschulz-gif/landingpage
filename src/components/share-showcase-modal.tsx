@@ -334,7 +334,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                     <button
                       type='submit'
                       disabled={isSubmitting}
-                      className='flex items-center justify-center w-full sm:w-auto px-8 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-lg sm:rounded-xl shadow-sm gap-2'
+                      className='flex items-center justify-center w-full sm:w-auto px-8 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-300 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed rounded-lg sm:rounded-xl gap-2'
                     >
                       {isSubmitting && <IconLoader2 className="animate-spin size-4" />}
                       <span>{t('viewFreeCta')}</span>

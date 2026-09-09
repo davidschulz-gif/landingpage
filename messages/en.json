@@ -33,6 +33,10 @@
           "title": "Upscale",
           "description": "Enhance image resolution and quality with AI-powered upscaling"
         },
+        "floorPlan": {
+          "title": "Floor Plan",
+          "description": "Generate accurate, beautiful and customizable floor plans with AI"
+        },
         "overviewOfFeatures": {
           "title": "Feature Overview",
           "description": "Discover all AI tools and features in one overview"

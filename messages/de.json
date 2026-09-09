@@ -33,6 +33,10 @@
           "title": "Hochskalieren",
           "description": "Verbessern Sie Bildauflösung und Qualität mit KI-gestützter Hochskalierung"
         },
+        "floorPlan": {
+          "title": "Grundriss",
+          "description": "Erstellen Sie genaue und anpassbare Grundrisse in Minuten mit KI"
+        },
         "overviewOfFeatures": {
           "title": "Funktions-Übersicht",
           "description": "Entdecken Sie alle KI-Werkzeuge und Funktionen im Überblick"

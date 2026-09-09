@@ -288,7 +288,7 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
                 <button
                   onClick={handleCompleteOrder}
                   disabled={!allChecked || isSubmitting}
-                  className={`w-full sm:w-auto px-12 py-5 text-sm font-bold uppercase tracking-widest rounded transition-all flex items-center justify-center mx-auto ${allChecked && !isSubmitting ? 'bg-black text-white hover:bg-gray-900 hover:-translate-y-1 shadow-xl hover:shadow-2xl' : 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'}`}
+                  className={`w-full sm:w-auto px-12 py-5 text-sm font-bold uppercase tracking-widest rounded transition-all flex items-center justify-center mx-auto ${allChecked && !isSubmitting ? 'bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 hover:-translate-y-1' : 'bg-gray-100 text-gray-400 border border-[#e5e7eb] cursor-not-allowed'}`}
                   style={{ fontFamily: 'Arial' }}
                 >
                   {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : data.finishOrderTitle}

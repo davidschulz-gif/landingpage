@@ -156,7 +156,7 @@ export const CompareWithAnimation = ({
        <div className="pt-4">
               <Link
                 href={`/${locale}/overview-of-features`}
-                className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
+                className="inline-flex items-center justify-center bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 hover:scale-[1.03] active:scale-95"
                 style={{ fontFamily: 'Arial' }}
               >
                 {locale === 'de' ? 'Feature-Übersicht ansehen' : 'See overview of features'}

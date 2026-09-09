@@ -108,7 +108,7 @@ export function SiegristTestimonialSection() {
                         href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://typus.ai/de/siegrist')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-7 h-7 bg-black rounded-full flex items-center justify-center text-white hover:bg-neutral-800 transition-colors"
+                        className="w-7 h-7 bg-transparent border border-[#e5e7eb] rounded-full flex items-center justify-center text-black hover:bg-black/5 transition-colors"
                         aria-label="Share on Facebook"
                     >
                         <span className="font-sans text-[13px] font-bold select-none leading-none mt-[-1px]">f</span>
@@ -353,7 +353,7 @@ export function SiegristTestimonialSection() {
                     <div className="flex justify-center pt-6 font-rail">
                         <Link
                             href={`/${locale}`}
-                            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 font-black text-xs bg-black text-white border border-black px-12 py-4 uppercase tracking-widest hover:bg-neutral-100 hover:text-black transition-all shadow-[4px_4px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none rounded-none"
+                            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 font-black text-xs bg-transparent text-black border border-[#e5e7eb] px-12 py-4 uppercase tracking-widest hover:bg-black/5 hover:text-black transition-all active:translate-x-[2px] active:translate-y-[2px] rounded-none"
                         >
                             {locale === 'de' ? 'APP ANSEHEN' : 'VIEW THE APP'}
                         </Link>

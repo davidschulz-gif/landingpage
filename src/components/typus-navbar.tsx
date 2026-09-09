@@ -39,6 +39,12 @@ export default function TypusNavbar() {
           link: '/upscale',
         },
         {
+          title: 'Floor Plan',
+          description:
+            'Generate accurate, beautiful and customizable floor plans with AI',
+          link: '/ai-floor-plan-generator',
+        },
+        {
           title: 'Feature Overview',
           description: 'Discover all AI tools and features in one overview',
           link: '/overview-of-features',

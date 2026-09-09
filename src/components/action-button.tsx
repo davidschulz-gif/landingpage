@@ -21,10 +21,10 @@ export const ActionButton = ({
     <Link
       href={href}
       onClick={onClick}
-      className={`group inline-flex shrink-0 bg-black justify-between items-center gap-5 rounded-none px-1 ps-5 py-1 text-white leading-none transition-all disabled:opacity-60 disabled:pointer-events-none ${className}`}
+      className={`group inline-flex shrink-0 bg-transparent border border-[#e5e7eb] justify-between items-center gap-5 rounded-none px-1 ps-5 py-1 text-black hover:bg-black/5 leading-none transition-all disabled:opacity-60 disabled:pointer-events-none ${className}`}
     >
       <span className='text-base font-light'>{children}</span>
-      <span className='flex aspect-square w-9 shrink-0 items-center justify-center rounded-none bg-white transition-transform group-hover:scale-110 text-black'>
+      <span className='flex aspect-square w-9 shrink-0 items-center justify-center rounded-none bg-transparent border border-[#e5e7eb] transition-transform group-hover:scale-110 text-black'>
         {icon || <ArrowRight />}
       </span>
     </Link>

@@ -189,7 +189,7 @@ export function MeetOurTeamSection() {
               e.preventDefault();
               window.dispatchEvent(new CustomEvent('open-before-you-go'));
             }}
-            className='bg-black text-white cursor-pointer text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl px-6 py-3 inline-block'
+            className='bg-transparent text-black cursor-pointer text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl px-6 py-3 inline-block'
             style={{
               fontFamily: 'Arial',
             }}

@@ -225,7 +225,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
               <div className="pt-4">
                 <Link
                   href={`${appUrl}/floor-plan`}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105"
                 >
                   {content.cta}
                 </Link>
@@ -462,7 +462,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
             <div className="pt-4">
                <Link
                   href={`${appUrl}/floor-plan`}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105"
                 >
                   {content.cta}
                 </Link>

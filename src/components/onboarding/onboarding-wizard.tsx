@@ -289,7 +289,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
                     <button
                         onClick={handleNext}
                         disabled={isSubmitting || isPending}
-                        className="flex items-center px-8 py-3.5 bg-black text-white text-sm font-bold uppercase tracking-widest rounded transition-all hover:bg-gray-900 shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full sm:w-auto justify-center disabled:opacity-75 disabled:cursor-not-allowed"
+                        className="flex items-center px-8 py-3.5 bg-transparent text-black border border-[#e5e7eb] text-sm font-bold uppercase tracking-widest rounded transition-all hover:bg-black/5 hover:-translate-y-0.5 w-full sm:w-auto justify-center disabled:opacity-75 disabled:cursor-not-allowed"
                         style={{ fontFamily: 'Arial' }}
                     >
                         {isSubmitting || isPending ? (

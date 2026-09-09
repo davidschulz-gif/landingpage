@@ -79,7 +79,7 @@ export default function SiegristPage() {
     const PricingButton = () => (
         <Link
             href="/pricing"
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm border border-neutral-800 dark:border-neutral-200 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm rounded-full text-xs font-bold uppercase tracking-wider"
             style={{ fontFamily: 'Arial' }}
         >
             <IconTag size={14} />

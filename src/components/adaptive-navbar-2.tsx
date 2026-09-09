@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play, Sparkles, Pencil, Zap, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical } from 'lucide-react'
+import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -85,16 +85,16 @@ export function NavbarDemo() {
             icon: Zap,
           },
           {
+            title: tNav('solutions.floorPlan.title'),
+            description: tNav('solutions.floorPlan.description'),
+            link: '/ai-floor-plan-generator',
+            icon: LayoutGrid,
+          },
+          {
             title: tNav('solutions.overviewOfFeatures.title'),
             description: tNav('solutions.overviewOfFeatures.description'),
             link: '/overview-of-features',
             icon: Play,
-          },
-          {
-            title: tNav('solutions.research.title'),
-            description: tNav('solutions.research.description'),
-            link: '/research',
-            icon: FlaskConical,
           },
           // { title: t('service'), isSection: true },
           // {
@@ -358,7 +358,7 @@ export function NavbarDemo() {
         <div className='flex items-center gap-6 h-full'>
           <Link
             href="/pricing"
-            className='bg-black text-white px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-800 transition-colors duration-200 cursor-pointer'
+            className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer'
           >
             {tPricing('selectPlanCTA')}
           </Link>
@@ -760,7 +760,7 @@ export function NavbarDemo() {
             <Link
               href="/pricing"
               onClick={() => setIsMobileMenuOpen(false)}
-              className='w-full rounded-xl py-3 bg-black text-white text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-800 transition-colors duration-200'
+              className='w-full rounded-xl py-3 bg-transparent text-black border border-[#e5e7eb] text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-100 transition-colors duration-200'
               style={{ fontFamily: 'Arial' }}
             >
               {tPricing('getFreeDemoCTA')}

@@ -162,3 +162,107 @@ select {
   font-family: var(--font-logo-font), 'Soyuz Grotesk', sans-serif !important;
 }
 
+/* ==========================================================================
+   Global Architectural Styling: Shadows Removal, Unified Grey Borders, & No Black Buttons
+   ========================================================================== */
+
+/* 1. Remove all shadows, text-shadows, drop shadows, and elevation effects */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+[class*="shadow"],
+[class*="drop-shadow"] {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* 2. Unified consistent grey tone for all visible lines, borders, and dividers */
+hr,
+[class*="divide-"],
+[class*="border-neutral-"],
+[class*="border-gray-"],
+[class*="border-zinc-"],
+[class*="border-slate-"],
+[class*="border-stone-"],
+[class*="border-black"],
+[class*="border-[#"] {
+  border-color: #e5e7eb !important;
+}
+
+/* 3. Remove black fill/background from every button across the application */
+button[class*="bg-black"],
+button[class*="bg-neutral-900"],
+button[class*="bg-zinc-900"],
+button[class*="bg-stone-900"],
+button[class*="bg-gray-900"],
+button[class*="bg-[#000"],
+button[class*="bg-primary"],
+[role="button"][class*="bg-black"],
+[role="button"][class*="bg-neutral-900"],
+[role="button"][class*="bg-zinc-900"],
+[role="button"][class*="bg-primary"],
+[data-slot="button"][class*="bg-black"],
+[data-slot="button"][class*="bg-primary"],
+.btn[class*="bg-black"],
+.btn[class*="bg-primary"],
+a[role="button"][class*="bg-black"],
+a.group[class*="bg-black"],
+a[class*="bg-black"]:not([class*="fixed"]):not([class*="absolute"]):not([class*="backdrop"]) {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border-color: #e5e7eb !important;
+}
+
+button[class*="bg-black"]:hover,
+button[class*="bg-neutral-900"]:hover,
+button[class*="bg-zinc-900"]:hover,
+button[class*="bg-primary"]:hover,
+[role="button"][class*="bg-black"]:hover,
+[role="button"][class*="bg-primary"]:hover,
+[data-slot="button"][class*="bg-black"]:hover,
+.btn[class*="bg-black"]:hover,
+a.group[class*="bg-black"]:hover,
+a[class*="bg-black"]:not([class*="fixed"]):not([class*="absolute"]):not([class*="backdrop"]):hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #000000 !important;
+  border-color: #e5e7eb !important;
+}
+
+button[class*="bg-black"] svg,
+button[class*="bg-neutral-900"] svg,
+button[class*="bg-zinc-900"] svg,
+button[class*="bg-primary"] svg,
+[role="button"][class*="bg-black"] svg,
+[data-slot="button"][class*="bg-black"] svg,
+a.group[class*="bg-black"] svg,
+a[class*="bg-black"] svg {
+  color: #000000 !important;
+  stroke: currentColor !important;
+}
+
+/* In dark mode, ensure no black button background either */
+.dark button[class*="bg-black"],
+.dark [role="button"][class*="bg-black"],
+.dark [data-slot="button"][class*="bg-black"] {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+.dark button[class*="bg-black"]:hover,
+.dark [role="button"][class*="bg-black"]:hover,
+.dark [data-slot="button"][class*="bg-black"]:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+.dark button[class*="bg-black"] svg,
+.dark [role="button"][class*="bg-black"] svg {
+  color: #ffffff !important;
+  stroke: currentColor !important;
+}
+

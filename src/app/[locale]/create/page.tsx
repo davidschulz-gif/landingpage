@@ -270,7 +270,7 @@ export default function CreateFeatureLandingPage() {
                 href="https://app.typus.ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto rounded-full text-xs font-bold uppercase tracking-wider"
                 style={{ fontFamily: 'Arial' }}
               >
                 <span>{content.ctaButton}</span>
@@ -530,7 +530,7 @@ export default function CreateFeatureLandingPage() {
                       window.dispatchEvent(new CustomEvent('show-email-gate', { detail: { redirectUrl: targetUrl } }))
                     }
                   }}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer"
                   style={{ fontFamily: 'Arial' }}
                 >
                   <IconDeviceLaptop size={14} />
@@ -566,7 +566,7 @@ export default function CreateFeatureLandingPage() {
                 href="https://app.typus.ai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-5 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+                className="inline-flex items-center justify-center gap-2 px-8 py-5 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 hover:scale-[1.02] active:scale-95 transition-all duration-300 rounded-full text-xs font-bold uppercase tracking-wider"
                 style={{ fontFamily: 'Arial' }}
               >
                 <span>{content.ctaButton}</span>
