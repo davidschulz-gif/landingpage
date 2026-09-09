@@ -70,7 +70,7 @@ export const renderLogo = (hasLogo: string) => {
       return (
         <svg viewBox="0 0 24 24" className="w-14 h-14">
           <rect width="24" height="24" rx="4" fill="#34495E" />
-          <text x="12" y="15" fill="white" fontSize="6.5" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">ETABS</text>
+          <text x="12" y="15" fill="white" fontSize="6.5" fontWeight="bold" textAnchor="middle" fontFamily="Arial">ETABS</text>
         </svg>
       )
     case 'tekla':

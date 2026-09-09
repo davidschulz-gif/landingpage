@@ -403,9 +403,9 @@ function OrderContent() {
 
   if (isTokenVerifying) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#fcfcfd] gap-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f3f1ed] gap-4">
         <Loader2 className="animate-spin text-black" size={40} />
-        <p className="text-sm font-medium text-gray-500 uppercase tracking-widest animate-pulse" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+        <p className="text-sm font-medium text-gray-500 uppercase tracking-widest animate-pulse" style={{ fontFamily: 'Arial' }}>
           {locale === 'de' ? 'E-Mail-Verifizierung wird geprüft...' : 'Checking email verification...'}
         </p>
       </div>
@@ -414,14 +414,14 @@ function OrderContent() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#fcfcfd]">
+      <div className="min-h-screen flex items-center justify-center bg-[#f3f1ed]">
         <Loader2 className="animate-spin text-black" size={40} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#fcfcfd] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
+    <div className="min-h-screen bg-[#f3f1ed] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/pricing`}
@@ -434,7 +434,7 @@ function OrderContent() {
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
           <div className="p-8 sm:p-12">
             {/* Header */}
-            <h1 className="heading-primary mb-8 leading-tight" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+            <h1 className="heading-primary mb-8 leading-tight" style={{ fontFamily: 'Arial' }}>
               {showPreview ? tPreview.title : data.title}
             </h1>
 
@@ -444,7 +444,7 @@ function OrderContent() {
                   {/* Column 1: Parties */}
                   <div className="space-y-6">
                     <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-sm">
-                      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: 'Arial' }}>
                         {tPreview.providerTitle}
                       </h3>
                       <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
@@ -465,7 +465,7 @@ function OrderContent() {
                       >
                         {tPreview.editAddress}
                       </button>
-                      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: 'Arial' }}>
                         {tPreview.customerTitle}
                       </h3>
                       <div className="text-sm text-gray-700 leading-relaxed">
@@ -488,7 +488,7 @@ function OrderContent() {
 
                   {/* Column 2: Contract details */}
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-sm space-y-6">
-                    <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4" style={{ fontFamily: 'Arial' }}>
                       {tPreview.contractTitle}
                     </h3>
                     <div className="space-y-4 text-sm text-gray-700">
@@ -527,7 +527,7 @@ function OrderContent() {
                   <button
                     onClick={() => setShowPreview(false)}
                     className="text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-black transition-colors"
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {locale === 'de' ? 'Zurück' : 'Back'}
                   </button>
@@ -536,7 +536,7 @@ function OrderContent() {
                     onClick={handleConfirmOrder}
                     disabled={isSubmitting}
                     className="w-full sm:w-auto px-12 py-5 text-sm bg-black text-white uppercase tracking-widest rounded hover:bg-gray-900 transition-all flex items-center justify-center shadow-xl hover:shadow-2xl hover:-translate-y-1 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : tPreview.confirmAndPay}
                   </button>
@@ -757,7 +757,7 @@ function OrderContent() {
                     onClick={handleStartOrder}
                     disabled={!allChecked || isSubmitting}
                     className={`w-full sm:w-auto px-12 py-5 text-sm  uppercase tracking-widest rounded transition-all flex items-center justify-center mx-auto ${allChecked && !isSubmitting ? 'bg-black text-white hover:bg-gray-900 hover:-translate-y-1 shadow-xl hover:shadow-2xl' : 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'}`}
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : data.finishOrderTitle}
                   </button>
@@ -802,14 +802,14 @@ function OrderContent() {
                   </div>
 
                   <div className='space-y-2'>
-                    <h3 className='text-xl font-black text-white uppercase tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <h3 className='text-xl font-black text-white uppercase tracking-tight' style={{ fontFamily: 'Arial' }}>
                       {locale === 'de' ? 'Posteingang prüfen' : 'Check your inbox'}
                     </h3>
                   </div>
                   <Button
                     onClick={() => { setIsEmailModalOpen(false); setEmailSent(false); }}
                     className='bg-white text-black hover:bg-white/90 w-full py-6 text-xs uppercase tracking-widest transition-all'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {locale === 'de' ? 'Schließen' : 'Close'}
                   </Button>
@@ -819,7 +819,7 @@ function OrderContent() {
                   <div className='flex flex-col gap-2'>
                     <h3
                       className='text-xl  text-white uppercase tracking-wider'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {tModal('title')}
                     </h3>
@@ -893,7 +893,7 @@ function OrderContent() {
                         onClick={handleEmailSubmit}
                         disabled={isVerifyingEmail || !privacyConsent || !termsConsent}
                         className='bg-white text-black hover:bg-white w-full py-6 text-xs  uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {isVerifyingEmail ? (
                           <IconLoader2 className='animate-spin mr-2' size={16} />
@@ -903,7 +903,7 @@ function OrderContent() {
                       <button
                         onClick={() => { setIsEmailModalOpen(false); setEmailSent(false); }}
                         className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {tModal('cancel')}
                       </button>
@@ -936,7 +936,7 @@ function OrderContent() {
 export default function OrderPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-[#fcfcfd]">
+      <div className="min-h-screen flex items-center justify-center bg-[#f3f1ed]">
         <Loader2 className="animate-spin text-black" size={40} />
       </div>
     }>

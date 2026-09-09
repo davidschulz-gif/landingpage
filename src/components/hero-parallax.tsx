@@ -218,7 +218,7 @@ export const Header = () => {
             <BreathingAnimationText animationType='black-gray'>
               <motion.h1
                 className='text-[36px] font-normal relative z-999 text-black dark:text-white leading-tight mb-1 uppercase h-[135px] sm:h-[90px] md:h-[85px] break-words'
-                style={{ fontFamily: "var(--font-soyuz-grotesk),'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -389,7 +389,7 @@ export const Header = () => {
                 lineHeight: '1.3em',
                 color: '#000',
                 textTransform: 'uppercase',
-                fontFamily: 'var(--font-soyuz-grotesk)'
+                fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
               }}
             >
               typus.AI
@@ -445,7 +445,7 @@ export const Header = () => {
                 >
                   <h3
                     className='text-center uppercase font-bold text-[11px] tracking-[0.18em] text-black dark:text-white pb-2.5 border-b border-black/10 dark:border-white/10'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {card.title}
                   </h3>
@@ -466,7 +466,7 @@ export const Header = () => {
                         </div>
                         <span
                           className='text-[10px] font-medium text-black dark:text-white uppercase leading-tight'
-                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                          style={{ fontFamily: 'Arial' }}
                         >
                           {feature}
                         </span>
@@ -680,7 +680,7 @@ export const ProductCard = React.memo(
             <div className='bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5'>
               <span
                 className='text-white font-medium text-sm leading-tight'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {product.title}
               </span>

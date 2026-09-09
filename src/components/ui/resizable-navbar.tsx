@@ -219,7 +219,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
       <span
         className='text-center !font-logo uppercase'
         style={{
-          // fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
+          fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
           fontSize: '25px',
           fontWeight: 300,
           letterSpacing: '2px',

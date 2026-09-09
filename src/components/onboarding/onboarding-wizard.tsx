@@ -83,7 +83,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
     }
 
     return (
-        <div className="fixed inset-0 z-[50000] flex flex-col items-center justify-center bg-[#fcfcfd]/80 backdrop-blur-md p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-[50000] flex flex-col items-center justify-center bg-[#f3f1ed]/80 backdrop-blur-md p-4 overflow-y-auto">
             <button
                 className="absolute top-4 right-4 text-gray-600 cursor-pointer"
                 onClick={onCancel}
@@ -102,7 +102,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
                     lineHeight: '1.3em',
                     color: '#000',
                     textTransform: 'uppercase',
-                    fontFamily: 'var(--font-soyuz-grotesk)'
+                    fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
                   }}
                 >
                   typus.AI
@@ -290,7 +290,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
                         onClick={handleNext}
                         disabled={isSubmitting || isPending}
                         className="flex items-center px-8 py-3.5 bg-black text-white text-sm font-bold uppercase tracking-widest rounded transition-all hover:bg-gray-900 shadow-lg hover:shadow-xl hover:-translate-y-0.5 w-full sm:w-auto justify-center disabled:opacity-75 disabled:cursor-not-allowed"
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                     >
                         {isSubmitting || isPending ? (
                             <>

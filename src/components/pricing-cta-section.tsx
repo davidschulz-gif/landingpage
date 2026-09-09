@@ -27,7 +27,7 @@ export function PricingCTASection() {
                     <Link href="/pricing">
                         <Button
                             className="bg-black text-white px-8 py-6 text-lg hover:bg-black transition-all duration-300 rounded-4xl h-auto"
-                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: 'Arial' }}
                         >
                             {t('button')}
                         </Button>

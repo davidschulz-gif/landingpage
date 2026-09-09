@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #f3f1ed;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -141,3 +141,24 @@
    
   }
 }
+
+*:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo]),
+*:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo])::before,
+*:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo])::after,
+html,
+body,
+input,
+button,
+textarea,
+select {
+  font-family: Arial !important;
+}
+
+.font-logo,
+[class*="font-logo"],
+[data-typus-logo],
+.font-logo *,
+[class*="font-logo"] * {
+  font-family: var(--font-logo-font), 'Soyuz Grotesk', sans-serif !important;
+}
+

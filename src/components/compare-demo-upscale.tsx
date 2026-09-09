@@ -4,7 +4,7 @@ export default function CompareDemoUpscale() {
   return (
     <section
       className='w-full max-w-[90%] md:max-w-[65%] mx-auto py-10 overflow-x-hidden'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
     >
       <div className='w-full overflow-x-hidden md:overflow-x-auto'>
         <CompareWithAnimationUpscale />

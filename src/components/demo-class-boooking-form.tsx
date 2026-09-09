@@ -222,7 +222,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
       )}
     >
       {showTitle && (
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-left" style={{ fontFamily: 'Arial' }}>
           {tPricing('bookDemo')}
         </h2>
       )}
@@ -393,7 +393,7 @@ export default function BookingDemoClassForm({ className, showTitle = true }: Bo
         <IconMail size={16} className='text-gray-400 mt-0.5' />
         <span
           className='text-xs text-gray-500 leading-relaxed'
-          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {t('description')}
         </span>

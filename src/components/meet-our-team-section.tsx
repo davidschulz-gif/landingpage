@@ -76,14 +76,14 @@ export function MeetOurTeamSection() {
   const t = useTranslations('Team')
 
   return (
-    <section className='py-10' style={{ backgroundColor: '#fcfcfd' }}>
+    <section className='py-10' style={{ backgroundColor: '#f3f1ed' }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Header */}
         {/* <div className='text-center mb-12'>
           <BreathingAnimationText animationType='black-gray'>
             <motion.h2
               className='text-[30px] text-gray-900 mb-3 font-normal'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -120,7 +120,7 @@ export function MeetOurTeamSection() {
             >
               <div className='relative group'>
                 <div className='absolute inset-0  bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-all duration-500 p-[2px]'>
-                  <div className='w-full h-full bg-[#fcfcfd] '></div>
+                  <div className='w-full h-full bg-[#f3f1ed] '></div>
                 </div>
                 <div className='bg-white p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500'>
                   {/* Profile Image */}
@@ -141,7 +141,7 @@ export function MeetOurTeamSection() {
                   <BreathingAnimationText animationType='black-gray'>
                     <h3
                       className='text-lg font-bold text-gray-900 mb-2'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {member.name}
                     </h3>
@@ -151,7 +151,7 @@ export function MeetOurTeamSection() {
                   <BreathingAnimationText animationType='black-gray'>
                     <p
                       className='text-sm text-gray-600 mb-6'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {member.role}
                     </p>
@@ -174,7 +174,7 @@ export function MeetOurTeamSection() {
 
                    { member?.subtext &&  <p
                       className='text-sm text-black mb-6'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {member?.subtext}
                     </p>}
@@ -191,7 +191,7 @@ export function MeetOurTeamSection() {
             }}
             className='bg-black text-white cursor-pointer text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-gray-900 hover:text-white transition-all duration-200 rounded-2xl px-6 py-3 inline-block'
             style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
           >
             <span>{t('button')}</span>

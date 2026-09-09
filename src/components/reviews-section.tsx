@@ -21,7 +21,7 @@ export function ReviewsSection() {
     <section
       ref={containerRef}
       className='w-full max-w-[100%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
       id='reviews'
     >
       {/* Featured Testimonial - Using dedicated component */}
@@ -41,7 +41,7 @@ export function ReviewsSection() {
             <h2
               className='text-[30px] font-normal text-black mb-6 font-soyuz-grotes'
             // style={{
-            //   fontFamily: "'Soyuz Grotesk', sans-serif",
+            //   fontFamily: 'Arial',
             // }}
             >
             
@@ -81,7 +81,7 @@ export function ReviewsSection() {
               right: 0;
               width: 100px;
               height: 50px;
-              background: #fcfcfd;
+              background: #f3f1ed;
               z-index: 10;
             }
           `}</style>

@@ -512,10 +512,10 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
-          className="py-20 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 w-full flex flex-col items-center justify-center text-center px-4"
+          className="py-20 bg-[#f3f1ed] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 w-full flex flex-col items-center justify-center text-center px-4"
         >
           <div className="max-w-3xl mx-auto space-y-6">
-            <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+            <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight" style={{ fontFamily: 'Arial' }}>
               {locale === 'de' ? 'ENTDECKEN SIE ALLE FUNKTIONEN' : 'DISCOVER ALL FEATURES'}
             </h2>
             <p className="text-neutral-500 dark:text-neutral-400 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
@@ -527,7 +527,7 @@ export default function Home() {
               <Link
                 href={`/${locale}/overview-of-features`}
                 className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {locale === 'de' ? 'Feature-Übersicht ansehen' : 'See overview of features'}
               </Link>

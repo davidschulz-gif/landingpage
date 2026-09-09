@@ -73,7 +73,7 @@ export function LandingComparisons() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-[#fcfcfd] dark:bg-neutral-950/10 border-t border-neutral-100 dark:border-neutral-900" id="landing-comparisons-section">
+    <section className="py-16 md:py-24 bg-[#f3f1ed] dark:bg-neutral-950/10 border-t border-neutral-100 dark:border-neutral-900" id="landing-comparisons-section">
       <div className="max-w-5xl mx-auto px-4">
         
         {/* Header Block */}
@@ -81,7 +81,7 @@ export function LandingComparisons() {
           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
             {locale === 'de' ? 'DETAILS IM FOKUS' : 'DETAILS IN FOCUS'}
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight mt-3 mb-4" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+          <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight mt-3 mb-4" style={{ fontFamily: 'Arial' }}>
             {locale === 'de' 
               ? '4K STANDARD VS. 8K TYPUS HOCHSKALIERUNG' 
               : '4K STANDARD VS. 8K TYPUS UPSCALING'}
@@ -100,7 +100,7 @@ export function LandingComparisons() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1 space-y-4 text-left">
               <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Project 01</span>
-              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>
                 {locale === 'de' ? items[0].titleDe : items[0].titleEn}
               </h3>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
@@ -149,7 +149,7 @@ export function LandingComparisons() {
           <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-12">
             <div className="flex-1 space-y-4 text-left">
               <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Project 02</span>
-              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>
                 {locale === 'de' ? items[1].titleDe : items[1].titleEn}
               </h3>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
@@ -198,7 +198,7 @@ export function LandingComparisons() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1 space-y-4 text-left">
               <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Project 03</span>
-              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>
                 {locale === 'de' ? items[2].titleDe : items[2].titleEn}
               </h3>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
@@ -247,7 +247,7 @@ export function LandingComparisons() {
           <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-12">
             <div className="flex-1 space-y-4 text-left">
               <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">Project 04</span>
-              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h3 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>
                 {locale === 'de' ? items[3].titleDe : items[3].titleEn}
               </h3>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">

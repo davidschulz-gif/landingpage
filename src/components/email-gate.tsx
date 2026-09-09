@@ -147,7 +147,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                         }, 700)
                       }}
                       className="w-full py-3 bg-black dark:bg-white text-white dark:text-black text-sm transition-all cursor-pointer hover:bg-black/90 dark:hover:bg-white/90 font-bold uppercase tracking-widest rounded-lg"
-                      style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('gate.continueToApp').includes('gate.continueToApp') ? "Continue to App" : t('gate.continueToApp')}
                     </button>
@@ -172,7 +172,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                         lineHeight: '1.3em',
                         color: '#000',
                         textTransform: 'uppercase',
-                        fontFamily: 'var(--font-soyuz-grotesk)'
+                        fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
                       }}
                     >
                       typus.AI
@@ -182,13 +182,13 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
 
                 <h2
                   className='text-xl sm:text-2xl md:text-[32px] font-normal text-neutral-900 dark:text-white mb-2 sm:mb-3 leading-tight'
-                  style={{ fontFamily: 'var(--font-ft-calhern), sans-serif' }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('gate.title')}
                 </h2>
                 <p
                   className='text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-sm'
-                  style={{ fontFamily: 'sans-serif' }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('gate.subtitle')}
                 </p>

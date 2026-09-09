@@ -213,7 +213,7 @@ export const TabVideoShowcase = memo(() => {
     <section
       ref={containerRef}
       className='relative overflow-hidden mx-auto flex max-w-[95%] md:max-w-[65%] w-full flex-col md:px-4 py-16 text-neutral-800 dark:text-neutral-200'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
     >
       <link
         rel="preload"

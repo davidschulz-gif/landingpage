@@ -85,7 +85,7 @@ export function FloatingBuzzer({ triggerPopup }: { triggerPopup?: boolean }) {
             }}
             onClick={handleClick}
             className="z-[9999] rounded-2xl p-4 border border-neutral-800 hover:shadow-2xl transition-all duration-300 ease-out flex items-center group bg-white/90 shadow-lg backdrop-blur-md text-black cursor-pointer overflow-hidden origin-right animate-pulse-glow"
-            style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
             aria-label={t('text')}
           >
             <PhoneCall className="w-8 h-8 shrink-0 text-black transition-transform duration-300 group-hover:scale-110" />

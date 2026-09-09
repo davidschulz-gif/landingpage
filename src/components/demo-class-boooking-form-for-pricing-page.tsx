@@ -229,12 +229,12 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       )}
     >
 
-      {/* <h2 className="text-2xl  p-1 text-gray-900 mb-0.5 text-left" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+      {/* <h2 className="text-2xl  p-1 text-gray-900 mb-0.5 text-left" style={{ fontFamily: 'Arial' }}>
         {tPricing('bookDemo')}
       </h2> */}
       {/* <div className="mb-0.5">
         <BreathingAnimationText animationType='black-gray'>
-          <h2 className='text-[18px] font-normal text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+          <h2 className='text-[18px] font-normal text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: 'Arial' }}>
             {t('cta.t')}
           </h2>
         </BreathingAnimationText>
@@ -267,7 +267,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <div className='w-5 h-5 bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center flex-shrink-0 rounded-none border border-neutral-100 dark:border-neutral-800 shadow-sm'>
           <BarChart3 className='w-3 h-3 text-neutral-600 dark:text-neutral-400' strokeWidth={1.5} />
         </div>
-        <span className='text-[13px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: "var(--font-space-grotesk), 'Space Grotesk', sans-serif" }}>
+        <span className='text-[13px] font-medium text-neutral-600 dark:text-neutral-400 leading-tight' style={{ fontFamily: 'Arial' }}>
           {t('cta.point4')}
         </span>
       </div>
@@ -376,7 +376,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
               borderRadius: '8px',
               paddingLeft: '50px',
               borderColor: '#e5e7eb',
-              fontFamily: 'inherit',
+              fontFamily: 'Arial',
             }}
             buttonStyle={{
               height: '32px',
@@ -435,7 +435,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
              disabled={isRequesting}
             className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
           >
             <span>{tPricing('bookDemo')}</span>
@@ -466,7 +466,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <IconMail size={16} className='text-gray-400 mt-0.5' />
         <span
           className='text-xs text-gray-500 leading-relaxed'
-          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {t('description')}
         </span>

@@ -218,7 +218,7 @@ function ThankYouContent() {
         </div>
         <h1
           className="text-4xl font-bold text-black"
-          style={{ fontFamily: "var(--font-ft-calhern), var(--font-ft-calhern), sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {t('title')}
         </h1>
@@ -228,7 +228,7 @@ function ThankYouContent() {
 
         {user && (
           <div className="bg-gray-50 p-6 rounded-lg text-left space-y-4 border border-gray-100 shadow-sm">
-            <h2 className="text-xl font-bold text-black border-b border-gray-200 pb-2" style={{ fontFamily: "var(--font-ft-calhern), var(--font-ft-calhern), sans-serif" }}>
+            <h2 className="text-xl font-bold text-black border-b border-gray-200 pb-2" style={{ fontFamily: 'Arial' }}>
               {t('detailsTitle')}
             </h2>
             <div className="grid grid-cols-1 gap-y-3 text-sm">
@@ -266,7 +266,7 @@ function ThankYouContent() {
             <Link href={`${appUrl}/login?email=${encodeURIComponent(user?.email)}`}>
               <Button
                 className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('logIn')}
               </Button>
@@ -277,7 +277,7 @@ function ThankYouContent() {
             <Link href={`${user?.subscription?.contractUrl}`} target="_blank" rel="noopener noreferrer">
               <Button
                 className="bg-black cursor-pointer text-white hover:bg-black px-8 py-6 rounded-md text-sm font-bold uppercase tracking-widest transition-all"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('contractUrl')}
               </Button>

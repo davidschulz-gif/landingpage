@@ -285,7 +285,7 @@ export default async function RootLayout({
         {/* google analytics */}
       </head>
       <body
-        className={`bg-[#fcfcfd] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
+        className={`bg-[#f3f1ed] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
         /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
            inject attributes that cause Next.js hydration mismatches. */
         suppressHydrationWarning

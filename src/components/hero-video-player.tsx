@@ -92,7 +92,7 @@ export function HeroVideoPlayer({
                 onClick={togglePlay}
                 className='flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-white text-black hover:bg-gray-100 transition-all duration-200 flex-shrink-0'
                 aria-label={isPlaying ? 'Pause' : 'Play'}
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {isPlaying ? (
                   <Pause
@@ -154,7 +154,7 @@ export function HeroVideoPlayer({
             onClick={togglePlay}
             className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 md:w-16 md:h-16 bg-black text-white hover:bg-white hover:text-black transition-all duration-200 flex items-center justify-center shadow-lg pointer-events-auto'
             aria-label='Play video'
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
             <Play className='w-6 h-6 md:w-7 md:h-7 ml-1' fill='currentColor' />
           </motion.button>

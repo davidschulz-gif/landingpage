@@ -107,7 +107,7 @@ function PricingContent() {
                                     key={mode}
                                     onClick={() => setViewMode(mode as any)}
                                     className={`relative z-10 px-5 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
-                                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                                    style={{ fontFamily: 'Arial' }}
                                 >
                                     {viewMode === mode && (
                                         <motion.div

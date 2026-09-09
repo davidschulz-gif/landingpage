@@ -514,7 +514,7 @@ export function NavbarDemo() {
                                     <h4 className='text-[12px] font-medium text-gray-900 group-hover/item:text-black mb-1 transition-colors duration-200'>
                                       {subitem.title}
                                     </h4>
-                                    <p style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
+                                    <p style={{ fontFamily: 'Arial' }} className='text-[11px] text-gray-600 leading-relaxed group-hover/item:text-gray-700 transition-colors duration-200'>
                                       {subitem.description}
                                     </p>
                                   </div>
@@ -761,7 +761,7 @@ export function NavbarDemo() {
               href="/pricing"
               onClick={() => setIsMobileMenuOpen(false)}
               className='w-full rounded-xl py-3 bg-black text-white text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-800 transition-colors duration-200'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               {tPricing('getFreeDemoCTA')}
             </Link>
@@ -770,7 +770,7 @@ export function NavbarDemo() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
             </NavbarButton> */}
@@ -779,7 +779,7 @@ export function NavbarDemo() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant='secondary'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               {t('login')}
             </NavbarButton>
@@ -791,7 +791,7 @@ export function NavbarDemo() {
               }}
               variant='primary'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-medium tracking-wide'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               {t('goToApp')}
             </NavbarButton>

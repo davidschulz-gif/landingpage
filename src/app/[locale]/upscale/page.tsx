@@ -57,7 +57,7 @@ export default function UpscaleMobilePage() {
     <button
       onClick={handleShareLink}
       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm"
-      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+      style={{ fontFamily: 'Arial' }}
     >
       <IconShare size={36} />
       <span>{locale === 'de' ? 'Alle 18 Beispiele in der interaktiven Bildschau sehen' : 'View all 18 examples in the interactive showcase'}</span>
@@ -68,7 +68,7 @@ export default function UpscaleMobilePage() {
     <Link
       href="/pricing"
       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full max-w-sm border border-neutral-800 dark:border-neutral-200 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
-      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+      style={{ fontFamily: 'Arial' }}
     >
       <IconTag size={14} />
       <span>{locale === 'de' ? 'Preise & Lizenzen ansehen' : 'View Pricing & Licenses'}</span>
@@ -76,7 +76,7 @@ export default function UpscaleMobilePage() {
   )
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -94,7 +94,7 @@ export default function UpscaleMobilePage() {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+            <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: 'Arial' }}>
               {locale === 'de' 
                 ? 'KI für großformatige Drucke und Wettbewerbspläne' 
                 : 'AI for large-format prints and competition plans'}
@@ -125,7 +125,7 @@ export default function UpscaleMobilePage() {
                   <h3 className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">
                     {locale === 'de' ? 'UNSERE STÄRKE' : 'OUR SPECIALTY'}
                   </h3>
-                  <p className="text-neutral-900 dark:text-white text-base md:text-lg font-normal leading-snug" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+                  <p className="text-neutral-900 dark:text-white text-base md:text-lg font-normal leading-snug" style={{ fontFamily: 'Arial' }}>
                     {locale === 'de'
                       ? 'Genau hier liegt eine besondere Stärke von Typus.ai:'
                       : 'This is precisely where one of the greatest strengths of Typus.ai lies:'}
@@ -220,7 +220,7 @@ export default function UpscaleMobilePage() {
             </div>
 
             <div className="bg-neutral-50 dark:bg-neutral-900/40 p-6 border border-neutral-100 dark:border-neutral-900/60 space-y-4 rounded-xl">
-              <h2 className="text-lg font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h2 className="text-lg font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>
                 {locale === 'de'
                   ? 'Unserer Erfahrung nach ist deshalb die ideale Arbeitsweise:'
                   : 'Based on our experience, the ideal workflow is:'}

@@ -167,7 +167,7 @@ export function ArticleCarouselSection() {
   return (
     <div
       className='w-full py-20'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
       id='press'
     >
       <div className='max-w-7xl mx-auto px-4'>
@@ -175,7 +175,7 @@ export function ArticleCarouselSection() {
           <BreathingAnimationText animationType='black-gray'>
             <motion.h2
               className='text-[30px] font-normal text-black mb-4'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -293,7 +293,7 @@ export function ArticleCarouselSection() {
                           <h3
                             className='subheading-primary mb-3'
                             style={{
-                              fontFamily: "'Soyuz Grotesk', sans-serif",
+                              fontFamily: 'Arial',
                             }}
                           >
                             {article.title}
@@ -374,7 +374,7 @@ export function ArticleCarouselSection() {
                             rel='noopener noreferrer'
                             className='inline-flex items-center text-sm font-medium text-black hover:text-gray-700 transition-colors'
                             style={{
-                              fontFamily: "'Soyuz Grotesk', sans-serif",
+                              fontFamily: 'Arial',
                             }}
                           >
                             {t('readFullArticle')}

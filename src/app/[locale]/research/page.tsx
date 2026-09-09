@@ -130,7 +130,7 @@ export default function ResearchProjectsPage() {
   const isDe = locale === 'de'
 
   return (
-    <div className="research-page-scope relative w-full bg-[#fcfcfd] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
+    <div className="research-page-scope relative w-full bg-[#f3f1ed] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
       <NavbarDemo />
 
       <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-36 pb-28">
@@ -175,7 +175,7 @@ export default function ResearchProjectsPage() {
               </div>
               <p
                 className="subheading-primary text-base sm:text-lg md:text-xl text-neutral-800 dark:text-neutral-200 leading-relaxed"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
                   TYPUS.AI
@@ -187,7 +187,7 @@ export default function ResearchProjectsPage() {
             {/* STATS BANNER SECTION (WHITE BACKGROUND, RED STRIPE & CROSSHAIRS, SIDE-BY-SIDE 1-ROW ANIMATED COUNT-UP) */}
             <div
               className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden my-4 py-8 sm:py-10 px-6 sm:px-10 max-w-4xl mx-auto"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {/* Red Accent Top Stripe */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#f05a47]" style={{ backgroundColor: '#f05a47' }} />
@@ -203,7 +203,7 @@ export default function ResearchProjectsPage() {
                 <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
                     className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <AnimatedStatNumber value={t('stats.visitorsValue')} />
                   </span>
@@ -216,7 +216,7 @@ export default function ResearchProjectsPage() {
                 <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
                     className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <AnimatedStatNumber value={t('stats.subscribersValue')} />
                   </span>
@@ -229,7 +229,7 @@ export default function ResearchProjectsPage() {
                 <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
                   <span
                     className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <AnimatedStatNumber value={t('stats.generationsValue')} />
                   </span>
@@ -262,25 +262,25 @@ export default function ResearchProjectsPage() {
             <div className="text-center space-y-4 max-w-4xl mx-auto">
               <span
                 className="inline-block px-3 py-1 rounded-full bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs uppercase tracking-widest "
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide5.badge')}
               </span>
               <h3
                 className="heading-primary text-2xl sm:text-3xl md:text-4xl"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide5.title')}
               </h3>
               <p
                 className="subheading-primary text-base md:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-3xl mx-auto"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide5.subtitle')}
               </p>
               <div
                 className="text-xs text-neutral-400 font-mono pt-1"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide5.dateAuthor')}
               </div>
@@ -299,7 +299,7 @@ export default function ResearchProjectsPage() {
                 
                 <div
                   className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 text-white text-xs tracking-wider bg-black/75 px-4 py-2 rounded-full backdrop-blur-md border border-white/20  uppercase"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   <div className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
                   {t('slide5.tag')}
@@ -307,7 +307,7 @@ export default function ResearchProjectsPage() {
 
                 <div
                   className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 text-xs text-neutral-200 bg-black/75 px-4 py-2 rounded-xl backdrop-blur-md border border-white/10 font-mono"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide5.caption')}
                 </div>
@@ -316,7 +316,7 @@ export default function ResearchProjectsPage() {
 
             <div
               className="flex justify-center text-xs md:text-sm pt-2"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               <Link
                 href="https://www.golem.de/news/supercomputer-jupiter-eingeweiht-europaeisch-ist-hochleistungsrechnen-richtig-gedacht-2509-199789.html"
@@ -349,7 +349,7 @@ export default function ResearchProjectsPage() {
             <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-3 max-w-2xl">
               <div
                 className="text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 "
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide7.coopLabel')}
               </div>
@@ -360,13 +360,13 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-0.5">
                   <h4
                     className="heading-primary text-lg sm:text-xl md:text-2xl"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide7.professorName')}
                   </h4>
                   <p
                     className="subheading-primary text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-snug"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide7.professorTitle')}
                   </p>
@@ -392,19 +392,19 @@ export default function ResearchProjectsPage() {
                   <div className="space-y-2.5 pt-1">
                     <div
                       className="text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       RWTH AACHEN VORTRAG
                     </div>
                     <h4
                       className="subheading-primary text-lg "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('videoSlide.video1Title')}
                     </h4>
                     <p
                       className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('videoSlide.video1Desc')}
                     </p>
@@ -417,7 +417,7 @@ export default function ResearchProjectsPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline "
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <span>Auf YouTube ansehen</span>
                     <ExternalLink className="w-4 h-4" />
@@ -453,19 +453,19 @@ export default function ResearchProjectsPage() {
                   <div className="space-y-2.5 pt-1">
                     <div
                       className="text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       DFG LEIBNIZ-PREIS PORTRÄT
                     </div>
                     <h4
                       className="subheading-primary text-lg "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('videoSlide.video2Title')}
                     </h4>
                     <p
                       className="text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('videoSlide.video2Desc')}
                     </p>
@@ -478,7 +478,7 @@ export default function ResearchProjectsPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline "
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <span>Auf YouTube ansehen</span>
                     <ExternalLink className="w-4 h-4" />
@@ -517,7 +517,7 @@ export default function ResearchProjectsPage() {
 
               <p
                 className="subheading-primary text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
                   TYPUS.AI
@@ -570,7 +570,7 @@ export default function ResearchProjectsPage() {
 
               <p
                 className="subheading-primary text-center text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-4xl mx-auto leading-relaxed border-t border-neutral-200/60 dark:border-neutral-800 pt-6"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('slide3.desc')}
               </p>
@@ -605,7 +605,7 @@ export default function ResearchProjectsPage() {
 
             <p
               className="subheading-primary text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {t('slide4.desc')}
             </p>
@@ -630,7 +630,7 @@ export default function ResearchProjectsPage() {
               <div className="lg:col-span-6 space-y-6">
                 <h3
                   className="heading-primary text-2xl sm:text-3xl"
-                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide6.title')}
                 </h3>
@@ -642,14 +642,14 @@ export default function ResearchProjectsPage() {
                       <Image src="/logo_efre_jtf.png" alt="EFRE JTF NRW 2021-27" width={220} height={80} className="h-14 sm:h-16 md:h-18 w-auto object-contain dark:invert" unoptimized />
                       <div
                         className="text-neutral-900 dark:text-white hidden sm:block  text-xs md:text-sm"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide6.efreTitle')}
                       </div>
                     </div>
                     <span
                       className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs  uppercase tracking-wider shrink-0"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.statusApproved')}
                     </span>
@@ -662,21 +662,21 @@ export default function ResearchProjectsPage() {
                         <Image src="/logo_ffplus_card.png" alt="FORTISSIMO PLUS" width={120} height={55} className="h-11 sm:h-13 w-auto object-contain" />
                         <div
                           className="text-neutral-900 dark:text-white  text-xs md:text-sm"
-                          style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                          style={{ fontFamily: 'Arial' }}
                         >
                           {t('slide6.ffplusTitle')}
                         </div>
                       </div>
                       <span
                         className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs  uppercase tracking-wider shrink-0"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide6.statusApproved')}
                       </span>
                     </div>
                     <p
                       className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.ffplusDesc')}
                     </p>
@@ -686,7 +686,7 @@ export default function ResearchProjectsPage() {
                   <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 space-y-4 shadow-sm">
                     <div
                       className="uppercase text-xs tracking-wider text-purple-600 dark:text-purple-400 "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.partnerTitle')}
                     </div>
@@ -700,7 +700,7 @@ export default function ResearchProjectsPage() {
 
                     <p
                       className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800 pt-3"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.partnerDesc')} &bull; <span className="text-neutral-500 font-semibold">{t('slide6.deadline')}</span>
                     </p>
@@ -722,7 +722,7 @@ export default function ResearchProjectsPage() {
                   
                   <div
                     className="absolute top-4 right-4 text-xs text-white bg-black/75 px-4 py-2 rounded-full backdrop-blur-md border border-white/20  uppercase tracking-wider"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide6.rackTag')}
                   </div>
@@ -730,13 +730,13 @@ export default function ResearchProjectsPage() {
                   <div className="absolute bottom-6 left-6 right-6 space-y-2">
                     <div
                       className="text-3xl md:text-4xl lg:text-5xl  text-white tracking-widest"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.rackTitle')}
                     </div>
                     <p
                       className="text-xs md:text-sm text-neutral-300 font-mono"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide6.rackSubtitle')}
                     </p>
@@ -766,7 +766,7 @@ export default function ResearchProjectsPage() {
               <div className="lg:col-span-6 space-y-6">
                 <h3
                   className="heading-primary text-2xl sm:text-3xl"
-                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide7.title')}
                 </h3>
@@ -774,13 +774,13 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-3">
                   <div
                     className="text-xs sm:text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 "
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide7.badge')}
                   </div>
                   <p
                     className="subheading-primary text-base md:text-lg lg:text-xl text-neutral-800 dark:text-neutral-200 leading-relaxed"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide7.desc')}
                   </p>
@@ -792,7 +792,7 @@ export default function ResearchProjectsPage() {
                     <div
                       key={idx}
                       className="flex items-center gap-3.5 text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-semibold"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                       <span>{t(`slide8.checklist.${idx}`)}</span>
@@ -809,13 +809,13 @@ export default function ResearchProjectsPage() {
                     <div className="space-y-1">
                       <span
                         className="text-xs text-black dark:text-white uppercase tracking-wider  block"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide8.advantageBadge')}
                       </span>
                       <p
                         className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide8.advantageDesc')}
                       </p>
@@ -829,13 +829,13 @@ export default function ResearchProjectsPage() {
                     <div className="space-y-1">
                       <span
                         className="text-xs text-black dark:text-white uppercase tracking-wider  block"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide8.workflowBadge')}
                       </span>
                       <p
                         className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                        style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide8.workflowDesc')}
                       </p>
@@ -876,7 +876,7 @@ export default function ResearchProjectsPage() {
           >
             <h3
               className="heading-primary text-2xl sm:text-3xl"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {t('slide9.title')}
             </h3>
@@ -894,20 +894,20 @@ export default function ResearchProjectsPage() {
                   <div className="space-y-1">
                     <div
                       className="text-2xl sm:text-3xl  text-blue-600 dark:text-blue-400"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t(`slide9.items.${idx}.num`)}
                     </div>
                     <div
                       className="subheading-primary text-xs sm:text-sm  text-neutral-900 dark:text-white"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t(`slide9.items.${idx}.title`)}
                     </div>
                   </div>
                   <p
                     className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t(`slide9.items.${idx}.desc`)}
                   </p>
@@ -954,13 +954,13 @@ export default function ResearchProjectsPage() {
               <div className="space-y-2">
                 <h3
                   className="heading-primary text-xl sm:text-2xl md:text-3xl"
-                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif", color: 'white' }}
+                  style={{ fontFamily: 'Arial', color: 'white' }}
                 >
                   {t('slide10.title')}
                 </h3>
                 <p
                   className="subheading-primary text-xs sm:text-sm md:text-base text-neutral-300 leading-relaxed max-w-4xl"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif", color: '#d4d4d4' }}
+                  style={{ fontFamily: 'Arial', color: '#d4d4d4' }}
                 >
                   {t('slide10.subtitle')}
                 </p>
@@ -987,13 +987,13 @@ export default function ResearchProjectsPage() {
                         <div className="space-y-0.5">
                           <div
                             className="subheading-primary text-xs sm:text-sm  text-white"
-                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: 'Arial' }}
                           >
                             {t(item.titleKey)}
                           </div>
                           <div
                             className="subheading-primary text-[11px] sm:text-xs text-neutral-400"
-                            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: 'Arial' }}
                           >
                             {t(item.descKey)}
                           </div>
@@ -1005,7 +1005,7 @@ export default function ResearchProjectsPage() {
                   {/* Highlight Quote Notice Box */}
                   <div
                     className="p-3.5 sm:p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-start gap-3 text-xs text-neutral-300 leading-relaxed font-medium"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <div className="p-1.5 rounded-lg bg-neutral-800 text-neutral-300 flex-shrink-0 mt-0.5">
                       <Sparkles className="w-4 h-4" />
@@ -1033,7 +1033,7 @@ export default function ResearchProjectsPage() {
                   {/* Bottom 3 Standards Badges */}
                   <div
                     className="grid grid-cols-3 gap-3 text-center"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
                       <Database className="w-4 h-4 text-neutral-300 mx-auto" />
@@ -1058,7 +1058,7 @@ export default function ResearchProjectsPage() {
               <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
                 <div className="flex items-center gap-2.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+                  <span style={{ fontFamily: 'Arial' }}>
                     Gefördert im FFplus Programm der Europäischen Union
                   </span>
                 </div>
@@ -1081,7 +1081,7 @@ export default function ResearchProjectsPage() {
           >
             <h3
               className="heading-primary text-2xl sm:text-3xl"
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {t('slide11.title')}
             </h3>
@@ -1093,14 +1093,14 @@ export default function ResearchProjectsPage() {
                   <Handshake className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
                     className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide11.card1Title')}
                   </div>
                 </div>
                 <p
                   className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide11.card1Desc')}
                 </p>
@@ -1112,14 +1112,14 @@ export default function ResearchProjectsPage() {
                   <Settings className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div
                     className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide11.card2Title')}
                   </div>
                 </div>
                 <p
                   className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide11.card2Desc')}
                 </p>
@@ -1131,14 +1131,14 @@ export default function ResearchProjectsPage() {
                   <Tag className="w-6 h-6 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
                   <div
                     className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide11.card3Title')}
                   </div>
                 </div>
                 <ul
                   className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 space-y-1 list-disc pl-4 text-left leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {[0, 1].map((idx) => (
                     <li key={idx}>{t(`slide11.card3List.${idx}`)}</li>
@@ -1152,14 +1152,14 @@ export default function ResearchProjectsPage() {
                   <Coins className="w-6 h-6 text-amber-500 mx-auto stroke-[1.5]" />
                   <div
                     className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide11.card4Title')}
                   </div>
                 </div>
                 <p
                   className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide11.card4Desc')}
                 </p>
@@ -1171,14 +1171,14 @@ export default function ResearchProjectsPage() {
                   <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
                   <div
                     className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide11.card5Title')}
                   </div>
                 </div>
                 <p
                   className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide11.card5Desc')}
                 </p>
@@ -1198,7 +1198,7 @@ export default function ResearchProjectsPage() {
             {/* Partner Logos Header Bar */}
             <PartnerHeaderLogos />
 
-            <h3 className="heading-primary text-2xl sm:text-3xl text-center" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+            <h3 className="heading-primary text-2xl sm:text-3xl text-center" style={{ fontFamily: 'Arial' }}>
               {t('slide12.title')}
             </h3>
 
@@ -1207,7 +1207,7 @@ export default function ResearchProjectsPage() {
               <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
                 <div
                   className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-xs uppercase tracking-widest rounded-bl-2xl "
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide12.recommendedBadge')}
                 </div>
@@ -1220,7 +1220,7 @@ export default function ResearchProjectsPage() {
                     <div>
                       <h4
                         className="subheading-primary text-lg sm:text-xl "
-                        style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {t('slide12.mainTitle')}
                       </h4>
@@ -1230,13 +1230,13 @@ export default function ResearchProjectsPage() {
                   <div className="flex items-baseline gap-3 pt-1">
                     <span
                       className="text-3xl sm:text-4xl md:text-5xl  text-black dark:text-white tracking-tight"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.mainPrice')}
                     </span>
                     <span
                       className="text-xs text-neutral-500 dark:text-neutral-400 font-semibold"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.mainVat')}
                     </span>
@@ -1245,7 +1245,7 @@ export default function ResearchProjectsPage() {
                   <div>
                     <span
                       className="px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-xs uppercase tracking-wider rounded-lg inline-block "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.mainScope')}
                     </span>
@@ -1257,7 +1257,7 @@ export default function ResearchProjectsPage() {
                   {[Sparkles, FileCheck, Library, Brain, ShieldCheck].map((IconComp, idx) => (
                     <div key={idx} className="flex items-center gap-3 py-2 text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0 font-medium">
                       <IconComp className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                      <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>{t(`slide12.mainFeatures.${idx}`)}</span>
+                      <span style={{ fontFamily: 'Arial' }}>{t(`slide12.mainFeatures.${idx}`)}</span>
                     </div>
                   ))}
                 </div>
@@ -1268,13 +1268,13 @@ export default function ResearchProjectsPage() {
                   <div className="space-y-0.5">
                     <strong
                       className="text-blue-900 dark:text-blue-300 block uppercase tracking-wide text-xs "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.bonusTitle')}
                     </strong>
                     <span
                       className="text-neutral-600 dark:text-neutral-400 block text-xs"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.bonusDesc')}
                     </span>
@@ -1286,7 +1286,7 @@ export default function ResearchProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-fit max-w-full mx-auto py-3 px-8 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs  uppercase tracking-wide shadow-md"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide12.mainCta')}
                 </Link>
@@ -1302,13 +1302,13 @@ export default function ResearchProjectsPage() {
                   <div className="space-y-1">
                     <span
                       className="text-xs uppercase text-blue-600 dark:text-blue-400 tracking-widest block "
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.altBadge')}
                     </span>
                     <h4
                       className="heading-primary text-base sm:text-lg md:text-xl "
-                      style={{ fontFamily: "var(--font-ft-calhern), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.altTitle')}
                     </h4>
@@ -1317,13 +1317,13 @@ export default function ResearchProjectsPage() {
                   <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
                     <span
                       className="text-2xl sm:text-3xl md:text-4xl  text-black dark:text-white tracking-tight"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.altPrice')}
                     </span>
                     <span
                       className="text-xs text-neutral-500 dark:text-neutral-400 block pt-0.5 font-semibold"
-                      style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {t('slide12.altVat')}
                     </span>
@@ -1336,7 +1336,7 @@ export default function ResearchProjectsPage() {
                   </div>
                   <p
                     className="subheading-primary text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('slide12.altDesc')}
                   </p>
@@ -1347,7 +1347,7 @@ export default function ResearchProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-fit max-w-full mx-auto py-3 px-8 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs  uppercase tracking-wide shadow-md"
-                  style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('slide12.altCta')}
                 </Link>
@@ -1357,7 +1357,7 @@ export default function ResearchProjectsPage() {
             {/* Bottom EU Funding Footer Badge */}
             <div
               className="flex items-center justify-center gap-3 text-xs sm:text-sm text-neutral-500 pt-6 border-t border-neutral-200 dark:border-neutral-800"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               <span className="w-6 h-6 rounded-full border border-neutral-400 dark:border-neutral-600 flex items-center justify-center text-xs flex-shrink-0">
                 🇪🇺
@@ -1379,13 +1379,13 @@ export default function ResearchProjectsPage() {
             <div className="space-y-2 text-center max-w-3xl mx-auto">
               <h3
                 className="heading-primary text-2xl sm:text-3xl md:text-4xl"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('plans.sectionTitle')}
               </h3>
               <p
                 className="subheading-primary text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('plans.sectionSubtitle')}
               </p>
@@ -1396,7 +1396,7 @@ export default function ResearchProjectsPage() {
               {/* Card 1: Essential */}
               <div
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                 <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
@@ -1475,7 +1475,7 @@ export default function ResearchProjectsPage() {
               {/* Card 2: Standard */}
               <div
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                 <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
@@ -1555,7 +1555,7 @@ export default function ResearchProjectsPage() {
               {/* Card 3: Advanced */}
               <div
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-blue-500 dark:border-blue-500 flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition ring-2 ring-blue-500/30"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                 <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
@@ -1637,7 +1637,7 @@ export default function ResearchProjectsPage() {
               {/* Card 4: Custom */}
               <div
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
                 <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
@@ -1717,7 +1717,7 @@ export default function ResearchProjectsPage() {
             {/* SUBSCRIPTION ADD-ONS SECTION */}
             <div
               className="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4"
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               <div className="relative flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">

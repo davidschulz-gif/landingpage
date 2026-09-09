@@ -152,7 +152,7 @@ function Upscale2SlidersContent() {
   }, [])
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -162,7 +162,7 @@ function Upscale2SlidersContent() {
           <>
             <div className="pt-24 pb-8" />
             {/* Comparison Slider Showcase 2 */}
-            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
+            <div className="w-full bg-[#f3f1ed] dark:bg-neutral-950/20 py-16 border-b border-neutral-100 dark:border-neutral-900">
               <div className="w-full max-w-[90%] md:max-w-[70%] mx-auto overflow-x-hidden">
                 {isClient && <CompareWithAnimationUpscale projects={batch2Projects} basePath={`/upscale-privacy/upscale-2`} />}
               </div>
@@ -186,7 +186,7 @@ function Upscale2SlidersContent() {
                     <Link
                       href={`/upscale-privacy/upscale-1`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
                       <IconArrowRight size={14} />
@@ -194,7 +194,7 @@ function Upscale2SlidersContent() {
                     <Link
                       href={`/${locale}/pricing`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       <IconTag size={14} />
                       <span>{locale === 'de' ? 'Preise ansehen' : 'View Pricing'}</span>
@@ -214,7 +214,7 @@ function Upscale2SlidersContent() {
 export default function Upscale2SlidersPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#fcfcfd] dark:bg-neutral-950 flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-[#f3f1ed] dark:bg-neutral-950 flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black dark:border-white"></div>
       </div>
     }>

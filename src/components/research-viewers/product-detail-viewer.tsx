@@ -75,7 +75,7 @@ export function ProductDetailViewer() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-1.5 font-bold text-base tracking-tight">
             <div className="w-3.5 h-3.5 bg-black rounded-xs" />
-            <span style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>typus.ai</span>
+            <span style={{ fontFamily: 'Arial' }}>typus.ai</span>
           </div>
           <nav className="hidden lg:flex items-center gap-5 text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
             <span className="text-black font-bold border-b-2 border-black pb-0.5">MATERIALS</span>
@@ -160,7 +160,7 @@ export function ProductDetailViewer() {
               <span className="text-[9px] uppercase tracking-widest font-bold text-neutral-400 block mb-0.5">
                 {t('manufacturer')}
               </span>
-              <h1 className="text-base md:text-lg font-bold text-black tracking-tight mb-0.5" style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}>
+              <h1 className="text-base md:text-lg font-bold text-black tracking-tight mb-0.5" style={{ fontFamily: 'Arial' }}>
                 {t('keimTitle')} – {activeVariant.name}
               </h1>
               <p className="text-[11px] text-neutral-500 leading-snug font-normal">

@@ -13,7 +13,7 @@ export const DoneForYouCombinedSection = () => {
   const tPricing = useTranslations('Pricing')
 
   return (
-    <section className='relative w-full overflow-hidden py-24 lg:py-32 my-10 border-y border-neutral-100 dark:border-neutral-800' style={{ backgroundColor: '#fcfcfd' }}>
+    <section className='relative w-full overflow-hidden py-24 lg:py-32 my-10 border-y border-neutral-100 dark:border-neutral-800' style={{ backgroundColor: '#f3f1ed' }}>
       <div className='relative mx-auto max-w-5xl px-4 md:px-6 z-10'>
 
         {/* Section Header */}
@@ -21,7 +21,7 @@ export const DoneForYouCombinedSection = () => {
           <BreathingAnimationText animationType='black-gray' className='font-space-grotesk'>
             <h2
               className='text-[20px] md:text-[26px] lg:text-[30px] font-normal text-black dark:text-white uppercase tracking-[0.2em]'
-              style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {tBooking('title')}
             </h2>

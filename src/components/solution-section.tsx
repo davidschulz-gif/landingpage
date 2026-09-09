@@ -32,7 +32,7 @@ export function SolutionSection() {
               {/* <div className='mb-12 md:mb-16 text-center'> */}
                 {/* <h2
                   className='text-xl md:text-2xl font-bold text-neutral-900 dark:text-white leading-[1.3] mb-6'
-                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {t('problem.statusQuoHeader')}
                 </h2> */}
@@ -60,7 +60,7 @@ export function SolutionSection() {
                           <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
                             <span className='text-[12px] text-red-600'>✕</span>
                           </div>
-                          <span style={{ fontFamily: 'sans-serif' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
+                          <span style={{ fontFamily: 'Arial' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -70,7 +70,7 @@ export function SolutionSection() {
                   </div>
                 </div>
 
-                <div className='bg-[#fcfcfd] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-100 dark:border-neutral-800 shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
+                <div className='bg-[#f3f1ed] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-100 dark:border-neutral-800 shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
                   <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
                   <div className='space-y-8'>
                     {[
@@ -84,7 +84,7 @@ export function SolutionSection() {
                         </div>
                         <div>
                           <h4 className='subheading-primary mb-1'>{item.title}</h4>
-                          <p style={{ fontFamily: 'sans-serif' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
+                          <p style={{ fontFamily: 'Arial' }} className='text-neutral-500 dark:text-neutral-400 text-md font-normal leading-relaxed'>{item.desc}</p>
                         </div>
                       </div>
                     ))}

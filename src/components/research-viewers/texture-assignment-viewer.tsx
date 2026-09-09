@@ -33,7 +33,7 @@ export function TextureAssignmentViewer() {
             <Sparkles className="w-4 h-4" />
             <span>{t('textureSynthSubtitle')}</span>
           </div>
-          <h2 className="text-xl md:text-2xl font-normal text-white" style={{ fontFamily: "var(--font-ft-calhern), serif" }}>
+          <h2 className="text-xl md:text-2xl font-normal text-white" style={{ fontFamily: 'Arial' }}>
             {t('textureSynthTitle')}
           </h2>
         </div>

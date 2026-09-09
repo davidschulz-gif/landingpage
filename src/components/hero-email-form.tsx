@@ -254,7 +254,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
             }}
             onClick={step === 1 ? handleSubmitStep1 : handleSubmitStep2}
             disabled={isRequesting}
-            className="z-[9999] rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 border-2 border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out flex items-center justify-center gap-2 sm:gap-3.5 bg-[#fcfcfd]/95 dark:bg-neutral-950/95 backdrop-blur-md text-neutral-800 dark:text-neutral-100 cursor-pointer hover:scale-[1.03] active:scale-95 group font-medium w-full text-center"
+            className="z-[9999] rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 border-2 border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out flex items-center justify-center gap-2 sm:gap-3.5 bg-[#f3f1ed]/95 dark:bg-neutral-950/95 backdrop-blur-md text-neutral-800 dark:text-neutral-100 cursor-pointer hover:scale-[1.03] active:scale-95 group font-medium w-full text-center"
           >
             <div className="relative flex-shrink-0">
               <Mail className="w-5.5 h-5.5 text-black dark:text-neutral-100 group-hover:rotate-12 transition-transform duration-300" strokeWidth={1.5} />
@@ -263,7 +263,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
             </div>
-            <span className="text-[9px] sm:text-xs md:text-sm font-bold tracking-wider uppercase leading-tight sm:leading-none whitespace-nowrap" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+            <span className="text-[9px] sm:text-xs md:text-sm font-bold tracking-wider uppercase leading-tight sm:leading-none whitespace-nowrap" style={{ fontFamily: 'Arial' }}>
               {step === 1 ? t('learnMore') : t('submitDetails')}
             </span>
             {isRequesting ? (
@@ -298,7 +298,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
          {step === 1 ? <MailIcon size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' /> :  <PhoneCall size={16} strokeWidth={1.5} className='mt-0.5 shrink-0' />}
                                  <span
             className='text-[11px] text-gray-600 dark:text-gray-300 leading-normal'
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
             {step === 1 ? t('description') : t('phoneNameReason')}
           </span>
@@ -322,7 +322,7 @@ export default function HeroEmailForm({ showFeatures = true, onSuccess }: HeroEm
               className='flex items-center gap-1.5 min-w-0 bg-white dark:bg-neutral-900 border border-black/5 dark:border-white/5 px-3 py-1.5 rounded-full shadow-sm'
             >
               <IconCheck className='size-3 md:size-4 text-emerald-700 dark:text-emerald-400 flex-shrink-0' stroke={3} />
-              <span className='text-[10px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider break-words whitespace-normal' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <span className='text-[10px] md:text-[12px] text-black dark:text-white font-medium uppercase tracking-wider break-words whitespace-normal' style={{ fontFamily: 'Arial' }}>
                 {feature}
               </span>
             </div>

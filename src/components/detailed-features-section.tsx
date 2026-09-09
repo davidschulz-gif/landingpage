@@ -43,7 +43,7 @@ export const DetailedFeaturesSection = () => {
     return (
       <span>
         <span className="font-bold">{firstPart}</span>
-        <span style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }} className="text-sm font-normal">{separator}{restPart}</span>
+        <span style={{ fontFamily: 'Arial' }} className="text-sm font-normal">{separator}{restPart}</span>
       </span>
     );
   };

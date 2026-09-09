@@ -6,7 +6,7 @@ const DoneForYouTerms = () => {
     const locale = useLocale();
 
     const ContentDE = () => (
-        <div style={{ fontFamily: 'sans-serif' }} className="md:p-8 space-y-6">
+        <div style={{ fontFamily: 'Arial' }} className="md:p-8 space-y-6">
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">Allgemeine Geschäftsbedingungen (AGB)</h1>
                 <p className="text-lg text-gray-600 mt-2">für „Done-for-you“-Visualisierungsservices</p>
@@ -159,7 +159,7 @@ const DoneForYouTerms = () => {
     );
 
     const ContentEN = () => (
-        <div style={{ fontFamily: 'sans-serif' }} className="md:p-8 space-y-6">
+        <div style={{ fontFamily: 'Arial' }} className="md:p-8 space-y-6">
             <div className="text-center mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">General Terms and Conditions (GTC)</h1>
                 <p className="text-lg text-gray-600 mt-2">for "Done-for-you" Visualization Services</p>

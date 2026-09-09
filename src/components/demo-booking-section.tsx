@@ -10,7 +10,7 @@ export function DemoBookingSection() {
   return (
     <section
       className='py-24 relative flex flex-col justify-center overflow-hidden px-4'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
       id='demo-booking'
     >
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10'>
@@ -23,7 +23,7 @@ export function DemoBookingSection() {
         >
           <h2
             className='text-[30px] sm:text-4xl font-normal text-black mb-6'
-            style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
             {t('title')}
           </h2>

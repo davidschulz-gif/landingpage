@@ -178,7 +178,7 @@ export const FeaturesSection = () => {
                 <h3 className='mb-1.5 md:mb-2 subheading-primary line-clamp-1'>
                   {t(feature.titleKey)}
                 </h3>
-                <div style={{ fontFamily: 'sans-serif' }} className='flex-1'>
+                <div style={{ fontFamily: 'Arial' }} className='flex-1'>
                   <p className='text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
                     {firstSentence}
                     {isExpanded && hasMoreText && <span>{remainingText}</span>}

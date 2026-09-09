@@ -200,7 +200,7 @@ export default function CreateFeatureLandingPage() {
   const content = locale === 'de' ? t.de : t.en
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -220,7 +220,7 @@ export default function CreateFeatureLandingPage() {
             {/* Main Title */}
             <h1 
               className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" 
-              style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {content.heroTitle}
             </h1>
@@ -271,7 +271,7 @@ export default function CreateFeatureLandingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <span>{content.ctaButton}</span>
                 <IconArrowRight size={14} />
@@ -280,7 +280,7 @@ export default function CreateFeatureLandingPage() {
               <Link
                 href={`/${locale}/pricing`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <span>{content.pricingButton}</span>
               </Link>
@@ -289,7 +289,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 2. BASE IMAGE SECTION */}
-        <div className="py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-left">
               <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -341,7 +341,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 4. INSPIRATION SECTION */}
-        <div className="py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -396,7 +396,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 6. GENERATION CONTROL */}
-        <div className="py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -443,7 +443,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 8. FEINSCHLIFF SECTION */}
-        <div className="py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <h2 className="heading-primary">
               {content.sec7Title}
@@ -510,7 +510,7 @@ export default function CreateFeatureLandingPage() {
 
               <h3 
                 className="text-xl sm:text-2xl font-normal text-black dark:text-white tracking-tight mb-3"
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {content.interactiveHeading}
               </h3>
@@ -531,7 +531,7 @@ export default function CreateFeatureLandingPage() {
                     }
                   }}
                   className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer"
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   <IconDeviceLaptop size={14} />
                   <span>{content.btnInteractive}</span>
@@ -541,7 +541,7 @@ export default function CreateFeatureLandingPage() {
                 <Link
                   href={`/${locale}/pricing`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   <span>{content.btnPricing}</span>
                 </Link>
@@ -567,7 +567,7 @@ export default function CreateFeatureLandingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-5 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 <span>{content.ctaButton}</span>
                 <IconArrowRight size={14} />

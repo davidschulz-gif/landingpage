@@ -57,7 +57,7 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-[#fcfcfd]/80 backdrop-blur-md overflow-y-auto font-sans text-gray-900">
+    <div className="fixed inset-0 z-[9999] bg-[#f3f1ed]/80 backdrop-blur-md overflow-y-auto font-sans text-gray-900">
       {/* <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"> */}
         <div className="max-w-4xl mx-auto">
           <button 
@@ -71,7 +71,7 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
           <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
             <div className="p-8 sm:p-12">
               {/* Header */}
-              <h1 className="text-3xl sm:text-4xl font-black mb-8 leading-tight" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <h1 className="text-3xl sm:text-4xl font-black mb-8 leading-tight" style={{ fontFamily: 'Arial' }}>
                 {data.title}
               </h1>
 
@@ -289,7 +289,7 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
                   onClick={handleCompleteOrder}
                   disabled={!allChecked || isSubmitting}
                   className={`w-full sm:w-auto px-12 py-5 text-sm font-bold uppercase tracking-widest rounded transition-all flex items-center justify-center mx-auto ${allChecked && !isSubmitting ? 'bg-black text-white hover:bg-gray-900 hover:-translate-y-1 shadow-xl hover:shadow-2xl' : 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'}`}
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : data.finishOrderTitle}
                 </button>

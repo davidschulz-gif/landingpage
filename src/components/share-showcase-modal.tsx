@@ -188,7 +188,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
               <div className="bg-black dark:bg-white size-4 rounded-none"></div>
               <span
                 className="text-center font-bold tracking-widest text-[25px] text-black dark:text-white"
-                style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                style={{ fontFamily: 'Arial' }}
               >
                 typus.ai
               </span>
@@ -382,7 +382,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
                 {/* Success Title */}
                 <h2
                   className="text-xl sm:text-2xl font-normal text-neutral-900 dark:text-white mb-2 leading-tight text-center"
-                  style={{ fontFamily: 'var(--font-ft-calhern), sans-serif' }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {isDe ? 'Vielen Dank!' : 'Thank you!'}
                 </h2>

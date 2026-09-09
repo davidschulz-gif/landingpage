@@ -1,16 +1,19 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-
-
-
-
+@font-face {
+  font-family: 'Soyuz Grotesk';
+  src: url('/fonts/soyuz-grotesk/Soyuz Grotesk Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: #fcfcfd;
+  --background: #f3f1ed;
   --foreground: #000000;
   --card: #ffffff;
   --card-foreground: #164e63;
@@ -123,11 +126,16 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  --font-sans: var(--font-ft-calhern), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-ft-calhern), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-logo: var(--font-logo-font);
-  --font-rail: var(--font-new-rail-alphabet), sans-serif;
+  --font-sans: Arial;
+  --font-serif: Arial;
+  --font-mono: Arial;
+  --font-logo: var(--font-logo-font), 'Soyuz Grotesk', sans-serif;
+  --font-rail: Arial;
+  --font-ft-calhern: Arial;
+  --font-logo-font: var(--font-logo-font), 'Soyuz Grotesk', sans-serif;
+  --font-new-rail-alphabet: Arial;
+  --font-soyuz-grotesk: var(--font-logo-font), 'Soyuz Grotesk', sans-serif;
+  --font-space-grotesk: Arial;
 }
 
 @layer base {
@@ -187,7 +195,27 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-ft-calhern), 'Helvetica Neue', Arial, sans-serif;
+    font-family: Arial;
+  }
+
+  *:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo]),
+  *:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo])::before,
+  *:not(.font-logo):not([class*="font-logo"]):not([data-typus-logo])::after,
+  html,
+  body,
+  input,
+  button,
+  textarea,
+  select {
+    font-family: Arial !important;
+  }
+
+  .font-logo,
+  [class*="font-logo"],
+  [data-typus-logo],
+  .font-logo *,
+  [class*="font-logo"] * {
+    font-family: var(--font-logo-font), 'Soyuz Grotesk', sans-serif !important;
   }
 }
 

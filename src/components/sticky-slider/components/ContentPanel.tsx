@@ -36,7 +36,7 @@ const SlideContent = memo(
           <motion.h1
             className='text-[30px] font-normal leading-[0.9] text-black uppercase tracking-[0.2em]'
             style={{
-              fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
             initial={{
               y: scrollDirection === 'down' ? 30 : -30,

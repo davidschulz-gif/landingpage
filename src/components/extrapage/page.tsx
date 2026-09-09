@@ -319,14 +319,14 @@ export default function OrderPage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#fcfcfd]">
+      <div className="min-h-screen flex items-center justify-center bg-[#f3f1ed]">
         <Loader2 className="animate-spin text-black" size={40} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#fcfcfd] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
+    <div className="min-h-screen bg-[#f3f1ed] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/pricing`}
@@ -339,7 +339,7 @@ export default function OrderPage() {
         <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
           <div className="p-8 sm:p-12">
             {/* Header */}
-            <h1 className="heading-primary mb-8 leading-tight" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+            <h1 className="heading-primary mb-8 leading-tight" style={{ fontFamily: 'Arial' }}>
               {data.title}
             </h1>
 
@@ -556,7 +556,7 @@ export default function OrderPage() {
                 onClick={handleStartOrder}
                 disabled={!allChecked || isSubmitting}
                 className={`w-full sm:w-auto px-12 py-5 text-sm  uppercase tracking-widest rounded transition-all flex items-center justify-center mx-auto ${allChecked && !isSubmitting ? 'bg-black text-white hover:bg-gray-900 hover:-translate-y-1 shadow-xl hover:shadow-2xl' : 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'}`}
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : data.finishOrderTitle}
               </button>
@@ -595,7 +595,7 @@ export default function OrderPage() {
               <div className='flex flex-col gap-2'>
                 <h3
                   className='text-xl  text-white uppercase tracking-wider'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('title')}
                 </h3>
@@ -669,7 +669,7 @@ export default function OrderPage() {
                     onClick={handleEmailSubmit}
                     disabled={isVerifyingEmail || !privacyConsent || !termsConsent}
                     className='bg-white text-black hover:bg-white w-full py-6 text-xs  uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {isVerifyingEmail ? (
                       <IconLoader2 className='animate-spin mr-2' size={16} />
@@ -679,7 +679,7 @@ export default function OrderPage() {
                   <button
                     onClick={() => setIsEmailModalOpen(false)}
                     className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {tModal('cancel')}
                   </button>

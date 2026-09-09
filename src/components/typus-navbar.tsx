@@ -406,7 +406,7 @@ export default function TypusNavbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant='dark'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-semibold tracking-wide'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               Login
             </NavbarButton>
@@ -414,7 +414,7 @@ export default function TypusNavbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant='primary'
               className='w-full rounded-xl py-3 justify-center text-[14px] font-medium border border-gray-200 bg-white hover:bg-gray-50 tracking-wide'
-              style={{ fontFamily: 'inherit' }}
+              style={{ fontFamily: 'Arial' }}
             >
               Sign Up
             </NavbarButton>

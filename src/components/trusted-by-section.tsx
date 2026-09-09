@@ -251,7 +251,7 @@ export const TrustedBySection = ({
               <div
                 className='text-xs font-bold text-center uppercase md:mb-3 mb-1 md:h-[24px]'
                 style={{
-                  fontFamily: "'Soyuz Grotesk', sans-serif",
+                  fontFamily: 'Arial',
                   fontSize: '12px',
                   fontWeight: 700,
                   letterSpacing: '1px',
@@ -289,7 +289,7 @@ export const TrustedBySection = ({
                   <div
                     className='text-xs text-nowrap font-bold text-center uppercase mb-1'
                     style={{
-                      fontFamily: "'Soyuz Grotesk', sans-serif",
+                      fontFamily: 'Arial',
                       fontWeight: 700,
                       letterSpacing: '1px',
                       fontSize: '8px',
@@ -324,7 +324,7 @@ export const TrustedBySection = ({
                   <div
                     className='text-xs text-nowrap font-bold text-center uppercase mb-1'
                     style={{
-                      fontFamily: "'Soyuz Grotesk', sans-serif",
+                      fontFamily: 'Arial',
                       fontSize: '8px',
                       fontWeight: 700,
                       letterSpacing: '1px',
@@ -360,7 +360,7 @@ export const TrustedBySection = ({
                 <div
                   className='text-xs text-nowrap font-bold text-center uppercase mb-1'
                   style={{
-                    fontFamily: "'Soyuz Grotesk', sans-serif",
+                    fontFamily: 'Arial',
                     fontWeight: 700,
                     letterSpacing: '1px',
                     fontSize: '8px',

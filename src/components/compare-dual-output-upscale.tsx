@@ -65,7 +65,7 @@ export function CompareDualOutputUpscale({ className }: CompareDualOutputUpscale
   const rightLabel = locale === 'de' ? "TYPUS 8K (KREATIV)" : "TYPUS 8K (CREATIVE)";
 
   return (
-    <div className={cn("w-full overflow-hidden py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-t border-neutral-100 dark:border-neutral-900", className)}>
+    <div className={cn("w-full overflow-hidden py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-t border-neutral-100 dark:border-neutral-900", className)}>
       <div className="max-w-[1200px] mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -73,7 +73,7 @@ export function CompareDualOutputUpscale({ className }: CompareDualOutputUpscale
             <h2
               className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-black mb-4 animate-breathe-black-gray"
               style={{
-                fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+                fontFamily: 'Arial',
               }}
             >
               {locale === 'de' ? 'DUAL-UPSCALER VERGLEICH' : 'DUAL-UPSCALER COMPARISON'}
@@ -82,7 +82,7 @@ export function CompareDualOutputUpscale({ className }: CompareDualOutputUpscale
           <BreathingAnimationText animationType="black-gray">
             <p
               className="text-gray-600 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base leading-relaxed"
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               {locale === 'de'
                 ? 'Vergleichen Sie Standard- und kreatives Upscaling direkt nebeneinander – beide jeweils im direkten Kontrast zum identischen Originalbild.'

@@ -21,7 +21,7 @@ export default function IndustryPage({ params }: { params: Promise<{ slug: strin
   const { slug } = use(params)
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-[#0d0e12] min-h-screen font-ft-calhern' style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+    <div className='relative w-full bg-[#f3f1ed] dark:bg-[#0d0e12] min-h-screen font-ft-calhern' style={{ fontFamily: 'Arial' }}>
       {/* Navbar */}
       <NavbarDemo />
 
@@ -55,7 +55,7 @@ export default function IndustryPage({ params }: { params: Promise<{ slug: strin
                 <span>{t(`${slug}.Hero.badge`)}</span>
               </div>
 
-              <h1 className='text-[40px] md:text-[56px] lg:text-[64px] font-medium tracking-tight text-[#2B2B2B] dark:text-white max-w-3xl leading-[1.1]' style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+              <h1 className='text-[40px] md:text-[56px] lg:text-[64px] font-medium tracking-tight text-[#2B2B2B] dark:text-white max-w-3xl leading-[1.1]' style={{ fontFamily: 'Arial' }}>
                 {t(`${slug}.Hero.title`)}
               </h1>
 

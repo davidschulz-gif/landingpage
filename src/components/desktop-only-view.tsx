@@ -76,7 +76,7 @@ export function DesktopOnlyView() {
         {/* Title */}
         <h2 
           className="text-2xl font-normal text-black dark:text-white tracking-tight mb-4"
-          style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {content.title}
         </h2>
@@ -95,7 +95,7 @@ export function DesktopOnlyView() {
                 ? 'bg-emerald-500 text-white border border-emerald-500'
                 : 'bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 border border-neutral-950 dark:border-neutral-200'
             }`}
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
             {copied ? <IconCheck size={14} /> : <IconCopy size={14} />}
             <span>{content.copyLabel}</span>

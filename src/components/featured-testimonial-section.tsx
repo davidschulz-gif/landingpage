@@ -21,7 +21,7 @@ export function FeaturedTestimonialSection() {
     <section
       ref={containerRef}
       className='relative mx-auto flex max-w-7xl flex-col px-4 py-4 text-neutral-800 dark:text-neutral-200'
-      style={{ backgroundColor: '#fcfcfd' }}
+      style={{ backgroundColor: '#f3f1ed' }}
     >
       {/* Background Effects - Matching website pattern */}
       <div className='pointer-events-none absolute inset-0 z-0 overflow-hidden'>
@@ -71,7 +71,7 @@ export function FeaturedTestimonialSection() {
           <BreathingAnimationText animationType='black-gray'>
             <h2
               className='text-[30px] font-normal relative z-999 text-black dark:text-white leading-tight mb-4'
-              style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+              style={{ fontFamily: 'Arial' }}
             >
               WHAT EXPERTS SAY
             </h2>
@@ -123,7 +123,7 @@ export function FeaturedTestimonialSection() {
               <BreathingAnimationText animationType='black-gray'>
                 <h3
                   className='text-[18px] font-bold text-neutral-800 mb-1'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   DR. DIETMAR KÖRING
                 </h3>
@@ -166,7 +166,7 @@ export function FeaturedTestimonialSection() {
 
                 <Button
                   className='animate-breathe-primary-hover bg-black hover:bg-black text-white px-6 py-2  text-sm font-medium transition-all duration-300 hover:scale-105'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   Read full article
                   <ArrowRight className='ml-2 w-4 h-4' />

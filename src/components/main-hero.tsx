@@ -57,7 +57,7 @@ export function MainHero() {
                 lineHeight: '1.3em',
                 color: '#000',
                 textTransform: 'uppercase',
-                fontFamily: 'var(--font-soyuz-grotesk)'
+                fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
               }}
             >
               typus.AI
@@ -86,7 +86,7 @@ export function MainHero() {
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   className='text-[26px] md:text-[38px] lg:text-[35px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
-                  style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {titles[currentIndex]}
                 </motion.h1>

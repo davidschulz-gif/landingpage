@@ -80,7 +80,7 @@ export function FooterSection() {
           <span
             className='text-center uppercase font-logo'
             style={{
-              // fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', serif",
+              fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
               fontSize: '18px',
               fontWeight: 300,
               letterSpacing: '2.5px',

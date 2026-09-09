@@ -62,8 +62,6 @@ export default function BeforeYouGoPopup() {
     }
   }, [])
 
-  if (isIframe || isResearchPage) return null
-
   const show = (_triggerType: string) => {
     if (isOpen || isIframe || isResearchPage) return
 
@@ -185,6 +183,7 @@ export default function BeforeYouGoPopup() {
   }
 
   if (!mounted) return null
+  if (isIframe || isResearchPage) return null
   if (pathname?.includes('/book-a-demo')) return null
   if (pathname?.includes('/pricing/order')) return null
 
@@ -253,7 +252,7 @@ export default function BeforeYouGoPopup() {
         <a
           href={appUrl}
           className='flex items-center justify-center gap-2 w-full py-3.5 px-6 text-sm sm:text-base font-bold uppercase tracking-wider rounded-xl active:scale-[0.98] transition-all duration-300 shadow-lg border-2 border-transparent bg-emerald-600 hover:bg-emerald-500 text-white'
-          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {t('viewAppWithoutAccount')}
           <IconArrowRight size={16} strokeWidth={2.5} />

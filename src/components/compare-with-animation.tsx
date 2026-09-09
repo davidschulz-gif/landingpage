@@ -61,8 +61,7 @@ export const CompareWithAnimation = ({
           <h2
             className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-black mb-6"
             style={{
-              fontFamily:
-                "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
           >
             {t('title')}
@@ -71,7 +70,7 @@ export const CompareWithAnimation = ({
         <BreathingAnimationText animationType="black-gray">
           <p
             className="text-gray-600 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base"
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
             {t('description')}
           </p>
@@ -158,7 +157,7 @@ export const CompareWithAnimation = ({
               <Link
                 href={`/${locale}/overview-of-features`}
                 className="inline-flex items-center justify-center bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 px-8 py-4 rounded-full text-xs font-bold tracking-wider uppercase shadow-md transition-all duration-300 hover:scale-[1.03] active:scale-95"
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {locale === 'de' ? 'Feature-Übersicht ansehen' : 'See overview of features'}
               </Link>

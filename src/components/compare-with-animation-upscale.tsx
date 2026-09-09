@@ -148,15 +148,14 @@ export const CompareWithAnimationUpscale = ({
         <h2
           className="text-[18px] md:text-[24px] lg:text-[30px] font-normal text-neutral-900 dark:text-white mb-6"
           style={{
-            fontFamily:
-              "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif",
+            fontFamily: 'Arial',
           }}
         >
           {locale === 'de' ? 'UPSCALE-VERGLEICH' : 'UPSCALER COMPARISON'}
         </h2>
         <p
           className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto text-[12px] sm:text-sm md:text-base leading-relaxed"
-          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {locale === 'de' 
             ? 'Erleben Sie die beeindruckende Transformation von Standard-Auflösung zu 8K-Präsentationsqualität mit ultra-realistischen Details.'

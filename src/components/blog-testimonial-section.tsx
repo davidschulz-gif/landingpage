@@ -157,7 +157,7 @@ export function BlogTestimonialSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
                         <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h2')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p2')}</p>
+                        <p style={{ fontFamily: 'Arial' }} className="text-base text-gray-700">{t('p2')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
                         <ClickableImage
@@ -212,7 +212,7 @@ export function BlogTestimonialSection() {
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
                         <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('instagramTitle1')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                        <p style={{ fontFamily: 'Arial' }} className="text-base text-gray-700">
                             {t('reelDescription1')}
                         </p>
                     </div>
@@ -232,7 +232,7 @@ export function BlogTestimonialSection() {
                     </div>
                     <div className="space-y-4 order-1 md:order-2">
                         <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h3')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p3')}</p>
+                        <p style={{ fontFamily: 'Arial' }} className="text-base text-gray-700">{t('p3')}</p>
                     </div>
                 </div>
 
@@ -268,7 +268,7 @@ export function BlogTestimonialSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
                         <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('h4')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">{t('p4')}</p>
+                        <p style={{ fontFamily: 'Arial' }} className="text-base text-gray-700">{t('p4')}</p>
                     </div>
                     <div className="order-2 border-2 border-black shadow-[6px_6px_0px_#e5e7eb]">
                         <ClickableImage
@@ -286,7 +286,7 @@ export function BlogTestimonialSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div className="space-y-4 order-1">
                         <h2 className="text-base font-light uppercase tracking-wide text-black leading-relaxed">{t('instagramTitle2')}</h2>
-                        <p style={{ fontFamily: 'sans-serif' }} className="text-base text-gray-700">
+                        <p style={{ fontFamily: 'Arial' }} className="text-base text-gray-700">
                             {t('reelDescription2')}
                         </p>
                     </div>

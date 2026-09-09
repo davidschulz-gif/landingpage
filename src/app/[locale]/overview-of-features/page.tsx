@@ -14,7 +14,7 @@ const StickySliderSection = dynamic(
     ),
   {
     ssr: false,
-    loading: () => <div className='h-96 bg-[#fcfcfd] animate-pulse flex items-center justify-center text-neutral-400'>Loading Features...</div>,
+    loading: () => <div className='h-96 bg-[#f3f1ed] animate-pulse flex items-center justify-center text-neutral-400'>Loading Features...</div>,
   }
 )
 
@@ -35,7 +35,7 @@ export default function OverviewOfFeaturesPage() {
   }, [])
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] min-h-screen flex flex-col justify-between'>
+    <div className='relative w-full bg-[#f3f1ed] min-h-screen flex flex-col justify-between'>
       <div>
         <NavbarDemo />
 
@@ -49,14 +49,14 @@ export default function OverviewOfFeaturesPage() {
 
 
         {/* Hero Title Block */}
-        <div className="pt-32 pb-8 bg-[#fcfcfd] text-center px-4">
+        <div className="pt-32 pb-8 bg-[#f3f1ed] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="max-w-4xl mx-auto space-y-4"
           >
-            <h1 className="text-3xl sm:text-5xl md:text-[52px] font-normal text-black tracking-tight leading-[1.1]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+            <h1 className="text-3xl sm:text-5xl md:text-[52px] font-normal text-black tracking-tight leading-[1.1]" style={{ fontFamily: 'Arial' }}>
               {locale === 'de' ? 'UNSERE FUNKTIONEN' : 'OVERVIEW OF FEATURES'}
             </h1>
             <p className="text-neutral-500 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">

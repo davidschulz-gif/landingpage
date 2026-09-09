@@ -1138,7 +1138,7 @@ export function ManyChatPricingSection({
                 onClick={() => handleVerifyPromoCode('edu')}
                 disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
                 className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
-                style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
@@ -1303,7 +1303,7 @@ export function ManyChatPricingSection({
                         <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
                         <span
                           className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                          style={{ fontFamily: 'Arial' }}
                         >
                           {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
                         </span>
@@ -1316,7 +1316,7 @@ export function ManyChatPricingSection({
                 <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
                   <span
                     className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
-                    style={{ fontFamily: 'var(--font-ft-calhern), sans-serif' }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {plan.planType}
                   </span>
@@ -1329,19 +1329,19 @@ export function ManyChatPricingSection({
                     <div className='flex items-baseline justify-center gap-1'>
                       <span
                         className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {currencySymbol}{monthlyPrice}
                       </span>
                       <span
                         className='text-xs sm:text-sm text-gray-500'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {locale === 'de' ? '/Monat' : '/month'}
                       </span>
                     </div>
                     <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
-                      <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                      <div style={{ fontFamily: 'Arial' }}>
                         {t('billedMonthly')}
                       </div>
                     </div>
@@ -1355,7 +1355,7 @@ export function ManyChatPricingSection({
                         <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
                         <span
                           className='text-[10px] font-bold tracking-wider text-gray-900'
-                          style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                          style={{ fontFamily: 'Arial' }}
                         >
                           {feature}
                         </span>
@@ -1367,7 +1367,7 @@ export function ManyChatPricingSection({
                 <div className='mt-auto pt-4 border-t border-gray-100'>
                   <button
                     className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
-                    style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                     onClick={() => handleSubscribe(
                       {
                         planType: plan.planType,
@@ -1422,10 +1422,10 @@ export function ManyChatPricingSection({
                   { label: locale === 'de' ? 'Sekunden' : 'Seconds', value: timeLeft.seconds },
                 ].map((item, idx) => (
                   <div key={idx} className='flex flex-col items-center bg-neutral-950 text-white rounded-xl px-4 py-2 min-w-[70px] shadow-lg border border-neutral-900'>
-                    <span className='text-xl sm:text-2xl font-bold tracking-tight' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className='text-xl sm:text-2xl font-bold tracking-tight' style={{ fontFamily: 'Arial' }}>
                       {String(item.value).padStart(2, '0')}
                     </span>
-                    <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: 'Arial' }}>
                       {item.label}
                     </span>
                   </div>
@@ -1493,7 +1493,7 @@ export function ManyChatPricingSection({
                 onClick={() => handleVerifyPromoCode('prof')}
                 disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
                 className='bg-black text-white hover:bg-black/90 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
               </Button>
@@ -1535,7 +1535,7 @@ export function ManyChatPricingSection({
                   )}
                 </div>
                 {profPromoDiscount.maxRedemptions && (
-                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base font-bold rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base font-bold rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: 'Arial' }}>
                     {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
                   </div>
                 )}
@@ -1613,7 +1613,7 @@ export function ManyChatPricingSection({
             <div className='border-b border-black/10 px-3 py-2'>
               <h3
                 className='text-[11px] font-bold text-black lowercase tracking-wider text-center'
-                style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {t('creditDeduction.title')}
               </h3>
@@ -1630,7 +1630,7 @@ export function ManyChatPricingSection({
                   </svg>
                   <h4
                     className='text-[10px] font-bold tracking-wide text-black'
-                    style={{ fontFamily: "var(--font-soyuz-grotesk), 'Soyuz Grotesk', sans-serif" }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.imageGeneration')}
                   </h4>
@@ -1644,13 +1644,13 @@ export function ManyChatPricingSection({
                     <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
                       <span
                         className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {label}
                       </span>
                       <span
                         className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
                       </span>
@@ -1668,7 +1668,7 @@ export function ManyChatPricingSection({
                   </svg>
                   <h4
                     className='text-[10px] font-bold tracking-wide text-black'
-                    style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.videoGeneration')}
                   </h4>
@@ -1682,13 +1682,13 @@ export function ManyChatPricingSection({
                     <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
                       <span
                         className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {label}
                       </span>
                       <span
                         className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
                       </span>
@@ -1706,7 +1706,7 @@ export function ManyChatPricingSection({
                   </svg>
                   <h4
                     className='text-[10px] font-bold tracking-wide text-black'
-                    style={{ fontFamily: 'var(--font-soyuz-grotesk), sans-serif' }}
+                    style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.imageUpscaling')}
                   </h4>
@@ -1721,13 +1721,13 @@ export function ManyChatPricingSection({
                     <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
                       <span
                         className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {label}
                       </span>
                       <span
                         className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
                       </span>
@@ -1741,15 +1741,15 @@ export function ManyChatPricingSection({
           <div className='flex flex-wrap justify-center items-center gap-4 mt-2.5 text-gray-400'>
             <div className='flex items-center gap-1.5'>
               <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Safe & Secure Checkout</span>
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Safe & Secure Checkout</span>
             </div>
             <div className='flex items-center gap-1.5'>
               <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Cancel Anytime</span>
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Cancel Anytime</span>
             </div>
             <div className='flex items-center gap-1.5'>
               <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: "'Space Grotesk', sans-serif" }}>No Setup Fee</span>
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>No Setup Fee</span>
             </div>
           </div>
         </div>
@@ -1788,7 +1788,7 @@ export function ManyChatPricingSection({
                   <div className='w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-2'>
                     <IconMail size={32} />
                   </div>
-                  <h3 className='text-xl font-bold text-center text-white' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <h3 className='text-xl font-bold text-center text-white' style={{ fontFamily: 'Arial' }}>
                     Check your inbox
                   </h3>
                   <p className='text-center text-gray-300 text-sm'>
@@ -1804,7 +1804,7 @@ export function ManyChatPricingSection({
                   <div className='flex flex-col gap-2'>
                     <h3
                       className='text-xl font-bold text-white uppercase tracking-wider'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {tModal('title')}
                     </h3>
@@ -1878,7 +1878,7 @@ export function ManyChatPricingSection({
                         onClick={() => handleContinue()}
                         disabled={isRedirecting || !privacyConsent || !termsConsent}
                         className='bg-white text-black hover:bg-white w-full py-6 text-xs font-bold uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {isRedirecting ? (
                           <IconLoader2 className='animate-spin mr-2' size={16} />
@@ -1888,7 +1888,7 @@ export function ManyChatPricingSection({
                       <button
                         onClick={() => setIsModalOpen(false)}
                         className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
-                        style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                        style={{ fontFamily: 'Arial' }}
                       >
                         {tModal('cancel')}
                       </button>
@@ -1926,7 +1926,7 @@ export function ManyChatPricingSection({
               <div className='flex flex-col gap-2'>
                 <h3
                   className='text-xl font-bold text-black uppercase tracking-wider'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.title')}
                 </h3>
@@ -1942,14 +1942,14 @@ export function ManyChatPricingSection({
                     setIsModalOpen(true)
                   }}
                   className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px] font-bold tracking-wider py-3'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.cancel')}
                 </Button>
                 <Button
                   onClick={() => handleContinue(true)}
                   className='flex-1 bg-black text-white hover:bg-neutral-800 uppercase text-[10px] font-bold tracking-wider py-3'
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.proceed')}
                 </Button>
@@ -2315,7 +2315,7 @@ function PricingCard({
               {/* Text */}
               <span
                 className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {plan.badgeTextKey ? t(plan.badgeTextKey) : t('highestRated')}
               </span>
@@ -2330,7 +2330,7 @@ function PricingCard({
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
         <span
           className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
-          style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+          style={{ fontFamily: 'Arial' }}
         >
           {plan.name}
         </span>
@@ -2343,7 +2343,7 @@ function PricingCard({
 
         {/* Discount badge above price - manual promo discount or default discount */}
         {priceInfo.discount?.periodDiscountPercent != null && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
-          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
         )}
@@ -2354,15 +2354,15 @@ function PricingCard({
             {priceInfo.discount ? (
               <>
                 {'originalPrice' in priceInfo.discount && plan.planType !== 'SOLO' && plan.name !== 'SOLO' && (
-                  <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: 'Arial' }}>
                     {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </div>
                 )}
                 <div className='flex items-baseline justify-center gap-1'>
-                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
                     {priceInfo.mainPrice}
                   </span>
-                  <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
                     {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                   </span>
                 </div>
@@ -2375,10 +2375,10 @@ function PricingCard({
                   </span>
                 ) : (
                   <>
-                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
                       {priceInfo.mainPrice}
                     </span>
-                    <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
                       {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
                     </span>
                   </>
@@ -2388,21 +2388,21 @@ function PricingCard({
           </div>
 
           <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
-            <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+            <div style={{ fontFamily: 'Arial' }}>
               {priceInfo.billingInfo}
             </div>
             {priceInfo.saveInfo && (
-              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div style={{ fontFamily: 'Arial' }}>
                 {priceInfo.saveInfo}
               </div>
             )}
             {isVat && (
-              <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div style={{ fontFamily: 'Arial' }}>
                 {t('plusVat')}
               </div>
             )}
             {/* {((plan as any).billingCycle === 'monthly' || (!(plan as any).billingCycle && !isYearly)) && (
-              <div className="font-bold text-[14px] text-gray-800 mt-1.5" style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+              <div className="font-bold text-[14px] text-gray-800 mt-1.5" style={{ fontFamily: 'Arial' }}>
                 {t('cancelMonthly')}
               </div>
             )} */}
@@ -2432,7 +2432,7 @@ function PricingCard({
                 <span
                   className={`leading-tight text-left flex-1 ${hasFeature ? 'text-black' : 'text-black/40'
                     }`}
-                  style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                  style={{ fontFamily: 'Arial' }}
                 >
                   {featureText}
                 </span>
@@ -2452,7 +2452,7 @@ function PricingCard({
             }}
             className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
           >
             {/* Provide simple translation fallback */}
@@ -2463,7 +2463,7 @@ function PricingCard({
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
             className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
             style={{
-              fontFamily: "'Soyuz Grotesk', sans-serif",
+              fontFamily: 'Arial',
             }}
           >
             {t('subscribe')}

@@ -142,7 +142,7 @@ function Upscale2Content() {
 
 
   return (
-    <div className='relative w-full bg-[#fcfcfd] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -186,7 +186,7 @@ function Upscale2Content() {
                 </div>
 
                 {/* Main Title */}
-                <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}>
+                <h1 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-black dark:text-white tracking-tight leading-[1.05]" style={{ fontFamily: 'Arial' }}>
                   {locale === 'de' 
                     ? 'MATERIALDETAILS' 
                     : 'MATERIAL DETAILS'}
@@ -202,12 +202,12 @@ function Upscale2Content() {
             </div>
 
             {/* Comparison Slider Showcase */}
-            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
+            <div className="w-full bg-[#f3f1ed] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
               {isClient && <KernelZoomShowcaseUpscale2 />}
             </div>
 
             {/* Thumbnails to access sliders */}
-            <div className="w-full bg-[#fcfcfd] dark:bg-neutral-950/20 py-8 border-b border-neutral-100 dark:border-neutral-900">
+            <div className="w-full bg-[#f3f1ed] dark:bg-neutral-950/20 py-8 border-b border-neutral-100 dark:border-neutral-900">
               <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
                   {locale === 'de' ? 'WEITERE BEISPIELE ANSEHEN' : 'EXPLORE MORE EXAMPLES'}
@@ -243,7 +243,7 @@ function Upscale2Content() {
                     <Link
                       href={`/${locale}/upscale-privacy/upscale-1`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       <span>{locale === 'de' ? 'Mehr Beispiele sehen' : 'See more examples'}</span>
                       <IconArrowRight size={14} />
@@ -252,7 +252,7 @@ function Upscale2Content() {
                     <Link
                       href={`/${locale}/pricing`}
                       className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900/60 text-black dark:text-white border border-neutral-300 dark:border-neutral-700 hover:scale-[1.02] active:scale-95 transition-all duration-300 w-full sm:w-auto flex-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       <IconTag size={14} />
                       <span>{locale === 'de' ? 'Preise ansehen' : 'View Pricing'}</span>
@@ -274,7 +274,7 @@ function Upscale2Content() {
 export default function Upscale2Page() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#fcfcfd] dark:bg-neutral-950 flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-[#f3f1ed] dark:bg-neutral-950 flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black dark:border-white"></div>
       </div>
     }>

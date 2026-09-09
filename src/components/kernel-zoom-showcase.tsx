@@ -127,7 +127,7 @@ export function KernelZoomShowcase() {
     : ((boxCoords.y / 100) * containerRect.height - 110)
 
   return (
-    <section className="py-10 md:py-16 bg-[#fcfcfd] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
+    <section className="py-10 md:py-16 bg-[#f3f1ed] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
       <div className="max-w-[1600px] mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
@@ -334,7 +334,7 @@ export function KernelZoomShowcase() {
           <Link
             href="/upscale"
             className="inline-flex items-center justify-center gap-3 px-8 py-4.5 bg-black dark:bg-white text-white dark:text-black rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:scale-105 active:scale-95 transition-all duration-300 border border-neutral-800 dark:border-neutral-200"
-            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+            style={{ fontFamily: 'Arial' }}
           >
           <span>{locale === 'de' ? 'Alle 18 Beispiele in der interaktiven Bildschau sehen' : 'View all 18 examples in the interactive showcase'}</span>
     <IconArrowRight size={14} />

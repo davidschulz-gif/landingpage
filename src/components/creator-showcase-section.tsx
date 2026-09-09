@@ -60,7 +60,7 @@ export function CreatorShowcaseSection() {
     return (
         <div
             className='w-full py-20'
-            style={{ backgroundColor: '#fcfcfd' }}
+            style={{ backgroundColor: '#f3f1ed' }}
             id='creators'
         >
             <div className='max-w-7xl mx-auto px-4'>
@@ -68,7 +68,7 @@ export function CreatorShowcaseSection() {
                     <BreathingAnimationText animationType='black-gray'>
                         <motion.h2
                             className='text-2xl md:text-[30px] font-normal text-black mb-4'
-                            style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                            style={{ fontFamily: 'Arial' }}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}

@@ -105,7 +105,7 @@ export function FloorPlanPricingSection() {
                     <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
                     <span
                       className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
                     </span>
@@ -118,7 +118,7 @@ export function FloorPlanPricingSection() {
             <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
               <span 
                 className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black' 
-                style={{ fontFamily: "var(--font-ft-calhern), sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
               >
                 {pkg.name}
               </span>
@@ -132,7 +132,7 @@ export function FloorPlanPricingSection() {
                   <div className='flex items-baseline justify-center gap-1'>
                     <span 
                       className='text-3xl sm:text-4xl font-normal tracking-tight text-black' 
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       €{(() => {
                         const apiPlan = getApiPlan(pkg.name);
@@ -144,7 +144,7 @@ export function FloorPlanPricingSection() {
                     </span>
                     <span 
                       className='text-xs sm:text-sm text-gray-500' 
-                      style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                      style={{ fontFamily: 'Arial' }}
                     >
                       /Monat
                     </span>
@@ -152,7 +152,7 @@ export function FloorPlanPricingSection() {
                 </div>
                 
                 <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
-                  <div style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                  <div style={{ fontFamily: 'Arial' }}>
                     {t('billedMonthly')}
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export function FloorPlanPricingSection() {
                 {pkg.features.map((feature, idx) => (
                   <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
                     <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
-                    <span className='text-[10px] font-bold tracking-wider text-gray-900' style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}>
+                    <span className='text-[10px] font-bold tracking-wider text-gray-900' style={{ fontFamily: 'Arial' }}>
                       {feature}
                     </span>
                   </li>
@@ -175,7 +175,7 @@ export function FloorPlanPricingSection() {
             <div className='mt-auto pt-4 border-t border-gray-100'>
               <Button 
                 className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
-                style={{ fontFamily: "'Soyuz Grotesk', sans-serif" }}
+                style={{ fontFamily: 'Arial' }}
                 disabled={true}
                 onClick={() => {
                   const apiPlan = getApiPlan(pkg.name);
