@@ -21,7 +21,7 @@ export function ReviewsSection() {
     <section
       ref={containerRef}
       className='w-full max-w-[100%] md:max-w-[80%] mx-auto px-4 py-16 overflow-hidden relative'
-      style={{ backgroundColor: '#f3f1ed' }}
+      style={{ backgroundColor: '#F2F1ED' }}
       id='reviews'
     >
       {/* Featured Testimonial - Using dedicated component */}
@@ -81,7 +81,7 @@ export function ReviewsSection() {
               right: 0;
               width: 100px;
               height: 50px;
-              background: #f3f1ed;
+              background: #F2F1ED;
               z-index: 10;
             }
           `}</style>

@@ -69,7 +69,7 @@ export function LinkedinSlideshow() {
   }
 
   return (
-    <section className="py-20 bg-[#f3f1ed] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
+    <section className="py-20 bg-[#F2F1ED] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="community-feed">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         
         {/* Title & Header block */}

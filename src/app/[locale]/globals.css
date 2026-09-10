@@ -13,7 +13,7 @@
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: #f3f1ed;
+  --background: #F2F1ED;
   --foreground: #000000;
   --card: #ffffff;
   --card-foreground: #164e63;
@@ -690,4 +690,4 @@ a[class*="bg-black"] svg {
 .dark [role="button"][class*="bg-black"] svg {
   color: #ffffff !important;
   stroke: currentColor !important;
-}
+}

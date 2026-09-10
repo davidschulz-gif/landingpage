@@ -76,7 +76,7 @@ export default function UpscaleMobilePage() {
   )
 
   return (
-    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#F2F1ED] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 

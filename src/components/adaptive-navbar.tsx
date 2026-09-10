@@ -96,7 +96,7 @@ export default function AdaptiveNavbar() {
         {
           title: 'Press',
           description:
-            'Latest news, features, and media coverage about Typus.AI',
+            'Latest news, features, and media coverage about TYPUS',
           link: '#press',
         },
         {

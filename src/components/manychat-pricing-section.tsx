@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Button as MovingBorderButton } from '@/components/ui/moving-border'
 import { useIsEurope } from '@/hooks/use-is-europe'
-import { apiUrl } from '@/lib/constants'
+import { apiUrl, appUrl } from '@/lib/constants'
 import { formatPrice } from '@/lib/price-converter'
 import {
   IconAlertCircle,
@@ -27,6 +27,65 @@ import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-p
 import { FloatingBuzzer } from '@/components/floating-buzzer'
 
 const professionalPlans = [
+  {
+    id: 'test',
+    name: 'TEST',
+    monthlyPrice: { eur: '€0', usd: '$0' },
+    threeMonthlyPrice: { eur: '€0', usd: '$0' },
+    threeMonthlyMonthlyPrice: { eur: '€0', usd: '$0' },
+    sixMonthPrice: { eur: '€0', usd: '$0' },
+    sixMonthMonthlyPrice: { eur: '€0', usd: '$0' },
+    yearlyPrice: { eur: '€0', usd: '$0' },
+    yearlyMonthlyPrice: { eur: '€0', usd: '$0' },
+    planType: 'TEST',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€0', usd: '$0' },
+        introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€0', usd: '$0' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€0', usd: '$0' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€0', usd: '$0' },
+        introPeriodKey: 'billedEvery3Months',
+      },
+      sixMonthly: {
+        discountedMonthly: { eur: '€0', usd: '$0' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€0', usd: '$0' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€0', usd: '$0' },
+        introPeriodKey: 'billedEvery6Months',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€0', usd: '$0' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€0', usd: '$0' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€0', usd: '$0' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: false,
+      },
+    },
+    features: [
+      { text: '3 CREDITS PER DAY', hasFeature: true },
+      { text: 'CREDITS REFRESH DAILY', hasFeature: true },
+      { text: '1K RESOLUTION', hasFeature: true },
+      { text: 'GOOGLE NANO BANANA ONLY', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: false },
+      { text: 'UPSCALE UP TO 8K', hasFeature: false },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: false },
+    ],
+  },
   {
     id: 'solo',
     name: 'SOLO',
@@ -914,8 +973,37 @@ export function ManyChatPricingSection({
       return t(`plans.pro.features.${key}`);
     };
 
+    // Test
+    const baseTestPlan = professionalPlans.find(p => p.id === 'test') || professionalPlans[0]
+    const testPlan = {
+      ...baseTestPlan,
+      name: 'TEST',
+      fetchedData: null,
+      features: baseTestPlan.features.map(f => {
+        let text = f.text;
+        if (f.text.includes('3 CREDITS')) {
+          text = locale === 'de' ? '3 CREDITS pro Tag' : '3 CREDITS per day';
+        } else if (f.text.includes('CREDITS REFRESH')) {
+          text = locale === 'de' ? 'Tägliche Erneuerung (00:00 UTC)' : 'Credits refresh daily (00:00 UTC)';
+        } else if (f.text.includes('1K RESOLUTION')) {
+          text = locale === 'de' ? '1K AUFLÖSUNG' : '1K RESOLUTION';
+        } else if (f.text.includes('GOOGLE NANO BANANA')) {
+          text = locale === 'de' ? 'Nur Google Nano Banana Modell' : 'Google Nano Banana only';
+        } else {
+          text = mapFeatureText(f);
+        }
+        return {
+          ...f,
+          text,
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        };
+      }),
+      targetAudience: locale === 'de' ? 'Kostenloser Test' : 'Free Trial',
+      billingCycle: profBillingCycle
+    }
+
     // Solo
-    const baseSoloPlan = professionalPlans[0]
+    const baseSoloPlan = professionalPlans.find(p => p.id === 'solo') || professionalPlans[1]
     const soloPlan = {
       ...baseSoloPlan,
       name: 'SOLO',
@@ -930,7 +1018,7 @@ export function ManyChatPricingSection({
     }
 
     // Pro
-    const baseProPlan = professionalPlans[1]
+    const baseProPlan = professionalPlans.find(p => p.id === 'pro') || professionalPlans[2]
     const proPlan = {
       ...baseProPlan, 
       name: 'PRO',
@@ -947,7 +1035,7 @@ export function ManyChatPricingSection({
     }
 
     // Business
-    const baseBusinessPlan = professionalPlans[2]
+    const baseBusinessPlan = professionalPlans.find(p => p.id === 'business') || professionalPlans[3]
     const businessPlan = {
       ...baseBusinessPlan,
       name: 'TEAM',
@@ -961,7 +1049,7 @@ export function ManyChatPricingSection({
       billingCycle: profBillingCycle
     }
 
-    return [ soloPlan, proPlan, businessPlan]
+    return [ testPlan, soloPlan, proPlan, businessPlan ]
   }
 
   // Get translated Education plans
@@ -1098,25 +1186,33 @@ export function ManyChatPricingSection({
             {t('educationPlans')}
           </h2>
 
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 mb-4'>
-            <button
-              onClick={() => setIsYearly(true)}
-              className={`px-10 py-4 text-lg font-medium transition-colors ${isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-            >
-              {t('yearlyBilling')}
-            </button>
-            <button
-              onClick={() => setIsYearly(false)}
-              className={`px-10 py-4 text-lg font-medium transition-colors ${!isYearly
-                ? 'bg-white text-black shadow-md'
-                : 'text-black hover:text-black'
-                }`}
-            >
-              {t('monthlyBilling')}
-            </button>
+          <div className='flex justify-center mb-4'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
+              <button
+                onClick={() => setIsYearly(false)}
+                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${!isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
+              >
+                {!isYearly && (
+                  <span
+                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                <span className='relative'>{t('monthlyBilling')}</span>
+              </button>
+              <button
+                onClick={() => setIsYearly(true)}
+                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
+              >
+                {isYearly && (
+                  <span
+                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                <span className='relative'>{t('yearlyBilling')}</span>
+              </button>
+            </div>
           </div>
           {/* Promo Code Input on Page (Education) */}
           <div className='w-full max-w-md mx-auto mt-8 mb-6'>
@@ -1397,7 +1493,7 @@ export function ManyChatPricingSection({
     <section
       ref={containerRef}
       className='min-h-screen relative pt-0 pb-20'
-      style={{ backgroundColor: '#ffffff' }}
+      style={{ backgroundColor: '#F2F1ED' }}
       id='pricing'
     >
 
@@ -1443,17 +1539,17 @@ export function ManyChatPricingSection({
           {/* Billing Toggle — only shown when ?disscountPlans=true */}
           {showBillingToggle && (
           <div className='flex justify-center mt-8 mb-2'>
-            <div className='p-1.5 bg-neutral-100 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
               {/* (['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => ( */}
               {(['monthly', 'yearly'] as const).map((cycle) => (
                 <button
                   key={cycle}
                   onClick={() => setProfBillingCycle(cycle)}
-                  className={`relative z-10 px-4 sm:px-6 py-2.5 text-[11px] sm:text-sm font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${profBillingCycle === cycle ? 'text-black' : 'text-neutral-500 hover:text-neutral-700'}`}
+                  className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${profBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
                 >
                   {profBillingCycle === cycle && (
                     <span
-                      className='absolute inset-0 bg-white rounded-full shadow-md'
+                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
                       style={{ zIndex: -1 }}
                     />
                   )}
@@ -1553,13 +1649,12 @@ export function ManyChatPricingSection({
           </div>
         </div>
 
-        {/* Professional Plans Cards */}
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1550px] mx-auto'>
            
-            <div className='flex flex-col lg:flex-row justify-center items-stretch flex-1 gap-1 xl:gap-10'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center items-stretch flex-1 gap-4'>
               {currentProfPlans.map((plan, index) => (
-                <div key={index} className='w-full lg:flex-1 lg:max-w-[320px] z-10 relative'>
-                  {index === 1 && (
+                <div key={index} className='w-full z-10 relative'>
+                  {plan.id === 'pro' && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
                       <div className='flex flex-col items-center gap-1'>
                         {/* Empty to preserve structure if Lottie was here */}
@@ -1763,7 +1858,7 @@ export function ManyChatPricingSection({
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
-            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md'
+            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -1772,10 +1867,10 @@ export function ManyChatPricingSection({
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='bg-black p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative'
+              className='bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative text-black dark:text-white'
             >
               <button
-                className='absolute top-4 right-4 text-white hover:text-white transition-colors'
+                className='absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 dark:hover:text-white transition-colors cursor-pointer'
                 onClick={() => setIsModalOpen(false)}
               >
                 <IconX size={20} />
@@ -1783,17 +1878,17 @@ export function ManyChatPricingSection({
 
               {emailSent ? (
                 <div className='flex flex-col items-center gap-4 py-8'>
-                  <div className='w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-2'>
+                  <div className='w-16 h-16 bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white rounded-full flex items-center justify-center mb-2'>
                     <IconMail size={32} />
                   </div>
-                  <h3 className='text-xl font-bold text-center text-white' style={{ fontFamily: 'Arial' }}>
+                  <h3 className='text-xl font-bold text-center text-black dark:text-white' style={{ fontFamily: 'Arial' }}>
                     Check your inbox
                   </h3>
-                  <p className='text-center text-gray-300 text-sm'>
+                  <p className='text-center text-neutral-600 dark:text-neutral-300 text-sm'>
                     We've sent a verification link to<br/>
-                    <span className='font-semibold text-white'>{userEmail}</span>
+                    <span className='font-semibold text-black dark:text-white'>{userEmail}</span>
                   </p>
-                  <p className='text-center text-gray-400 text-xs mt-2'>
+                  <p className='text-center text-neutral-400 text-xs mt-2'>
                     You can close this window now. The link will take you directly to the next step.
                   </p>
                 </div>
@@ -1801,12 +1896,12 @@ export function ManyChatPricingSection({
                 <>
                   <div className='flex flex-col gap-2'>
                     <h3
-                      className='text-xl font-bold text-white uppercase tracking-wider'
+                      className='text-xl font-bold text-black dark:text-white uppercase tracking-wider'
                       style={{ fontFamily: 'Arial' }}
                     >
                       {tModal('title')}
                     </h3>
-                    <p className='text-sm text-white'>
+                    <p className='text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
                       {tModal('description')}
                     </p>
                   </div>
@@ -1814,11 +1909,11 @@ export function ManyChatPricingSection({
                   <div className='space-y-4'>
                     <div className='relative'>
                       <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                        <IconMail className='h-5 w-5 text-white' />
+                        <IconMail className='h-5 w-5 text-neutral-400' />
                       </div>
                       <input
                         type='email'
-                        className='block w-full pl-10 pr-3 py-3 border border-white bg-black text-white text-sm focus:outline-none focus:ring-1 focus:ring-white transition-all'
+                        className='block w-full pl-10 pr-3 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-black dark:text-white text-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all placeholder:text-neutral-400'
                         placeholder={tModal('placeholder')}
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
@@ -1838,12 +1933,12 @@ export function ManyChatPricingSection({
                       <label className='flex items-start gap-3 cursor-pointer group'>
                         <input
                           type='checkbox'
-                          className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
                           checked={marketingConsent}
                           onChange={(e) => setMarketingConsent(e.target.checked)}
                           disabled={isRedirecting}
                         />
-                        <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
                           {tModal('marketingConsent')}
                         </span>
                       </label>
@@ -1851,7 +1946,7 @@ export function ManyChatPricingSection({
                       <label className='flex items-start gap-3 cursor-pointer group'>
                         <input
                           type='checkbox'
-                          className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
                           checked={termsConsent && privacyConsent}
                           onChange={(e) => {
                             setTermsConsent(e.target.checked)
@@ -1859,10 +1954,10 @@ export function ManyChatPricingSection({
                           }}
                           disabled={isRedirecting}
                         />
-                        <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
                           {tModal.rich('agbPrivacyConsent', {
                             privacyPolicy: (chunks) => (
-                              <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                              <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-blue-600 dark:text-blue-400 underline hover:text-blue-700'>
                                 {chunks}
                               </Link>
                             )
@@ -1875,17 +1970,17 @@ export function ManyChatPricingSection({
                       <Button
                         onClick={() => handleContinue()}
                         disabled={isRedirecting || !privacyConsent || !termsConsent}
-                        className='w-full h-12 bg-white hover:bg-neutral-100 text-black font-bold text-xs uppercase tracking-widest transition-all rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
+                        className='w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-widest transition-all rounded-full cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {isRedirecting ? (
-                          <IconLoader2 className='animate-spin mr-2 text-black' size={16} />
+                          <IconLoader2 className='animate-spin mr-2 text-white' size={16} />
                         ) : null}
-                        <span className='text-black font-bold'>{tModal('continue')}</span>
+                        <span className='text-white font-bold'>{tModal('continue')}</span>
                       </Button>
                       <button
                         onClick={() => setIsModalOpen(false)}
-                        className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
+                        className='text-neutral-500 hover:text-neutral-800 dark:hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors cursor-pointer'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {tModal('cancel')}
@@ -2027,6 +2122,16 @@ function PricingCard({
           mainPrice: t('enterpriseCustom'),
           period: '',
           billingInfo: t('enterpriseBillingInfo'),
+          stripePriceId: '',
+        }
+      }
+
+      // TEST
+      if (profPlan.planType === 'TEST') {
+        return {
+          mainPrice: `${currencySymbol}0`,
+          period: locale === 'de' ? '/Monat' : '/month',
+          billingInfo: locale === 'de' ? 'Dauerhaft kostenlos • 3 Credits täglich' : 'Free forever • 3 credits daily',
           stripePriceId: '',
         }
       }
@@ -2398,16 +2503,11 @@ function PricingCard({
                 {priceInfo.saveInfo}
               </div>
             )}
-            {isVat && (
+            {isVat && plan.planType !== 'TEST' && (
               <div style={{ fontFamily: 'Arial' }}>
                 {t('plusVat')}
               </div>
             )}
-            {/* {((plan as any).billingCycle === 'monthly' || (!(plan as any).billingCycle && !isYearly)) && (
-              <div className="font-bold text-[14px] text-gray-800 mt-1.5" style={{ fontFamily: 'Arial' }}>
-                {t('cancelMonthly')}
-              </div>
-            )} */}
           </div>
         </div>
       </div>
@@ -2446,7 +2546,19 @@ function PricingCard({
 
       {/* Button Section - Fixed at Bottom */}
       <div className='mt-auto '>
-        {plan.id === 'enterprise' ? (
+        {plan.planType === 'TEST' ? (
+          <button
+            onClick={() => {
+              window.location.href = `${appUrl}/register?language=${locale}`;
+            }}
+            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
+            style={{
+              fontFamily: 'Arial',
+            }}
+          >
+            {locale === 'de' ? 'Kostenlos testen' : 'Try for Free'}
+          </button>
+        ) : plan.id === 'enterprise' ? (
           <button
             onClick={(e) => {
               e.preventDefault();

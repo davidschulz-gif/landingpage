@@ -21,7 +21,7 @@ export function FeaturedTestimonialSection() {
     <section
       ref={containerRef}
       className='relative mx-auto flex max-w-7xl flex-col px-4 py-4 text-neutral-800 dark:text-neutral-200'
-      style={{ backgroundColor: '#f3f1ed' }}
+      style={{ backgroundColor: '#F2F1ED' }}
     >
       {/* Background Effects - Matching website pattern */}
       <div className='pointer-events-none absolute inset-0 z-0 overflow-hidden'>

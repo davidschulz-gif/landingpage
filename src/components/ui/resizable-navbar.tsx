@@ -228,7 +228,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
           textTransform: 'uppercase',
         }}
       >
-        TYPUS.AI
+        TYPUS
       </span>
     </a>
   )

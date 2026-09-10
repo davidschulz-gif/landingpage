@@ -60,7 +60,7 @@ export function MainHero() {
                 fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              TYPUS.AI
+              TYPUS
             </span>
           </motion.div>
           {/* <div className='flex justify-center w-full mt-12 mb-8'>

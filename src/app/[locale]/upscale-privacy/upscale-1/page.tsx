@@ -233,7 +233,7 @@ function Upscale1Content() {
   }, [])
 
   return (
-    <div className='relative w-full bg-[#f3f1ed] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#F2F1ED] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -300,12 +300,12 @@ function Upscale1Content() {
             </div>
 
             {/* Zoom Showcase Container */}
-            <div className="w-full bg-[#f3f1ed] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
+            <div className="w-full bg-[#F2F1ED] dark:bg-neutral-950/20 py-4 border-t border-b border-neutral-100 dark:border-neutral-900">
               {isClient && <KernelZoomShowcaseUpscale />}
             </div>
 
             {/* Thumbnails to access sliders */}
-            <div className="w-full bg-[#f3f1ed] dark:bg-neutral-950/20 py-8 border-b border-neutral-100 dark:border-neutral-900">
+            <div className="w-full bg-[#F2F1ED] dark:bg-neutral-950/20 py-8 border-b border-neutral-100 dark:border-neutral-900">
               <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
                   {locale === 'de' ? 'WEITERE BEISPIELE ANSEHEN' : 'EXPLORE MORE EXAMPLES'}
@@ -374,7 +374,7 @@ function Upscale1Content() {
 export default function Upscale1Page() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#f3f1ed] dark:bg-neutral-950 flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-[#F2F1ED] dark:bg-neutral-950 flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black dark:border-white"></div>
       </div>
     }>

@@ -175,7 +175,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                         fontFamily: "Arial, Helvetica, sans-serif",
                       }}
                     >
-                      TYPUS.AI
+                      TYPUS
                     </span>
                   </motion.div>
                 </div>

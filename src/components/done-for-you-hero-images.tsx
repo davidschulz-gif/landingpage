@@ -121,7 +121,7 @@ export const FloatingCollage = () => {
                 ease: [0.16, 1, 0.3, 1]
               }}
               style={style}
-              className="rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-[6px] border-white dark:border-neutral-800 backdrop-blur-sm"
+              className="rounded-none overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] backdrop-blur-sm"
             >
               <Image
                 src={img.src}

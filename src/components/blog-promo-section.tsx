@@ -27,9 +27,9 @@ export function BlogPromoSection() {
     ]
 
     return (
-        <section className="w-full max-w-6xl mx-auto px-4 py-20 space-y-16" id="success-stories">
-            <div className="text-center mb-12">
-                <span className="inline-flex items-center px-4 py-1 border-2 border-black font-black text-xs uppercase tracking-[0.2em] bg-black text-white shadow-[4px_4px_0px_#ccc]">
+        <section className="w-full max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-5" id="success-stories">
+            <div className="text-center mb-6">
+                <span className="inline-flex items-center px-3.5 py-1 border border-[#e5e7eb] dark:border-neutral-800 font-bold text-[11px] uppercase tracking-[0.2em] bg-transparent text-neutral-800 dark:text-neutral-200 rounded-full">
                     {t('badge')}
                 </span>
             </div>
@@ -37,42 +37,42 @@ export function BlogPromoSection() {
             {stories.map((story, index) => (
                 <Link key={index} href={story.href} className="block group">
                     <motion.div
-                        className="flex flex-col md:flex-row gap-8 lg:gap-12 items-center bg-white border-2 border-black p-8 md:p-12 transition-all hover:bg-gray-50 shadow-[12px_12px_0px_#000000] group-hover:shadow-[4px_4px_0px_#000000] group-hover:translate-x-[8px] group-hover:translate-y-[8px]"
-                        initial={{ opacity: 0, y: 30 }}
+                        className="flex flex-col md:flex-row gap-5 md:gap-6 items-center bg-white dark:bg-neutral-900 border border-[#e5e7eb] dark:border-neutral-800 rounded-2xl p-4 sm:p-5 transition-all hover:bg-neutral-50/80 dark:hover:bg-neutral-800/80"
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        transition={{ duration: 0.4, delay: index * 0.08 }}
                         viewport={{ once: true }}
                     >
-                        <div className="w-full md:w-1/2 flex-shrink-0">
-                            <div className="border-2 border-black overflow-hidden relative aspect-video shadow-[8px_8px_0px_#e5e7eb]">
+                        <div className="w-full md:w-[240px] lg:w-[260px] flex-shrink-0">
+                            <div className="border border-[#e5e7eb] dark:border-neutral-800 rounded-xl overflow-hidden relative aspect-[16/10]">
                                 <Image
                                     src={story.image}
                                     alt={story.title}
                                     fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 260px"
                                 />
                             </div>
                         </div>
 
-                        <div className="w-full md:w-1/2 flex flex-col justify-center space-y-8">
-                            <div className="space-y-4">
-                                <h2 className="text-2xl md:text-3xl lg:text-3xl font-normal uppercase tracking-tighter text-black leading-[0.9] group-hover:text-gray-700 transition-colors">
+                        <div className="w-full flex-1 flex flex-col justify-between py-1 space-y-3">
+                            <div className="space-y-2">
+                                <h2 className="text-base sm:text-lg md:text-xl font-normal uppercase tracking-tight text-black dark:text-white leading-snug group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
                                     {story.title}
                                 </h2>
 
-                                <div className="flex items-center gap-4 text-xs font-black text-gray-400 uppercase tracking-widest">
+                                <div className="flex items-center gap-3 text-[11px] font-medium text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
                                     <span>{story.date.split('·')[0].trim()}</span>
-                                    <span className="w-1.5 h-1.5 bg-gray-200 rounded-full"></span>
+                                    <span className="w-1 h-1 bg-neutral-300 dark:bg-neutral-600 rounded-full"></span>
                                     <span>{story.date.split('·')[1].trim()}</span>
                                 </div>
                             </div>
 
-                            <div>
-                                <span className="inline-flex items-center gap-3 font-black text-sm bg-black text-white border-2 border-black px-10 py-5 uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all shadow-[8px_8px_0px_#ccc] group-hover:shadow-none">
+                            <div className="pt-1">
+                                <span className="inline-flex items-center gap-2 font-bold text-xs bg-transparent text-black dark:text-white border border-[#e5e7eb] dark:border-neutral-700 px-4 py-2 rounded-lg uppercase tracking-wider group-hover:bg-black/5 dark:group-hover:bg-white/10 transition-colors">
                                     {t('readArticle')}
-                                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </span>
                             </div>

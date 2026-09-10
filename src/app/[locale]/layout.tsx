@@ -120,7 +120,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://typus.ai',
     siteName: 'Typus AI',
-    title: 'Typus.ai – AI Rendering for Architects',
+    title: 'TYPUS – AI Rendering for Architects',
     description:
       'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
     images: [
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
         url: 'https://typus.ai/preview-image.png',
         width: 1200,
         height: 630,
-        alt: 'Typus.ai – AI Rendering for Architects',
+        alt: 'TYPUS – AI Rendering for Architects',
         type: 'image/png',
       },
     ],
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@TypusAI',
     creator: '@TypusAI',
-    title: 'Typus.ai – AI Rendering for Architects',
+    title: 'TYPUS – AI Rendering for Architects',
     description:
       'Transform sketches, CAD and 3D models into high-end architectural renders in seconds.',
     images: ['https://typus.ai/preview-image.png'],
@@ -285,7 +285,7 @@ export default async function RootLayout({
         {/* google analytics */}
       </head>
       <body
-        className={`bg-[#f3f1ed] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
+        className={`bg-[#F2F1ED] text-gray-900 transition-colors duration-300 max-md:overflow-x-hidden ${logoFont.variable}`}
         /* suppressHydrationWarning is needed because browser extensions (like ColorZilla) 
            inject attributes that cause Next.js hydration mismatches. */
         suppressHydrationWarning

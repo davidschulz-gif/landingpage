@@ -13,7 +13,7 @@ export const DoneForYouCombinedSection = () => {
   const tPricing = useTranslations('Pricing')
 
   return (
-    <section className='relative w-full overflow-hidden py-24 lg:py-32 my-10 border-y border-neutral-100 dark:border-neutral-800' style={{ backgroundColor: '#f3f1ed' }}>
+    <section className='relative w-full overflow-hidden py-24 lg:py-32 my-10 border-y border-neutral-100 dark:border-neutral-800' style={{ backgroundColor: '#F2F1ED' }}>
       <div className='relative mx-auto max-w-5xl px-4 md:px-6 z-10'>
 
         {/* Section Header */}

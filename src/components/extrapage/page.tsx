@@ -319,14 +319,14 @@ export default function OrderPage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f3f1ed]">
+      <div className="min-h-screen flex items-center justify-center bg-[#F2F1ED]">
         <Loader2 className="animate-spin text-black" size={40} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#f3f1ed] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
+    <div className="min-h-screen bg-[#F2F1ED] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/pricing`}
@@ -574,7 +574,7 @@ export default function OrderPage() {
       <AnimatePresence>
         {isEmailModalOpen && (
           <motion.div
-            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md'
+            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm'
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -583,10 +583,10 @@ export default function OrderPage() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='bg-black p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative'
+              className='bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative text-black dark:text-white'
             >
               <button
-                className='absolute top-4 right-4 text-white hover:text-white transition-colors'
+                className='absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 dark:hover:text-white transition-colors cursor-pointer'
                 onClick={() => setIsEmailModalOpen(false)}
               >
                 <IconX size={20} />
@@ -594,12 +594,12 @@ export default function OrderPage() {
 
               <div className='flex flex-col gap-2'>
                 <h3
-                  className='text-xl  text-white uppercase tracking-wider'
+                  className='text-xl font-bold text-black dark:text-white uppercase tracking-wider'
                   style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('title')}
                 </h3>
-                <p className='text-sm text-white'>
+                <p className='text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
                   {tModal('description')}
                 </p>
               </div>
@@ -607,11 +607,11 @@ export default function OrderPage() {
               <div className='space-y-4'>
                 <div className='relative'>
                   <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                    <IconMail className='h-5 w-5 text-white' />
+                    <IconMail className='h-5 w-5 text-neutral-400' />
                   </div>
                   <input
                     type='email'
-                    className='block w-full pl-10 pr-3 py-3 border border-white bg-black text-white text-sm focus:outline-none focus:ring-1 focus:ring-white transition-all'
+                    className='block w-full pl-10 pr-3 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-black dark:text-white text-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all placeholder:text-neutral-400'
                     placeholder={tModal('placeholder')}
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
@@ -631,12 +631,12 @@ export default function OrderPage() {
                   <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
                       type='checkbox'
-                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                      className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
                       checked={marketingConsent}
                       onChange={(e) => setMarketingConsent(e.target.checked)}
                       disabled={isVerifyingEmail}
                     />
-                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                    <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
                       {tModal('marketingConsent')}
                     </span>
                   </label>
@@ -644,7 +644,7 @@ export default function OrderPage() {
                   <label className='flex items-start gap-3 cursor-pointer group'>
                     <input
                       type='checkbox'
-                      className='mt-1 size-4 border-white bg-black accent-white cursor-pointer rounded-sm transition-all group-hover:border-white'
+                      className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
                       checked={termsConsent && privacyConsent}
                       onChange={(e) => {
                         setTermsConsent(e.target.checked)
@@ -652,10 +652,10 @@ export default function OrderPage() {
                       }}
                       disabled={isVerifyingEmail}
                     />
-                    <span className='text-[11px] text-white select-none leading-tight group-hover:text-white transition-colors'>
+                    <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
                       {tModal.rich('agbPrivacyConsent', {
                         privacyPolicy: (chunks) => (
-                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-white underline hover:text-gray-200'>
+                          <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-blue-600 dark:text-blue-400 underline hover:text-blue-700'>
                             {chunks}
                           </Link>
                         )
@@ -668,17 +668,17 @@ export default function OrderPage() {
                   <Button
                     onClick={handleEmailSubmit}
                     disabled={isVerifyingEmail || !privacyConsent || !termsConsent}
-                    className='bg-white text-black hover:bg-white w-full py-6 text-xs  uppercase tracking-widest transition-all disabled:bg-black disabled:text-white disabled:border disabled:border-white'
+                    className='bg-blue-600 hover:bg-blue-700 text-white w-full py-6 text-xs uppercase tracking-widest transition-all rounded-full disabled:opacity-40 disabled:cursor-not-allowed border-0 shadow-sm'
                     style={{ fontFamily: 'Arial' }}
                   >
                     {isVerifyingEmail ? (
-                      <IconLoader2 className='animate-spin mr-2' size={16} />
+                      <IconLoader2 className='animate-spin mr-2 text-white' size={16} />
                     ) : null}
                     {tModal('continue')}
                   </Button>
                   <button
                     onClick={() => setIsEmailModalOpen(false)}
-                    className='text-white hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors'
+                    className='text-neutral-500 hover:text-neutral-800 dark:hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors cursor-pointer'
                     style={{ fontFamily: 'Arial' }}
                   >
                     {tModal('cancel')}

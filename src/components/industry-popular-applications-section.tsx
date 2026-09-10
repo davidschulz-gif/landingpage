@@ -53,7 +53,7 @@ export function IndustryPopularApplicationsSection({ slug }: { slug: string }) {
   ]
 
   return (
-    <section className="py-24 px-4 bg-[#f3f1ed] dark:bg-[#0a0a0c] border-b border-neutral-100 dark:border-neutral-900">
+    <section className="py-24 px-4 bg-[#F2F1ED] dark:bg-[#0a0a0c] border-b border-neutral-100 dark:border-neutral-900">
       <div className="max-w-7xl mx-auto space-y-12">
         
         <motion.div {...motionProps} className="max-w-3xl space-y-4">

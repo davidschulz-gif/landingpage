@@ -83,7 +83,7 @@ function PricingContent() {
     }, [searchParams])
 
     return (
-        <div className='relative w-full bg-white'>
+        <div className='relative w-full bg-[#F2F1ED]'>
             <NavbarDemo />
 
             <main className="pt-4">
@@ -101,18 +101,18 @@ function PricingContent() {
                 {/* Only show the tab toggle if there is no token (token auto-selects the plan) */}
                 {!token && (
                     <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
-                        <div className='p-1.5 bg-neutral-100 dark:bg-neutral-900 rounded-full inline-flex relative'>
+                        <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
                             {['education', 'app', 'floorplan'].map((mode) => (
                                 <button
                                     key={mode}
                                     onClick={() => setViewMode(mode as any)}
-                                    className={`relative z-10 px-5 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
+                                    className={`relative z-10 px-3.5 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${viewMode === mode ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'}`}
                                     style={{ fontFamily: 'Arial' }}
                                 >
                                     {viewMode === mode && (
                                         <motion.div
                                             layoutId='pricing-toggle'
-                                            className='absolute inset-0 bg-white rounded-full shadow-md'
+                                            className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
                                             initial={false}
                                             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                                         />

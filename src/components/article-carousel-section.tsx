@@ -167,7 +167,7 @@ export function ArticleCarouselSection() {
   return (
     <div
       className='w-full py-20'
-      style={{ backgroundColor: '#f3f1ed' }}
+      style={{ backgroundColor: '#F2F1ED' }}
       id='press'
     >
       <div className='max-w-7xl mx-auto px-4'>

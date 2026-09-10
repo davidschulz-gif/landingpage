@@ -63,7 +63,7 @@ export const FAQSection = () => {
   ]
 
   return (
-    <section className='py-24 px-6 bg-white'>
+    <section className='py-24 px-6 bg-[#F2F1ED]'>
       <div className='mx-auto max-w-4xl'>
 
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">

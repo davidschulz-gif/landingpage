@@ -102,16 +102,12 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         backdropFilter: visible
           ? 'blur(20px) saturate(180%)'
           : 'blur(12px) saturate(180%)',
-        boxShadow: visible
-          ? 'none'
-          : '0 4px 24px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02)',
+        boxShadow: 'none',
         width: visible ? '95%' : '100%',
         y: visible ? 20 : 0,
-        borderRadius: visible ? '0px' : '24px',
-        borderWidth: visible ? '1px' : '0px',
-        borderColor: visible
-          ? 'rgba(255, 255, 255, 0.2)'
-          : 'rgba(255, 255, 255, 0)',
+        borderRadius: '9999px',
+        borderWidth: '0px',
+        borderColor: 'transparent',
         height: 'auto',
       }}
       transition={{
@@ -135,14 +131,6 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
           duration: 0.4,
           ease: [0.16, 1, 0.3, 1],
         },
-        borderWidth: {
-          duration: 0.4,
-          ease: [0.16, 1, 0.3, 1],
-        },
-        borderColor: {
-          duration: 0.4,
-          ease: [0.16, 1, 0.3, 1],
-        },
         height: {
           duration: 0.4,
           ease: [0.16, 1, 0.3, 1],
@@ -153,12 +141,9 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 lg:flex',
-        'shadow-lg',
+        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 lg:flex rounded-full ',
         'transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        visible
-          ? 'border border-white/20 dark:border-neutral-800/50 px-6 py-3'
-          : 'border border-transparent px-6 py-3',
+        'border-none px-8 py-3',
         className
       )}
     >
@@ -205,12 +190,12 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? 'blur(10px)' : 'none',
         boxShadow: visible
-          ? '0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset'
+          ? '0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05)'
           : 'none',
         width: visible ? '90%' : '100%',
         paddingRight: visible ? '12px' : '0px',
         paddingLeft: visible ? '12px' : '0px',
-        borderRadius: visible ? '4px' : '2rem',
+        borderRadius: '1.5rem',
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -305,7 +290,7 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
           textTransform: 'uppercase',
         }}
       >
-        TYPUS.AI
+        TYPUS
       </span>
     </Link>
   )

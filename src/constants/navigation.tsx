@@ -47,7 +47,7 @@ export const navItems = [
       },
       {
         title: 'Press',
-        description: 'Latest news, features, and media coverage about Typus.AI',
+        description: 'Latest news, features, and media coverage about TYPUS',
         link: '#press',
       },
       {

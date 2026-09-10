@@ -83,7 +83,7 @@ export function FloatingEmailBuzzer() {
               ease: "easeInOut"
             }}
             onClick={handleClick}
-            className="z-[9999] rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 border-2 border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out flex items-center justify-center gap-2 sm:gap-3.5 bg-[#f3f1ed]/95 dark:bg-neutral-950/95 backdrop-blur-md text-neutral-800 dark:text-neutral-100 cursor-pointer hover:scale-[1.03] active:scale-95 group font-medium w-full text-center"
+            className="z-[9999] rounded-full px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 border-2 border-neutral-200 dark:border-neutral-800 hover:border-black dark:hover:border-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out flex items-center justify-center gap-2 sm:gap-3.5 bg-[#F2F1ED]/95 dark:bg-neutral-950/95 backdrop-blur-md text-neutral-800 dark:text-neutral-100 cursor-pointer hover:scale-[1.03] active:scale-95 group font-medium w-full text-center"
           >
             <div className="relative flex-shrink-0">
               <Mail className="w-5.5 h-5.5 text-black dark:text-neutral-100 group-hover:rotate-12 transition-transform duration-300" strokeWidth={1.5} />

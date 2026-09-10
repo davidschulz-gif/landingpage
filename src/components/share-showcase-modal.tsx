@@ -187,10 +187,10 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
             <div className="mb-4 flex flex-col items-center gap-1.5 mt-2">
               <div className="bg-black dark:bg-white size-4 rounded-none"></div>
               <span
-                className="text-center font-bold tracking-widest text-[25px] text-black dark:text-white"
+                className="text-center font-bold tracking-widest text-[25px] text-black dark:text-white uppercase"
                 style={{ fontFamily: 'Arial' }}
               >
-                typus.ai
+                TYPUS
               </span>
             </div>
 

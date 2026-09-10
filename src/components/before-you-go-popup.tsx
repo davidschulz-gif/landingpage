@@ -195,10 +195,10 @@ export default function BeforeYouGoPopup() {
           key={s}
           className={`rounded-full transition-all duration-300 ${
             s === Math.min(step, 3)
-              ? dark ? 'w-5 h-1.5 bg-white' : 'w-5 h-1.5 bg-black'
+              ? 'w-5 h-1.5 bg-neutral-900 dark:bg-white'
               : s < step
-                ? dark ? 'w-1.5 h-1.5 bg-white/60' : 'w-1.5 h-1.5 bg-neutral-400'
-                : dark ? 'w-1.5 h-1.5 bg-white/20' : 'w-1.5 h-1.5 bg-neutral-200'
+                ? 'w-1.5 h-1.5 bg-neutral-400'
+                : 'w-1.5 h-1.5 bg-neutral-200 dark:bg-neutral-700'
           }`}
         />
       ))}
@@ -274,12 +274,12 @@ export default function BeforeYouGoPopup() {
     <button
       type='submit'
       disabled={isSubmitting}
-      className={`flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold transition-all duration-300 rounded-xl active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed
-        ${dark ? 'bg-white text-black hover:bg-white/90 shadow-lg' : 'bg-black text-white hover:bg-neutral-800 shadow-sm'}`}
+      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold transition-all duration-300 rounded-xl active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+      style={{ fontFamily: 'Arial' }}
     >
       {isSubmitting ? (
         <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-          className={`w-4 h-4 rounded-full border-2 border-t-transparent ${dark ? 'border-white/40' : 'border-white/40'}`}
+          className="w-4 h-4 rounded-full border-2 border-t-transparent border-white"
         />
       ) : (
         <>{label}<IconArrowRight size={15} strokeWidth={2.5} /></>
@@ -298,7 +298,7 @@ export default function BeforeYouGoPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className='fixed inset-0 z-[999998] bg-black/85 backdrop-blur-md'
+            className='fixed inset-0 z-[999998] bg-black/50 backdrop-blur-sm'
             onClick={handleClose}
           />
 
@@ -314,13 +314,12 @@ export default function BeforeYouGoPopup() {
             <div className='relative min-h-screen flex items-center justify-center p-4 sm:p-6 pointer-events-none'>
 
               {isPricingPage ? (
-                /* ══════ BLACK MODAL ══════ */
+                /* ══════ PRICING MODAL (WHITE THEME) ══════ */
                 <div
-                  className={`relative pointer-events-auto overflow-hidden bg-black rounded-3xl border border-white/10 shadow-2xl transition-all duration-500 w-full ${step === 3 && openCalendars.dominik && openCalendars.ada ? 'max-w-6xl' : (step === 3 && (openCalendars.dominik || openCalendars.ada) ? 'max-w-4xl' : 'max-w-md')}`}
+                  className={`relative pointer-events-auto overflow-hidden bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl transition-all duration-500 w-full ${step === 3 && openCalendars.dominik && openCalendars.ada ? 'max-w-6xl' : (step === 3 && (openCalendars.dominik || openCalendars.ada) ? 'max-w-4xl' : 'max-w-md')}`}
                   onClick={e => e.stopPropagation()}
                 >
-                  <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent' />
-                  <button onClick={handleClose} className='absolute top-4 right-4 p-2 text-white/60 hover:text-white transition-all duration-300 hover:rotate-90 hover:scale-110 z-10' aria-label='Close'>
+                  <button onClick={handleClose} className='absolute top-4 right-4 p-2 text-neutral-400 hover:text-black dark:hover:text-white transition-all duration-300 hover:rotate-90 hover:scale-110 z-10' aria-label='Close'>
                     <IconX size={18} strokeWidth={1.5} />
                   </button>
 
@@ -329,12 +328,12 @@ export default function BeforeYouGoPopup() {
                     {step <= 2 && (
                       <>
                         <div className='flex items-center gap-2 mb-4'>
-                          <div className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-[0.15em] uppercase border border-white text-white'>
+                          <div className='flex items-center gap-1.5 px-3 py-1 text-[10px] font-bold tracking-[0.15em] uppercase border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-sm' style={{ fontFamily: 'Arial' }}>
                             <IconClock size={11} strokeWidth={2} />{t('badge')}
                           </div>
                         </div>
-                        <h2 className='text-lg sm:text-xl font-normal leading-snug mb-2 text-white tracking-tight'>{t('title')}</h2>
-                        <p className='text-xs leading-relaxed mb-4 text-white/60 font-normal'>{t('body')}</p>
+                        <h2 className='text-lg sm:text-xl font-bold leading-snug mb-2 text-neutral-900 dark:text-white tracking-tight' style={{ fontFamily: 'Arial' }}>{t('title')}</h2>
+                        <p className='text-xs leading-relaxed mb-4 text-neutral-600 dark:text-neutral-400 font-normal'>{t('body')}</p>
                       </>
                     )}
 
@@ -342,19 +341,18 @@ export default function BeforeYouGoPopup() {
                     {step === 1 && (
                       <div className='flex flex-col gap-2 mb-5'>
                         {([
-                          // { icon: <BarChart3 size={12} strokeWidth={1.5} className='text-white' />, label: tDemo('cta.point4') },
-                          { icon: <IconVideo size={12} strokeWidth={1.5} className='text-white' />, label: t('viewFreeBullet7') },
-                          { icon: <IconDeviceDesktopShare size={12} strokeWidth={1.5} className='text-white' />, label: t('viewFreeBullet8') },
+                          { icon: <IconVideo size={12} strokeWidth={1.5} className='text-neutral-800 dark:text-neutral-200' />, label: t('viewFreeBullet7') },
+                          { icon: <IconDeviceDesktopShare size={12} strokeWidth={1.5} className='text-neutral-800 dark:text-neutral-200' />, label: t('viewFreeBullet8') },
                         ] as const).map(({ icon, label }) => (
                           <div key={label as string} className='flex items-center gap-3'>
-                            <div className='w-6 h-6 bg-white/5 flex items-center justify-center shrink-0 border border-white/10'>{icon}</div>
-                            <span className='text-[13px] font-medium text-white/90 leading-tight'>{label}</span>
+                            <div className='w-6 h-6 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 border border-neutral-200 dark:border-neutral-700 rounded-md'>{icon}</div>
+                            <span className='text-[13px] font-medium text-neutral-800 dark:text-neutral-200 leading-tight'>{label}</span>
                           </div>
                         ))}
                       </div>
                     )}
 
-                    {step <= 2 && <StepDots dark />}
+                    {step <= 2 && <StepDots />}
 
                     {/* Step 1 */}
                     {step === 1 && (
@@ -362,13 +360,13 @@ export default function BeforeYouGoPopup() {
                         <div className='mb-4'>
                           <input type='email' placeholder={t('emailPlaceholder')} value={email}
                             onChange={e => { setEmail(e.target.value); setErrors(p => ({ ...p, email: undefined })) }}
-                            className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500/60' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 text-sm rounded-xl transition-colors`}
+                            className={`w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-800 border ${errors.email ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-700'} text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 text-sm rounded-xl transition-colors`}
                             required
                           />
-                          {errors.email && <p className='text-red-400 text-[10px] mt-1.5'>{errors.email}</p>}
+                          {errors.email && <p className='text-red-500 text-[10px] mt-1.5'>{errors.email}</p>}
                         </div>
-                        <SubmitBtn label={t('continue')} dark />
-                        <p className='text-[10px] text-white/25 italic text-center mt-3'>{t('trustText')}</p>
+                        <SubmitBtn label={t('continue')} />
+                        <p className='text-[10px] text-neutral-400 dark:text-neutral-500 italic text-center mt-3'>{t('trustText')}</p>
                       </form>
                     )}
 
@@ -379,35 +377,35 @@ export default function BeforeYouGoPopup() {
                           <div className='flex-1'>
                             <input type='text' placeholder={t('firstNamePlaceholder')} value={firstName}
                               onChange={e => { setFirstName(e.target.value); setErrors(p => ({ ...p, firstName: undefined })) }}
-                              className={`w-full px-4 py-2.5 bg-white/5 border ${errors.firstName ? 'border-red-500/60' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 text-sm rounded-xl transition-colors`} required />
-                            {errors.firstName && <p className='text-red-400 text-[10px] mt-1'>{errors.firstName}</p>}
+                              className={`w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border ${errors.firstName ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-700'} text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 text-sm rounded-xl transition-colors`} required />
+                            {errors.firstName && <p className='text-red-500 text-[10px] mt-1'>{errors.firstName}</p>}
                           </div>
                           <div className='flex-1'>
                             <input type='text' placeholder={t('lastNamePlaceholder')} value={lastName}
                               onChange={e => { setLastName(e.target.value); setErrors(p => ({ ...p, lastName: undefined })) }}
-                              className={`w-full px-4 py-2.5 bg-white/5 border ${errors.lastName ? 'border-red-500/60' : 'border-white/10'} text-white placeholder:text-white/30 focus:outline-none focus:border-white/30 text-sm rounded-xl transition-colors`} required />
-                            {errors.lastName && <p className='text-red-400 text-[10px] mt-1'>{errors.lastName}</p>}
+                              className={`w-full px-4 py-2.5 bg-neutral-50 dark:bg-neutral-800 border ${errors.lastName ? 'border-red-500' : 'border-neutral-300 dark:border-neutral-700'} text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-500 text-sm rounded-xl transition-colors`} required />
+                            {errors.lastName && <p className='text-red-500 text-[10px] mt-1'>{errors.lastName}</p>}
                           </div>
                         </div>
                         <div>
                           <PhoneInput country='de' value={phone}
                             onChange={p => { setPhone(p); setErrors(prev => ({ ...prev, phone: undefined })) }}
                             enableSearch placeholder={t('phonePlaceholder')} containerClass='w-full flex'
-                            inputClass={`!w-full !flex-1 !border-white/10 !bg-white/5 !text-sm !text-white !placeholder-white/30 !outline-none !pl-[48px] !h-[44px] !rounded-xl transition-colors ${errors.phone ? '!border-red-500/60' : ''}`}
-                            buttonClass='!border-white/10 !bg-white/5 !rounded-l-xl !border-r-0 hover:!bg-white/10'
+                            inputClass={`!w-full !flex-1 !border-neutral-300 dark:!border-neutral-700 !bg-neutral-50 dark:!bg-neutral-800 !text-sm !text-neutral-900 dark:!text-white !placeholder-neutral-400 !outline-none !pl-[48px] !h-[44px] !rounded-xl transition-colors ${errors.phone ? '!border-red-500' : ''}`}
+                            buttonClass='!border-neutral-300 dark:!border-neutral-700 !bg-neutral-50 dark:!bg-neutral-800 !rounded-l-xl !border-r-0 hover:!bg-neutral-100'
                           />
-                          {errors.phone && <p className='text-red-400 text-[10px] mt-1.5'>{errors.phone}</p>}
+                          {errors.phone && <p className='text-red-500 text-[10px] mt-1.5'>{errors.phone}</p>}
                         </div>
-                        <p className='text-[10px] text-white/40 leading-snug'>{t('phoneNameReason')}</p>
-                        <SubmitBtn label={t('step2Cta')} dark />
+                        <p className='text-[10px] text-neutral-500 dark:text-neutral-400 leading-snug'>{t('phoneNameReason')}</p>
+                        <SubmitBtn label={t('step2Cta')} />
                       </form>
                     )}
 
                     {/* Step 3 */}
-                    {step === 3 && BookingCards({ dark: true })}
+                    {step === 3 && BookingCards({ dark: false })}
 
                     {/* Dismiss */}
-                    <button onClick={handleClose} className='w-full text-center text-[11px] text-white/30 hover:text-white underline mt-4 transition-colors'>
+                    <button onClick={handleClose} className='w-full text-center text-[11px] text-neutral-400 hover:text-neutral-800 dark:hover:text-white underline mt-4 transition-colors'>
                       {t('dismiss')}
                     </button>
                   </div>
@@ -433,7 +431,7 @@ export default function BeforeYouGoPopup() {
                     >
                       {/* <div className='bg-black size-4'></div> */}
 
-                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto w-50 mx-auto" alt="TYPUS.AI" />
+                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto w-50 mx-auto" alt="TYPUS" />
 
                       </motion.div>
 

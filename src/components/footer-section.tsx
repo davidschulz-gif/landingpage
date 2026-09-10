@@ -72,7 +72,7 @@ export function FooterSection() {
   }
 
   return (
-    <footer className='bg-white border-t border-gray-100 '>
+    <footer className='bg-[#F2F1ED] border-t border-gray-100 '>
       <div className='max-w-6xl mx-auto px-4 py-4'>
         {/* Logo Section */}
         <div className='mb-12 flex flex-col items-center space-y-2'>
@@ -89,7 +89,7 @@ export function FooterSection() {
               textTransform: 'uppercase',
             }}
           >
-            TYPUS.AI
+            TYPUS
           </span>
         </div>
 

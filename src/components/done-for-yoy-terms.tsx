@@ -317,7 +317,7 @@ const DoneForYouTerms = () => {
             <div className="py-6 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     <a href="https://app.typus.ai/" className="flex justify-center">
-                        <img src={'/typus_logo_black_transparent.png'} alt="TYPUS.AI" className="h-24 w-auto" />
+                        <img src={'/typus_logo_black_transparent.png'} alt="TYPUS" className="h-24 w-auto" />
                     </a>
                 </div>
             </div>

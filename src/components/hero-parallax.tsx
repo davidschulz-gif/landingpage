@@ -392,7 +392,7 @@ export const Header = () => {
                 fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              TYPUS.AI
+              TYPUS
             </span>
           </motion.div> */}
 

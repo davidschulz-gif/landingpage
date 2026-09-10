@@ -130,7 +130,7 @@ export default function ResearchProjectsPage() {
   const isDe = locale === 'de'
 
   return (
-    <div className="research-page-scope relative w-full bg-[#f3f1ed] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
+    <div className="research-page-scope relative w-full bg-[#F2F1ED] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
       <NavbarDemo />
 
       <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-36 pb-28">
@@ -158,14 +158,17 @@ export default function ResearchProjectsPage() {
               <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
               <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
-              <Image
-                src="/typus_hero_logo.png"
-                alt="TYPUS.AI"
-                width={380}
-                height={120}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain dark:invert drop-shadow-xs"
-                priority
-              />
+              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 py-2 select-none">
+                <div className="bg-black dark:bg-white w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 shrink-0" />
+                <span
+                  className="text-black dark:text-white font-bold tracking-[0.06em] uppercase text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-none"
+                  style={{
+                    fontFamily: 'Arial, Helvetica, sans-serif',
+                  }}
+                >
+                  TYPUS
+                </span>
+              </div>
             </div>
 
             {/* Active Users Metric Card (Material Guide Style) */}
@@ -178,7 +181,7 @@ export default function ResearchProjectsPage() {
                 style={{ fontFamily: 'Arial' }}
               >
                 <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
-                  TYPUS.AI
+                  TYPUS
                 </Link>{' '}
                 {t('slide1.activeUsers')}
               </p>
@@ -520,7 +523,7 @@ export default function ResearchProjectsPage() {
                 style={{ fontFamily: 'Arial' }}
               >
                 <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
-                  TYPUS.AI
+                  TYPUS
                 </Link>{' '}
                 {t.rich('slide2.bdbauDesc', {
                   link: (chunks) => (
@@ -1063,7 +1066,7 @@ export default function ResearchProjectsPage() {
                   </span>
                 </div>
                 <div className="text-neutral-500 font-mono text-[10px] hidden sm:block">
-                  FFPLUS × TYPUS.AI
+                  FFPLUS × TYPUS
                 </div>
               </div>
 

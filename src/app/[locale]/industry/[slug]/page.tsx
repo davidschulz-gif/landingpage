@@ -21,7 +21,7 @@ export default function IndustryPage({ params }: { params: Promise<{ slug: strin
   const { slug } = use(params)
 
   return (
-    <div className='relative w-full bg-[#f3f1ed] dark:bg-[#0d0e12] min-h-screen font-ft-calhern' style={{ fontFamily: 'Arial' }}>
+    <div className='relative w-full bg-[#F2F1ED] dark:bg-[#0d0e12] min-h-screen font-ft-calhern' style={{ fontFamily: 'Arial' }}>
       {/* Navbar */}
       <NavbarDemo />
 
