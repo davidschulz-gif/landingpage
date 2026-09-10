@@ -78,18 +78,18 @@ export function FooterSection() {
         <div className='mb-12 flex flex-col items-center space-y-2'>
           <div className='bg-black size-4 m-3'></div>
           <span
-            className='text-center uppercase font-logo'
+            className='text-center uppercase font-logo font-bold'
             style={{
-              fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+              fontFamily: "Arial, Helvetica, sans-serif",
               fontSize: '18px',
-              fontWeight: 300,
+              fontWeight: 700,
               letterSpacing: '2.5px',
               lineHeight: '1.3em',
               color: '#000',
               textTransform: 'uppercase',
             }}
           >
-            typus.AI
+            TYPUS.AI
           </span>
         </div>
 

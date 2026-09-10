@@ -94,7 +94,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
             <div className='mb-0 flex flex-col items-center space-y-2 mt-8 sm:mt-0'>
                 <TypusLogoBlack className="size-9 mx-auto" /> 
                 <span
-                  className='text-center !font-logo'
+                  className='text-center !font-logo font-bold'
                   style={{
                     fontSize: '25px',
                     fontWeight: 700,
@@ -102,10 +102,10 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
                     lineHeight: '1.3em',
                     color: '#000',
                     textTransform: 'uppercase',
-                    fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+                    fontFamily: "Arial, Helvetica, sans-serif",
                   }}
                 >
-                  typus.AI
+                  TYPUS.AI
                 </span>
                 <p className="mt-2 text-center text-xs text-gray-600 font-medium">
                   {t.tagline}

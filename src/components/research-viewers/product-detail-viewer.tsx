@@ -75,7 +75,7 @@ export function ProductDetailViewer() {
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-1.5 font-bold text-base tracking-tight">
             <div className="w-3.5 h-3.5 bg-black rounded-xs" />
-            <span style={{ fontFamily: 'Arial' }}>typus.ai</span>
+            <span style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>TYPUS.AI</span>
           </div>
           <nav className="hidden lg:flex items-center gap-5 text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
             <span className="text-black font-bold border-b-2 border-black pb-0.5">MATERIALS</span>

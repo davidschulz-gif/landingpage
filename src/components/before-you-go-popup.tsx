@@ -433,7 +433,7 @@ export default function BeforeYouGoPopup() {
                     >
                       {/* <div className='bg-black size-4'></div> */}
 
-                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto w-50 mx-auto" alt="Typus AI" />
+                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto w-50 mx-auto" alt="TYPUS.AI" />
 
                       </motion.div>
 

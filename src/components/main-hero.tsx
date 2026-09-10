@@ -49,7 +49,7 @@ export function MainHero() {
             <TypusLogoBlack className="size-9 mx-auto" /> 
             <span
               // id='typus-logo'
-              className='text-center !font-logo'
+              className='text-center !font-logo font-bold'
               style={{
                 fontSize: '25px',
                 fontWeight: 700,
@@ -57,10 +57,10 @@ export function MainHero() {
                 lineHeight: '1.3em',
                 color: '#000',
                 textTransform: 'uppercase',
-                fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+                fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              typus.AI
+              TYPUS.AI
             </span>
           </motion.div>
           {/* <div className='flex justify-center w-full mt-12 mb-8'>

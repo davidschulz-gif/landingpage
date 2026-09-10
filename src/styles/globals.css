@@ -159,7 +159,7 @@ select {
 [data-typus-logo],
 .font-logo *,
 [class*="font-logo"] * {
-  font-family: var(--font-logo-font), 'Soyuz Grotesk', sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 /* ==========================================================================

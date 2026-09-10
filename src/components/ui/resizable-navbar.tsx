@@ -217,18 +217,18 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
     >
       <div className='bg-black size-3 m-2.5'></div>
       <span
-        className='text-center !font-logo uppercase'
+        className='text-center !font-logo uppercase font-bold'
         style={{
-          fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+          fontFamily: "Arial, Helvetica, sans-serif",
           fontSize: '25px',
-          fontWeight: 300,
+          fontWeight: 700,
           letterSpacing: '2px',
           lineHeight: '1.3em',
           color: '#000',
           textTransform: 'uppercase',
         }}
       >
-        typus.AI
+        TYPUS.AI
       </span>
     </a>
   )

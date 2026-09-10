@@ -37,7 +37,7 @@ export default function BookADemoPage() {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className='mb-0 flex flex-col items-center space-y-2'
           >
-            <img src="/typus_logos/logo typus_highres.png" className="h-auto w-50 mx-auto" alt="Typus AI" />
+            <img src="/typus_logos/logo typus_highres.png" className="h-auto w-50 mx-auto" alt="TYPUS.AI" />
           </motion.div>
 
           <h3 className="heading-primary mb-2 text-center max-w-xl text-neutral-900">

@@ -164,7 +164,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                   >
                     <div className='bg-black dark:bg-white size-4'></div>
                     <span
-                      className='text-center !font-logo'
+                      className='text-center !font-logo font-bold'
                       style={{
                         fontSize: '25px',
                         fontWeight: 700,
@@ -172,10 +172,10 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                         lineHeight: '1.3em',
                         color: '#000',
                         textTransform: 'uppercase',
-                        fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+                        fontFamily: "Arial, Helvetica, sans-serif",
                       }}
                     >
-                      typus.AI
+                      TYPUS.AI
                     </span>
                   </motion.div>
                 </div>

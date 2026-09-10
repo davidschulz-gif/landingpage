@@ -381,7 +381,7 @@ export const Header = () => {
             <div className='bg-black size-4 m-3'></div>
             <span
               // id='typus-logo'
-              className='text-center !font-logo'
+              className='text-center !font-logo font-bold'
               style={{
                 fontSize: '25px',
                 fontWeight: 700,
@@ -389,10 +389,10 @@ export const Header = () => {
                 lineHeight: '1.3em',
                 color: '#000',
                 textTransform: 'uppercase',
-                fontFamily: "var(--font-logo-font), 'Soyuz Grotesk', sans-serif",
+                fontFamily: "Arial, Helvetica, sans-serif",
               }}
             >
-              typus.AI
+              TYPUS.AI
             </span>
           </motion.div> */}
 
