@@ -405,7 +405,7 @@ export default function Home() {
       />
 
       {/* Main Content - Always Rendered */}
-      <div className='relative w-full'>
+      <div className='relative w-full bg-[#F2F1ED]' style={{ backgroundColor: '#F2F1ED' }}>
         {/* Navbar */}
         <NavbarDemo />
 

@@ -154,6 +154,7 @@
 
   body {
     scroll-behavior: smooth;
+    background-color: #F2F1ED !important;
   }
 
   a[href^='#'] {

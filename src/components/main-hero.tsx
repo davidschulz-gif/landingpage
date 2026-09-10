@@ -29,7 +29,10 @@ export function MainHero() {
   }, [titles.length])
 
   return (
-    <section className='relative pt-32 pb-12 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh] lg:min-h-[786px]'>
+    <section
+      className='relative pt-32 pb-12 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh] lg:min-h-[786px]'
+      style={{ backgroundColor: '#F2F1ED' }}
+    >
       {/* Floating Images Background */}
       <FloatingCollage />
 
@@ -48,11 +51,10 @@ export function MainHero() {
             {/* <div className='bg-black size-4'></div> */}
             <TypusLogoBlack className="size-9 mx-auto" /> 
             <span
-              // id='typus-logo'
-              className='text-center !font-logo font-bold'
+              className='text-center'
               style={{
                 fontSize: '25px',
-                fontWeight: 700,
+                fontWeight: 400,
                 letterSpacing: '2.5px',
                 lineHeight: '1.3em',
                 color: '#000',
@@ -86,7 +88,7 @@ export function MainHero() {
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                   className='text-[26px] md:text-[38px] lg:text-[35px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
-                  style={{ fontFamily: 'Arial' }}
+                  style={{ fontFamily: 'Arial', fontWeight: 400 }}
                 >
                   {titles[currentIndex]}
                 </motion.h1>

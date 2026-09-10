@@ -1385,37 +1385,33 @@ export function ManyChatPricingSection({
             return (
               <div
                 key={plan.planType}
-                className='flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 border border-gray-200 relative group rounded-2xl w-full max-w-sm mx-auto'
-                style={{ backgroundColor: '#ffffff', color: '#000000' }}
+                className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl w-full max-w-sm mx-auto ${
+                  staticData.isPopular
+                    ? 'border border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/30 shadow-md hover:shadow-xl'
+                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+                }`}
+                style={{ backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Arial' }}
               >
-                {staticData.isPopular && (
-                  <div className='absolute -top-2 left-0 z-30 origin-top-left'>
-                    <div className='relative transform -rotate-12'>
-                      <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
-                        <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
-                        <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
-                        <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
-                        <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
-                        <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
-                        <span
-                          className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                          style={{ fontFamily: 'Arial' }}
-                        >
-                          {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
-                        </span>
-                      </div>
-                      <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
-                    </div>
-                  </div>
-                )}
+                {/* 4 Corner Small Square Fills */}
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
 
-                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
-                  <span
-                    className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {plan.planType}
-                  </span>
+                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
+                  <div className='flex items-center justify-center gap-2 mb-1'>
+                    <span
+                      className='text-xl sm:text-2xl font-bold uppercase tracking-wider block text-black'
+                      style={{ fontFamily: 'Arial' }}
+                    >
+                      {plan.planType}
+                    </span>
+                    {staticData.isPopular && (
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider">
+                        {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
+                      </span>
+                    )}
+                  </div>
 
                   <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
                     {staticData.description || plan.description}
@@ -1460,9 +1456,13 @@ export function ManyChatPricingSection({
                   </ul>
                 </div>
 
-                <div className='mt-auto pt-4 border-t border-gray-100'>
+                <div className='mt-auto pt-4'>
                   <button
-                    className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
+                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
+                      staticData.isPopular
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm border-transparent'
+                        : 'border border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black bg-transparent'
+                    }`}
                     style={{ fontFamily: 'Arial' }}
                     onClick={() => handleSubscribe(
                       {
@@ -1674,7 +1674,11 @@ export function ManyChatPricingSection({
                 </div>
               ))}
             </div>
-             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl overflow-hidden'>
+             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl border border-neutral-300/90 dark:border-neutral-800 shadow-sm relative'>
+              <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+              <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
               <BookingDemoClassFormForPricingPage />
             </div>
           </div>
@@ -2397,53 +2401,45 @@ function PricingCard({
     }
   }
 
+  const isFeatured = plan.popular || (plan as any).planType === 'PRO'
+
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE'?'[480px]':'h-[700px]'} mb-4 flex-col sm:md: p-4 transition-all duration-300 hover:-translate-y-2 border border-gray-200 relative group rounded-2xl`}
+      className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl ${
+        isFeatured
+          ? 'border border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/30 shadow-md hover:shadow-xl'
+          : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+      }`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
+        fontFamily: 'Arial',
       }}
     >
-      {/* Ribbon Tag */}
-      {plan.popular && (
-        <div className='absolute -top-2 left-0 z-30 origin-top-left'>
-          <div className='relative transform -rotate-12'>
-            {/* Ribbon body */}
-            <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
-              {/* Shine effect */}
-              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
-              {/* Left fold */}
-              <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
-              <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
-              {/* Right fold */}
-              <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
-              <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
-              {/* Text */}
-              <span
-                className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                style={{ fontFamily: 'Arial' }}
-              >
-                {plan.badgeTextKey ? t(plan.badgeTextKey) : t('highestRated')}
-              </span>
-            </div>
-            {/* Shadow under ribbon */}
-            <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
-          </div>
-        </div>
-      )}
+      {/* 4 Corner Small Square Fills - matching Research page styling with small square fills instead of red crosses */}
+      <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
 
       {/* Header Section */}
-      <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-3`}>
-        <span
-          className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black'
-          style={{ fontFamily: 'Arial' }}
-        >
-          {plan.name}
-        </span>
+      <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-1`}>
+        <div className='flex items-center justify-center gap-2 mb-1'>
+          <span
+            className='text-xl sm:text-2xl font-bold uppercase tracking-wider block text-black'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {plan.name}
+          </span>
+          {isFeatured && (
+            <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider">
+              {plan.badgeTextKey ? t(plan.badgeTextKey) : 'PRO'}
+            </span>
+          )}
+        </div>
         
         {(plan as any).targetAudience && (
-          <span className='text-[13px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block'>
+          <span className='text-[12px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block'>
             {(plan as any).targetAudience}
           </span>
         )}
@@ -2513,7 +2509,7 @@ function PricingCard({
       </div>
 
       {/* Features Section - Flex Grow */}
-      <div className='flex-1 mb-3'>
+      <div className='flex-1 mb-4 pt-1'>
         <ul className='space-y-1.5'>
           {plan.features.map((feature, index) => {
             const featureText =
@@ -2527,13 +2523,14 @@ function PricingCard({
                 className='flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0'
               >
                 {hasFeature ? (
-                  <Check className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-emerald-600' />
+                  <Check className='w-3 h-3 flex-shrink-0 mt-0.5 mr-2 text-emerald-600' />
                 ) : (
-                  <X className='w-2.5 h-2.5 flex-shrink-0 mt-0.5 mr-2 text-red-600' />
+                  <span className='w-1.5 h-1.5 flex-shrink-0 mt-1.5 mr-2.5 ml-0.5 bg-neutral-400 dark:bg-neutral-600 inline-block' />
                 )}
                 <span
-                  className={`leading-tight text-left flex-1 ${hasFeature ? 'text-black' : 'text-black/40'
-                    }`}
+                  className={`leading-tight text-left flex-1 ${
+                    hasFeature ? 'text-black font-semibold' : 'text-neutral-400 font-normal'
+                  }`}
                   style={{ fontFamily: 'Arial' }}
                 >
                   {featureText}
@@ -2545,16 +2542,14 @@ function PricingCard({
       </div>
 
       {/* Button Section - Fixed at Bottom */}
-      <div className='mt-auto '>
+      <div className='mt-auto pt-2'>
         {plan.planType === 'TEST' ? (
           <button
             onClick={() => {
               window.location.href = `${appUrl}/register?language=${locale}`;
             }}
-            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
-            style={{
-              fontFamily: 'Arial',
-            }}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
+            style={{ fontFamily: 'Arial' }}
           >
             {locale === 'de' ? 'Kostenlos testen' : 'Try for Free'}
           </button>
@@ -2564,21 +2559,24 @@ function PricingCard({
               e.preventDefault();
               window.dispatchEvent(new CustomEvent('open-before-you-go'));
             }}
-            className='bg-transparent text-black cursor-pointer w-full flex justify-center items-center px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
-            style={{
-              fontFamily: 'Arial',
-            }}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
+            style={{ fontFamily: 'Arial' }}
           >
-            {/* Provide simple translation fallback */}
             {t('enterpriseBookCall')}
           </button>
+        ) : isFeatured ? (
+          <Button
+            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
+            className='w-full py-2.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer border-transparent'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {t('subscribe')}
+          </Button>
         ) : (
           <Button
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='bg-transparent text-black cursor-pointer w-full px-4 py-2 text-[10px] font-medium uppercase tracking-wide border border-[#e5e7eb] hover:bg-black/5 hover:text-black transition-all duration-200 rounded-2xl'
-            style={{
-              fontFamily: 'Arial',
-            }}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer bg-transparent'
+            style={{ fontFamily: 'Arial' }}
           >
             {t('subscribe')}
           </Button>
