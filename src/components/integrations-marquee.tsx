@@ -62,7 +62,7 @@ export const IntegrationsMarquee = () => {
   }
 
   return (
-    <div className="w-full py-8 overflow-hidden relative select-none">
+    <div className="w-full py-2 md:py-4 -mt-4 md:-mt-8 overflow-hidden relative select-none z-20">
       {/* Premium Masking Fade Effect */}
       <div 
         className="w-full flex flex-row flex-nowrap overflow-hidden mask-fade"

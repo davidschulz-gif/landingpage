@@ -160,16 +160,15 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-                    className='mb-0 flex flex-col items-center space-y-2'
+                    className='mb-0 flex items-center justify-center gap-2.5'
                   >
-                    <div className='bg-black dark:bg-white size-4'></div>
+                    <div className='bg-black dark:bg-white w-4 h-4'></div>
                     <span
-                      className='text-center !font-logo font-bold'
+                      className='text-center uppercase font-normal leading-none'
                       style={{
-                        fontSize: '25px',
-                        fontWeight: 700,
+                        fontSize: '20px',
+                        fontWeight: 400,
                         letterSpacing: '2.5px',
-                        lineHeight: '1.3em',
                         color: '#000',
                         textTransform: 'uppercase',
                         fontFamily: "Arial, Helvetica, sans-serif",

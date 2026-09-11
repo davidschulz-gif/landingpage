@@ -23,7 +23,6 @@ import { OrderOverviewModal } from './order-overview-modal'
 import { TestimonialsSection } from './testimonials-section'
 import Lottie from 'lottie-react'
 import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
-import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
 import { FloatingBuzzer } from '@/components/floating-buzzer'
 
 const professionalPlans = [
@@ -1382,15 +1381,27 @@ export function ManyChatPricingSection({
               stripePriceId: priceId,
             };
 
+            const isFloorPlanFeatured = Boolean(
+              staticData.isPopular ||
+              plan.planType === 'MEHR' ||
+              plan.name === 'MEHR' ||
+              plan.id === 'mehr'
+            );
+
             return (
               <div
                 key={plan.planType}
                 className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl w-full max-w-sm mx-auto ${
-                  staticData.isPopular
-                    ? 'border border-[#f05a47] dark:border-[#f05a47] ring-2 ring-[#f05a47]/30 shadow-md hover:shadow-xl'
+                  isFloorPlanFeatured
+                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
                     : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
                 }`}
-                style={{ backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Arial' }}
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  fontFamily: 'Arial',
+                  border: isFloorPlanFeatured ? '2px solid #f05a47' : '1px solid rgba(212, 212, 216, 0.9)',
+                }}
               >
                 {/* 4 Corner Small Square Fills */}
                 <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
@@ -1406,8 +1417,8 @@ export function ManyChatPricingSection({
                     >
                       {plan.planType}
                     </span>
-                    {staticData.isPopular && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px] font-bold uppercase tracking-wider">
+                    {isFloorPlanFeatured && (
+                      <span className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[9px] font-bold uppercase tracking-wider badge-featured-red">
                         {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
                       </span>
                     )}
@@ -1460,10 +1471,13 @@ export function ManyChatPricingSection({
                   <button
                     className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
                       staticData.isPopular
-                        ? 'bg-[#f05a47] hover:bg-[#d94836] text-white shadow-sm border-transparent'
+                        ? 'border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 shadow-sm'
                         : 'border border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black bg-transparent'
                     }`}
-                    style={{ fontFamily: 'Arial' }}
+                    style={{
+                      fontFamily: 'Arial',
+                      ...(staticData.isPopular ? { backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' } : {}),
+                    }}
                     onClick={() => handleSubscribe(
                       {
                         planType: plan.planType,
@@ -1649,9 +1663,8 @@ export function ManyChatPricingSection({
           </div>
         </div>
 
-          <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1550px] mx-auto'>
-           
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center items-stretch flex-1 gap-4'>
+          <div className='w-full max-w-[1400px] mx-auto px-4 mb-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center items-stretch gap-4'>
               {currentProfPlans.map((plan, index) => (
                 <div key={index} className='w-full z-10 relative'>
                   {plan.id === 'pro' && (
@@ -1673,13 +1686,6 @@ export function ManyChatPricingSection({
                   />
                 </div>
               ))}
-            </div>
-             <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl border border-neutral-300/90 dark:border-neutral-800 shadow-sm relative'>
-              <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <BookingDemoClassFormForPricingPage />
             </div>
           </div>
 
@@ -2401,19 +2407,27 @@ function PricingCard({
     }
   }
 
-  const isFeatured = plan.popular || (plan as any).planType === 'PRO'
+  const isFeatured = Boolean(
+    plan.popular || 
+    plan.badgeTextKey ||
+    (plan as any).isPopular ||
+    (plan as any).planType === 'PRO' || 
+    plan.name === 'PRO' || 
+    (plan as any).id === 'pro'
+  );
 
   return (
     <div
       className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl ${
         isFeatured
-          ? 'border border-[#f05a47] dark:border-[#f05a47] ring-2 ring-[#f05a47]/30 shadow-md hover:shadow-xl'
+          ? 'card-featured-red-border shadow-md hover:shadow-xl'
           : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
       }`}
       style={{
         backgroundColor: '#ffffff',
         color: '#000000',
         fontFamily: 'Arial',
+        border: isFeatured ? '2px solid #f05a47' : '1px solid rgba(212, 212, 216, 0.9)',
       }}
     >
       {/* 4 Corner Small Square Fills - matching Research page styling with small square fills instead of red crosses */}
@@ -2432,7 +2446,7 @@ function PricingCard({
             {plan.name}
           </span>
           {isFeatured && (
-            <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px] font-bold uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[9px] font-bold uppercase tracking-wider badge-featured-red">
               {plan.badgeTextKey ? t(plan.badgeTextKey) : 'PRO'}
             </span>
           )}
@@ -2567,8 +2581,8 @@ function PricingCard({
         ) : isFeatured ? (
           <Button
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='w-full py-2.5 px-4 rounded-full bg-[#f05a47] hover:bg-[#d94836] text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer border-transparent'
-            style={{ fontFamily: 'Arial' }}
+            className='w-full py-2.5 px-4 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer'
+            style={{ fontFamily: 'Arial', backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
           >
             {t('subscribe')}
           </Button>

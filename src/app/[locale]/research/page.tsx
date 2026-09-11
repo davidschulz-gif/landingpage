@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import BookingDemoClassFormForPricingPage from '@/components/demo-class-boooking-form-for-pricing-page'
 
 function AnimatedStatNumber({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -896,8 +897,8 @@ export default function ResearchProjectsPage() {
                   <col.icon className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div className="space-y-1">
                     <div
-                      className="text-2xl sm:text-3xl  text-blue-600 dark:text-blue-400"
-                      style={{ fontFamily: 'Arial' }}
+                      className="text-2xl sm:text-3xl text-[#f05a47]"
+                      style={{ fontFamily: 'Arial', color: '#f05a47' }}
                     >
                       {t(`slide9.items.${idx}.num`)}
                     </div>
@@ -1191,12 +1192,12 @@ export default function ResearchProjectsPage() {
         </section>
 
         {/* SLIDE 12 SECTION: INTEGRATION PACKAGES & PRICING */}
-        <section className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
+        <section id="integration-packages" className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
-            className="w-full space-y-8 max-w-5xl mx-auto"
+            className="w-full space-y-8 max-w-7xl mx-auto px-2 sm:px-4"
           >
             {/* Partner Logos Header Bar */}
             <PartnerHeaderLogos />
@@ -1205,9 +1206,9 @@ export default function ResearchProjectsPage() {
               {t('slide12.title')}
             </h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
               {/* Main Package (5.000 €) */}
-              <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
+              <div className="md:col-span-1 lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
                 <div
                   className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-xs uppercase tracking-widest rounded-bl-2xl "
                   style={{ fontFamily: 'Arial' }}
@@ -1296,7 +1297,7 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Single Product Alternative (1.000 €) */}
-              <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-6 flex flex-col justify-between text-center">
+              <div className="md:col-span-1 lg:col-span-3 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-6 flex flex-col justify-between text-center">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto shadow-xs">
                     <Box className="w-6 h-6" />
@@ -1355,6 +1356,15 @@ export default function ResearchProjectsPage() {
                   {t('slide12.altCta')}
                 </Link>
               </div>
+
+              {/* Advisor & Custom Offer Booking Form Card */}
+              <div className="md:col-span-2 lg:col-span-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" />
+              </div>
             </div>
 
             {/* Bottom EU Funding Footer Badge */}
@@ -1401,10 +1411,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1480,10 +1490,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1557,18 +1567,23 @@ export default function ResearchProjectsPage() {
 
               {/* Card 3: Advanced */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-[#f05a47] dark:border-[#f05a47] flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition ring-2 ring-[#f05a47]/30"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 card-featured-red-border flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white flex items-center justify-between">
                     <span>{t('plans.advanced')}</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px]  uppercase">PRO</span>
+                    <span
+                      className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[9px] uppercase font-bold tracking-wider badge-featured-red"
+                      style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
+                    >
+                      PRO
+                    </span>
                   </h4>
 
                   {/* Price */}
@@ -1631,7 +1646,8 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full bg-[#f05a47] hover:bg-[#d94836] text-white text-center text-xs uppercase tracking-wider transition-all duration-200 mt-6 inline-block shadow-md"
+                  className="w-full py-2.5 px-4 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 text-center text-xs uppercase tracking-wider transition-all duration-200 mt-6 inline-block"
+                  style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
                 >
                   {t('plans.getStarted')}
                 </Link>
@@ -1642,10 +1658,10 @@ export default function ResearchProjectsPage() {
                 className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1732,8 +1748,8 @@ export default function ResearchProjectsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                 {/* Add-on 1 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon1Title')}
@@ -1754,8 +1770,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 2 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon2Title')}
@@ -1776,8 +1792,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 5: Persönlicher Visualisierer für Sie */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon5Title')}
@@ -1798,8 +1814,8 @@ export default function ResearchProjectsPage() {
 
                 {/* Add-on 3 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <DottedPlusIcon className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-                  <DottedPlusIcon className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon3Title')}

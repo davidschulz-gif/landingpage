@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
+import TypusLogoBlack from '@/components/common/typus-logo-black';
 
 const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7';
 const ANNIKA_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6';
@@ -35,9 +36,20 @@ export default function BookADemoPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className='mb-0 flex flex-col items-center space-y-2'
+            className='mb-2 flex flex-col items-center space-y-2 select-none'
           >
-            <img src="/typus_logos/logo typus_highres.png" className="h-auto w-50 mx-auto" alt="TYPUS" />
+            <TypusLogoBlack className="size-9 mx-auto" />
+            <span
+              className='text-center text-black uppercase leading-[1.3em]'
+              style={{
+                fontSize: '25px',
+                fontWeight: 400,
+                letterSpacing: '2.5px',
+                fontFamily: "Arial, Helvetica, sans-serif",
+              }}
+            >
+              TYPUS
+            </span>
           </motion.div>
 
           <h3 className="heading-primary mb-2 text-center max-w-xl text-neutral-900">

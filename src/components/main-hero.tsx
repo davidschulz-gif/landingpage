@@ -30,7 +30,7 @@ export function MainHero() {
 
   return (
     <section
-      className='relative pt-32 pb-12 md:pt-48 md:pb-48 md:pt-20 lg:pt-0 px-4 flex flex-col items-center justify-center min-h-[70vh] lg:min-h-[786px]'
+      className='relative pt-32 pb-6 md:pt-20 md:pb-6 lg:pt-0 lg:pb-6 px-4 flex flex-col items-center justify-center'
       style={{ backgroundColor: '#FFFFFF' }}
     >
       {/* Floating Images Background */}
@@ -46,7 +46,7 @@ export function MainHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className='mb-8 md:mb-10 flex flex-col items-center space-y-2'
+            className='mb-14 md:mb-16 flex flex-col items-center space-y-2'
           >
             {/* <div className='bg-black size-4'></div> */}
             <TypusLogoBlack className="size-9 mx-auto" /> 

@@ -91,8 +91,14 @@ export function FloorPlanPricingSection() {
         {floorPlanPackages.map((pkg) => (
           <div 
             key={pkg.id}
-            className='flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 border border-gray-200 relative group rounded-2xl w-full max-w-sm mx-auto'
-            style={{ backgroundColor: '#ffffff', color: '#000000' }}
+            className={`flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 relative group rounded-2xl w-full max-w-sm mx-auto ${
+              pkg.isPopular ? 'card-featured-red-border shadow-md hover:shadow-xl' : 'border border-gray-200'
+            }`}
+            style={{
+              backgroundColor: '#ffffff',
+              color: '#000000',
+              border: pkg.isPopular ? '2px solid #f05a47' : '1px solid #e5e7eb',
+            }}
           >
             {pkg.isPopular && (
               <div className='absolute -top-2 left-0 z-30 origin-top-left'>

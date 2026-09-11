@@ -427,13 +427,23 @@ export default function BeforeYouGoPopup() {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-                      className='mb-0 flex flex-col items-center space-y-2'
+                      className="mb-4"
                     >
-                      {/* <div className='bg-black size-4'></div> */}
-
-                      <img src={"/typus_logos/logo typus_highres.png"} className="h-auto w-50 mx-auto" alt="TYPUS" />
-
-                      </motion.div>
+                      <div className='flex items-center justify-center gap-2.5 select-none'>
+                        <div className="bg-black w-4 h-4 rounded-none shrink-0" />
+                        <span
+                          className='text-center text-black uppercase leading-none font-normal'
+                          style={{
+                            fontSize: '20px',
+                            fontWeight: 400,
+                            letterSpacing: '2.5px',
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                          }}
+                        >
+                          TYPUS
+                        </span>
+                      </div>
+                    </motion.div>
 
                     {/* Title — steps 1-2 */}
                     {step <= 2 && (

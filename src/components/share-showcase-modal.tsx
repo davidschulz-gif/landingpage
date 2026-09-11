@@ -185,11 +185,15 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
 
           <div className="px-6 py-6 sm:px-8 sm:py-8 flex flex-col items-center text-center">
             {/* Logo / Badge */}
-            <div className="mb-4 flex flex-col items-center gap-1.5 mt-2">
-              <div className="bg-black dark:bg-white size-4 rounded-none"></div>
+            <div className="mb-4 flex items-center justify-center gap-2.5 select-none mt-2">
+              <div className="bg-black dark:bg-white w-4 h-4 rounded-none shrink-0" />
               <span
-                className="text-center font-bold tracking-widest text-[25px] text-black dark:text-white uppercase"
-                style={{ fontFamily: 'Arial' }}
+                className="text-center font-normal tracking-widest text-[20px] text-black dark:text-white uppercase leading-none"
+                style={{
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  fontWeight: 400,
+                  letterSpacing: '2.5px',
+                }}
               >
                 TYPUS
               </span>

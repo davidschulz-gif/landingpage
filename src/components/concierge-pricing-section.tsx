@@ -253,10 +253,14 @@ function PricingCard({ plan, isYearly }: { plan: any & { topBadges?: string[] };
 
   return (
     <div
-      className={`flex  flex-col p-6 sm:p-8 transition-shadow duration-300 relative border ${plan.popular
-        ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] border-neutral-200 dark:border-neutral-800 z-10'
-        : 'bg-white dark:bg-black shadow-sm hover:shadow-md border-neutral-100 dark:border-neutral-900'
-        }`}
+      className={`flex flex-col p-6 sm:p-8 transition-shadow duration-300 relative ${
+        plan.popular || (plan.topBadges && plan.topBadges.length > 0)
+          ? 'bg-white dark:bg-black shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] card-featured-red-border z-10'
+          : 'bg-white dark:bg-black shadow-sm hover:shadow-md border border-neutral-100 dark:border-neutral-900'
+      }`}
+      style={{
+        border: plan.popular || (plan.topBadges && plan.topBadges.length > 0) ? '2px solid #f05a47' : undefined,
+      }}
     >
       {/* Ribbon Tag / Badges */}
       {plan.topBadges && plan.topBadges.length > 0 && (

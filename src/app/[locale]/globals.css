@@ -615,9 +615,20 @@ hr,
 [class*="border-zinc-"],
 [class*="border-slate-"],
 [class*="border-stone-"],
-[class*="border-black"],
-[class*="border-[#"] {
+[class*="border-black"] {
   border-color: #e5e7eb !important;
+}
+
+.card-featured-red-border {
+  border: 2px solid #f05a47 !important;
+  border-color: #f05a47 !important;
+}
+
+.badge-featured-red {
+  border: 1px solid #f05a47 !important;
+  border-color: #f05a47 !important;
+  color: #f05a47 !important;
+  background-color: transparent !important;
 }
 
 /* 3. Remove black fill/background from every button across the application */
