@@ -705,7 +705,7 @@
     "firstNamePlaceholder": "Vorname",
     "lastNamePlaceholder": "Nachname",
     "phoneNameReason": "Wir verwenden Ihre Telefonnummer, um Sie zu kontaktieren und Ihre Anforderungen sowie mögliche Einsatzmöglichkeiten von KI in der Architektur besser zu verstehen.",
-    "phonePlaceholder": "Deine WhatsApp / Telefonnummer",
+    "phonePlaceholder": "Deine WhatsApp / Telefonnummer (optional)",
     "errorPhone": "Telefonnummer ist erforderlich",
     "step2Cta": "Weiter",
     "step3Title": "Buchen Sie nun einen Termin für Ihre kostenlose Live Demo.",

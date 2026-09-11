@@ -96,8 +96,8 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
     const trimmedFirstName = firstName.trim()
     const trimmedLastName = lastName.trim()
 
-    if (!trimmedPhone || !trimmedFirstName || !trimmedLastName) {
-      setErrorMessage(isDe ? 'Bitte füllen Sie alle Felder aus.' : 'Please fill in all fields.')
+    if (!trimmedFirstName || !trimmedLastName) {
+      setErrorMessage(isDe ? 'Bitte füllen Sie alle Pflichtfelder aus.' : 'Please fill in all required fields.')
       return
     }
 
@@ -106,6 +106,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
 
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 15000)
+    const cleanPhone = trimmedPhone && trimmedPhone.replace(/\D/g, '').length > 4 ? trimmedPhone : ''
 
     try {
       const response = await fetch(`${apiUrl}/api/bigmailer/add-lead?interactive=true`, {
@@ -114,7 +115,7 @@ export function ShareShowcaseModal({ isOpen, onClose, url, locale }: ShareShowca
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({ email: trimmed, phone: trimmedPhone, firstName: trimmedFirstName, lastName: trimmedLastName }),
+        body: JSON.stringify({ email: trimmed, phone: cleanPhone, firstName: trimmedFirstName, lastName: trimmedLastName }),
         signal: controller.signal,
       })
 

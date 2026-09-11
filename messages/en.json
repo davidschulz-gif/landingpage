@@ -705,7 +705,7 @@
     "firstNamePlaceholder": "First Name",
     "lastNamePlaceholder": "Last Name",
     "phoneNameReason": "We use your phone number to contact you and better understand your requirements and potential uses of AI in architecture.",
-    "phonePlaceholder": "Your WhatsApp / Phone number",
+    "phonePlaceholder": "Your WhatsApp / Phone number (optional)",
     "errorPhone": "Phone number is required",
     "step2Cta": "Continue",
     "step3Title": "Now book an appointment for your free live demo.",

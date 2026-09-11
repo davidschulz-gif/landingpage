@@ -1387,16 +1387,16 @@ export function ManyChatPricingSection({
                 key={plan.planType}
                 className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl w-full max-w-sm mx-auto ${
                   staticData.isPopular
-                    ? 'border border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/30 shadow-md hover:shadow-xl'
+                    ? 'border border-[#f05a47] dark:border-[#f05a47] ring-2 ring-[#f05a47]/30 shadow-md hover:shadow-xl'
                     : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
                 }`}
                 style={{ backgroundColor: '#ffffff', color: '#000000', fontFamily: 'Arial' }}
               >
                 {/* 4 Corner Small Square Fills */}
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
                 <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
                   <div className='flex items-center justify-center gap-2 mb-1'>
@@ -1407,7 +1407,7 @@ export function ManyChatPricingSection({
                       {plan.planType}
                     </span>
                     {staticData.isPopular && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px] font-bold uppercase tracking-wider">
                         {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
                       </span>
                     )}
@@ -1460,7 +1460,7 @@ export function ManyChatPricingSection({
                   <button
                     className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
                       staticData.isPopular
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm border-transparent'
+                        ? 'bg-[#f05a47] hover:bg-[#d94836] text-white shadow-sm border-transparent'
                         : 'border border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black bg-transparent'
                     }`}
                     style={{ fontFamily: 'Arial' }}
@@ -1675,10 +1675,10 @@ export function ManyChatPricingSection({
               ))}
             </div>
              <div id='booking-form' className='w-full xl:w-[300px] shrink-0 sticky top-24 z-30 bg-white rounded-2xl border border-neutral-300/90 dark:border-neutral-800 shadow-sm relative'>
-              <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-              <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+              <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
               <BookingDemoClassFormForPricingPage />
             </div>
           </div>
@@ -2407,7 +2407,7 @@ function PricingCard({
     <div
       className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl ${
         isFeatured
-          ? 'border border-blue-500 dark:border-blue-500 ring-2 ring-blue-500/30 shadow-md hover:shadow-xl'
+          ? 'border border-[#f05a47] dark:border-[#f05a47] ring-2 ring-[#f05a47]/30 shadow-md hover:shadow-xl'
           : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
       }`}
       style={{
@@ -2417,10 +2417,10 @@ function PricingCard({
       }}
     >
       {/* 4 Corner Small Square Fills - matching Research page styling with small square fills instead of red crosses */}
-      <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
 
       {/* Header Section */}
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-1`}>
@@ -2432,7 +2432,7 @@ function PricingCard({
             {plan.name}
           </span>
           {isFeatured && (
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px] font-bold uppercase tracking-wider">
               {plan.badgeTextKey ? t(plan.badgeTextKey) : 'PRO'}
             </span>
           )}
@@ -2567,7 +2567,7 @@ function PricingCard({
         ) : isFeatured ? (
           <Button
             onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='w-full py-2.5 px-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer border-transparent'
+            className='w-full py-2.5 px-4 rounded-full bg-[#f05a47] hover:bg-[#d94836] text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer border-transparent'
             style={{ fontFamily: 'Arial' }}
           >
             {t('subscribe')}

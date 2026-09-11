@@ -1557,7 +1557,7 @@ export default function ResearchProjectsPage() {
 
               {/* Card 3: Advanced */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-blue-500 dark:border-blue-500 flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition ring-2 ring-blue-500/30"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-[#f05a47] dark:border-[#f05a47] flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition ring-2 ring-[#f05a47]/30"
                 style={{ fontFamily: 'Arial' }}
               >
                 <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
@@ -1568,7 +1568,7 @@ export default function ResearchProjectsPage() {
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white flex items-center justify-between">
                     <span>{t('plans.advanced')}</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[9px]  uppercase">PRO</span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#f05a47] text-white text-[9px]  uppercase">PRO</span>
                   </h4>
 
                   {/* Price */}
@@ -1631,7 +1631,7 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full bg-blue-600 text-white text-center text-xs  uppercase tracking-wider hover:bg-blue-700 transition-all duration-200 mt-6 inline-block shadow-md"
+                  className="w-full py-2.5 px-4 rounded-full bg-[#f05a47] hover:bg-[#d94836] text-white text-center text-xs uppercase tracking-wider transition-all duration-200 mt-6 inline-block shadow-md"
                 >
                   {t('plans.getStarted')}
                 </Link>

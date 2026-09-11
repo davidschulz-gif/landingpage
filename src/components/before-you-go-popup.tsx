@@ -134,9 +134,8 @@ export default function BeforeYouGoPopup() {
     const e: typeof errors = {}
     if (!firstName) e.firstName = tDemo('errorRequired') || 'Required'
     if (!lastName) e.lastName = tDemo('errorRequired') || 'Required'
-    if (!phone || phone.length < 5) e.phone = t('errorPhone') || 'Required'
     setErrors(e)
-    return !e.firstName && !e.lastName && !e.phone
+    return !e.firstName && !e.lastName
   }
 
   const handleSubmitStep1 = async (ev: React.FormEvent) => {
@@ -162,16 +161,17 @@ export default function BeforeYouGoPopup() {
     setIsSubmitting(true)
     const ctrl = new AbortController()
     const tid = setTimeout(() => ctrl.abort(), 10000)
+    const cleanPhone = phone && phone.replace(/\D/g, '').length > 4 ? phone.trim() : ''
     try {
       const res = await fetch(`${apiUrl}/api/bigmailer/add-lead`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), phone: phone.trim(), firstName: firstName.trim(), lastName: lastName.trim() }),
+        body: JSON.stringify({ email: email.trim(), phone: cleanPhone, firstName: firstName.trim(), lastName: lastName.trim() }),
         signal: ctrl.signal,
       })
       if (res.ok && typeof window !== 'undefined') {
         ;(window as any).dataLayer = (window as any).dataLayer || []
-        ;(window as any).dataLayer.push({ event: 'subscribe', user_data: { email: email.trim(), phone: phone.trim(), firstName: firstName.trim(), lastName: lastName.trim() } })
+        ;(window as any).dataLayer.push({ event: 'subscribe', user_data: { email: email.trim(), phone: cleanPhone, firstName: firstName.trim(), lastName: lastName.trim() } })
       }
     } catch (_) {}
     finally { clearTimeout(tid); setIsSubmitting(false); setStep(3) }
