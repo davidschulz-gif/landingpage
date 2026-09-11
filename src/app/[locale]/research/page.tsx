@@ -83,6 +83,7 @@ import {
   Trophy,
   Target,
   ExternalLink,
+  ArrowRight,
   Handshake,
   Settings,
   Tag,
@@ -866,6 +867,71 @@ export default function ResearchProjectsPage() {
             {/* Interactive Material & Texture Viewer Showcase */}
             <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800">
               <ViewerShowcase />
+            </div>
+
+            {/* PROMINENT SPOTLIGHT: EINGEBETTETER TYPUS-KONFIGURATOR */}
+            <div className="mt-8 relative p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border-2 border-[#f05a47] shadow-xl text-left">
+              {/* 4 Corner Small Square Fills */}
+              <span className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <span className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="space-y-2.5 max-w-2xl">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span
+                      className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[10px] font-bold uppercase tracking-wider badge-featured-red"
+                      style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
+                    >
+                      {locale === 'de' ? 'PRODUKT-FEATURE' : 'PRODUCT FEATURE'}
+                    </span>
+                    <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                      350 € / {locale === 'de' ? 'Monat' : 'month'}
+                    </span>
+                  </div>
+
+                  <h4
+                    className="text-xl sm:text-2xl font-bold text-neutral-950 dark:text-white tracking-tight"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de'
+                      ? 'Eingebetteter TYPUS-Konfigurator für Ihre eigene Website'
+                      : 'Embedded TYPUS Configurator for Your Own Website'}
+                  </h4>
+
+                  <p
+                    className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de'
+                      ? 'Integrieren Sie diesen interaktiven 3D- und generativen KI-Konfigurator nahtlos in Ihren eigenen Online-Auftritt. Architekten, Planer und Bauherren konfigurieren Ihre Materialien und Produkte direkt im Entwurf.'
+                      : 'Seamlessly embed this interactive 3D and generative AI configurator into your own website. Enable architects, designers, and clients to configure your materials and products directly within active designs.'}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+                  <Link
+                    href={`/${locale}/embedded-configurator`}
+                    className="py-2.5 px-6 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 text-xs font-bold uppercase tracking-wider text-center transition-all duration-200 shadow-sm inline-flex items-center justify-center gap-2"
+                    style={{ fontFamily: 'Arial', backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
+                  >
+                    <span>{locale === 'de' ? 'Mehr erfahren' : 'Learn More'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+
+                  <Link
+                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2.5 px-6 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-xs font-bold uppercase tracking-wider text-center hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-flex items-center justify-center gap-1.5"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    <span>{locale === 'de' ? 'Jetzt testen' : 'Try Now'}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </motion.div>
         </section>
@@ -1781,9 +1847,7 @@ export default function ResearchProjectsPage() {
                     </span>
                   </div>
                   <Link
-                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`/${locale}/embedded-configurator`}
                     className="w-fit py-1.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px]  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
                   >
                     {t('plans.tryIt')}
