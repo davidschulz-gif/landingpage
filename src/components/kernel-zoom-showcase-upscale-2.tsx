@@ -207,7 +207,7 @@ export function KernelZoomShowcaseUpscale2() {
   }
 
   return (
-    <section className="py-10 md:py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section-upscale-2">
+    <section className="py-10 md:py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section-upscale-2">
       <style>{`
         @keyframes kernelZoomFadeIn {
           from { opacity: 0; }

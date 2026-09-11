@@ -9,7 +9,7 @@ export function PricingCTASection() {
     const t = useTranslations('PricingCTA')
 
     return (
-        <section className="py-24 bg-[#F2F1ED] border-y border-gray-100">
+        <section className="py-24 bg-[#FFFFFF] border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     className="text-center"

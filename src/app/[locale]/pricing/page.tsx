@@ -83,7 +83,7 @@ function PricingContent() {
     }, [searchParams])
 
     return (
-        <div className='relative w-full bg-[#F2F1ED]'>
+        <div className='relative w-full bg-[#FFFFFF]'>
             <NavbarDemo />
 
             <main className="pt-4">

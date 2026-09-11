@@ -11,5 +11,5 @@ export const THEME_COLORS = {
   textMuted: 'rgb(71, 85, 105)', // slate-600
 
   // Background
-  background: '#F2F1ED', // Background color as specified
+  background: '#FFFFFF', // Background color as specified
 } as const

@@ -405,7 +405,7 @@ export default function Home() {
       />
 
       {/* Main Content - Always Rendered */}
-      <div className='relative w-full bg-[#F2F1ED]' style={{ backgroundColor: '#F2F1ED' }}>
+      <div className='relative w-full bg-[#FFFFFF]' style={{ backgroundColor: '#FFFFFF' }}>
         {/* Navbar */}
         <NavbarDemo />
 
@@ -512,7 +512,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
-          className="py-20 bg-[#F2F1ED] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 w-full flex flex-col items-center justify-center text-center px-4"
+          className="py-20 bg-[#FFFFFF] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 w-full flex flex-col items-center justify-center text-center px-4"
         >
           <div className="max-w-3xl mx-auto space-y-6">
             <h2 className="text-2xl sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-tight" style={{ fontFamily: 'Arial' }}>

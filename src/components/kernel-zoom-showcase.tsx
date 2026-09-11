@@ -127,7 +127,7 @@ export function KernelZoomShowcase() {
     : ((boxCoords.y / 100) * containerRect.height - 110)
 
   return (
-    <section className="py-10 md:py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
+    <section className="py-10 md:py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
       <div className="max-w-[1600px] mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}

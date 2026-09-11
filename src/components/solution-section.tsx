@@ -27,7 +27,7 @@ export function SolutionSection() {
       {/* Problem Section Wrapper */}
       <div className="relative">
         <div className="flex items-center justify-center overflow-hidden z-10">
-          <section className='w-full py-12 lg:py-20 bg-[#F2F1ED] dark:bg-black px-4'>
+          <section className='w-full py-12 lg:py-20 bg-[#FFFFFF] dark:bg-black px-4'>
             <div className='max-w-5xl mx-auto'>
               {/* <div className='mb-12 md:mb-16 text-center'> */}
                 {/* <h2
@@ -70,7 +70,7 @@ export function SolutionSection() {
                   </div>
                 </div>
 
-                <div className='bg-[#F2F1ED] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-200 dark:border-neutral-800'>
+                <div className='bg-[#FFFFFF] dark:bg-neutral-900/50 p-8 md:p-12'>
                   <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
                   <div className='space-y-8'>
                     {[
@@ -101,13 +101,10 @@ export function SolutionSection() {
       </div>
 
       {/* Benefits Section */}
-      <section className='relative z-20 pt-12 lg:pt-20 bg-[#F2F1ED] dark:bg-black text-neutral-900 dark:text-white px-4 overflow-hidden'>
+      <section className='relative z-20 pt-12 lg:pt-20 bg-[#FFFFFF] dark:bg-black text-neutral-900 dark:text-white px-4 overflow-hidden'>
         <div className='max-w-7xl mx-auto'>
           <div className='text-center mb-20'>
-            {/* <h3 className='text-lg md:text-xl uppercase text-neutral-900 dark:text-white mb-0'>
-              {t('benefits.solutionHeader')}
-            </h3> */}
-             <h2 className="text-center heading-primary mb-4">
+            <h2 className="text-center heading-primary mb-4">
               {t('benefits.solutionHeader')}
             </h2>
             <div className='flex justify-center py-6'>

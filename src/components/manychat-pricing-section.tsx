@@ -1493,7 +1493,7 @@ export function ManyChatPricingSection({
     <section
       ref={containerRef}
       className='min-h-screen relative pt-0 pb-20'
-      style={{ backgroundColor: '#F2F1ED' }}
+      style={{ backgroundColor: '#FFFFFF' }}
       id='pricing'
     >
 

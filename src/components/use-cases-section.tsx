@@ -123,7 +123,7 @@ export const UseCasesSection = () => {
   ]
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-[#F2F1ED]">
+    <section className="py-24 px-6 relative overflow-hidden bg-[#FFFFFF]">
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />

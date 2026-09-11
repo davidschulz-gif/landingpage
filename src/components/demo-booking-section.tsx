@@ -10,7 +10,7 @@ export function DemoBookingSection() {
   return (
     <section
       className='py-24 relative flex flex-col justify-center overflow-hidden px-4'
-      style={{ backgroundColor: '#F2F1ED' }}
+      style={{ backgroundColor: '#FFFFFF' }}
       id='demo-booking'
     >
       <div className='w-full max-w-7xl mx-auto px-4 relative z-10'>

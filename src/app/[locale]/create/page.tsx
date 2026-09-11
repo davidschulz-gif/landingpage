@@ -200,7 +200,7 @@ export default function CreateFeatureLandingPage() {
   const content = locale === 'de' ? t.de : t.en
 
   return (
-    <div className='relative w-full bg-[#F2F1ED] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#FFFFFF] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 
@@ -289,7 +289,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 2. BASE IMAGE SECTION */}
-        <div className="py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-left">
               <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -341,7 +341,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 4. INSPIRATION SECTION */}
-        <div className="py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -396,7 +396,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 6. GENERATION CONTROL */}
-        <div className="py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
@@ -443,7 +443,7 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 8. FEINSCHLIFF SECTION */}
-        <div className="py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        <div className="py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
           <div className="max-w-5xl mx-auto text-left space-y-6">
             <h2 className="heading-primary">
               {content.sec7Title}

@@ -73,7 +73,7 @@ export function LandingComparisons() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-[#F2F1ED] dark:bg-neutral-950/10 border-t border-neutral-100 dark:border-neutral-900" id="landing-comparisons-section">
+    <section className="py-16 md:py-24 bg-[#FFFFFF] dark:bg-neutral-950/10 border-t border-neutral-100 dark:border-neutral-900" id="landing-comparisons-section">
       <div className="max-w-5xl mx-auto px-4">
         
         {/* Header Block */}

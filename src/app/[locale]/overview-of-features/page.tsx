@@ -14,7 +14,7 @@ const StickySliderSection = dynamic(
     ),
   {
     ssr: false,
-    loading: () => <div className='h-96 bg-[#F2F1ED] animate-pulse flex items-center justify-center text-neutral-400'>Loading Features...</div>,
+    loading: () => <div className='h-96 bg-[#FFFFFF] animate-pulse flex items-center justify-center text-neutral-400'>Loading Features...</div>,
   }
 )
 
@@ -35,7 +35,7 @@ export default function OverviewOfFeaturesPage() {
   }, [])
 
   return (
-    <div className='relative w-full bg-[#F2F1ED] min-h-screen flex flex-col justify-between'>
+    <div className='relative w-full bg-[#FFFFFF] min-h-screen flex flex-col justify-between'>
       <div>
         <NavbarDemo />
 
@@ -49,7 +49,7 @@ export default function OverviewOfFeaturesPage() {
 
 
         {/* Hero Title Block */}
-        <div className="pt-32 pb-8 bg-[#F2F1ED] text-center px-4">
+        <div className="pt-32 pb-8 bg-[#FFFFFF] text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

@@ -57,7 +57,7 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-[#F2F1ED]/80 backdrop-blur-md overflow-y-auto font-sans text-gray-900">
+    <div className="fixed inset-0 z-[9999] bg-[#FFFFFF]/80 backdrop-blur-md overflow-y-auto font-sans text-gray-900">
       {/* <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"> */}
         <div className="max-w-4xl mx-auto">
           <button 

@@ -83,7 +83,7 @@ export default function OnboardingWizard({ email, locale, onComplete, onCancel, 
     }
 
     return (
-        <div className="fixed inset-0 z-[50000] flex flex-col items-center justify-center bg-[#F2F1ED]/80 backdrop-blur-md p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-[50000] flex flex-col items-center justify-center bg-[#FFFFFF]/80 backdrop-blur-md p-4 overflow-y-auto">
             <button
                 className="absolute top-4 right-4 text-gray-600 cursor-pointer"
                 onClick={onCancel}

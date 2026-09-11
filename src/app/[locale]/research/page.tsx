@@ -130,7 +130,7 @@ export default function ResearchProjectsPage() {
   const isDe = locale === 'de'
 
   return (
-    <div className="research-page-scope relative w-full bg-[#F2F1ED] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
+    <div className="research-page-scope relative w-full bg-[#FFFFFF] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
       <NavbarDemo />
 
       <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-36 pb-28">

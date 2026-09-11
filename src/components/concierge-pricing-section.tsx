@@ -138,7 +138,7 @@ export function ConciergePricingSection() {
     <section
       ref={containerRef}
       className='py-2 relative'
-      style={{ backgroundColor: '#F2F1ED' }}
+      style={{ backgroundColor: '#FFFFFF' }}
       id='concierge-pricing'
     >
       <div className='flex flex-col justify-center overflow-hidden px-4'>

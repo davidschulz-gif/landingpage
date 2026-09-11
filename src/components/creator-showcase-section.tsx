@@ -60,7 +60,7 @@ export function CreatorShowcaseSection() {
     return (
         <div
             className='w-full py-20'
-            style={{ backgroundColor: '#F2F1ED' }}
+            style={{ backgroundColor: '#FFFFFF' }}
             id='creators'
         >
             <div className='max-w-7xl mx-auto px-4'>

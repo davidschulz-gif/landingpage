@@ -203,7 +203,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
   ]
 
   return (
-    <div className='relative w-full bg-[#F2F1ED] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
+    <div className='relative w-full bg-[#FFFFFF] dark:bg-neutral-950 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-black selection:text-white'>
       <div>
         <NavbarDemo />
 

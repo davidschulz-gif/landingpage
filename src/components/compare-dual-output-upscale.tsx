@@ -65,7 +65,7 @@ export function CompareDualOutputUpscale({ className }: CompareDualOutputUpscale
   const rightLabel = locale === 'de' ? "TYPUS 8K (KREATIV)" : "TYPUS 8K (CREATIVE)";
 
   return (
-    <div className={cn("w-full overflow-hidden py-16 bg-[#F2F1ED] dark:bg-neutral-950/20 border-t border-neutral-100 dark:border-neutral-900", className)}>
+    <div className={cn("w-full overflow-hidden py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-neutral-100 dark:border-neutral-900", className)}>
       <div className="max-w-[1200px] mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">

@@ -13,7 +13,7 @@
 
 :root {
   /* Updated color tokens to match design brief with cyan-based palette */
-  --background: #F2F1ED;
+  --background: #FFFFFF;
   --foreground: #000000;
   --card: #ffffff;
   --card-foreground: #164e63;
@@ -154,7 +154,7 @@
 
   body {
     scroll-behavior: smooth;
-    background-color: #F2F1ED !important;
+    background-color: #FFFFFF !important;
   }
 
   a[href^='#'] {

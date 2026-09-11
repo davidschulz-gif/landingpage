@@ -104,7 +104,7 @@ export function IndustryExamplesSection({ slug }: { slug: string }) {
   })
 
   return (
-    <section className="py-24 px-4 bg-[#F2F1ED] dark:bg-[#0a0a0c] border-b border-neutral-100 dark:border-neutral-900">
+    <section className="py-24 px-4 bg-[#FFFFFF] dark:bg-[#0a0a0c] border-b border-neutral-100 dark:border-neutral-900">
       <div className="max-w-7xl mx-auto space-y-12">
 
         <motion.div {...motionProps} className="space-y-4">

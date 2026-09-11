@@ -319,14 +319,14 @@ export default function OrderPage() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F2F1ED]">
+      <div className="min-h-screen flex items-center justify-center bg-[#FFFFFF]">
         <Loader2 className="animate-spin text-black" size={40} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F1ED] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
+    <div className="min-h-screen bg-[#FFFFFF] py-12 px-4 sm:px-6 lg:px-8 font-sans text-gray-900">
       <div className="max-w-4xl mx-auto">
         <Link
           href={`/${locale}/pricing`}
