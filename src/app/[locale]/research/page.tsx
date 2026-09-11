@@ -152,16 +152,16 @@ export default function ResearchProjectsPage() {
             </div>
 
             {/* Main Logo Container Box with Corner (+) Accents */}
-            <div className="relative p-8 sm:p-12 md:p-14 rounded-3xl bg-white/70 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-4xl w-full flex items-center justify-center">
+            <div className="relative p-6 sm:p-8 rounded-2xl bg-white/70 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-xl w-full flex flex-col items-center justify-center">
               <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
               <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
               <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
               <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
 
-              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 py-2 select-none">
-                <div className="bg-black dark:bg-white w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 shrink-0" />
+              <div className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 py-1 select-none">
+                <div className="bg-black dark:bg-white w-6 h-6 sm:w-7 sm:h-7 shrink-0" />
                 <span
-                  className="text-black dark:text-white font-bold tracking-[0.06em] uppercase text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-none"
+                  className="text-black dark:text-white font-normal tracking-[0.1em] uppercase text-2xl sm:text-3xl md:text-4xl leading-none"
                   style={{
                     fontFamily: 'Arial, Helvetica, sans-serif',
                   }}
