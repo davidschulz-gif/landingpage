@@ -76,9 +76,7 @@ const professionalPlans = [
     },
     features: [
       { text: '3 CREDITS PER DAY', hasFeature: true },
-      { text: 'CREDITS REFRESH DAILY', hasFeature: true },
       { text: '1K RESOLUTION', hasFeature: true },
-      { text: 'GOOGLE NANO BANANA ONLY', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: false },
       { text: 'UPSCALE UP TO 8K', hasFeature: false },
       { text: 'EMAIL SUPPORT', hasFeature: true },
@@ -982,12 +980,8 @@ export function ManyChatPricingSection({
         let text = f.text;
         if (f.text.includes('3 CREDITS')) {
           text = locale === 'de' ? '3 CREDITS pro Tag' : '3 CREDITS per day';
-        } else if (f.text.includes('CREDITS REFRESH')) {
-          text = locale === 'de' ? 'Tägliche Erneuerung (00:00 UTC)' : 'Credits refresh daily (00:00 UTC)';
         } else if (f.text.includes('1K RESOLUTION')) {
           text = locale === 'de' ? '1K AUFLÖSUNG' : '1K RESOLUTION';
-        } else if (f.text.includes('GOOGLE NANO BANANA')) {
-          text = locale === 'de' ? 'Nur Google Nano Banana Modell' : 'Google Nano Banana only';
         } else {
           text = mapFeatureText(f);
         }

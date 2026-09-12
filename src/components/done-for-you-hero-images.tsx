@@ -13,7 +13,7 @@ const ALL_IMAGES = [
 
   // Right Cluster
   { src: '/variation-8.jpg', mobile: false, desktop: { width: 325, height: 200, x: 350, y: -150, rotate: 1, delay: 0.5 } },
-  { src: '/industrial-building-render.png', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 25, rotate: 5, delay: 0.15 } },
+  { src: '/paris-haussmann-street.jpg', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 25, rotate: 5, delay: 0.15 } },
   // { src: 'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/mediterranean-coastal-apartment-terraces.jpg', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 200, rotate: 5, delay: 0.15 } },
   { src: '/kernal-zoom/image-22072.png', mobile: false, desktop: { width: 300, height: 175, x: 300, y: 200, rotate: 5, delay: 0.15 } },
 

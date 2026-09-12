@@ -217,11 +217,11 @@ export const NavbarLogo = ({ visible }: { visible?: boolean }) => {
     >
       <div className='bg-black size-3 m-2.5'></div>
       <span
-        className='text-center !font-logo uppercase font-bold'
+        className='text-center !font-logo uppercase font-normal'
         style={{
           fontFamily: "Arial, Helvetica, sans-serif",
           fontSize: '25px',
-          fontWeight: 700,
+          fontWeight: 400,
           letterSpacing: '2px',
           lineHeight: '1.3em',
           color: '#000',
