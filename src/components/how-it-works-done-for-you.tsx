@@ -93,7 +93,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                         <div className="relative z-10 bg-white rounded-[40px] p-4 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] border border-gray-100 group">
                             <div className="relative rounded-[32px] overflow-hidden aspect-[4/3]">
                                 <img
-                                    src={'/Sketch-to-Render.webp'}
+                                    src={'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/modern-coastal-green-facade.jpg'}
                                     alt="How it works visualization"
                                     className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
                                 />

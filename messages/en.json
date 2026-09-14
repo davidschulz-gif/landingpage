@@ -13,7 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Return to Home",
     "solutions": "SOLUTIONS",
-    "research": "RESEARCH",
+    "research": "For building product suppliers",
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
@@ -42,7 +42,7 @@
           "description": "Discover all AI tools and features in one overview"
         },
         "research": {
-          "title": "AI Research (FFplus)",
+          "title": "Integration of product range",
           "description": "Integration of real building products into our EU-compliant AI model"
         },
         "bilderFlatrate": {
@@ -627,7 +627,7 @@
       "create": "Create",
       "edit": "Edit",
       "upscale": "Upscale",
-      "research": "AI Research (FFplus)",
+      "research": "Integration of product range",
       "tutorials": "Tutorials",
       "press": "Press",
       "reviews": "Reviews",
@@ -2732,7 +2732,7 @@
       }
     },
     "visualization": {
-      "prompt": "Create a photorealistic modern villa with floor-to-ceiling glass walls, nestled in a lush green forest at sunset with cinematic lighting.",
+      "prompt": "Create a photorealistic modern multi-story residential building with elegant textured facade, expansive panoramic windows, and sun terraces in clear daylight.",
       "generating": "Generating architectural details...",
       "aiPromptBadge": "AI Prompt",
       "inputTypeBadge": "Input Type",
@@ -3405,7 +3405,7 @@
       "description": "First, create an account at https://app.typus.ai/register. You can then start generating images for free right away. If you’d like to create more, you can request a Pro license from our team. Simply send us the email address you used to create your account in the Instagram chat, and we’ll activate your Pro license. That’s it — you’re ready to start creating! 🚀",
       "step1Title": "Create Account",
       "step1Desc": "First, create an account at app.typus.ai/register",
-      "step1Action": "app.typus.ai/register",
+      "step1Action": "Create Account",
       "step2Title": "Request Pro License",
       "step2Desc": "Send us the email address you used to register in the Instagram chat to activate your Pro license.",
       "step2Action": "DM @typus.ai",
@@ -3511,7 +3511,7 @@
     "cta": {
       "title": "Ready to start creating? 🚀",
       "desc": "First, create an account at app.typus.ai/register, drop us your registration email on Instagram, and unleash your creative potential with Typus.ai.",
-      "registerBtn": "Create Account (app.typus.ai/register)",
+      "registerBtn": "Create Account",
       "showcaseBtn": "Creator Showcase",
       "instagramBtn": "DM on Instagram (@typus.ai)"
     },

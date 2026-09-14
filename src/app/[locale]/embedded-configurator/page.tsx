@@ -8,8 +8,8 @@ import { FooterSection } from '@/components/footer-section'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { Check, ExternalLink } from 'lucide-react'
 
-// ── Corner square markers (matches TYPUS brand pattern) ──────────────────
-function CornerSquares({ color = '#f05a47', size = 'w-2 h-2' }: { color?: string; size?: string }) {
+// ── Corner square markers (TYPUS brand pattern in black) ─────────────────
+function CornerSquares({ color = '#000000', size = 'w-2 h-2' }: { color?: string; size?: string }) {
   return (
     <>
       <span
@@ -192,46 +192,38 @@ export default function EmbeddedConfiguratorLandingPage() {
         <section className="relative mx-auto max-w-6xl px-6 md:px-10 py-4">
           <CornerSquares />
 
-          {/* Offset grid: empty left col on md+ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="hidden md:block" />
-            <div className="md:col-span-2 px-2 pb-4 space-y-6">
-              {/* Label */}
-              <p
-                className="text-xs tracking-widest uppercase"
-                style={{ color: '#f05a47' }}
+          <div className="max-w-4xl px-2 pb-4 space-y-6">
+            {/* Label */}
+            <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
+              {t.heroLabel}
+            </p>
+
+            {/* Headline block — bold + light, same large size */}
+            <div>
+              <h1 className="heading-primary">
+                {t.heroTitle}
+              </h1>
+              <h2 className="heading-primary text-neutral-500 font-normal">
+                {t.heroSubtitle}
+              </h2>
+            </div>
+
+            {/* CTA row */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a
+                href={`mailto:info@typus.app`}
+                className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
               >
-                {t.heroLabel}
-              </p>
-
-              {/* Headline block — bold + light, same large size */}
-              <div>
-                <h1 className="heading-primary">
-                  {t.heroTitle}
-                </h1>
-                <h2 className="heading-primary">
-                  {t.heroSubtitle}
-                </h2>
-              </div>
-
-              {/* CTA row */}
-              <div className="flex flex-wrap gap-3 pt-2">
-                <a
-                  href={`mailto:info@typus.app`}
-                  className="inline-flex h-9 items-center justify-center rounded-md border px-6 text-xs tracking-widest uppercase transition-colors hover:bg-black hover:text-white"
-                  style={{ borderColor: '#f05a47', color: '#f05a47' }}
-                >
-                  {t.cta1}
-                </a>
-                <Link
-                  href={CALENDAR_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center justify-center rounded-md border border-black px-6 text-xs tracking-widest uppercase transition-colors hover:bg-black hover:text-white"
-                >
-                  {t.cta2}
-                </Link>
-              </div>
+                {t.cta1}
+              </a>
+              <Link
+                href={CALENDAR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 items-center justify-center rounded-md border border-black px-6 text-xs tracking-widest uppercase transition-colors hover:bg-black hover:text-white"
+              >
+                {t.cta2}
+              </Link>
             </div>
           </div>
         </section>
@@ -246,10 +238,7 @@ export default function EmbeddedConfiguratorLandingPage() {
 
           {/* Label row above the bordered section */}
           <div className="relative mx-auto max-w-6xl px-6 md:px-10 pb-3">
-            <p
-              className="text-xs tracking-widest uppercase"
-              style={{ color: '#f05a47' }}
-            >
+            <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
               {t.tryLabel}
             </p>
           </div>
@@ -286,10 +275,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Left: label + title */}
             <div className="space-y-3">
-              <p
-                className="text-xs tracking-widest uppercase"
-                style={{ color: '#f05a47' }}
-              >
+              <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
                 {t.featuresLabel}
               </p>
               <h2 className="heading-primary">
@@ -302,10 +288,7 @@ export default function EmbeddedConfiguratorLandingPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
                 {t.features.map((f, i) => (
                   <div key={i} className="space-y-1.5">
-                    <span
-                      className="block text-xs "
-                      style={{ color: '#f05a47' }}
-                    >
+                    <span className="block text-xs font-mono text-neutral-400 font-medium">
                       {f.num}
                     </span>
                     <h3 className="text-sm  text-neutral-900">{f.title}</h3>
@@ -323,10 +306,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <div className="h-10" />
 
           <div className="relative mx-auto max-w-6xl px-6 md:px-10 pb-3">
-            <p
-              className="text-xs tracking-widest uppercase"
-              style={{ color: '#f05a47' }}
-            >
+            <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
               {t.howLabel}
             </p>
           </div>
@@ -347,10 +327,7 @@ export default function EmbeddedConfiguratorLandingPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                   {t.steps.map((step, i) => (
                     <div key={i} className="space-y-2">
-                      <span
-                        className="block text-3xl "
-                        style={{ color: '#f05a47' }}
-                      >
+                      <span className="block text-3xl font-light text-neutral-900">
                         {step.num}
                       </span>
                       <h3 className="text-sm  text-neutral-900">{step.title}</h3>
@@ -376,10 +353,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {/* Left: label + title + price */}
             <div className="space-y-4">
-              <p
-                className="text-xs tracking-widest uppercase"
-                style={{ color: '#f05a47' }}
-              >
+              <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
                 {t.pricingLabel}
               </p>
               <h2 className="heading-primary">
@@ -395,8 +369,7 @@ export default function EmbeddedConfiguratorLandingPage() {
                   href={CALENDAR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center justify-center rounded-md border px-6 text-xs tracking-widest uppercase transition-colors hover:bg-[#f05a47] hover:text-white"
-                  style={{ borderColor: '#f05a47', color: '#f05a47' }}
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
                 >
                   {t.pricingCta}
                 </Link>
@@ -417,8 +390,8 @@ export default function EmbeddedConfiguratorLandingPage() {
                 {t.includes.map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs text-neutral-800">
                     <Check
-                      className="shrink-0 mt-0.5"
-                      style={{ color: '#f05a47', width: 14, height: 14 }}
+                      className="shrink-0 mt-0.5 text-neutral-900"
+                      style={{ width: 14, height: 14 }}
                       strokeWidth={2.5}
                     />
                     <span>{item}</span>
@@ -435,10 +408,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <div className="h-10" />
 
           <div className="relative mx-auto max-w-6xl px-6 md:px-10 pb-3">
-            <p
-              className="text-xs tracking-widest uppercase"
-              style={{ color: '#f05a47' }}
-            >
+            <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
               {t.faqLabel}
             </p>
           </div>
@@ -460,13 +430,12 @@ export default function EmbeddedConfiguratorLandingPage() {
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
                       className="w-full flex items-center justify-between text-left gap-4 group"
                     >
-                      <span className="text-sm  text-neutral-900 group-hover:text-[#f05a47] transition-colors">
+                      <span className="text-sm  text-neutral-900 group-hover:text-neutral-600 transition-colors">
                         {faq.q}
                       </span>
                       <span
-                        className="shrink-0 text-lg font-light transition-transform"
+                        className="shrink-0 text-lg font-light text-neutral-900 transition-transform"
                         style={{
-                          color: '#f05a47',
                           transform: openFaq === i ? 'rotate(45deg)' : 'rotate(0deg)',
                         }}
                       >
@@ -491,10 +460,7 @@ export default function EmbeddedConfiguratorLandingPage() {
         <div className="h-20" />
         <section className="relative mx-auto max-w-6xl px-6 md:px-10 py-8 text-center space-y-4">
           <CornerSquares />
-          <p
-            className="text-xs tracking-widest uppercase"
-            style={{ color: '#f05a47' }}
-          >
+          <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
             {isDe ? 'Jetzt starten' : 'Get started'}
           </p>
           <h2 className="heading-primary">
@@ -505,8 +471,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <a
               href={`mailto:info@typus.app`}
-              className="inline-flex h-9 items-center justify-center rounded-md border px-6 text-xs tracking-widest uppercase transition-colors hover:bg-[#f05a47] hover:text-white"
-              style={{ borderColor: '#f05a47', color: '#f05a47' }}
+              className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
             >
               {isDe ? 'Kontakt aufnehmen' : 'Get in touch'}
             </a>
