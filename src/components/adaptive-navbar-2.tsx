@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical } from 'lucide-react'
+import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -153,6 +153,12 @@ export function NavbarDemo() {
             link: 'https://www.linkedin.com/company/typus-ai/',
             target: '_blank',
             icon: Linkedin,
+          },
+          {
+            title: tNav('community.creators.title'),
+            description: tNav('community.creators.description'),
+            link: '/creator-collaboration',
+            icon: Video,
           },
         ],
       },

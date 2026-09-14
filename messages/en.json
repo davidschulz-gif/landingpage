@@ -70,6 +70,10 @@
         "linkedin": {
           "title": "Linkedin",
           "description": "Connect with us for professional updates and insights"
+        },
+        "creators": {
+          "title": "Creator Collaboration",
+          "description": "Become a creator partner and produce content for Typus.AI"
         }
       },
       "licenses": {
@@ -175,6 +179,7 @@
     "appOfferTitle": "PROFESSIONAL",
     "serviceOfferTitle": "SERVICE OFFER",
     "educationOfferTitle": "ACADEMIC",
+    "floorPlanOfferTitle": "FLOOR PLAN",
     "features": {
       "createAccount": "CREATE A FREE ACCOUNT",
       "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",
@@ -628,6 +633,7 @@
       "reviews": "Reviews",
       "instagram": "Instagram",
       "linkedin": "Linkedin",
+      "creator": "Creator Collaboration",
       "pricing": "Pricing",
       "plugins": "Plugins",
       "studentAccess": "Student Access",

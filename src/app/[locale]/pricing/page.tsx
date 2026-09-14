@@ -121,7 +121,7 @@ function PricingContent() {
                                         {mode === 'app'
                                               ? tHero('appOfferTitle')
                                               : mode === 'floorplan'
-                                                ? 'FLOOR PLAN'
+                                                ? tHero('floorPlanOfferTitle')
                                                 : tHero('educationOfferTitle')}
                                     </span>
                                 </button>

@@ -112,7 +112,7 @@ export function CreatorShowcaseSection({
                                     viewport={{ once: true }}
                                 >
                                     <a href={video.link} target='_blank' rel='noopener noreferrer' className='block group'>
-                                        <Card className='border-0 overflow-hidden shadow-xl rounded-3xl transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 bg-black'>
+                                        <Card className='border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-md rounded-3xl transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-2 bg-neutral-100 dark:bg-neutral-900'>
                                             <CardContent className='p-0 relative'>
                                                 <div className='aspect-[9/16] relative overflow-hidden'>
                                                     <img

@@ -100,24 +100,24 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
   }
 
   return (
-    <section className="py-20 bg-neutral-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white relative overflow-hidden border-t border-neutral-200/80 dark:border-neutral-800">
       {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/5 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none rounded-full" />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-800/80 border border-neutral-700/80 text-xs font-semibold text-neutral-300 uppercase tracking-widest">
-            <IconSparkles className="w-4 h-4 text-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-widest shadow-2xs">
+            <IconSparkles className="w-4 h-4 text-emerald-500" />
             {isDe ? 'Interaktive Live-Vorschau' : 'Interactive Live Studio Preview'}
           </div>
-          <h2 className="heading-primary text-white">
+          <h2 className="heading-primary">
             {isDe
               ? 'Erleben Sie alle KI-Grundriss-Module live'
               : 'Try Our AI Floor Plan Tools Live'}
           </h2>
-          <p className="text-neutral-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             {isDe
               ? 'Wechseln Sie direkt unten zwischen den verschiedenen Grundriss-Bereichen und testen Sie die Benutzeroberfläche in Echtzeit.'
               : 'Switch between different floor plan tools below to experience our generator apps live on the landing page.'}
@@ -133,16 +133,16 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
               <button
                 key={sec.id}
                 onClick={() => handleTabChange(sec.id)}
-                className={`relative px-4 py-3 sm:px-5 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 flex items-center gap-2.5 shadow-md ${
+                className={`relative px-4 py-3 sm:px-5 sm:py-3.5 rounded-xl font-medium text-sm sm:text-base transition-all duration-300 flex items-center gap-2.5 ${
                   isActive
-                    ? 'bg-white text-black font-semibold shadow-xl scale-[1.02]'
-                    : 'bg-neutral-800/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-700/60'
+                    ? 'bg-white dark:bg-neutral-800 text-neutral-950 dark:text-white font-semibold border border-neutral-300 dark:border-neutral-700 shadow-sm scale-[1.02]'
+                    : 'bg-white/60 dark:bg-neutral-900/60 hover:bg-white dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white border border-neutral-200 dark:border-neutral-800'
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-black' : 'text-neutral-400'}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-neutral-500 dark:text-neutral-400'}`} />
                 <span>{isDe ? sec.titleDe : sec.titleEn}</span>
                 {isActive && (
-                  <span className="ml-1 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-black text-white">
+                  <span className="ml-1 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
                     Live
                   </span>
                 )}
@@ -152,24 +152,24 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
         </div>
 
         {/* Browser Window Frame */}
-        <div className="w-full rounded-2xl border border-neutral-800 bg-neutral-950 shadow-2xl overflow-hidden backdrop-blur-sm">
+        <div className="w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-lg overflow-hidden backdrop-blur-sm">
           {/* Top Bar / Toolbar */}
-          <div className="bg-neutral-900 border-b border-neutral-800 px-4 py-3 flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
+          <div className="bg-neutral-100 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-4 py-3 flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
             {/* Window Dots */}
             <div className="flex items-center gap-2 shrink-0">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              <span className="hidden md:inline-block text-xs font-medium text-neutral-400 ml-2">
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
+              <span className="hidden md:inline-block text-xs font-medium text-neutral-500 dark:text-neutral-400 ml-2">
                 Typus.AI App
               </span>
             </div>
 
             {/* Address Bar */}
-            <div className="flex-1 min-w-[220px] max-w-xl mx-auto bg-neutral-950/80 border border-neutral-800 rounded-lg px-3.5 py-1.5 flex items-center gap-2 text-xs font-mono text-neutral-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-neutral-500 truncate">https://</span>
-              <span className="text-neutral-200 font-semibold truncate">
+            <div className="flex-1 min-w-[220px] max-w-xl mx-auto bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg px-3.5 py-1.5 flex items-center gap-2 text-xs font-mono text-neutral-700 dark:text-neutral-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-neutral-400 truncate">https://</span>
+              <span className="text-neutral-800 dark:text-neutral-200 font-semibold truncate">
                 app.typus.ai{activeSection.path}
               </span>
             </div>
@@ -179,7 +179,7 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
               <button
                 onClick={handleRefresh}
                 title={isDe ? 'Erneuern' : 'Reload frame'}
-                className="p-2 text-neutral-400 hover:text-white rounded-lg hover:bg-neutral-800 transition-colors"
+                className="p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white rounded-lg hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors"
               >
                 <IconRefresh className="w-4 h-4" />
               </button>
@@ -189,7 +189,7 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
                 target="_blank"
                 rel="noopener noreferrer"
                 title={isDe ? 'In neuem Tab öffnen' : 'Open in new tab'}
-                className="p-2 text-neutral-400 hover:text-white rounded-lg hover:bg-neutral-800 transition-colors flex items-center gap-1 text-xs"
+                className="p-2 text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white rounded-lg hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1 text-xs"
               >
                 <IconExternalLink className="w-4 h-4" />
                 <span className="hidden sm:inline">{isDe ? 'Öffnen' : 'Open'}</span>
@@ -198,22 +198,22 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
           </div>
 
           {/* Active Tool Sub-header info */}
-          <div className="bg-neutral-900/60 border-b border-neutral-800/60 px-6 py-3 flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-400">
+          <div className="bg-neutral-50 dark:bg-neutral-900/60 border-b border-neutral-200 dark:border-neutral-800 px-6 py-3 flex flex-wrap items-center justify-between gap-2 text-xs text-neutral-500 dark:text-neutral-400">
             <div className="flex items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">
+              <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
                 {isDe ? activeSection.badgeDe : activeSection.badgeEn}
               </span>
-              <span className="text-neutral-300 font-medium">
+              <span className="text-neutral-700 dark:text-neutral-300 font-medium">
                 {isDe ? activeSection.descDe : activeSection.descEn}
               </span>
             </div>
-            <div className="text-neutral-500">
+            <div className="text-neutral-400 dark:text-neutral-500">
               {isDe ? 'Interaktive App-Umgebung' : 'Interactive App Environment'}
             </div>
           </div>
 
           {/* Iframe Viewport Container */}
-          <div className="relative w-full h-[600px] sm:h-[680px] md:h-[740px] bg-neutral-950">
+          <div className="relative w-full h-[600px] sm:h-[680px] md:h-[740px] bg-neutral-100 dark:bg-neutral-950">
             {/* Loading Spinner Overlay */}
             <AnimatePresence>
               {isLoading && (
@@ -221,13 +221,13 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 bg-neutral-950/90 backdrop-blur-md z-20 flex flex-col items-center justify-center gap-3 text-neutral-300"
+                  className="absolute inset-0 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md z-20 flex flex-col items-center justify-center gap-3 text-neutral-700 dark:text-neutral-300"
                 >
-                  <IconLoader2 className="w-10 h-10 text-emerald-400 animate-spin" />
+                  <IconLoader2 className="w-10 h-10 text-emerald-500 animate-spin" />
                   <p className="text-sm font-medium">
                     {isDe ? 'Lade Grundriss-Modul...' : 'Loading Floor Plan Module...'}
                   </p>
-                  <p className="text-xs text-neutral-500 font-mono">{targetUrl}</p>
+                  <p className="text-xs text-neutral-400 font-mono">{targetUrl}</p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -258,8 +258,8 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
                 onClick={() => handleTabChange(sec.id)}
                 className={`cursor-pointer group p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between ${
                   isActive
-                    ? 'bg-neutral-800/90 border-emerald-500/50 shadow-lg shadow-emerald-500/5'
-                    : 'bg-neutral-900/60 border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50'
+                    ? 'bg-white dark:bg-neutral-900 border-emerald-500/60 shadow-sm ring-1 ring-emerald-500/20'
+                    : 'bg-white dark:bg-neutral-900/60 border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 shadow-xs'
                 }`}
               >
                 <div>
@@ -267,8 +267,8 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
                     <div
                       className={`p-2.5 rounded-xl ${
                         isActive
-                          ? 'bg-emerald-500/20 text-emerald-400'
-                          : 'bg-neutral-800 text-neutral-300 group-hover:bg-neutral-700 group-hover:text-white'
+                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                          : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-white'
                       }`}
                     >
                       <Icon className="w-5 h-5" />
@@ -278,25 +278,25 @@ export function FloorPlanIframeSection({ locale = 'en' }: FloorPlanIframeSection
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-neutral-500 hover:text-neutral-300 transition-colors p-1"
+                      className="text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors p-1"
                       title={isDe ? 'Direkt öffnen' : 'Open directly'}
                     >
                       <IconExternalLink className="w-4 h-4" />
                     </a>
                   </div>
-                  <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-base font-bold text-neutral-900 dark:text-white mb-1.5 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     {isDe ? sec.titleDe : sec.titleEn}
                   </h3>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                     {isDe ? sec.descDe : sec.descEn}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-neutral-800/60 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+                <div className="mt-4 pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-[11px] font-mono text-neutral-400">
                   <span className="truncate">{sec.path}</span>
                   <span
                     className={`font-semibold ${
-                      isActive ? 'text-emerald-400' : 'text-neutral-400 group-hover:text-white'
+                      isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white'
                     }`}
                   >
                     {isActive ? (isDe ? 'Aktiv' : 'Active') : isDe ? 'Anzeigen →' : 'View →'}

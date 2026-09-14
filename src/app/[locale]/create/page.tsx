@@ -213,7 +213,7 @@ export default function CreateFeatureLandingPage() {
             className="space-y-6 text-left"
           >
             {/* Header Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[10px] font-bold uppercase tracking-[0.2em]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-700 text-[10px] font-bold uppercase tracking-[0.2em]">
               <span>{content.subtitle}</span>
             </div>
 
@@ -458,7 +458,7 @@ export default function CreateFeatureLandingPage() {
         <div className="py-20 px-4">
           <div className="max-w-5xl mx-auto text-center space-y-12">
             <div className="max-w-2xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-white dark:bg-white dark:text-black text-[9px] font-bold uppercase tracking-[0.2em]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-700 text-[9px] font-bold uppercase tracking-[0.2em]">
                 {content.sec8Badge}
               </span>
               <h2 className="heading-primary">

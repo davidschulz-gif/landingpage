@@ -1360,7 +1360,7 @@ export function ManyChatPricingSection({
     return (
       <>
         <div className='text-center mb-8 sm:mb-12'>
-          <h2 className='heading-primary'>Floor plans</h2>
+          <h2 className='heading-primary'>{locale === 'de' ? 'Grundriss' : 'Floor plans'}</h2>
         </div>
         <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
           {floorPlans.map((plan: any) => {

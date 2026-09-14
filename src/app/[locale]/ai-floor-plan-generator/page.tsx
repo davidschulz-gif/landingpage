@@ -248,17 +248,17 @@ export default function AIFloorPlanGeneratorLandingPage() {
         <FloorPlanIframeSection locale={locale} />
 
         {/* HIGH-QUALITY 3D FLOOR PLANS EXAMPLES SECTION */}
-        <section className="py-20 bg-neutral-900 text-white px-5 relative overflow-hidden border-t border-neutral-800">
+        <section className="py-20 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white px-5 relative overflow-hidden border-t border-neutral-100 dark:border-neutral-900">
           <div className="mx-auto w-full max-w-7xl">
             <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold uppercase tracking-widest backdrop-blur-sm border border-white/10">
-                <IconSparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 text-xs font-bold uppercase tracking-widest border border-neutral-200 dark:border-neutral-800">
+                <IconSparkles className="w-3.5 h-3.5 text-amber-500" />
                 {content.examplesTag}
               </span>
-              <h2 className="heading-primary text-white">
+              <h2 className="heading-primary">
                 {content.examplesTitle}
               </h2>
-              <p className="text-sm sm:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
                 {content.examplesSub}
               </p>
             </div>
@@ -268,33 +268,33 @@ export default function AIFloorPlanGeneratorLandingPage() {
               {floorPlanExamples.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group bg-neutral-800/80 rounded-2xl overflow-hidden border border-neutral-700/60 hover:border-neutral-500 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/50 flex flex-col"
+                  className="group bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 hover:-translate-y-1.5 shadow-sm flex flex-col"
                 >
-                  <div className="relative aspect-[1.45] w-full overflow-hidden bg-neutral-950">
+                  <div className="relative aspect-[1.45] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-900">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide border border-white/10">
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-neutral-900 dark:text-white text-[11px] font-semibold tracking-wide border border-neutral-200/60 dark:border-neutral-700">
                       {item.category}
                     </div>
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-md text-black text-[11px] font-bold">
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-neutral-900 dark:text-white text-[11px] font-bold border border-neutral-200/60 dark:border-neutral-700">
                       {item.badge}
                     </div>
                   </div>
                   <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-amber-400 transition-colors">
+                      <h3 className="text-lg font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-amber-400 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-neutral-400 mt-1">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                         {item.specs}
                       </p>
                     </div>
                     <Link
                       href={`${appUrl}/floor-plan/plan-visualizer`}
-                      className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-amber-400 transition-colors pt-2 border-t border-neutral-700/50"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-neutral-900 dark:text-white hover:text-emerald-600 dark:hover:text-amber-400 transition-colors pt-2 border-t border-neutral-100 dark:border-neutral-800"
                     >
                       <span>{content.examplesAction}</span>
                       <IconArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -308,7 +308,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
             <div className="mt-12 text-center">
               <Link
                 href={`${appUrl}/floor-plan`}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-neutral-100 text-black rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105"
               >
                 <span>{content.examplesCta}</span>
                 <IconArrowRight className="w-4 h-4" />
@@ -326,9 +326,9 @@ export default function AIFloorPlanGeneratorLandingPage() {
             <p className="subheading-primary max-w-3xl mx-auto">
               {content.whatIsDesc}
             </p>
-            <div className="mt-8 max-w-3xl mx-auto h-[220px] sm:h-[280px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg border border-neutral-200/50 dark:border-neutral-700/50">
+            <div className="mt-8 max-w-2xl mx-auto h-[200px] sm:h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-md border border-neutral-200/50 dark:border-neutral-700/50">
               <img
-                src="https://ideal.house/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fai_floor_2.72fd4780.jpg&w=3840&q=75"
+                src="https://ideal.house/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fai_floor_3.7cd148ba.jpg&w=3840&q=75"
                 alt="Floor plan example"
                 className="w-full h-full object-cover object-[center_35%]"
               />
@@ -353,7 +353,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
                 { icon: <IconHome size={32} />, title: content.benefit3Title, desc: content.benefit3Desc },
               ].map((benefit, i) => (
                 <div key={i} className="bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-800 text-left hover:-translate-y-1 transition-transform">
-                  <div className="w-14 h-14 bg-black dark:bg-white text-white dark:text-black rounded-xl flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-xl flex items-center justify-center mb-6">
                     {benefit.icon}
                   </div>
                   <h3 className="heading-primary text-xl mb-3">{benefit.title}</h3>
@@ -403,7 +403,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
                 { step: '3', title: content.how3Title, desc: content.how3Desc },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center text-center p-8 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-800">
-                  <div className="w-10 h-10 shrink-0 bg-black dark:bg-white text-white dark:text-black rounded-full flex items-center justify-center text-lg font-bold mb-6">
+                  <div className="w-10 h-10 shrink-0 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-full flex items-center justify-center text-lg font-bold mb-6">
                     {item.step}
                   </div>
                   <h3 className="heading-primary text-xl mb-4">{item.title}</h3>
@@ -412,10 +412,6 @@ export default function AIFloorPlanGeneratorLandingPage() {
               ))}
             </div>
 
-            {/* How to use Image */}
-            <div className="mt-12 w-full rounded-2xl overflow-hidden shadow-lg border border-neutral-200/50 dark:border-neutral-700/50">
-              <img src="https://ideal.house/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fai_floor_3.7cd148ba.jpg&w=3840&q=75" alt="How to use AI floor plan generator" className="w-full h-auto object-cover" />
-            </div>
           </div>
         </section>
 
@@ -451,12 +447,12 @@ export default function AIFloorPlanGeneratorLandingPage() {
         </section>
 
         {/* CTA BOTTOM */}
-        <section className="py-24 bg-black dark:bg-white text-white dark:text-black px-5 text-center">
+        <section className="py-24 bg-neutral-50 dark:bg-neutral-900/20 border-t border-neutral-100 dark:border-neutral-900 px-5 text-center">
           <div className="mx-auto w-full max-w-3xl space-y-8">
-            <h2 className="heading-primary text-white dark:text-black">
+            <h2 className="heading-primary">
               {content.readyTitle}
             </h2>
-            <p className="subheading-primary text-neutral-400 dark:text-neutral-600">
+            <p className="subheading-primary text-neutral-600 dark:text-neutral-400">
               {content.readyDesc}
             </p>
             <div className="pt-4">

@@ -52,6 +52,7 @@ export function FooterSection() {
       { name: t('links.reviews'), href: '#reviews' },
       { name: t('links.instagram'), href: '#instagram' },
       { name: t('links.linkedin'), href: '#linkedin' },
+      { name: t('links.creator'), href: `/${locale}/creator-collaboration` },
     ],
     licenses: [
       { name: t('links.pricing'), href: '#pricing' },
@@ -78,11 +79,11 @@ export function FooterSection() {
         <div className='mb-12 flex flex-col items-center space-y-2'>
           <div className='bg-black size-4 m-3'></div>
           <span
-            className='text-center uppercase font-logo font-bold'
+            className='text-center uppercase font-logo font-normal'
             style={{
               fontFamily: "Arial, Helvetica, sans-serif",
               fontSize: '18px',
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: '2.5px',
               lineHeight: '1.3em',
               color: '#000',

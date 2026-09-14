@@ -81,6 +81,11 @@ export default function TypusNavbar() {
           description: 'Connect with us for professional updates and insights',
           link: '#linkedin',
         },
+        {
+          title: 'Creator Collaboration',
+          description: 'Become a creator partner and collaborate with Typus.AI',
+          link: '/creator-collaboration',
+        },
       ],
     },
     {

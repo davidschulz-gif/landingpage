@@ -70,6 +70,10 @@
         "linkedin": {
           "title": "Linkedin",
           "description": "Verbinden Sie sich mit uns für professionelle Updates und Einblicke"
+        },
+        "creators": {
+          "title": "Creator-Kooperation",
+          "description": "Werden Sie Creator-Partner und erstellen Sie Inhalte für Typus.AI"
         }
       },
       "licenses": {
@@ -175,6 +179,7 @@
     "appOfferTitle": "PROFESSIONELL",
     "serviceOfferTitle": "SERVICE ANGEBOT",
     "educationOfferTitle": "AKADEMISCH",
+    "floorPlanOfferTitle": "GRUNDRISS",
     "features": {
       "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
       "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
@@ -628,6 +633,7 @@
       "reviews": "Bewertungen",
       "instagram": "Instagram",
       "linkedin": "Linkedin",
+      "creator": "Creator-Kooperation",
       "pricing": "Preise",
       "plugins": "Plugins",
       "studentAccess": "Studentenzugang",
