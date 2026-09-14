@@ -161,8 +161,8 @@ export function CreatorShowcaseSection({
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 hover:border-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:text-white transition-all duration-300 cursor-pointer active:scale-95' />
-                    <CarouselNext className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 hover:border-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:text-white transition-all duration-300 cursor-pointer active:scale-95' />
+                    <CarouselPrevious className='p-2.5 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:border-[#f05a47] hover:text-[#f05a47] dark:hover:border-[#f05a47] dark:hover:text-[#f05a47] transition-all duration-300 cursor-pointer active:scale-95' />
+                    <CarouselNext className='p-2.5 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:border-[#f05a47] hover:text-[#f05a47] dark:hover:border-[#f05a47] dark:hover:text-[#f05a47] transition-all duration-300 cursor-pointer active:scale-95' />
                 </Carousel>
 
                 {showCollaborationButton && (
@@ -175,7 +175,7 @@ export function CreatorShowcaseSection({
                     >
                         <Link
                             href='/creator-collaboration'
-                            className='inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 font-medium text-sm px-6 py-3 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-all duration-300 shadow-xs hover:shadow-sm active:scale-95 group'
+                            className='inline-flex items-center gap-2 bg-transparent hover:bg-[#f05a47] text-[#f05a47] hover:text-white font-bold text-xs uppercase tracking-wider px-8 py-3.5 rounded-full border border-[#f05a47] transition-all duration-300 shadow-xs hover:shadow-sm active:scale-95 group'
                         >
                             <span>{t('collaborationBtn')}</span>
                             <ArrowRight className='w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5' />

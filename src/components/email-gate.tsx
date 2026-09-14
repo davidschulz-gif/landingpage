@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
 import { useEffect, useState } from 'react'
 import HeroEmailForm from './hero-email-form'
 import { Check, X } from 'lucide-react'
@@ -11,13 +11,11 @@ const STORAGE_KEY = 'typus_email_provided'
 
 export function EmailGate({ children }: { children: React.ReactNode }) {
   const t = useTranslations('HeroEmailForm')
-  const pathname = usePathname()
+  const router = useRouter()
   const [showGate, setShowGate] = useState(false)
   const [isExiting, setIsExiting] = useState(false)
   const [mounted, setMounted] = useState(false)
-
   const [redirectUrl, setRedirectUrl] = useState<string | null>(null)
-  const [showCalendar, setShowCalendar] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -25,15 +23,10 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const handleShowGate = (e: Event) => {
-      const customEvent = e as CustomEvent<{ redirectUrl?: string, skipForm?: boolean }>
+      const customEvent = e as CustomEvent<{ redirectUrl?: string }>
       const targetUrl = customEvent.detail?.redirectUrl || null
       setRedirectUrl(targetUrl)
       setShowGate(true)
-      if (customEvent.detail?.skipForm) {
-        setShowCalendar(true)
-      } else {
-        setShowCalendar(false)
-      }
       document.body.style.overflow = 'hidden'
     }
 
@@ -45,7 +38,17 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
 
   const handleSuccess = () => {
     localStorage.setItem(STORAGE_KEY, '1')
-    setShowCalendar(true)
+    setIsExiting(true)
+    document.body.style.overflow = ''
+    setTimeout(() => {
+      setShowGate(false)
+      setIsExiting(false)
+      if (redirectUrl) {
+        window.location.href = redirectUrl
+      } else {
+        router.push('/pricing')
+      }
+    }, 400)
   }
 
   // SSR: render children immediately; gate appears only client-side
@@ -101,60 +104,15 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                     setTimeout(() => {
                       setShowGate(false)
                       setIsExiting(false)
-                      if (showCalendar) {
-                        setShowCalendar(false)
-                        if (redirectUrl) {
-                          window.location.href = redirectUrl
-                        } else {
-                          window.location.href = 'https://app.typus.ai/'
-                        }
-                      }
-                    }, 700)
+                    }, 400)
                   }}
                   className='absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300 hover:rotate-90 hover:scale-105'
                   aria-label="Close"
                 >
                   <X className='w-5 h-5' />
                 </button>
-                {showCalendar ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="w-full space-y-4"
-                  >
-                    <div className="w-full h-[500px] sm:h-[600px] overflow-hidden rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-sm mt-4">
-                      <iframe 
-                        src="https://calendar.app.google/MGAqUYdnXJEoTCyL6" 
-                        width="100%" 
-                        height="100%" 
-                        className="w-full h-full border-none"
-                        title="Google Calendar Booking"
-                      />
-                    </div>
-                    <button
-                      onClick={() => {
-                        setIsExiting(true)
-                        document.body.style.overflow = ''
-                        setTimeout(() => {
-                          setShowGate(false)
-                          setIsExiting(false)
-                          setShowCalendar(false)
-                          if (redirectUrl) {
-                            window.location.href = redirectUrl
-                          } else {
-                            window.location.href = 'https://app.typus.ai/'
-                          }
-                        }, 700)
-                      }}
-                      className="w-full py-3 bg-black dark:bg-white text-white dark:text-black text-sm transition-all cursor-pointer hover:bg-black/90 dark:hover:bg-white/90 font-bold uppercase tracking-widest rounded-lg"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('gate.continueToApp').includes('gate.continueToApp') ? "Continue to App" : t('gate.continueToApp')}
-                    </button>
-                  </motion.div>
-                ) : (
-                  <>
-                    {/* logo mark */}
+
+                {/* logo mark */}
                 <div className='mb-4 sm:mb-6 flex flex-col items-center gap-2'>
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -195,8 +153,6 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                 {/* checkmark features list */}
                 <div className='flex flex-col gap-3 sm:gap-4 text-left w-full max-w-sm mx-auto mb-4 sm:mb-6 md:mb-8 bg-neutral-50 dark:bg-neutral-900/40 p-4 sm:p-6 rounded-2xl border border-neutral-100 dark:border-neutral-900'>
                   {[
-                    // t('features.info'),
-                    t('features.viewApp'),
                     t('features.caseStudies'),
                     t('features.exclusiveOffers'),
                     t('features.interactiveTutorial'),
@@ -231,9 +187,7 @@ export function EmailGate({ children }: { children: React.ReactNode }) {
                   >
                     {t('gate.privacyLink')}
                   </a>
-                  </p>
-                  </>
-                )}
+                </p>
               </motion.div>
             </div>
           </motion.div>
