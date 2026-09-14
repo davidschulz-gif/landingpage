@@ -9,7 +9,7 @@
     "seePricing": "Abos ansehen & loslegen",
     "app": "APP",
     "service": "SERVICE",
-    "goToApp": "Zur App",
+    "goToApp": "Kostenlos testen",
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Zurück zur Startseite",
     "solutions": "LÖSUNGEN",
@@ -567,8 +567,9 @@
     "companyEvolution": "TYPUS.AI hat verschiedene Phasen schnell durchlaufen und hieß früher YANUS / Präi"
   },
   "CreatorShowcase": {
-    "title": "Creator-Showcase",
-    "subtitle": "Entdecken Sie, wie Architekten und Designer Typus.AI nutzen, um ihre Workflows zu transformieren."
+    "title": "Creator Collaboration",
+    "subtitle": "Entdecken Sie, wie Architekten und Designer Typus.AI nutzen, um ihre Workflows zu transformieren.",
+    "collaborationBtn": "Creator-Kooperation"
   },
   "Reviews": {
     "title": "Was Unsere Nutzer Sagen",
@@ -3428,6 +3429,8 @@
       "section2Ex2": "Die Benutzeroberfläche oder Website von Typus.ai zeigen.",
       "section2Ex3": "Die App vorführen und damit erstellte Ergebnisse präsentieren.",
       "section2Ex4": "Typus.ai in ein anderes kreatives oder bildendes Format einbinden.",
+      "section2ShowcaseNotice": "Möchten Sie sehen, wie andere Architekten und Designer ihre Videos gestalten? Entdecken Sie Live-Beispiele in unserem Creator-Showcase.",
+      "section2ViewShowcaseBtn": "Beispiele ansehen",
       "section2MinTitle": "Mindestanforderungen",
       "section2MinIntro": "Für jeden qualifizierten Beitrag gilt:",
       "section2Min1": "Typus.ai muss in der Beitragsbeschreibung/Caption als @typus.ai markiert werden.",
@@ -3505,7 +3508,9 @@
       "title": "Bereit zum Starten? 🚀",
       "desc": "Erstelle zuerst einen Account unter app.typus.ai/register, schreibe uns auf Instagram und entfalte dein kreatives Potenzial mit Typus.ai.",
       "registerBtn": "Account erstellen (app.typus.ai/register)",
+      "showcaseBtn": "Creator-Showcase",
       "instagramBtn": "DM auf Instagram (@typus.ai)"
-    }
+    },
+    "showcaseBadge": "Creator-Showcase Beispiele"
   }
 }

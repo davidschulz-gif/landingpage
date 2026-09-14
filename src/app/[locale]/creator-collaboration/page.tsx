@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
+import { CreatorShowcaseSection } from '@/components/creator-showcase-section'
 import {
   Sparkles,
   ArrowRight,
@@ -90,10 +91,17 @@ export default function CreatorCollaborationPage() {
                 href='https://app.typus.ai/register'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white font-normal text-sm px-6 py-3 rounded-xl transition-colors shadow-sm'
+                className='inline-flex items-center gap-2 bg-white hover:bg-neutral-100 text-neutral-900 font-normal text-sm px-6 py-3 rounded-xl border border-neutral-200 transition-colors shadow-sm'
               >
                 {t('cta.registerBtn')}
-                <ArrowRight className='w-4 h-4' />
+                <ArrowRight className='w-4 h-4 text-neutral-600' />
+              </a>
+              <a
+                href='#creators'
+                className='inline-flex items-center gap-2 bg-white hover:bg-neutral-100 text-neutral-900 font-normal text-sm px-6 py-3 rounded-xl border border-neutral-200 transition-colors shadow-sm'
+              >
+                <Sparkles className='w-4 h-4 text-neutral-600' />
+                {t('cta.showcaseBtn')}
               </a>
               <a
                 href='#compensation'
@@ -290,6 +298,21 @@ export default function CreatorCollaborationPage() {
           </div>
         </section>
 
+        {/* Creator Showcase Examples Section from Main Landing Page */}
+        <section id='creators' className='scroll-mt-24 mb-16'>
+          <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-4'>
+            <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-normal uppercase tracking-wider text-neutral-700'>
+              <Sparkles className='w-3.5 h-3.5 text-neutral-900' />
+              {t('showcaseBadge')}
+            </div>
+          </div>
+          <CreatorShowcaseSection
+            className='w-full py-2'
+            style={{ backgroundColor: 'transparent' }}
+            showCollaborationButton={false}
+          />
+        </section>
+
         {/* Detailed Agreement Terms (1 to 8) */}
         <section className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 font-normal'>
           <div className='border-b border-neutral-200 pb-4 mb-8'>
@@ -352,6 +375,20 @@ export default function CreatorCollaborationPage() {
                   <span>{t('clauses.section2Ex4')}</span>
                 </li>
               </ul>
+
+              {/* Live Showcase Inspiration Callout */}
+              <div className='mt-3.5 p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3'>
+                <p className='text-xs text-neutral-600 font-normal leading-relaxed'>
+                  {t('clauses.section2ShowcaseNotice')}
+                </p>
+                <a
+                  href='#creators'
+                  className='inline-flex items-center gap-1.5 text-xs font-normal text-neutral-900 bg-white border border-neutral-200 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors shrink-0 shadow-2xs'
+                >
+                  <Sparkles className='w-3.5 h-3.5 text-neutral-700' />
+                  {t('clauses.section2ViewShowcaseBtn')}
+                </a>
+              </div>
             </div>
 
             <div className='p-5 rounded-xl bg-neutral-950 text-white font-normal'>
@@ -639,10 +676,10 @@ export default function CreatorCollaborationPage() {
                 href='https://app.typus.ai/register'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='inline-flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white font-normal text-sm px-6 py-3 rounded-xl transition-colors shadow-sm'
+                className='inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 font-normal text-sm px-6 py-3 rounded-xl border border-neutral-200 transition-colors shadow-sm'
               >
                 {t('cta.registerBtn')}
-                <ArrowRight className='w-4 h-4' />
+                <ArrowRight className='w-4 h-4 text-neutral-600' />
               </a>
               <a
                 href='https://instagram.com/typus.ai'

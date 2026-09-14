@@ -9,11 +9,10 @@ import {
 } from '@/components/ui/carousel'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { BreathingAnimationText } from './breathing-animation-text'
-import { Instagram } from 'lucide-react'
-import TypusLogoBlack from './common/typus-logo-black'
+import { Link } from '@/i18n/navigation'
+import { ArrowRight, Instagram } from 'lucide-react'
 
-interface CreatorVideo {
+export interface CreatorVideo {
     id: number
     src: string
     link: string
@@ -21,7 +20,7 @@ interface CreatorVideo {
     comments: number
 }
 
-const creatorVideos: CreatorVideo[] = [
+export const creatorVideos: CreatorVideo[] = [
     // { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DUnbsnMjBWD/media/?size=l', id: 20, link: 'https://www.instagram.com/reel/DUnbsnMjBWD/', likes: '19.8k', comments: 312 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DXMg5yoDPf-/media/?size=l', id: 21, link: 'https://www.instagram.com/reel/DXMg5yoDPf-/', likes: '10.5k', comments: 150 },
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DYW7sTtqOtX/media/?size=l', id: 22, link: 'https://www.instagram.com/reel/DYW7sTtqOtX/', likes: '14.2k', comments: 210 },
@@ -54,49 +53,41 @@ const creatorVideos: CreatorVideo[] = [
     { src: 'https://images.weserv.nl/?url=https://www.instagram.com/p/DVbI4GVAEDM/media/?size=l', id: 3, link: 'https://www.instagram.com/reel/DVbI4GVAEDM/', likes: '15.1k', comments: 234 }, 
    ]
 
-export function CreatorShowcaseSection() {
+export interface CreatorShowcaseSectionProps {
+    title?: string
+    subtitle?: string
+    id?: string
+    className?: string
+    style?: React.CSSProperties
+    showCollaborationButton?: boolean
+}
+
+export function CreatorShowcaseSection({
+    title,
+    subtitle,
+    id = 'creators',
+    className,
+    style,
+    showCollaborationButton = true,
+}: CreatorShowcaseSectionProps = {}) {
     const t = useTranslations('CreatorShowcase')
+    const displayTitle = title ?? t('title')
+    const displaySubtitle = subtitle ?? t('subtitle')
 
     return (
         <div
-            className='w-full py-20'
-            style={{ backgroundColor: '#FFFFFF' }}
-            id='creators'
+            className={className || 'w-full py-20'}
+            style={style || { backgroundColor: '#FFFFFF' }}
+            id={id}
         >
             <div className='max-w-7xl mx-auto px-4'>
-                {/* <div className='text-center mb-16'>
-                    <BreathingAnimationText animationType='black-gray'>
-                        <motion.h2
-                            className='text-2xl md:text-[30px] font-normal text-black mb-4'
-                            style={{ fontFamily: 'Arial' }}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                        >
-                         
-                        </motion.h2>
-                    </BreathingAnimationText>
-                    <BreathingAnimationText animationType='black-gray'>
-                        <motion.p
-                            className='text-gray-500 max-w-2xl mx-auto text-sm md:text-lg px-4 font-medium'
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            viewport={{ once: true }}
-                        >
-                           
-                        </motion.p>
-                    </BreathingAnimationText>
-                </div> */}
-
                 <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           <div className="">
             <h2 className="text-center heading-primary mb-4">
-               {t('title')}
+               {displayTitle}
             </h2>
             <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
-          {t('subtitle')}
+               {displaySubtitle}
             </p>
           </div>
         </div>
@@ -170,9 +161,27 @@ export function CreatorShowcaseSection() {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95' />
-                    <CarouselNext className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-black hover:border-black hover:text-white dark:hover:bg-white dark:hover:border-white dark:hover:text-black transition-all duration-300 cursor-pointer active:scale-95' />
+                    <CarouselPrevious className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 hover:border-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:text-white transition-all duration-300 cursor-pointer active:scale-95' />
+                    <CarouselNext className='p-2.5 bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 rounded-full shadow-md border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 hover:border-neutral-300 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:border-neutral-700 dark:hover:text-white transition-all duration-300 cursor-pointer active:scale-95' />
                 </Carousel>
+
+                {showCollaborationButton && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className='mt-10 flex justify-center'
+                    >
+                        <Link
+                            href='/creator-collaboration'
+                            className='inline-flex items-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 font-medium text-sm px-6 py-3 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-all duration-300 shadow-xs hover:shadow-sm active:scale-95 group'
+                        >
+                            <span>{t('collaborationBtn')}</span>
+                            <ArrowRight className='w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5' />
+                        </Link>
+                    </motion.div>
+                )}
             </div>
         </div>
     )
