@@ -42,8 +42,12 @@
           "description": "Discover all AI tools and features in one overview"
         },
         "research": {
-          "title": "Integration of product range",
+          "title": "AI Research (FFplus)",
           "description": "Integration of real building products into our EU-compliant AI model"
+        },
+        "configurator": {
+          "title": "Embedded Configurator",
+          "description": "Interactive 3D & material configurator embedded directly on your website"
         },
         "bilderFlatrate": {
           "title": "Image Flat Rate",
@@ -627,7 +631,8 @@
       "create": "Create",
       "edit": "Edit",
       "upscale": "Upscale",
-      "research": "Integration of product range",
+      "research": "AI Research (FFplus)",
+      "configurator": "Embedded Configurator",
       "tutorials": "Tutorials",
       "press": "Press",
       "reviews": "Reviews",

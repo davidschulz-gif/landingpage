@@ -70,7 +70,7 @@ export const MenuItem = ({
   const content = (
     <motion.p
       transition={{ duration: 0.3 }}
-      className='cursor-pointer text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800  dark:text-white'
+      className='cursor-pointer text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 dark:text-white whitespace-nowrap shrink-0'
     >
       {item}
     </motion.p>
@@ -164,7 +164,7 @@ export const Menu = ({
     <nav
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className='relative flex justify-center space-x-4 '
+      className='relative flex justify-center space-x-2 xl:space-x-4 whitespace-nowrap shrink-0'
     >
       {children}
     </nav>

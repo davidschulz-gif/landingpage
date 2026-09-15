@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video } from 'lucide-react'
+import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -114,6 +114,12 @@ export function NavbarDemo() {
             description: tNav('solutions.research.description'),
             link: '/research',
             icon: FlaskConical,
+          },
+          {
+            title: tNav('solutions.configurator.title'),
+            description: tNav('solutions.configurator.description'),
+            link: '/embedded-configurator',
+            icon: Box,
           },
         ],
       },
@@ -251,7 +257,7 @@ export function NavbarDemo() {
           <NavbarLogo visible />
         )}
         <div
-          className='w-fit'
+          className='w-fit shrink-0'
           onMouseEnter={handleMenuEnter}
           onMouseLeave={handleMenuLeave}
         >
@@ -361,10 +367,10 @@ export function NavbarDemo() {
             <NavItems items={translatedNavItems} />
           )}
         </div>
-        <div className='flex items-center gap-6 h-full'>
+        <div className='flex items-center gap-3 xl:gap-6 h-full shrink-0'>
           <Link
             href="/pricing"
-            className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer'
+            className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0'
           >
             {tPricing('selectPlanCTA')}
           </Link>
@@ -376,14 +382,14 @@ export function NavbarDemo() {
           </Link> */}
           <Link
             href={`${appUrl}/login`}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
           >
             {t('login')}
           </Link>
           <Link
             href={`${appUrl}`}
             onClick={handleGoToAppClick}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
+            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
           >
             {t('goToApp')}
           </Link>

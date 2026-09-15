@@ -33,6 +33,12 @@ export const navItems = [
           'AI research project for real building product visualization with RWTH Aachen',
         link: '/research',
       },
+      {
+        title: 'Embedded Configurator',
+        description:
+          'Interactive 3D and material configurator embedded directly on your website',
+        link: '/embedded-configurator',
+      },
     ],
   },
   {

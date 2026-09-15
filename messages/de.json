@@ -13,7 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Zurück zur Startseite",
     "solutions": "LÖSUNGEN",
-    "research": "Für Bauproduktanbiete",
+    "research": "Für Bauproduktanbieter",
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
@@ -42,8 +42,12 @@
           "description": "Entdecken Sie alle KI-Werkzeuge und Funktionen im Überblick"
         },
         "research": {
-          "title": "Integration Produktpalette",
+          "title": "KI-Forschung (FFplus)",
           "description": "Integration realer Bauprodukte in unser EU-konformes KI-Modell"
+        },
+        "configurator": {
+          "title": "Materialkonfigurator",
+          "description": "Interaktiver 3D- & Materialkonfigurator direkt auf Ihrer Website"
         },
         "bilderFlatrate": {
           "title": "Bilder-Flatrate",
@@ -627,7 +631,8 @@
       "create": "Erstellen",
       "edit": "Bearbeiten",
       "upscale": "Hochskalieren",
-      "research": "Integration Produktpalette",
+      "research": "KI-Forschung (FFplus)",
+      "configurator": "Materialkonfigurator",
       "tutorials": "Tutorials",
       "press": "Presse",
       "reviews": "Bewertungen",

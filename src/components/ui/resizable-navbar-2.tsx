@@ -103,7 +103,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
           ? 'blur(20px) saturate(180%)'
           : 'blur(12px) saturate(180%)',
         boxShadow: 'none',
-        width: visible ? '95%' : '100%',
+        width: visible ? '98%' : '100%',
         y: visible ? 20 : 0,
         borderRadius: '9999px',
         borderWidth: '0px',
@@ -141,9 +141,9 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: '800px',
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 lg:flex rounded-full ',
+        'relative z-[60] mx-auto hidden w-full max-w-[98%] 2xl:max-w-[1700px] flex-row items-center justify-between bg-white/70 dark:bg-neutral-950/70 lg:flex rounded-full ',
         'transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        'border-none px-8 py-3',
+        'border-none px-6 xl:px-8 py-2.5',
         className
       )}
     >
@@ -159,7 +159,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        ' hidden flex-1 space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2',
+        ' hidden flex-1 space-x-1 xl:space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex whitespace-nowrap shrink-0',
         className
       )}
     >
@@ -167,7 +167,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <Link
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className='relative px-4 py-2 text-neutral-600 dark:text-neutral-300'
+          className='relative px-3 xl:px-4 py-2 text-neutral-600 dark:text-neutral-300 whitespace-nowrap shrink-0'
           key={`link-${idx}`}
           href={item.link}
         >
@@ -177,7 +177,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               className='absolute inset-0 h-full w-full  bg-gray-100 dark:bg-neutral-800'
             />
           )}
-          <span className='relative z-20 uppercase'>{item.name}</span>
+          <span className='relative z-20 uppercase whitespace-nowrap'>{item.name}</span>
         </Link>
       ))}
     </motion.div>
