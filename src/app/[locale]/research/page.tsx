@@ -1,6 +1,7 @@
 'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { appUrl } from '@/lib/constants'
 import { FooterSection } from '@/components/footer-section'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { useLocale, useTranslations } from 'next-intl'
@@ -170,6 +171,51 @@ export default function ResearchProjectsPage() {
                 >
                   TYPUS
                 </span>
+              </div>
+            </div>
+
+            {/* Material Provider & Manufacturer Sign-Up Box */}
+            <div className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-xl w-full flex flex-col items-center justify-center text-center space-y-4">
+              <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+
+              <div className="space-y-1.5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  {t('providerBox.badge')}
+                </div>
+                <h4 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white" style={{ fontFamily: 'Arial' }}>
+                  {t('providerBox.title')}
+                </h4>
+                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-md mx-auto leading-relaxed" style={{ fontFamily: 'Arial' }}>
+                  {t('providerBox.desc')}
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-1">
+                <Link
+                  href={`${appUrl}/provider/signup?language=${locale}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 shadow-md flex items-center justify-center gap-2"
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  <span>{t('providerBox.createAccount')}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <Link
+                  href={`${appUrl}/provider/login?language=${locale}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-bold text-xs uppercase tracking-wider hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200 flex items-center justify-center gap-1.5"
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  <span>{t('providerBox.providerLogin')}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
+                </Link>
               </div>
             </div>
 

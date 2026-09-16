@@ -12,8 +12,8 @@
     "goToApp": "Try for Free",
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Return to Home",
-    "solutions": "SOLUTIONS",
-    "research": "For building product suppliers",
+    "solutions": "FOR ARCHITECTS",
+    "research": "FOR BUILDING PRODUCT SUPPLIERS",
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
@@ -3391,6 +3391,13 @@
       "subscribersLabel": "Active subscribers",
       "generationsValue": "30k+",
       "generationsLabel": "Images generated"
+    },
+    "providerBox": {
+      "badge": "For Manufacturers & Material Providers",
+      "title": "Free Account for Material Providers",
+      "desc": "Create a free account today and showcase your materials directly to architects and designers.",
+      "createAccount": "Create Free Account",
+      "providerLogin": "Provider Login"
     }
   },
   "CreatorCollaboration": {

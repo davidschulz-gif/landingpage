@@ -106,24 +106,6 @@ export function NavbarDemo() {
         ],
       },
       {
-        name: t('research'),
-        link: '/research',
-        submenu: [
-          {
-            title: tNav('solutions.research.title'),
-            description: tNav('solutions.research.description'),
-            link: '/research',
-            icon: FlaskConical,
-          },
-          {
-            title: tNav('solutions.configurator.title'),
-            description: tNav('solutions.configurator.description'),
-            link: '/embedded-configurator',
-            icon: Box,
-          },
-        ],
-      },
-      {
         name: t('community'),
         link: '/#community',
         submenu: [
@@ -211,6 +193,24 @@ export function NavbarDemo() {
         name: t('amaAwards'),
         link: '/#success-stories',
         isTestimonials: true,
+      },
+      {
+        name: t('research'),
+        link: '/research',
+        submenu: [
+          {
+            title: tNav('solutions.research.title'),
+            description: tNav('solutions.research.description'),
+            link: '/research',
+            icon: FlaskConical,
+          },
+          {
+            title: tNav('solutions.configurator.title'),
+            description: tNav('solutions.configurator.description'),
+            link: '/embedded-configurator',
+            icon: Box,
+          },
+        ],
       },
     ]
   }

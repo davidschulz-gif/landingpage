@@ -12,8 +12,8 @@
     "goToApp": "Kostenlos testen",
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Zurück zur Startseite",
-    "solutions": "LÖSUNGEN",
-    "research": "Für Bauproduktanbieter",
+    "solutions": "FÜR ARCHITEKTEN",
+    "research": "FÜR BAUPRODUKTANBIETER",
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
@@ -3393,6 +3393,13 @@
       "subscribersLabel": "Aktive Abonnenten",
       "generationsValue": "30k+",
       "generationsLabel": "Generierte Bilder"
+    },
+    "providerBox": {
+      "badge": "Für Hersteller & Materialanbieter",
+      "title": "Kostenloses Konto für Materialanbieter",
+      "desc": "Erstellen Sie noch heute ein kostenloses Konto und präsentieren Sie Ihre Materialien direkt Architekten und Planern.",
+      "createAccount": "Kostenlos Konto erstellen",
+      "providerLogin": "Anbieter-Login"
     }
   },
   "CreatorCollaboration": {
