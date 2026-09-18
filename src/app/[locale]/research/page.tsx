@@ -10,6 +10,7 @@ import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import BookingDemoClassFormForPricingPage from '@/components/demo-class-boooking-form-for-pricing-page'
+import { ResearchProcessWorkflow } from '@/components/research/ResearchProcessWorkflow'
 
 function AnimatedStatNumber({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -218,6 +219,11 @@ export default function ResearchProjectsPage() {
                 </Link>
               </div>
             </div>
+
+            {/* ── 7-Step Material Provider Process Workflow (Animated & Interactive) ── */}
+            {/* <div className="w-full max-w-5xl mx-auto">
+              <ResearchProcessWorkflow locale={locale} />
+            </div> */}
 
             {/* Active Users Metric Card (Material Guide Style) */}
             <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-sm space-y-3 max-w-2xl w-full">
