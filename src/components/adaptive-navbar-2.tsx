@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box } from 'lucide-react'
+import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -20,6 +20,76 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
 import { appUrl } from '@/lib/constants'
+
+
+function AudienceDropdown({ locale }: { locale: string }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  return (
+    <div className="relative inline-block text-left shrink-0" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-[12px] font-bold text-neutral-800 dark:text-neutral-200 hover:border-black dark:hover:border-white transition-all shadow-2xs cursor-pointer"
+        style={{ fontFamily: 'Arial, sans-serif' }}
+      >
+        <span>{locale === 'de' ? 'Zielgruppe ▾' : 'Audience ▾'}</span>
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xl p-2 z-[1010] space-y-1">
+          {/* Option 1: Für Architekten */}
+          <Link
+            href="/#solutions"
+            onClick={() => setIsOpen(false)}
+            className="group flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition duration-150"
+          >
+            <div className="p-2 rounded-lg bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div className="space-y-0.5">
+              <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-blue-600 transition" style={{ fontFamily: 'Arial' }}>
+                {locale === 'de' ? 'Für Architekten' : 'For Architects'}
+              </div>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-snug" style={{ fontFamily: 'Arial' }}>
+                {locale === 'de' ? 'KI-Tools für Entwurf, 3D-Rendering & Grundrisse' : 'AI tools for sketching, 3D rendering & floor plans'}
+              </p>
+            </div>
+          </Link>
+
+          {/* Option 2: Für Bauproduktanbieter */}
+          <Link
+            href="/research"
+            onClick={() => setIsOpen(false)}
+            className="group flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition duration-150"
+          >
+            <div className="p-2 rounded-lg bg-emerald-50 dark:bg-neutral-800 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition">
+              <Box className="w-4 h-4" />
+            </div>
+            <div className="space-y-0.5">
+              <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition" style={{ fontFamily: 'Arial' }}>
+                {locale === 'de' ? 'Für Bauproduktanbieter' : 'For Material Providers'}
+              </div>
+              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-snug" style={{ fontFamily: 'Arial' }}>
+                {locale === 'de' ? 'EU-KI-Forschung & eingebetteter Konfigurator' : 'EU AI research & embedded configurator'}
+              </p>
+            </div>
+          </Link>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function NavbarDemo() {
   const t = useTranslations('Navbar')
@@ -62,10 +132,10 @@ export function NavbarDemo() {
   const getTranslatedNavItems = () => {
     return [
       {
-        name: t('solutions'),
+        name: locale === 'de' ? 'LÖSUNGEN & PORTALE' : 'SOLUTIONS & PORTALS',
         link: '/#solutions',
         submenu: [
-          { title: t('app'), isSection: true },
+          { title: locale === 'de' ? 'FÜR ARCHITEKTEN' : 'FOR ARCHITECTS', isSection: true },
           {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
@@ -96,13 +166,19 @@ export function NavbarDemo() {
             link: '/overview-of-features',
             icon: Play,
           },
-          // { title: t('service'), isSection: true },
-          // {
-          //   title: tNav('solutions.bilderFlatrate.title'),
-          //   description: tNav('solutions.bilderFlatrate.description'),
-          //   link: '/done-for-you',
-          //   icon: ImageIcon,
-          // },
+          { title: locale === 'de' ? 'FÜR BAUPRODUKTANBIETER' : 'FOR BUILDING PRODUCT SUPPLIERS', isSection: true },
+          {
+            title: tNav('solutions.research.title'),
+            description: tNav('solutions.research.description'),
+            link: '/research',
+            icon: FlaskConical,
+          },
+          {
+            title: tNav('solutions.configurator.title'),
+            description: tNav('solutions.configurator.description'),
+            link: '/embedded-configurator',
+            icon: Box,
+          },
         ],
       },
       {
@@ -193,24 +269,6 @@ export function NavbarDemo() {
         name: t('amaAwards'),
         link: '/#success-stories',
         isTestimonials: true,
-      },
-      {
-        name: t('research'),
-        link: '/research',
-        submenu: [
-          {
-            title: tNav('solutions.research.title'),
-            description: tNav('solutions.research.description'),
-            link: '/research',
-            icon: FlaskConical,
-          },
-          {
-            title: tNav('solutions.configurator.title'),
-            description: tNav('solutions.configurator.description'),
-            link: '/embedded-configurator',
-            icon: Box,
-          },
-        ],
       },
     ]
   }
@@ -393,6 +451,7 @@ export function NavbarDemo() {
           >
             {t('goToApp')}
           </Link>
+          <AudienceDropdown locale={locale} />
         </div>
       </NavBody>
       {!doNotShowMegaMenu && (
