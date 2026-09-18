@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box } from 'lucide-react'
+import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -91,6 +91,22 @@ function AudienceDropdown({ locale }: { locale: string }) {
   )
 }
 
+interface SubItem {
+  title: string
+  description?: string
+  link?: string
+  target?: string
+  icon?: any
+  isSection?: boolean
+}
+
+interface NavItem {
+  name: string
+  link: string
+  submenu?: SubItem[]
+  isTestimonials?: boolean
+}
+
 export function NavbarDemo() {
   const t = useTranslations('Navbar')
   const tNav = useTranslations('Navbar.navigation')
@@ -104,6 +120,7 @@ export function NavbarDemo() {
   const [appActive, setAppActive] = useState<string | null>(null)
   const pathname = usePathname()
   const isDoneForYou = pathname.includes('/done-for-you')
+  const isHersteller = pathname.includes('/research') || pathname.includes('/embedded-configurator')
   const locale = useLocale()
   
   const handleOpenDemo = () => {
@@ -129,7 +146,123 @@ export function NavbarDemo() {
   }
 
   // Get translated navigation items
-  const getTranslatedNavItems = () => {
+  const getTranslatedNavItems = (): NavItem[] => {
+    if (isHersteller) {
+      return [
+        {
+          name: locale === 'de' ? 'LÖSUNGEN & PORTALE' : 'SOLUTIONS & PORTALS',
+          link: '/#solutions',
+          submenu: [
+            { title: locale === 'de' ? 'FÜR ARCHITEKTEN' : 'FOR ARCHITECTS', isSection: true },
+            {
+              title: tNav('solutions.create.title'),
+              description: tNav('solutions.create.description'),
+              link: '/create',
+              icon: Sparkles,
+            },
+            {
+              title: tNav('solutions.edit.title'),
+              description: tNav('solutions.edit.description'),
+              link: '/#edit',
+              icon: Pencil,
+            },
+            {
+              title: tNav('solutions.upscale.title'),
+              description: tNav('solutions.upscale.description'),
+              link: '/upscale',
+              icon: Zap,
+            },
+            {
+              title: tNav('solutions.floorPlan.title'),
+              description: tNav('solutions.floorPlan.description'),
+              link: '/ai-floor-plan-generator',
+              icon: LayoutGrid,
+            },
+            { title: locale === 'de' ? 'FÜR BAUPRODUKTANBIETER' : 'FOR BUILDING PRODUCT SUPPLIERS', isSection: true },
+            {
+              title: tNav('solutions.research.title'),
+              description: tNav('solutions.research.description'),
+              link: '/research',
+              icon: FlaskConical,
+            },
+            {
+              title: tNav('solutions.configurator.title'),
+              description: tNav('solutions.configurator.description'),
+              link: '/embedded-configurator',
+              icon: Box,
+            },
+          ],
+        },
+        {
+          name: locale === 'de' ? 'FFPLUS FORSCHUNG' : 'FFPLUS RESEARCH',
+          link: '/research',
+          submenu: [
+            {
+              title: locale === 'de' ? 'Forschungszentrum Jülich' : 'Jülich Supercomputing Centre',
+              description: locale === 'de' ? 'JUPITER Supercomputer & KI-Modelltraining' : 'JUPITER Supercomputer & AI model training',
+              link: '/research',
+              icon: ShieldCheck,
+            },
+            {
+              title: locale === 'de' ? 'RWTH Aachen Kooperation' : 'RWTH Aachen Cooperation',
+              description: locale === 'de' ? 'Wissenschaftliche Vorträge Prof. Dr. Leif Kobbelt' : 'Scientific lectures Prof. Dr. Leif Kobbelt',
+              link: '/research',
+              icon: FlaskConical,
+            },
+          ],
+        },
+        {
+          name: locale === 'de' ? 'MATERIALKONFIGURATOR' : 'MATERIAL CONFIGURATOR',
+          link: '/embedded-configurator',
+          submenu: [
+            {
+              title: locale === 'de' ? 'Interaktive Live-Demo' : 'Interactive Live Demo',
+              description: locale === 'de' ? '3D & PBR-Materialkonfigurator im Einsatz' : '3D & PBR material configurator in action',
+              link: '/embedded-configurator#live-preview',
+              icon: Box,
+            },
+            {
+              title: locale === 'de' ? 'Integration & API' : 'Integration & API',
+              description: locale === 'de' ? '1-Klick iFrame oder JS-Snippet für Ihre Website' : '1-click iFrame or JS snippet for your site',
+              link: '/embedded-configurator',
+              icon: Sparkles,
+            },
+          ],
+        },
+        {
+          name: locale === 'de' ? 'PAKETE & PREISE' : 'PACKAGES & PRICING',
+          link: '/research#integration-packages',
+          submenu: [
+            {
+              title: locale === 'de' ? 'Hersteller-Pakete' : 'Manufacturer Packages',
+              description: locale === 'de' ? 'Integration, PBR-Digitalisierung & Branding' : 'Integration, PBR digitisation & branding',
+              link: '/research#integration-packages',
+              icon: Tag,
+            },
+            {
+              title: locale === 'de' ? 'Abonnement-Optionen' : 'Subscription Plans',
+              description: locale === 'de' ? 'Essential, Standard, Advanced & Custom Tarife' : 'Essential, Standard, Advanced & Custom plans',
+              link: '/research',
+              icon: Zap,
+            },
+          ],
+        },
+        {
+          name: locale === 'de' ? 'PARTNER & BDBAU' : 'PARTNERS & BDBAU',
+          link: '/research',
+          submenu: [
+            {
+              title: locale === 'de' ? 'BDBau Mitgliedschaft' : 'BDBau Membership',
+              description: locale === 'de' ? 'Bundesverband Digitales Bauwesen Deutschland' : 'Federal Association for Digital Construction',
+              link: 'https://bdbau.org/mitglieder/',
+              target: '_blank',
+              icon: Building2,
+            },
+          ],
+        },
+      ]
+    }
+
     return [
       {
         name: locale === 'de' ? 'LÖSUNGEN & PORTALE' : 'SOLUTIONS & PORTALS',
@@ -426,31 +559,48 @@ export function NavbarDemo() {
           )}
         </div>
         <div className='flex items-center gap-3 xl:gap-6 h-full shrink-0'>
-          <Link
-            href="/pricing"
-            className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0'
-          >
-            {tPricing('selectPlanCTA')}
-          </Link>
-          {/* <Link
-            href={isDoneForYou ? '/' : '/done-for-you'}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200'
-          >
-            {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
-          </Link> */}
-          <Link
-            href={`${appUrl}/login`}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
-          >
-            {t('login')}
-          </Link>
-          <Link
-            href={`${appUrl}`}
-            onClick={handleGoToAppClick}
-            className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
-          >
-            {t('goToApp')}
-          </Link>
+          {isHersteller ? (
+            <>
+              <Link
+                href={`${appUrl}/provider/login`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
+              >
+                {locale === 'de' ? 'Anbieter-Login' : 'Provider Login'}
+              </Link>
+              <Link
+                href={`${appUrl}/provider/signup?language=${locale}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className='bg-black text-white hover:bg-neutral-800 px-4 py-2 text-[13px] rounded-2xl font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 shadow-sm'
+              >
+                {locale === 'de' ? 'Kostenlos Registrieren' : 'Free Registration'}
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/pricing"
+                className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0'
+              >
+                {tPricing('selectPlanCTA')}
+              </Link>
+              <Link
+                href={`${appUrl}/login`}
+                className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
+              >
+                {t('login')}
+              </Link>
+              <Link
+                href={`${appUrl}`}
+                onClick={handleGoToAppClick}
+                className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
+              >
+                {t('goToApp')}
+              </Link>
+            </>
+          )}
           <AudienceDropdown locale={locale} />
         </div>
       </NavBody>
