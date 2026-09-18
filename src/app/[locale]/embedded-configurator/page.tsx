@@ -211,7 +211,7 @@ export default function EmbeddedConfiguratorLandingPage() {
             {/* CTA row */}
             <div className="flex flex-wrap gap-3 pt-2">
               <a
-                href={`mailto:info@typus.app`}
+                href={`mailto:hello@typus.ai`}
                 className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
               >
                 {t.cta1}
@@ -470,7 +470,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           </h2>
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <a
-              href={`mailto:info@typus.app`}
+              href={`mailto:hello@typus.ai`}
               className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
             >
               {isDe ? 'Kontakt aufnehmen' : 'Get in touch'}
