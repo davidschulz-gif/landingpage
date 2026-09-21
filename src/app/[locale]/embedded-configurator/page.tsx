@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useLocale } from 'next-intl'
-import Link from 'next/link'
-import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { Link } from '@/i18n/navigation'
+import { ManufacturerHeader } from '@/components/manufacturer/manufacturer-header'
 import { FooterSection } from '@/components/footer-section'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { Check, ExternalLink } from 'lucide-react'
@@ -183,7 +183,7 @@ export default function EmbeddedConfiguratorLandingPage() {
 
   return (
     <div className="min-h-screen bg-white text-black" style={{ fontFamily: FONT }}>
-      <NavbarDemo />
+      <ManufacturerHeader />
 
       <main>
 

@@ -1,9 +1,10 @@
 'use client'
 
-import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { ManufacturerHeader } from '@/components/manufacturer/manufacturer-header'
 import { appUrl } from '@/lib/constants'
 import { FooterSection } from '@/components/footer-section'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
+import { CornerSquares } from '@/components/common/corner-squares'
 import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -114,20 +115,6 @@ const PartnerHeaderLogos = () => (
 )
 
 
-const DottedPlusIcon = ({ className = "w-3 h-3 text-[#f05a47]" }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" fill="currentColor" className={className}>
-    <circle cx="50" cy="10" r="7.5" />
-    <circle cx="50" cy="30" r="7.5" />
-    <circle cx="50" cy="50" r="7.5" />
-    <circle cx="50" cy="70" r="7.5" />
-    <circle cx="50" cy="90" r="7.5" />
-    <circle cx="10" cy="50" r="7.5" />
-    <circle cx="30" cy="50" r="7.5" />
-    <circle cx="70" cy="50" r="7.5" />
-    <circle cx="90" cy="50" r="7.5" />
-  </svg>
-)
-
 export default function ResearchProjectsPage() {
   const locale = useLocale()
   const t = useTranslations('ResearchPage')
@@ -135,9 +122,9 @@ export default function ResearchProjectsPage() {
 
   return (
     <div className="research-page-scope relative w-full bg-[#FFFFFF] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
-      <NavbarDemo />
+      <ManufacturerHeader />
 
-      <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-36 pb-28">
+      <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-12 md:pt-16 pb-28">
 
         {/* SLIDE 1 SECTION: HERO BRAND & ACTIVE USERS (ARCHITEXTURES & MATERIAL GUIDE HERO UI) */}
         <section className="relative py-12 text-center">
@@ -155,12 +142,9 @@ export default function ResearchProjectsPage() {
               </span>
             </div>
 
-            {/* Main Logo Container Box with Corner (+) Accents */}
-            <div className="relative p-6 sm:p-8 rounded-2xl bg-white/70 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-xl w-full flex flex-col items-center justify-center">
-              <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+            {/* Main Logo Container Box with Corner Squares (borderless) */}
+            <div className="relative p-6 sm:p-8 max-w-xl w-full flex flex-col items-center justify-center">
+              <CornerSquares />
 
               <div className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 py-1 select-none">
                 <div className="bg-black dark:bg-white w-6 h-6 sm:w-7 sm:h-7 shrink-0" />
@@ -175,12 +159,9 @@ export default function ResearchProjectsPage() {
               </div>
             </div>
 
-            {/* Material Provider & Manufacturer Sign-Up Box */}
-            <div className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm max-w-xl w-full flex flex-col items-center justify-center text-center space-y-4">
-              <DottedPlusIcon className="absolute -top-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -top-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -bottom-2 -left-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute -bottom-2 -right-2 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+            {/* Material Provider & Manufacturer Sign-Up Box (borderless) */}
+            <div className="relative p-6 sm:p-7 max-w-xl w-full flex flex-col items-center justify-center text-center space-y-4">
+              <CornerSquares />
 
               <div className="space-y-1.5">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider">
@@ -200,18 +181,18 @@ export default function ResearchProjectsPage() {
                   href={`${appUrl}/provider/signup?language=${locale}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 shadow-md flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-md bg-black hover:bg-neutral-800 text-white text-xs font-medium tracking-widest uppercase transition-all shadow-2xs flex items-center justify-center gap-2"
                   style={{ fontFamily: 'Arial' }}
                 >
                   <span>{t('providerBox.createAccount')}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
                 <Link
                   href={`${appUrl}/provider/login?language=${locale}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-bold text-xs uppercase tracking-wider hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200 flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-medium text-xs tracking-widest uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center justify-center gap-1.5"
                   style={{ fontFamily: 'Arial' }}
                 >
                   <span>{t('providerBox.providerLogin')}</span>
@@ -225,8 +206,9 @@ export default function ResearchProjectsPage() {
               <ResearchProcessWorkflow locale={locale} />
             </div> */}
 
-            {/* Active Users Metric Card (Material Guide Style) */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800 shadow-sm space-y-3 max-w-2xl w-full">
+            {/* Active Users Metric Card (borderless) */}
+            <div className="relative p-6 sm:p-8 space-y-3 max-w-2xl w-full">
+              <CornerSquares />
               <div className="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white flex items-center justify-center mx-auto">
                 <Users className="w-6 h-6 stroke-[1.75]" />
               </div>
@@ -241,19 +223,12 @@ export default function ResearchProjectsPage() {
               </p>
             </div>
 
-            {/* STATS BANNER SECTION (WHITE BACKGROUND, RED STRIPE & CROSSHAIRS, SIDE-BY-SIDE 1-ROW ANIMATED COUNT-UP) */}
+            {/* STATS BANNER SECTION */}
             <div
-              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden my-4 py-8 sm:py-10 px-6 sm:px-10 max-w-4xl mx-auto"
+              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 shadow-2xs overflow-hidden my-4 py-8 sm:py-10 px-6 sm:px-10 max-w-4xl mx-auto"
               style={{ fontFamily: 'Arial' }}
             >
-              {/* Red Accent Top Stripe */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#f05a47]" style={{ backgroundColor: '#f05a47' }} />
-
-              {/* Corner Plus (+) Accents in Coral Red (#f05a47) */}
-              <DottedPlusIcon className="absolute top-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute top-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute bottom-3 left-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
-              <DottedPlusIcon className="absolute bottom-3 right-3 w-3.5 h-3.5 text-[#f05a47] pointer-events-none select-none z-10" />
+              <CornerSquares />
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center text-center divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80 dark:divide-neutral-800">
                 {/* Stat 1 */}
@@ -922,23 +897,18 @@ export default function ResearchProjectsPage() {
             </div>
 
             {/* PROMINENT SPOTLIGHT: EINGEBETTETER TYPUS-KONFIGURATOR */}
-            <div className="mt-8 relative p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border-2 border-[#f05a47] shadow-xl text-left">
-              {/* 4 Corner Small Square Fills */}
-              <span className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-              <span className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+            <div
+              className="mt-8 relative p-6 sm:p-8 rounded-2xl bg-[#f7f5f0] dark:bg-neutral-900/90 border border-neutral-200 dark:border-neutral-800 shadow-2xs text-left"
+            >
+              <CornerSquares />
 
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div className="space-y-2.5 max-w-2xl">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span
-                      className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[10px] font-bold uppercase tracking-wider badge-featured-red"
-                      style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
-                    >
+                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px] font-bold uppercase tracking-widest">
                       {locale === 'de' ? 'PRODUKT-FEATURE' : 'PRODUCT FEATURE'}
                     </span>
-                    <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+                    <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
                       350 € / {locale === 'de' ? 'Monat' : 'month'}
                     </span>
                   </div>
@@ -965,8 +935,8 @@ export default function ResearchProjectsPage() {
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
                   <Link
                     href={`/${locale}/embedded-configurator`}
-                    className="py-2.5 px-6 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 text-xs font-bold uppercase tracking-wider text-center transition-all duration-200 shadow-sm inline-flex items-center justify-center gap-2"
-                    style={{ fontFamily: 'Arial', backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
+                    className="py-2.5 px-6 rounded-md bg-black hover:bg-neutral-800 text-white text-xs font-medium tracking-widest uppercase text-center transition-all shadow-2xs inline-flex items-center justify-center gap-2"
+                    style={{ fontFamily: 'Arial' }}
                   >
                     <span>{locale === 'de' ? 'Mehr erfahren' : 'Learn More'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -976,7 +946,7 @@ export default function ResearchProjectsPage() {
                     href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-2.5 px-6 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-xs font-bold uppercase tracking-wider text-center hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-flex items-center justify-center gap-1.5"
+                    className="py-2.5 px-6 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-xs font-medium tracking-widest uppercase text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-flex items-center justify-center gap-1.5"
                     style={{ fontFamily: 'Arial' }}
                   >
                     <span>{locale === 'de' ? 'Jetzt testen' : 'Try Now'}</span>
@@ -1011,12 +981,13 @@ export default function ResearchProjectsPage() {
                 { icon: Users },
                 { icon: ShieldCheck }
               ].map((col, idx) => (
-                <div key={idx} className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs flex flex-col justify-between space-y-4 text-center hover:shadow-lg transition">
+                <div key={idx} className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs flex flex-col justify-between space-y-4 text-center hover:shadow-lg transition">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <col.icon className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
                   <div className="space-y-1">
                     <div
-                      className="text-2xl sm:text-3xl text-[#f05a47]"
-                      style={{ fontFamily: 'Arial', color: '#f05a47' }}
+                      className="text-2xl sm:text-3xl font-mono text-neutral-900 dark:text-white font-medium"
+                      style={{ fontFamily: 'Arial, monospace' }}
                     >
                       {t(`slide9.items.${idx}.num`)}
                     </div>
@@ -1476,11 +1447,8 @@ export default function ResearchProjectsPage() {
               </div>
 
               {/* Advisor & Custom Offer Booking Form Card */}
-              <div className="md:col-span-2 lg:col-span-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm relative overflow-hidden flex flex-col justify-between">
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+              <div className="md:col-span-2 lg:col-span-4 p-4 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs relative overflow-hidden flex flex-col justify-between">
+                <CornerSquares />
                 <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" />
               </div>
             </div>
@@ -1522,17 +1490,14 @@ export default function ResearchProjectsPage() {
               </p>
             </div>
 
-            {/* 4 Pricing Cards Grid with Corner Plus (+) Accents */}
+            {/* 4 Pricing Cards Grid with Corner Squares */}
             <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
               {/* Card 1: Essential */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <CornerSquares />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1597,7 +1562,7 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
                 >
                   {t('plans.getStarted')}
                 </Link>
@@ -1605,13 +1570,10 @@ export default function ResearchProjectsPage() {
 
               {/* Card 2: Standard */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <CornerSquares />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1677,7 +1639,7 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
                 >
                   {t('plans.getStarted')}
                 </Link>
@@ -1685,21 +1647,15 @@ export default function ResearchProjectsPage() {
 
               {/* Card 3: Advanced */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 card-featured-red-border flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border-2 border-black dark:border-white flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <CornerSquares />
 
                 <div className="space-y-4 text-left">
-                  <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white flex items-center justify-between">
+                  <h4 className="text-xl sm:text-2xl text-neutral-900 dark:text-white flex items-center justify-between">
                     <span>{t('plans.advanced')}</span>
-                    <span
-                      className="px-2.5 py-0.5 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] text-[9px] uppercase font-bold tracking-wider badge-featured-red"
-                      style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
-                    >
+                    <span className="px-2.5 py-0.5 rounded-md bg-black text-white text-[9px] uppercase font-bold tracking-wider">
                       PRO
                     </span>
                   </h4>
@@ -1764,8 +1720,7 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full border border-[#f05a47] bg-transparent text-[#f05a47] hover:bg-[#f05a47]/5 text-center text-xs uppercase tracking-wider transition-all duration-200 mt-6 inline-block"
-                  style={{ backgroundColor: 'transparent', color: '#f05a47', borderColor: '#f05a47' }}
+                  className="w-full py-2.5 px-4 rounded-md bg-black text-white hover:bg-neutral-800 text-center text-xs font-medium tracking-widest uppercase transition-all shadow-2xs mt-6 inline-block"
                 >
                   {t('plans.getStarted')}
                 </Link>
@@ -1773,13 +1728,10 @@ export default function ResearchProjectsPage() {
 
               {/* Card 4: Custom */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900/90 border border-neutral-300/90 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
                 style={{ fontFamily: 'Arial' }}
               >
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <CornerSquares />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
@@ -1844,7 +1796,7 @@ export default function ResearchProjectsPage() {
                   href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 mt-6 inline-block"
+                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
                 >
                   {t('plans.contactSales')}
                 </Link>
@@ -1860,14 +1812,13 @@ export default function ResearchProjectsPage() {
                 <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                   {t('plans.addonsHeader')}
                 </span>
-                <DottedPlusIcon className="w-3 h-3 text-[#f05a47] shrink-0" />
+                <div className="w-2 h-2 bg-black dark:bg-white shrink-0" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                 {/* Add-on 1 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon1Title')}
@@ -1880,16 +1831,15 @@ export default function ResearchProjectsPage() {
                     href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px]  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
                   >
                     {t('plans.contactSales')}
                   </Link>
                 </div>
 
                 {/* Add-on 2 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon2Title')}
@@ -1900,16 +1850,15 @@ export default function ResearchProjectsPage() {
                   </div>
                   <Link
                     href={`/${locale}/embedded-configurator`}
-                    className="w-fit py-1.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px]  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
                   >
                     {t('plans.tryIt')}
                   </Link>
                 </div>
 
                 {/* Add-on 5: Persönlicher Visualisierer für Sie */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon5Title')}
@@ -1922,16 +1871,15 @@ export default function ResearchProjectsPage() {
                     href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px]  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
                   >
                     {t('plans.contactSales')}
                   </Link>
                 </div>
 
                 {/* Add-on 3 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-300/80 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-xs">
-                  <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
-                  <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-[#f05a47] pointer-events-none select-none z-20" />
+                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <div className="space-y-1 text-left">
                     <span className="text-xs  text-neutral-900 dark:text-white block">
                       {t('plans.addon3Title')}
@@ -1941,7 +1889,7 @@ export default function ResearchProjectsPage() {
                     href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-[10px]  uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block"
+                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
                   >
                     {t('plans.contactSales')}
                   </Link>

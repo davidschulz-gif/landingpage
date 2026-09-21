@@ -20,76 +20,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
 import { appUrl } from '@/lib/constants'
-
-
-function AudienceDropdown({ locale }: { locale: string }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
-
-  return (
-    <div className="relative inline-block text-left shrink-0" ref={dropdownRef}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-[12px] font-bold text-neutral-800 dark:text-neutral-200 hover:border-black dark:hover:border-white transition-all shadow-2xs cursor-pointer"
-        style={{ fontFamily: 'Arial, sans-serif' }}
-      >
-        <span>{locale === 'de' ? 'Zielgruppe ▾' : 'Audience ▾'}</span>
-      </button>
-
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xl p-2 z-[1010] space-y-1">
-          {/* Option 1: Für Architekten */}
-          <Link
-            href="/#solutions"
-            onClick={() => setIsOpen(false)}
-            className="group flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition duration-150"
-          >
-            <div className="p-2 rounded-lg bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div className="space-y-0.5">
-              <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-blue-600 transition" style={{ fontFamily: 'Arial' }}>
-                {locale === 'de' ? 'Für Architekten' : 'For Architects'}
-              </div>
-              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-snug" style={{ fontFamily: 'Arial' }}>
-                {locale === 'de' ? 'KI-Tools für Entwurf, 3D-Rendering & Grundrisse' : 'AI tools for sketching, 3D rendering & floor plans'}
-              </p>
-            </div>
-          </Link>
-
-          {/* Option 2: Für Bauproduktanbieter */}
-          <Link
-            href="/research"
-            onClick={() => setIsOpen(false)}
-            className="group flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition duration-150"
-          >
-            <div className="p-2 rounded-lg bg-emerald-50 dark:bg-neutral-800 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition">
-              <Box className="w-4 h-4" />
-            </div>
-            <div className="space-y-0.5">
-              <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition" style={{ fontFamily: 'Arial' }}>
-                {locale === 'de' ? 'Für Bauproduktanbieter' : 'For Material Providers'}
-              </div>
-              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-snug" style={{ fontFamily: 'Arial' }}>
-                {locale === 'de' ? 'EU-KI-Forschung & eingebetteter Konfigurator' : 'EU AI research & embedded configurator'}
-              </p>
-            </div>
-          </Link>
-        </div>
-      )}
-    </div>
-  )
-}
+import { AudienceToggle } from '@/components/common/audience-toggle'
 
 interface SubItem {
   title: string
@@ -441,122 +372,121 @@ export function NavbarDemo() {
   return (
     <Navbar setDoNotShowMegaMenu={setDoNotShowMegaMenu}>
       {/* Desktop Navigation */}
-      <NavBody className='relative z-[60]' visible={!doNotShowMegaMenu}>
-        {!doNotShowMegaMenu ? (
+      <NavBody className='relative z-[60]' visible={true}>
+        {/* {!doNotShowMegaMenu ? (
           <div className='w-20'></div>
         ) : (
           <NavbarLogo visible />
-        )}
+        )} */}
+        <NavbarLogo visible />
         <div
           className='w-fit shrink-0'
-          onMouseEnter={handleMenuEnter}
-          onMouseLeave={handleMenuLeave}
         >
-          {doNotShowMegaMenu ? (
-            <Menu setActive={setActive} active={active}>
-              {translatedNavItems.map((navItem, idx) => (
-                <MenuItem
-                  key={`menu-item-${idx}`}
-                  setActive={setActive}
-                  active={active}
-                  item={navItem.name.toUpperCase()}
-                  href={navItem.link}
-                >
-                  {navItem.submenu && (
-                    <div className='flex flex-col space-y-4 text-sm'>
-                      {navItem.submenu?.map((subitem: any, subIdx) => (
-                        subitem.isSection ? (
-                          <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
-                            <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
-                              {subitem.title}
-                            </h5>
-                          </div>
-                        ) : (
-                          <HoveredLink
-                            key={`hovered-link-${idx}-${subIdx}`}
-                            href={subitem.link}
-                            target={subitem?.target}
-                            onClick={() => handleTabClick(subitem.link)}
-                          >
-                            <div className='flex items-start gap-3'>
-                              {subitem.icon && (
-                                <div className='mt-0.5 p-1 rounded-lg bg-gray-50 border border-transparent transition-colors'>
-                                  <subitem.icon className='w-3.5 h-3.5 text-gray-600' />
-                                </div>
-                              )}
-                              <div className='flex-1'>
-                                <h1 className='font-semibold text-[13px]'>{subitem.title}</h1>
-                                <p className='text-[11px] text-gray-500 leading-tight'>{subitem.description}</p>
+          {/* {doNotShowMegaMenu ? ( */}
+          <Menu setActive={setActive} active={active}>
+            {translatedNavItems.map((navItem, idx) => (
+              <MenuItem
+                key={`menu-item-${idx}`}
+                setActive={setActive}
+                active={active}
+                item={navItem.name.toUpperCase()}
+                href={navItem.link}
+              >
+                {navItem.submenu && (
+                  <div className='flex flex-col space-y-4 text-sm'>
+                    {navItem.submenu?.map((subitem: any, subIdx) => (
+                      subitem.isSection ? (
+                        <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>
+                          <h5 className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
+                            {subitem.title}
+                          </h5>
+                        </div>
+                      ) : (
+                        <HoveredLink
+                          key={`hovered-link-${idx}-${subIdx}`}
+                          href={subitem.link}
+                          target={subitem?.target}
+                          onClick={() => handleTabClick(subitem.link)}
+                        >
+                          <div className='flex items-start gap-3'>
+                            {subitem.icon && (
+                              <div className='mt-0.5 p-1 rounded-lg bg-gray-50 border border-transparent transition-colors'>
+                                <subitem.icon className='w-3.5 h-3.5 text-gray-600' />
                               </div>
+                            )}
+                            <div className='flex-1'>
+                              <h1 className='font-semibold text-[13px]'>{subitem.title}</h1>
+                              <p className='text-[11px] text-gray-500 leading-tight'>{subitem.description}</p>
                             </div>
-                          </HoveredLink>
-                        )
-                      ))}
-                    </div>
-                  )}
-                  {navItem.isTestimonials && (
-                    <div className='flex flex-col gap-4 text-sm w-72 p-1'>
-                      {/* Article Card 1 */}
-                      <Link href={`/ama-awards`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
-                          <div className="flex flex-col xl:flex-row">
-                              <div className="w-full xl:w-[45%] p-1.5">
-                                  <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
-                                      <Image
-                                          src="/artical-page/1.jpg"
-                                          alt="AMA Awards Architecture"
-                                          fill
-                                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                      />
-                                  </div>
-                              </div>
-                              <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                  <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
-                                      {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
-                                  </h2>
-                                  <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
-                                      <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
-                                  </div>
-                                  <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
-                                      {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
-                                  </div>
-                              </div>
                           </div>
-                      </Link>
+                        </HoveredLink>
+                      )
+                    ))}
+                  </div>
+                )}
+                {navItem.isTestimonials && (
+                  <div className='flex flex-col gap-4 text-sm w-72 p-1'>
+                    {/* Article Card 1 */}
+                    <Link href={`/ama-awards`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                        <div className="flex flex-col xl:flex-row">
+                            <div className="w-full xl:w-[45%] p-1.5">
+                                <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                    <Image
+                                        src="/artical-page/1.jpg"
+                                        alt="AMA Awards Architecture"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                    {locale === 'de' ? 'Solo Architektin gewinnt AMA Award. Ohne team. Nur mit Ki.' : 'Solo architect wins AMA Award. No team. Only AI.'}
+                                </h2>
+                                <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                    <span>{locale === 'de' ? '20. MÄRZ 2026' : 'MARCH 20, 2026'}</span>
+                                </div>
+                                <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                    {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
 
-                      {/* Article Card 2 */}
-                      <Link href={`/siegrist`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
-                          <div className="flex flex-col xl:flex-row">
-                              <div className="w-full xl:w-[45%] p-1.5">
-                                  <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
-                                      <Image
-                                          src="/siegrist/saint-aubin.jpg"
-                                          alt="Siegrist Architectes"
-                                          fill
-                                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                      />
-                                  </div>
-                              </div>
-                              <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
-                                  <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
-                                      {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
-                                  </h2>
-                                  <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
-                                      <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
-                                  </div>
-                                  <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
-                                      {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
-                                  </div>
-                              </div>
-                          </div>
-                      </Link>
-                    </div>
-                  )}
-                </MenuItem>
-              ))}
-            </Menu>
-          ) : (
+                    {/* Article Card 2 */}
+                    <Link href={`/siegrist`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                        <div className="flex flex-col xl:flex-row">
+                            <div className="w-full xl:w-[45%] p-1.5">
+                                <div className="border border-black h-full overflow-hidden relative min-h-[80px]">
+                                    <Image
+                                        src="/siegrist/saint-aubin.jpg"
+                                        alt="Siegrist Architectes"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-full xl:w-[55%] p-2 flex flex-col justify-center">
+                                <h2 className="text-[8px] font-normal uppercase tracking-tighter leading-tight text-black mb-1.5 line-clamp-2">
+                                    {locale === 'de' ? 'SCHWEIZER PRÄZISION TRIFFT KI: SIEGRIST ARCHITECTES' : 'SWISS PRECISION MEETS AI: SIEGRIST ARCHITECTES'}
+                                </h2>
+                                <div className="flex items-center gap-1.5 text-[7px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                                    <span>{locale === 'de' ? '10. APRIL 2026' : 'APRIL 10, 2026'}</span>
+                                </div>
+                                <div className="inline-flex items-center w-fit gap-1 font-black text-[8px] bg-black text-white px-2 py-1 uppercase tracking-widest transition-colors">
+                                    {locale === 'de' ? 'ARTIKEL LESEN' : 'READ ARTICLE'} &rarr;
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                  </div>
+                )}
+              </MenuItem>
+            ))}
+          </Menu>
+          {/* ) : (
             <NavItems items={translatedNavItems} />
-          )}
+          )} */}
         </div>
         <div className='flex items-center gap-3 xl:gap-6 h-full shrink-0'>
           {isHersteller ? (
@@ -601,9 +531,12 @@ export function NavbarDemo() {
               </Link>
             </>
           )}
-          <AudienceDropdown locale={locale} />
+          <AudienceToggle />
         </div>
       </NavBody>
+
+      {/* Mega Menu Overlay commented out per user request - code preserved in comments below */}
+      {/*
       {!doNotShowMegaMenu && (
         <div
           ref={menuRef}
@@ -616,8 +549,8 @@ export function NavbarDemo() {
           onMouseLeave={handleMenuLeave}
         >
           <div className='relative overflow-hidden flex justify-between items-start py-8 px-3'>
-            {/* Subtle gradient background */}
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/80"></div> */}
+            {/* Subtle gradient background * /}
+            {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white/80"></div> * /}
 
             <div className='-mt-3'>
               <NavbarLogo visible />
@@ -655,7 +588,7 @@ export function NavbarDemo() {
                       </div>
                       {navItem.isTestimonials ? (
                         <div className='flex flex-col gap-4 pt-2'>
-                          {/* Article Card 1 */}
+                          {/* Article Card 1 * /}
                           <Link href={`/ama-awards`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
                               <div className="flex flex-col xl:flex-row">
                                   <div className="w-full xl:w-[45%] p-1.5">
@@ -682,7 +615,7 @@ export function NavbarDemo() {
                               </div>
                           </Link>
 
-                          {/* Article Card 2 */}
+                          {/* Article Card 2 * /}
                           <Link href={`/siegrist`} className="group w-full text-left border border-black shadow-[4px_4px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
                               <div className="flex flex-col xl:flex-row">
                                   <div className="w-full xl:w-[45%] p-1.5">
@@ -784,8 +717,8 @@ export function NavbarDemo() {
                 </div>
               </div>
 
-              {/* Premium bottom section */}
-              {/* Premium bottom section - hidden when menu is open */}
+              {/* Premium bottom section * /}
+              {/* Premium bottom section - hidden when menu is open * /}
               {/* <div
                 className={`mt-6 pt-4 border-t border-gray-200/60 transition-all duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)]`}
                 style={{
@@ -812,7 +745,7 @@ export function NavbarDemo() {
                     </a>
                   </div>
                 </div>
-              </div> */}
+              </div> * /}
             </div>
             <div className='flex items-center gap-6 h-full'>
               {/* <Link
@@ -820,7 +753,7 @@ export function NavbarDemo() {
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {isDoneForYou ? t('returnToHome') : t('doneForYouService')}
-              </Link> */}
+              </Link> * /}
               <Link
                 href={`${appUrl}/login`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
@@ -832,7 +765,7 @@ export function NavbarDemo() {
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 ease-[cubic-bezier(0.4,0.0,0.2,1)]'
               >
                 {t('signUp')}
-              </Link> */}
+              </Link> * /}
               {/* <div className='relative h-full flex items-center pt-2'>
                 <Menu setActive={setAppActive} active={appActive}>
                   <MenuItem setActive={setAppActive} active={appActive} item={t('goToApp')}>
@@ -842,11 +775,12 @@ export function NavbarDemo() {
                     </div>
                   </MenuItem>
                 </Menu>
-              </div> */}
+              </div> * /}
             </div>
           </div>
         </div>
       )}
+      */}
 
       {/* Mobile Navigation */}
       <MobileNav>
@@ -865,6 +799,9 @@ export function NavbarDemo() {
         onClose={() => setIsMobileMenuOpen(false)}
       >
         <div className='w-full flex flex-col gap-6 font-sans pb-4'>
+          <div className='pb-2 pt-1 border-b border-gray-100 dark:border-neutral-800 flex justify-center'>
+            <AudienceToggle mobileFullWidth />
+          </div>
           {translatedNavItems.map((item, idx) => (
             <div key={`mobile-item-${idx}`} className='space-y-4 pb-5 border-b border-gray-100 dark:border-neutral-800 last:border-0 last:pb-0'>
               <a
