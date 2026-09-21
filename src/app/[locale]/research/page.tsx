@@ -1,1945 +1,548 @@
 'use client'
 
-import { ManufacturerHeader } from '@/components/manufacturer/manufacturer-header'
-import { appUrl } from '@/lib/constants'
-import { FooterSection } from '@/components/footer-section'
-import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
-import { CornerSquares } from '@/components/common/corner-squares'
-import { useLocale, useTranslations } from 'next-intl'
-import { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import BookingDemoClassFormForPricingPage from '@/components/demo-class-boooking-form-for-pricing-page'
-import { ResearchProcessWorkflow } from '@/components/research/ResearchProcessWorkflow'
-import { ProviderProcessWorkflow } from '@/components/manufacturer/provider-process-workflow'
-
-function AnimatedStatNumber({ value }: { value: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
-  const [displayValue, setDisplayValue] = useState("0")
-
-  useEffect(() => {
-    if (!isInView) return
-
-    let numericTarget = 0
-    let suffix = ""
-
-    if (value.includes("50k")) {
-      numericTarget = 50
-      suffix = "k+"
-    } else if (value.includes("2.500") || value.includes("2,500")) {
-      numericTarget = 2500
-      suffix = "+"
-    } else if (value.includes("30k")) {
-      numericTarget = 30
-      suffix = "k+"
-    } else {
-      const match = value.match(/\d+/)
-      numericTarget = match ? parseInt(match[0]) : 0
-    }
-
-    const duration = 1800
-    const steps = 50
-    const stepTime = duration / steps
-    let currentStep = 0
-
-    const timer = setInterval(() => {
-      currentStep++
-      const progress = currentStep / steps
-      const easeProgress = 1 - Math.pow(1 - progress, 3)
-      const currentVal = Math.floor(easeProgress * numericTarget)
-
-      if (suffix === "+" && numericTarget > 999) {
-        const formatted = currentVal >= 1000 
-          ? `${Math.floor(currentVal / 1000)}.${(currentVal % 1000).toString().padStart(3, '0')}`
-          : currentVal.toString()
-        setDisplayValue(formatted + suffix)
-      } else {
-        setDisplayValue(currentVal + suffix)
-      }
-
-      if (currentStep >= steps) {
-        clearInterval(timer)
-        setDisplayValue(value)
-      }
-    }, stepTime)
-
-    return () => clearInterval(timer)
-  }, [isInView, value])
-
-  return <span ref={ref}>{displayValue}</span>
-}
+import { motion, AnimatePresence } from 'framer-motion'
+import { useLocale, useTranslations } from 'next-intl'
+import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { FooterSection } from '@/components/footer-section'
 import {
-  Cpu,
-  Layers,
-  Sparkles,
-  Users,
-  Database,
-  CheckCircle2,
-  Rocket,
-  ShieldCheck,
-  Megaphone,
-  ShoppingCart,
-  Zap,
-  Building2,
-  FileCheck,
-  Trophy,
-  Target,
-  ExternalLink,
   ArrowRight,
-  Handshake,
-  Settings,
-  Tag,
-  Coins,
-  Gift,
-  Library,
-  Brain,
-  LayoutGrid,
-  Box,
-  Plus,
-  Play,
-  Leaf,
-  Globe
+  X,
+  CheckCircle2,
+  Send,
+  Loader2
 } from 'lucide-react'
 
-const PartnerHeaderLogos = () => (
-  <div className="flex flex-wrap items-center justify-between gap-6 border-b border-neutral-200 dark:border-neutral-800 pb-8 pt-4">
-    <div className="flex items-center justify-between w-full gap-6 sm:gap-8 md:gap-12 flex-wrap">
-      <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={360} height={140} className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain dark:invert" />
-      <Image src="/logo/logo_eccc.svg" alt="ECCC European Cybersecurity Competence Centre" width={400} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
-      <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC Joint Undertaking" width={420} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
-      <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={360} height={140} className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain dark:invert" />
-      <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={450} height={140} className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain dark:invert" />
-    </div>
-  </div>
-)
-
-
-export default function ResearchProjectsPage() {
+export default function ResearchPage() {
   const locale = useLocale()
-  const t = useTranslations('ResearchPage')
   const isDe = locale === 'de'
+  const t = useTranslations('ResearchInnovation')
+
+  // Modal State for "Kooperation anfragen" / "Kontakt"
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    institution: '',
+    email: '',
+    project: 'FFplus / AI Research',
+    message: ''
+  })
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setFormSubmitted(true)
+    }, 900)
+  }
+
+  // 5 Research Projects with keys from translations
+  const projectKeys = [
+    {
+      id: 'efre-nrw',
+      key: 'efre',
+      status: 'approved',
+      statusText: t('projects.status.approved')
+    },
+    {
+      id: 'ffplus',
+      key: 'ffplus',
+      status: 'approved',
+      statusText: t('projects.status.approved')
+    },
+    {
+      id: 'igp-bmwe',
+      key: 'igp',
+      status: 'inProgress',
+      statusText: t('projects.status.inProgress')
+    },
+    {
+      id: 'zukunft-bau',
+      key: 'zukunftBau',
+      status: 'inProgress',
+      statusText: t('projects.status.inProgress')
+    },
+    {
+      id: 'kmu-innovativ',
+      key: 'kmu',
+      status: 'inDevelopment',
+      statusText: t('projects.status.inDevelopment')
+    }
+  ]
+
+  // 5 Process Steps
+  const processStepKeys = [
+    { step: '01', key: 'step1' },
+    { step: '02', key: 'step2' },
+    { step: '03', key: 'step3' },
+    { step: '04', key: 'step4' },
+    { step: '05', key: 'step5', isCompleted: true }
+  ]
+
+  // 4 Network Partners
+  const networkPartners = [
+    { name: 'RWTH Aachen', role: t('network.partner1Role') },
+    { name: 'DFKI', role: t('network.partner2Role') },
+    { name: 'Concular', role: t('network.partner3Role') },
+    { name: 'Lehrstuhl Bauinformatik', role: t('network.partner4Role') }
+  ]
 
   return (
-    <div className="research-page-scope relative w-full bg-[#FFFFFF] dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen font-sans selection:bg-black selection:text-white">
-      <ManufacturerHeader />
+    <div className="min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white font-sans antialiased">
+      
+      {/* ── STANDARD SITE NAVBAR (Same navbar as the rest of the site) ── */}
+      <NavbarDemo />
 
-      <main className="max-w-[1540px] mx-auto px-4 sm:px-6 md:px-10 space-y-24 md:space-y-32 pt-12 md:pt-16 pb-28">
+      {/* ── MAIN CONTENT CONTAINER ── */}
+      <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-28 sm:pt-36 pb-28 space-y-24 sm:space-y-28">
 
-        {/* SLIDE 1 SECTION: HERO BRAND & ACTIVE USERS (ARCHITEXTURES & MATERIAL GUIDE HERO UI) */}
-        <section className="relative py-12 text-center">
+        {/* ── HERO SECTION ── */}
+        <section className="space-y-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="w-full flex flex-col items-center justify-center text-center space-y-10"
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
-            {/* Top Specification Badge Tag */}
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xs text-xs">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-600 dark:text-neutral-300 font-semibold">
-                EU FFPLUS RESEARCH PROGRAMME &bull; DIGITALE MATERIAL- & TEXTURFÖRDERUNG
-              </span>
+            <div className="text-[11px] font-mono font-semibold tracking-[0.2em] text-neutral-400 uppercase">
+              {t('hero.tag')}
             </div>
 
-            {/* Main Logo Container Box with Corner Squares (borderless) */}
-            <div className="relative p-6 sm:p-8 max-w-xl w-full flex flex-col items-center justify-center">
-              <CornerSquares />
-
-              <div className="flex flex-col items-center justify-center gap-2.5 sm:gap-3 py-1 select-none">
-                <div className="bg-black dark:bg-white w-6 h-6 sm:w-7 sm:h-7 shrink-0" />
-                <span
-                  className="text-black dark:text-white font-normal tracking-[0.1em] uppercase text-2xl sm:text-3xl md:text-4xl leading-none"
-                  style={{
-                    fontFamily: 'Arial, Helvetica, sans-serif',
-                  }}
-                >
-                  TYPUS
-                </span>
-              </div>
-            </div>
-
-            {/* Material Provider & Manufacturer Sign-Up Box (borderless) */}
-            <div className="relative p-6 sm:p-7 max-w-xl w-full flex flex-col items-center justify-center text-center space-y-4">
-              <CornerSquares />
-
-              <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  {t('providerBox.badge')}
-                </div>
-                <h4 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white" style={{ fontFamily: 'Arial' }}>
-                  {t('providerBox.title')}
-                </h4>
-                <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-md mx-auto leading-relaxed" style={{ fontFamily: 'Arial' }}>
-                  {t('providerBox.desc')}
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-1">
-                <Link
-                  href={`${appUrl}/provider/signup?language=${locale}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-md bg-black hover:bg-neutral-800 text-white text-xs font-medium tracking-widest uppercase transition-all shadow-2xs flex items-center justify-center gap-2"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  <span>{t('providerBox.createAccount')}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-
-                <Link
-                  href={`${appUrl}/provider/login?language=${locale}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-medium text-xs tracking-widest uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center justify-center gap-1.5"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  <span>{t('providerBox.providerLogin')}</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
-                </Link>
-              </div>
-            </div>
-
-            {/* ── 7-Step Material Provider Process Workflow (Animated & Interactive) ── */}
-            {/* <div className="w-full max-w-5xl mx-auto">
-              <ResearchProcessWorkflow locale={locale} />
-            </div> */}
-
-            {/* Active Users Metric Card (borderless) */}
-            <div className="relative p-6 sm:p-8 space-y-3 max-w-2xl w-full">
-              <CornerSquares />
-              <div className="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white flex items-center justify-center mx-auto">
-                <Users className="w-6 h-6 stroke-[1.75]" />
-              </div>
-              <p
-                className="subheading-primary text-base sm:text-lg md:text-xl text-neutral-800 dark:text-neutral-200 leading-relaxed"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
-                  TYPUS
-                </Link>{' '}
-                {t('slide1.activeUsers')}
-              </p>
-            </div>
-
-            {/* STATS BANNER SECTION */}
-            <div
-              className="relative w-full rounded-2xl bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 shadow-2xs overflow-hidden my-4 py-8 sm:py-10 px-6 sm:px-10 max-w-4xl mx-auto"
-              style={{ fontFamily: 'Arial' }}
+            <h1 
+              className="text-4xl sm:text-5xl md:text-6xl font-normal text-neutral-950 tracking-tight leading-[1.12]"
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
-              <CornerSquares />
+              {t('hero.titleLine1')}<br />
+              {t('hero.titleLine2')}
+            </h1>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-center text-center divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/80 dark:divide-neutral-800">
-                {/* Stat 1 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <AnimatedStatNumber value={t('stats.visitorsValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.visitorsLabel')}
-                  </span>
-                </div>
-
-                {/* Stat 2 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <AnimatedStatNumber value={t('stats.subscribersValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.subscribersLabel')}
-                  </span>
-                </div>
-
-                {/* Stat 3 */}
-                <div className="flex flex-col items-center justify-center space-y-1.5 pt-4 sm:pt-0 sm:px-4">
-                  <span
-                    className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-neutral-900 dark:text-white leading-none"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <AnimatedStatNumber value={t('stats.generationsValue')} />
-                  </span>
-                  <span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-normal tracking-wide">
-                    {t('stats.generationsLabel')}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 5 SECTION: JUPITER SUPERCOMPUTER ARTICLE (MATERIAL GUIDE SPEC & ARTICLE LAYOUT) */}
-        <section className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-10">
-          
-          {/* Section Tag Header */}
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-mono tracking-widest uppercase">
-            <span>[ SECTION 01 // SUPERCOMPUTER & AI MODEL ]</span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> FORSCHUNGSZENTRUM JÜLICH
-            </span>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="w-full space-y-10"
-          >
-            <div className="text-center space-y-4 max-w-4xl mx-auto">
-              <span
-                className="inline-block px-3 py-1 rounded-full bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs uppercase tracking-widest "
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide5.badge')}
-              </span>
-              <h3
-                className="heading-primary text-2xl sm:text-3xl md:text-4xl"
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide5.title')}
-              </h3>
-              <p
-                className="subheading-primary text-base md:text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-3xl mx-auto"
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide5.subtitle')}
-              </p>
-              <div
-                className="text-xs text-neutral-400 font-mono pt-1"
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide5.dateAuthor')}
-              </div>
-            </div>
-
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 max-w-6xl mx-auto w-full shadow-2xl">
-              <div className="aspect-[16/9] w-full relative">
-                <Image
-                  src="/jupiter_inauguration.jpg"
-                  alt="Feierliche Einweihung des Supercomputers JUPITER am Forschungszentrum Jülich"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
-                
-                <div
-                  className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 text-white text-xs tracking-wider bg-black/75 px-4 py-2 rounded-full backdrop-blur-md border border-white/20  uppercase"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  <div className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
-                  {t('slide5.tag')}
-                </div>
-
-                <div
-                  className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 text-xs text-neutral-200 bg-black/75 px-4 py-2 rounded-xl backdrop-blur-md border border-white/10 font-mono"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide5.caption')}
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="flex justify-center text-xs md:text-sm pt-2"
-              style={{ fontFamily: 'Arial' }}
-            >
-              <Link
-                href="https://www.golem.de/news/supercomputer-jupiter-eingeweiht-europaeisch-ist-hochleistungsrechnen-richtig-gedacht-2509-199789.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 shadow-xs flex items-center gap-2 transition"
-              >
-                <span className="font-semibold">{t('slide5.source')}</span>
-                <ExternalLink className="w-4 h-4 shrink-0 text-blue-500" />
-              </Link>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 7B SECTION: PROF. DR. LEIF KOBBELT SCIENTIFIC VIDEO LECTURES */}
-        <section className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-10">
-          
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-mono tracking-widest uppercase">
-            <span>[ SECTION 02 // WISSENSCHAFTLICHE KOOPERATION ]</span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">RWTH AACHEN COMPUTER GRAPHICS</span>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="w-full space-y-10"
-          >
-            {/* Prof. Dr. Leif Kobbelt Cooperation Card placed above videos */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-3 max-w-2xl">
-              <div
-                className="text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 "
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide7.coopLabel')}
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-2xl bg-black text-white flex-shrink-0 shadow-md">
-                  <Image src="/cube_mesh_icon.png" alt="Cube Mesh Icon" width={32} height={32} className="w-7 h-7 object-contain" />
-                </div>
-                <div className="space-y-0.5">
-                  <h4
-                    className="heading-primary text-lg sm:text-xl md:text-2xl"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide7.professorName')}
-                  </h4>
-                  <p
-                    className="subheading-primary text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-snug"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide7.professorTitle')}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 2-Column Responsive Video Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
-              {/* Video 1 Card */}
-              <div className="p-6 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-lg flex flex-col justify-between space-y-6">
-                <div className="space-y-5">
-                  <div className="aspect-video w-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-black relative shadow-inner">
-                    <iframe
-                      src="https://www.youtube-nocookie.com/embed/_IZowy8X29c"
-                      title={t('videoSlide.video1Title')}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
-                  </div>
-
-                  <div className="space-y-2.5 pt-1">
-                    <div
-                      className="text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      RWTH AACHEN VORTRAG
-                    </div>
-                    <h4
-                      className="subheading-primary text-lg "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('videoSlide.video1Title')}
-                    </h4>
-                    <p
-                      className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('videoSlide.video1Desc')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800">
-                  <Link
-                    href="https://www.youtube.com/watch?v=_IZowy8X29c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline "
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <span>Auf YouTube ansehen</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Video 2 Card */}
-              <div className="p-6 md:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-lg flex flex-col justify-between space-y-6">
-                <div className="space-y-5">
-                  <div className="aspect-video w-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 relative shadow-inner group">
-                    <Link
-                      href="https://www.youtube.com/watch?v=-Ts-IGJiIGI"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full h-full block relative"
-                    >
-                      <Image
-                        src="https://img.youtube.com/vi/-Ts-IGJiIGI/hqdefault.jpg"
-                        alt={t('videoSlide.video2Title')}
-                        fill
-                        className="object-cover group-hover:scale-105 transition duration-300"
-                        unoptimized
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-red-600 group-hover:bg-red-700 text-white flex items-center justify-center shadow-xl transition transform group-hover:scale-110">
-                          <Play className="w-8 h-8 fill-current ml-1" />
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-
-                  <div className="space-y-2.5 pt-1">
-                    <div
-                      className="text-xs uppercase tracking-wider text-purple-600 dark:text-purple-400 "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      DFG LEIBNIZ-PREIS PORTRÄT
-                    </div>
-                    <h4
-                      className="subheading-primary text-lg "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('videoSlide.video2Title')}
-                    </h4>
-                    <p
-                      className="text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('videoSlide.video2Desc')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800">
-                  <Link
-                    href="https://www.youtube.com/watch?v=-Ts-IGJiIGI"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs md:text-sm text-[#0086bf] hover:underline "
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <span>Auf YouTube ansehen</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 2 SECTION: BDBAU MEMBERSHIP & SLIDE 3 MEDIA LOGOS */}
-        <section className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-12">
-          
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-mono tracking-widest uppercase">
-            <span>[ SECTION 03 // BDBAU MITGLIEDSCHAFT & PRESSE ]</span>
-            <span className="text-neutral-700 dark:text-neutral-300 font-semibold">DIGITALES BAUWESEN DEUTSCHLAND</span>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="w-full space-y-12"
-          >
-            <div className="max-w-5xl mx-auto space-y-8 flex flex-col items-center text-center">
-              <div className="w-full h-80 sm:h-96 md:h-[480px] lg:h-[520px] rounded-3xl overflow-hidden border border-neutral-200/90 dark:border-neutral-800 relative bg-white dark:bg-neutral-900 shadow-md flex items-center justify-center p-6">
-                <Image
-                  src="/research_bdbau_directory.png"
-                  alt="Bundesverband Digitales Bauwesen - Typus.AI Mitgliedschaft Directory"
-                  width={850}
-                  height={620}
-                  className="w-full h-full object-contain"
-                  unoptimized
-                />
-              </div>
-
-              <p
-                className="subheading-primary text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <Link href={`/${locale}`} className="text-[#0086bf] hover:underline ">
-                  TYPUS
-                </Link>{' '}
-                {t.rich('slide2.bdbauDesc', {
-                  link: (chunks) => (
-                    <a
-                      href="https://bdbau.org/mitglieder/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline decoration-neutral-400 hover:decoration-neutral-900 dark:hover:decoration-white transition-all underline-offset-4 "
-                    >
-                      {chunks}
-                    </a>
-                  )
-                })}
-              </p>
-
-              <div className="flex items-center justify-center gap-5 pt-2">
-                <a
-                  href="https://bdbau.org/mitglieder/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition"
-                >
-                  <Image src="/bdbau.png" alt="Bundesverband Digitales Bauwesen" width={450} height={200} className="h-28 sm:h-36 md:h-44 w-auto object-contain dark:invert" />
-                </a>
-              </div>
-            </div>
-
-            {/* Media Press Logos Container Box */}
-            <div className="p-8 rounded-3xl border border-neutral-200/90 dark:border-neutral-800 bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md shadow-xs space-y-8">
-              <div className="text-center text-xs font-mono uppercase tracking-widest text-neutral-400">
-                BEKANNT AUS MEDIEN & FACHPRESSE
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-center">
-                <div className="flex items-center justify-center p-4">
-                  <Image src="/logo/konferenzen-logo.png" alt="FAZ Konferenzen" width={220} height={80} className="h-12 sm:h-14 md:h-16 w-auto object-contain dark:invert" />
-                </div>
-                <div className="flex items-center justify-center p-4">
-                  <Image src="/logo/dab_logo.png" alt="Deutsches Architektenblatt" width={240} height={90} className="h-12 sm:h-14 md:h-16 w-auto object-contain invert dark:invert-0" />
-                </div>
-                <div className="flex items-center justify-center p-4">
-                  <Image src="/logo/80sek_black.png" alt="Neues Bauen 80 Sekunden" width={260} height={100} className="h-12 sm:h-14 md:h-16 w-auto object-contain dark:invert" />
-                </div>
-                <div className="flex items-center justify-center p-4">
-                  <Image src="/logo/baunetz_logo.png" alt="BauNetz" width={220} height={80} className="h-12 sm:h-14 md:h-16 w-auto object-contain dark:invert" />
-                </div>
-              </div>
-
-              <p
-                className="subheading-primary text-center text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-4xl mx-auto leading-relaxed border-t border-neutral-200/60 dark:border-neutral-800 pt-6"
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('slide3.desc')}
-              </p>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 4 SECTION: EU & NRW STATE FUNDING BAR */}
-        <section className="py-4 border-t border-neutral-200/80 dark:border-neutral-800">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 sm:p-6 shadow-2xs space-y-3 text-center"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 py-1">
-              <Image
-                src={locale === 'de' ? '/eu-kofinanziert-von-der-europaeischen-union.png' : '/eu-kofinanziert-von-der-europaeischen-union-en.png'}
-                alt="Kofinanziert von der Europäischen Union"
-                width={220}
-                height={55}
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain"
-              />
-              <Image
-                src="/Logo_MWIKE.jpg"
-                alt="Ministerium für Wirtschaft, Industrie, Klimaschutz und Energie NRW"
-                width={220}
-                height={55}
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain"
-              />
-            </div>
-
-            <p
-              className="subheading-primary text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontFamily: 'Arial' }}
-            >
-              {t('slide4.desc')}
+            <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl leading-relaxed pt-2">
+              {t('hero.subtitle')}
             </p>
-          </motion.div>
-        </section>
 
-        {/* SLIDE 6 SECTION: GEFÖRDERT & WISSENSCHAFTLICH BEGLEITET */}
-        <section className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-10">
-          
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-mono tracking-widest uppercase">
-            <span>[ SECTION 05 // FORSCHUNGSPARTNER & BEGLEITUNG ]</span>
-            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">EFRE / JTF NRW & FFPLUS</span>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="w-full space-y-10"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div className="lg:col-span-6 space-y-6">
-                <h3
-                  className="heading-primary text-2xl sm:text-3xl"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide6.title')}
-                </h3>
-
-                <div className="space-y-4 text-xs md:text-sm">
-                  {/* EFRE / JTF NRW Card */}
-                  <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 flex items-center justify-between gap-4 shadow-sm">
-                    <div className="flex items-center gap-4">
-                      <Image src="/logo_efre_jtf.png" alt="EFRE JTF NRW 2021-27" width={220} height={80} className="h-14 sm:h-16 md:h-18 w-auto object-contain dark:invert" unoptimized />
-                      <div
-                        className="text-neutral-900 dark:text-white hidden sm:block  text-xs md:text-sm"
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide6.efreTitle')}
-                      </div>
-                    </div>
-                    <span
-                      className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs  uppercase tracking-wider shrink-0"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.statusApproved')}
-                    </span>
-                  </div>
-
-                  {/* Fortissimo Plus Card */}
-                  <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 space-y-3 shadow-sm">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <Image src="/logo_ffplus_card.png" alt="FORTISSIMO PLUS" width={120} height={55} className="h-11 sm:h-13 w-auto object-contain" />
-                        <div
-                          className="text-neutral-900 dark:text-white  text-xs md:text-sm"
-                          style={{ fontFamily: 'Arial' }}
-                        >
-                          {t('slide6.ffplusTitle')}
-                        </div>
-                      </div>
-                      <span
-                        className="px-3.5 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 rounded-xl text-xs  uppercase tracking-wider shrink-0"
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide6.statusApproved')}
-                      </span>
-                    </div>
-                    <p
-                      className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.ffplusDesc')}
-                    </p>
-                  </div>
-
-                  {/* Kooperationen & Partner Card */}
-                  <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 space-y-4 shadow-sm">
-                    <div
-                      className="uppercase text-xs tracking-wider text-purple-600 dark:text-purple-400 "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.partnerTitle')}
-                    </div>
-                    
-                    <div className="flex items-center gap-6 flex-wrap">
-                      <Image src="/logo_dfki.png" alt="DFKI German Research Center for AI" width={160} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
-                      <Image src="/logo_concular.png" alt="Concular" width={120} height={50} className="h-10 md:h-12 w-auto object-contain dark:invert" unoptimized />
-                      <Image src="/logo_zukunft_bau.png" alt="Zukunft Bau" width={320} height={100} className="h-12 md:h-14 lg:h-16 w-auto object-contain dark:invert" unoptimized />
-                      <Image src="/logo_kmu_innovativ.png" alt="KMU-innovativ" width={200} height={60} className="h-12 md:h-14 lg:h-16 w-auto object-contain dark:invert" unoptimized />
-                    </div>
-
-                    <p
-                      className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800 pt-3"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.partnerDesc')} &bull; <span className="text-neutral-500 font-semibold">{t('slide6.deadline')}</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: JUPITER Supercomputer Rack Photo Container */}
-              <div className="lg:col-span-6">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-950 shadow-2xl h-[520px] sm:h-[620px] md:h-[680px] lg:h-[720px]">
-                  <Image
-                    src="/jupiter_rack_photo.png"
-                    alt="JUPITER High-Performance Supercomputer Racks at Forschungszentrum Jülich"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30 pointer-events-none" />
-                  
-                  <div
-                    className="absolute top-4 right-4 text-xs text-white bg-black/75 px-4 py-2 rounded-full backdrop-blur-md border border-white/20  uppercase tracking-wider"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide6.rackTag')}
-                  </div>
-
-                  <div className="absolute bottom-6 left-6 right-6 space-y-2">
-                    <div
-                      className="text-3xl md:text-4xl lg:text-5xl  text-white tracking-widest"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.rackTitle')}
-                    </div>
-                    <p
-                      className="text-xs md:text-sm text-neutral-300 font-mono"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide6.rackSubtitle')}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="pt-6 flex items-center gap-3 text-neutral-400 text-[11px] font-mono tracking-[0.15em] uppercase">
+              <span className="w-8 h-[1px] bg-neutral-300"></span>
+              <span>— {t('hero.divider')}</span>
             </div>
           </motion.div>
         </section>
 
-        {/* SLIDE 7 SECTION: PRODUCTS IN THE AI MODEL & SHOWCASE */}
-        <section className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-12">
+        {/* ── SECTION: AKTUELLE FORSCHUNGSPROJEKTE ── */}
+        <section className="space-y-10">
           
-          <div className="flex items-center justify-between text-xs text-neutral-400 font-mono tracking-widest uppercase">
-            <span>[ SECTION 06 // MATERIAL KATALOG & DIGITALE SHOWCASE ]</span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">ARCHITEXTURES × MATERIAL GUIDE</span>
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
+            <div className="space-y-1">
+              <div className="text-[10px] font-mono font-semibold tracking-[0.2em] text-neutral-400 uppercase">
+                {t('projects.tag')}
+              </div>
+              <h2 
+                className="text-2xl sm:text-3xl md:text-4xl font-normal text-neutral-950 tracking-tight"
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                {t('projects.title')}
+              </h2>
+            </div>
+            
+            <p className="text-xs sm:text-sm text-neutral-600 max-w-md leading-relaxed">
+              {t('projects.description')}
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="w-full space-y-12"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column: Title, Subtitle, Checklist & Info Cards */}
-              <div className="lg:col-span-6 space-y-6">
-                <h3
-                  className="heading-primary text-2xl sm:text-3xl"
-                  style={{ fontFamily: 'Arial' }}
+          {/* 5 Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            
+            {projectKeys.map((proj, idx) => {
+              const isWide = proj.id === 'kmu-innovativ'
+              const subtag = t(`projects.${proj.key}.subtag` as any)
+              const title = t(`projects.${proj.key}.title` as any)
+              const subtitle = t(`projects.${proj.key}.subtitle` as any)
+              const desc = t(`projects.${proj.key}.description` as any)
+              const meta = t(`projects.${proj.key}.meta` as any)
+
+              return (
+                <motion.div
+                  key={proj.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
+                  className={`relative p-6 sm:p-8 rounded-2xl border border-neutral-200/90 bg-white hover:border-neutral-400 hover:shadow-md transition-all duration-200 flex flex-col justify-between group ${
+                    isWide ? 'md:col-span-2' : ''
+                  }`}
                 >
-                  {t('slide7.title')}
-                </h3>
-
-                <div className="space-y-3">
-                  <div
-                    className="text-xs sm:text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 "
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide7.badge')}
-                  </div>
-                  <p
-                    className="subheading-primary text-base md:text-lg lg:text-xl text-neutral-800 dark:text-neutral-200 leading-relaxed"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide7.desc')}
-                  </p>
-                </div>
-
-                {/* 4 Checklist Items */}
-                <div className="space-y-3 pt-2">
-                  {[0, 1, 2, 3].map((idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3.5 text-sm md:text-base text-neutral-800 dark:text-neutral-200 font-semibold"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-                      <span>{t(`slide8.checklist.${idx}`)}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* 2 Info Cards (Ihr Vorteil & Direkt im Workflow) */}
-                <div className="space-y-4 pt-2">
-                  <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm flex items-start gap-4">
-                    <div className="p-3 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5 shadow-xs">
-                      <Target className="w-5 h-5" />
-                    </div>
-                    <div className="space-y-1">
-                      <span
-                        className="text-xs text-black dark:text-white uppercase tracking-wider  block"
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide8.advantageBadge')}
+                  <div className="space-y-4">
+                    {/* Top subtag & status pill */}
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs text-neutral-500 font-mono">
+                        {subtag}
                       </span>
-                      <p
-                        className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                        style={{ fontFamily: 'Arial' }}
+                      
+                      {/* Status Badge */}
+                      {proj.status === 'approved' && (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200/60 uppercase">
+                          {proj.statusText}
+                        </span>
+                      )}
+                      {proj.status === 'inProgress' && (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-blue-50 text-blue-700 border border-blue-200/60 uppercase">
+                          {proj.statusText}
+                        </span>
+                      )}
+                      {proj.status === 'inDevelopment' && (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-amber-50 text-amber-800 border border-amber-200/70 uppercase">
+                          {proj.statusText}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 
+                      className="text-2xl sm:text-3xl font-normal text-neutral-950 tracking-tight"
+                      style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                    >
+                      {title}
+                    </h3>
+
+                    {/* Subtitle */}
+                    <h4 className="text-xs sm:text-sm font-semibold text-neutral-800 leading-snug">
+                      {subtitle}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed pt-1">
+                      {desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Meta & Arrow */}
+                  <div className="pt-8 mt-6 border-t border-neutral-100 flex items-center justify-between text-neutral-500">
+                    <span className="text-[11px] font-mono tracking-wider uppercase text-neutral-500 font-medium">
+                      {meta}
+                    </span>
+                    <button
+                      onClick={() => {
+                        setFormData(prev => ({
+                          ...prev,
+                          project: title,
+                          message: `${isDe ? 'Anfrage bezüglich' : 'Inquiry regarding'}: ${title}`
+                        }))
+                        setFormSubmitted(false)
+                        setIsModalOpen(true)
+                      }}
+                      className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer"
+                      aria-label="Open project cooperation"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )
+            })}
+
+          </div>
+        </section>
+
+        {/* ── SECTION: UNSER FORSCHUNGSPROZESS (TIMELINE) ── */}
+        <section className="space-y-8 pt-4">
+          <div className="flex items-center justify-between text-[10px] font-mono font-semibold tracking-[0.2em] text-neutral-400 uppercase">
+            <span>{t('process.tagLeft')}</span>
+            <span>{t('process.tagRight')}</span>
+          </div>
+
+          {/* Connected timeline steps bar */}
+          <div className="relative pt-6 pb-2">
+            
+            {/* Horizontal Line behind dots (Desktop) */}
+            <div className="hidden md:block absolute top-[35px] left-[5%] right-[5%] h-[1.5px] bg-neutral-200 -z-0" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
+              {processStepKeys.map((stepItem) => {
+                const isStep5 = stepItem.isCompleted
+                const stepTitle = t(`process.${stepItem.key}.title` as any)
+                const stepDesc = t(`process.${stepItem.key}.desc` as any)
+
+                return (
+                  <div key={stepItem.step} className="flex flex-col items-start md:items-start space-y-3">
+                    {/* Node Dot */}
+                    <div className="flex items-center gap-3 md:gap-0">
+                      <div className={`w-3.5 h-3.5 rounded-full border-2 transition-all ${
+                        isStep5 
+                          ? 'bg-neutral-900 border-neutral-900 ring-4 ring-neutral-100' 
+                          : 'bg-white border-neutral-400'
+                      }`} />
+                      <span className="md:hidden text-xs font-mono font-semibold text-neutral-400">
+                        {t('process.step')} {stepItem.step}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1">
+                      <span className="hidden md:block text-[11px] font-mono text-neutral-400">
+                        {stepItem.step}
+                      </span>
+                      <h4 
+                        className="text-base sm:text-lg font-normal text-neutral-950"
+                        style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
                       >
-                        {t('slide8.advantageDesc')}
+                        {stepTitle}
+                      </h4>
+                      <p className="text-xs text-neutral-500 leading-relaxed">
+                        {stepDesc}
                       </p>
                     </div>
                   </div>
-
-                  <div className="p-6 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm flex items-start gap-4">
-                    <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-neutral-800 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5 shadow-xs">
-                      <Image src="/cube_mesh_icon.png" alt="3D Cube Icon" width={24} height={24} className="w-5 h-5 object-contain invert dark:invert-0" />
-                    </div>
-                    <div className="space-y-1">
-                      <span
-                        className="text-xs text-black dark:text-white uppercase tracking-wider  block"
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide8.workflowBadge')}
-                      </span>
-                      <p
-                        className="subheading-primary text-xs md:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide8.workflowDesc')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* Right Column: Architectural Render Image */}
-              <div className="lg:col-span-6">
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 shadow-xl h-[480px] sm:h-[600px] md:h-[680px] lg:h-[740px]">
-                  <Image
-                    src="/architectural_building_render.png"
-                    alt="Fotorealistische Fassaden- & Materialvisualisierung - Modern Building Architecture Render"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              </div>
+                )
+              })}
             </div>
-
-            {/* Interactive Material & Texture Viewer Showcase */}
-            <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800">
-              <ViewerShowcase />
-            </div>
-
-            {/* PROMINENT SPOTLIGHT: EINGEBETTETER TYPUS-KONFIGURATOR */}
-            <div
-              className="mt-8 relative p-6 sm:p-8 rounded-2xl bg-[#f7f5f0] dark:bg-neutral-900/90 border border-neutral-200 dark:border-neutral-800 shadow-2xs text-left"
-            >
-              <CornerSquares />
-
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                <div className="space-y-2.5 max-w-2xl">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px] font-bold uppercase tracking-widest">
-                      {locale === 'de' ? 'PRODUKT-FEATURE' : 'PRODUCT FEATURE'}
-                    </span>
-                    <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-                      350 € / {locale === 'de' ? 'Monat' : 'month'}
-                    </span>
-                  </div>
-
-                  <h4
-                    className="text-xl sm:text-2xl font-bold text-neutral-950 dark:text-white tracking-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {locale === 'de'
-                      ? 'Eingebetteter TYPUS-Konfigurator für Ihre eigene Website'
-                      : 'Embedded TYPUS Configurator for Your Own Website'}
-                  </h4>
-
-                  <p
-                    className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {locale === 'de'
-                      ? 'Integrieren Sie diesen interaktiven 3D- und generativen KI-Konfigurator nahtlos in Ihren eigenen Online-Auftritt. Architekten, Planer und Bauherren konfigurieren Ihre Materialien und Produkte direkt im Entwurf.'
-                      : 'Seamlessly embed this interactive 3D and generative AI configurator into your own website. Enable architects, designers, and clients to configure your materials and products directly within active designs.'}
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-                  <Link
-                    href={`/${locale}/embedded-configurator`}
-                    className="py-2.5 px-6 rounded-md bg-black hover:bg-neutral-800 text-white text-xs font-medium tracking-widest uppercase text-center transition-all shadow-2xs inline-flex items-center justify-center gap-2"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <span>{locale === 'de' ? 'Mehr erfahren' : 'Learn More'}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-
-                  <Link
-                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2.5 px-6 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-xs font-medium tracking-widest uppercase text-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-flex items-center justify-center gap-1.5"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <span>{locale === 'de' ? 'Jetzt testen' : 'Try Now'}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </section>
 
-        {/* SLIDE 9 SECTION: ADVANTAGES AT A GLANCE */}
-        <section className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="w-full space-y-8"
-          >
-            <h3
-              className="heading-primary text-2xl sm:text-3xl"
-              style={{ fontFamily: 'Arial' }}
-            >
-              {t('slide9.title')}
-            </h3>
+        {/* ── SECTION: UNSER FORSCHUNGSNETZWERK ── */}
+        <section className="pt-10 border-t border-neutral-200/80">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Header */}
+            <div className="lg:col-span-4 space-y-2">
+              <h3 
+                className="text-2xl sm:text-3xl font-normal text-neutral-950 tracking-tight"
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                {t('network.title')}
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                {t('network.subtitle')}
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                { icon: Megaphone },
-                { icon: ShoppingCart },
-                { icon: Sparkles },
-                { icon: Users },
-                { icon: ShieldCheck }
-              ].map((col, idx) => (
-                <div key={idx} className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs flex flex-col justify-between space-y-4 text-center hover:shadow-lg transition">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <col.icon className="w-7 h-7 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
-                  <div className="space-y-1">
-                    <div
-                      className="text-2xl sm:text-3xl font-mono text-neutral-900 dark:text-white font-medium"
-                      style={{ fontFamily: 'Arial, monospace' }}
-                    >
-                      {t(`slide9.items.${idx}.num`)}
-                    </div>
-                    <div
-                      className="subheading-primary text-xs sm:text-sm  text-neutral-900 dark:text-white"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t(`slide9.items.${idx}.title`)}
-                    </div>
-                  </div>
-                  <p
-                    className="subheading-primary text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-snug"
-                    style={{ fontFamily: 'Arial' }}
+            {/* Right 4 Partners List */}
+            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 items-center sm:divide-x divide-neutral-200">
+              {networkPartners.map((partner, pIdx) => (
+                <div key={partner.name} className={`space-y-1 ${pIdx > 0 ? 'sm:pl-6' : ''}`}>
+                  <h5 
+                    className="text-base sm:text-lg font-normal text-neutral-950 tracking-tight leading-snug"
+                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
                   >
-                    {t(`slide9.items.${idx}.desc`)}
-                  </p>
+                    {partner.name}
+                  </h5>
+                  <div className="text-[10px] font-mono tracking-wider text-neutral-400 uppercase font-semibold">
+                    {partner.role}
+                  </div>
                 </div>
               ))}
             </div>
-          </motion.div>
+
+          </div>
         </section>
 
-        {/* SLIDE 10 SECTION: WAS SIE EINREICHEN KÖNNEN (MATERIAL GUIDE SPEC & CARD CONTAINER) */}
-        <section className="py-8 border-t border-neutral-200/80 dark:border-neutral-800">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="w-full"
-          >
-            <div className="w-full rounded-3xl bg-neutral-950 text-white p-6 sm:p-8 lg:p-10 border border-neutral-800 shadow-2xl space-y-6 relative overflow-hidden">
-              
-              {/* Top Header Logos Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-neutral-800/80">
-                <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
-                  <div className="bg-white rounded-xl px-4 py-2 flex items-center justify-center shadow-xs">
-                    <Image src="/logo/logo_ffplus.svg" alt="Fortissimo Plus" width={140} height={40} className="h-6 sm:h-7 w-auto object-contain" />
-                  </div>
-                  <div className="bg-white rounded-xl px-4 py-2 flex items-center justify-center shadow-xs">
-                    <Image src="/logo/logo_eccc.svg" alt="ECCC" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
-                  </div>
-                  <div className="bg-white rounded-xl px-4 py-2 flex items-center justify-center shadow-xs">
-                    <Image src="/logo/logo_eurohpc.svg" alt="EuroHPC" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
-                  </div>
-                  <div className="bg-white rounded-xl px-4 py-2 flex items-center justify-center shadow-xs">
-                    <Image src="/logo/logo_chipsju.svg" alt="Chips JU" width={140} height={40} className="h-5 sm:h-6 w-auto object-contain" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 border-l border-neutral-800 pl-4 hidden sm:flex">
-                  <div className="bg-white rounded-xl px-4 py-2 flex items-center justify-center shadow-xs">
-                    <Image src="/logo/logo_rwth.svg" alt="RWTH Aachen University" width={160} height={40} className="h-6 sm:h-7 w-auto object-contain" />
-                  </div>
-                </div>
+        {/* ── CTA DARK BANNER ── */}
+        <section className="pt-4">
+          <div className="rounded-2xl bg-[#111827] text-white p-8 sm:p-12 md:p-14 flex flex-col md:flex-row md:items-center justify-between gap-8 shadow-xl">
+            <div className="space-y-2">
+              <div className="text-[10px] font-mono tracking-[0.2em] text-neutral-400 uppercase font-semibold">
+                {t('cta.tag')}
               </div>
-
-              {/* Header Title & Subtitle */}
-              <div className="space-y-2">
-                <h3
-                  className="heading-primary text-xl sm:text-2xl md:text-3xl"
-                  style={{ fontFamily: 'Arial', color: 'white' }}
-                >
-                  {t('slide10.title')}
-                </h3>
-                <p
-                  className="subheading-primary text-xs sm:text-sm md:text-base text-neutral-300 leading-relaxed max-w-4xl"
-                  style={{ fontFamily: 'Arial', color: '#d4d4d4' }}
-                >
-                  {t('slide10.subtitle')}
-                </p>
-              </div>
-
-              {/* Main Content Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-                {/* Left Column: 4 Feature Boxes + Quote Banner */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2.5">
-                    {[
-                      { icon: LayoutGrid, titleKey: 'slide10.inputs.0.title', descKey: 'slide10.inputs.0.desc' },
-                      { icon: Layers, titleKey: 'slide10.inputs.1.title', descKey: 'slide10.inputs.1.desc' },
-                      { icon: Box, titleKey: 'slide10.inputs.2.title', descKey: 'slide10.inputs.2.desc' },
-                      { icon: FileCheck, titleKey: 'slide10.inputs.3.title', descKey: 'slide10.inputs.3.desc' }
-                    ].map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3.5 sm:p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-center gap-3.5 hover:border-neutral-700 transition"
-                      >
-                        <div className="p-2 rounded-lg bg-neutral-800 text-neutral-200 flex-shrink-0">
-                          <item.icon className="w-4 h-4" />
-                        </div>
-                        <div className="space-y-0.5">
-                          <div
-                            className="subheading-primary text-xs sm:text-sm  text-white"
-                            style={{ fontFamily: 'Arial' }}
-                          >
-                            {t(item.titleKey)}
-                          </div>
-                          <div
-                            className="subheading-primary text-[11px] sm:text-xs text-neutral-400"
-                            style={{ fontFamily: 'Arial' }}
-                          >
-                            {t(item.descKey)}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Highlight Quote Notice Box */}
-                  <div
-                    className="p-3.5 sm:p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 flex items-start gap-3 text-xs text-neutral-300 leading-relaxed font-medium"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <div className="p-1.5 rounded-lg bg-neutral-800 text-neutral-300 flex-shrink-0 mt-0.5">
-                      <Sparkles className="w-4 h-4" />
-                    </div>
-                    <span>
-                      <strong className="text-white  block mb-0.5 text-xs">QUALITÄTSHINWEIS:</strong>
-                      {t('slide10.notice')}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Right Column: Hero Material Render Image & 3 Key Badges */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
-                  <div className="relative rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900 shadow-md h-[220px] sm:h-[260px] md:h-[300px] lg:h-[320px]">
-                    <Image
-                      src="/material_samples_showcase.png"
-                      alt="Digital Material Samples Showcase - High Resolution PBR"
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent pointer-events-none" />
-                  </div>
-
-                  {/* Bottom 3 Standards Badges */}
-                  <div
-                    className="grid grid-cols-3 gap-3 text-center"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <Database className="w-4 h-4 text-neutral-300 mx-auto" />
-                      <div className="text-white text-xs ">{t('slide10.badge1.title')}</div>
-                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge1.subtitle')}</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <Building2 className="w-4 h-4 text-neutral-300 mx-auto" />
-                      <div className="text-white text-xs ">{t('slide10.badge2.title')}</div>
-                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge2.subtitle')}</div>
-                    </div>
-                    <div className="p-3 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
-                      <ShieldCheck className="w-4 h-4 text-neutral-300 mx-auto" />
-                      <div className="text-white text-xs ">{t('slide10.badge3.title')}</div>
-                      <div className="text-neutral-400 text-[10px]">{t('slide10.badge3.subtitle')}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer EU FFplus Funding Tag */}
-              <div className="pt-4 border-t border-neutral-800/80 flex items-center justify-between text-xs text-neutral-400">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span style={{ fontFamily: 'Arial' }}>
-                    Gefördert im FFplus Programm der Europäischen Union
-                  </span>
-                </div>
-                <div className="text-neutral-500 font-mono text-[10px] hidden sm:block">
-                  FFPLUS × TYPUS
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 11 SECTION: WHAT PARTICIPATION INCLUDES */}
-        <section className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            className="w-full space-y-8"
-          >
-            <h3
-              className="heading-primary text-2xl sm:text-3xl"
-              style={{ fontFamily: 'Arial' }}
-            >
-              {t('slide11.title')}
-            </h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-              {/* Card 1 */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3 flex flex-col justify-start text-center hover:shadow-lg transition">
-                <div className="space-y-2">
-                  <Handshake className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
-                  <div
-                    className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide11.card1Title')}
-                  </div>
-                </div>
-                <p
-                  className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide11.card1Desc')}
-                </p>
-              </div>
-
-              {/* Card 2 */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3 flex flex-col justify-start text-center hover:shadow-lg transition">
-                <div className="space-y-2">
-                  <Settings className="w-6 h-6 text-neutral-800 dark:text-neutral-200 mx-auto stroke-[1.5]" />
-                  <div
-                    className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide11.card2Title')}
-                  </div>
-                </div>
-                <p
-                  className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide11.card2Desc')}
-                </p>
-              </div>
-
-              {/* Card 3 */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3 flex flex-col justify-start hover:shadow-lg transition">
-                <div className="space-y-2 text-center">
-                  <Tag className="w-6 h-6 text-blue-600 dark:text-blue-400 mx-auto stroke-[1.5]" />
-                  <div
-                    className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide11.card3Title')}
-                  </div>
-                </div>
-                <ul
-                  className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 space-y-1 list-disc pl-4 text-left leading-relaxed"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {[0, 1].map((idx) => (
-                    <li key={idx}>{t(`slide11.card3List.${idx}`)}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Card 4 */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3 flex flex-col justify-start text-center hover:shadow-lg transition">
-                <div className="space-y-2">
-                  <Coins className="w-6 h-6 text-amber-500 mx-auto stroke-[1.5]" />
-                  <div
-                    className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide11.card4Title')}
-                  </div>
-                </div>
-                <p
-                  className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide11.card4Desc')}
-                </p>
-              </div>
-
-              {/* Card 5 */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-2xs space-y-3 flex flex-col justify-start text-center hover:shadow-lg transition">
-                <div className="space-y-2">
-                  <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-400 mx-auto stroke-[1.5]" />
-                  <div
-                    className="text-xs sm:text-sm  text-neutral-900 dark:text-white leading-tight"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide11.card5Title')}
-                  </div>
-                </div>
-                <p
-                  className="text-[11px] sm:text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide11.card5Desc')}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 12 SECTION: INTEGRATION PACKAGES & PRICING */}
-        <section id="integration-packages" className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            className="w-full space-y-8 max-w-7xl mx-auto px-2 sm:px-4"
-          >
-            {/* Partner Logos Header Bar */}
-            <PartnerHeaderLogos />
-
-            <h3 className="heading-primary text-2xl sm:text-3xl text-center" style={{ fontFamily: 'Arial' }}>
-              {t('slide12.title')}
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-              {/* Main Package (5.000 €) */}
-              <div className="md:col-span-1 lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
-                <div
-                  className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-xs uppercase tracking-widest rounded-bl-2xl "
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide12.recommendedBadge')}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400">
-                      <Database className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h4
-                        className="subheading-primary text-lg sm:text-xl "
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {t('slide12.mainTitle')}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="flex items-baseline gap-3 pt-1">
-                    <span
-                      className="text-3xl sm:text-4xl md:text-5xl  text-black dark:text-white tracking-tight"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.mainPrice')}
-                    </span>
-                    <span
-                      className="text-xs text-neutral-500 dark:text-neutral-400 font-semibold"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.mainVat')}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span
-                      className="px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 text-xs uppercase tracking-wider rounded-lg inline-block "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.mainScope')}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Feature List */}
-                <div className="divide-y divide-neutral-100 dark:divide-neutral-800/80 text-xs sm:text-sm">
-                  {[Sparkles, FileCheck, Library, Brain, ShieldCheck].map((IconComp, idx) => (
-                    <div key={idx} className="flex items-center gap-3 py-2 text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0 font-medium">
-                      <IconComp className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                      <span style={{ fontFamily: 'Arial' }}>{t(`slide12.mainFeatures.${idx}`)}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bonus Gift Box */}
-                <div className="p-4 rounded-2xl bg-blue-50/70 dark:bg-neutral-950 border border-blue-100 dark:border-neutral-800 flex items-start gap-3 text-xs text-neutral-800 dark:text-neutral-200">
-                  <Gift className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-0.5">
-                    <strong
-                      className="text-blue-900 dark:text-blue-300 block uppercase tracking-wide text-xs "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.bonusTitle')}
-                    </strong>
-                    <span
-                      className="text-neutral-600 dark:text-neutral-400 block text-xs"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.bonusDesc')}
-                    </span>
-                  </div>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit max-w-full mx-auto py-3 px-8 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs  uppercase tracking-wide shadow-md"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide12.mainCta')}
-                </Link>
-              </div>
-
-              {/* Single Product Alternative (1.000 €) */}
-              <div className="md:col-span-1 lg:col-span-3 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-6 flex flex-col justify-between text-center">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto shadow-xs">
-                    <Box className="w-6 h-6" />
-                  </div>
-
-                  <div className="space-y-1">
-                    <span
-                      className="text-xs uppercase text-blue-600 dark:text-blue-400 tracking-widest block "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.altBadge')}
-                    </span>
-                    <h4
-                      className="heading-primary text-base sm:text-lg md:text-xl "
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.altTitle')}
-                    </h4>
-                  </div>
-
-                  <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
-                    <span
-                      className="text-2xl sm:text-3xl md:text-4xl  text-black dark:text-white tracking-tight"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.altPrice')}
-                    </span>
-                    <span
-                      className="text-xs text-neutral-500 dark:text-neutral-400 block pt-0.5 font-semibold"
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {t('slide12.altVat')}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800 space-y-2">
-                  <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
-                    <LayoutGrid className="w-4 h-4" />
-                  </div>
-                  <p
-                    className="subheading-primary text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('slide12.altDesc')}
-                  </p>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit max-w-full mx-auto py-3 px-8 rounded-full bg-black dark:bg-white text-white dark:text-black text-center inline-block border border-black dark:border-white hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all duration-200 text-xs  uppercase tracking-wide shadow-md"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {t('slide12.altCta')}
-                </Link>
-              </div>
-
-              {/* Advisor & Custom Offer Booking Form Card */}
-              <div className="md:col-span-2 lg:col-span-4 p-4 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs relative overflow-hidden flex flex-col justify-between">
-                <CornerSquares />
-                <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" />
-              </div>
-            </div>
-
-            {/* Bottom EU Funding Footer Badge */}
-            <div
-              className="flex items-center justify-center gap-3 text-xs sm:text-sm text-neutral-500 pt-6 border-t border-neutral-200 dark:border-neutral-800"
-              style={{ fontFamily: 'Arial' }}
-            >
-              <span className="w-6 h-6 rounded-full border border-neutral-400 dark:border-neutral-600 flex items-center justify-center text-xs flex-shrink-0">
-                🇪🇺
-              </span>
-              <span>{t('slide12.euFunding')}</span>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SLIDE 13 SECTION: MANUFACTURER PRICING PLANS (ARCHITEXTURES CORNER PLUS '+' CARDS) */}
-        <section id="pricing" className="py-12 border-t border-neutral-200/80 dark:border-neutral-800 space-y-10 scroll-mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="w-full space-y-10 max-w-7xl mx-auto px-2 sm:px-4"
-          >
-            {/* Header */}
-            <div className="space-y-2 text-center max-w-3xl mx-auto">
-              <h3
-                className="heading-primary text-2xl sm:text-3xl md:text-4xl"
-                style={{ fontFamily: 'Arial' }}
+              <h3 
+                className="text-2xl sm:text-3xl md:text-4xl font-normal text-white tracking-tight"
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
               >
-                {t('plans.sectionTitle')}
+                {t('cta.title')}
               </h3>
-              <p
-                className="subheading-primary text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed"
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('plans.sectionSubtitle')}
-              </p>
             </div>
 
-            {/* 4 Pricing Cards Grid with Corner Squares */}
-            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-              {/* Card 1: Essential */}
-              <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <CornerSquares />
-
-                <div className="space-y-4 text-left">
-                  <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
-                    {t('plans.essential')}
-                  </h4>
-
-                  {/* Price */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.priceLabel')}
-                    </span>
-                    <span className="text-lg sm:text-xl  text-black dark:text-white block">
-                      125 €{t('plans.perMonth')}
-                    </span>
-                  </div>
-
-                  {/* Published Textures */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.publishedTexturesLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      50
-                    </span>
-                  </div>
-
-                  {/* File Formats */}
-                  <div className="space-y-1">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.fileFormatsLabel')}
-                    </span>
-                    <ul className="text-xs space-y-0.5">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.highRes')}</li>
-                      <li className="text-neutral-400 font-normal">{t('plans.formats.hatch')}</li>
-                      <li className="text-neutral-400 font-normal">{t('plans.formats.pbr')}</li>
-                    </ul>
-                  </div>
-
-                  {/* Analytics */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.analyticsLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      30 {t('plans.days')}
-                    </span>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-1 pt-1 border-t border-neutral-100 dark:border-neutral-800">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.featuresLabel')}
-                    </span>
-                    <ul className="text-xs space-y-1">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.leadCapture')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.monthlySummary')}</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
-                >
-                  {t('plans.getStarted')}
-                </Link>
-              </div>
-
-              {/* Card 2: Standard */}
-              <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <CornerSquares />
-
-                <div className="space-y-4 text-left">
-                  <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
-                    {t('plans.standard')}
-                  </h4>
-
-                  {/* Price */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.priceLabel')}
-                    </span>
-                    <span className="text-lg sm:text-xl  text-black dark:text-white block">
-                      275 €{t('plans.perMonth')}
-                    </span>
-                  </div>
-
-                  {/* Published Textures */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.publishedTexturesLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      150
-                    </span>
-                  </div>
-
-                  {/* File Formats */}
-                  <div className="space-y-1">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.fileFormatsLabel')}
-                    </span>
-                    <ul className="text-xs space-y-0.5">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.highRes')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.hatch')}</li>
-                      <li className="text-neutral-400 font-normal">{t('plans.formats.pbr')}</li>
-                    </ul>
-                  </div>
-
-                  {/* Analytics */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.analyticsLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      90 {t('plans.days')}
-                    </span>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-1 pt-1 border-t border-neutral-100 dark:border-neutral-800">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.featuresLabel')}
-                    </span>
-                    <ul className="text-xs space-y-1">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.leadCapture')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.brandPage')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.artxPromotion')}</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
-                >
-                  {t('plans.getStarted')}
-                </Link>
-              </div>
-
-              {/* Card 3: Advanced */}
-              <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border-2 border-black dark:border-white flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <CornerSquares />
-
-                <div className="space-y-4 text-left">
-                  <h4 className="text-xl sm:text-2xl text-neutral-900 dark:text-white flex items-center justify-between">
-                    <span>{t('plans.advanced')}</span>
-                    <span className="px-2.5 py-0.5 rounded-md bg-black text-white text-[9px] uppercase font-bold tracking-wider">
-                      PRO
-                    </span>
-                  </h4>
-
-                  {/* Price */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.priceLabel')}
-                    </span>
-                    <span className="text-lg sm:text-xl  text-black dark:text-white block">
-                      495 €{t('plans.perMonth')}
-                    </span>
-                  </div>
-
-                  {/* Published Textures */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.publishedTexturesLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      500
-                    </span>
-                  </div>
-
-                  {/* File Formats */}
-                  <div className="space-y-1">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.fileFormatsLabel')}
-                    </span>
-                    <ul className="text-xs space-y-0.5">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.highRes')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.hatch')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.pbr')}</li>
-                    </ul>
-                  </div>
-
-                  {/* Analytics */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.analyticsLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      180 {t('plans.days')}
-                    </span>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-1 pt-1 border-t border-neutral-100 dark:border-neutral-800">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.featuresLabel')}
-                    </span>
-                    <ul className="text-xs space-y-1">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.leadCapture')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.brandPage')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.artxPromotion')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.homepageFeature')}</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-md bg-black text-white hover:bg-neutral-800 text-center text-xs font-medium tracking-widest uppercase transition-all shadow-2xs mt-6 inline-block"
-                >
-                  {t('plans.getStarted')}
-                </Link>
-              </div>
-
-              {/* Card 4: Custom */}
-              <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-lg transition"
-                style={{ fontFamily: 'Arial' }}
-              >
-                <CornerSquares />
-
-                <div className="space-y-4 text-left">
-                  <h4 className="text-xl sm:text-2xl  text-neutral-900 dark:text-white">
-                    {t('plans.custom')}
-                  </h4>
-
-                  {/* Price */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.priceLabel')}
-                    </span>
-                    <span className="text-lg sm:text-xl  text-black dark:text-white block">
-                      {t('plans.speakToSales')}
-                    </span>
-                  </div>
-
-                  {/* Published Textures */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.publishedTexturesLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      {t('plans.unlimited')}
-                    </span>
-                  </div>
-
-                  {/* File Formats */}
-                  <div className="space-y-1">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.fileFormatsLabel')}
-                    </span>
-                    <ul className="text-xs space-y-0.5">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.highRes')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.hatch')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.formats.pbr')}</li>
-                    </ul>
-                  </div>
-
-                  {/* Analytics */}
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.analyticsLabel')}
-                    </span>
-                    <span className="text-sm  text-black dark:text-white block">
-                      365 {t('plans.days')}
-                    </span>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-1 pt-1 border-t border-neutral-100 dark:border-neutral-800">
-                    <span className="text-[11px] uppercase tracking-wider text-neutral-400 block ">
-                      {t('plans.featuresLabel')}
-                    </span>
-                    <ul className="text-xs space-y-1">
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.leadCapture')}</li>
-                      <li className="text-black dark:text-white font-semibold">{t('plans.features.customApp')}</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <Link
-                  href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
-                >
-                  {t('plans.contactSales')}
-                </Link>
-              </div>
-            </div>
-
-            {/* SUBSCRIPTION ADD-ONS SECTION */}
-            <div
-              className="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4"
-              style={{ fontFamily: 'Arial' }}
+            <button
+              onClick={() => {
+                setFormData(prev => ({
+                  ...prev,
+                  project: isDe ? 'Allgemeine Kooperationsanfrage' : 'General Collaboration Inquiry',
+                  message: isDe ? 'Wir möchten gerne eine Forschungskooperation anfragen.' : 'We would like to inquire about a research collaboration.'
+                }))
+                setFormSubmitted(false)
+                setIsModalOpen(true)
+              }}
+              className="inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-lg border border-neutral-600 hover:border-white text-white text-xs sm:text-sm font-medium tracking-wide hover:bg-white hover:text-neutral-900 transition-all duration-200 shrink-0 shadow-sm cursor-pointer"
             >
-              <div className="relative flex items-center justify-between">
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                  {t('plans.addonsHeader')}
-                </span>
-                <div className="w-2 h-2 bg-black dark:bg-white shrink-0" />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-                {/* Add-on 1 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <div className="space-y-1 text-left">
-                    <span className="text-xs  text-neutral-900 dark:text-white block">
-                      {t('plans.addon1Title')}
-                    </span>
-                    <span className="text-xs text-neutral-600 dark:text-neutral-400 block leading-relaxed">
-                      {t('plans.addon1Sub')}
-                    </span>
-                  </div>
-                  <Link
-                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
-                  >
-                    {t('plans.contactSales')}
-                  </Link>
-                </div>
-
-                {/* Add-on 2 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <div className="space-y-1 text-left">
-                    <span className="text-xs  text-neutral-900 dark:text-white block">
-                      {t('plans.addon2Title')}
-                    </span>
-                    <span className="text-xs text-neutral-600 dark:text-neutral-400 block leading-relaxed">
-                      {t('plans.addon2Sub')}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/${locale}/embedded-configurator`}
-                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
-                  >
-                    {t('plans.tryIt')}
-                  </Link>
-                </div>
-
-                {/* Add-on 5: Persönlicher Visualisierer für Sie */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <div className="space-y-1 text-left">
-                    <span className="text-xs  text-neutral-900 dark:text-white block">
-                      {t('plans.addon5Title')}
-                    </span>
-                    <span className="text-xs text-neutral-600 dark:text-neutral-400 block leading-relaxed">
-                      {t('plans.addon5Sub')}
-                    </span>
-                  </div>
-                  <Link
-                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
-                  >
-                    {t('plans.contactSales')}
-                  </Link>
-                </div>
-
-                {/* Add-on 3 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <div className="space-y-1 text-left">
-                    <span className="text-xs  text-neutral-900 dark:text-white block">
-                      {t('plans.addon3Title')}
-                    </span>
-                  </div>
-                  <Link
-                    href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-fit py-1.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-[10px] font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all inline-block"
-                  >
-                    {t('plans.contactSales')}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* TEILNAHMEPROZESS (7-STEP INTEGRATION PROCESS) */}
-        <section id="teilnahmeprozess" className="max-w-7xl mx-auto px-2 sm:px-4 py-16 space-y-8 scroll-mt-24 border-t border-neutral-200/80 dark:border-neutral-800">
-          <div className="flex items-center justify-between text-xs text-neutral-500 font-mono tracking-widest uppercase">
-            <span>[ SECTION // {isDe ? 'TEILNAHMEPROZESS' : 'PARTICIPATION PROCESS'} ]</span>
-            <span className="text-black dark:text-white font-semibold flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-black dark:text-white" />
-              {isDe ? '7-STUFIGER INTEGRATIONSABLAUF' : '7-STEP INTEGRATION WORKFLOW'}
-            </span>
-          </div>
-
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
-            <span className="inline-block px-3 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 text-xs font-bold uppercase tracking-widest">
-              {isDe ? 'TEILNAHMEPROZESS' : 'PARTICIPATION PROCESS'}
-            </span>
-            <h3
-              className="heading-primary text-2xl sm:text-3xl md:text-4xl"
-              style={{ fontFamily: 'Arial' }}
-            >
-              {isDe ? 'Von Ihren Produktdaten zu realer Wirkung.' : 'From Your Product Data to Real-World Impact.'}
-            </h3>
-            <p
-              className="subheading-primary text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-auto"
-              style={{ fontFamily: 'Arial' }}
-            >
-              {isDe
-                ? 'Ein klar definierter Prozess zur Integration Ihrer Produkte und Materialien in die TYPUS.AI Plattform und den KI-gestützten Workflow – von der ersten Datenübergabe bis zur Veröffentlichung in der Materialbibliothek.'
-                : 'A clearly defined process for integrating your products and materials into the TYPUS.AI platform and AI-supported workflow – from initial data handover to publishing in the material library.'}
-            </p>
-          </div>
-
-          <div className="relative py-4">
-            <CornerSquares />
-            <ProviderProcessWorkflow isPublic={true} />
+              <span>{t('cta.button')}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </section>
 
       </main>
 
-      {/* FOOTER */}
+      {/* ── STANDARD SITE FOOTER (Same footer as the rest of the site) ── */}
       <FooterSection />
+
+      {/* ── COOPERATION INQUIRY MODAL (Interactive Dialog) ── */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="absolute inset-0 bg-neutral-950/60 backdrop-blur-xs"
+            />
+
+            {/* Modal Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-neutral-200 p-6 sm:p-8 z-10 space-y-6 max-h-[90vh] overflow-y-auto"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-5 right-5 p-1.5 text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 rounded-full transition cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {formSubmitted ? (
+                <div className="text-center py-8 space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-7 h-7" />
+                  </div>
+                  <h3 
+                    className="text-2xl font-normal text-neutral-950"
+                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                  >
+                    {t('modal.successTitle')}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-600 max-w-sm mx-auto leading-relaxed">
+                    {t('modal.successDesc')}
+                  </p>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="mt-4 px-6 py-2 rounded-lg bg-neutral-900 text-white text-xs font-medium hover:bg-neutral-800 transition cursor-pointer"
+                  >
+                    {t('modal.closeButton')}
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  <div>
+                    <div className="text-[10px] font-mono tracking-widest text-neutral-400 uppercase font-semibold">
+                      {t('modal.tag')}
+                    </div>
+                    <h3 
+                      className="text-2xl font-normal text-neutral-950 mt-1"
+                      style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                    >
+                      {t('modal.title')}
+                    </h3>
+                    <p className="text-xs text-neutral-600 mt-1">
+                      {t('modal.desc')}
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-medium text-neutral-700 mb-1">
+                        {t('modal.nameLabel')} *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder={t('modal.namePlaceholder')}
+                        className="w-full px-3.5 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-hidden focus:border-neutral-900 transition"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-neutral-700 mb-1">
+                        {t('modal.institutionLabel')} *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.institution}
+                        onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+                        placeholder={t('modal.institutionPlaceholder')}
+                        className="w-full px-3.5 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-hidden focus:border-neutral-900 transition"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-neutral-700 mb-1">
+                        {t('modal.emailLabel')} *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder={t('modal.emailPlaceholder')}
+                        className="w-full px-3.5 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-hidden focus:border-neutral-900 transition"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-neutral-700 mb-1">
+                        {t('modal.projectLabel')}
+                      </label>
+                      <select
+                        value={formData.project}
+                        onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+                        className="w-full px-3.5 py-2 text-xs border border-neutral-300 rounded-lg bg-white focus:outline-hidden focus:border-neutral-900 transition"
+                      >
+                        <option value="FFplus / Generative AI">FFplus / Generative AI</option>
+                        <option value="EFRE NRW / BIM & Cloud">EFRE NRW / BIM & Cloud</option>
+                        <option value="IGP BMWE / Nachhaltiges Wohnen">IGP BMWE / Sustainable Living</option>
+                        <option value="Zukunft Bau / Semantische Produktdaten">Zukunft Bau / Semantic Product Data</option>
+                        <option value="KMU innovativ / Zirkuläres Bauen">KMU innovativ / Circular Building</option>
+                        <option value="Initiativ-Kooperation">{isDe ? 'Initiativ-Kooperation' : 'New Collaboration Proposal'}</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-neutral-700 mb-1">
+                        {t('modal.messageLabel')}
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder={t('modal.messagePlaceholder')}
+                        className="w-full px-3.5 py-2 text-xs border border-neutral-300 rounded-lg focus:outline-hidden focus:border-neutral-900 transition resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-2.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-medium tracking-wide transition flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <span>{t('modal.submittingButton')}</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>{t('modal.submitButton')}</span>
+                          <Send className="w-3.5 h-3.5" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   )
 }

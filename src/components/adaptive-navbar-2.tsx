@@ -51,7 +51,7 @@ export function NavbarDemo() {
   const [appActive, setAppActive] = useState<string | null>(null)
   const pathname = usePathname()
   const isDoneForYou = pathname.includes('/done-for-you')
-  const isHersteller = pathname.includes('/research') || pathname.includes('/embedded-configurator')
+  const isHersteller = pathname.includes('/for-manufacturers') || pathname.includes('/research') || pathname.includes('/embedded-configurator') || pathname.includes('/configurator')
   const locale = useLocale()
   
   const handleOpenDemo = () => {
