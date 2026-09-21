@@ -25,8 +25,11 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const isResearchPage = pathname === '/research' || pathname.endsWith('/research')
-  const isForManufacturersPage = pathname === '/for-manufacturers' || pathname.endsWith('/for-manufacturers')
+  const isManufacturerLanding =
+    pathname === '/for-manufacturers' ||
+    pathname.endsWith('/for-manufacturers') ||
+    pathname === '/research' ||
+    pathname.endsWith('/research')
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false)
@@ -53,19 +56,39 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
         {/* Center Nav Links */}
         <div className="w-fit shrink-0">
           <nav className="flex items-center space-x-6 xl:space-x-8">
-            <Link
-              href="/research"
-              className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
-            >
-              {t('nav.aiModel')}
-            </Link>
-            <Link
-              href="/embedded-configurator"
-              className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
-            >
-              {t('nav.appConfigurator')}
-            </Link>
-            {isResearchPage ? (
+            {isManufacturerLanding ? (
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+              >
+                {t('nav.aiModel')}
+              </button>
+            ) : (
+              <Link
+                href="/for-manufacturers"
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
+              >
+                {t('nav.aiModel')}
+              </Link>
+            )}
+            {isManufacturerLanding ? (
+              <button
+                onClick={() => scrollToSection('app-konfigurator')}
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+              >
+                {t('nav.appConfigurator')}
+              </button>
+            ) : (
+              <Link
+                href="/for-manufacturers#app-konfigurator"
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
+              >
+                {t('nav.appConfigurator')}
+              </Link>
+            )}
+            {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
@@ -74,13 +97,13 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/research#teilnahmeprozess"
+                href="/for-manufacturers#teilnahmeprozess"
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
               >
                 {t('nav.participationProcess')}
               </Link>
             )}
-            {isResearchPage ? (
+            {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('pricing')}
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
@@ -89,7 +112,7 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/research#pricing"
+                href="/for-manufacturers#pricing"
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
               >
                 {t('nav.pricing')}
@@ -139,21 +162,42 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
             <AudienceToggle mobileFullWidth />
           </div>
           <div className="flex flex-col space-y-3">
-            <Link
-              href="/research"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
-            >
-              {t('nav.aiModel')}
-            </Link>
-            <Link
-              href="/embedded-configurator"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
-            >
-              {t('nav.appConfigurator')}
-            </Link>
-            {isResearchPage ? (
+            {isManufacturerLanding ? (
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
+              >
+                {t('nav.aiModel')}
+              </button>
+            ) : (
+              <Link
+                href="/for-manufacturers"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
+              >
+                {t('nav.aiModel')}
+              </Link>
+            )}
+            {isManufacturerLanding ? (
+              <button
+                onClick={() => scrollToSection('app-konfigurator')}
+                className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
+              >
+                {t('nav.appConfigurator')}
+              </button>
+            ) : (
+              <Link
+                href="/for-manufacturers#app-konfigurator"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
+              >
+                {t('nav.appConfigurator')}
+              </Link>
+            )}
+            {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}
                 className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
@@ -162,14 +206,14 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/research#teilnahmeprozess"
+                href="/for-manufacturers#teilnahmeprozess"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
               >
                 {t('nav.participationProcess')}
               </Link>
             )}
-            {isResearchPage ? (
+            {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('pricing')}
                 className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
@@ -178,7 +222,7 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/research#pricing"
+                href="/for-manufacturers#pricing"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
               >
