@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { CornerSquares } from './common/corner-squares'
 
 export function BlogPromoSection() {
     const t = useTranslations('BlogPromo')
@@ -37,12 +38,13 @@ export function BlogPromoSection() {
             {stories.map((story, index) => (
                 <Link key={index} href={story.href} className="block group">
                     <motion.div
-                        className="flex flex-col md:flex-row gap-5 md:gap-6 items-center bg-white dark:bg-neutral-900 border border-[#e5e7eb] dark:border-neutral-800 rounded-2xl p-4 sm:p-5 transition-all hover:bg-neutral-50/80 dark:hover:bg-neutral-800/80"
+                        className="relative flex flex-col md:flex-row gap-5 md:gap-6 items-center bg-white dark:bg-neutral-900 border border-[#e5e7eb] dark:border-neutral-800 rounded-2xl p-4 sm:p-5 transition-all hover:bg-neutral-50/80 dark:hover:bg-neutral-800/80 overflow-hidden"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.08 }}
                         viewport={{ once: true }}
                     >
+                        <CornerSquares size="w-1.5 h-1.5" />
                         <div className="w-full md:w-[240px] lg:w-[260px] flex-shrink-0">
                             <div className="border border-[#e5e7eb] dark:border-neutral-800 rounded-xl overflow-hidden relative aspect-[16/10]">
                                 <Image

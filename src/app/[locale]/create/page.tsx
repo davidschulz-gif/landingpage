@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
 import { FooterSection } from '@/components/footer-section'
-import { 
+import {
   IconUpload, 
   IconAdjustments, 
   IconBrush, 
@@ -18,6 +18,7 @@ import {
   IconCopy,
   IconCheck
 } from '@tabler/icons-react'
+import { CornerSquares } from '@/components/common/corner-squares'
 
 // Define the 17 upscaler preview images
 interface PreviewImage {
@@ -288,11 +289,11 @@ export default function CreateFeatureLandingPage() {
           </motion.div>
         </div>
 
-        {/* 2. BASE IMAGE SECTION */}
-        <div className="py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-t border-b border-neutral-100 dark:border-neutral-900 px-4">
+        {/* 2. BASE IMAGE SECTION (Warm Beige Accent Section) */}
+        <div className="py-20 px-4 w-full" style={{ backgroundColor: '#f7f5f0' }}>
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-left">
-              <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800">
+              <div className="w-12 h-12 bg-white dark:bg-neutral-900 rounded-xl flex items-center justify-center border border-neutral-200/60 dark:border-neutral-800 shadow-2xs">
                 <IconUpload className="w-6 h-6 text-neutral-800 dark:text-neutral-200" />
               </div>
               <h2 className="heading-primary">
@@ -304,7 +305,8 @@ export default function CreateFeatureLandingPage() {
             </div>
 
             {/* Embedded Screenshot 1 */}
-            <div className="relative w-full rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 shadow-lg bg-neutral-100 dark:bg-neutral-900">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 shadow-lg bg-white dark:bg-neutral-900">
+              <CornerSquares />
               <img 
                 src="/create/Screenshot 2026-06-03 at 21.28.31.png" 
                 alt="Upload Base Image Workspace" 
@@ -315,10 +317,11 @@ export default function CreateFeatureLandingPage() {
         </div>
 
         {/* 3. DEFINE SECTION */}
-        <div className="py-16 px-4">
+        <div className="py-20 px-4 bg-white">
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Embedded Screenshot 4 */}
             <div className="order-2 lg:order-1 relative w-full rounded-2xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800/80 shadow-lg bg-neutral-100 dark:bg-neutral-900">
+              <CornerSquares />
               <img 
                 src="/create/Screenshot 2026-06-03 at 21.44.00.png" 
                 alt="Define project parameters and prompt creation" 

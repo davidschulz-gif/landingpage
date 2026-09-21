@@ -2,6 +2,7 @@
 import { apiUrl, MediaBucketUrl } from '@/lib/constants';
 import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
+import { CornerSquares } from './common/corner-squares';
 
 export const ImageTemplates: React.FC = () => {
     const t = useTranslations('ImageTemplates');
@@ -155,6 +156,7 @@ export const ImageTemplates: React.FC = () => {
                             key={index}
                             className={`group relative rounded-[32px] overflow-hidden border border-gray-100 bg-white transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] hover:-translate-y-1 ${spanClasses}`}
                         >
+                            <CornerSquares size="w-1.5 h-1.5" />
                             <img
                                 src={template.thumbnail || ''}
                                 alt={template.title}

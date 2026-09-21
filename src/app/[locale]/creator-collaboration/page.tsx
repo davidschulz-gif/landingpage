@@ -146,7 +146,7 @@ export default function CreatorCollaborationPage() {
 
         {/* How To Start Section (Research Page Styling with CornerSquares) */}
         <section className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20'>
-          <div className='relative bg-white dark:bg-neutral-900 rounded-3xl p-8 sm:p-12 border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden text-neutral-900 dark:text-white'>
+          <div className='relative rounded-3xl p-8 sm:p-12 border border-neutral-200 dark:border-neutral-800 shadow-sm overflow-hidden text-neutral-900 dark:text-white' style={{ backgroundColor: '#f7f5f0' }}>
             <CornerSquares size='w-2.5 h-2.5' />
             <div className='absolute top-0 left-0 right-0 h-1 bg-black dark:bg-white' />
 
@@ -667,7 +667,7 @@ export default function CreatorCollaborationPage() {
 
         {/* CTA Bottom Banner */}
         <section className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 text-center font-normal'>
-          <div className='relative bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-8 sm:p-12 shadow-sm overflow-hidden'>
+          <div className='relative rounded-3xl border border-neutral-200 dark:border-neutral-800 p-8 sm:p-12 shadow-sm overflow-hidden' style={{ backgroundColor: '#f7f5f0' }}>
             <CornerSquares size='w-2.5 h-2.5' />
             <div className='absolute top-0 left-0 right-0 h-1 bg-black dark:bg-white' />
 

@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { BreathingAnimationText } from './breathing-animation-text'
+import { CornerSquares } from './common/corner-squares'
 
 const teamMembers = [
   // {
@@ -119,10 +120,8 @@ export function MeetOurTeamSection() {
               className='group'
             >
               <div className='relative group'>
-                <div className='absolute inset-0  bg-gradient-to-r from-red-500 via-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-all duration-500 p-[2px]'>
-                  <div className='w-full h-full bg-[#FFFFFF] '></div>
-                </div>
-                <div className='bg-white p-8 text-center relative z-10 border-2 border-transparent group-hover:border-transparent transition-all duration-500'>
+                <div className='bg-white p-8 text-center relative z-10 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm overflow-hidden'>
+                  <CornerSquares size="w-1.5 h-1.5" />
                   {/* Profile Image */}
                   <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden flex-shrink-0'>
                     <div className='w-full h-full p-10'>

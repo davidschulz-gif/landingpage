@@ -309,7 +309,7 @@ export default function ForManufacturersPage() {
       )}
 
       {/* ── Public Footer ── */}
-      <footer className="border-t border-neutral-200 bg-white py-12">
+      <footer className="border-t border-neutral-200 py-12" style={{ backgroundColor: '#f7f5f0' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
             <div className="h-4 w-4 shrink-0 flex items-center justify-center p-0.5 bg-black">

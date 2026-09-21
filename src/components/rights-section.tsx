@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Briefcase, EyeOff, Shield, ShieldCheck } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { CornerSquares } from './common/corner-squares'
 
 const RightCard = ({ 
   icon: Icon, 
@@ -24,6 +25,7 @@ const RightCard = ({
       transition={{ duration: 0.3 }}
       className="bg-white/80 backdrop-blur-sm border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col h-full relative group overflow-hidden"
     >
+      <CornerSquares size="w-1.5 h-1.5" />
       <div className="flex justify-between items-start mb-6 relative z-10">
         <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors">
           <Icon size={24} />

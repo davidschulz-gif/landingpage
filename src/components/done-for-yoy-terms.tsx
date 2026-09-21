@@ -335,7 +335,7 @@ const DoneForYouTerms = () => {
             </div>
 
             {/* Footer */}
-            <footer className="py-8 px-4 sm:px-6 lg:px-8">
+            <footer className="py-8 px-4 sm:px-6 lg:px-8 border-t border-neutral-200 mt-12" style={{ backgroundColor: '#f7f5f0' }}>
                 <div className="max-w-4xl mx-auto">
                     <div className="flex flex-col items-center space-y-4">
                         {/* Social Icons */}

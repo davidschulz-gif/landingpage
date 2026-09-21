@@ -17,6 +17,7 @@ import {
   IconSparkles
 } from '@tabler/icons-react'
 import { appUrl } from '@/lib/constants'
+import { CornerSquares } from '@/components/common/corner-squares'
 
 export default function AIFloorPlanGeneratorLandingPage() {
   const locale = useLocale()
@@ -208,8 +209,9 @@ export default function AIFloorPlanGeneratorLandingPage() {
         <NavbarDemo />
 
         {/* HERO SECTION */}
-        <section className="bg-neutral-50 dark:bg-neutral-900/20 pt-32 pb-20">
-          <div className="mx-auto w-full max-w-5xl px-5 flex flex-col items-center">
+        <section className="pt-32 pb-20 w-full" style={{ backgroundColor: '#f7f5f0' }}>
+          <div className="mx-auto w-full max-w-5xl px-5 flex flex-col items-center relative">
+            <CornerSquares />
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -225,7 +227,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
               <div className="pt-4">
                 <Link
                   href={`${appUrl}/floor-plan`}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-[#e5e7eb] text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded-xl text-sm font-bold uppercase tracking-wider transition-all hover:scale-105"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white hover:bg-neutral-800 rounded-md text-xs font-bold uppercase tracking-widest transition-all"
                 >
                   {content.cta}
                 </Link>
@@ -352,12 +354,13 @@ export default function AIFloorPlanGeneratorLandingPage() {
                 { icon: <IconClock size={32} />, title: content.benefit2Title, desc: content.benefit2Desc },
                 { icon: <IconHome size={32} />, title: content.benefit3Title, desc: content.benefit3Desc },
               ].map((benefit, i) => (
-                <div key={i} className="bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-800 text-left hover:-translate-y-1 transition-transform">
+                <div key={i} className="relative bg-white dark:bg-neutral-900 p-8 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-800 text-left hover:-translate-y-1 transition-transform">
+                  <CornerSquares size="w-1.5 h-1.5" />
                   <div className="w-14 h-14 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-xl flex items-center justify-center mb-6">
                     {benefit.icon}
                   </div>
                   <h3 className="heading-primary text-xl mb-3">{benefit.title}</h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">{benefit.desc}</p>
+                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs sm:text-sm">{benefit.desc}</p>
                 </div>
               ))}
             </div>
@@ -365,7 +368,7 @@ export default function AIFloorPlanGeneratorLandingPage() {
         </section>
 
         {/* WHO IS IT FOR */}
-        <section className="py-24 bg-white dark:bg-neutral-950 px-5">
+        <section className="py-24 px-5 w-full" style={{ backgroundColor: '#f7f5f0' }}>
           <div className="mx-auto w-full max-w-6xl">
             <h2 className="heading-primary text-center mb-16">
               {content.whoIsTitle}
@@ -376,12 +379,17 @@ export default function AIFloorPlanGeneratorLandingPage() {
                 { title: content.who1Title, desc: content.who1Desc, img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80' },
                 { title: content.who2Title, desc: content.who2Desc, img: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80' },
                 { title: content.who3Title, desc: content.who3Desc, img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80' },
-              ].map((target, i) => (
-                <div key={i} className="overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 shadow-sm border border-neutral-100 dark:border-neutral-800 transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-center">
-                  <img src={target.img} alt={target.title} className="h-[200px] w-full object-cover" />
-                  <div className="p-8">
-                    <h3 className="heading-primary text-xl mb-4">{target.title}</h3>
-                    <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">{target.desc}</p>
+              ].map((who, i) => (
+                <div key={i} className="relative bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-sm border border-neutral-200 dark:border-neutral-800 flex flex-col hover:-translate-y-1 transition-transform">
+                  <CornerSquares size="w-1.5 h-1.5" />
+                  <div className="h-48 w-full overflow-hidden">
+                    <img src={who.img} alt={who.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                      <h3 className="heading-primary text-xl mb-3">{who.title}</h3>
+                      <p className="text-neutral-600 dark:text-neutral-400 text-xs sm:text-sm leading-relaxed">{who.desc}</p>
+                    </div>
                   </div>
                 </div>
               ))}

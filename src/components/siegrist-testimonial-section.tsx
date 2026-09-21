@@ -6,6 +6,7 @@ import { Instagram, ArrowLeft, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
+import { CornerSquares } from '@/components/common/corner-squares'
 
 export function SiegristTestimonialSection() {
     const t = useTranslations('SiegristTestimonial')
@@ -60,7 +61,8 @@ export function SiegristTestimonialSection() {
     };
 
     const ProjectDataSheet = ({ data }: { data: any }) => (
-        <div className="py-4 border-y border-neutral-200 font-rail text-xs rounded-none bg-white">
+        <div className="relative py-4 px-4 border border-neutral-200 font-rail text-xs rounded-xl bg-white shadow-2xs">
+            <CornerSquares size="w-1.5 h-1.5" />
             <div className="font-extrabold uppercase tracking-widest text-[9px] text-gray-400 mb-4 pb-2 border-b border-neutral-100">
                 {data.label}
             </div>
@@ -101,7 +103,8 @@ export function SiegristTestimonialSection() {
             </div>
 
             {/* Image Slider Container with overlays */}
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-50 rounded-none group">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-50 rounded-xl group border border-neutral-200 shadow-2xs">
+                <CornerSquares />
                 {/* Social Icons Overlay (Top Left) */}
                 <div className="absolute top-4 left-4 flex gap-2.5 z-20">
                     <a

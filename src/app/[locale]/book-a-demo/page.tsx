@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 import TypusLogoBlack from '@/components/common/typus-logo-black';
+import { CornerSquares } from '@/components/common/corner-squares';
 
 const ADA_CALENDAR = 'https://calendar.app.google/uUbcjgHyvHY7jkig7';
 const ANNIKA_CALENDAR = 'https://calendar.app.google/MGAqUYdnXJEoTCyL6';
@@ -28,8 +29,9 @@ export default function BookADemoPage() {
   const currentCalendarUrl = ANNIKA_CALENDAR;
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-4 sm:p-8">
-      <div className="relative bg-white rounded-[32px] border border-neutral-100 shadow-2xl p-6 sm:p-8 w-full max-w-5xl">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-8" style={{ backgroundColor: '#f7f5f0' }}>
+      <div className="relative bg-white rounded-[32px] border border-neutral-200 shadow-2xl p-6 sm:p-8 w-full max-w-5xl">
+        <CornerSquares />
         {/* Header */}
         <div className="mb-8 flex flex-col items-center text-center">
           <motion.div
@@ -96,7 +98,8 @@ export default function BookADemoPage() {
           <div className="flex flex-col gap-4 w-full max-w-[340px] sm:max-w-[440px] shrink-0">
             
             {/* Team Profile Card */}
-            <div className="flex flex-col items-center text-center rounded-2xl p-6 border bg-white border-black shadow-lg ring-1 ring-black w-full">
+            <div className="relative flex flex-col items-center text-center rounded-2xl p-6 border bg-white border-black shadow-lg ring-1 ring-black w-full overflow-hidden">
+              <CornerSquares size="w-1.5 h-1.5" />
               <div className="flex flex-row items-center justify-center gap-4 mb-4">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm ring-1 ring-neutral-200">
                   <Image src="/team/adavkayser.jpeg" alt="Ada von Kayser" fill className="object-cover" />

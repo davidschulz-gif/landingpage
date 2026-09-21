@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl'
 import { useState, useEffect } from 'react'
 import { IconDeviceMobile, IconShare, IconCopy, IconCheck, IconTag } from '@tabler/icons-react'
 import { Link } from '@/i18n/navigation'
+import { CornerSquares } from '@/components/common/corner-squares'
 
 interface MobileImageItem {
   id: number
@@ -159,8 +160,9 @@ export default function UpscaleMobilePage() {
               const card = (
                 <div 
                   key={item.id} 
-                  className="bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/80 rounded-xl overflow-hidden shadow-sm flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300"
+                  className="relative bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-xl overflow-hidden shadow-sm flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300"
                 >
+                  <CornerSquares size="w-1.5 h-1.5" />
                   {/* Header of Card */}
                   <div className="p-3.5 border-b border-neutral-100 dark:border-neutral-800 flex justify-between items-center bg-neutral-50/50 dark:bg-neutral-900/50 flex-shrink-0">
                     <span className="text-[11px] font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wide">
@@ -198,26 +200,28 @@ export default function UpscaleMobilePage() {
           </div>
         </div>
 
-        {/* 3. Deep Detail & Workflow Section */}
-        <div className="py-12 border-t border-neutral-100 dark:border-neutral-900 px-4 max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-            <div className="space-y-4">
-              <h2 className="heading-primary mb-4">
-                {locale === 'de'
-                  ? 'Materialverfeinerung statt nur stumpfes Vergrößern'
-                  : 'Material Refinement Rather Than Plain Enlargement'}
-              </h2>
-              <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
-                {locale === 'de'
-                  ? 'Dabei wird das Bild nicht nur vergrößert. Durch unsere Architektur-optimierten Modelle werden zusätzliche Details ergänzt und Oberflächen gezielt verfeinert.'
-                  : 'In doing so, the image is not merely enlarged. Through our architecture-optimized models, additional details are added and surfaces are specifically refined.'}
-              </p>
-              <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-semibold">
-                {locale === 'de'
-                  ? 'Insbesondere bei Materialien wie Beton, Holz, Naturstein, Metall oder Putz entstehen deutlich realistischere Texturen und eine überzeugendere Materialhaptik.'
-                  : 'Particularly with materials such as concrete, wood, natural stone, metal, or plaster, significantly more realistic textures and a more convincing material feel are created.'}
-              </p>
-            </div>
+        {/* 3. Deep Detail & Workflow Section (Warm Beige Accent Section) */}
+        <div className="py-20 px-4 w-full" style={{ backgroundColor: '#f7f5f0' }}>
+          <div className="max-w-5xl mx-auto relative p-8 sm:p-12 bg-white dark:bg-neutral-900 rounded-2xl shadow-2xs border border-neutral-200/80 dark:border-neutral-800">
+            <CornerSquares />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+              <div className="space-y-4">
+                <h2 className="heading-primary mb-4">
+                  {locale === 'de'
+                    ? 'Materialverfeinerung statt nur stumpfes Vergrößern'
+                    : 'Material Refinement Rather Than Plain Enlargement'}
+                </h2>
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+                  {locale === 'de'
+                    ? 'Dabei wird das Bild nicht nur vergrößert. Durch unsere Architektur-optimierten Modelle werden zusätzliche Details ergänzt und Oberflächen gezielt verfeinert.'
+                    : 'In doing so, the image is not merely enlarged. Through our architecture-optimized models, additional details are added and surfaces are specifically refined.'}
+                </p>
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-semibold">
+                  {locale === 'de'
+                    ? 'Insbesondere bei Materialien wie Beton, Holz, Naturstein, Metall oder Putz entstehen deutlich realistischere Texturen und eine überzeugendere Materialhaptik.'
+                    : 'Particularly with materials such as concrete, wood, natural stone, metal, or plaster, significantly more realistic textures and a more convincing material feel are created.'}
+                </p>
+              </div>
 
             <div className="bg-neutral-50 dark:bg-neutral-900/40 p-6 border border-neutral-100 dark:border-neutral-900/60 space-y-4 rounded-xl">
               <h2 className="text-lg font-normal text-black dark:text-white tracking-tight" style={{ fontFamily: 'Arial' }}>

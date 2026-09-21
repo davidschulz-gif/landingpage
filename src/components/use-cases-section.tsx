@@ -11,6 +11,7 @@ import {
   Palette
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { CornerSquares } from './common/corner-squares'
 
 const UseCaseCard = ({ 
   icon: Icon, 
@@ -36,6 +37,7 @@ const UseCaseCard = ({
       transition={{ duration: 0.3 }}
       className="bg-white/80 backdrop-blur-sm border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col h-full relative group overflow-hidden"
     >
+      <CornerSquares size="w-1.5 h-1.5" />
       {/* Background Grid Pattern for Card */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none group-hover:opacity-[0.05] transition-opacity">
         <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }} />

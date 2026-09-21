@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
 import { BreathingAnimationText } from './breathing-animation-text'
 
+import { CornerSquares } from '@/components/common/corner-squares'
+
 interface Feature {
   imagePath: string
   titleKey: string
@@ -164,6 +166,7 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
+              <CornerSquares size="w-1.5 h-1.5" />
               {/* Image Section */}
               <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden'>
                 <img

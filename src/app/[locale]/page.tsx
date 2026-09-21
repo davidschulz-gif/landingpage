@@ -631,7 +631,7 @@ export default function Home() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-100px' }}
         >
-          <CreatorShowcaseSection />
+          <CreatorShowcaseSection style={{ backgroundColor: '#f7f5f0' }} />
         </Reveal>
 
         {/* Reviews Section with Marquee */}

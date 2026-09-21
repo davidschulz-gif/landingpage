@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { IconChevronLeft, IconChevronRight, IconArrowsMaximize, IconFocus2, IconX, IconArrowRight } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
 import { Link } from '@/i18n/navigation'
+import { CornerSquares } from './common/corner-squares'
 
 export function KernelZoomShowcase() {
   const params = useParams()
@@ -194,6 +195,7 @@ export function KernelZoomShowcase() {
                 : 'cursor-zoom-in'
             }`}
           >
+            <CornerSquares />
             {/* 1. The Background Image (Slightly blurry outside the Focus Box in Interactive mode) */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
               <AnimatePresence>

@@ -74,7 +74,7 @@ export function FooterSection() {
   }
 
   return (
-    <footer className='bg-[#FFFFFF] border-t border-gray-100 '>
+    <footer className='border-t border-neutral-200 py-6' style={{ backgroundColor: '#f7f5f0' }}>
       <div className='max-w-6xl mx-auto px-4 py-4'>
         {/* Logo Section */}
         <div className='mb-12 flex flex-col items-center space-y-2'>

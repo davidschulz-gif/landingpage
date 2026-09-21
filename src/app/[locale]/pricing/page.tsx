@@ -13,6 +13,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { CornerSquares } from '@/components/common/corner-squares'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -166,21 +167,27 @@ function PricingContent() {
 
                 <LinkedinSlideshow />
 
-                <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                >
-                    <ComparisonSection />
-                </motion.div>
+                <div className="w-full py-16 my-8" style={{ backgroundColor: '#f7f5f0' }}>
+                    <div className="max-w-7xl mx-auto px-4 relative">
+                        <CornerSquares />
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                        >
+                            <ComparisonSection />
+                        </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                >
-                    <DetailedFeaturesSection />
-                </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            className="mt-12"
+                        >
+                            <DetailedFeaturesSection />
+                        </motion.div>
+                    </div>
+                </div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 60 }}

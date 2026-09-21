@@ -10,6 +10,7 @@ import {
 import { motion } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
 import { BreathingAnimationText } from './breathing-animation-text'
+import { CornerSquares } from './common/corner-squares'
 
 interface Article {
   id: number
@@ -215,7 +216,8 @@ export function ArticleCarouselSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className='border-0 gap-0 py-0 mb-4 md:ml-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white'>
+                  <Card className='relative border border-neutral-200 dark:border-neutral-800 gap-0 py-0 mb-4 md:ml-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white overflow-hidden'>
+                    <CornerSquares size="w-1.5 h-1.5" />
                     <CardContent className='p-0'>
                       <div className='aspect-square relative overflow-hidden '>
                         {/* Conditional rendering based on ID instead of source type */}

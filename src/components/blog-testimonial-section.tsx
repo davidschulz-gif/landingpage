@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import { VideoThumbnail } from './video-thumbnail'
+import { CornerSquares } from './common/corner-squares'
 
 export function BlogTestimonialSection() {
     const t = useTranslations('BlogTestimonial')
@@ -94,7 +95,8 @@ export function BlogTestimonialSection() {
 
                 {/* Hero Image — Centered, smaller */}
                 <div className="flex justify-center mb-16">
-                    <div className="w-full max-w-[480px] h-[550px] border-2 border-black shadow-[8px_8px_0px_#000000]">
+                    <div className="relative w-full max-w-[480px] h-[550px] border-2 border-black shadow-[8px_8px_0px_#000000]">
+                        <CornerSquares />
                         <ClickableImage
                             src="/artical-page/1.jpg"
                             alt="AMA Awards Architecture"
@@ -311,7 +313,8 @@ export function BlogTestimonialSection() {
             <footer className="mt-24 pt-12 border-t-2 border-black flex flex-col items-center text-center">
 
                 {/* EU Funding Attribution */}
-                <div className="w-full mb-12 p-6 bg-gray-50 border border-gray-200 flex flex-col sm:flex-row items-center justify-center gap-6">
+                <div className="relative w-full mb-12 p-6 border-2 border-black flex flex-col sm:flex-row items-center justify-center gap-6" style={{ backgroundColor: '#f7f5f0' }}>
+                    <CornerSquares />
                     <Image
                         src={
                             locale === 'de'
@@ -347,7 +350,8 @@ export function BlogTestimonialSection() {
                 </Link>
 
                 {/* Next Article Card */}
-                <div className="w-full mt-24 text-left border-2 border-black shadow-[8px_8px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                <div className="relative w-full mt-24 text-left border-2 border-black shadow-[8px_8px_0px_#000000] bg-white hover:translate-y-[-2px] transition-transform duration-300">
+                    <CornerSquares />
                     <div className="flex flex-col md:flex-row">
                         <div className="w-full md:w-[55%] p-4 md:p-6">
                             <div className="border-2 border-black h-full overflow-hidden relative min-h-[250px]">
