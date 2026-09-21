@@ -4306,5 +4306,131 @@
       "imprint": "Impressum",
       "providerPortal": "Hersteller-Portal"
     }
+  },
+  "ResearchInnovation": {
+    "nav": {
+      "solutions": "Lösungen",
+      "research": "Forschung",
+      "community": "Community",
+      "pricing": "Lizenzen",
+      "manufacturers": "Unternehmen",
+      "contact": "Kontakt"
+    },
+    "hero": {
+      "tag": "FORSCHUNG & INNOVATION",
+      "titleLine1": "KI-Forschung für",
+      "titleLine2": "die gebaute Umwelt.",
+      "subtitle": "Wir entwickeln KI, BIM und datengesteuerte Workflows für eine nachhaltigere, zirkuläre und lebenswerte gebaute Umwelt.",
+      "divider": "VON DER FORSCHUNG ZUR REALEN ANWENDUNG"
+    },
+    "projects": {
+      "tag": "UNSERE FORSCHUNGSPROJEKTE",
+      "title": "Aktuelle Forschungsprojekte",
+      "description": "In Kooperation mit führenden Forschungseinrichtungen und Industriepartnern entwickeln wir innovative Lösungen für die zentralen Herausforderungen der Bau- und Immobilienbranche.",
+      "status": {
+        "approved": "BEWILLIGT",
+        "inProgress": "IN BEARBEITUNG",
+        "inDevelopment": "IN ENTWICKLUNG"
+      },
+      "efre": {
+        "subtag": "NRW / EFRE",
+        "title": "EFRE NRW",
+        "subtitle": "Cloud-KI-Visualisierungsplattform und BIM/3D-Workflow",
+        "description": "Entwicklung unserer KI-basierten SaaS-Plattform für architektonische Visualisierung und die Integration in BIM/3D-Workflows, gefördert durch das EFRE-Programm in NRW.",
+        "meta": "FÖRDERGEBER: EFRE NRW"
+      },
+      "ffplus": {
+        "subtag": "RWTH Aachen AI Center • Prof. Kobbelt",
+        "title": "FFplus",
+        "subtitle": "Anwendungsspezifische generative KI-Modelle für die Baubranche",
+        "description": "Forschung und Entwicklung generativer KI-Modelle auf Basis realer Bauprodukt- und Materialdaten – in Kooperation mit dem RWTH Aachen AI Center und Prof. Kobbelt, unter Nutzung europäischer HPC-Infrastruktur (JUPITER).",
+        "meta": "KOOPERATION: RWTH Aachen AI Center / Prof. Kobbelt"
+      },
+      "igp": {
+        "subtag": "DFKI • Concular.de",
+        "title": "IGP • BMWE",
+        "subtitle": "KI-gestützte, nachhaltige Siedlungs- und Wohnmodelle",
+        "description": "Entwicklung datengestützter Modelle für nachhaltige Siedlungsstrukturen und innovative Wohnkonzepte – in Kooperation mit dem DFKI und Concular.de.",
+        "meta": "KOOPERATION: DFKI / Concular.de"
+      },
+      "zukunftBau": {
+        "subtag": "Lehrstuhl Bauinformatik • Prof. Blankenbach",
+        "title": "Zukunft Bau",
+        "subtitle": "Semantische Bauproduktdaten und BIM-Integration",
+        "description": "Forschung zur semantischen Verarbeitung von Herstellerproduktdaten und deren Integration in BIM-Workflows – in Kooperation mit dem Lehrstuhl Bauinformatik der RWTH Aachen (Prof. Blankenbach).",
+        "meta": "KOOPERATION: Lehrstuhl Bauinformatik, RWTH Aachen / Prof. Blankenbach"
+      },
+      "kmu": {
+        "subtag": "Forschungskonsortium",
+        "title": "KMU innovativ",
+        "subtitle": "Ressourceneffizienz und Kreislaufwirtschaft",
+        "description": "Entwicklung innovativer Lösungen für ressourceneffizientes und zirkuläres Bauen im Mittelstand – im Rahmen des Programms KMU innovativ.",
+        "meta": "FÖRDERGEBER: BMFTR / BMBF"
+      }
+    },
+    "process": {
+      "tagLeft": "UNSER FORSCHUNGSPROZESS",
+      "tagRight": "VON DER IDEE ZUR ANWENDUNG",
+      "step": "SCHRITT",
+      "step1": {
+        "title": "Idee",
+        "desc": "Bedarfe und Chancen identifizieren"
+      },
+      "step2": {
+        "title": "Forschung",
+        "desc": "Interdisziplinäre Entwicklung"
+      },
+      "step3": {
+        "title": "Modell",
+        "desc": "Training und Validierung an realen Daten"
+      },
+      "step4": {
+        "title": "Prototyp",
+        "desc": "Test in Anwendungskontexten"
+      },
+      "step5": {
+        "title": "Anwendung",
+        "desc": "Integration in den Planungsworkflow"
+      }
+    },
+    "network": {
+      "title": "Unser Forschungsnetzwerk",
+      "subtitle": "Interdisziplinäre Zusammenarbeit für die gebaute Umwelt von morgen.",
+      "partner1Role": "AI CENTER",
+      "partner2Role": "RESEARCH INSTITUTE",
+      "partner3Role": "CIRCULAR CONSTRUCTION",
+      "partner4Role": "PROF. BLANKENBACH"
+    },
+    "cta": {
+      "tag": "GEMEINSAM MEHR BEWEGEN",
+      "title": "Von der Forschung zu realen Lösungen.",
+      "button": "Kooperation anfragen"
+    },
+    "footer": {
+      "tagline": "KI für eine lebenswertere gebaute Umwelt.",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "careers": "Karriere",
+      "contact": "Kontakt"
+    },
+    "modal": {
+      "tag": "TYPUS.AI // FORSCHUNGSKOOPERATION",
+      "title": "Forschungskooperation anfragen",
+      "desc": "Treten Sie mit unserem wissenschaftlichen Team in Kontakt für gemeinsame Forschungsprojekte oder Verbundvorhaben.",
+      "nameLabel": "Ihr Name",
+      "namePlaceholder": "Prof. Dr. Max Mustermann",
+      "institutionLabel": "Institution / Universität / Unternehmen",
+      "institutionPlaceholder": "RWTH Aachen / DFKI / Partner GmbH",
+      "emailLabel": "E-Mail-Adresse",
+      "emailPlaceholder": "kontakt@institution.de",
+      "projectLabel": "Projektbezug",
+      "messageLabel": "Ihre Nachricht / Kurzbeschreibung",
+      "messagePlaceholder": "Kurze Erläuterung Ihrer Forschungsidee oder Schnittstelle...",
+      "submitButton": "Kooperationsanfrage absenden",
+      "submittingButton": "Wird gesendet...",
+      "successTitle": "Vielen Dank für Ihre Anfrage",
+      "successDesc": "Unser Forschungsteam wird sich zeitnah mit Ihnen in Verbindung setzen, um mögliche Kooperationsmodelle zu besprechen.",
+      "closeButton": "Schließen"
+    }
   }
 }

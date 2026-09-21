@@ -1288,7 +1288,7 @@ export default function ForManufacturersPage() {
         </section>
 
         {/* SLIDE 12 SECTION: INTEGRATION PACKAGES & PRICING */}
-        <section id="integration-packages" className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">
+        <section id="pricing" className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8 scroll-mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

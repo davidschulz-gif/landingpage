@@ -73,21 +73,12 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 {t('nav.aiModel')}
               </Link>
             )}
-            {isManufacturerLanding ? (
-              <button
-                onClick={() => scrollToSection('app-konfigurator')}
-                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
-              >
-                {t('nav.appConfigurator')}
-              </button>
-            ) : (
-              <Link
-                href="/for-manufacturers#app-konfigurator"
-                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
-              >
-                {t('nav.appConfigurator')}
-              </Link>
-            )}
+            <Link
+              href="/embedded-configurator"
+              className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
+            >
+              {t('nav.appConfigurator')}
+            </Link>
             {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}
@@ -181,22 +172,13 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 {t('nav.aiModel')}
               </Link>
             )}
-            {isManufacturerLanding ? (
-              <button
-                onClick={() => scrollToSection('app-konfigurator')}
-                className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
-              >
-                {t('nav.appConfigurator')}
-              </button>
-            ) : (
-              <Link
-                href="/for-manufacturers#app-konfigurator"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
-              >
-                {t('nav.appConfigurator')}
-              </Link>
-            )}
+            <Link
+              href="/embedded-configurator"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
+            >
+              {t('nav.appConfigurator')}
+            </Link>
             {isManufacturerLanding ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}

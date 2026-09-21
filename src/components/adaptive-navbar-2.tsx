@@ -162,18 +162,18 @@ export function NavbarDemo() {
         },
         {
           name: locale === 'de' ? 'PAKETE & PREISE' : 'PACKAGES & PRICING',
-          link: '/research#integration-packages',
+          link: '/for-manufacturers#pricing',
           submenu: [
             {
               title: locale === 'de' ? 'Hersteller-Pakete' : 'Manufacturer Packages',
               description: locale === 'de' ? 'Integration, PBR-Digitalisierung & Branding' : 'Integration, PBR digitisation & branding',
-              link: '/research#integration-packages',
+              link: '/for-manufacturers#pricing',
               icon: Tag,
             },
             {
               title: locale === 'de' ? 'Abonnement-Optionen' : 'Subscription Plans',
               description: locale === 'de' ? 'Essential, Standard, Advanced & Custom Tarife' : 'Essential, Standard, Advanced & Custom plans',
-              link: '/research',
+              link: '/for-manufacturers#pricing',
               icon: Zap,
             },
           ],

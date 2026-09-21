@@ -4304,5 +4304,131 @@
       "imprint": "Imprint",
       "providerPortal": "Provider Portal"
     }
+  },
+  "ResearchInnovation": {
+    "nav": {
+      "solutions": "Solutions",
+      "research": "Research",
+      "community": "Community",
+      "pricing": "Pricing",
+      "manufacturers": "Enterprises",
+      "contact": "Contact"
+    },
+    "hero": {
+      "tag": "RESEARCH & INNOVATION",
+      "titleLine1": "AI Research for the",
+      "titleLine2": "Built Environment.",
+      "subtitle": "We develop AI, BIM and data-driven workflows for a more sustainable, circular and liveable built environment.",
+      "divider": "FROM RESEARCH TO REAL-WORLD APPLICATION"
+    },
+    "projects": {
+      "tag": "OUR RESEARCH PROJECTS",
+      "title": "Current Research Projects",
+      "description": "In cooperation with leading research institutions and industry partners, we develop innovative solutions for the central challenges of the construction and real estate industry.",
+      "status": {
+        "approved": "APPROVED",
+        "inProgress": "IN PROGRESS",
+        "inDevelopment": "IN DEVELOPMENT"
+      },
+      "efre": {
+        "subtag": "NRW / ERDF",
+        "title": "EFRE NRW",
+        "subtitle": "Cloud AI Visualization Platform and BIM/3D Workflow",
+        "description": "Development of our AI-based SaaS platform for architectural visualization and integration into BIM/3D workflows, funded by the ERDF program in NRW.",
+        "meta": "FUNDED BY: ERDF NRW"
+      },
+      "ffplus": {
+        "subtag": "RWTH Aachen AI Center • Prof. Kobbelt",
+        "title": "FFplus",
+        "subtitle": "Application-specific Generative AI Models for the Construction Industry",
+        "description": "Research and development of generative AI models based on real building product and material data – in cooperation with the RWTH Aachen AI Center and Prof. Kobbelt, using European HPC infrastructure (JUPITER).",
+        "meta": "COOPERATION: RWTH Aachen AI Center / Prof. Kobbelt"
+      },
+      "igp": {
+        "subtag": "DFKI • Concular.de",
+        "title": "IGP • BMWE",
+        "subtitle": "AI-supported, Sustainable Settlement and Living Models",
+        "description": "Development of data-driven models for sustainable settlement structures and innovative housing concepts – in cooperation with DFKI and Concular.de.",
+        "meta": "COOPERATION: DFKI / Concular.de"
+      },
+      "zukunftBau": {
+        "subtag": "Chair of Computing in Civil Engineering • Prof. Blankenbach",
+        "title": "Zukunft Bau",
+        "subtitle": "Semantic Building Product Data and BIM Integration",
+        "description": "Research on the semantic processing of manufacturer product data and its integration into BIM workflows – in cooperation with the Chair of Computing in Civil Engineering at RWTH Aachen University (Prof. Blankenbach).",
+        "meta": "COOPERATION: Chair of Computing in Civil Engineering, RWTH Aachen / Prof. Blankenbach"
+      },
+      "kmu": {
+        "subtag": "Research Consortium",
+        "title": "KMU innovativ",
+        "subtitle": "Resource Efficiency and Circular Economy",
+        "description": "Development of innovative solutions for resource-efficient and circular construction in SMEs – within the KMU-innovativ program.",
+        "meta": "FUNDED BY: BMFTR / BMBF"
+      }
+    },
+    "process": {
+      "tagLeft": "OUR RESEARCH PROCESS",
+      "tagRight": "FROM IDEA TO APPLICATION",
+      "step": "STEP",
+      "step1": {
+        "title": "Idea",
+        "desc": "Identify needs and opportunities"
+      },
+      "step2": {
+        "title": "Research",
+        "desc": "Interdisciplinary development"
+      },
+      "step3": {
+        "title": "Model",
+        "desc": "Training and validation on real data"
+      },
+      "step4": {
+        "title": "Prototype",
+        "desc": "Testing in application contexts"
+      },
+      "step5": {
+        "title": "Application",
+        "desc": "Integration into planning workflow"
+      }
+    },
+    "network": {
+      "title": "Our Research Network",
+      "subtitle": "Interdisciplinary collaboration for tomorrow’s built environment.",
+      "partner1Role": "AI CENTER",
+      "partner2Role": "RESEARCH INSTITUTE",
+      "partner3Role": "CIRCULAR CONSTRUCTION",
+      "partner4Role": "PROF. BLANKENBACH"
+    },
+    "cta": {
+      "tag": "ACHIEVE MORE TOGETHER",
+      "title": "From research to real-world solutions.",
+      "button": "Inquire cooperation"
+    },
+    "footer": {
+      "tagline": "AI for a more liveable built environment.",
+      "imprint": "Imprint",
+      "privacy": "Privacy Policy",
+      "careers": "Careers",
+      "contact": "Contact"
+    },
+    "modal": {
+      "tag": "TYPUS.AI // RESEARCH COLLABORATION",
+      "title": "Inquire Research Collaboration",
+      "desc": "Connect with our scientific team for joint research projects or consortium initiatives.",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Prof. Dr. Jane Doe",
+      "institutionLabel": "Institution / University / Company",
+      "institutionPlaceholder": "RWTH Aachen / DFKI / Partner Ltd.",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "contact@institution.com",
+      "projectLabel": "Project Focus",
+      "messageLabel": "Your Message / Brief Description",
+      "messagePlaceholder": "Brief explanation of your research idea or interface...",
+      "submitButton": "Submit Collaboration Inquiry",
+      "submittingButton": "Sending...",
+      "successTitle": "Thank You for Your Inquiry",
+      "successDesc": "Our research team will contact you promptly to discuss potential collaboration models.",
+      "closeButton": "Close"
+    }
   }
 }
