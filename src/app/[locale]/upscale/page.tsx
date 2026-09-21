@@ -266,6 +266,7 @@ export default function UpscaleMobilePage() {
             </p>
           </div>
         </div>
+        </div>
 
         {/* CTA Buttons - Placement 4 (Above Footer) */}
         <div className="max-w-5xl mx-auto px-4 pb-16 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">

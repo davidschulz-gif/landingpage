@@ -25,7 +25,8 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const isForManufacturersPage = pathname === '/for-manufacturers'
+  const isResearchPage = pathname === '/research' || pathname.endsWith('/research')
+  const isForManufacturersPage = pathname === '/for-manufacturers' || pathname.endsWith('/for-manufacturers')
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false)
@@ -64,7 +65,7 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
             >
               {t('nav.appConfigurator')}
             </Link>
-            {isForManufacturersPage ? (
+            {isResearchPage ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
@@ -73,18 +74,27 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/for-manufacturers#teilnahmeprozess"
+                href="/research#teilnahmeprozess"
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
               >
                 {t('nav.participationProcess')}
               </Link>
             )}
-            <Link
-              href="/pricing"
-              className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
-            >
-              {t('nav.pricing')}
-            </Link>
+            {isResearchPage ? (
+              <button
+                onClick={() => scrollToSection('pricing')}
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+              >
+                {t('nav.pricing')}
+              </button>
+            ) : (
+              <Link
+                href="/research#pricing"
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
+              >
+                {t('nav.pricing')}
+              </Link>
+            )}
           </nav>
         </div>
 
@@ -143,7 +153,7 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
             >
               {t('nav.appConfigurator')}
             </Link>
-            {isForManufacturersPage ? (
+            {isResearchPage ? (
               <button
                 onClick={() => scrollToSection('teilnahmeprozess')}
                 className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
@@ -152,20 +162,29 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               </button>
             ) : (
               <Link
-                href="/for-manufacturers#teilnahmeprozess"
+                href="/research#teilnahmeprozess"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
               >
                 {t('nav.participationProcess')}
               </Link>
             )}
-            <Link
-              href="/pricing"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
-            >
-              {t('nav.pricing')}
-            </Link>
+            {isResearchPage ? (
+              <button
+                onClick={() => scrollToSection('pricing')}
+                className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
+              >
+                {t('nav.pricing')}
+              </button>
+            ) : (
+              <Link
+                href="/research#pricing"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
+              >
+                {t('nav.pricing')}
+              </Link>
+            )}
           </div>
           <div className="flex flex-col gap-2 pt-2 border-t border-gray-100 dark:border-neutral-800">
             <button
