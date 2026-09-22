@@ -27,7 +27,9 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
 
   const isManufacturerLanding =
     pathname === '/for-manufacturers' ||
-    pathname.endsWith('/for-manufacturers') ||
+    pathname.endsWith('/for-manufacturers')
+
+  const isResearchPage =
     pathname === '/research' ||
     pathname.endsWith('/research')
 
@@ -107,6 +109,23 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
               >
                 {t('nav.pricing')}
+              </Link>
+            )}
+            {isResearchPage ? (
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-black dark:text-white font-bold transition-colors whitespace-nowrap cursor-pointer"
+              >
+                {t('nav.research')}
+              </button>
+            ) : (
+              <Link
+                href="/research"
+                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
+              >
+                {t('nav.research')}
               </Link>
             )}
           </nav>
@@ -209,6 +228,25 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
               >
                 {t('nav.pricing')}
+              </Link>
+            )}
+            {isResearchPage ? (
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                className="text-left text-xs font-bold uppercase tracking-wider text-black dark:text-white py-1 cursor-pointer"
+              >
+                {t('nav.research')}
+              </button>
+            ) : (
+              <Link
+                href="/research"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
+              >
+                {t('nav.research')}
               </Link>
             )}
           </div>

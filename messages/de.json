@@ -109,10 +109,29 @@
           "title": "AMA Awards Madrid",
           "description": "Architektonische Exzellenz aus Spanien."
         }
+      },
+      "researchNav": {
+        "projects": {
+          "title": "Forschungsprojekte",
+          "description": "Aktuelle KI- und BIM-Verbundforschung (EFRE NRW, FFplus, BMWE)"
+        },
+        "cooperations": {
+          "title": "Wissenschaft & Partner",
+          "description": "Kooperationen mit RWTH Aachen AI Center, DFKI & Zukunft Bau"
+        },
+        "process": {
+          "title": "Forschungsprozess",
+          "description": "Von der Idee über Modelltraining bis zur Workflow-Integration"
+        },
+        "contact": {
+          "title": "Kooperation anfragen",
+          "description": "Gemeinsame Verbundanträge und Forschungsinitiativen starten"
+        }
       }
     },
     "successStories": "Erfolgsgeschichten",
-    "amaAwards": "TESTIMONIALS"
+    "amaAwards": "TESTIMONIALS",
+    "research": "FORSCHUNG"
   },
   "ImageTemplates": {
     "title": "Hochwertige Architektur-KI für großformatige Drucke",
@@ -3556,6 +3575,7 @@
       "appConfigurator": "App Konfigurator",
       "participationProcess": "Teilnahmeprozess",
       "pricing": "Preise",
+      "research": "Forschung",
       "forArchitects": "Für Architekten",
       "forManufacturers": "Für Hersteller",
       "audienceToggle": "Zielgruppe"
@@ -4329,7 +4349,7 @@
       "description": "In Kooperation mit führenden Forschungseinrichtungen und Industriepartnern entwickeln wir innovative Lösungen für die zentralen Herausforderungen der Bau- und Immobilienbranche.",
       "status": {
         "approved": "BEWILLIGT",
-        "inProgress": "IN BEARBEITUNG",
+        "inProgress": "ANTRAG EINGEREICHT",
         "inDevelopment": "IN ENTWICKLUNG"
       },
       "efre": {

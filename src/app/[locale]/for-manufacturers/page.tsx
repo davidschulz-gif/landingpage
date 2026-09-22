@@ -208,10 +208,22 @@ export default function ForManufacturersPage() {
               </div>
             </div>
 
-            {/* ── 7-Step Material Provider Process Workflow (Animated & Interactive) ── */}
-            {/* <div className="w-full max-w-5xl mx-auto">
-              <ResearchProcessWorkflow locale={locale} />
-            </div> */}
+            {/* ── HERO VIDEO SHOWCASE (TYPUS V8) ── */}
+            <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-black shadow-2xl my-2">
+              <CornerSquares />
+              <div className="relative aspect-video w-full">
+                <video
+                  src="https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/TYPUS+V8.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full h-full object-cover rounded-3xl"
+                />
+              </div>
+            </div>
 
             {/* Active Users Metric Card (borderless) */}
             <div className="relative p-6 sm:p-8 space-y-3 max-w-2xl w-full">

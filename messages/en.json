@@ -109,10 +109,29 @@
           "title": "AMA Awards Madrid",
           "description": "Winning architectural excellence in Spain."
         }
+      },
+      "researchNav": {
+        "projects": {
+          "title": "Research Projects",
+          "description": "Current AI & BIM collaborative research (EFRE NRW, FFplus, BMWE)"
+        },
+        "cooperations": {
+          "title": "Science & Partners",
+          "description": "Collaborations with RWTH Aachen AI Center, DFKI & Zukunft Bau"
+        },
+        "process": {
+          "title": "Research Process",
+          "description": "From idea to model training and workflow integration"
+        },
+        "contact": {
+          "title": "Inquire Cooperation",
+          "description": "Start joint research proposals and funded projects"
+        }
       }
     },
     "successStories": "Success Stories",
-    "amaAwards": "TESTIMONIALS"
+    "amaAwards": "TESTIMONIALS",
+    "research": "RESEARCH"
   },
   "ImageTemplates": {
     "title": "High-quality architectural AI for large-format prints",
@@ -3554,6 +3573,7 @@
       "appConfigurator": "App Configurator",
       "participationProcess": "Participation Process",
       "pricing": "Pricing",
+      "research": "Research",
       "forArchitects": "For Architects",
       "forManufacturers": "For Manufacturers",
       "audienceToggle": "Audience"
@@ -4327,7 +4347,7 @@
       "description": "In cooperation with leading research institutions and industry partners, we develop innovative solutions for the central challenges of the construction and real estate industry.",
       "status": {
         "approved": "APPROVED",
-        "inProgress": "IN PROGRESS",
+        "inProgress": "APPLICATION SUBMITTED",
         "inDevelopment": "IN DEVELOPMENT"
       },
       "efre": {

@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2 } from 'lucide-react'
+import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2, Layers } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -81,7 +81,7 @@ export function NavbarDemo() {
     if (isHersteller) {
       return [
         {
-          name: locale === 'de' ? 'LÖSUNGEN & PORTALE' : 'SOLUTIONS & PORTALS',
+          name: locale === 'de' ? 'LÖSUNGEN' : 'SOLUTIONS',
           link: '/#solutions',
           submenu: [
             { title: locale === 'de' ? 'FÜR ARCHITEKTEN' : 'FOR ARCHITECTS', isSection: true },
@@ -196,10 +196,9 @@ export function NavbarDemo() {
 
     return [
       {
-        name: locale === 'de' ? 'LÖSUNGEN & PORTALE' : 'SOLUTIONS & PORTALS',
+        name: locale === 'de' ? 'LÖSUNGEN' : 'SOLUTIONS',
         link: '/#solutions',
         submenu: [
-          { title: locale === 'de' ? 'FÜR ARCHITEKTEN' : 'FOR ARCHITECTS', isSection: true },
           {
             title: tNav('solutions.create.title'),
             description: tNav('solutions.create.description'),
@@ -229,19 +228,6 @@ export function NavbarDemo() {
             description: tNav('solutions.overviewOfFeatures.description'),
             link: '/overview-of-features',
             icon: Play,
-          },
-          { title: locale === 'de' ? 'FÜR BAUPRODUKTANBIETER' : 'FOR BUILDING PRODUCT SUPPLIERS', isSection: true },
-          {
-            title: tNav('solutions.research.title'),
-            description: tNav('solutions.research.description'),
-            link: '/research',
-            icon: FlaskConical,
-          },
-          {
-            title: tNav('solutions.configurator.title'),
-            description: tNav('solutions.configurator.description'),
-            link: '/embedded-configurator',
-            icon: Box,
           },
         ],
       },
@@ -333,6 +319,36 @@ export function NavbarDemo() {
         name: t('amaAwards'),
         link: '/#success-stories',
         isTestimonials: true,
+      },
+      {
+        name: locale === 'de' ? 'FORSCHUNG' : 'RESEARCH',
+        link: '/research',
+        submenu: [
+          {
+            title: tNav('researchNav.projects.title'),
+            description: tNav('researchNav.projects.description'),
+            link: '/research',
+            icon: FlaskConical,
+          },
+          {
+            title: tNav('researchNav.cooperations.title'),
+            description: tNav('researchNav.cooperations.description'),
+            link: '/research',
+            icon: GraduationCap,
+          },
+          {
+            title: tNav('researchNav.process.title'),
+            description: tNav('researchNav.process.description'),
+            link: '/research',
+            icon: Layers,
+          },
+          {
+            title: tNav('researchNav.contact.title'),
+            description: tNav('researchNav.contact.description'),
+            link: '/research',
+            icon: ShieldCheck,
+          },
+        ],
       },
     ]
   }

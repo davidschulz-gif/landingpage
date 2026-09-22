@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocale, useTranslations } from 'next-intl'
-import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { ManufacturerHeader } from '@/components/manufacturer/manufacturer-header'
 import { FooterSection } from '@/components/footer-section'
 import {
   ArrowRight,
@@ -95,11 +95,16 @@ export default function ResearchPage() {
   return (
     <div className="min-h-screen bg-white text-neutral-900 selection:bg-black selection:text-white font-sans antialiased">
       
-      {/* ── STANDARD SITE NAVBAR (Same navbar as the rest of the site) ── */}
-      <NavbarDemo />
+      {/* ── MANUFACTURER / RESEARCH HEADER ── */}
+      <ManufacturerHeader
+        onOpenContact={() => {
+          setFormSubmitted(false)
+          setIsModalOpen(true)
+        }}
+      />
 
       {/* ── MAIN CONTENT CONTAINER ── */}
-      <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-28 sm:pt-36 pb-28 space-y-24 sm:space-y-28">
+      <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-12 md:pt-16 pb-28 space-y-24 sm:space-y-28">
 
         {/* ── HERO SECTION ── */}
         <section className="space-y-6">
