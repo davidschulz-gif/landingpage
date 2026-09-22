@@ -23,21 +23,21 @@ const RightCard = ({
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      className="bg-white/80 backdrop-blur-sm border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col h-full relative group overflow-hidden"
+      className="bg-white border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col h-full relative group"
     >
-      <CornerSquares size="w-1.5 h-1.5" />
+      <CornerSquares />
       <div className="flex justify-between items-start mb-6 relative z-10">
-        <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors">
+        <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-xl flex items-center justify-center text-gray-900 dark:text-white group-hover:bg-black group-hover:text-white transition-colors">
           <Icon size={24} />
         </div>
       </div>
 
       <div className="mb-4 relative z-10">
-        <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{title}</span>
+        <span className="text-[10px] font-bold tracking-widest text-neutral-400 dark:text-neutral-500 uppercase">{title}</span>
         <h3 className="mt-2 subheading-primary">{subtitle}</h3>
       </div>
 
-      <p className="text-gray-600 text-md leading-relaxed relative z-10 break-words">
+      <p className="text-gray-600 dark:text-neutral-300 text-md leading-relaxed relative z-10 break-words font-sans">
         {description}
       </p>
     </motion.div>
@@ -125,8 +125,9 @@ export const RightsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="bg-gray-50/50 backdrop-blur-sm border border-gray-100 p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6"
+          className="relative bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
+          <CornerSquares />
           <div className="flex items-center gap-4">
             <h4 className="subheading-primary">
               {t('banner.privacy')}
@@ -134,8 +135,8 @@ export const RightsSection = () => {
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-8">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-gray-900">{t('banner.hosting')}</span>
-              <span className="text-sm text-gray-500">{t('banner.hostingDetails')}</span>
+              <span className="text-sm font-bold text-gray-900 dark:text-white">{t('banner.hosting')}</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">{t('banner.hostingDetails')}</span>
             </div>
           </div>
         </motion.div>

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { CornerSquares } from './common/corner-squares'
 
 interface FAQItemProps {
   question: string
@@ -63,11 +64,11 @@ export const FAQSection = () => {
   ]
 
   return (
-    <section className='py-24 px-6 bg-[#FFFFFF]'>
+    <section className='py-24 px-6' style={{ backgroundColor: '#f7f5f0' }}>
       <div className='mx-auto max-w-4xl'>
 
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-          <div className="">
+          <div>
             <h2 className="text-center heading-primary mb-4">
              {t('title')}
             </h2>
@@ -76,33 +77,15 @@ export const FAQSection = () => {
             </p>
           </div>
         </div>
-        {/* <div className='mb-16'>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className='text-3xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight'
-          >
-            {t('title')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className='text-md md:text-lg text-gray-700 font-medium'
-          >
-            {t('subtitle')}
-          </motion.p>
-        </div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="space-y-0"
+          className="relative bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 sm:p-10 shadow-xs"
         >
+          <CornerSquares />
           {questionKeys.map((key, index) => (
             <FAQItem
               key={key}

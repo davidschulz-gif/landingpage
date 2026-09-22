@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { ActionButton } from './action-button'
 import { BreathingAnimationText } from './breathing-animation-text'
+import { CornerSquares } from './common/corner-squares'
 
 export function ReviewsSection() {
   const t = useTranslations('Reviews')
@@ -85,26 +86,29 @@ export function ReviewsSection() {
               z-index: 10;
             }
           `}</style>
-          <div className='w-full mx-auto bg-white/80 backdrop-blur-sm  shadow-xl border border-white/20 overflow-hidden'>
-            <script
-              type='text/javascript'
-              src='https://testimonial.to/js/iframeResizer.min.js'
-              async
-            />
-            <iframe
-              id='testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b'
-              src='https://embed-v2.testimonial.to/w/yanus?id=b6f883ac-9b79-48ea-b5f2-20cadc234b2b&columns=3'
-              aria-label='Reviews'
-              width='100%'
-              height='600px'
-              className=' overflow-hidden'
-            ></iframe>
-            <script
-              type='text/javascript'
-              dangerouslySetInnerHTML={{
-                __html: `iFrameResize({log: false, checkOrigin: false}, '#testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b');`,
-              }}
-            />
+          <div className='relative w-full mx-auto bg-white border border-neutral-200 dark:border-neutral-800 rounded-2xl p-2 sm:p-4 shadow-sm'>
+            <CornerSquares />
+            <div className='rounded-xl overflow-hidden'>
+              <script
+                type='text/javascript'
+                src='https://testimonial.to/js/iframeResizer.min.js'
+                async
+              />
+              <iframe
+                id='testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b'
+                src='https://embed-v2.testimonial.to/w/yanus?id=b6f883ac-9b79-48ea-b5f2-20cadc234b2b&columns=3'
+                aria-label='Reviews'
+                width='100%'
+                height='600px'
+                className='overflow-hidden'
+              ></iframe>
+              <script
+                type='text/javascript'
+                dangerouslySetInnerHTML={{
+                  __html: `iFrameResize({log: false, checkOrigin: false}, '#testimonialto-b6f883ac-9b79-48ea-b5f2-20cadc234b2b');`,
+                }}
+              />
+            </div>
           </div>
         </motion.div>
 

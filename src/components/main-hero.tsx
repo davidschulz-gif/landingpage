@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { GoogleLogo } from '@/components/icons/google-logo'
 import HeroEmailForm from '@/components/hero-email-form'
 import TypusLogoBlack from './common/typus-logo-black'
+import { CornerSquares } from './common/corner-squares'
 
 export function MainHero() {
   const t = useTranslations('BilderFlatrate')
@@ -46,24 +47,26 @@ export function MainHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className='mb-14 md:mb-16 flex flex-col items-center space-y-2'
+            className='mb-14 md:mb-16 flex flex-col items-center justify-center'
           >
-            {/* <div className='bg-black size-4'></div> */}
-            <TypusLogoBlack className="size-9 mx-auto" /> 
-            <span
-              className='text-center'
-              style={{
-                fontSize: '25px',
-                fontWeight: 400,
-                letterSpacing: '2.5px',
-                lineHeight: '1.3em',
-                color: '#000',
-                textTransform: 'uppercase',
-                fontFamily: "Arial, Helvetica, sans-serif",
-              }}
-            >
-              TYPUS
-            </span>
+            <div className='relative p-4 sm:p-6 max-w-xs w-full flex flex-col items-center justify-center'>
+              <CornerSquares />
+              <TypusLogoBlack className="size-9 mx-auto mb-2" /> 
+              <span
+                className='text-center'
+                style={{
+                  fontSize: '25px',
+                  fontWeight: 400,
+                  letterSpacing: '2.5px',
+                  lineHeight: '1.3em',
+                  color: '#000',
+                  textTransform: 'uppercase',
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                }}
+              >
+                TYPUS
+              </span>
+            </div>
           </motion.div>
           {/* <div className='flex justify-center w-full mt-12 mb-8'>
             <div className='relative inline-flex items-center px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] overflow-hidden font-space-grotesk rounded-none'

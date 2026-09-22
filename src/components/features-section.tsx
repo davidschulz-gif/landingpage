@@ -155,7 +155,7 @@ export const FeaturesSection = () => {
           return (
             <motion.div
               key={index}
-              className='group relative flex flex-col sm:flex-row overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 min-h-[120px] sm:min-h-[100px] w-full'
+              className='group relative flex flex-col sm:flex-row border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 transition-all duration-300 hover:shadow-lg hover:border-neutral-400 dark:hover:border-neutral-600 min-h-[120px] sm:min-h-[100px] w-full rounded-xl'
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -166,9 +166,9 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
-              <CornerSquares size="w-1.5 h-1.5" />
+              <CornerSquares />
               {/* Image Section */}
-              <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden'>
+              <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none flex-shrink-0'>
                 <img
                   src={feature.imagePath}
                   alt={t(feature.titleKey)}

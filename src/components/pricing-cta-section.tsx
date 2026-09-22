@@ -13,7 +13,7 @@ export function PricingCTASection() {
         <section className="py-20 w-full" style={{ backgroundColor: '#f7f5f0' }}>
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="relative text-center p-8 sm:p-12 bg-white shadow-2xs rounded-2xl"
+                    className="relative text-center p-8 sm:p-12 bg-white border border-neutral-200 dark:border-neutral-800 shadow-xs rounded-2xl"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}

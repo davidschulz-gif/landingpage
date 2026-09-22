@@ -216,9 +216,9 @@ export function ArticleCarouselSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className='relative border border-neutral-200 dark:border-neutral-800 gap-0 py-0 mb-4 md:ml-4 shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white overflow-hidden'>
-                    <CornerSquares size="w-1.5 h-1.5" />
-                    <CardContent className='p-0'>
+                  <Card className='relative border border-neutral-200 dark:border-neutral-800 gap-0 py-0 mb-4 md:ml-4 shadow-sm hover:shadow-md transition-shadow duration-300 bg-white rounded-2xl'>
+                    <CornerSquares />
+                    <CardContent className='p-0 overflow-hidden rounded-2xl'>
                       <div className='aspect-square relative overflow-hidden '>
                         {/* Conditional rendering based on ID instead of source type */}
                         {[1, 3, 4, 5].includes(article.id) ? (

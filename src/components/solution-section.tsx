@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { BanknoteIcon, CheckCircle2, Clock, MessageSquare, ArrowRight } from 'lucide-react'
 
 import { ActionButton } from '@/components/action-button'
+import { CornerSquares } from './common/corner-squares'
 import aiPulseAnimation from '../../public/lottie/ai-pulse.json'
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
@@ -57,8 +58,8 @@ export function SolutionSection() {
                     <ul className='space-y-4 mt-6'>
                       {[t('problem.point1'), t('problem.point2'), t('problem.point3')].map((point, i) => (
                         <li key={i} className='flex items-center gap-4'>
-                          <div className='w-5 h-5 bg-neutral-100  dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
-                            <span className='text-[12px] text-red-600'>✕</span>
+                          <div className='w-5 h-5 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center flex-shrink-0'>
+                            <span className='text-[12px] text-black dark:text-white font-bold'>✕</span>
                           </div>
                           <span style={{ fontFamily: 'Arial' }} className='font-normal text-neutral-600 dark:text-neutral-300'>{point}</span>
                         </li>
@@ -70,7 +71,8 @@ export function SolutionSection() {
                   </div>
                 </div>
 
-                <div className='bg-[#FFFFFF] dark:bg-neutral-900/50 p-8 md:p-12'>
+                <div className='relative bg-[#f7f5f0] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-200 dark:border-neutral-800 rounded-2xl'>
+                  <CornerSquares />
                   <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
                   <div className='space-y-8'>
                     {[
@@ -79,7 +81,7 @@ export function SolutionSection() {
                       { icon: BanknoteIcon, title: t('problem.meaning3Title'), desc: t('problem.meaning3Desc') }
                     ].map((item, i) => (
                       <div key={i} className='flex gap-5'>
-                        <div className='mt-1 text-red-600 dark:text-red-500'>
+                        <div className='mt-1 text-black dark:text-white'>
                           <item.icon className='w-5 h-5' />
                         </div>
                         <div>

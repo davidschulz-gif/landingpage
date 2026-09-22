@@ -77,31 +77,12 @@ export function MeetOurTeamSection() {
   const t = useTranslations('Team')
 
   return (
-    <section className='py-10' style={{ backgroundColor: '#FFFFFF' }}>
+    <section className='py-16' style={{ backgroundColor: '#f7f5f0' }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Header */}
-        {/* <div className='text-center mb-12'>
-          <BreathingAnimationText animationType='black-gray'>
-            <motion.h2
-              className='text-[30px] text-gray-900 mb-3 font-normal'
-              style={{ fontFamily: 'Arial' }}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              {t('title')}
-            </motion.h2>
-          </BreathingAnimationText>
-        </div> */}
-
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-          {/* <div className=""> */}
-
               <h2 className="text-center heading-primary mb-4">
               {t('title')}
             </h2>
-           
           </div>
 
         {/* Team Grid */}
@@ -119,9 +100,9 @@ export function MeetOurTeamSection() {
               viewport={{ once: true, margin: '-50px' }}
               className='group'
             >
-              <div className='relative group'>
-                <div className='bg-white p-8 text-center relative z-10 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm overflow-hidden'>
-                  <CornerSquares size="w-1.5 h-1.5" />
+              <div className='relative group h-full'>
+                <div className='bg-white p-8 text-center relative z-10 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow h-full flex flex-col justify-between'>
+                  <CornerSquares />
                   {/* Profile Image */}
                   <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden flex-shrink-0'>
                     <div className='w-full h-full p-10'>

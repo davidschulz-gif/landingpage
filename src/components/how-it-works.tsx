@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo, useState } from 'react';
 
 
+import { CornerSquares } from '@/components/common/corner-squares';
+
 const PromptTypewriter: React.FC<{ text: string }> = ({ text }) => {
     const [typedText, setTypedText] = useState('');
 
@@ -60,44 +62,29 @@ const HowItWorksWithoutOptimization: React.FC = () => {
     ], [t]);
 
     return (
-        <section className="py-16 md:py-20 bg-[#FFFFFF] relative overflow-hidden ">
-            {/* Background decorative elements */}
-            {/* <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F7F7F7]/50 -skew-x-12 transform origin-top translate-x-1/2 -z-10" /> */}
+        <section className="py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#f7f5f0' }}>
+            <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+                <div className="relative z-10 max-w-7xl mx-auto text-left">
+                  <div>
+                    <h2 className="text-center heading-primary mb-4">
+                      {t('title')}
+                    </h2>
+                    <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
+                      {t('subtitle')}
+                    </p>
+                  </div>
+                </div>
 
-            {/* <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-24"> */}
-                
-                <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-          <div className="">
-            {/* <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
-             {t('title')}
-            </h2> */}
-              <h2 className="text-center heading-primary mb-4">
-              {t('title')}
-            </h2>
-            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
-              {t('subtitle')}
-            </p>
-          </div>
-        </div>
-         <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
-            {/* <h2 className="text-2xl text-center sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
-              {t('title')}
-            </h2>
-            <p className="text-gray-500 text-center dark:text-neutral-400 text-sm md:text-base font-medium font-sans">
-               {t('subtitle')}
-            </p> */}
-        {/* </div> */}
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <div className="order-2 lg:order-1 space-y-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div className="order-2 lg:order-1 space-y-10">
                         {steps.map((step, index) => (
-                            <div key={index} className="flex gap-8 group">
-                                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#F7F7F7] border border-gray-100 flex items-center justify-center text-black group-hover:bg-black group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-xl group-hover:shadow-black/10 group-hover:-translate-y-1">
+                            <div key={index} className="flex gap-6 group">
+                                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white border border-neutral-200 dark:border-neutral-800 flex items-center justify-center text-black group-hover:bg-black group-hover:text-white transition-all duration-500 shadow-xs group-hover:shadow-md group-hover:-translate-y-1">
                                     {step.icon}
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-2">
                                     <h3 className="subheading-primary">{step.title}</h3>
-                                    <p className="text-lg text-gray-500 font-light leading-relaxed max-w-md">{step.description}</p>
+                                    <p className="text-base sm:text-lg text-gray-500 font-light leading-relaxed max-w-md">{step.description}</p>
                                 </div>
                             </div>
                         ))}
@@ -105,8 +92,9 @@ const HowItWorksWithoutOptimization: React.FC = () => {
 
                     <div className="order-1 lg:order-2 relative">
                         {/* Main Visualization Container */}
-                        <div className="relative z-10 bg-white rounded-[40px] p-4 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.12)] border border-gray-100 group">
-                            <div className="relative rounded-[32px] overflow-hidden aspect-[4/3]">
+                        <div className="relative z-10 bg-white rounded-3xl p-3 sm:p-4 shadow-xl border border-neutral-200 dark:border-neutral-800 group">
+                            <CornerSquares />
+                            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                                 <img
                                     src={'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/modern-coastal-green-facade.jpg'}
                                     alt="How it works visualization"
@@ -130,7 +118,8 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                         </div>
 
                         {/* Floating Interaction UI: Prompt Box */}
-                        <div className="absolute -top-10 -left-10 z-20 w-80 bg-white rounded-3xl p-6 shadow-2xl border border-gray-100 hidden md:block animate-in zoom-in-95 slide-in-from-top-4 duration-700 delay-300">
+                        <div className="absolute -top-10 -left-10 z-20 w-80 bg-white rounded-2xl p-6 shadow-xl border border-neutral-200 dark:border-neutral-800 hidden md:block animate-in zoom-in-95 slide-in-from-top-4 duration-700 delay-300">
+                            <CornerSquares />
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center text-white">
                                     <Type className="w-4 h-4" />
@@ -141,7 +130,8 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                         </div>
 
                         {/* Floating Interaction UI: Upload Box */}
-                        <div className="absolute -bottom-10 -right-10 z-20 bg-white rounded-3xl p-5 shadow-2xl border border-gray-100 hidden md:flex items-center gap-4 animate-in zoom-in-95 slide-in-from-right-4 duration-700 delay-500">
+                        <div className="absolute -bottom-10 -right-10 z-20 bg-white rounded-2xl p-5 shadow-xl border border-neutral-200 dark:border-neutral-800 hidden md:flex items-center gap-4 animate-in zoom-in-95 slide-in-from-right-4 duration-700 delay-500">
+                            <CornerSquares />
                             <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
                                 <Upload className="w-6 h-6" />
                             </div>
@@ -152,8 +142,8 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                         </div>
 
                         {/* Background glowing accents */}
-                        <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-100 rounded-full blur-[100px] opacity-40 -z-10" />
-                        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-100 rounded-full blur-[100px] opacity-40 -z-10" />
+                        <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-100/50 rounded-full blur-[100px] opacity-40 -z-10" />
+                        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-100/50 rounded-full blur-[100px] opacity-40 -z-10" />
                     </div>
                 </div>
             </div>
