@@ -28,7 +28,7 @@ export function SolutionSection() {
       {/* Problem Section Wrapper */}
       <div className="relative">
         <div className="flex items-center justify-center overflow-hidden z-10">
-          <section className='w-full py-12 lg:py-20 bg-[#FFFFFF] dark:bg-black px-4'>
+          <section className='w-full py-12 lg:py-20 bg-[#f7f5f0] dark:bg-black px-4'>
             <div className='max-w-5xl mx-auto'>
               {/* <div className='mb-12 md:mb-16 text-center'> */}
                 {/* <h2
@@ -40,13 +40,12 @@ export function SolutionSection() {
               {/* </div> */}
 
                <div className="">
-            <h2 className="text-center heading-primary mb-4">
+            <h2 className="text-center heading-primary mb-8 md:mb-12">
               {t('problem.dasProblem')}
             </h2>
           
           {/* </div> */}
         </div>
-
               <div className='grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center'>
                 <div>
                   <h2 className='subheading-primary'>
@@ -71,8 +70,8 @@ export function SolutionSection() {
                   </div>
                 </div>
 
-                <div className='relative bg-[#f7f5f0] dark:bg-neutral-900/50 p-8 md:p-12 border border-neutral-200 dark:border-neutral-800 rounded-2xl'>
-                  <CornerSquares />
+                <div className='relative  dark:bg-neutral-900/50 p-8 md:p-12  dark:border-neutral-800 rounded-2xl'>
+                  {/* <CornerSquares /> */}
                   <h3 className='text-xs font-bold uppercase tracking-[0.2em] mb-8 text-neutral-400'>{t('problem.meaningTitle')}</h3>
                   <div className='space-y-8'>
                     {[
@@ -97,6 +96,7 @@ export function SolutionSection() {
                   </div>
                 </div>
               </div>
+
             </div>
           </section>
         </div>

@@ -25,7 +25,7 @@ const RightCard = ({
       transition={{ duration: 0.3 }}
       className="bg-white border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col h-full relative group"
     >
-      <CornerSquares />
+      {/* <CornerSquares /> */}
       <div className="flex justify-between items-start mb-6 relative z-10">
         <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-xl flex items-center justify-center text-gray-900 dark:text-white group-hover:bg-black group-hover:text-white transition-colors">
           <Icon size={24} />
@@ -81,6 +81,7 @@ export const RightsSection = () => {
   return (
     <section className="py-24 px-6 relative overflow-hidden bg-[#FDFDFD]">
       <div className="max-w-7xl mx-auto relative z-10">
+          <CornerSquares />
         <div className="mb-16">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +128,7 @@ export const RightsSection = () => {
           transition={{ delay: 0.3 }}
           className="relative bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6"
         >
-          <CornerSquares />
+          {/* <CornerSquares /> */}
           <div className="flex items-center gap-4">
             <h4 className="subheading-primary">
               {t('banner.privacy')}

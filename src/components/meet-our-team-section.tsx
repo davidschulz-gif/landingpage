@@ -102,7 +102,7 @@ export function MeetOurTeamSection() {
             >
               <div className='relative group h-full'>
                 <div className='bg-white p-8 text-center relative z-10 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xs hover:shadow-md transition-shadow h-full flex flex-col justify-between'>
-                  <CornerSquares />
+                 
                   {/* Profile Image */}
                   <div className='relative w-48 h-48 mx-auto mb-6 overflow-hidden flex-shrink-0'>
                     <div className='w-full h-full p-10'>

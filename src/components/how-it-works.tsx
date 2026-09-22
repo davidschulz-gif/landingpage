@@ -64,6 +64,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
     return (
         <section className="py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#f7f5f0' }}>
             <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+                
                 <div className="relative z-10 max-w-7xl mx-auto text-left">
                   <div>
                     <h2 className="text-center heading-primary mb-4">
@@ -93,7 +94,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
                     <div className="order-1 lg:order-2 relative">
                         {/* Main Visualization Container */}
                         <div className="relative z-10 bg-white rounded-3xl p-3 sm:p-4 shadow-xl border border-neutral-200 dark:border-neutral-800 group">
-                            <CornerSquares />
+                            {/* <CornerSquares /> */}
                             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                                 <img
                                     src={'https://prai-vision.s3.eu-central-1.amazonaws.com/templates/modern-coastal-green-facade.jpg'}
@@ -119,7 +120,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
 
                         {/* Floating Interaction UI: Prompt Box */}
                         <div className="absolute -top-10 -left-10 z-20 w-80 bg-white rounded-2xl p-6 shadow-xl border border-neutral-200 dark:border-neutral-800 hidden md:block animate-in zoom-in-95 slide-in-from-top-4 duration-700 delay-300">
-                            <CornerSquares />
+                       
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-8 h-8 rounded-lg bg-gray-900 flex items-center justify-center text-white">
                                     <Type className="w-4 h-4" />
@@ -131,7 +132,7 @@ const HowItWorksWithoutOptimization: React.FC = () => {
 
                         {/* Floating Interaction UI: Upload Box */}
                         <div className="absolute -bottom-10 -right-10 z-20 bg-white rounded-2xl p-5 shadow-xl border border-neutral-200 dark:border-neutral-800 hidden md:flex items-center gap-4 animate-in zoom-in-95 slide-in-from-right-4 duration-700 delay-500">
-                            <CornerSquares />
+                            {/* <CornerSquares /> */}
                             <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
                                 <Upload className="w-6 h-6" />
                             </div>

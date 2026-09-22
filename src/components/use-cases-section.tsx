@@ -37,7 +37,7 @@ const UseCaseCard = ({
       transition={{ duration: 0.3 }}
       className="bg-white border border-neutral-200 dark:border-neutral-800 p-8 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col h-full relative group"
     >
-      <CornerSquares />
+     
       {/* Background Grid Pattern for Card */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none group-hover:opacity-[0.05] transition-opacity rounded-2xl overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
@@ -121,6 +121,7 @@ export const UseCasesSection = () => {
 
   return (
     <section className="py-24 px-6 relative overflow-hidden" style={{ backgroundColor: '#f7f5f0' }}>
+      
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -146,7 +147,7 @@ export const UseCasesSection = () => {
             {t('subtitle')}
           </motion.p>
         </div> */}
-
+ <CornerSquares />
          {/* <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4"> */}
           <div className="mb-10">
             <h2 className=" text-left heading-primary mb-4">

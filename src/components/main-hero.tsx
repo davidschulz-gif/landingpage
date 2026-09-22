@@ -50,7 +50,7 @@ export function MainHero() {
             className='mb-14 md:mb-16 flex flex-col items-center justify-center'
           >
             <div className='relative p-4 sm:p-6 max-w-xs w-full flex flex-col items-center justify-center'>
-              <CornerSquares />
+              {/* <CornerSquares /> */}
               <TypusLogoBlack className="size-9 mx-auto mb-2" /> 
               <span
                 className='text-center'

@@ -186,7 +186,7 @@ export function ArticleCarouselSection() {
             </motion.h2>
           </BreathingAnimationText>
         </div> */}
-
+     
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           <div className="">
             <h2 className="text-center heading-primary mb-4">
@@ -195,7 +195,7 @@ export function ArticleCarouselSection() {
            </div>
           </div>
 
-        
+         {/* <CornerSquares /> */}
 
         <Carousel
           opts={{
@@ -217,7 +217,7 @@ export function ArticleCarouselSection() {
                   viewport={{ once: true }}
                 >
                   <Card className='relative border border-neutral-200 dark:border-neutral-800 gap-0 py-0 mb-4 md:ml-4 shadow-sm hover:shadow-md transition-shadow duration-300 bg-white rounded-2xl'>
-                    <CornerSquares />
+              
                     <CardContent className='p-0 overflow-hidden rounded-2xl'>
                       <div className='aspect-square relative overflow-hidden '>
                         {/* Conditional rendering based on ID instead of source type */}

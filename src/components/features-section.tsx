@@ -128,7 +128,7 @@ export const FeaturesSection = () => {
     <section className='relative mx-auto flex max-w-[100%] md:max-w-[70%] w-full flex-col px-4 py-12 md:py-16 text-neutral-800 dark:text-neutral-200'>
       {/* Section Header */}
       
-
+   <CornerSquares />
        <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
           {/* <div className=""> */}
             <h2 className="text-center heading-primary mb-4">
@@ -166,7 +166,7 @@ export const FeaturesSection = () => {
               viewport={{ once: true, margin: '-50px' }}
               whileHover={{ y: -4 }}
             >
-              <CornerSquares />
+           
               {/* Image Section */}
               <div className='relative w-18 md:w-22 h-18 md:h-22 overflow-hidden rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none flex-shrink-0'>
                 <img
