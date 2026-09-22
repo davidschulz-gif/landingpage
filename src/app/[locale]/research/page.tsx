@@ -12,7 +12,8 @@ import {
   X,
   CheckCircle2,
   Send,
-  Loader2
+  Loader2,
+  ExternalLink
 } from 'lucide-react'
 
 export default function ResearchPage() {
@@ -41,37 +42,50 @@ export default function ResearchPage() {
     }, 900)
   }
 
-  // 5 Research Projects with keys from translations
+  const ffplusNewsUrl = 'https://www.ffplus-project.eu/en/news-and-events/news/strong-demand-for-the-ffplus-innovation-studies-call-18-new-sub-projects-selected-for-funding/'
+
+  // 5 Research Projects with keys, logos and external links
   const projectKeys = [
     {
       id: 'efre-nrw',
       key: 'efre',
       status: 'approved',
-      statusText: t('projects.status.approved')
+      statusText: t('projects.status.approved'),
+      logos: [{ src: '/logo_efre_jtf.png', alt: 'EFRE / JTF NRW 2021–27' }]
     },
     {
       id: 'ffplus',
       key: 'ffplus',
       status: 'approved',
-      statusText: t('projects.status.approved')
+      statusText: t('projects.status.approved'),
+      logos: [{ src: '/logo_ffplus_hires.png', alt: 'FORTISSIMO PLUS (FFplus)' }],
+      externalUrl: ffplusNewsUrl,
+      externalLabel: isDe ? 'FFplus Pressemitteilung & Sub-Projects' : 'FFplus News & Sub-Projects'
     },
     {
       id: 'igp-bmwe',
       key: 'igp',
       status: 'inProgress',
-      statusText: t('projects.status.inProgress')
+      statusText: t('projects.status.inProgress'),
+      logos: [
+        { src: '/logo_eurohpc_hires.png', alt: 'EuroHPC JU' },
+        { src: '/logo_chipsju_hires.png', alt: 'Chips JU' },
+        { src: '/logo_eccc_hires.png', alt: 'ECCC' }
+      ]
     },
     {
       id: 'zukunft-bau',
       key: 'zukunftBau',
       status: 'inProgress',
-      statusText: t('projects.status.inProgress')
+      statusText: t('projects.status.inProgress'),
+      logos: [{ src: '/logo_zukunft_bau.png', alt: 'Zukunft Bau' }]
     },
     {
       id: 'kmu-innovativ',
       key: 'kmu',
       status: 'inDevelopment',
-      statusText: t('projects.status.inDevelopment')
+      statusText: t('projects.status.inDevelopment'),
+      logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }]
     }
   ]
 
@@ -86,10 +100,10 @@ export default function ResearchPage() {
 
   // 4 Network Partners
   const networkPartners = [
-    { name: 'RWTH Aachen', role: t('network.partner1Role') },
-    { name: 'DFKI', role: t('network.partner2Role') },
-    { name: 'Concular', role: t('network.partner3Role') },
-    { name: 'Lehrstuhl Bauinformatik', role: t('network.partner4Role') }
+    { name: 'RWTH Aachen', role: t('network.partner1Role'), logo: '/logo_rwth_hires.png' },
+    { name: 'DFKI', role: t('network.partner2Role'), logo: '/logo_dfki.png' },
+    { name: 'Concular', role: t('network.partner3Role'), logo: '/logo_concular.png' },
+    { name: 'Lehrstuhl Bauinformatik', role: t('network.partner4Role'), logo: '/logo_rwth.png' }
   ]
 
   return (
@@ -182,28 +196,42 @@ export default function ResearchPage() {
                   }`}
                 >
                   <div className="space-y-4">
-                    {/* Top subtag & status pill */}
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-xs text-neutral-500 font-mono">
-                        {subtag}
-                      </span>
+                    {/* Top Logos & Status Pill */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        {proj.logos?.map((lg, lIdx) => (
+                          <div key={lIdx} className="relative h-9 flex items-center">
+                            <Image
+                              src={lg.src}
+                              alt={lg.alt}
+                              width={140}
+                              height={40}
+                              className="h-8 sm:h-9 w-auto object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
                       
                       {/* Status Badge */}
                       {proj.status === 'approved' && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200/60 uppercase">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200/60 uppercase shrink-0">
                           {proj.statusText}
                         </span>
                       )}
                       {proj.status === 'inProgress' && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-blue-50 text-blue-700 border border-blue-200/60 uppercase">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-blue-50 text-blue-700 border border-blue-200/60 uppercase shrink-0">
                           {proj.statusText}
                         </span>
                       )}
                       {proj.status === 'inDevelopment' && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-amber-50 text-amber-800 border border-amber-200/70 uppercase">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-amber-50 text-amber-800 border border-amber-200/70 uppercase shrink-0">
                           {proj.statusText}
                         </span>
                       )}
+                    </div>
+
+                    <div className="text-xs text-neutral-500 font-mono pt-1">
+                      {subtag}
                     </div>
 
                     {/* Title */}
@@ -223,28 +251,57 @@ export default function ResearchPage() {
                     <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed pt-1">
                       {desc}
                     </p>
+
+                    {/* External Link Pill (for FFplus or calls with external news) */}
+                    {proj.externalUrl && (
+                      <div className="pt-2">
+                        <Link
+                          href={proj.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-50 hover:bg-neutral-100 text-neutral-900 text-xs font-medium transition cursor-pointer border border-neutral-200"
+                        >
+                          <span>{proj.externalLabel}</span>
+                          <ExternalLink className="w-3.5 h-3.5 text-neutral-600" />
+                        </Link>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Bottom Meta & Arrow */}
+                  {/* Bottom Meta & Action Link */}
                   <div className="pt-8 mt-6 border-t border-neutral-100 flex items-center justify-between text-neutral-500">
                     <span className="text-[11px] font-mono tracking-wider uppercase text-neutral-500 font-medium">
                       {meta}
                     </span>
-                    <button
-                      onClick={() => {
-                        setFormData(prev => ({
-                          ...prev,
-                          project: title,
-                          message: `${isDe ? 'Anfrage bezüglich' : 'Inquiry regarding'}: ${title}`
-                        }))
-                        setFormSubmitted(false)
-                        setIsModalOpen(true)
-                      }}
-                      className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer"
-                      aria-label="Open project cooperation"
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                    
+                    {proj.externalUrl ? (
+                      <Link
+                        href={proj.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer flex items-center gap-1 text-xs"
+                        aria-label="Open external news article"
+                      >
+                        <span className="text-[11px] font-mono font-medium">{isDe ? 'News' : 'Link'}</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          setFormData(prev => ({
+                            ...prev,
+                            project: title,
+                            message: `${isDe ? 'Anfrage bezüglich' : 'Inquiry regarding'}: ${title}`
+                          }))
+                          setFormSubmitted(false)
+                          setIsModalOpen(true)
+                        }}
+                        className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer"
+                        aria-label="Open project cooperation"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               )
@@ -325,9 +382,20 @@ export default function ResearchPage() {
             </div>
 
             {/* Right 4 Partners List */}
-            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 items-center sm:divide-x divide-neutral-200">
+            <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 items-start sm:divide-x divide-neutral-200">
               {networkPartners.map((partner, pIdx) => (
-                <div key={partner.name} className={`space-y-1 ${pIdx > 0 ? 'sm:pl-6' : ''}`}>
+                <div key={partner.name} className={`space-y-2 ${pIdx > 0 ? 'sm:pl-6' : ''}`}>
+                  {partner.logo && (
+                    <div className="h-8 flex items-center mb-1">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.name}
+                        width={120}
+                        height={32}
+                        className="h-6 sm:h-7 w-auto object-contain"
+                      />
+                    </div>
+                  )}
                   <h5 
                     className="text-base sm:text-lg font-normal text-neutral-950 tracking-tight leading-snug"
                     style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
