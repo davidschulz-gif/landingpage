@@ -12,7 +12,7 @@ import {
   NavBody,
   NavItems,
 } from '@/components/ui/resizable-navbar-2'
-import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2, Layers } from 'lucide-react'
+import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2, Layers, Shield, EyeOff, Briefcase } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
@@ -228,6 +228,36 @@ export function NavbarDemo() {
             description: tNav('solutions.overviewOfFeatures.description'),
             link: '/overview-of-features',
             icon: Play,
+          },
+        ],
+      },
+      {
+        name: locale === 'de' ? 'IHRE RECHTE' : 'YOUR RIGHTS',
+        link: '/#rights',
+        submenu: [
+          {
+            title: locale === 'de' ? 'Vollständiges Eigentum' : 'Full Ownership',
+            description: locale === 'de' ? 'Jedes erstellte Bild gehört Ihnen ohne Einschränkungen' : 'Every generated image belongs to you without restrictions',
+            link: '/#rights',
+            icon: Shield,
+          },
+          {
+            title: locale === 'de' ? 'Kein KI-Training' : 'No AI Training',
+            description: locale === 'de' ? 'Ihre Uploads werden nie zum Training verwendet' : 'Your uploads are never used for AI training',
+            link: '/#rights',
+            icon: ShieldCheck,
+          },
+          {
+            title: locale === 'de' ? 'Vertraulichkeit' : 'Privacy Guaranteed',
+            description: locale === 'de' ? 'Typus veröffentlicht Ihre Bilder nie' : 'Typus never publishes your images',
+            link: '/#rights',
+            icon: EyeOff,
+          },
+          {
+            title: locale === 'de' ? 'Volle Nutzung (EU-AI-Act)' : 'Commercial Use (EU AI Act)',
+            description: locale === 'de' ? 'Volle Nutzung für Immobilienprojekte & Kundenportfolios' : 'Full commercial use for real estate & client portfolios',
+            link: '/#rights',
+            icon: Briefcase,
           },
         ],
       },

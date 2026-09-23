@@ -28,7 +28,8 @@ export function BlogPromoSection() {
     ]
 
     return (
-        <section className="w-full max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-5" id="success-stories">
+        <section className="relative w-full max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-5" id="success-stories">
+            <CornerSquares />
             <div className="text-center mb-6">
                 <span className="inline-flex items-center px-3.5 py-1 border border-[#e5e7eb] dark:border-neutral-800 font-bold text-[11px] uppercase tracking-[0.2em] bg-transparent text-neutral-800 dark:text-neutral-200 rounded-full">
                     {t('badge')}
@@ -44,7 +45,6 @@ export function BlogPromoSection() {
                         transition={{ duration: 0.4, delay: index * 0.08 }}
                         viewport={{ once: true }}
                     >
-                        <CornerSquares />
                         <div className="w-full md:w-[240px] lg:w-[260px] flex-shrink-0">
                             <div className="border border-[#e5e7eb] dark:border-neutral-800 rounded-xl overflow-hidden relative aspect-[16/10]">
                                 <Image

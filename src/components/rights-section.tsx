@@ -79,33 +79,21 @@ export const RightsSection = () => {
   ]
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden bg-[#FDFDFD]">
-      <div className="max-w-7xl mx-auto relative z-10">
-          <CornerSquares />
-        <div className="mb-16">
+    <section id="rights" className="py-24 px-4 sm:px-6 relative overflow-hidden bg-[#FDFDFD] dark:bg-neutral-950">
+      <div className="max-w-7xl mx-auto relative z-10 p-6 sm:p-10 bg-white dark:bg-neutral-900/40 shadow-2xs">
+        <CornerSquares />
+        <div className="mb-12">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-bold tracking-[0.2em] text-gray-900 uppercase block mb-4"
+            className="text-xs font-bold tracking-[0.2em] text-gray-900 dark:text-neutral-200 uppercase block mb-3"
           >
             {t('badge')}
           </motion.span>
-          {/* <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-gray-900 break-words"
-          >
+          <h2 className="text-left heading-primary mb-4">
             {t('title')}
-          </motion.h2> */}
-          {/* <h2 className="text-2xl text-left sm:text-3xl md:text-[32px] font-normal text-black dark:text-white tracking-tight leading-none mb-4">
-               {t('title')}
-            </h2> */}
-            <h2 className="text-left heading-primary mb-4">
-              {t('title')}
-            </h2>
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

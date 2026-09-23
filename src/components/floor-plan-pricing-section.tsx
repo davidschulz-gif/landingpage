@@ -97,7 +97,7 @@ export function FloorPlanPricingSection() {
             style={{
               backgroundColor: '#ffffff',
               color: '#000000',
-              border: pkg.isPopular ? '2px solid #f05a47' : '1px solid #e5e7eb',
+              border: pkg.isPopular ? '2px solid #000000' : '1px solid #e5e7eb',
             }}
           >
             {pkg.isPopular && (

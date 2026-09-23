@@ -43,6 +43,7 @@ export function FooterSection() {
       { name: t('links.create'), href: '#create' },
       { name: t('links.edit'), href: '#edit' },
       { name: t('links.upscale'), href: '#upscale' },
+      { name: locale === 'de' ? 'Ihre Rechte (EU-AI-Act)' : 'Your Rights (EU AI Act)', href: '/#rights' },
       { name: t('links.research'), href: `/${locale}/research` },
       { name: t('links.configurator'), href: `/${locale}/embedded-configurator` },
       // { name: t('links.bilderFlatrate'), href: '/done-for-you' },
