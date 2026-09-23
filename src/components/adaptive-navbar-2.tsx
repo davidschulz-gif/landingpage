@@ -353,32 +353,6 @@ export function NavbarDemo() {
       {
         name: locale === 'de' ? 'FORSCHUNG' : 'RESEARCH',
         link: '/research',
-        submenu: [
-          {
-            title: tNav('researchNav.projects.title'),
-            description: tNav('researchNav.projects.description'),
-            link: '/research',
-            icon: FlaskConical,
-          },
-          {
-            title: tNav('researchNav.cooperations.title'),
-            description: tNav('researchNav.cooperations.description'),
-            link: '/research',
-            icon: GraduationCap,
-          },
-          {
-            title: tNav('researchNav.process.title'),
-            description: tNav('researchNav.process.description'),
-            link: '/research',
-            icon: Layers,
-          },
-          {
-            title: tNav('researchNav.contact.title'),
-            description: tNav('researchNav.contact.description'),
-            link: '/research',
-            icon: ShieldCheck,
-          },
-        ],
       },
     ]
   }

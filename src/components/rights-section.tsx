@@ -1,9 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Briefcase, EyeOff, Shield, ShieldCheck } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { Briefcase, EyeOff, Shield, ShieldCheck, ArrowUpRight } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 import { CornerSquares } from './common/corner-squares'
+import { appUrl } from '@/lib/constants'
 
 const RightCard = ({ 
   icon: Icon, 
@@ -46,6 +47,7 @@ const RightCard = ({
 
 export const RightsSection = () => {
   const t = useTranslations('Rights')
+  const locale = useLocale()
 
   const rights = [
     {
@@ -106,6 +108,19 @@ export const RightsSection = () => {
               description={right.description}
             />
           ))}
+        </div>
+
+        {/* Terms Page Link Button */}
+        <div className="flex justify-center mb-8">
+          <a
+            href={`${appUrl}/terms`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black dark:text-white border border-neutral-300 dark:border-neutral-700 px-6 py-3 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-all cursor-pointer shadow-2xs"
+          >
+            <span>{locale === 'de' ? 'Allgemeine Geschäftsbedingungen (AGB) & Nutzungsbedingungen' : 'Terms & Conditions'}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
 
         {/* Bottom Banner */}

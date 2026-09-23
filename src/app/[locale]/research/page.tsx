@@ -15,6 +15,7 @@ import {
   Loader2,
   ExternalLink
 } from 'lucide-react'
+import { apiUrl } from '@/lib/constants'
 
 export default function ResearchPage() {
   const locale = useLocale()
@@ -29,17 +30,45 @@ export default function ResearchPage() {
     name: '',
     institution: '',
     email: '',
-    project: 'FFplus / AI Research',
+    project: 'FFplus / Generative AI',
     message: ''
   })
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setFormSubmitted(true)
-    }, 900)
+
+    // 1. Send data to backend API / HubSpot
+    try {
+      await fetch(`${apiUrl}/api/hubspot`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: formData.name,
+          email: formData.email,
+          company: formData.institution,
+          message: `[Forschungskooperation - ${formData.project}] ${formData.message}`,
+          recipient: 'hello@typus.ai',
+          type: 'research_cooperation'
+        })
+      }).catch(() => {})
+    } catch (err) {
+      console.error(err)
+    }
+
+    // 2. Direct email dispatch to hello@typus.ai
+    const mailtoSubject = encodeURIComponent(`Forschungskooperation: ${formData.project}`)
+    const mailtoBody = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Institution/Firma: ${formData.institution}\n` +
+      `E-Mail: ${formData.email}\n` +
+      `Projektbezug: ${formData.project}\n\n` +
+      `Nachricht:\n${formData.message}`
+    )
+    window.open(`mailto:hello@typus.ai?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank')
+
+    setIsSubmitting(false)
+    setFormSubmitted(true)
   }
 
   const ffplusNewsUrl = 'https://www.ffplus-project.eu/en/news-and-events/news/strong-demand-for-the-ffplus-innovation-studies-call-18-new-sub-projects-selected-for-funding/'
@@ -51,6 +80,7 @@ export default function ResearchPage() {
       key: 'efre',
       status: 'approved',
       statusText: t('projects.status.approved'),
+      grantNumber: 'Förderkennzeichen: EFRE-20801562',
       logos: [{ src: '/logo_efre_jtf.png', alt: 'EFRE / JTF NRW 2021–27' }]
     },
     {
@@ -58,7 +88,11 @@ export default function ResearchPage() {
       key: 'ffplus',
       status: 'approved',
       statusText: t('projects.status.approved'),
-      logos: [{ src: '/logo_ffplus_hires.png', alt: 'FORTISSIMO PLUS (FFplus)' }],
+      logos: [
+        { src: '/logo_ffplus_hires.png', alt: 'FORTISSIMO PLUS (FFplus)' },
+        { src: '/logo_eurohpc_hires.png', alt: 'EuroHPC JU' }
+      ],
+      fundingText: 'This project has received funding from the European High-Performance Computing Joint Undertaking (JU) under grant agreement No 101163317. The JU receives support from the Digital Europe Programme.',
       externalUrl: ffplusNewsUrl,
       externalLabel: isDe ? 'FFplus Pressemitteilung & Sub-Projects' : 'FFplus News & Sub-Projects'
     },
@@ -80,13 +114,13 @@ export default function ResearchPage() {
       statusText: t('projects.status.inProgress'),
       logos: [{ src: '/logo_zukunft_bau.png', alt: 'Zukunft Bau' }]
     },
-    {
-      id: 'kmu-innovativ',
-      key: 'kmu',
-      status: 'inDevelopment',
-      statusText: t('projects.status.inDevelopment'),
-      logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }]
-    }
+    // {
+    //   id: 'kmu-innovativ',
+    //   key: 'kmu',
+    //   status: 'inDevelopment',
+    //   statusText: t('projects.status.inDevelopment'),
+    //   logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }]
+    // }
   ]
 
   // 5 Process Steps
@@ -252,6 +286,13 @@ export default function ResearchPage() {
                       {desc}
                     </p>
 
+                    {/* Funding Text Statement */}
+                    {proj.fundingText && (
+                      <p className="text-[11px] text-neutral-500 leading-relaxed pt-2 border-t border-neutral-100 mt-2 font-sans">
+                        {proj.fundingText}
+                      </p>
+                    )}
+
                     {/* External Link Pill (for FFplus or calls with external news) */}
                     {proj.externalUrl && (
                       <div className="pt-2">
@@ -268,39 +309,15 @@ export default function ResearchPage() {
                     )}
                   </div>
 
-                  {/* Bottom Meta & Action Link */}
-                  <div className="pt-8 mt-6 border-t border-neutral-100 flex items-center justify-between text-neutral-500">
+                  {/* Bottom Meta */}
+                  <div className="pt-8 mt-6 border-t border-neutral-100 flex items-center justify-between gap-2 text-neutral-500 flex-wrap">
                     <span className="text-[11px] font-mono tracking-wider uppercase text-neutral-500 font-medium">
                       {meta}
                     </span>
-                    
-                    {proj.externalUrl ? (
-                      <Link
-                        href={proj.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer flex items-center gap-1 text-xs"
-                        aria-label="Open external news article"
-                      >
-                        <span className="text-[11px] font-mono font-medium">{isDe ? 'News' : 'Link'}</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </Link>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          setFormData(prev => ({
-                            ...prev,
-                            project: title,
-                            message: `${isDe ? 'Anfrage bezüglich' : 'Inquiry regarding'}: ${title}`
-                          }))
-                          setFormSubmitted(false)
-                          setIsModalOpen(true)
-                        }}
-                        className="text-neutral-400 group-hover:text-neutral-950 group-hover:translate-x-1 transition duration-200 p-1 cursor-pointer"
-                        aria-label="Open project cooperation"
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                    {proj.grantNumber && (
+                      <span className="text-[11px] font-mono tracking-wider text-neutral-500 font-medium">
+                        {proj.grantNumber}
+                      </span>
                     )}
                   </div>
                 </motion.div>
