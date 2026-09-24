@@ -116,7 +116,7 @@ export function FloorplanShowcaseSection({ locale = 'en' }: FloorplanShowcaseSec
             {isDe ? 'INTERAKTIVE LIVE STUDIO VORSCHAU' : 'INTERACTIVE LIVE STUDIO PREVIEW'}
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">
+          <h2 className="heading-primary">
             {isDe
               ? 'Erleben Sie alle KI-Grundriss-Module live'
               : 'Try Our AI Floor Plan Tools Live'}

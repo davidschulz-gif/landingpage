@@ -103,7 +103,7 @@ export function AppShowcaseSection({ locale = 'en' }: AppShowcaseSectionProps) {
             {isDe ? 'Interaktive App-Vorschau' : 'Interactive App Showcase'}
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">
+          <h2 className="heading-primary">
             {isDe
               ? 'Erleben Sie die Typus.AI Plattform live'
               : 'Explore the Typus AI Application Live'}
