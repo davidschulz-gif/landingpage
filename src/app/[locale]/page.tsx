@@ -13,12 +13,26 @@ import { IntegrationsMarquee } from '@/components/integrations-marquee'
 // import { useIsMobile } from '@/hooks/use-mobile'
 // import { measurePerformance } from '@/lib/performance'
 // import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 // import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
 // import { useState } from 'react'
 import Reveal from '@/components/common/Reveal'
+
+const AppShowcaseSection = dynamic(
+  () => import('@/components/app-showcase-section').then(mod => mod.AppShowcaseSection),
+  {
+    loading: () => <div className='h-96 bg-neutral-900 animate-pulse' />,
+  }
+)
+
+const FloorplanShowcaseSection = dynamic(
+  () => import('@/components/floorplan-showcase-section').then(mod => mod.FloorplanShowcaseSection),
+  {
+    loading: () => <div className='h-96 bg-neutral-100 dark:bg-neutral-900 animate-pulse' />,
+  }
+)
 
 // Removed StickySliderSection dynamic import since it is moved to a separate page
 
@@ -242,7 +256,7 @@ const KernelZoomShowcase = dynamic(
 
 export default function Home() {
   const t = useTranslations('HeroProducts')
-  // const locale = useLocale()
+  const locale = useLocale()
   // const [showSplash, setShowSplash] = useState(true)
   // const [isPreloaded, setIsPreloaded] = useState(false)
   // const isMobile = useIsMobile()
@@ -466,6 +480,26 @@ export default function Home() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <UseCasesSection />
+        </Reveal>
+
+        {/* Interactive App Showcase Section */}
+        <Reveal
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <AppShowcaseSection locale={locale} />
+        </Reveal>
+
+        {/* Floorplan Generator Showcase Section */}
+        <Reveal
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+        >
+          <FloorplanShowcaseSection locale={locale} />
         </Reveal>
 
         {/* Feature Section */}
