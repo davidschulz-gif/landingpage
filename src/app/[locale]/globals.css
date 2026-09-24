@@ -625,10 +625,10 @@ hr,
 }
 
 .badge-featured-red {
-  border: 1px solid #000000 !important;
-  border-color: #000000 !important;
-  color: #000000 !important;
-  background-color: transparent !important;
+  border: 1px solid #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  background-color: #2563eb !important;
 }
 
 /* 3. Remove black fill/background from every button across the application */

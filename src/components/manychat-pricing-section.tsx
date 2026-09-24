@@ -1412,7 +1412,7 @@ export function ManyChatPricingSection({
                       {plan.planType}
                     </span>
                     {isFloorPlanFeatured && (
-                      <span className="px-2.5 py-0.5 rounded-full border border-black bg-transparent text-black text-[9px] font-bold uppercase tracking-wider badge-featured-red">
+                      <span className="px-2.5 py-0.5 rounded-full border border-blue-600 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider badge-featured-red">
                         {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
                       </span>
                     )}
@@ -2440,7 +2440,7 @@ function PricingCard({
             {plan.name}
           </span>
           {isFeatured && (
-            <span className="px-2.5 py-0.5 rounded-full border border-black bg-transparent text-black text-[9px] font-bold uppercase tracking-wider badge-featured-red">
+            <span className="px-2.5 py-0.5 rounded-full border border-blue-600 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider badge-featured-red">
               {plan.badgeTextKey ? t(plan.badgeTextKey) : 'PRO'}
             </span>
           )}
