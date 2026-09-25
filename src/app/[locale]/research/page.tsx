@@ -90,7 +90,10 @@ export default function ResearchPage() {
       statusText: t('projects.status.approved'),
       logos: [
         { src: '/logo_ffplus_hires.png', alt: 'FORTISSIMO PLUS (FFplus)' },
-        { src: '/logo_eurohpc_hires.png', alt: 'EuroHPC JU' }
+        { src: '/logo_eu_flag_hires.png', alt: 'European Union' },
+        { src: '/logo_eurohpc_ju_cut.png', alt: 'EuroHPC Joint Undertaking' },
+         { src: '/logo_chipsju_hires.png', alt: 'Chips JU' },
+        { src: '/logo_eccc_hires.png', alt: 'ECCC' }
       ],
       fundingText: 'This project has received funding from the European High-Performance Computing Joint Undertaking (JU) under grant agreement No 101163317. The JU receives support from the Digital Europe Programme.',
       externalUrl: ffplusNewsUrl,
@@ -100,12 +103,7 @@ export default function ResearchPage() {
       id: 'igp-bmwe',
       key: 'igp',
       status: 'inProgress',
-      statusText: t('projects.status.inProgress'),
-      logos: [
-        { src: '/logo_eurohpc_hires.png', alt: 'EuroHPC JU' },
-        { src: '/logo_chipsju_hires.png', alt: 'Chips JU' },
-        { src: '/logo_eccc_hires.png', alt: 'ECCC' }
-      ]
+      statusText: t('projects.status.inProgress')
     },
     {
       id: 'zukunft-bau',
