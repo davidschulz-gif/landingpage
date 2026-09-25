@@ -91,7 +91,7 @@ export function FloorPlanPricingSection() {
         {floorPlanPackages.map((pkg) => (
           <div 
             key={pkg.id}
-            className={`flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 relative group rounded-2xl w-full max-w-sm mx-auto ${
+            className={`flex h-auto lg:h-[700px] mb-4 flex-col p-4 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
               pkg.isPopular ? 'card-featured-red-border shadow-md hover:shadow-xl' : 'border border-gray-200'
             }`}
             style={{
@@ -101,29 +101,17 @@ export function FloorPlanPricingSection() {
             }}
           >
             {pkg.isPopular && (
-              <div className='absolute -top-2 left-0 z-30 origin-top-left'>
-                <div className='relative transform -rotate-12'>
-                  <div className='bg-gradient-to-b from-yellow-400 to-yellow-500 px-5 py-1.5 shadow-lg relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'></div>
-                    <div className='absolute -left-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-r-[10px] border-r-transparent'></div>
-                    <div className='absolute -left-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-r-[10px] border-r-transparent'></div>
-                    <div className='absolute -right-2 top-0 w-0 h-0 border-t-[14px] border-t-yellow-600 border-l-[10px] border-l-transparent'></div>
-                    <div className='absolute -right-2 bottom-0 w-0 h-0 border-b-[14px] border-b-yellow-600 border-l-[10px] border-l-transparent'></div>
-                    <span
-                      className='text-[10px] font-bold tracking-wider text-gray-900 relative z-10 whitespace-nowrap'
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
-                    </span>
-                  </div>
-                  <div className='absolute top-full left-0 right-0 h-1 bg-black/10 blur-sm'></div>
-                </div>
+              <div
+                className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+                style={{ fontFamily: 'Arial' }}
+              >
+                {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
               </div>
             )}
             
             <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-3'>
               <span 
-                className='text-[18px] sm:text-[20px] font-bold uppercase tracking-wider mb-1 block text-black' 
+                className='text-[18px] sm:text-[20px]  uppercase tracking-wider mb-1 block text-black' 
                 style={{ fontFamily: 'Arial' }}
               >
                 {pkg.name}
@@ -170,7 +158,7 @@ export function FloorPlanPricingSection() {
                 {pkg.features.map((feature, idx) => (
                   <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
                     <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
-                    <span className='text-[10px] font-bold tracking-wider text-gray-900' style={{ fontFamily: 'Arial' }}>
+                    <span className='text-[10px]  tracking-wider text-gray-900' style={{ fontFamily: 'Arial' }}>
                       {feature}
                     </span>
                   </li>

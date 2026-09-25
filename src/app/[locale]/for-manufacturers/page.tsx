@@ -171,11 +171,11 @@ export default function ForManufacturersPage() {
               <CornerSquares />
 
               <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px]  uppercase tracking-wider">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   {t('providerBox.badge')}
                 </div>
-                <h4 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-white" style={{ fontFamily: 'Arial' }}>
+                <h4 className="text-lg sm:text-xl  text-neutral-900 dark:text-white" style={{ fontFamily: 'Arial' }}>
                   {t('providerBox.title')}
                 </h4>
                 <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-md mx-auto leading-relaxed" style={{ fontFamily: 'Arial' }}>
@@ -924,7 +924,7 @@ export default function ForManufacturersPage() {
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div className="space-y-2.5 max-w-2xl">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px] font-bold uppercase tracking-widest">
+                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px]  uppercase tracking-widest">
                       {locale === 'de' ? 'PRODUKT-FEATURE' : 'PRODUCT FEATURE'}
                     </span>
                     <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
@@ -933,7 +933,7 @@ export default function ForManufacturersPage() {
                   </div>
 
                   <h4
-                    className="text-xl sm:text-2xl font-bold text-neutral-950 dark:text-white tracking-tight"
+                    className="text-xl sm:text-2xl  text-neutral-950 dark:text-white tracking-tight"
                     style={{ fontFamily: 'Arial' }}
                   >
                     {locale === 'de'
@@ -1506,7 +1506,7 @@ export default function ForManufacturersPage() {
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="space-y-4 max-w-2xl text-left">
                   <div className="flex items-center gap-2.5 flex-wrap">
-                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px] font-bold uppercase tracking-widest">
+                    <span className="px-3 py-1 rounded-md border border-black bg-black text-white text-[10px]  uppercase tracking-widest">
                       {tProvider('configuratorSection.badge')}
                     </span>
                     <span className="text-xs font-semibold text-neutral-500">
@@ -1514,7 +1514,7 @@ export default function ForManufacturersPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight" style={{ fontFamily: 'Arial' }}>
+                  <h3 className="text-xl sm:text-2xl  text-neutral-900 tracking-tight" style={{ fontFamily: 'Arial' }}>
                     {tProvider('configuratorSection.title')}
                   </h3>
 
@@ -1746,17 +1746,22 @@ export default function ForManufacturersPage() {
 
               {/* Card 3: Advanced */}
               <div
-                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border-2 border-black dark:border-white flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition"
+                className="relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-neutral-900 border-2 border-black dark:border-white flex flex-col justify-between space-y-6 shadow-md hover:shadow-xl transition overflow-hidden"
                 style={{ fontFamily: 'Arial' }}
               >
+                {/* Top-Right Blue Ribbon Badge */}
+                <div
+                  className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {isDe ? 'BESTES ANGEBOT' : 'BEST OFFER'}
+                </div>
+
                 <CornerSquares />
 
                 <div className="space-y-4 text-left">
                   <h4 className="text-xl sm:text-2xl text-neutral-900 dark:text-white flex items-center justify-between">
                     <span>{t('plans.advanced')}</span>
-                    <span className="px-2.5 py-0.5 rounded-md bg-black text-white text-[9px] uppercase font-bold tracking-wider">
-                      PRO
-                    </span>
                   </h4>
 
                   {/* Price */}
@@ -2009,7 +2014,7 @@ export default function ForManufacturersPage() {
           </div>
 
           <div className="text-center space-y-3 max-w-3xl mx-auto">
-            <span className="inline-block px-3 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 text-xs font-bold uppercase tracking-widest">
+            <span className="inline-block px-3 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 text-xs  uppercase tracking-widest">
               {isDe ? 'TEILNAHMEPROZESS' : 'PARTICIPATION PROCESS'}
             </span>
             <h3
@@ -2055,7 +2060,7 @@ export default function ForManufacturersPage() {
                 <div className="w-12 h-12 mx-auto rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
                   <CheckCircle2 size={24} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">{tProvider('landingModal.successTitle')}</h3>
+                <h3 className="text-lg  text-slate-900">{tProvider('landingModal.successTitle')}</h3>
                 <p className="text-sm text-slate-600 max-w-xs mx-auto">
                   {tProvider('landingModal.successSubtitle')}
                 </p>
@@ -2066,7 +2071,7 @@ export default function ForManufacturersPage() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">
+                  <h3 className="text-xl  text-slate-900">
                     {tProvider('landingModal.title')}
                   </h3>
                   <p className="text-xs text-slate-600 mt-1">

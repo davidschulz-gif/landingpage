@@ -1226,7 +1226,7 @@ export function ManyChatPricingSection({
               <Button
                 onClick={() => handleVerifyPromoCode('edu')}
                 disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0'
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0'
                 style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1246,7 +1246,7 @@ export function ManyChatPricingSection({
             )}
             {eduPromoDiscount && (
               <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className='font-bold uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}${tModal('discountOffCaps')}` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
+                <span className=' uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}${tModal('discountOffCaps')}` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
                 {eduPromoDiscount.validPlans && eduPromoDiscount.validPlans.length > 0 ? (
                   <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
                     {tModal('applicableTo')} {eduPromoDiscount.validPlans.join(', ')}
@@ -1385,7 +1385,7 @@ export function ManyChatPricingSection({
             return (
               <div
                 key={plan.planType}
-                className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl w-full max-w-sm mx-auto ${
+                className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
                   isFloorPlanFeatured
                     ? 'card-featured-red-border shadow-md hover:shadow-xl'
                     : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
@@ -1397,6 +1397,16 @@ export function ManyChatPricingSection({
                   border: isFloorPlanFeatured ? '2px solid #000000' : '1px solid rgba(212, 212, 216, 0.9)',
                 }}
               >
+                {/* Top-Right Blue Ribbon Badge */}
+                {isFloorPlanFeatured && (
+                  <div
+                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
+                  </div>
+                )}
+
                 {/* 4 Corner Small Square Fills */}
                 <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
                 <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
@@ -1406,16 +1416,11 @@ export function ManyChatPricingSection({
                 <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
                   <div className='flex items-center justify-center gap-2 mb-1'>
                     <span
-                      className='text-xl sm:text-2xl font-bold uppercase tracking-wider block text-black'
+                      className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
                       style={{ fontFamily: 'Arial' }}
                     >
                       {plan.planType}
                     </span>
-                    {isFloorPlanFeatured && (
-                      <span className="px-2.5 py-0.5 rounded-full border border-blue-600 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider badge-featured-red">
-                        {locale === 'de' ? 'EMPFOHLEN' : 'RECOMMENDED'}
-                      </span>
-                    )}
                   </div>
 
                   <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
@@ -1451,7 +1456,7 @@ export function ManyChatPricingSection({
                       <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
                         <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
                         <span
-                          className='text-[10px] font-bold tracking-wider text-gray-900'
+                          className='text-[10px]  tracking-wider text-gray-900'
                           style={{ fontFamily: 'Arial' }}
                         >
                           {feature}
@@ -1526,7 +1531,7 @@ export function ManyChatPricingSection({
                   { label: locale === 'de' ? 'Sekunden' : 'Seconds', value: timeLeft.seconds },
                 ].map((item, idx) => (
                   <div key={idx} className='flex flex-col items-center bg-neutral-950 text-white rounded-xl px-4 py-2 min-w-[70px] shadow-lg border border-neutral-900'>
-                    <span className='text-xl sm:text-2xl font-bold tracking-tight' style={{ fontFamily: 'Arial' }}>
+                    <span className='text-xl sm:text-2xl  tracking-tight' style={{ fontFamily: 'Arial' }}>
                       {String(item.value).padStart(2, '0')}
                     </span>
                     <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: 'Arial' }}>
@@ -1596,7 +1601,7 @@ export function ManyChatPricingSection({
               <Button
                 onClick={() => handleVerifyPromoCode('prof')}
                 disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase font-bold tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
                 style={{ fontFamily: 'Arial' }}
               >
                 {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
@@ -1639,7 +1644,7 @@ export function ManyChatPricingSection({
                   )}
                 </div>
                 {profPromoDiscount.maxRedemptions && (
-                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base font-bold rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: 'Arial' }}>
+                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base  rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: 'Arial' }}>
                     {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
                   </div>
                 )}
@@ -1709,7 +1714,7 @@ export function ManyChatPricingSection({
           <div className='border border-black/10 bg-white'>
             <div className='border-b border-black/10 px-3 py-2'>
               <h3
-                className='text-[11px] font-bold text-black lowercase tracking-wider text-center'
+                className='text-[11px]  text-black lowercase tracking-wider text-center'
                 style={{ fontFamily: 'Arial' }}
               >
                 {t('creditDeduction.title')}
@@ -1726,7 +1731,7 @@ export function ManyChatPricingSection({
                     <polyline points='21 15 16 10 5 21' strokeLinecap='round' strokeLinejoin='round' />
                   </svg>
                   <h4
-                    className='text-[10px] font-bold tracking-wide text-black'
+                    className='text-[10px]  tracking-wide text-black'
                     style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.imageGeneration')}
@@ -1746,7 +1751,7 @@ export function ManyChatPricingSection({
                         {label}
                       </span>
                       <span
-                        className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
@@ -1764,7 +1769,7 @@ export function ManyChatPricingSection({
                     <rect x='1' y='5' width='15' height='14' rx='2' strokeLinecap='round' strokeLinejoin='round' />
                   </svg>
                   <h4
-                    className='text-[10px] font-bold tracking-wide text-black'
+                    className='text-[10px]  tracking-wide text-black'
                     style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.videoGeneration')}
@@ -1784,7 +1789,7 @@ export function ManyChatPricingSection({
                         {label}
                       </span>
                       <span
-                        className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
@@ -1802,7 +1807,7 @@ export function ManyChatPricingSection({
                     <polyline points='17 18 12 13 7 18' strokeLinecap='round' strokeLinejoin='round' />
                   </svg>
                   <h4
-                    className='text-[10px] font-bold tracking-wide text-black'
+                    className='text-[10px]  tracking-wide text-black'
                     style={{ fontFamily: 'Arial' }}
                   >
                     {t('creditDeduction.imageUpscaling')}
@@ -1823,7 +1828,7 @@ export function ManyChatPricingSection({
                         {label}
                       </span>
                       <span
-                        className='text-[9px] font-bold text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {credits}
@@ -1885,7 +1890,7 @@ export function ManyChatPricingSection({
                   <div className='w-16 h-16 bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white rounded-full flex items-center justify-center mb-2'>
                     <IconMail size={32} />
                   </div>
-                  <h3 className='text-xl font-bold text-center text-black dark:text-white' style={{ fontFamily: 'Arial' }}>
+                  <h3 className='text-xl  text-center text-black dark:text-white' style={{ fontFamily: 'Arial' }}>
                     Check your inbox
                   </h3>
                   <p className='text-center text-neutral-600 dark:text-neutral-300 text-sm'>
@@ -1900,7 +1905,7 @@ export function ManyChatPricingSection({
                 <>
                   <div className='flex flex-col gap-2'>
                     <h3
-                      className='text-xl font-bold text-black dark:text-white uppercase tracking-wider'
+                      className='text-xl  text-black dark:text-white uppercase tracking-wider'
                       style={{ fontFamily: 'Arial' }}
                     >
                       {tModal('title')}
@@ -1974,13 +1979,13 @@ export function ManyChatPricingSection({
                       <Button
                         onClick={() => handleContinue()}
                         disabled={isRedirecting || !privacyConsent || !termsConsent}
-                        className='w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-widest transition-all rounded-full cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
+                        className='w-full h-12 bg-blue-600 hover:bg-blue-700 text-white  text-xs uppercase tracking-widest transition-all rounded-full cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
                         style={{ fontFamily: 'Arial' }}
                       >
                         {isRedirecting ? (
                           <IconLoader2 className='animate-spin mr-2 text-white' size={16} />
                         ) : null}
-                        <span className='text-white font-bold'>{tModal('continue')}</span>
+                        <span className='text-white '>{tModal('continue')}</span>
                       </Button>
                       <button
                         onClick={() => setIsModalOpen(false)}
@@ -2022,7 +2027,7 @@ export function ManyChatPricingSection({
 
               <div className='flex flex-col gap-2'>
                 <h3
-                  className='text-xl font-bold text-black uppercase tracking-wider'
+                  className='text-xl  text-black uppercase tracking-wider'
                   style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.title')}
@@ -2038,14 +2043,14 @@ export function ManyChatPricingSection({
                     setShowTrialWarning(false)
                     setIsModalOpen(true)
                   }}
-                  className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px] font-bold tracking-wider py-3'
+                  className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px]  tracking-wider py-3'
                   style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.cancel')}
                 </Button>
                 <Button
                   onClick={() => handleContinue(true)}
-                  className='flex-1 bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 uppercase text-[10px] font-bold tracking-wider py-3'
+                  className='flex-1 bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 uppercase text-[10px]  tracking-wider py-3'
                   style={{ fontFamily: 'Arial' }}
                 >
                   {tModal('TrialWarningModal.proceed')}
@@ -2412,7 +2417,7 @@ function PricingCard({
 
   return (
     <div
-      className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative group rounded-2xl ${
+      className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl ${
         isFeatured
           ? 'card-featured-red-border shadow-md hover:shadow-xl'
           : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
@@ -2424,6 +2429,18 @@ function PricingCard({
         border: isFeatured ? '2px solid #000000' : '1px solid rgba(212, 212, 216, 0.9)',
       }}
     >
+      {/* Top-Right Blue Ribbon Badge */}
+      {isFeatured && (
+        <div
+          className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+          style={{ fontFamily: 'Arial' }}
+        >
+          {plan.planType === 'PRO' || plan.name === 'PRO' || (plan as any).id === 'pro'
+            ? (locale === 'de' ? 'BESTES ANGEBOT' : 'BEST OFFER')
+            : (plan.badgeTextKey ? t(plan.badgeTextKey) : (locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'))}
+        </div>
+      )}
+
       {/* 4 Corner Small Square Fills */}
       <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
       <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
@@ -2434,16 +2451,11 @@ function PricingCard({
       <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-1`}>
         <div className='flex items-center justify-center gap-2 mb-1'>
           <span
-            className='text-xl sm:text-2xl font-bold uppercase tracking-wider block text-black'
+            className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
             style={{ fontFamily: 'Arial' }}
           >
             {plan.name}
           </span>
-          {isFeatured && (
-            <span className="px-2.5 py-0.5 rounded-full border border-blue-600 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wider badge-featured-red">
-              {plan.badgeTextKey ? t(plan.badgeTextKey) : 'PRO'}
-            </span>
-          )}
         </div>
         
         {(plan as any).targetAudience && (
@@ -2454,7 +2466,7 @@ function PricingCard({
 
         {/* Discount badge above price - manual promo discount or default discount */}
         {priceInfo.discount?.periodDiscountPercent != null && (
-          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
+          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px]  uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
             {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
           </div>
         )}
