@@ -96,21 +96,16 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 {t('nav.participationProcess')}
               </Link>
             )}
-            {isManufacturerLanding ? (
-              <button
-                onClick={() => scrollToSection('pricing')}
-                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap cursor-pointer"
-              >
-                {t('nav.pricing')}
-              </button>
-            ) : (
-              <Link
-                href="/for-manufacturers#pricing"
-                className="text-xs xl:text-[13px] font-medium uppercase tracking-wider text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white transition-colors whitespace-nowrap"
-              >
-                {t('nav.pricing')}
-              </Link>
-            )}
+            <Link
+              href="/for-manufacturers/pricing"
+              className={`text-xs xl:text-[13px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap ${
+                pathname.includes('/for-manufacturers/pricing')
+                  ? 'text-black dark:text-white font-bold'
+                  : 'text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white'
+              }`}
+            >
+              {t('nav.pricing')}
+            </Link>
             {isResearchPage ? (
               <button
                 onClick={() => {
@@ -214,22 +209,17 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
                 {t('nav.participationProcess')}
               </Link>
             )}
-            {isManufacturerLanding ? (
-              <button
-                onClick={() => scrollToSection('pricing')}
-                className="text-left text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1 cursor-pointer"
-              >
-                {t('nav.pricing')}
-              </button>
-            ) : (
-              <Link
-                href="/for-manufacturers#pricing"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-xs font-medium uppercase tracking-wider text-neutral-700 hover:text-black py-1"
-              >
-                {t('nav.pricing')}
-              </Link>
-            )}
+            <Link
+              href="/for-manufacturers/pricing"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-left text-xs font-medium uppercase tracking-wider py-1 ${
+                pathname.includes('/for-manufacturers/pricing')
+                  ? 'text-black dark:text-white font-bold'
+                  : 'text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white'
+              }`}
+            >
+              {t('nav.pricing')}
+            </Link>
             {isResearchPage ? (
               <button
                 onClick={() => {

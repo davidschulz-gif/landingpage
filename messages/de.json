@@ -13,7 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Zurück zur Startseite",
     "solutions": "FÜR ARCHITEKTEN",
-    "research": "FÜR BAUPRODUKTANBIETER",
+    "research": "FORSCHUNG",
     "community": "COMMUNITY",
     "licenses": "LIZENZEN",
     "contact": "KONTAKT",
@@ -130,8 +130,7 @@
       }
     },
     "successStories": "Erfolgsgeschichten",
-    "amaAwards": "TESTIMONIALS",
-    "research": "FORSCHUNG"
+    "amaAwards": "TESTIMONIALS"
   },
   "ImageTemplates": {
     "title": "Hochwertige Architektur-KI für großformatige Drucke",
@@ -3403,7 +3402,29 @@
       "addon3Title": "Individuelle Erscheinungsbild-Optionen:",
       "addon4Title": "3D-gerenderte Szenen:",
       "addon5Title": "Persönlicher Visualisierer für Sie:",
-      "addon5Sub": "1.000 €/Monat"
+      "addon5Sub": "1.000 €/Monat",
+      "addons": {
+        "extraTextures": {
+          "title": "Zusätzlich gelistete Produkte",
+          "desc": "5 € pro weiterem Produkt zubuchbar",
+          "price": "5 € / weiteres Produkt"
+        },
+        "scanning": {
+          "title": "Eingebetteter TYPUS-Konfigurator",
+          "desc": "Einbindung des Konfigurators auf Ihrer Website",
+          "price": "350 € / Monat"
+        },
+        "pimIntegration": {
+          "title": "Individuelle Erscheinungsbild-Optionen",
+          "desc": "Anpassbare 3D-Ansichten & CAD-Integrationen",
+          "price": "Auf Anfrage"
+        },
+        "whiteLabel": {
+          "title": "Persönlicher Visualisierer für Sie",
+          "desc": "Dedizierte Visualisierungslösung für Ihr Team",
+          "price": "1.000 € / Monat"
+        }
+      }
     },
     "stats": {
       "visitorsValue": "50k+",

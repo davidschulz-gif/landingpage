@@ -13,7 +13,7 @@
     "doneForYouService": "Done-For-You Service",
     "returnToHome": "Return to Home",
     "solutions": "FOR ARCHITECTS",
-    "research": "FOR BUILDING PRODUCT SUPPLIERS",
+    "research": "RESEARCH",
     "community": "COMMUNITY",
     "licenses": "LICENSES",
     "contact": "CONTACT",
@@ -130,8 +130,7 @@
       }
     },
     "successStories": "Success Stories",
-    "amaAwards": "TESTIMONIALS",
-    "research": "RESEARCH"
+    "amaAwards": "TESTIMONIALS"
   },
   "ImageTemplates": {
     "title": "High-quality architectural AI for large-format prints",
@@ -3401,7 +3400,29 @@
       "addon3Title": "Custom appearance options:",
       "addon4Title": "3D rendered scenes:",
       "addon5Title": "Personal visualizer for you:",
-      "addon5Sub": "1,000 €/month"
+      "addon5Sub": "1,000 €/month",
+      "addons": {
+        "extraTextures": {
+          "title": "Additionally Listed Products",
+          "desc": "€5 bookable per additional product",
+          "price": "€5 / additional product"
+        },
+        "scanning": {
+          "title": "Embedded TYPUS Configurator",
+          "desc": "Integrate the configurator into your website",
+          "price": "€350 / month"
+        },
+        "pimIntegration": {
+          "title": "Custom Appearance Options",
+          "desc": "Customizable 3D views & CAD integrations",
+          "price": "Upon Request"
+        },
+        "whiteLabel": {
+          "title": "Personal Visualizer for You",
+          "desc": "Dedicated visualization solution for your team",
+          "price": "€1,000 / month"
+        }
+      }
     },
     "stats": {
       "visitorsValue": "50k+",
