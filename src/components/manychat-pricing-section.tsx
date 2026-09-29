@@ -1394,7 +1394,7 @@ export function ManyChatPricingSection({
                   backgroundColor: '#ffffff',
                   color: '#000000',
                   fontFamily: 'Arial',
-                  border: isFloorPlanFeatured ? '2px solid #000000' : '1px solid rgba(212, 212, 216, 0.9)',
+                  border: isFloorPlanFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
                 }}
               >
                 {/* Top-Right Blue Ribbon Badge */}
@@ -1408,10 +1408,10 @@ export function ManyChatPricingSection({
                 )}
 
                 {/* 4 Corner Small Square Fills */}
-                <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-                <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
 
                 <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
                   <div className='flex items-center justify-center gap-2 mb-1'>
