@@ -59,9 +59,9 @@ export default function ForManufacturersPricingPage() {
               {t('slide12.title')}
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
+            <div className="flex flex-col lg:flex-row gap-6 justify-center items-stretch max-w-5xl mx-auto">
               {/* Main Package (5.000 €) */}
-              <div className="md:col-span-1 lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
+              <div className="flex-1 min-w-0 max-w-xl p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-blue-500/40 dark:border-blue-500/50 shadow-lg space-y-6 relative overflow-hidden flex flex-col justify-between">
                 <div
                   className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-xs uppercase tracking-widest rounded-bl-2xl "
                   style={{ fontFamily: 'Arial' }}
@@ -150,7 +150,7 @@ export default function ForManufacturersPricingPage() {
               </div>
 
               {/* Single Product Alternative (1.000 €) */}
-              <div className="md:col-span-1 lg:col-span-3 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-6 flex flex-col justify-between text-center">
+              {/* <div className="md:col-span-1 lg:col-span-3 p-6 sm:p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm space-y-6 flex flex-col justify-between text-center">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-neutral-800 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto shadow-xs">
                     <Box className="w-6 h-6" />
@@ -208,14 +208,15 @@ export default function ForManufacturersPricingPage() {
                 >
                   {t('slide12.altCta')}
                 </Link>
-              </div>
+              </div> */}
 
               {/* Advisor & Custom Offer Booking Form Card */}
-              <div className="md:col-span-2 lg:col-span-4 p-4 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs relative overflow-hidden flex flex-col justify-between">
+              <div className="flex-1 min-w-0 max-w-xl p-4 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs relative overflow-hidden flex flex-col justify-between">
                 <CornerSquares />
                 <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" />
               </div>
             </div>
+
 
             {/* Bottom EU Funding Footer Badge */}
             <div
