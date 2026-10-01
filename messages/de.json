@@ -666,7 +666,8 @@
       "imprint": "Impressum",
       "bilderFlatrate": "Bilder-Flatrate",
       "termsDoneForYou": "Done-for-you AGB"
-    }
+    },
+    "euroHpcFunding": "Dieses Projekt wurde vom gemeinsamen Unternehmen für europäisches Hochleistungsrechnen (EuroHPC JU) unter der Finanzhilfevereinbarung Nr. 101163317 gefördert. Das gemeinsame Unternehmen wird durch das Programm Digitales Europa unterstützt."
   },
   "BookingDemoClassForm": {
     "placeholder": "Geben Sie Ihre E-Mail-Adresse ein",

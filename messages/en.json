@@ -666,7 +666,8 @@
       "imprint": "Imprint",
       "bilderFlatrate": "Image Flat Rate",
       "termsDoneForYou": "Done-for-you Terms"
-    }
+    },
+    "euroHpcFunding": "This project has received funding from the European High-Performance Computing Joint Undertaking (JU) under grant agreement No 101163317. The JU receives support from the Digital Europe Programme."
   },
   "BookingDemoClassForm": {
     "placeholder": "Enter your Email",
