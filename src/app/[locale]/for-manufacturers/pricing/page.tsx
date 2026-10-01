@@ -111,7 +111,7 @@ export default function ForManufacturersPricingPage() {
 
                 {/* Feature List */}
                 <div className="divide-y divide-neutral-100 dark:divide-neutral-800/80 text-xs sm:text-sm">
-                  {[Sparkles, FileCheck, Library, Brain, ShieldCheck].map((IconComp, idx) => (
+                  {[Sparkles, FileCheck, Library, ShieldCheck].map((IconComp, idx) => (
                     <div key={idx} className="flex items-center gap-3 py-2 text-neutral-800 dark:text-neutral-200 first:pt-0 last:pb-0 font-medium">
                       <IconComp className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span style={{ fontFamily: 'Arial' }}>{t(`slide12.mainFeatures.${idx}`)}</span>
