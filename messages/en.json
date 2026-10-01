@@ -3404,8 +3404,8 @@
       "addons": {
         "extraTextures": {
           "title": "Additionally Listed Products",
-          "desc": "€5 bookable per additional product",
-          "price": "€5 / additional product"
+          "desc": "€50 bookable per additional product",
+          "price": "€50 / additional product"
         },
         "scanning": {
           "title": "Embedded TYPUS Configurator",

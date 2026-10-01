@@ -223,18 +223,22 @@ export function FooterSection() {
           />
         </div>
 
-        {/* EuroHPC Black Stripe */}
-        <div className='w-full mt-10 py-6 md:py-8 px-4 bg-black flex flex-col items-center justify-center text-center'>
-          <div className='flex items-center justify-center gap-6 md:gap-10 mb-5'>
-            <div className='bg-white p-2 md:p-3 flex items-center justify-center h-[45px] md:h-[60px]'>
-              <Image src='/logo_eu_flag_hires.png' alt='EU Flag' width={100} height={60} className='h-full w-auto object-contain' />
-            </div>
-            <Image src='/logo_eurohpc_ju_whitetext.png' alt='EuroHPC JU' width={200} height={60} className='h-[35px] md:h-[50px] w-auto object-contain' />
+      </div>
+
+      {/* EuroHPC Black Stripe (Full Width) */}
+      <div className='w-full mt-10 py-6 md:py-8 px-4 bg-black flex flex-col items-center justify-center text-center'>
+        <div className='flex items-center justify-center gap-6 md:gap-10 mb-5'>
+          <div className='bg-white p-2 md:p-3 flex items-center justify-center h-[45px] md:h-[60px]'>
+            <Image src='/logo_eu_flag_hires.png' alt='EU Flag' width={100} height={60} className='h-full w-auto object-contain' />
           </div>
-          <p className='text-[10px] sm:text-xs text-gray-300 max-w-4xl leading-relaxed mx-auto'>
-            {t('euroHpcFunding')}
-          </p>
+          <Image src='/logo_eurohpc_ju_whitetext.png' alt='EuroHPC JU' width={200} height={60} className='h-[35px] md:h-[50px] w-auto object-contain' />
         </div>
+        <p className='text-[10px] sm:text-xs text-gray-300 max-w-4xl leading-relaxed mx-auto'>
+          {t('euroHpcFunding')}
+        </p>
+      </div>
+
+      <div className='max-w-6xl mx-auto px-4'>
 
         {/* Email Form Section */}
         <div className='mt-12 xl:mt-16 mb-8 max-w-4xl mx-auto'>

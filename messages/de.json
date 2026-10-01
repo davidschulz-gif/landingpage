@@ -3406,8 +3406,8 @@
       "addons": {
         "extraTextures": {
           "title": "Zusätzlich gelistete Produkte",
-          "desc": "5 € pro weiterem Produkt zubuchbar",
-          "price": "5 € / weiteres Produkt"
+          "desc": "50 € pro weiterem Produkt zubuchbar",
+          "price": "50 € / weiteres Produkt"
         },
         "scanning": {
           "title": "Eingebetteter TYPUS-Konfigurator",
