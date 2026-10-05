@@ -530,12 +530,15 @@ export function NavbarDemo() {
             </>
           ) : (
             <>
-              <Link
-                href="/pricing"
-                className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0'
-              >
-                {tPricing('selectPlanCTA')}
-              </Link>
+              {!pathname.includes('/pricing') && (
+                <Link
+                  href="/pricing"
+                  prefetch={true}
+                  className='bg-transparent text-black border border-[#e5e7eb] px-4 py-2 text-[13px] rounded-2xl font-medium hover:bg-neutral-100 transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0'
+                >
+                  {tPricing('selectPlanCTA')}
+                </Link>
+              )}
               <Link
                 href={`${appUrl}/login`}
                 className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
@@ -935,14 +938,17 @@ export function NavbarDemo() {
           
           {/* CTA Buttons */}
           <div className='flex flex-col gap-3 mt-6 pt-2 font-sans'>
-            <Link
-              href="/pricing"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className='w-full rounded-xl py-3 bg-transparent text-black border border-[#e5e7eb] text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-100 transition-colors duration-200'
-              style={{ fontFamily: 'Arial' }}
-            >
-              {tPricing('getFreeDemoCTA')}
-            </Link>
+            {!pathname.includes('/pricing') && (
+              <Link
+                href="/pricing"
+                prefetch={true}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className='w-full rounded-xl py-3 bg-transparent text-black border border-[#e5e7eb] text-[14px] font-semibold tracking-wide flex items-center justify-center cursor-pointer hover:bg-neutral-100 transition-colors duration-200'
+                style={{ fontFamily: 'Arial' }}
+              >
+                {tPricing('getFreeDemoCTA')}
+              </Link>
+            )}
             {/* <NavbarButton
               href={isDoneForYou ? '/' : '/done-for-you'}
               onClick={() => setIsMobileMenuOpen(false)}
