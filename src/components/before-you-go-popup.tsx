@@ -10,7 +10,7 @@ import {
   IconX,
 } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { apiUrl } from '@/lib/constants'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from '@/i18n/navigation'
@@ -20,6 +20,8 @@ const TRIGGER_DELAY_MS = 30000
 
 export default function BeforeYouGoPopup() {
   const t = useTranslations('BeforeYouGo')
+  const locale = useLocale()
+  const isDe = locale === 'de'
 
   const [isOpen, setIsOpen] = useState(false)
   const [timerTriggered, setTimerTriggered] = useState(false)
@@ -244,24 +246,27 @@ export default function BeforeYouGoPopup() {
                       </div>
                     </motion.div>
 
-                    <h2 className='text-xl sm:text-2xl leading-snug mb-2 text-black tracking-tight font-sans'>{t('viewFreeTitle')}</h2>
-                    <p className='text-xs sm:text-sm leading-relaxed mb-4 text-neutral-500 max-w-xs font-sans'>{t('viewFreeSubtitle')}</p>
-
-                    {/* Bullets */}
-                    <BulletList />
+                    <h2 className='text-xl sm:text-2xl leading-snug mb-2 text-black tracking-tight font-sans font-bold'>
+                      {isDe ? 'Kostenloses Erstgespräch vereinbaren' : 'Book a Free Consultation'}
+                    </h2>
+                    <p className='text-xs sm:text-sm leading-relaxed mb-6 text-neutral-500 max-w-xs font-sans'>
+                      {isDe
+                        ? 'Sprechen Sie mit unserem Team und erfahren Sie, wie Sie Ihre Produkte in TYPUS.AI präsentieren.'
+                        : 'Speak with our team and learn how to present your products in TYPUS.AI.'}
+                    </p>
 
                     {/* Direct Booking Link instead of form */}
-                    <div className='w-full'>
+                    <div className='w-full mb-2'>
                       <a
-                        href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HQlLeidgu-WWBwM_4FWc5GvZvnVhF-okEue8u6dV4j0ae-WeZ3_55NTUZskdgk2v5P1vl9h9s"
+                        href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={handleClose}
-                        className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold transition-all duration-300 rounded-xl active:scale-[0.98] bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                        className="flex items-center justify-center gap-2.5 w-full py-4 px-6 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-2xl active:scale-[0.98] bg-black hover:bg-neutral-800 text-white shadow-xl hover:shadow-2xl hover:scale-[1.02] cursor-pointer"
                         style={{ fontFamily: 'Arial' }}
                       >
-                        {t('viewFreeCta')}
-                        <IconArrowRight size={15} strokeWidth={2.5} />
+                        <span>{isDe ? 'Kostenloses Beratungsgespräch buchen' : 'Book a free consultation'}</span>
+                        <IconArrowRight size={16} strokeWidth={2.5} />
                       </a>
                     </div>
                   </div>

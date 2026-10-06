@@ -168,12 +168,12 @@ export default function ForManufacturersPage() {
             </div>
 
             {/* Consultation CTA */}
-            <div className="flex justify-center w-full z-10 -my-4 relative">
+            <div className="flex justify-center w-full z-10 my-2 relative">
               <Link
                 href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-8 rounded-full bg-[#0F172A] hover:bg-black text-white text-[13px] font-semibold tracking-wide shadow-md hover:scale-[1.02] transition-all inline-flex items-center justify-center gap-2"
+                className="py-3.5 px-8 sm:px-10 rounded-full bg-black hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2.5 border border-neutral-800 dark:border-neutral-200 cursor-pointer"
                 style={{ fontFamily: 'Arial' }}
               >
                 <span>{locale === 'de' ? 'Kostenloses Beratungsgespräch buchen' : 'Book a free consultation'}</span>
@@ -970,12 +970,12 @@ export default function ForManufacturersPage() {
         </section>
 
         {/* Consultation CTA */}
-        <div className="flex justify-center w-full pb-8">
+        <div className="flex justify-center w-full py-4">
           <Link
             href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
             target="_blank"
             rel="noopener noreferrer"
-            className="py-3.5 px-8 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold tracking-wide shadow-md hover:scale-[1.02] transition-all inline-flex items-center justify-center gap-2"
+            className="py-3.5 px-8 sm:px-10 rounded-full bg-black hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-2.5 border border-neutral-800 dark:border-neutral-200 cursor-pointer"
             style={{ fontFamily: 'Arial' }}
           >
             <span>{locale === 'de' ? 'Kostenloses Beratungsgespräch buchen' : 'Book a free consultation'}</span>
