@@ -329,7 +329,7 @@ export default function ForManufacturersPricingPage() {
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
                 >
-                  {t('plans.getStarted')}
+                  {t('plans.contactSales')}
                 </Link>
               </div>
 
@@ -406,7 +406,7 @@ export default function ForManufacturersPricingPage() {
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-4 rounded-md border border-black dark:border-white text-neutral-900 dark:text-white text-center text-xs font-medium tracking-widest uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all mt-6 inline-block"
                 >
-                  {t('plans.getStarted')}
+                  {t('plans.contactSales')}
                 </Link>
               </div>
 
@@ -492,7 +492,7 @@ export default function ForManufacturersPricingPage() {
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-4 rounded-md bg-black text-white hover:bg-neutral-800 text-center text-xs font-medium tracking-widest uppercase transition-all shadow-2xs mt-6 inline-block"
                 >
-                  {t('plans.getStarted')}
+                  {t('plans.contactSales')}
                 </Link>
               </div>
 

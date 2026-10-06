@@ -3,6 +3,7 @@
 import { ManufacturerHeader } from '@/components/manufacturer/manufacturer-header'
 import { appUrl } from '@/lib/constants'
 import { FooterSection } from '@/components/footer-section'
+import { ManufacturerSlideshow } from '@/components/manufacturer/manufacturer-slideshow'
 import { ViewerShowcase } from '@/components/research-viewers/viewer-showcase'
 import { CornerSquares } from '@/components/common/corner-squares'
 import { useLocale, useTranslations } from 'next-intl'
@@ -166,6 +167,20 @@ export default function ForManufacturersPage() {
               </div>
             </div>
 
+            {/* Consultation CTA */}
+            <div className="flex justify-center w-full z-10 -my-4 relative">
+              <Link
+                href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 px-8 rounded-full bg-[#0F172A] hover:bg-black text-white text-[13px] font-semibold tracking-wide shadow-md hover:scale-[1.02] transition-all inline-flex items-center justify-center gap-2"
+                style={{ fontFamily: 'Arial' }}
+              >
+                <span>{locale === 'de' ? 'Kostenloses Beratungsgespräch buchen' : 'Book a free consultation'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
             {/* Material Provider & Manufacturer Sign-Up Box (borderless) */}
             <div className="relative p-6 sm:p-7 max-w-xl w-full flex flex-col items-center justify-center text-center space-y-4">
               <CornerSquares />
@@ -183,29 +198,6 @@ export default function ForManufacturersPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-1">
-                <Link
-                  href={`${appUrl}/provider/signup?language=${locale}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-md bg-black hover:bg-neutral-800 text-white text-xs font-medium tracking-widest uppercase transition-all shadow-2xs flex items-center justify-center gap-2"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  <span>{t('providerBox.createAccount')}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-
-                <Link
-                  href={`${appUrl}/provider/login?language=${locale}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 font-medium text-xs tracking-widest uppercase hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all flex items-center justify-center gap-1.5"
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  <span>{t('providerBox.providerLogin')}</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
-                </Link>
-              </div>
             </div>
 
             {/* ── HERO VIDEO SHOWCASE (TYPUS V8) ── */}
@@ -976,6 +968,25 @@ export default function ForManufacturersPage() {
             </div>
           </motion.div>
         </section>
+
+        {/* Consultation CTA */}
+        <div className="flex justify-center w-full pb-8">
+          <Link
+            href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-3.5 px-8 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold tracking-wide shadow-md hover:scale-[1.02] transition-all inline-flex items-center justify-center gap-2"
+            style={{ fontFamily: 'Arial' }}
+          >
+            <span>{locale === 'de' ? 'Kostenloses Beratungsgespräch buchen' : 'Book a free consultation'}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {/* MANUFACTURER SLIDESHOW */}
+        <div className="w-full my-8">
+          <ManufacturerSlideshow />
+        </div>
 
         {/* SLIDE 9 SECTION: ADVANTAGES AT A GLANCE */}
         <section className="py-10 border-t border-neutral-200/80 dark:border-neutral-800 space-y-8">

@@ -756,13 +756,15 @@ export function ProviderProcessWorkflow({
             </h2>
           </div>
           <div className="shrink-0">
-            <button
-              onClick={handlePublicAction}
+            <a
+              href="https://calendar.app.google/q85ip5B1L6vwHs1w7"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold transition-all shadow-md hover:scale-[1.01] cursor-pointer"
             >
               <span>{t('process.bannerCTA')}</span>
               <ArrowRight size={16} />
-            </button>
+            </a>
           </div>
         </div>
       </section>

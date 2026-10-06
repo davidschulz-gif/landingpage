@@ -272,6 +272,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         </span>
       </div>
       {/* </motion.div> */}
+      {/* 
       {isSubmitted ? (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -297,7 +298,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className='space-y-2.5' noValidate>
-          {/* ... existing form fields ... */}
+          ... form fields ...
           <div className='flex gap-3'>
             <div className='flex-1 flex flex-col'>
               <input
@@ -422,14 +423,6 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
             </div>
           </div>
 
-          {/* <button
-            type='submit'
-            className='w-full py-3 bg-black text-white text-sm transition-all cursor-pointer hover:bg-black/90 font-bold flex items-center justify-center gap-2 disabled:opacity-60 active:scale-[0.99] uppercase tracking-widest rounded-xl mt-2'
-            disabled={isRequesting}
-          >
-            <span>{tPricing('bookDemo')}</span>
-            {isRequesting && <IconLoader2 className='animate-spin size-4' />}
-          </button> */}
           <Button
            type='submit'
              disabled={isRequesting}
@@ -462,6 +455,22 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           <span>{successMessage}</span>
         </div>
       )}
+      */}
+
+      {/* Direct Calendar Link replacing form */}
+      <div className='mt-6 mb-2'>
+        <a
+          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HQlLeidgu-WWBwM_4FWc5GvZvnVhF-okEue8u6dV4j0ae-WeZ3_55NTUZskdgk2v5P1vl9h9s"
+          target="_blank"
+          rel="noopener noreferrer"
+          className='flex items-center justify-center bg-transparent text-black cursor-pointer w-full px-4 py-3 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
+          style={{
+            fontFamily: 'Arial',
+          }}
+        >
+          <span>{tPricing('bookDemo')}</span>
+        </a>
+      </div>
       {/* <div className='mt-6 flex items-start gap-3 px-1'>
         <IconMail size={16} className='text-gray-400 mt-0.5' />
         <span

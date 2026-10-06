@@ -97,7 +97,7 @@ export default function ResearchPage() {
       ],
       fundingText: 'This project has received funding from the European High-Performance Computing Joint Undertaking (JU) under grant agreement No 101163317. The JU receives support from the Digital Europe Programme.',
       externalUrl: ffplusNewsUrl,
-      externalLabel: isDe ? 'FFplus Pressemitteilung & Sub-Projects' : 'FFplus News & Sub-Projects'
+      externalLabel: isDe ? 'Zur offiziellen Pressemitteilung' : 'To the official press release'
     },
     {
       id: 'igp-bmwe',
@@ -298,10 +298,10 @@ export default function ResearchPage() {
                           href={proj.externalUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-neutral-50 hover:bg-neutral-100 text-neutral-900 text-xs font-medium transition cursor-pointer border border-neutral-200"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-black text-white text-[13px] font-semibold transition-all shadow-sm hover:shadow-md cursor-pointer mt-2"
                         >
                           <span>{proj.externalLabel}</span>
-                          <ExternalLink className="w-3.5 h-3.5 text-neutral-600" />
+                          <ExternalLink className="w-4 h-4 text-neutral-300" />
                         </Link>
                       </div>
                     )}
