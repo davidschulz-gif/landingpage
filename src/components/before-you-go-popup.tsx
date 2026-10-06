@@ -35,6 +35,7 @@ export default function BeforeYouGoPopup() {
   const isPricingPage = pathname?.endsWith('/pricing') || pathname?.includes('/pricing')
   const isExcludedRoute = pathname?.includes('upscale-privacy') || pathname?.includes('/research') || pathname?.includes('research')
   const isResearchPage = pathname?.includes('/research') || pathname?.includes('research')
+  const isManufacturerPage = pathname?.includes('/for-manufacturers') || pathname?.includes('/embedded-configurator')
 
   const isIframe = typeof window !== 'undefined' && window.self !== window.top
 
@@ -209,7 +210,64 @@ export default function BeforeYouGoPopup() {
           >
             <div className='relative min-h-screen flex items-center justify-center p-4 sm:p-6 pointer-events-none'>
 
-              {isPricingPage ? (
+              {isManufacturerPage ? (
+                /* ══════ MANUFACTURER MODAL (BOOKING LINK) ══════ */
+                <div
+                  className='relative pointer-events-auto overflow-hidden bg-white rounded-[32px] border border-neutral-100 shadow-2xl transition-all duration-500 w-full max-w-md'
+                  onClick={e => e.stopPropagation()}
+                >
+                  <button onClick={handleClose} className='absolute top-5 right-5 p-2 text-neutral-400 hover:text-black transition-all duration-300 hover:rotate-90 hover:scale-110 z-10' aria-label='Close'>
+                    <IconX size={18} strokeWidth={1.5} />
+                  </button>
+
+                  <div className='px-6 py-6 sm:px-8 sm:py-8 flex flex-col items-center text-center'>
+                    {/* Logo */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+                      className="mb-4"
+                    >
+                      <div className='flex items-center justify-center gap-2.5 select-none'>
+                        <div className="bg-black w-4 h-4 rounded-none shrink-0" />
+                        <span
+                          className='text-center text-black uppercase leading-none font-normal'
+                          style={{
+                            fontSize: '20px',
+                            fontWeight: 400,
+                            letterSpacing: '2.5px',
+                            fontFamily: "Arial, Helvetica, sans-serif",
+                          }}
+                        >
+                          TYPUS
+                        </span>
+                      </div>
+                    </motion.div>
+
+                    <h2 className='text-xl sm:text-2xl leading-snug mb-2 text-black tracking-tight font-sans'>{t('viewFreeTitle')}</h2>
+                    <p className='text-xs sm:text-sm leading-relaxed mb-4 text-neutral-500 max-w-xs font-sans'>{t('viewFreeSubtitle')}</p>
+
+                    {/* Bullets */}
+                    <BulletList />
+
+                    {/* Direct Booking Link instead of form */}
+                    <div className='w-full'>
+                      <a
+                        href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HQlLeidgu-WWBwM_4FWc5GvZvnVhF-okEue8u6dV4j0ae-WeZ3_55NTUZskdgk2v5P1vl9h9s"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={handleClose}
+                        className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold transition-all duration-300 rounded-xl active:scale-[0.98] bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {t('viewFreeCta')}
+                        <IconArrowRight size={15} strokeWidth={2.5} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+              ) : isPricingPage ? (
                 /* ══════ PRICING MODAL (WHITE THEME) ══════ */
                 <div
                   className='relative pointer-events-auto overflow-hidden bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl transition-all duration-500 w-full max-w-md'
