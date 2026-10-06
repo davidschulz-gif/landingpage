@@ -34,9 +34,10 @@ const images = rawImages.map(filename => {
   }
 })
 
-// Split into 2 rows for staggered marquee showcase
-const row1 = images.slice(0, 8)
-const row2 = images.slice(8, 16)
+// Split into 3 rows for 3-row staggered marquee showcase
+const row1 = images.slice(0, 5)
+const row2 = images.slice(5, 11)
+const row3 = images.slice(11, 16)
 
 export function ManufacturerSlideshow() {
   const locale = useLocale()
@@ -87,24 +88,24 @@ export function ManufacturerSlideshow() {
         </button>
       </div>
 
-      {/* 2-Row Staggered Marquee Showcase */}
-      <div className="relative w-full overflow-hidden py-2 space-y-4 bg-transparent group">
+      {/* 3-Row Staggered Marquee Showcase */}
+      <div className="relative w-full overflow-hidden py-2 space-y-3 bg-transparent group">
         {/* Row 1 (Moves Left) */}
-        <div className="flex w-max animate-infinite-scroll gap-4 px-2 group-hover:[animation-play-state:paused]">
-          {[...row1, ...row1, ...row1].map((img, idx) => {
+        <div className="flex w-max animate-infinite-scroll gap-3 px-2 group-hover:[animation-play-state:paused]">
+          {[...row1, ...row1, ...row1, ...row1].map((img, idx) => {
             const originalIdx = idx % row1.length
             return (
               <div
                 key={`r1-${idx}`}
                 onClick={() => setSelectedIndex(originalIdx)}
-                className="relative w-[280px] sm:w-[360px] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm border border-neutral-200/60 dark:border-neutral-800 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                className="relative w-[240px] sm:w-[320px] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm border border-neutral-200/60 dark:border-neutral-800 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               >
                 <Image
                   src={img.thumb}
                   alt="TYPUS AI Visualization"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 280px, 360px"
+                  sizes="(max-width: 640px) 240px, 320px"
                   unoptimized
                 />
               </div>
@@ -112,22 +113,45 @@ export function ManufacturerSlideshow() {
           })}
         </div>
 
-        {/* Row 2 (Moves Right - Staggered Opposite Direction) */}
-        <div className="flex w-max animate-infinite-scroll-reverse gap-4 px-2 group-hover:[animation-play-state:paused]">
-          {[...row2, ...row2, ...row2].map((img, idx) => {
-            const originalIdx = 8 + (idx % row2.length)
+        {/* Row 2 (Moves Right - Opposite Direction) */}
+        <div className="flex w-max animate-infinite-scroll-reverse gap-3 px-2 group-hover:[animation-play-state:paused]">
+          {[...row2, ...row2, ...row2, ...row2].map((img, idx) => {
+            const originalIdx = 5 + (idx % row2.length)
             return (
               <div
                 key={`r2-${idx}`}
                 onClick={() => setSelectedIndex(originalIdx)}
-                className="relative w-[280px] sm:w-[360px] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm border border-neutral-200/60 dark:border-neutral-800 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                className="relative w-[240px] sm:w-[320px] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm border border-neutral-200/60 dark:border-neutral-800 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               >
                 <Image
                   src={img.thumb}
                   alt="TYPUS AI Visualization"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 280px, 360px"
+                  sizes="(max-width: 640px) 240px, 320px"
+                  unoptimized
+                />
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Row 3 (Moves Left) */}
+        <div className="flex w-max animate-infinite-scroll gap-3 px-2 group-hover:[animation-play-state:paused]">
+          {[...row3, ...row3, ...row3, ...row3].map((img, idx) => {
+            const originalIdx = 11 + (idx % row3.length)
+            return (
+              <div
+                key={`r3-${idx}`}
+                onClick={() => setSelectedIndex(originalIdx)}
+                className="relative w-[240px] sm:w-[320px] aspect-[4/3] rounded-2xl overflow-hidden shrink-0 shadow-sm border border-neutral-200/60 dark:border-neutral-800 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              >
+                <Image
+                  src={img.thumb}
+                  alt="TYPUS AI Visualization"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 240px, 320px"
                   unoptimized
                 />
               </div>
