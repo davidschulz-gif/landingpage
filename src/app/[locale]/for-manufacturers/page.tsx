@@ -200,12 +200,12 @@ export default function ForManufacturersPage() {
 
             </div>
 
-            {/* ── HERO VIDEO SHOWCASE (TYPUS V8) ── */}
+            {/* ── HERO VIDEO SHOWCASE (TYPUS V9) ── */}
             <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-black shadow-2xl my-2">
               <CornerSquares />
               <div className="relative aspect-video w-full">
                 <video
-                  src="https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/TYPUS+V8.mp4"
+                  src="https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/TYPUS+V9.mp4"
                   autoPlay
                   loop
                   muted
