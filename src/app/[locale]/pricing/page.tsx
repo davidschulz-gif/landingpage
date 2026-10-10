@@ -1,6 +1,7 @@
 'use client'
 
 import { NavbarDemo } from '@/components/adaptive-navbar-2'
+import { FlashSaleHeaderMarquee } from '@/components/flash-sale-header-marquee'
 import { ManyChatPricingSection } from '@/components/manychat-pricing-section'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { FooterSection } from '@/components/footer-section'
@@ -85,6 +86,7 @@ function PricingContent() {
 
     return (
         <div className='relative w-full bg-[#FFFFFF]'>
+            <FlashSaleHeaderMarquee />
             <NavbarDemo />
 
             <main className="pt-4">

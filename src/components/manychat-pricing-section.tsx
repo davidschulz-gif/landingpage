@@ -419,6 +419,38 @@ export function ManyChatPricingSection({
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
   const [subscribeError, setSubscribeError] = useState<string | null>(null)
 
+  // Dispatch custom window event when a coupon is applied or removed
+  useEffect(() => {
+    const activeDiscount = profPromoDiscount || eduPromoDiscount
+    const activeCode = profPromoDiscount ? profPromoCode : (eduPromoDiscount ? eduPromoCode : '')
+    
+    if (activeDiscount) {
+      const discountText = activeDiscount.type === 'percentage'
+        ? `${activeDiscount.value}% RABATT`
+        : `-${activeDiscount.value / 100} ${activeDiscount.currency?.toUpperCase() || 'EUR'}`
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
+          detail: {
+            isApplied: true,
+            code: activeCode || 'TYP50',
+            discountText: discountText,
+          }
+        }))
+      }
+    } else {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
+          detail: {
+            isApplied: false,
+            code: '',
+            discountText: '',
+          }
+        }))
+      }
+    }
+  }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode])
+
   const [showTrialWarning, setShowTrialWarning] = useState(false)
   const [showKickOffModal, setShowKickOffModal] = useState(false)
   const [showOnboarding, setShowOnboarding] = useState(false)
