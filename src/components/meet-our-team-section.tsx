@@ -20,7 +20,7 @@ const teamMembers = [
     id: 'dominik',
     name: 'DOMINIK DENNY',
     role: 'ACCOUNT MANAGER',
-    image: '/DominikDenny.png',
+    image: '/team/Freundlicher Studio-Kopfshot im schwarzen T-Shirt.png',
     subtext: "führt mit Ihnen eine individuelle Bedarfsanalyse durch.",
     linkedin: '#',
   },
@@ -43,7 +43,7 @@ const teamMembers = [
     id: 'annika-fleig',
     role: 'ACCOUNT MANAGER',
     name: 'ANNIKA FLEIG',
-    image: '/team/annika fleig.png',
+    image: '/team/Annika.png',
     subtext: "",
     linkedin: '#'
   },
@@ -52,7 +52,15 @@ const teamMembers = [
     id: 'marie-kristin-foerste',
     role: 'ACCOUNT MANAGER',
     name: 'MARIE-KRISTIN FÖRSTE',
-    image: '/team/marie-kristin-foerste.png',
+    image: '/team/Lächelndes Porträt im schwarzen T-Shirt.png',
+    subtext: "",
+    linkedin: '#'
+  },
+   {
+    id: 'Leon Holz schwarz',
+    role: 'AI ENGINEER',
+    name: 'LEON HOLZ SCHWARZ',
+    image: '/team/Leon Holz schwarz.png',
     subtext: "",
     linkedin: '#'
   },

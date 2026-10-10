@@ -83,35 +83,35 @@ export function MainHero() {
 
           <BreathingAnimationText animationType='black-gray'>
             <div className='relative overflow-visible flex items-center justify-center w-full min-h-[90px] sm:min-h-[70px] md:min-h-[120px] lg:min-h-[60px]'>
-              <AnimatePresence mode='wait'>
-                <motion.h1
+              {/* <AnimatePresence mode='wait'> */}
+                <div
                   key={currentIndex}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  // initial={{ opacity: 0, y: 30 }}
+                  // animate={{ opacity: 1, y: 0 }}
+                  // exit={{ opacity: 0, y: -30 }}
+                  // transition={{ duration: 0.6, ease: 'easeOut' }}
                   className='text-[26px] md:text-[38px] lg:text-[35px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
                   style={{ fontFamily: 'Arial', fontWeight: 400 }}
                 >
-                  {titles[currentIndex]}
-                </motion.h1>
-              </AnimatePresence>
+                  {titles[1]}
+                </div>
+              {/* </AnimatePresence> */}
             </div>
           </BreathingAnimationText>
 
           <div className='relative overflow-visible flex items-center justify-center w-full min-h-[80px] md:min-h-[100px] mb-10 mt-6 md:mb-0 md:mt-0 lg:min-h-[80px]'>
-            <AnimatePresence mode='wait'>
-              <motion.p
-                key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
+            {/* <AnimatePresence mode='wait'> */}
+              <div
+                // key={currentIndex}
+                // initial={{ opacity: 0, x: 20 }}
+                // animate={{ opacity: 1, x: 0 }}
+                // exit={{ opacity: 0, x: -20 }}
+                // transition={{ duration: 0.5, ease: 'easeOut' }}
                 className='text-xl  text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-2xl w-full px-4'
               >
-                {subtitles[currentIndex]}
-              </motion.p>
-            </AnimatePresence>
+                {subtitles[1]}
+              </div>
+            {/* </AnimatePresence> */}
           </div>
         </motion.div>
 
