@@ -93,7 +93,7 @@ export function MainHero() {
                   className='text-[26px] md:text-[38px] lg:text-[35px] font-normal tracking-tight text-neutral-900 dark:text-white leading-[1.1] w-full px-4'
                   style={{ fontFamily: 'Arial', fontWeight: 400 }}
                 >
-                  {titles[1]}
+                  {titles[0]}
                 </div>
               {/* </AnimatePresence> */}
             </div>
@@ -109,7 +109,7 @@ export function MainHero() {
                 // transition={{ duration: 0.5, ease: 'easeOut' }}
                 className='text-xl  text-neutral-500 dark:text-neutral-400 leading-relaxed font-normal max-w-2xl w-full px-4'
               >
-                {subtitles[1]}
+                {subtitles[0]}
               </div>
             {/* </AnimatePresence> */}
           </div>

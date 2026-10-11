@@ -59,7 +59,7 @@ const teamMembers = [
    {
     id: 'Leon Holz schwarz',
     role: 'AI ENGINEER',
-    name: 'LEON HOLZ SCHWARZ',
+    name: 'LEON HOLZ',
     image: '/team/Leon Holz schwarz.png',
     subtext: "",
     linkedin: '#'

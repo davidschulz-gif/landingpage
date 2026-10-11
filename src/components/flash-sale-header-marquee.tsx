@@ -22,7 +22,7 @@ export function FlashSaleHeaderMarquee({
   const [internalVisible, setInternalVisible] = useState(false)
   const [couponCode, setCouponCode] = useState(propCode)
   const [discountText, setDiscountText] = useState(propDiscountText)
-  const [timeLeft, setTimeLeft] = useState<number>(900) // 15 minutes default (900s)
+  const [timeLeft, setTimeLeft] = useState<number>(60*60*24) // 24 hours default (86400s)
 
   const isVisible = propIsVisible !== undefined ? propIsVisible : internalVisible
 
@@ -80,8 +80,8 @@ export function FlashSaleHeaderMarquee({
   if (!isVisible) return null
 
   const codeUpper = (couponCode || 'TYP50').toUpperCase()
-  const messageDE = `⚡ FLASH SALE: ${discountText} MIT CODE ${codeUpper} — NUR FÜR KURZE ZEIT! ⚡`
-  const messageEN = `⚡ FLASH SALE: ${discountText} WITH CODE ${codeUpper} — LIMITED TIME ONLY! ⚡`
+  const messageDE = `Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.`
+  const messageEN = `Limited spaces available. This seat is reserved for you for 24 hours.`
   const message = isDe ? messageDE : messageEN
 
   return (
