@@ -14,7 +14,7 @@ export const measurePerformance = () => {
   // Custom performance metrics
   window.addEventListener('load', () => {
     const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-    
+          
     const metrics = {
       'DNS Lookup': navigation.domainLookupEnd - navigation.domainLookupStart,
       'TCP Connection': navigation.connectEnd - navigation.connectStart,
