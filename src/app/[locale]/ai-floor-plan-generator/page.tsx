@@ -10,7 +10,7 @@ import { ManyChatPricingSection } from '@/components/manychat-pricing-section'
 import { FloorPlanPricingSection } from '@/components/floor-plan-pricing-section'
 import { FloorPlanIframeSection } from '@/components/floor-plan-iframe-section'
 import {
-  IconWand,
+  IconWand,    
   IconClock,
   IconHome,  
   IconArrowRight,
