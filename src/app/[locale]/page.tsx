@@ -17,7 +17,7 @@ import { useLocale, useTranslations } from 'next-intl'
 // import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Reveal from '@/components/common/Reveal'
 
 const AppShowcaseSection = dynamic(
@@ -257,9 +257,16 @@ const KernelZoomShowcase = dynamic(
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const locale = useLocale()
-  // const [showSplash, setShowSplash] = useState(true)
-  // const [isPreloaded, setIsPreloaded] = useState(false)
-  // const isMobile = useIsMobile()
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    checkWidth()
+    window.addEventListener('resize', checkWidth, { passive: true })
+    return () => window.removeEventListener('resize', checkWidth)
+  }, [])
 
 
   // Translate product titles
@@ -448,10 +455,12 @@ export default function Home() {
         {/* Embedded LinkedIn Slideshow Showcase */}
         <LinkedinSlideshow />
 
-        {/* Giga-Resolution Kernel Zoom Showcase */}
-        <div className="hidden md:block">
-          <KernelZoomShowcase />
-        </div>
+        {/* Giga-Resolution Kernel Zoom Showcase (Desktop only) */}
+        {isDesktop && (
+          <div className="hidden md:block">
+            <KernelZoomShowcase />
+          </div>
+        )}
 
         {/* Image Templates */}
         <Reveal

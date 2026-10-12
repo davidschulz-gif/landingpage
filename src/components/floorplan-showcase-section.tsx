@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -84,7 +84,29 @@ export function FloorplanShowcaseSection({ locale = 'en' }: FloorplanShowcaseSec
   const [activeTabId, setActiveTabId] = useState<string>('main')
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [iframeKey, setIframeKey] = useState<number>(0)
+  const [isInViewport, setIsInViewport] = useState<boolean>(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsInViewport(true)
+      return
+    }
+    const el = sectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsInViewport(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '300px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   const activeSection = SECTIONS.find((s) => s.id === activeTabId) || SECTIONS[0]
   const targetUrl = `${appUrl}${activeSection.path}`
@@ -103,7 +125,7 @@ export function FloorplanShowcaseSection({ locale = 'en' }: FloorplanShowcaseSec
   }
 
   return (
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white relative overflow-hidden border-t border-b border-neutral-200/80 dark:border-neutral-800">
+    <section ref={sectionRef} className="py-20 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white relative overflow-hidden border-t border-b border-neutral-200/80 dark:border-neutral-800">
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-emerald-500/5 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-blue-500/5 blur-[120px] pointer-events-none rounded-full" />
@@ -248,16 +270,24 @@ export function FloorplanShowcaseSection({ locale = 'en' }: FloorplanShowcaseSec
               )}
             </AnimatePresence>
 
-            {/* Live Iframe */}
-            <iframe
-              key={iframeKey + activeTabId}
-              ref={iframeRef}
-              src={targetUrl}
-              title={isDe ? activeSection.titleDe : activeSection.titleEn}
-              onLoad={() => setIsLoading(false)}
-              className="w-full h-full border-0 bg-white"
-              allow="clipboard-write; camera; microphone; autoplay"
-            />
+            {/* Live Iframe (Lazy Loaded on scroll into view) */}
+            {isInViewport ? (
+              <iframe
+                key={iframeKey + activeTabId}
+                ref={iframeRef}
+                src={targetUrl}
+                title={isDe ? activeSection.titleDe : activeSection.titleEn}
+                onLoad={() => setIsLoading(false)}
+                className="w-full h-full border-0 bg-white"
+                allow="clipboard-write; camera; microphone; autoplay"
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-neutral-400">
+                <IconLoader2 className="w-8 h-8 text-emerald-500 animate-spin" />
+                <span className="text-xs">Typus Floorplan Studio</span>
+              </div>
+            )}
           </div>
         </div>
 

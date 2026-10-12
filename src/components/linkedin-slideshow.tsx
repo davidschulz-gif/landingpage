@@ -6,6 +6,107 @@ import { IconChevronLeft, IconChevronRight, IconBrandLinkedin, IconExternalLink,
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
+function LazyLinkedInCard({
+  post,
+  idx,
+  directUrl,
+  embedUrl,
+  viewOnLinkedin,
+}: {
+  post: { id: string }
+  idx: number
+  directUrl: string
+  embedUrl: string
+  viewOnLinkedin: string
+}) {
+  const [isIntersecting, setIsIntersecting] = useState(idx < 2)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (isIntersecting) return
+    const el = cardRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setIsIntersecting(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setIsIntersecting(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '300px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [isIntersecting])
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={post.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.3) }}
+      className="snap-start flex-shrink-0 w-[260px] bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[24px] shadow-lg hover:shadow-xl hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 overflow-hidden flex flex-col"
+    >
+      {/* Premium Compact Header */}
+      <div className="px-4 py-3 bg-neutral-50/80 dark:bg-neutral-950/80 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-left">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 dark:bg-blue-700 flex items-center justify-center text-white shadow-sm">
+            <IconBrandLinkedin size={18} strokeWidth={2} />
+          </div>
+          <div>
+            <div className="text-[12px] font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1 leading-none mb-0.5">
+              LinkedIn
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block -ml-3" />
+            </div>
+            <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-medium">
+              Post {idx + 1}
+            </div>
+          </div>
+        </div>
+        
+        {/* View external link */}
+        <a
+          href={directUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-0.5 text-[9px] font-bold tracking-wide uppercase text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+          title={viewOnLinkedin}
+        >
+          <span>VIEW</span>
+          <IconExternalLink size={12} strokeWidth={2.5} />
+        </a>
+      </div>
+
+      {/* Embedded post scaled down */}
+      <div className="p-2 bg-white dark:bg-neutral-900 flex justify-center items-center rounded-b-[24px]">
+        <div className="w-full h-[400px] relative overflow-hidden bg-neutral-50 dark:bg-neutral-950 rounded-xl flex items-center justify-center">
+          {isIntersecting ? (
+            <iframe
+              src={embedUrl}
+              className="absolute top-0 left-0 w-[153.84%] h-[615px] border-0 bg-white origin-top-left"
+              style={{ transform: 'scale(0.65)' }}
+              allowFullScreen
+              loading="lazy"
+              title={`Embedded LinkedIn Post ${idx + 1}`}
+            />
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-2 text-neutral-400 py-12">
+              <IconBrandLinkedin size={32} className="text-blue-500/50" />
+              <span className="text-xs font-mono">LinkedIn Post {idx + 1}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export function LinkedinSlideshow() {
   const t = useTranslations('LinkedinSlideshow')
   const title = t('title')
@@ -112,58 +213,14 @@ export function LinkedinSlideshow() {
               const directUrl = `https://www.linkedin.com/feed/update/urn:li:activity:${post.id}`;
               
               return (
-                <motion.div
+                <LazyLinkedInCard
                   key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="snap-start flex-shrink-0 w-[260px] bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 rounded-[24px] shadow-lg hover:shadow-xl hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300 overflow-hidden flex flex-col"
-                >
-                  {/* Premium Compact Header */}
-                  <div className="px-4 py-3 bg-neutral-50/80 dark:bg-neutral-950/80 border-b border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-left">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-blue-600 dark:bg-blue-700 flex items-center justify-center text-white shadow-sm">
-                        <IconBrandLinkedin size={18} strokeWidth={2} />
-                      </div>
-                      <div>
-                        <div className="text-[12px] font-bold text-neutral-800 dark:text-neutral-200 flex items-center gap-1 leading-none mb-0.5">
-                          LinkedIn
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block" />
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block -ml-3" />
-                        </div>
-                        <div className="text-[9px] text-neutral-400 dark:text-neutral-500 font-medium">
-                          Post {idx + 1}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* View external link */}
-                    <a
-                      href={directUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-0.5 text-[9px] font-bold tracking-wide uppercase text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
-                      title={viewOnLinkedin}
-                    >
-                      <span>VIEW</span>
-                      <IconExternalLink size={12} strokeWidth={2.5} />
-                    </a>
-                  </div>
-
-                  {/* Embedded post scaled down */}
-                  <div className="p-2 bg-white dark:bg-neutral-900 flex justify-center items-center rounded-b-[24px]">
-                    <div className="w-full h-[400px] relative overflow-hidden bg-white dark:bg-neutral-900 rounded-xl">
-                      <iframe
-                        src={embedUrl}
-                        className="absolute top-0 left-0 w-[153.84%] h-[615px] border-0 bg-white origin-top-left"
-                        style={{ transform: 'scale(0.65)' }}
-                        allowFullScreen
-                        title={`Embedded LinkedIn Post ${idx + 1}`}
-                      ></iframe>
-                    </div>
-                  </div>
-                </motion.div>
+                  post={post}
+                  idx={idx}
+                  directUrl={directUrl}
+                  embedUrl={embedUrl}
+                  viewOnLinkedin={viewOnLinkedin}
+                />
               );
             })}
           </div>
@@ -270,6 +327,7 @@ export function LinkedinSlideshow() {
                             className="absolute top-0 left-0 w-[153.84%] h-[615px] border-0 bg-white origin-top-left"
                             style={{ transform: 'scale(0.65)' }}
                             allowFullScreen
+                            loading="lazy"
                             title={`Embedded LinkedIn Grid Post ${idx + 1}`}
                           ></iframe>
                         </div>
