@@ -449,7 +449,9 @@ export default function Home() {
         <LinkedinSlideshow />
 
         {/* Giga-Resolution Kernel Zoom Showcase */}
-        <KernelZoomShowcase />
+        <div className="hidden md:block">
+          <KernelZoomShowcase />
+        </div>
 
         {/* Image Templates */}
         <Reveal
