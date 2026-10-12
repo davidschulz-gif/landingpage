@@ -8,7 +8,7 @@ export const measurePerformance = () => {
       console.log(`📊 ${entry.name}:`, entry.startTime);
     });
   });
-
+      
   observer.observe({ entryTypes: ['measure', 'navigation', 'paint'] });
 
   // Custom performance metrics
