@@ -6,7 +6,7 @@
 export interface CouponActivationRecord {
   code: string
   discountText: string
-  activatedAt: number
+  activatedAt: number 
   expiresAt: number
   discount?: any
 }
