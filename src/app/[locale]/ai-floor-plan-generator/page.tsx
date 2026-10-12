@@ -12,7 +12,7 @@ import { FloorPlanIframeSection } from '@/components/floor-plan-iframe-section'
 import {
   IconWand,
   IconClock,
-  IconHome,
+  IconHome,  
   IconArrowRight,
   IconSparkles
 } from '@tabler/icons-react'
