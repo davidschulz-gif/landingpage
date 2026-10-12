@@ -6,14 +6,14 @@
 export interface CouponActivationRecord {
   code: string
   discountText: string
-  activatedAt: number 
+  activatedAt: number
   expiresAt: number
-  discount?: any
+  discount?: any   
 }
 
-const STORAGE_PREFIX = 'typus_coupon_activation_'
-const ACTIVE_COUPON_KEY = 'typus_active_coupon_code'
-export const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000 // 24 hours in milliseconds (86,400,000 ms)
+const STORAGE_PREFIX = 'typus_coupon_activation_'  
+const ACTIVE_COUPON_KEY = 'typus_active_coupon_code'  
+export const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000 // 24 hours in milliseconds (86,400,000 ms)   
 
 /**
  * Normalizes a coupon code to uppercase trimmed string.
