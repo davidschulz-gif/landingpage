@@ -24,6 +24,11 @@ import { TestimonialsSection } from './testimonials-section'
 import Lottie from 'lottie-react'
 import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
 import { FloatingBuzzer } from '@/components/floating-buzzer'
+import {
+  saveCouponActivation,
+  getActiveCoupon,
+  removeCouponActivation,
+} from '@/lib/coupon-storage'
 
 const professionalPlans = [
   {
@@ -419,37 +424,46 @@ export function ManyChatPricingSection({
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
   const [subscribeError, setSubscribeError] = useState<string | null>(null)
 
-  // Dispatch custom window event when a coupon is applied or removed
+  // Dispatch custom window event when a coupon is applied
   useEffect(() => {
     const activeDiscount = profPromoDiscount || eduPromoDiscount
     const activeCode = profPromoDiscount ? profPromoCode : (eduPromoDiscount ? eduPromoCode : '')
     
-    if (activeDiscount) {
+    if (activeDiscount && activeCode) {
       const discountText = activeDiscount.type === 'percentage'
         ? `${activeDiscount.value}% RABATT`
         : `-${activeDiscount.value / 100} ${activeDiscount.currency?.toUpperCase() || 'EUR'}`
+
+      const normalizedCode = activeCode.trim().toUpperCase()
+      // Persist activation to localStorage: starts 24h timer once, or reuses original valid timer
+      saveCouponActivation(normalizedCode, discountText, activeDiscount)
 
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
           detail: {
             isApplied: true,
-            code: activeCode || 'TYP50',
+            code: normalizedCode,
             discountText: discountText,
-          }
-        }))
-      }
-    } else {
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
-          detail: {
-            isApplied: false,
-            code: '',
-            discountText: '',
+            discount: activeDiscount,
           }
         }))
       }
     }
   }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode])
+
+  // Listen for coupon expiration events from the countdown timer
+  useEffect(() => {
+    const handleCouponEvent = (e: any) => {
+      if (e.detail?.expired) {
+        setProfPromoDiscount(null)
+        setProfPromoSuccess(null)
+        setEduPromoDiscount(null)
+        setEduPromoSuccess(null)
+      }
+    }
+    window.addEventListener('typus-coupon-applied', handleCouponEvent)
+    return () => window.removeEventListener('typus-coupon-applied', handleCouponEvent)
+  }, [])
 
   const [showTrialWarning, setShowTrialWarning] = useState(false)
   const [showKickOffModal, setShowKickOffModal] = useState(false)
@@ -542,6 +556,16 @@ export function ManyChatPricingSection({
     if (urlPromoCode) {
       setProfPromoCode(urlPromoCode)
       setEduPromoCode(urlPromoCode)
+    } else {
+      // Restore active, unexpired coupon from localStorage
+      const active = getActiveCoupon()
+      if (active) {
+        setProfPromoCode(active.code)
+        if (active.discount) {
+          setProfPromoDiscount(active.discount)
+          setProfPromoSuccess(tModal('promoCodeSuccess'))
+        }
+      }
     }
 
     // Scroll to student plan if hash is present

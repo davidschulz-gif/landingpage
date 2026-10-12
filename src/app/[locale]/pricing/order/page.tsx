@@ -14,6 +14,7 @@ import OnboardingWizard from '@/components/onboarding/onboarding-wizard'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { ToastProvider } from '@/components/providers/toast-provider'
+import { getActiveCoupon } from '@/lib/coupon-storage'
 
 const apiBaseUrl = `${apiUrl}/api/subscription/public/`
 
@@ -190,10 +191,16 @@ function OrderContent() {
     }
   }, [plans, planParam, billingParam])
 
-  // Validate URL promo code if present
+  // Validate URL promo code or active coupon from localStorage
   useEffect(() => {
     if (urlPromoCode) {
       validatePromo(urlPromoCode)
+    } else {
+      const active = getActiveCoupon()
+      if (active?.code) {
+        setPromoCode(active.code)
+        validatePromo(active.code)
+      }
     }
   }, [urlPromoCode, planParam, billingParam])
 

@@ -1,9 +1,15 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Timer, Sparkles, Tag, Flame } from 'lucide-react'
 import { useLocale } from 'next-intl'
+import {
+  getActiveCoupon,
+  saveCouponActivation,
+  removeCouponActivation,
+  getCouponActivation,
+} from '@/lib/coupon-storage'
 
 interface FlashSaleHeaderMarqueeProps {
   couponCode?: string
@@ -12,74 +18,163 @@ interface FlashSaleHeaderMarqueeProps {
 }
 
 export function FlashSaleHeaderMarquee({
-  couponCode: propCode = 'TYP50',
-  discountText: propDiscountText = '50% RABATT',
+  couponCode: propCode,
+  discountText: propDiscountText,
   isVisible: propIsVisible,
 }: FlashSaleHeaderMarqueeProps) {
   const locale = useLocale()
   const isDe = locale === 'de'
 
+  // Avoid Next.js SSR hydration mismatches by initializing false on server
   const [internalVisible, setInternalVisible] = useState(false)
-  const [couponCode, setCouponCode] = useState(propCode)
-  const [discountText, setDiscountText] = useState(propDiscountText)
-  const [timeLeft, setTimeLeft] = useState<number>(60*60*24) // 24 hours default (86400s)
+  const [couponCode, setCouponCode] = useState(propCode || 'TYP50')
+  const [discountText, setDiscountText] = useState(propDiscountText || '50% RABATT')
+  const [timeLeft, setTimeLeft] = useState<number>(24 * 60 * 60) // 24 hours (86400s)
 
   const isVisible = propIsVisible !== undefined ? propIsVisible : internalVisible
+  const activeCodeRef = useRef<string>(couponCode)
+  activeCodeRef.current = couponCode
 
+  // 1. Initial client-side restoration from localStorage
   useEffect(() => {
-    if (propCode) setCouponCode(propCode)
-  }, [propCode])
+    // Check if there is an active coupon in localStorage
+    const active = getActiveCoupon()
 
-  useEffect(() => {
-    if (propDiscountText) setDiscountText(propDiscountText)
-  }, [propDiscountText])
-
-  // Listen for window event as fallback/auto-sync across components
-  useEffect(() => {
-    const handleEvent = (e: any) => {
-      if (e.detail) {
-        setInternalVisible(Boolean(e.detail.isApplied))
-        if (e.detail.code) setCouponCode(e.detail.code)
-        if (e.detail.discountText) setDiscountText(e.detail.discountText)
-      }
+    if (active) {
+      setInternalVisible(true)
+      setCouponCode(active.code)
+      setDiscountText(active.discountText)
+      const diff = Math.max(0, Math.floor((active.expiresAt - Date.now()) / 1000))
+      setTimeLeft(diff)
+    } else if (propIsVisible) {
+      // If parent explicitly set isVisible=true, activate with 24h timer
+      const codeToUse = propCode || 'TYP50'
+      const textToUse = propDiscountText || '50% RABATT'
+      const record = saveCouponActivation(codeToUse, textToUse)
+      setInternalVisible(true)
+      setCouponCode(record.code)
+      setDiscountText(record.discountText)
+      const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
+      setTimeLeft(diff)
     }
-    window.addEventListener('typus-coupon-applied', handleEvent)
-    return () => window.removeEventListener('typus-coupon-applied', handleEvent)
-  }, [])
+  }, [propIsVisible, propCode, propDiscountText])
 
+  // 2. Real-time countdown timer that strictly references the expirationTimestamp
   useEffect(() => {
     if (!isVisible) return
 
-    // Store & retrieve end timestamp in sessionStorage to persist across refreshes
-    const storageKey = `typus_flash_sale_end_${(couponCode || 'TYP50').toUpperCase()}`
-    let endTime = sessionStorage.getItem(storageKey)
+    const tick = () => {
+      // Retrieve the current active record from localStorage or by code
+      const currentCode = activeCodeRef.current
+      const record = getCouponActivation(currentCode) || getActiveCoupon()
 
-    if (!endTime) {
-      const newEndTime = Date.now() + 15 * 60 * 1000 // 15 minutes
-      sessionStorage.setItem(storageKey, newEndTime.toString())
-      endTime = newEndTime.toString()
+      if (!record) {
+        // Expired or missing
+        setInternalVisible(false)
+        return
+      }
+
+      const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
+
+      if (diff <= 0) {
+        // 24-hour period has expired! Hide marquee and remove localStorage record
+        removeCouponActivation(record.code)
+        setInternalVisible(false)
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: record.code,
+                discountText: '',
+                expired: true,
+              },
+            })
+          )
+        }
+      } else {
+        setTimeLeft(diff)
+      }
     }
 
-    const calcTimeLeft = () => {
-      const diff = Math.max(0, Math.floor((parseInt(endTime!) - Date.now()) / 1000))
-      setTimeLeft(diff)
-    }
-
-    calcTimeLeft()
-    const interval = setInterval(calcTimeLeft, 1000)
-
+    tick()
+    const interval = setInterval(tick, 1000)
     return () => clearInterval(interval)
   }, [isVisible, couponCode])
 
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-    const s = seconds % 60
+  // 3. Listen for window events and cross-tab storage changes
+  useEffect(() => {
+    const handleCouponAppliedEvent = (e: any) => {
+      if (!e.detail) return
+
+      if (e.detail.isApplied) {
+        const code = e.detail.code || 'TYP50'
+        const text = e.detail.discountText || '50% RABATT'
+        // Persist coupon activation in localStorage (starts 24h timer once, or reuses valid timer)
+        const record = saveCouponActivation(code, text, e.detail.discount)
+
+        setInternalVisible(true)
+        setCouponCode(record.code)
+        setDiscountText(record.discountText)
+        const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
+        setTimeLeft(diff)
+      } else {
+        if (e.detail.code) {
+          removeCouponActivation(e.detail.code)
+        }
+        // Check if another coupon is active
+        const nextActive = getActiveCoupon()
+        if (nextActive) {
+          setInternalVisible(true)
+          setCouponCode(nextActive.code)
+          setDiscountText(nextActive.discountText)
+          const diff = Math.max(0, Math.floor((nextActive.expiresAt - Date.now()) / 1000))
+          setTimeLeft(diff)
+        } else {
+          setInternalVisible(false)
+        }
+      }
+    }
+
+    const handleStorageEvent = (e: StorageEvent) => {
+      if (e.key === null || e.key.includes('typus_')) {
+        const active = getActiveCoupon()
+        if (active) {
+          setInternalVisible(true)
+          setCouponCode(active.code)
+          setDiscountText(active.discountText)
+          const diff = Math.max(0, Math.floor((active.expiresAt - Date.now()) / 1000))
+          setTimeLeft(diff)
+        } else {
+          setInternalVisible(false)
+        }
+      }
+    }
+
+    window.addEventListener('typus-coupon-applied', handleCouponAppliedEvent)
+    window.addEventListener('storage', handleStorageEvent)
+
+    return () => {
+      window.removeEventListener('typus-coupon-applied', handleCouponAppliedEvent)
+      window.removeEventListener('storage', handleStorageEvent)
+    }
+  }, [])
+
+  // Format seconds as HH:MM:SS or MM:SS
+  const formatTime = (totalSeconds: number) => {
+    const h = Math.floor(totalSeconds / 3600)
+    const m = Math.floor((totalSeconds % 3600) / 60)
+    const s = totalSeconds % 60
+
+    if (h > 0) {
+      return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+    }
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
   }
 
   if (!isVisible) return null
 
-  const codeUpper = (couponCode || 'TYP50').toUpperCase()
   const messageDE = `Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.`
   const messageEN = `Limited spaces available. This seat is reserved for you for 24 hours.`
   const message = isDe ? messageDE : messageEN
