@@ -46,6 +46,17 @@ export function KernelZoomShowcase() {
     },
   ]
 
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    checkWidth()
+    window.addEventListener('resize', checkWidth, { passive: true })
+    return () => window.removeEventListener('resize', checkWidth)
+  }, [])
+
   const [activeIndex, setActiveIndex] = useState(0)
   const [mode, setMode] = useState<'presentation' | 'interactive'>('interactive')
   const [isZoomed, setIsZoomed] = useState(false)
@@ -126,6 +137,10 @@ export function KernelZoomShowcase() {
   const boxTop = isZoomed 
     ? (containerRect.height * 0.5 - 160) 
     : ((boxCoords.y / 100) * containerRect.height - 110)
+
+  if (!isDesktop) {
+    return null
+  }
 
   return (
     <section className="hidden md:block py-10 md:py-16 bg-[#FFFFFF] dark:bg-neutral-950/20 border-y border-neutral-100 dark:border-neutral-900 overflow-hidden relative" id="kernel-zoom-section">
