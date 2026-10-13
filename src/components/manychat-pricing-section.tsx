@@ -28,6 +28,9 @@ import {
   saveCouponActivation,
   getActiveCoupon,
   removeCouponActivation,
+  isCouponExpired,
+  EXPIRED_COUPON_MESSAGE_DE,
+  EXPIRED_COUPON_MESSAGE_EN,
 } from '@/lib/coupon-storage'
 
 const professionalPlans = [
@@ -430,11 +433,21 @@ export function ManyChatPricingSection({
     const activeCode = profPromoDiscount ? profPromoCode : (eduPromoDiscount ? eduPromoCode : '')
     
     if (activeDiscount && activeCode) {
+      const normalizedCode = activeCode.trim().toUpperCase()
+
+      // If expired, reject activation
+      if (isCouponExpired(normalizedCode)) {
+        setProfPromoDiscount(null)
+        setEduPromoDiscount(null)
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        return
+      }
+
       const discountText = activeDiscount.type === 'percentage'
         ? `${activeDiscount.value}% RABATT`
         : `-${activeDiscount.value / 100} ${activeDiscount.currency?.toUpperCase() || 'EUR'}`
 
-      const normalizedCode = activeCode.trim().toUpperCase()
       // Persist activation to localStorage: starts 24h timer once, or reuses original valid timer
       saveCouponActivation(normalizedCode, discountText, activeDiscount)
 
@@ -449,7 +462,7 @@ export function ManyChatPricingSection({
         }))
       }
     }
-  }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode])
+  }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode, locale])
 
   // Listen for coupon expiration events from the countdown timer
   useEffect(() => {
@@ -459,11 +472,13 @@ export function ManyChatPricingSection({
         setProfPromoSuccess(null)
         setEduPromoDiscount(null)
         setEduPromoSuccess(null)
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
       }
     }
     window.addEventListener('typus-coupon-applied', handleCouponEvent)
     return () => window.removeEventListener('typus-coupon-applied', handleCouponEvent)
-  }, [])
+  }, [locale])
 
   const [showTrialWarning, setShowTrialWarning] = useState(false)
   const [showKickOffModal, setShowKickOffModal] = useState(false)
@@ -554,12 +569,30 @@ export function ManyChatPricingSection({
 
     const urlPromoCode = searchParams.get('promoCode')
     if (urlPromoCode) {
-      setProfPromoCode(urlPromoCode)
-      setEduPromoCode(urlPromoCode)
+      const normalized = urlPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        setEduPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+      } else {
+        setProfPromoCode(urlPromoCode)
+        setEduPromoCode(urlPromoCode)
+      }
     } else {
       // Restore active, unexpired coupon from localStorage
       const active = getActiveCoupon()
-      if (active) {
+      if (active && !isCouponExpired(active.code)) {
         setProfPromoCode(active.code)
         if (active.discount) {
           setProfPromoDiscount(active.discount)
@@ -577,7 +610,7 @@ export function ManyChatPricingSection({
         }, 100)
       }
     }
-  }, [tModal])
+  }, [tModal, locale])
 
   const handleVerifyPromoCode = useCallback(async (type: 'prof' | 'edu') => {
     const isEdu = type === 'edu'
@@ -586,14 +619,37 @@ export function ManyChatPricingSection({
     const setError = isEdu ? setEduPromoError : setProfPromoError
     const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
 
-    if (isEdu && code.trim().toUpperCase() === 'KICK') {
+    const normalized = (code || '').trim().toUpperCase()
+    if (!normalized) return
+
+    // CHECK IF THIS COUPON IS EXPIRED IN LOCALSTORAGE
+    if (isCouponExpired(normalized)) {
+      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+      setError(expiredMsg)
+      setDiscount(null)
+      setSuccess(null)
+      toast.error(expiredMsg)
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('typus-coupon-applied', {
+            detail: {
+              isApplied: false,
+              code: normalized,
+              expired: true,
+            },
+          })
+        )
+      }
+      return
+    }
+
+    if (isEdu && normalized === 'KICK') {
       const errorMsg = tModal('promoCodeNotForEdu');
       setError(errorMsg)
       toast.error(errorMsg)
       return
     }
-
-    if (!code.trim()) return
 
     setIsVerifyingPromo(true)
     setError(null)
@@ -621,7 +677,7 @@ export function ManyChatPricingSection({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          promoCode: code.trim(),
+          promoCode: normalized,
           billingCycle: mappedBillingCycle,
           planType: selectedPlanForModal?.planType || (isEdu ? 'STARTER' : 'PRO'),
           isEducational: isEdu,
@@ -646,28 +702,62 @@ export function ManyChatPricingSection({
     } finally {
       setIsVerifyingPromo(false)
     }
-  }, [eduPromoCode, profPromoCode, selectedPlanForModal, tModal])
+  }, [eduPromoCode, profPromoCode, selectedPlanForModal, tModal, locale])
 
 
   useEffect(() => {
     // Check if we should auto-verify (code exists but no result/error yet)
     if (profPromoCode && profPromoCode.trim().length >= 3 && !profPromoDiscount && !profPromoError && !isVerifyingPromo) {
+      const normalized = profPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+        return
+      }
       const timer = setTimeout(() => {
         handleVerifyPromoCode('prof')
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [profPromoCode, handleVerifyPromoCode, profPromoDiscount, profPromoError, isVerifyingPromo])
+  }, [profPromoCode, handleVerifyPromoCode, profPromoDiscount, profPromoError, isVerifyingPromo, locale])
 
   useEffect(() => {
     // Check if we should auto-verify (code exists but no result/error yet)
     if (eduPromoCode && eduPromoCode.trim().length >= 3 && !eduPromoDiscount && !eduPromoError && !isVerifyingPromo) {
+      const normalized = eduPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setEduPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+        return
+      }
       const timer = setTimeout(() => {
         handleVerifyPromoCode('edu')
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo])
+  }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo, locale])
 
 
 
@@ -680,6 +770,15 @@ export function ManyChatPricingSection({
     if (!isEligibleForPromo) {
       code = ''
       discount = null
+    }
+
+    if (code && isCouponExpired(code)) {
+      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+      setError(expiredMsg)
+      toast.error(expiredMsg)
+      if (isEdu) setEduPromoDiscount(null)
+      else setProfPromoDiscount(null)
+      return
     }
 
     if (discount && discount.couponId) {

@@ -2,31 +2,37 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Timer, Sparkles, Tag, Flame } from 'lucide-react'
+import { Timer, Sparkles, Tag, Flame, AlertCircle } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import {
   getActiveCoupon,
   saveCouponActivation,
-  removeCouponActivation,
+  markCouponAsExpired,
   getCouponActivation,
+  isCouponExpired,
+  EXPIRED_COUPON_MESSAGE_DE,
+  EXPIRED_COUPON_MESSAGE_EN,
 } from '@/lib/coupon-storage'
 
 interface FlashSaleHeaderMarqueeProps {
   couponCode?: string
   discountText?: string
   isVisible?: boolean
+  forceExpired?: boolean
 }
 
 export function FlashSaleHeaderMarquee({
   couponCode: propCode,
   discountText: propDiscountText,
   isVisible: propIsVisible,
+  forceExpired,
 }: FlashSaleHeaderMarqueeProps) {
   const locale = useLocale()
   const isDe = locale === 'de'
 
   // Avoid Next.js SSR hydration mismatches by initializing false on server
   const [internalVisible, setInternalVisible] = useState(false)
+  const [marqueeMode, setMarqueeMode] = useState<'countdown' | 'expired'>('countdown')
   const [couponCode, setCouponCode] = useState(propCode || 'TYP50')
   const [discountText, setDiscountText] = useState(propDiscountText || '50% RABATT')
   const [timeLeft, setTimeLeft] = useState<number>(24 * 60 * 60) // 24 hours (86400s)
@@ -37,49 +43,104 @@ export function FlashSaleHeaderMarquee({
 
   // 1. Initial client-side restoration from localStorage
   useEffect(() => {
-    // Check if there is an active coupon in localStorage
+    const codeToCheck = propCode || 'TYP50'
+
+    if (forceExpired || isCouponExpired(codeToCheck)) {
+      if (propIsVisible) {
+        setInternalVisible(true)
+        setMarqueeMode('expired')
+        setCouponCode(codeToCheck)
+      }
+      return
+    }
+
+    // Check if there is an active unexpired coupon in localStorage
     const active = getActiveCoupon()
 
-    if (active) {
+    if (active && !isCouponExpired(active.code)) {
       setInternalVisible(true)
+      setMarqueeMode('countdown')
       setCouponCode(active.code)
       setDiscountText(active.discountText)
       const diff = Math.max(0, Math.floor((active.expiresAt - Date.now()) / 1000))
       setTimeLeft(diff)
     } else if (propIsVisible) {
-      // If parent explicitly set isVisible=true, activate with 24h timer
-      const codeToUse = propCode || 'TYP50'
+      // If parent explicitly set isVisible=true and not expired, activate with 24h timer
       const textToUse = propDiscountText || '50% RABATT'
-      const record = saveCouponActivation(codeToUse, textToUse)
-      setInternalVisible(true)
-      setCouponCode(record.code)
-      setDiscountText(record.discountText)
-      const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
-      setTimeLeft(diff)
+      const record = saveCouponActivation(codeToCheck, textToUse)
+
+      if (record.isExpired) {
+        setInternalVisible(true)
+        setMarqueeMode('expired')
+        setCouponCode(record.code)
+      } else {
+        setInternalVisible(true)
+        setMarqueeMode('countdown')
+        setCouponCode(record.code)
+        setDiscountText(record.discountText)
+        const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
+        setTimeLeft(diff)
+      }
     }
-  }, [propIsVisible, propCode, propDiscountText])
+  }, [propIsVisible, propCode, propDiscountText, forceExpired])
 
   // 2. Real-time countdown timer that strictly references the expirationTimestamp
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible || marqueeMode !== 'countdown') return
 
     const tick = () => {
-      // Retrieve the current active record from localStorage or by code
       const currentCode = activeCodeRef.current
+
+      if (isCouponExpired(currentCode)) {
+        markCouponAsExpired(currentCode)
+        setMarqueeMode('expired')
+        setTimeLeft(0)
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: currentCode,
+                discountText: '',
+                expired: true,
+              },
+            })
+          )
+        }
+        return
+      }
+
       const record = getCouponActivation(currentCode) || getActiveCoupon()
 
       if (!record) {
         // Expired or missing
-        setInternalVisible(false)
+        markCouponAsExpired(currentCode)
+        setMarqueeMode('expired')
+        setTimeLeft(0)
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: currentCode,
+                discountText: '',
+                expired: true,
+              },
+            })
+          )
+        }
         return
       }
 
       const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
 
       if (diff <= 0) {
-        // 24-hour period has expired! Hide marquee and remove localStorage record
-        removeCouponActivation(record.code)
-        setInternalVisible(false)
+        // 24-hour period has expired! Switch to expired banner & dispatch event
+        markCouponAsExpired(record.code)
+        setMarqueeMode('expired')
+        setTimeLeft(0)
 
         if (typeof window !== 'undefined') {
           window.dispatchEvent(
@@ -101,46 +162,64 @@ export function FlashSaleHeaderMarquee({
     tick()
     const interval = setInterval(tick, 1000)
     return () => clearInterval(interval)
-  }, [isVisible, couponCode])
+  }, [isVisible, marqueeMode, couponCode])
 
   // 3. Listen for window events and cross-tab storage changes
   useEffect(() => {
     const handleCouponAppliedEvent = (e: any) => {
       if (!e.detail) return
 
+      if (e.detail.expired) {
+        setMarqueeMode('expired')
+        setInternalVisible(true)
+        if (e.detail.code) setCouponCode(e.detail.code)
+        return
+      }
+
       if (e.detail.isApplied) {
         const code = e.detail.code || 'TYP50'
         const text = e.detail.discountText || '50% RABATT'
+
+        if (isCouponExpired(code)) {
+          setMarqueeMode('expired')
+          setInternalVisible(true)
+          setCouponCode(code)
+          return
+        }
+
         // Persist coupon activation in localStorage (starts 24h timer once, or reuses valid timer)
         const record = saveCouponActivation(code, text, e.detail.discount)
 
-        setInternalVisible(true)
-        setCouponCode(record.code)
-        setDiscountText(record.discountText)
-        const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
-        setTimeLeft(diff)
-      } else {
-        if (e.detail.code) {
-          removeCouponActivation(e.detail.code)
-        }
-        // Check if another coupon is active
-        const nextActive = getActiveCoupon()
-        if (nextActive) {
+        if (record.isExpired) {
+          setMarqueeMode('expired')
           setInternalVisible(true)
-          setCouponCode(nextActive.code)
-          setDiscountText(nextActive.discountText)
-          const diff = Math.max(0, Math.floor((nextActive.expiresAt - Date.now()) / 1000))
-          setTimeLeft(diff)
+          setCouponCode(record.code)
         } else {
-          setInternalVisible(false)
+          setMarqueeMode('countdown')
+          setInternalVisible(true)
+          setCouponCode(record.code)
+          setDiscountText(record.discountText)
+          const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
+          setTimeLeft(diff)
         }
+      } else {
+        // Not applied and not expired
+        setInternalVisible(false)
       }
     }
 
     const handleStorageEvent = (e: StorageEvent) => {
       if (e.key === null || e.key.includes('typus_')) {
+        const currentCode = activeCodeRef.current
+        if (isCouponExpired(currentCode)) {
+          setMarqueeMode('expired')
+          setInternalVisible(true)
+          return
+        }
+
         const active = getActiveCoupon()
         if (active) {
+          setMarqueeMode('countdown')
           setInternalVisible(true)
           setCouponCode(active.code)
           setDiscountText(active.discountText)
@@ -175,9 +254,29 @@ export function FlashSaleHeaderMarquee({
 
   if (!isVisible) return null
 
-  const messageDE = `Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.`
-  const messageEN = `Limited spaces available. This seat is reserved for you for 24 hours.`
-  const message = isDe ? messageDE : messageEN
+  // Active reservation messages
+  const messageActiveDE = 'Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.'
+  const messageActiveEN = 'Limited spaces available. This seat is reserved for you for 24 hours.'
+
+  // Expired messages
+  const messageExpiredDE = EXPIRED_COUPON_MESSAGE_DE
+  const messageExpiredEN = EXPIRED_COUPON_MESSAGE_EN
+
+  const isExpired = marqueeMode === 'expired'
+  const messagePrimary = isDe
+    ? isExpired
+      ? messageExpiredDE
+      : messageActiveDE
+    : isExpired
+      ? messageExpiredEN
+      : messageActiveEN
+  const messageSecondary = isDe
+    ? isExpired
+      ? messageExpiredEN
+      : messageActiveEN
+    : isExpired
+      ? messageExpiredDE
+      : messageActiveDE
 
   return (
     <AnimatePresence>
@@ -190,35 +289,50 @@ export function FlashSaleHeaderMarquee({
         style={{ backgroundColor: '#FF3F34' }}
       >
         <div className="py-2.5 px-4 flex items-center justify-between max-w-7xl mx-auto gap-4">
-          {/* Continuous Marquee Ticker */}
+          {/* Continuous Bilingual Marquee Ticker */}
           <div className="relative flex-1 overflow-hidden whitespace-nowrap">
             <div className="inline-flex animate-marquee gap-8 items-center text-xs sm:text-sm font-bold tracking-wider uppercase font-sans">
               <span className="flex items-center gap-2">
-                <Flame className="w-4 h-4 fill-white shrink-0 animate-pulse" />
-                {message}
+                {isExpired ? (
+                  <AlertCircle className="w-4 h-4 fill-white text-[#FF3F34] shrink-0" />
+                ) : (
+                  <Flame className="w-4 h-4 fill-white shrink-0 animate-pulse" />
+                )}
+                <span>{messagePrimary}</span>
               </span>
               <span className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 shrink-0" />
-                {message}
+                <span>{messageSecondary}</span>
               </span>
               <span className="flex items-center gap-2">
                 <Tag className="w-4 h-4 shrink-0" />
-                {message}
+                <span>{messagePrimary}</span>
               </span>
               <span className="flex items-center gap-2">
-                <Flame className="w-4 h-4 fill-white shrink-0 animate-pulse" />
-                {message}
+                {isExpired ? (
+                  <AlertCircle className="w-4 h-4 fill-white text-[#FF3F34] shrink-0" />
+                ) : (
+                  <Flame className="w-4 h-4 fill-white shrink-0 animate-pulse" />
+                )}
+                <span>{messageSecondary}</span>
               </span>
             </div>
           </div>
 
-          {/* Sticky Timer Badge */}
-          <div className="shrink-0 flex items-center gap-2 bg-black/20 px-3.5 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-widest border border-white/30 backdrop-blur-xs">
-            <Timer className="w-4 h-4 shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
-            <span>
-              {isDe ? 'ENDET IN' : 'EXPIRES IN'}: {formatTime(timeLeft)}
-            </span>
-          </div>
+          {/* Right Badge: Countdown timer OR Expired badge */}
+          {marqueeMode === 'countdown' ? (
+            <div className="shrink-0 flex items-center gap-2 bg-black/20 px-3.5 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-widest border border-white/30 backdrop-blur-xs">
+              <Timer className="w-4 h-4 shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
+              <span>
+                {isDe ? 'ENDET IN' : 'EXPIRES IN'}: {formatTime(timeLeft)}
+              </span>
+            </div>
+          ) : (
+            <div className="shrink-0 flex items-center gap-2 bg-black/25 px-3 py-1 rounded-full text-xs sm:text-sm font-sans font-bold tracking-wider uppercase border border-white/30 backdrop-blur-xs">
+              <AlertCircle className="w-4 h-4 text-white shrink-0" />
+              <span>{isDe ? 'KEINE PLÄTZE FREI' : 'ALL SPOTS TAKEN'}</span>
+            </div>
+          )}
         </div>
 
         <style jsx>{`
