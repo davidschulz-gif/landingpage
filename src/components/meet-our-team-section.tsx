@@ -60,7 +60,15 @@ const teamMembers = [
     id: 'Leon Holz schwarz',
     role: 'AI ENGINEER',
     name: 'LEON HOLZ',
-    image: '/team/Leon Holz schwarz.png',
+    image: '/team/Freundliches Porträt eines jungen Mannes.png',
+    subtext: "",
+    linkedin: '#'
+  },
+   {
+    id: 'sandeep-kumar',
+    role: 'FULL STACK ENGINEER',
+    name: 'SANDEEP KUMAR',
+    image: '/team/Professionelles Studio-Porträt eines bärtigen Mannes.png',
     subtext: "",
     linkedin: '#'
   },
