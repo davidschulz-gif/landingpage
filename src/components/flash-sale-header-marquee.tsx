@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Timer, Sparkles, Tag, Flame, AlertCircle } from 'lucide-react'
+import { Timer, Tag, Flame, AlertCircle } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import {
   getActiveCoupon,
@@ -301,7 +301,6 @@ export function FlashSaleHeaderMarquee({
                 <span>{messagePrimary}</span>
               </span>
               <span className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 shrink-0" />
                 <span>{messageSecondary}</span>
               </span>
               <span className="flex items-center gap-2">
@@ -321,16 +320,16 @@ export function FlashSaleHeaderMarquee({
 
           {/* Right Badge: Countdown timer OR Expired badge */}
           {marqueeMode === 'countdown' ? (
-            <div className="shrink-0 flex items-center gap-2 bg-black/20 px-3.5 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-widest border border-white/30 backdrop-blur-xs">
-              <Timer className="w-4 h-4 shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
-              <span>
+            <div className="shrink-0 flex items-center gap-2 bg-white text-[#FF3F34] px-3.5 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-widest shadow-xs">
+              <Timer className="w-4 h-4 shrink-0 animate-spin text-[#FF3F34]" style={{ animationDuration: '6s' }} />
+              <span className="text-[#FF3F34]">
                 {isDe ? 'ENDET IN' : 'EXPIRES IN'}: {formatTime(timeLeft)}
               </span>
             </div>
           ) : (
-            <div className="shrink-0 flex items-center gap-2 bg-black/25 px-3 py-1 rounded-full text-xs sm:text-sm font-sans font-bold tracking-wider uppercase border border-white/30 backdrop-blur-xs">
-              <AlertCircle className="w-4 h-4 text-white shrink-0" />
-              <span>{isDe ? 'KEINE PLÄTZE FREI' : 'ALL SPOTS TAKEN'}</span>
+            <div className="shrink-0 flex items-center gap-2 bg-white text-[#FF3F34] px-3.5 py-1 rounded-full text-xs sm:text-sm font-sans font-bold tracking-wider uppercase shadow-xs">
+              <AlertCircle className="w-4 h-4 text-[#FF3F34] shrink-0" />
+              <span className="text-[#FF3F34]">{isDe ? 'KEINE PLÄTZE FREI' : 'ALL SPOTS TAKEN'}</span>
             </div>
           )}
         </div>
