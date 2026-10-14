@@ -38,48 +38,11 @@ const professionalPlans = [
     id: 'test',
     name: 'TEST',
     monthlyPrice: { eur: '€0', usd: '$0' },
-    threeMonthlyPrice: { eur: '€0', usd: '$0' },
-    threeMonthlyMonthlyPrice: { eur: '€0', usd: '$0' },
-    sixMonthPrice: { eur: '€0', usd: '$0' },
-    sixMonthMonthlyPrice: { eur: '€0', usd: '$0' },
-    yearlyPrice: { eur: '€0', usd: '$0' },
-    yearlyMonthlyPrice: { eur: '€0', usd: '$0' },
     planType: 'TEST',
     discount: {
       monthly: {
         discountedMonthly: { eur: '€0', usd: '$0' },
         introPeriodKey: 'billedMonthly',
-      },
-      threeMonthly: {
-        discountedMonthly: { eur: '€0', usd: '$0' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€0', usd: '$0' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€0', usd: '$0' },
-        introPeriodKey: 'billedEvery3Months',
-      },
-      sixMonthly: {
-        discountedMonthly: { eur: '€0', usd: '$0' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€0', usd: '$0' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€0', usd: '$0' },
-        introPeriodKey: 'billedEvery6Months',
-      },
-      yearly: {
-        discountedMonthly: { eur: '€0', usd: '$0' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€0', usd: '$0' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€0', usd: '$0' },
-        introPeriodKey: 'billedYearly',
-        bestDeal: false,
       },
     },
     features: [
@@ -1152,18 +1115,18 @@ export function ManyChatPricingSection({
 
     // Solo
     const baseSoloPlan = professionalPlans.find(p => p.id === 'solo') || professionalPlans[1]
-    const soloPlan = {
-      ...baseSoloPlan,
-      name: 'SOLO',
-      fetchedData: soloFetchedData,
-      features: baseSoloPlan.features.map(f => ({
-        ...f,
-        text: mapFeatureText(f),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-      targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
-      billingCycle: profBillingCycle
-    }
+    // const soloPlan = {
+    //   ...baseSoloPlan,
+    //   name: 'SOLO',
+    //   fetchedData: soloFetchedData,
+    //   features: baseSoloPlan.features.map(f => ({
+    //     ...f,
+    //     text: mapFeatureText(f),
+    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
+    //   })),
+    //   targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
+    //   billingCycle: profBillingCycle
+    // }
 
     // Pro
     const baseProPlan = professionalPlans.find(p => p.id === 'pro') || professionalPlans[2]
@@ -1197,7 +1160,7 @@ export function ManyChatPricingSection({
       billingCycle: profBillingCycle
     }
 
-    return [ testPlan, soloPlan, proPlan, businessPlan ]
+    return [ testPlan, proPlan, businessPlan ]
   }
 
   // Get translated Education plans
@@ -1817,9 +1780,10 @@ export function ManyChatPricingSection({
           </div>
         </div>
 
-          <div className='w-full max-w-[1400px] mx-auto px-4 mb-4'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center items-stretch gap-4'>
+          <div className='w-full max-w-[1000px] mx-auto px-4 mb-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch gap-4'>
               {currentProfPlans.map((plan, index) => (
+            
                 <div key={index} className='w-full z-10 relative'>
                   {plan.id === 'pro' && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
@@ -2569,6 +2533,14 @@ function PricingCard({
     plan.name === 'PRO' || 
     (plan as any).id === 'pro'
   );
+
+  if(plan.id === 'test' && plan.billingCycle === 'yearly') {
+    return (
+    <div className='*:hidden'>
+
+    </div>
+    );
+  }
 
   return (
     <div
