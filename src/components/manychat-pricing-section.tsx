@@ -1160,6 +1160,10 @@ export function ManyChatPricingSection({
       billingCycle: profBillingCycle
     }
 
+    if (profBillingCycle === 'yearly') {
+      return [ proPlan, businessPlan ]
+    }
+
     return [ testPlan, proPlan, businessPlan ]
   }
 
@@ -1780,11 +1784,13 @@ export function ManyChatPricingSection({
           </div>
         </div>
 
-          <div className='w-full max-w-[1000px] mx-auto px-4 mb-4'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center items-stretch gap-4'>
-              {currentProfPlans.map((plan, index) => (
+          <div className={`w-full ${currentProfPlans.length === 2 ? 'max-w-[740px]' : 'max-w-[1000px]'} mx-auto px-4 mb-4`}>
+            <div className={`grid grid-cols-1 ${currentProfPlans.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'} justify-center items-stretch gap-4`}>
+              {currentProfPlans
+                .filter(plan => !(plan.id === 'test' && profBillingCycle === 'yearly'))
+                .map((plan, index) => (
             
-                <div key={index} className='w-full z-10 relative'>
+                <div key={plan.id || index} className='w-full z-10 relative'>
                   {plan.id === 'pro' && (
                     <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
                       <div className='flex flex-col items-center gap-1'>
@@ -2534,12 +2540,8 @@ function PricingCard({
     (plan as any).id === 'pro'
   );
 
-  if(plan.id === 'test' && plan.billingCycle === 'yearly') {
-    return (
-    <div className='*:hidden'>
-
-    </div>
-    );
+  if (plan.id === 'test' && plan.billingCycle === 'yearly') {
+    return null
   }
 
   return (
