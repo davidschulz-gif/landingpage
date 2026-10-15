@@ -1,21 +1,21 @@
 'use client'
 import {
-  MobileNav,
-  MobileNavHeader,
-  MobileNavMenu,
-  MobileNavToggle,
-} from '@/components/ui/resizable-navbar'
-import {
-  Navbar,
-  NavbarButton,
-  NavbarLogo,
-  NavBody,
-  NavItems,
-} from '@/components/ui/resizable-navbar-2'
-import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2, Layers, Shield, EyeOff, Briefcase } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
-import Image from 'next/image'
-import { Link } from '@/i18n/navigation'
+    MobileNav,
+    MobileNavHeader,
+    MobileNavMenu,
+    MobileNavToggle,
+  } from '@/components/ui/resizable-navbar'
+  import {
+    Navbar,
+    NavbarButton,
+    NavbarLogo,
+    NavBody,
+    NavItems,
+  } from '@/components/ui/resizable-navbar-2'
+  import { ChevronDown, Play, Sparkles, Pencil, Zap, LayoutGrid, Image as ImageIcon, Youtube, Newspaper, Star, Instagram, Linkedin, Tag, Puzzle, GraduationCap, Mail, FlaskConical, Video, Box, ShieldCheck, Building2, Layers, Shield, EyeOff, Briefcase, Users } from 'lucide-react'
+  import { useLocale, useTranslations } from 'next-intl'
+  import Image from 'next/image'
+  import { Link } from '@/i18n/navigation'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { HoveredLink, Menu, MenuItem } from './ui/navbar-menu'
@@ -59,11 +59,17 @@ export function NavbarDemo() {
   }
 
   const handleTabClick = (link: string) => {
-    if (link.startsWith('/#')) {
+    setActive(null)
+    if (link.startsWith('/#') || link.startsWith('#')) {
       const tabId = link.split('#')[1]
       const validTabs = ['create', 'edit', 'enhance']
       if (validTabs.includes(tabId)) {
         window.dispatchEvent(new CustomEvent('showcase-tab-change', { detail: tabId }))
+      } else if (tabId === 'team') {
+        const el = document.getElementById('team')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        }
       }
     }
   }
@@ -334,8 +340,14 @@ export function NavbarDemo() {
       },
       {
         name: t('contact'),
-        link: '/#contact',
+        link: '/#team',
         submenu: [
+          {
+            title: tNav('contact.team.title'),
+            description: tNav('contact.team.description'),
+            link: '/#team',
+            icon: Users,
+          },
           {
             title: tNav('contact.bookCall.title'),
             description: tNav('contact.bookCall.description'),
@@ -413,7 +425,7 @@ export function NavbarDemo() {
                 href={navItem.link}
               >
                 {navItem.submenu && (
-                  <div className='flex flex-col space-y-4 text-sm'>
+                  <div className={`text-sm ${navItem.name === t('contact') ? 'grid grid-cols-1 sm:grid-cols-2 gap-4 w-full sm:w-[560px]' : 'flex flex-col space-y-4'}`}>
                     {navItem.submenu?.map((subitem: any, subIdx) => (
                       subitem.isSection ? (
                         <div key={`section-label-${idx}-${subIdx}`} className='pt-2 first:pt-0'>

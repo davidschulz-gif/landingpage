@@ -15,6 +15,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { CornerSquares } from '@/components/common/corner-squares'
+import { TestimonialMontageVideo } from '@/components/testimonial-montage-video'
 
 const ComparisonSection = dynamic(
     () => import('@/components/comparison-section').then(mod => mod.ComparisonSection),
@@ -99,6 +100,14 @@ function PricingContent() {
                         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                         {locale === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
                     </Link>
+                </div>
+
+                {/* Prominent Hero Testimonial Video Showcase */}
+                <div className='max-w-4xl mx-auto px-4 mt-4 mb-6 relative z-20'>
+                    <TestimonialMontageVideo
+                        badge={locale === 'de' ? 'KUNDENSTIMMEN' : 'WHAT ARCHITECTS SAY'}
+                        title={locale === 'de' ? 'Warum führende Architekten auf Typus setzen' : 'Why Leading Architects Choose Typus'}
+                    />
                 </div>
 
                 {/* Only show the tab toggle if there is no token (token auto-selects the plan) */}

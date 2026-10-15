@@ -95,6 +95,10 @@
         }
       },
       "contact": {
+        "team": {
+          "title": "Our Team",
+          "description": "Get to know our team and personal advisors."
+        },
         "bookCall": {
           "title": "hello@typus.ai",
           "description": "With the PRO plan, you can book a free onboarding call."

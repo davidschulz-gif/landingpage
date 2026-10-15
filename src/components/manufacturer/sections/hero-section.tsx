@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, Users } from 'lucide-react'
 import { CornerSquares } from '@/components/common/corner-squares'
 import { AnimatedStatNumber } from '@/components/manufacturer/animated-stat-number'
+import { TestimonialMontageVideo, TESTIMONIAL_MONTAGE_URL } from '@/components/testimonial-montage-video'
 
 interface HeroSectionProps {
   locale: string
@@ -69,21 +70,22 @@ export function HeroSection({ locale, t }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* ── HERO VIDEO SHOWCASE (TYPUS V9) ── */}
-        <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-black shadow-2xl my-2">
-          <CornerSquares />
-          <div className="relative aspect-video w-full">
-            <video
-              src="https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/TYPUS+V9.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              controls
-              preload="metadata"
-              className="w-full h-full object-cover rounded-3xl"
-            />
-          </div>
+        {/* ── HERO VIDEO SHOWCASE (TESTIMONIALS MONTAGE & TYPUS V9) ── */}
+        <div className="w-full max-w-4xl mx-auto my-2">
+          <TestimonialMontageVideo
+            tabs={[
+              {
+                label: locale === 'de' ? '★ Kundenstimmen (Montage)' : '★ Testimonials Montage',
+                url: TESTIMONIAL_MONTAGE_URL,
+              },
+              {
+                label: locale === 'de' ? 'Plattform-Demo (V9)' : 'Platform Demo (V9)',
+                url: 'https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/TYPUS+V9.mp4',
+              },
+            ]}
+            badge={locale === 'de' ? 'KUNDENSTIMMEN & PRAXIS' : 'CLIENT EXPERIENCES'}
+            title={locale === 'de' ? 'Was Architekten & Hersteller über Typus sagen' : 'What Architects & Manufacturers Say About Typus'}
+          />
         </div>
 
         {/* Active Users Metric Card */}

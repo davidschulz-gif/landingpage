@@ -62,7 +62,10 @@ export function FooterSection() {
       // { name: t('links.plugins'), href: '#plugins' },
       { name: t('links.studentAccess'), href: '/pricing#student-plan' },
     ],
-    contact: [{ name: 'hello@typus.ai', href: 'mailto:hello@typus.ai' }],
+    contact: [
+      { name: locale === 'de' ? 'Unser Team' : 'Our Team', href: '/#team' },
+      { name: 'hello@typus.ai', href: 'mailto:hello@typus.ai' }
+    ],
     legal: [
       { name: t('links.terms'), href: 'https://app.typus.ai/terms' },
       {

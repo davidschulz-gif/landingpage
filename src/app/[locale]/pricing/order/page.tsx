@@ -134,7 +134,8 @@ function OrderContent() {
             router.replace(`/${locale}/pricing/order?plan=${tokenPlan}&billing=${tokenBilling}&isEducational=${tokenIsEdu}&token=${tokenParam}`)
           }
           
-          setShowOnboarding(true)
+          setShowOnboarding(false)
+          await handleConfirmOrder(resData.data || {}, resData.email)
         } else {
           toast.error(resData.message || 'Verification link is invalid or has expired.')
           setTokenError(resData.message || 'Verification link is invalid or has expired.')
@@ -281,7 +282,9 @@ function OrderContent() {
 
         setIsVerifyingEmail(false)
         setIsEmailModalOpen(false)
-        setShowOnboarding(true)
+        setShowOnboarding(false)
+
+        await handleConfirmOrder(verifyData.data || {}, userEmail.trim())
       } else if (verifyData.emailSent) {
         setEmailSent(true)
         setIsVerifyingEmail(false)
@@ -341,37 +344,42 @@ function OrderContent() {
     setShowPreview(true)
   }
 
-  const handleConfirmOrder = async () => {
+  const handleConfirmOrder = async (completedData?: any, emailOverride?: string) => {
     setIsSubmitting(true)
+    const dataToUse = completedData || onboardingData || {}
+    const emailToUse = (emailOverride || userEmail).trim()
+    toast.loading(locale === 'de' ? 'Weiterleitung zur Kasse...' : 'Redirecting to checkout...', { id: 'checkout-redirect' })
 
     try {
       // 1. Submit Onboarding Data
-      try {
-        const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: userEmail.trim(),
-            marketingConsent,
-            privacyConsent,
-            termsConsent,
-            language: locale,
-            ...(locationCountryCode && { countryCode: locationCountryCode }),
-            ...(locationCurrency && { currency: locationCurrency }),
-            ...(locationContinent && { continent: locationContinent }),
-            ...onboardingData
-          }),
-        })
-        if (!submitResponse.ok) {
-          console.error('Failed to save public onboarding data:', await submitResponse.json())
+      if (dataToUse && Object.keys(dataToUse).length > 0) {
+        try {
+          const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: emailToUse,
+              marketingConsent,
+              privacyConsent,
+              termsConsent,
+              language: locale,
+              ...(locationCountryCode && { countryCode: locationCountryCode }),
+              ...(locationCurrency && { currency: locationCurrency }),
+              ...(locationContinent && { continent: locationContinent }),
+              ...dataToUse
+            }),
+          })
+          if (!submitResponse.ok) {
+            console.error('Failed to save public onboarding data:', await submitResponse.json())
+          }
+        } catch (e) {
+          console.error('Error submitting public onboarding data:', e)
         }
-      } catch (e) {
-        console.error('Error submitting public onboarding data:', e)
       }
 
       // 2. Call Stripe Checkout
       const checkoutData = {
-        email: userEmail.trim(),
+        email: emailToUse,
         planType: planParam.toUpperCase(),
         billingCycle: billingParam.toUpperCase(),
         isEducational: isEducationalParam,
@@ -382,7 +390,7 @@ function OrderContent() {
         privacyConsent,
         termsConsent,
         language: locale,
-        onboardingData: onboardingData,
+        onboardingData: dataToUse,
         trackingData: getTrackingCookies(),
       }
 
@@ -398,11 +406,13 @@ function OrderContent() {
       if (resData.url) {
         window.location.href = resData.url
       } else {
+        toast.dismiss('checkout-redirect')
         toast.error(resData.message || 'Failed to create checkout session')
         setIsSubmitting(false)
       }
     } catch (e) {
       console.error(e)
+      toast.dismiss('checkout-redirect')
       toast.error('Network error. Please try again.')
       setIsSubmitting(false)
     }
@@ -924,7 +934,7 @@ function OrderContent() {
       </AnimatePresence>
 
       {/* Onboarding Wizard */}
-      {showOnboarding && (
+      {/* {showOnboarding && (
         <OnboardingWizard
           email={userEmail}
           locale={locale}
@@ -933,7 +943,7 @@ function OrderContent() {
           onCancel={() => setShowOnboarding(false)}
           isSubmitting={isSubmitting}
         />
-      )}
+      )} */}
 
       <ToastProvider />
     </div>

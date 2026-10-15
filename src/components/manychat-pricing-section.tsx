@@ -496,19 +496,21 @@ export function ManyChatPricingSection({
 
           // Find the price ID from fetched plans (will be set once plans load)
           // We set the plan info now; priceId will be filled in after plans load
-          setSelectedPlanForModal({
+          const reconstructedPlan = {
             planType,
             billingCycle,
             priceId: null,
             isEducational: isEdu,
             isFloorPlan: isFP,
-          })
+          }
+          setSelectedPlanForModal(reconstructedPlan)
 
           // Clean the token from the URL without a page reload
           const cleanUrl = window.location.pathname
           window.history.replaceState({}, '', cleanUrl)
 
-          setShowOnboarding(true)
+          setShowOnboarding(false)
+          await handleOnboardingComplete(resData.data || {}, reconstructedPlan, resData.email || '')
         } else {
           toast.error(resData.message || 'Verification link is invalid or has expired.')
         }
@@ -881,10 +883,11 @@ export function ManyChatPricingSection({
         if (verifyData.data) {
           setOnboardingData(verifyData.data)
         }
-        setIsRedirecting(false)
         setIsModalOpen(false)
         setShowTrialWarning(false)
-        setShowOnboarding(true)
+        setShowOnboarding(false)
+        // Directly move to checkout page
+        await handleOnboardingComplete(verifyData.data || {}, selectedPlanForModal, userEmail.trim())
       } else if (verifyData.emailSent) {
         setEmailSent(true)
         setIsRedirecting(false)
@@ -908,18 +911,21 @@ export function ManyChatPricingSection({
     }
   }
 
-  const handleOnboardingComplete = async (onboardingData: any) => {
+  const handleOnboardingComplete = async (onboardingData: any = {}, planOverride?: any, emailOverride?: string) => {
+    const activePlan = planOverride || selectedPlanForModal
+    const activeEmail = (emailOverride || userEmail || '').trim()
     setOnboardingData(onboardingData)
     setIsRedirecting(true)
+    toast.loading(locale === 'de' ? 'Weiterleitung zur Kasse...' : 'Redirecting to checkout...', { id: 'checkout-redirect' })
 
     try {
-      if (onboardingData && !onboardingData.id) {
+      if (onboardingData && !onboardingData.id && Object.keys(onboardingData).length > 0) {
         try {
           const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              email: userEmail.trim(),
+              email: activeEmail,
               marketingConsent,
               privacyConsent,
               termsConsent,
@@ -927,8 +933,8 @@ export function ManyChatPricingSection({
               ...(locationCountryCode && { countryCode: locationCountryCode }),
               ...(locationCurrency && { currency: locationCurrency }),
               ...(locationContinent && { continent: locationContinent }),
-              ...(selectedPlanForModal.isEducational && { isStudent: true }),
-              ...(selectedPlanForModal.isEducational && { universityName: universityName }),
+              ...(activePlan?.isEducational && { isStudent: true }),
+              ...(activePlan?.isEducational && { universityName: universityName }),
               ...onboardingData
             }),
           })
@@ -946,7 +952,8 @@ export function ManyChatPricingSection({
         sixMonthly: 'SIX_MONTHLY',
         yearly: 'YEARLY',
       }
-      const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
+      const rawBillingCycle = activePlan?.billingCycle || 'monthly'
+      const mappedBillingCycle = billingCycleMap[rawBillingCycle] || rawBillingCycle.toUpperCase()
 
       const getTrackingCookies = () => {
         if (typeof document === 'undefined') return {};
@@ -1010,26 +1017,25 @@ export function ManyChatPricingSection({
 
       // All plans go directly to Stripe checkout — no contract overview modal
 
-
       const response = await fetch(`${apiBaseUrl}checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: userEmail.trim(),
-          planType: selectedPlanForModal.planType,
+          email: activeEmail,
+          planType: activePlan.planType,
           billingCycle: mappedBillingCycle,
-          isEducational: selectedPlanForModal.isEducational,
-          isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
-          promoCode: selectedPlanForModal.eligiblePromoCode || null,
+          isEducational: activePlan.isEducational,
+          isFloorPlan: activePlan.isFloorPlan ? true : false,
+          promoCode: activePlan.eligiblePromoCode || null,
           currency: planCurrency,
           cancelUrl: window.location.href,
           marketingConsent,
           privacyConsent,
           termsConsent,
           language: locale,
-          onboardingData: onboardingData,
+          onboardingData: onboardingData || {},
           trackingData: getTrackingCookies(), // Explicitly send cookies here
         }),
       })
@@ -1043,10 +1049,12 @@ export function ManyChatPricingSection({
       if (data.url) {
         window.location.href = data.url
       } else {
+        toast.dismiss('checkout-redirect')
         throw new Error('No checkout URL received')
       }
     } catch (error: any) {
       console.error('Checkout error:', error)
+      toast.dismiss('checkout-redirect')
       toast.error(error.message || 'Failed to create checkout session')
       setIsRedirecting(false)
     }
@@ -2196,7 +2204,7 @@ export function ManyChatPricingSection({
         />
       )}
 
-      {showOnboarding && !showOrderModal && (
+      {/* {showOnboarding && !showOrderModal && (
         <OnboardingWizard
           email={userEmail}
           locale={locale}
@@ -2205,7 +2213,7 @@ export function ManyChatPricingSection({
           onCancel={() => setShowOnboarding(false)}
           isSubmitting={isRedirecting}
         />
-      )}
+      )} */}
     </section>
   )
 }

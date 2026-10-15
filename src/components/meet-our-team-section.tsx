@@ -101,7 +101,7 @@ export function MeetOurTeamSection() {
   const t = useTranslations('Team')
 
   return (
-    <section className='py-16' style={{ backgroundColor: '#f7f5f0' }}>
+    <section id="team" className='py-16 scroll-mt-24' style={{ backgroundColor: '#f7f5f0' }}>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
          <div className="mb-12 relative z-10 max-w-7xl mx-auto text-left px-4">
               <h2 className="text-center heading-primary mb-4">

@@ -253,6 +253,16 @@ const KernelZoomShowcase = dynamic(
   }
 )
 
+const TestimonialMontageVideo = dynamic(
+  () =>
+    import('@/components/testimonial-montage-video').then(
+      mod => mod.TestimonialMontageVideo
+    ),
+  {
+    loading: () => <div className='h-[420px] bg-neutral-900 animate-pulse rounded-3xl max-w-5xl mx-auto' />,
+  }
+)
+
 export default function Home() {
   const t = useTranslations('HeroProducts')
   const locale = useLocale()
@@ -421,6 +431,14 @@ export default function Home() {
 
         {/* Hero Section */}
         <MainHero />
+
+        {/* Hero Testimonial Showcase Video with Playlist Slider */}
+        <div className='w-full max-w-5xl mx-auto px-4 pt-2 pb-8 md:pb-12 relative z-20'>
+          <TestimonialMontageVideo
+            showBadge={true}
+            title={locale === 'de' ? 'Das sagen führende Architekten & Planer' : 'What Leading Architects & Designers Say'}
+          />
+        </div>
 
         {/* 3D Integrations Marquee */}
         <IntegrationsMarquee />
