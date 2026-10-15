@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef, useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Volume2, VolumeX, Sparkles, ChevronLeft, ChevronRight, Play } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import { CornerSquares } from '@/components/common/corner-squares'
@@ -17,6 +18,7 @@ export interface TestimonialVideoItem {
   badgeDe: string
   badgeEn: string
   url: string
+  thumbnail?: string
 }
 
 export const TESTIMONIAL_PLAYLIST: TestimonialVideoItem[] = [
@@ -37,6 +39,7 @@ export const TESTIMONIAL_PLAYLIST: TestimonialVideoItem[] = [
     badgeDe: 'Interview',
     badgeEn: 'Interview',
     url: 'https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/testimonials/g%C3%A4her.mp4',
+    thumbnail: '/testimonials/gaeher.png',
   },
   {
     id: 'lohse',
@@ -46,6 +49,7 @@ export const TESTIMONIAL_PLAYLIST: TestimonialVideoItem[] = [
     badgeDe: 'Interview',
     badgeEn: 'Interview',
     url: 'https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/testimonials/lohse.mp4',
+    thumbnail: '/testimonials/lohse.png',
   },
   {
     id: 'unnewehr',
@@ -55,6 +59,7 @@ export const TESTIMONIAL_PLAYLIST: TestimonialVideoItem[] = [
     badgeDe: 'Interview',
     badgeEn: 'Interview',
     url: 'https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/testimonials/unnewehr.mp4',
+    thumbnail: '/testimonials/unnewehr.png',
   },
   {
     id: 'klaiber',
@@ -64,6 +69,7 @@ export const TESTIMONIAL_PLAYLIST: TestimonialVideoItem[] = [
     badgeDe: 'Interview',
     badgeEn: 'Interview',
     url: 'https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/testimonials/Klaiber.mp4',
+    thumbnail: '/testimonials/klaiber.png',
   },
 ]
 
@@ -226,6 +232,7 @@ export function TestimonialMontageVideo({
           <video
             ref={videoRef}
             src={activeVideoUrl}
+            poster={currentItem.thumbnail}
             autoPlay={autoPlay}
             loop
             muted={isMuted}
@@ -326,13 +333,23 @@ export function TestimonialMontageVideo({
                 >
                   {/* Thumbnail Video Preview with Aspect Ratio */}
                   <div className="relative aspect-video w-full bg-neutral-900 overflow-hidden">
-                    <video
-                      src={`${item.url}#t=0.5`}
-                      preload="metadata"
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-                    />
+                    {item.thumbnail ? (
+                      <Image
+                        src={item.thumbnail}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 280px"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+                      />
+                    ) : (
+                      <video
+                        src={`${item.url}#t=0.5`}
+                        preload="metadata"
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+                      />
+                    )}
 
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
