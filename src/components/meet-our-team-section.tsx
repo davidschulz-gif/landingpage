@@ -72,6 +72,14 @@ const teamMembers = [
     subtext: "",
     linkedin: '#'
   },
+   {
+    id: 'nina-smeenk',
+    role: 'COMPUTER VISION & 3D/BIM DATA ENGINEER',
+    name: 'Dr. NINA SMEENK',
+    image: '/team/Nina Smeenk.png',
+    subtext: "",
+    linkedin: '#'
+  },
   //  {
   //   id: 'pascal-helfer',
   //   role: 'ACCOUNT MANAGER',
