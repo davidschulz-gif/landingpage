@@ -2708,7 +2708,7 @@ function PricingCard({
             className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
             style={{ fontFamily: 'Arial' }}
           >
-            {locale === 'de' ? 'Kostenlos testen' : 'Try for Free'}
+            {locale === 'de' ? 'Jetzt starten' : 'Start now'}
           </button>
         ) : plan.id === 'enterprise' ? (
           <button
