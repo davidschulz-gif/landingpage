@@ -1715,6 +1715,7 @@ export function ManyChatPricingSection({
           <div className='w-full max-w-md mx-auto mt-8 mb-10'>
             <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
               <input
+                id='prof-promo-code-input'
                 type='text'
                 className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
                 placeholder={tModal('promoCodePlaceholder')}

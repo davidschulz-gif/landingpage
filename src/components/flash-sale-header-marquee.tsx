@@ -31,11 +31,12 @@ export function FlashSaleHeaderMarquee({
   const isDe = locale === 'de'
 
   // Avoid Next.js SSR hydration mismatches by initializing false on server
-  const [internalVisible, setInternalVisible] = useState(false)
-  const [marqueeMode, setMarqueeMode] = useState<'countdown' | 'expired'>('countdown')
-  const [couponCode, setCouponCode] = useState(propCode || 'TYP50')
-  const [discountText, setDiscountText] = useState(propDiscountText || '50% RABATT')
+  const [internalVisible, setInternalVisible] = useState(true)
+  const [marqueeMode, setMarqueeMode] = useState<'promo' | 'countdown' | 'expired'>('promo')
+  const [couponCode, setCouponCode] = useState(propCode || 'TYP70')
+  const [discountText, setDiscountText] = useState(propDiscountText || '70% RABATT')
   const [timeLeft, setTimeLeft] = useState<number>(24 * 60 * 60) // 24 hours (86400s)
+  const [copied, setCopied] = useState(false)
 
   const isVisible = propIsVisible !== undefined ? propIsVisible : internalVisible
   const activeCodeRef = useRef<string>(couponCode)
@@ -43,14 +44,12 @@ export function FlashSaleHeaderMarquee({
 
   // 1. Initial client-side restoration from localStorage
   useEffect(() => {
-    const codeToCheck = propCode || 'TYP50'
+    const codeToCheck = propCode || 'TYP70'
 
     if (forceExpired || isCouponExpired(codeToCheck)) {
-      if (propIsVisible) {
-        setInternalVisible(true)
-        setMarqueeMode('expired')
-        setCouponCode(codeToCheck)
-      }
+      setInternalVisible(true)
+      setMarqueeMode('expired')
+      setCouponCode(codeToCheck)
       return
     }
 
@@ -64,9 +63,13 @@ export function FlashSaleHeaderMarquee({
       setDiscountText(active.discountText)
       const diff = Math.max(0, Math.floor((active.expiresAt - Date.now()) / 1000))
       setTimeLeft(diff)
-    } else if (propIsVisible) {
-      // If parent explicitly set isVisible=true and not expired, activate with 24h timer
-      const textToUse = propDiscountText || '50% RABATT'
+    } else if (active && isCouponExpired(active.code)) {
+      setInternalVisible(true)
+      setMarqueeMode('expired')
+      setCouponCode(active.code)
+    } else if (propIsVisible && propCode) {
+      // If parent explicitly set isVisible=true with a specific code, activate with 24h timer
+      const textToUse = propDiscountText || '70% RABATT'
       const record = saveCouponActivation(codeToCheck, textToUse)
 
       if (record.isExpired) {
@@ -81,6 +84,11 @@ export function FlashSaleHeaderMarquee({
         const diff = Math.max(0, Math.floor((record.expiresAt - Date.now()) / 1000))
         setTimeLeft(diff)
       }
+    } else {
+      // Default state before code is entered: for anyone visiting the page
+      setInternalVisible(true)
+      setMarqueeMode('promo')
+      setCouponCode(propCode || 'TYP70')
     }
   }, [propIsVisible, propCode, propDiscountText, forceExpired])
 
@@ -203,8 +211,9 @@ export function FlashSaleHeaderMarquee({
           setTimeLeft(diff)
         }
       } else {
-        // Not applied and not expired
-        setInternalVisible(false)
+        // Not applied and not expired: revert to promo marquee
+        setMarqueeMode('promo')
+        setInternalVisible(true)
       }
     }
 
@@ -218,15 +227,19 @@ export function FlashSaleHeaderMarquee({
         }
 
         const active = getActiveCoupon()
-        if (active) {
+        if (active && !isCouponExpired(active.code)) {
           setMarqueeMode('countdown')
           setInternalVisible(true)
           setCouponCode(active.code)
           setDiscountText(active.discountText)
           const diff = Math.max(0, Math.floor((active.expiresAt - Date.now()) / 1000))
           setTimeLeft(diff)
+        } else if (active && isCouponExpired(active.code)) {
+          setMarqueeMode('expired')
+          setInternalVisible(true)
         } else {
-          setInternalVisible(false)
+          setMarqueeMode('promo')
+          setInternalVisible(true)
         }
       }
     }
@@ -252,9 +265,37 @@ export function FlashSaleHeaderMarquee({
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
   }
 
+  const handleBadgeClick = () => {
+    if (marqueeMode === 'promo') {
+      try {
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+          navigator.clipboard.writeText('TYP70')
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2500)
+        }
+      } catch (e) {
+        // ignore
+      }
+      const input =
+        document.getElementById('prof-promo-code-input') ||
+        (document.querySelector('input[placeholder*="Code"]') as HTMLInputElement | null)
+      if (input) {
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        input.focus()
+      }
+    }
+  }
+
   if (!isVisible) return null
 
-  // Active reservation messages
+  const isExpired = marqueeMode === 'expired'
+  const isPromo = marqueeMode === 'promo'
+
+  // Promo messages (default before code is entered)
+  const messagePromoDE = 'TEMPORÄRE AKTION • CODE: TYP70'
+  const messagePromoEN = 'TEMPORARY PROMOTION • CODE: TYP70'
+
+  // Active reservation messages (after code is entered)
   const messageActiveDE = 'Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.'
   const messageActiveEN = 'Limited spaces available. This seat is reserved for you for 24 hours.'
 
@@ -262,21 +303,17 @@ export function FlashSaleHeaderMarquee({
   const messageExpiredDE = EXPIRED_COUPON_MESSAGE_DE
   const messageExpiredEN = EXPIRED_COUPON_MESSAGE_EN
 
-  const isExpired = marqueeMode === 'expired'
-  const messagePrimary = isDe
-    ? isExpired
-      ? messageExpiredDE
-      : messageActiveDE
+  const messagePrimary = isPromo
+    ? (isDe ? messagePromoDE : messagePromoEN)
     : isExpired
-      ? messageExpiredEN
-      : messageActiveEN
-  const messageSecondary = isDe
-    ? isExpired
-      ? messageExpiredEN
-      : messageActiveEN
+      ? (isDe ? messageExpiredDE : messageExpiredEN)
+      : (isDe ? messageActiveDE : messageActiveEN)
+
+  const messageSecondary = isPromo
+    ? (isDe ? messagePromoEN : messagePromoDE)
     : isExpired
-      ? messageExpiredDE
-      : messageActiveDE
+      ? (isDe ? messageExpiredEN : messageExpiredDE)
+      : (isDe ? messageActiveEN : messageActiveDE)
 
   return (
     <AnimatePresence>
@@ -318,8 +355,20 @@ export function FlashSaleHeaderMarquee({
             </div>
           </div>
 
-          {/* Right Badge: Countdown timer OR Expired badge */}
-          {marqueeMode === 'countdown' ? (
+          {/* Right Badge: Promo code / Countdown timer / Expired badge */}
+          {marqueeMode === 'promo' ? (
+            <button
+              type="button"
+              onClick={handleBadgeClick}
+              className="shrink-0 flex items-center gap-2 bg-white text-[#FF3F34] px-3.5 py-1 rounded-full text-xs sm:text-sm font-sans font-bold tracking-wider uppercase shadow-xs hover:bg-white/95 transition-all active:scale-95 cursor-pointer"
+              title={isDe ? 'Code kopieren' : 'Copy code'}
+            >
+              <Tag className="w-4 h-4 text-[#FF3F34] shrink-0" />
+              <span className="text-[#FF3F34]">
+                {copied ? (isDe ? 'KOPIERT!' : 'COPIED!') : 'CODE: TYP70'}
+              </span>
+            </button>
+          ) : marqueeMode === 'countdown' ? (
             <div className="shrink-0 flex items-center gap-2 bg-white text-[#FF3F34] px-3.5 py-1 rounded-full text-xs sm:text-sm font-mono font-bold tracking-widest shadow-xs">
               <Timer className="w-4 h-4 shrink-0 animate-spin text-[#FF3F34]" style={{ animationDuration: '6s' }} />
               <span className="text-[#FF3F34]">
