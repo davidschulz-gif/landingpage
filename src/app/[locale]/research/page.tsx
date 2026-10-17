@@ -73,8 +73,31 @@ export default function ResearchPage() {
 
   const ffplusNewsUrl = 'https://www.ffplus-project.eu/en/news-and-events/news/strong-demand-for-the-ffplus-innovation-studies-call-18-new-sub-projects-selected-for-funding/'
 
+  interface ProjectItem {
+    id: string
+    key: string
+    status: string
+    statusText: string
+    grantNumber?: string
+    logos?: Array<{ src: string; alt: string }>
+    fundingText?: string
+    thumbnail?: {
+      src: string
+      alt: string
+      href: string
+    }
+    externalUrl?: string
+    externalLabel?: string
+    externalLinks?: Array<{
+      url: string
+      label: string
+      primary?: boolean
+      variant?: 'primary' | 'secondary' | 'outline'
+    }>
+  }
+
   // 5 Research Projects with keys, logos and external links
-  const projectKeys = [
+  const projectKeys: ProjectItem[] = [
     {
       id: 'efre-nrw',
       key: 'efre',
@@ -92,12 +115,34 @@ export default function ResearchPage() {
         { src: '/logo_ffplus_hires.png', alt: 'FORTISSIMO PLUS (FFplus)' },
         { src: '/logo_eu_flag_hires.png', alt: 'European Union' },
         { src: '/logo_eurohpc_ju_cut.png', alt: 'EuroHPC Joint Undertaking' },
-         { src: '/logo_chipsju_hires.png', alt: 'Chips JU' },
+        { src: '/logo_chipsju_hires.png', alt: 'Chips JU' },
         { src: '/logo_eccc_hires.png', alt: 'ECCC' }
       ],
       fundingText: 'This project has received funding from the European High-Performance Computing Joint Undertaking (JU) under grant agreement No 101163317. The JU receives support from the Digital Europe Programme.',
-      externalUrl: ffplusNewsUrl,
-      externalLabel: isDe ? 'Zur offiziellen Pressemitteilung' : 'To the official press release'
+      thumbnail: {
+        src: '/ffplus_typus_study_thumbnail.png',
+        alt: isDe
+          ? 'FFplus Innovationsstudie – Material- und geometriebewusste generative KI'
+          : 'FFplus Innovation Study – Material- and geometry-aware generative AI',
+        href: 'https://www.ffplus-project.eu/en/experiments-studies/typus-integrating-real-material-manufactures/'
+      },
+      externalLinks: [
+        {
+          url: 'https://www.ffplus-project.eu/en/experiments-studies/typus-integrating-real-material-manufactures/',
+          label: isDe ? 'Zur FFplus Innovationsstudie' : 'To the FFplus Innovation Study',
+          primary: true
+        },
+        {
+          url: 'https://www.ffplus-project.eu/en/experiments-studies/?program=studies',
+          label: isDe ? 'FFplus Studien & Experimente' : 'FFplus Studies & Experiments',
+          variant: 'secondary' as const
+        },
+        {
+          url: ffplusNewsUrl,
+          label: isDe ? 'Zur Pressemitteilung' : 'To the official press release',
+          variant: 'outline' as const
+        }
+      ]
     },
     {
       id: 'igp-bmwe',
@@ -291,8 +336,55 @@ export default function ResearchPage() {
                       </p>
                     )}
 
-                    {/* External Link Pill (for FFplus or calls with external news) */}
-                    {proj.externalUrl && (
+                    {/* Thumbnail Image */}
+                    {proj.thumbnail && (
+                      <div className="pt-2">
+                        <Link
+                          href={proj.thumbnail.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-neutral-200/90 bg-white hover:border-neutral-400 hover:shadow-sm transition-all group/thumb cursor-pointer"
+                        >
+                          <Image
+                            src={proj.thumbnail.src}
+                            alt={proj.thumbnail.alt}
+                            fill
+                            className="object-contain p-2 group-hover/thumb:scale-[1.02] transition-transform duration-300"
+                          />
+                          <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-neutral-900/80 backdrop-blur-xs text-[11px] font-medium text-white opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center gap-1.5 shadow-xs">
+                            <span>{isDe ? 'Studie öffnen' : 'Open study'}</span>
+                            <ExternalLink className="w-3 h-3 text-neutral-300" />
+                          </div>
+                        </Link>
+                      </div>
+                    )}
+
+                    {/* External Link Buttons */}
+                    {proj.externalLinks && proj.externalLinks.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2 pt-2">
+                        {proj.externalLinks.map((link, lIdx) => (
+                          <Link
+                            key={lIdx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[12px] sm:text-[13px] font-semibold transition-all shadow-xs hover:shadow-md cursor-pointer ${
+                              link.primary
+                                ? 'bg-neutral-900 hover:bg-black text-white'
+                                : link.variant === 'secondary'
+                                  ? 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 border border-neutral-200/80'
+                                  : 'bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-950 border border-neutral-200/90'
+                            }`}
+                          >
+                            <span>{link.label}</span>
+                            <ExternalLink className={`w-3.5 h-3.5 shrink-0 ${link.primary ? 'text-neutral-300' : 'text-neutral-400'}`} />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Fallback for single externalUrl if externalLinks not provided */}
+                    {!proj.externalLinks && proj.externalUrl && (
                       <div className="pt-2">
                         <Link
                           href={proj.externalUrl}
