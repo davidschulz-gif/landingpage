@@ -47,6 +47,14 @@ const teamMembers = [
     subtext: "",
     linkedin: '#'
   },
+  {
+    id: 'stefan-walter',
+    role: 'ACCOUNT MANAGER',
+    name: 'STEFAN WALTER',
+    image: '/team/Professionelles Porträt eines jungen Mannes.png',
+    subtext: "",
+    linkedin: '#'
+  },
 
    {
     id: 'marie-kristin-foerste',
