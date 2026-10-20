@@ -206,6 +206,7 @@
     "serviceOfferTitle": "SERVICE OFFER",
     "educationOfferTitle": "ACADEMIC",
     "floorPlanOfferTitle": "FLOOR PLAN",
+    "agentOfferTitle": "AI AGENT",
     "features": {
       "createAccount": "CREATE A FREE ACCOUNT",
       "downloadPlugins": "DOWNLOAD & INSTALL PLUGINS FOR FREE",

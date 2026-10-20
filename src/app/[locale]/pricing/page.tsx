@@ -110,6 +110,16 @@ function PricingContent() {
                     />
                 </div>
 
+                {/* Additional Video Section */}
+                <div className='max-w-4xl mx-auto px-4 mb-8 relative z-20'>
+                    <TestimonialMontageVideo
+                        videoUrl="https://typus-ai.s3.eu-central-1.amazonaws.com/landingpage/public/video/Typus_YT_Wer_jetzt_nicht_handelt.mp4"
+                        showBadge={false}
+                        showPlaylistSlider={false}
+                        autoPlay={false}
+                    />
+                </div>
+
                 {/* Only show the tab toggle if there is no token (token auto-selects the plan) */}
                 {!token && (
                     <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>

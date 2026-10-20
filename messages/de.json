@@ -206,6 +206,7 @@
     "serviceOfferTitle": "SERVICE ANGEBOT",
     "educationOfferTitle": "AKADEMISCH",
     "floorPlanOfferTitle": "GRUNDRISS",
+    "agentOfferTitle": "KI-AGENT",
     "features": {
       "createAccount": "KOSTENLOSES KONTO ERSTELLEN",
       "downloadPlugins": "PLUGINS KOSTENLOS HERUNTERLADEN & INSTALLIEREN",
