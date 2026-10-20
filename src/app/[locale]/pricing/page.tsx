@@ -71,13 +71,15 @@ function PricingContent() {
     const token = searchParams.get('token')
     // const showBillingToggle = searchParams.get('disscountPlans') === 'true'
     const showBillingToggle = true
-    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan' | 'agent'>('app')
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const hash = window.location.hash
             const tabParam = searchParams.get('tab') || searchParams.get('mode') || searchParams.get('plan')
-            if (hash === '#floorplan' || tabParam === 'floorplan' || tabParam === 'floor-plan') {
+            if (hash === '#agent' || hash === '#ai-agent' || tabParam === 'agent' || tabParam === 'ai-agent') {
+                setViewMode('agent')
+            } else if (hash === '#floorplan' || tabParam === 'floorplan' || tabParam === 'floor-plan') {
                 setViewMode('floorplan')
             } else if (hash === '#student-plan' || tabParam === 'education' || tabParam === 'student') {
                 setViewMode('education')
@@ -124,7 +126,7 @@ function PricingContent() {
                 {!token && (
                     <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                         <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
-                            {['education', 'app', 'floorplan'].map((mode) => (
+                            {['education', 'app', 'floorplan', 'agent'].map((mode) => (
                                 <button
                                     key={mode}
                                     onClick={() => setViewMode(mode as any)}
@@ -144,7 +146,9 @@ function PricingContent() {
                                               ? tHero('appOfferTitle')
                                               : mode === 'floorplan'
                                                 ? tHero('floorPlanOfferTitle')
-                                                : tHero('educationOfferTitle')}
+                                                : mode === 'agent'
+                                                  ? tHero('agentOfferTitle')
+                                                  : tHero('educationOfferTitle')}
                                     </span>
                                 </button>
                             ))}
@@ -172,6 +176,16 @@ function PricingContent() {
                             transition={{ duration: 0.3 }}
                         >
                             <ManyChatPricingSection isStandalone={true} showOnly="floorplan" verificationToken={token || undefined} />
+                        </motion.div>
+                    ) : viewMode === 'agent' ? (
+                        <motion.div
+                            key="agent"
+                            initial={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ManyChatPricingSection isStandalone={true} showOnly="agent" verificationToken={token || undefined} showBillingToggle={showBillingToggle} />
                         </motion.div>
                     ) : (
                         <motion.div

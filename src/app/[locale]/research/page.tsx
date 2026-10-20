@@ -94,6 +94,23 @@ export default function ResearchPage() {
       primary?: boolean
       variant?: 'primary' | 'secondary' | 'outline'
     }>
+    actionButton?: {
+      label: string
+      onClick: () => void
+    }
+    pitchTag?: string
+  }
+
+  const handleOpenPilotModal = () => {
+    setFormData(prev => ({
+      ...prev,
+      project: isDe ? 'KMU-innovativ / Bauen im Bestand' : 'KMU-innovativ / Existing Building Stock',
+      message: isDe
+        ? 'Wir interessieren uns für eine Teilnahme als Pilotanwender im Forschungsprojekt KMU-innovativ (KI für das Bauen im Bestand).'
+        : 'We are interested in participating as a pilot user in the KMU-innovativ research project (AI for existing building stock).'
+    }))
+    setFormSubmitted(false)
+    setIsModalOpen(true)
   }
 
   // 5 Research Projects with keys, logos and external links
@@ -148,7 +165,8 @@ export default function ResearchPage() {
       id: 'igp-bmwe',
       key: 'igp',
       status: 'inProgress',
-      statusText: t('projects.status.inProgress')
+      statusText: t('projects.status.inProgress'),
+      pitchTag: t('projects.igp.pitchTag')
     },
     {
       id: 'zukunft-bau',
@@ -157,13 +175,17 @@ export default function ResearchPage() {
       statusText: t('projects.status.inProgress'),
       logos: [{ src: '/logo_zukunft_bau.png', alt: 'Zukunft Bau' }]
     },
-    // {
-    //   id: 'kmu-innovativ',
-    //   key: 'kmu',
-    //   status: 'inDevelopment',
-    //   statusText: t('projects.status.inDevelopment'),
-    //   logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }]
-    // }
+    {
+      id: 'kmu-innovativ',
+      key: 'kmu',
+      status: 'inDevelopment',
+      statusText: t('projects.status.inDevelopment'),
+      logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }],
+      actionButton: {
+        label: isDe ? 'Als Pilotanwender bewerben' : 'Apply as Pilot User',
+        onClick: handleOpenPilotModal
+      }
+    }
   ]
 
   // 5 Process Steps
@@ -325,9 +347,33 @@ export default function ResearchPage() {
                     </h4>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed pt-1">
+                    <div className="text-xs sm:text-sm text-neutral-600 leading-relaxed pt-1 whitespace-pre-line space-y-3">
                       {desc}
-                    </p>
+                    </div>
+
+                    {/* Action Button (e.g. Pilotanwender Modal) */}
+                    {proj.actionButton && (
+                      <div className="pt-2">
+                        <button
+                          type="button"
+                          onClick={proj.actionButton.onClick}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-black text-white text-[12px] sm:text-[13px] font-semibold transition-all shadow-xs hover:shadow-md cursor-pointer"
+                        >
+                          <span>{proj.actionButton.label}</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-neutral-300" />
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Pitch / Highlight Tag */}
+                    {proj.pitchTag && (
+                      <div className="pt-2">
+                        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-2xs">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                          <span>{proj.pitchTag}</span>
+                        </span>
+                      </div>
+                    )}
 
                     {/* Funding Text Statement */}
                     {proj.fundingText && (
@@ -680,7 +726,9 @@ export default function ResearchPage() {
                         <option value="EFRE NRW / BIM & Cloud">EFRE NRW / BIM & Cloud</option>
                         <option value="IGP BMWE / Nachhaltiges Wohnen">IGP BMWE / Sustainable Living</option>
                         <option value="Zukunft Bau / Semantische Produktdaten">Zukunft Bau / Semantic Product Data</option>
-                        <option value="KMU innovativ / Zirkuläres Bauen">KMU innovativ / Circular Building</option>
+                        <option value={isDe ? 'KMU-innovativ / Bauen im Bestand' : 'KMU-innovativ / Existing Building Stock'}>
+                          {isDe ? 'KMU-innovativ / Bauen im Bestand' : 'KMU-innovativ / Existing Building Stock'}
+                        </option>
                         <option value="Initiativ-Kooperation">{isDe ? 'Initiativ-Kooperation' : 'New Collaboration Proposal'}</option>
                       </select>
                     </div>

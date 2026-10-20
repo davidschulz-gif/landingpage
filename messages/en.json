@@ -4395,6 +4395,7 @@
         "title": "IGP • BMWE",
         "subtitle": "AI-supported, Sustainable Settlement and Living Models",
         "description": "Development of data-driven models for sustainable settlement structures and innovative housing concepts – in cooperation with DFKI and Concular.de.",
+        "pitchTag": "Selected for jury pitch on January 15, 2027",
         "meta": "COOPERATION: DFKI / Concular.de"
       },
       "zukunftBau": {
@@ -4405,11 +4406,11 @@
         "meta": "COOPERATION: Chair of Computing in Civil Engineering, RWTH Aachen / Prof. Blankenbach"
       },
       "kmu": {
-        "subtag": "Research Consortium",
-        "title": "KMU innovativ",
-        "subtitle": "Resource Efficiency and Circular Economy",
-        "description": "Development of innovative solutions for resource-efficient and circular construction in SMEs – within the KMU-innovativ program.",
-        "meta": "FUNDED BY: BMFTR / BMBF"
+        "subtag": "KIT • Chair of Building Lifecycle Management • Prof. Petra von Both",
+        "title": "KMU-innovativ: Information and Communication Technologies",
+        "subtitle": "AI for Existing Building Stock and Renovation",
+        "description": "The research project focuses on how AI can support the digital capture and reconstruction of existing buildings. To this end, information from photographs, plans, PDF documents, and product data is automatically captured, structured, and interlinked.\n\nThe research centers on three fields of application: energetic retrofitting of residential buildings, redesign and change of use of existing buildings, and material- and product-specific renovation planning.\n\nThe goal is the development of an AI-supported software demonstrator that assists in information retrieval, geometric reconstruction, and semantic assignment of building data.\n\nWe are looking for architecture and planning offices as pilot users to contribute their experience from renovation, remodeling, and energetic retrofitting, and to help shape the development of a practical tool for future building planning processes.",
+        "meta": "COOPERATION: KIT - CHAIR OF BUILDING LIFECYCLE MANAGEMENT / PROF. PETRA VON BOTH"
       }
     },
     "process": {

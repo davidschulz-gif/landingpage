@@ -4397,6 +4397,7 @@
         "title": "IGP • BMWE",
         "subtitle": "KI-gestützte, nachhaltige Siedlungs- und Wohnmodelle",
         "description": "Entwicklung datengestützter Modelle für nachhaltige Siedlungsstrukturen und innovative Wohnkonzepte – in Kooperation mit dem DFKI und Concular.de.",
+        "pitchTag": "ausgewählt für Pitch vor Jury am 15. Januar 2027",
         "meta": "KOOPERATION: DFKI / Concular.de"
       },
       "zukunftBau": {
@@ -4407,11 +4408,11 @@
         "meta": "KOOPERATION: Lehrstuhl Bauinformatik, RWTH Aachen / Prof. Blankenbach"
       },
       "kmu": {
-        "subtag": "Forschungskonsortium",
-        "title": "KMU innovativ",
-        "subtitle": "Ressourceneffizienz und Kreislaufwirtschaft",
-        "description": "Entwicklung innovativer Lösungen für ressourceneffizientes und zirkuläres Bauen im Mittelstand – im Rahmen des Programms KMU innovativ.",
-        "meta": "FÖRDERGEBER: BMFTR / BMBF"
+        "subtag": "KIT • Professur für Building Lifecycle Management • Prof. Petra von Both",
+        "title": "KMU-innovativ: Informations- und Kommunikationstechnologien",
+        "subtitle": "KI für das Bauen im Bestand",
+        "description": "Im Mittelpunkt des Forschungsprojekts steht die Frage, wie KI die digitale Erfassung und Rekonstruktion von Bestandsgebäuden unterstützen kann. Dazu werden Informationen aus Fotografien, Plänen, PDF-Dokumenten und Produktdaten automatisiert erfasst, strukturiert und miteinander verknüpft.\n\nDie Forschung konzentriert sich auf drei Anwendungsfelder: die energetische Ertüchtigung von Wohngebäuden, die Umplanung und Nutzungsänderung bestehender Gebäude sowie die material- und produktbezogene Sanierungsplanung.\n\nZiel ist die Entwicklung eines KI-gestützten Software-Demonstrators, der die Informationsgewinnung, geometrische Rekonstruktion und semantische Zuordnung von Gebäudedaten unterstützt.\n\nGesucht werden Architektur- und Planungsbüros als Pilotanwender, die ihre Erfahrungen aus Sanierung, Umbau und energetischer Ertüchtigung einbringen und die Entwicklung eines praxisnahen Werkzeugs für zukünftige Bestandsplanungsprozesse mitgestalten möchten.",
+        "meta": "KOOPERATION: KIT - PROFESSUR FÜR BUILDING LIFECYCLE MANAGEMENT / PROF. PETRA VON BOTH"
       }
     },
     "process": {
