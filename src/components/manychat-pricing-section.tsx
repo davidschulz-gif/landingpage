@@ -32,6 +32,7 @@ import {
   EXPIRED_COUPON_MESSAGE_DE,
   EXPIRED_COUPON_MESSAGE_EN,
 } from '@/lib/coupon-storage'
+import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
 
 const professionalPlans = [
   {
@@ -1793,8 +1794,8 @@ export function ManyChatPricingSection({
           </div>
         </div>
 
-          <div className={`w-full ${currentProfPlans.length === 2 ? 'max-w-[740px]' : 'max-w-[1000px]'} mx-auto px-4 mb-4`}>
-            <div className={`grid grid-cols-1 ${currentProfPlans.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'} justify-center items-stretch gap-4`}>
+          <div className={`w-full ${currentProfPlans.length === 2 ? 'max-w-[1040px]' : 'max-w-[1400px]'} mx-auto px-4 mb-4`}>
+            <div className={`grid grid-cols-1 ${currentProfPlans.length === 2 ? 'sm:grid-cols-3' : 'sm:grid-cols-3 lg:grid-cols-4'} justify-center items-stretch gap-4`}>
               {currentProfPlans
                 .filter(plan => !(plan.id === 'test' && profBillingCycle === 'yearly'))
                 .map((plan, index) => (
@@ -1819,6 +1820,7 @@ export function ManyChatPricingSection({
                   />
                 </div>
               ))}
+                <BookingDemoClassFormForPricingPage/>
             </div>
           </div>
 
