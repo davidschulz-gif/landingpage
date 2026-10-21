@@ -177,16 +177,6 @@ function PricingContent() {
                         >
                             <ManyChatPricingSection isStandalone={true} showOnly="floorplan" verificationToken={token || undefined} />
                         </motion.div>
-                    ) : viewMode === 'agent' ? (
-                        <motion.div
-                            key="agent"
-                            initial={{ opacity: 1, y: 0 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <ManyChatPricingSection isStandalone={true} showOnly="agent" verificationToken={token || undefined} showBillingToggle={showBillingToggle} />
-                        </motion.div>
                     ) : (
                         <motion.div
                             key="education"
