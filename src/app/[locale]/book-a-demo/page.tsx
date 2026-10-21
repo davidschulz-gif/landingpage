@@ -26,7 +26,7 @@ export default function BookADemoPage() {
 
   if (!mounted) return null;
 
-  const currentCalendarUrl = ANNIKA_CALENDAR;
+  const currentCalendarUrl = ADA_CALENDAR;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-8" style={{ backgroundColor: '#f7f5f0' }}>

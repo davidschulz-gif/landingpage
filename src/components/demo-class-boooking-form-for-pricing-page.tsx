@@ -245,7 +245,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <div className='flex items-center gap-4 rounded-xl bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-1 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
           <div className='w-30 h-30 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
             <img
-              src='/DominikDenny.png'
+              src='/team/adavkayser.png'
               alt={tBilder('benefits.advisorName')}
               className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
             />
@@ -288,7 +288,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           </button>
           <div className="w-full h-[600px] overflow-hidden rounded-xl border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
             <iframe
-              src="https://calendar.app.google/SE4uynXtibyYmAe36"
+              src="https://calendar.app.google/uUbcjgHyvHY7jkig7"
               width="100%"
               height="100%"
               className="w-full h-full border-none"
@@ -460,7 +460,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       {/* Direct Calendar Link replacing form */}
       <div className='mt-6 mb-2'>
         <a
-          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HQlLeidgu-WWBwM_4FWc5GvZvnVhF-okEue8u6dV4j0ae-WeZ3_55NTUZskdgk2v5P1vl9h9s"
+          href="https://calendar.app.google/uUbcjgHyvHY7jkig7"
           target="_blank"
           rel="noopener noreferrer"
           className='flex items-center justify-center bg-transparent text-black cursor-pointer w-full px-4 py-3 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'
