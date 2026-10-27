@@ -585,7 +585,7 @@ export default function ForManufacturersPricingPage() {
                 <div className="w-2 h-2 bg-black dark:bg-white shrink-0" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
                 {/* Add-on 1 */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
                   <CornerSquares size="w-1.5 h-1.5" />
@@ -602,23 +602,7 @@ export default function ForManufacturersPricingPage() {
                   </div>
                 </div>
 
-                {/* Add-on 2 */}
-                <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
-                  <CornerSquares size="w-1.5 h-1.5" />
-                  <div className="space-y-1 text-left">
-                    <h3 className="text-sm text-neutral-900 dark:text-white">
-                      {t('plans.addons.scanning.title')}
-                    </h3>
-                    <p className="text-xs text-neutral-500">
-                      {t('plans.addons.scanning.desc')}
-                    </p>
-                  </div>
-                  <div className="text-xs text-black dark:text-white pt-2 border-t border-neutral-100 dark:border-neutral-800 font-semibold">
-                    {t('plans.addons.scanning.price')}
-                  </div>
-                </div>
-
-                {/* Add-on 3 */}
+                {/* Add-on 2: PIM Integration */}
                 <div className="relative p-5 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 flex flex-col justify-between space-y-3 shadow-2xs">
                   <CornerSquares size="w-1.5 h-1.5" />
                   <div className="space-y-1 text-left">
@@ -633,7 +617,6 @@ export default function ForManufacturersPricingPage() {
                     {t('plans.addons.pimIntegration.price')}
                   </div>
                 </div>
-
               </div>
             </div>
           </motion.div>
