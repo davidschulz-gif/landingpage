@@ -18,13 +18,28 @@ import { useRouter } from '@/i18n/navigation'
 interface BookingDemoClassFormProps {
   className?: string
   showTitle?: boolean
+  advisor?: 'ada' | 'dominik'
+  calendarUrl?: string
 }
 
 
-export default function BookingDemoClassFormForPricingPage({ className, showTitle = true }: BookingDemoClassFormProps) {
+export default function BookingDemoClassFormForPricingPage({
+  className,
+  showTitle = true,
+  advisor = 'ada',
+  calendarUrl,
+}: BookingDemoClassFormProps) {
   const t = useTranslations('BookingDemoClassForm')
   const tPricing = useTranslations('Pricing')
   const tBilder = useTranslations('BilderFlatrate')
+  const isDominik = advisor === 'dominik'
+  const advisorName = isDominik ? 'Dominik Denny' : tBilder('benefits.advisorName')
+  const advisorImage = isDominik ? '/DominikDenny.png' : '/team/adavkayser.png'
+  const targetCalendarUrl =
+    calendarUrl ||
+    (isDominik
+      ? 'https://calendar.app.google/q85ip5B1L6vwHs1w7'
+      : 'https://calendar.app.google/uUbcjgHyvHY7jkig7')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isRequesting, setIsRequesting] = useState(false)
@@ -245,13 +260,13 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
         <div className='flex items-center gap-4 rounded-xl bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 p-1 w-full text-left backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.02)]'>
           <div className='w-30 h-30 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 dark:border-neutral-700'>
             <img
-              src='/team/adavkayser.png'
-              alt={tBilder('benefits.advisorName')}
+              src={advisorImage}
+              alt={advisorName}
               className='w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110'
             />
           </div>
           <div className='flex-1'>
-            <p className='text-black py dark:text-white  text-base tracking-widest'>{tBilder('benefits.advisorName')}</p>
+            <p className='text-black py dark:text-white  text-base tracking-widest'>{advisorName}</p>
             {/* <p className='text-neutral-500 text-xs uppercase tracking-wider mt-1'>{tBilder('benefits.advisorRole')}</p> */}
           </div>
         </div>
@@ -288,7 +303,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
           </button>
           <div className="w-full h-[600px] overflow-hidden rounded-xl border border-neutral-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)]">
             <iframe
-              src="https://calendar.app.google/uUbcjgHyvHY7jkig7"
+              src={targetCalendarUrl}
               width="100%"
               height="100%"
               className="w-full h-full border-none"
@@ -460,7 +475,7 @@ export default function BookingDemoClassFormForPricingPage({ className, showTitl
       {/* Direct Calendar Link replacing form */}
       <div className='mt-6 mb-2'>
         <a
-          href="https://calendar.app.google/uUbcjgHyvHY7jkig7"
+          href={targetCalendarUrl}
           target="_blank"
           rel="noopener noreferrer"
           className='flex items-center justify-center bg-transparent text-black cursor-pointer w-full px-4 py-3 text-[10px] font-medium uppercase tracking-wide border border-black hover:bg-black hover:text-white transition-all duration-200 rounded-2xl'

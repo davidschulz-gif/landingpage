@@ -178,8 +178,8 @@ export default function ResearchPage() {
     {
       id: 'kmu-innovativ',
       key: 'kmu',
-      status: 'inDevelopment',
-      statusText: t('projects.status.inDevelopment'),
+      status: 'inProgress',
+      statusText: t('projects.status.inProgress'),
       logos: [{ src: '/logo_kmu_innovativ.png', alt: 'KMU-innovativ' }],
       actionButton: {
         label: isDe ? 'Als Pilotanwender bewerben' : 'Apply as Pilot User',

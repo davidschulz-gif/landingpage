@@ -213,7 +213,7 @@ export default function ForManufacturersPricingPage() {
               {/* Advisor & Custom Offer Booking Form Card */}
               <div className="flex-1 min-w-0 max-w-xl p-4 sm:p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs relative overflow-hidden flex flex-col justify-between">
                 <CornerSquares />
-                <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" />
+                <BookingDemoClassFormForPricingPage className="p-0 pb-0 max-w-none w-full" advisor="dominik" />
               </div>
             </div>
 
