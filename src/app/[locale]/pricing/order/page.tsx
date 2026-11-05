@@ -45,6 +45,8 @@ function OrderContent() {
   const billingParam = searchParams.get('billing') || 'monthly'
   const urlPromoCode = searchParams.get('promoCode') || ''
   const isEducationalParam = searchParams.get('isEducational') === 'true'
+  const isAgentParam = searchParams.get('isAgent') === 'true' || searchParams.get('view') === 'agent' || searchParams.get('viewMode') === 'agent'
+  const isFloorPlanParam = searchParams.get('isFloorPlan') === 'true' || searchParams.get('view') === 'floorPlan' || searchParams.get('viewMode') === 'floorPlan'
 
   const planId = `${planParam.toLowerCase()}-${billingParam.toLowerCase()}`
   const data = getOrderPageData(planId, locale, isEducationalParam)
@@ -129,9 +131,11 @@ function OrderContent() {
           const tokenPlan = resData.plan?.toLowerCase() || planParam
           const tokenBilling = resData.billing?.toLowerCase() || billingParam
           const tokenIsEdu = resData.isEducational ?? isEducationalParam
+          const tokenIsAgent = resData.isAgent ?? isAgentParam
+          const tokenIsFP = resData.isFloorPlan ?? isFloorPlanParam
           
-          if (tokenPlan !== planParam || tokenBilling !== billingParam || tokenIsEdu !== isEducationalParam) {
-            router.replace(`/${locale}/pricing/order?plan=${tokenPlan}&billing=${tokenBilling}&isEducational=${tokenIsEdu}&token=${tokenParam}`)
+          if (tokenPlan !== planParam || tokenBilling !== billingParam || tokenIsEdu !== isEducationalParam || tokenIsAgent !== isAgentParam || tokenIsFP !== isFloorPlanParam) {
+            router.replace(`/${locale}/pricing/order?plan=${tokenPlan}&billing=${tokenBilling}&isEducational=${tokenIsEdu}&isAgent=${tokenIsAgent}&isFloorPlan=${tokenIsFP}&token=${tokenParam}`)
           }
           
           setShowOnboarding(false)
@@ -383,6 +387,8 @@ function OrderContent() {
         planType: planParam.toUpperCase(),
         billingCycle: billingParam.toUpperCase(),
         isEducational: isEducationalParam,
+        isFloorPlan: isFloorPlanParam,
+        isAgent: isAgentParam,
         promoCode: promoDiscount ? promoCode.trim() : null,
         currency: planCurrency,
         cancelUrl: window.location.href,

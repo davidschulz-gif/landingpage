@@ -71,7 +71,7 @@ function PricingContent() {
     const token = searchParams.get('token')
     // const showBillingToggle = searchParams.get('disscountPlans') === 'true'
     const showBillingToggle = true
-    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan' | 'agent'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -126,7 +126,7 @@ function PricingContent() {
                 {!token && (
                     <div className='flex justify-center mt-2 mb-2 relative z-40 px-4'>
                         <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
-                            {['education', 'app', 'floorplan', 'agent'].map((mode) => (
+                            {['education', 'app', 'floorplan'].map((mode) => (
                                 <button
                                     key={mode}
                                     onClick={() => setViewMode(mode as any)}
@@ -176,6 +176,16 @@ function PricingContent() {
                             transition={{ duration: 0.3 }}
                         >
                             <ManyChatPricingSection isStandalone={true} showOnly="floorplan" verificationToken={token || undefined} />
+                        </motion.div>
+                    ) : viewMode === 'agent' ? (
+                        <motion.div
+                            key="agent"
+                            initial={{ opacity: 1, y: 0 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <ManyChatPricingSection isStandalone={true} showOnly="agent" verificationToken={token || undefined} />
                         </motion.div>
                     ) : (
                         <motion.div

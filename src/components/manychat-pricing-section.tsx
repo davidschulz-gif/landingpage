@@ -105,6 +105,7 @@ const professionalPlans = [
     },
     features: [
       { text: '500 CREDITS /month', hasFeature: true },
+      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
       // { text: 'HIGH-END RESULTS', hasFeature: true },
@@ -165,6 +166,7 @@ const professionalPlans = [
     },
     features: [
       { text: '2000 CREDITS /month', hasFeature: true },
+      { text: '1000 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
@@ -227,6 +229,7 @@ const professionalPlans = [
     },
     features: [
       { text: '10000 CREDITS /month', hasFeature: true },
+      { text: '5000 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: '4K RESOLUTION', hasFeature: true },
       // { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: true },
@@ -256,6 +259,7 @@ const educationPlans = [
         text: '50 CREDITS /month (e.g. 30 base images and 10 Refinements)',
         hasFeature: true,
       },
+      { text: '50 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: 'OPT. CREDITS TOP UPS', hasFeature: true },
       { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
       { text: 'INTEGRATED REFINER', hasFeature: true },
@@ -280,6 +284,7 @@ const educationPlans = [
         text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
         hasFeature: true,
       },
+      { text: '150 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: '2 CONCURRENT JOBS', hasFeature: true },
       { text: 'RESOLUTION UP TO 4K', hasFeature: true },
       { text: 'NO QUEUE', hasFeature: true },
@@ -303,6 +308,7 @@ const educationPlans = [
         text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
         hasFeature: true,
       },
+      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
       { text: '4 CONCURRENT JOBS', hasFeature: true },
       { text: 'PREMIUM LIVE VIDEO CALL SUPPORT', hasFeature: true },
       { text: 'INCREASED SPEED OF GENERATION', hasFeature: true },
@@ -321,7 +327,7 @@ export function ManyChatPricingSection({
   showBillingToggle = false,
 }: { 
   isStandalone?: boolean
-  showOnly?: 'regular' | 'educational' | 'all' | 'floorplan'
+  showOnly?: 'regular' | 'educational' | 'all' | 'floorplan' | 'agent'
   verificationToken?: string
   showBillingToggle?: boolean
 }) {
@@ -363,6 +369,8 @@ export function ManyChatPricingSection({
   const [plans, setPlans] = useState<any>();
   const [educationalPlans, setEducationalPlans] = useState<any>();
   const [floorPlans, setFloorPlans] = useState<any[]>([]);
+  const [agentPlans, setAgentPlans] = useState<any[]>([]);
+  const [agentBillingCycle, setAgentBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
   const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
   const [isVat, setIsVat] = useState<boolean>(true);
   const [locationContinent, setLocationContinent] = useState<string | null>(null);
@@ -494,6 +502,7 @@ export function ManyChatPricingSection({
           const billingCycle = resData.billing || 'monthly'
           const isEdu = resData.isEducational ?? false
           const isFP = resData.isFloorPlan ?? false
+          const isAgent = resData.isAgent ?? false
 
           // Find the price ID from fetched plans (will be set once plans load)
           // We set the plan info now; priceId will be filled in after plans load
@@ -503,6 +512,7 @@ export function ManyChatPricingSection({
             priceId: null,
             isEducational: isEdu,
             isFloorPlan: isFP,
+            isAgent: isAgent,
           }
           setSelectedPlanForModal(reconstructedPlan)
 
@@ -792,6 +802,7 @@ export function ManyChatPricingSection({
       priceId: priceInfo.stripePriceId,
       isEducational: isEdu,
       isFloorPlan: plan.isFloorPlan ? true : false,
+      isAgent: plan.isAgent ? true : false,
       eligiblePromoCode: code || null
     })
     setIsModalOpen(true)
@@ -834,6 +845,7 @@ export function ManyChatPricingSection({
           email: userEmail.trim(),
           isEducational: selectedPlanForModal.isEducational ? true : false,
           isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
+          isAgent: selectedPlanForModal.isAgent ? true : false,
           plan: selectedPlanForModal.planType?.toLowerCase(),
           billing: selectedPlanForModal.billingCycle?.toLowerCase(),
           language: locale,
@@ -1029,6 +1041,7 @@ export function ManyChatPricingSection({
           billingCycle: mappedBillingCycle,
           isEducational: activePlan.isEducational,
           isFloorPlan: activePlan.isFloorPlan ? true : false,
+          isAgent: activePlan.isAgent ? true : false,
           promoCode: activePlan.eligiblePromoCode || null,
           currency: planCurrency,
           cancelUrl: window.location.href,
@@ -1076,6 +1089,9 @@ export function ManyChatPricingSection({
     
     const mapFeatureText = (f: any) => {
       if (typeof f === 'string') return f;
+      if (f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits500');
+      if (f.text.includes('1000 DRAFTY AI CREDITS') || f.text.includes('1000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits1000');
+      if (f.text.includes('5000 DRAFTY AI CREDITS') || f.text.includes('5000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits5000');
       if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits200');
       if (f.text.includes('2000 CREDITS')) return t('plans.pro.features.credits1000');
       if (f.text.includes('10000 CREDITS')) return t('plans.pro.features.credits5000');
@@ -1189,7 +1205,7 @@ export function ManyChatPricingSection({
             typeof f === 'string'
               ? f
               : t(
-                `plans.student.features.${f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
+                `plans.student.features.${(f.text.includes('50 DRAFTY AI CREDITS') || f.text.includes('50 AI AGENT CREDITS')) ? 'agentCredits50' : f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
               ),
           hasFeature: typeof f === 'object' ? f.hasFeature : true,
         })),
@@ -1204,7 +1220,7 @@ export function ManyChatPricingSection({
             typeof f === 'string'
               ? f
               : t(
-                `plans.educator.features.${f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+                `plans.educator.features.${(f.text.includes('150 DRAFTY AI CREDITS') || f.text.includes('150 AI AGENT CREDITS')) ? 'agentCredits150' : f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
               ),
           hasFeature: typeof f === 'object' ? f.hasFeature : true,
         })),
@@ -1219,7 +1235,7 @@ export function ManyChatPricingSection({
             typeof f === 'string'
               ? f
               : t(
-                `plans.institution.features.${f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+                `plans.institution.features.${(f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) ? 'agentCredits500' : f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
               ),
           hasFeature: typeof f === 'object' ? f.hasFeature : true,
         })),
@@ -1250,6 +1266,7 @@ export function ManyChatPricingSection({
       setPlans(plansData?.regularPlans);
       setEducationalPlans(plansData?.educationalPlans);
       setFloorPlans(plansData?.floorPlans || []);
+      setAgentPlans(plansData?.agentPlans || []);
       setPlanCurrency(plansData?.currency);
       if (plansData?.location?.isVat !== undefined) {
         setIsVat(plansData.location.isVat);
@@ -1633,6 +1650,292 @@ export function ManyChatPricingSection({
     );
   };
 
+  const agentStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
+    STARTER: {
+      description: locale === 'de'
+        ? 'Wesentliche KI-Agenten-Intelligenz für selbstständige Architekten & Designer.'
+        : 'Essential AI agent intelligence for independent architects and designers.',
+      features: locale === 'de' ? [
+        '300 monatliche Drafty Credits',
+        'Dedizierte KI-Agenten-Tools & Workflows',
+        'Automatischer Prompt-Enhancer',
+        'Schnelle Batch-Generierung & Iteration',
+        'Dedizierte Chat-Historie pro Session',
+        '24-Stunden-E-Mail-Support',
+      ] : [
+        '300 monthly Drafty Credits',
+        'Dedicated AI Agent tools & workflows',
+        'Auto prompt enhancer & suggestions',
+        'Fast batch generation & iteration',
+        'Dedicated chat history per session',
+        '24/7 priority email support',
+      ],
+    },
+    PRO: {
+      description: locale === 'de'
+        ? 'Grenzenlose kreative Freiheit für tägliche Entwürfe, 4K-Veredelung und Videos.'
+        : 'Uncapped creative freedom for daily designing, 4K refinement, and video generation.',
+      isPopular: true,
+      features: locale === 'de' ? [
+        '1.000 monatliche Drafty Credits',
+        'Prioritäts-Warteschlange für alle Agenten-Tasks',
+        'High-Res 4K Bildverfeinerung & Upscaling',
+        'KI-Videogenerierung & Render-Animationen',
+        'Erweiterte Werkzeuge & Material-Kataloge',
+        'Unbegrenzte Chat-Sitzungen',
+        'Prioritärer VIP-Support',
+      ] : [
+        '1,000 monthly Drafty Credits',
+        'Priority queue for all Agent tasks',
+        'High-Res 4K image refinement & upscaling',
+        'AI video generation & animations',
+        'Extended toolset & material catalogs',
+        'Unlimited chat sessions',
+        'Priority VIP support',
+      ],
+    },
+    BUSINESS: {
+      description: locale === 'de'
+        ? 'Entwickelt für Architekturbüros, Teams und hochfrequente Multimodal-Produktion.'
+        : 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
+      features: locale === 'de' ? [
+        '3.000 monatliche Drafty Credits',
+        'Höchste Prioritäts-Warteschlange',
+        'Team-Kollaboration & Multi-User Sharing',
+        'Alle High-End KI-Modelle & Video-Engines',
+        'Frühzeitiger Zugang zu neuen Agent-Fähigkeiten',
+        'Dedizierter Account-Manager',
+      ] : [
+        '3,000 monthly Drafty Credits',
+        'Highest priority queue',
+        'Team collaboration & shared workspace',
+        'All high-end AI models & video engines',
+        'Early access to new agent capabilities',
+        'Dedicated account manager',
+      ],
+    },
+  };
+
+  const renderAgentSection = () => {
+    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
+    const displayPlans = agentPlans.length > 0 ? agentPlans : [
+      {
+        planType: 'STARTER',
+        name: 'Drafty AI - Starter Plan',
+        description: 'Essential AI agent intelligence for independent architects and designers.',
+        credits: 300,
+        prices: { monthly: 1900, yearly: 19000 },
+        stripePrices: {},
+      },
+      {
+        planType: 'PRO',
+        name: 'Drafty AI - Pro Plan',
+        description: 'Uncapped creative freedom with high-res refinement, video generation, and priority agent queue.',
+        credits: 1000,
+        prices: { monthly: 4900, yearly: 49000 },
+        stripePrices: {},
+      },
+      {
+        planType: 'BUSINESS',
+        name: 'Drafty AI - Business Plan',
+        description: 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
+        credits: 3000,
+        prices: { monthly: 11900, yearly: 119000 },
+        stripePrices: {},
+      },
+    ];
+
+    return (
+      <>
+        <div className='text-center mb-6 sm:mb-8 max-w-4xl mx-auto px-4'>
+          <h2 className='heading-primary'>
+            {locale === 'de' ? 'Drafty KI-Agent für Architektur' : 'Drafty AI Agent for Architecture'}
+          </h2>
+          <p className='text-sm sm:text-base text-gray-500 mt-2 max-w-2xl mx-auto'>
+            {locale === 'de'
+              ? 'Dedizierte KI-Agenten-Pläne mit separaten Drafty-Credits für automatisierte Entwürfe, 4K-Verfeinerung und Workflows.'
+              : 'Dedicated AI Agent plans with separate Drafty credits for automated workflows, 4K refinement, and video generation.'}
+          </p>
+
+          {/* Billing Cycle Toggle */}
+          <div className='flex justify-center mt-6 mb-2'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
+              {(['monthly', 'yearly'] as const).map((cycle) => (
+                <button
+                  key={cycle}
+                  onClick={() => setAgentBillingCycle(cycle)}
+                  className={`relative z-10 px-3.5 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${
+                    agentBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'
+                  }`}
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {agentBillingCycle === cycle && (
+                    <span
+                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                      style={{ zIndex: -1 }}
+                    />
+                  )}
+                  <span className='relative'>
+                    {cycle === 'yearly'
+                      ? (locale === 'de' ? 'Jährlich (Spare 17%)' : 'Annual (Save 17%)')
+                      : (locale === 'de' ? 'Monatlich' : 'Monthly')}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+          {displayPlans.map((plan: any) => {
+            const staticData = agentStaticData[plan.planType] || {};
+            const isYearlyMode = agentBillingCycle === 'yearly';
+
+            const monthlyRaw = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
+            const yearlyRaw = plan.prices?.yearly ? plan.prices.yearly / 100 : (monthlyRaw * 10);
+            const displayMonthly = isYearlyMode ? Math.round(yearlyRaw / 12) : monthlyRaw;
+
+            const priceId = isYearlyMode ? (plan.stripePrices?.YEARLY || plan.stripePrices?.MONTHLY) : plan.stripePrices?.MONTHLY;
+
+            const priceInfo = {
+              mainPrice: `${currencySymbol}${displayMonthly}`,
+              period: '/month',
+              billingInfo: isYearlyMode
+                ? (locale === 'de' ? `Jährlich abgerechnet (${currencySymbol}${yearlyRaw}/Jahr)` : `Billed annually (${currencySymbol}${yearlyRaw}/yr)`)
+                : t('billedMonthly'),
+              stripePriceId: priceId,
+            };
+
+            const isAgentFeatured = Boolean(staticData.isPopular || plan.planType === 'PRO');
+
+            return (
+              <div
+                key={plan.planType}
+                className={`flex h-auto lg:h-[720px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
+                  isAgentFeatured
+                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
+                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+                }`}
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  fontFamily: 'Arial',
+                  border: isAgentFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
+                }}
+              >
+                {/* Top-Right Recommended Badge */}
+                {isAgentFeatured && (
+                  <div
+                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs uppercase tracking-widest rounded-bl-2xl z-30"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
+                  </div>
+                )}
+
+                {/* 4 Corner Small Square Fills */}
+                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+
+                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
+                  <div className='flex items-center justify-center gap-2 mb-1'>
+                    <span
+                      className='text-xl sm:text-2xl uppercase tracking-wider block text-black font-bold'
+                      style={{ fontFamily: 'Arial' }}
+                    >
+                      {plan.name ? plan.name.replace(/\bStudio\b/gi, 'Business') : `Drafty ${plan.planType}`}
+                    </span>
+                  </div>
+
+                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
+                    {staticData.description || plan.description}
+                  </span>
+
+                  <div className='mb-3'>
+                    <div className='flex items-baseline justify-center gap-1'>
+                      <span
+                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {currencySymbol}{displayMonthly}
+                      </span>
+                      <span
+                        className='text-xs sm:text-sm text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {locale === 'de' ? '/Monat' : '/month'}
+                      </span>
+                    </div>
+
+                    <div className='space-y-1 text-[11px] text-gray-500 mt-2 text-center'>
+                      <div style={{ fontFamily: 'Arial' }}>
+                        {priceInfo.billingInfo}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Credits pill */}
+                  <div className='mt-1 mb-2'>
+                    <span className='inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200'>
+                      ⚡ {plan.credits?.toLocaleString() || 300} {locale === 'de' ? 'Agent-Credits / Monat' : 'Agent Credits / month'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
+                  <ul className='space-y-3.5'>
+                    {(staticData.features || []).map((feature: string, idx: number) => (
+                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
+                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
+                        <span
+                          className='text-[11px] tracking-normal text-gray-900'
+                          style={{ fontFamily: 'Arial' }}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className='mt-auto pt-4'>
+                  <button
+                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
+                      isAgentFeatured
+                        ? 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
+                        : 'border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white bg-transparent'
+                    }`}
+                    style={{
+                      fontFamily: 'Arial',
+                    }}
+                    onClick={() => handleSubscribe(
+                      {
+                        planType: plan.planType,
+                        billingCycle: isYearlyMode ? 'yearly' : 'monthly',
+                        isEducational: false,
+                        isFloorPlan: false,
+                        isAgent: true,
+                        name: plan.name,
+                        fetchedData: plan,
+                      },
+                      priceInfo,
+                      false,
+                      true
+                    )}
+                  >
+                    {t('subscribe')}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>
+    );
+  };
+
   return (
     <section
       ref={containerRef}
@@ -1649,8 +1952,11 @@ export function ManyChatPricingSection({
         {/* Floor Plan Section */}
         {showOnly === 'floorplan' && renderFloorPlanSection()}
 
+        {/* AI Agent Section */}
+        {showOnly === 'agent' && renderAgentSection()}
+
         {/* Professional Section */}
-        {showOnly !== 'educational' && showOnly !== 'floorplan' && (
+        {showOnly !== 'educational' && showOnly !== 'floorplan' && showOnly !== 'agent' && (
           <>
             <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
               {/* Countdown Timer */}

@@ -441,7 +441,10 @@
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
           "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
-          "upTo520Accounts": "UP TO 5-20 ACCOUNTS"
+          "upTo520Accounts": "UP TO 5-20 ACCOUNTS",
+          "agentCredits500": "500 DRAFTY AI CREDITS /month",
+          "agentCredits1000": "1000 DRAFTY AI CREDITS /month",
+          "agentCredits5000": "5000 DRAFTY AI CREDITS /month"
         },
         "targetAudience": "For Architecture Firms 1-5 MA"
       },
@@ -469,7 +472,8 @@
           "integratedRefiner": "INTEGRATED REFINER",
           "cancelAnytime": "CANCEL ANYTIME",
           "securePayment": "SECURE PAYMENT ON STRIPE",
-          "allPlugins": "ALL PLUGIN INTEGRATIONS"
+          "allPlugins": "ALL PLUGIN INTEGRATIONS",
+          "agentCredits50": "50 DRAFTY AI CREDITS /month"
         }
       },
       "educator": {
@@ -479,7 +483,8 @@
           "credits150": "150 CREDITS /month (10-50 images)",
           "concurrentJobs2": "2 CONCURRENT JOBS",
           "resolution4k": "RESOLUTION UP TO 4K",
-          "noQueue": "NO QUEUE"
+          "noQueue": "NO QUEUE",
+          "agentCredits150": "150 DRAFTY AI CREDITS /month"
         }
       },
       "institution": {
@@ -490,7 +495,8 @@
           "concurrentJobs4": "4 CONCURRENT JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO CALL SUPPORT",
           "increasedSpeed": "INCREASED SPEED OF GENERATION",
-          "resolution13k": "RESOLUTION UP TO 8K"
+          "resolution13k": "RESOLUTION UP TO 8K",
+          "agentCredits500": "500 DRAFTY AI CREDITS /month"
         }
       },
       "business": {
@@ -516,7 +522,8 @@
           "upTo5Accounts": "UP TO 5 ACCOUNTS",
           "upTo01Accounts": "UP TO 0-1 ACCOUNTS",
           "upTo15Accounts": "UP TO 1-5 ACCOUNTS",
-          "upTo520Accounts": "UP TO 5-20 ACCOUNTS"
+          "upTo520Accounts": "UP TO 5-20 ACCOUNTS",
+          "agentCredits5000": "5000 DRAFTY AI CREDITS /month"
         },
         "targetAudience": "For Architecture Firms 5-20 MA"
       }

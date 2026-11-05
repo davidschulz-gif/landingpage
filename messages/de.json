@@ -441,7 +441,10 @@
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
           "upTo15Accounts": "BIS ZU 1-5 KONTEN",
-          "upTo520Accounts": "BIS ZU 5-20 KONTEN"
+          "upTo520Accounts": "BIS ZU 5-20 KONTEN",
+          "agentCredits500": "500 DRAFTY AI CREDITS / Monat",
+          "agentCredits1000": "1000 DRAFTY AI CREDITS / Monat",
+          "agentCredits5000": "5000 DRAFTY AI CREDITS / Monat"
         },
         "targetAudience": "Für Architekturbüros 1-5 MA"
       },
@@ -469,7 +472,8 @@
           "integratedRefiner": "INTEGRIERTER REFINER",
           "cancelAnytime": "JEDERZEIT KÜNDBAR",
           "securePayment": "SICHERE ZAHLUNG ÜBER STRIPE",
-          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN"
+          "allPlugins": "ALLE PLUGIN-INTEGRATIONEN",
+          "agentCredits50": "50 DRAFTY AI CREDITS / Monat"
         }
       },
       "educator": {
@@ -479,7 +483,8 @@
           "credits150": "150 CREDITS /Monat (10-50 Bilder)",
           "concurrentJobs2": "2 GLEICHZEITIGE JOBS",
           "resolution4k": "AUFLÖSUNG BIS ZU 4K",
-          "noQueue": "KEINE WARTESCHLANGE"
+          "noQueue": "KEINE WARTESCHLANGE",
+          "agentCredits150": "150 DRAFTY AI CREDITS / Monat"
         }
       },
       "institution": {
@@ -490,7 +495,8 @@
           "concurrentJobs4": "4 GLEICHZEITIGE JOBS",
           "premiumSupport": "PREMIUM LIVE VIDEO-ANRUF-SUPPORT",
           "increasedSpeed": "ERHÖHTE GENERIERUNGSGESCHWINDIGKEIT",
-          "resolution13k": "AUFLÖSUNG BIS ZU 8K"
+          "resolution13k": "AUFLÖSUNG BIS ZU 8K",
+          "agentCredits500": "500 DRAFTY AI CREDITS / Monat"
         }
       },
       "business": {
@@ -516,7 +522,8 @@
           "upTo5Accounts": "BIS ZU 5 KONTEN",
           "upTo01Accounts": "BIS ZU 0-1 KONTEN",
           "upTo15Accounts": "BIS ZU 1-5 KONTEN",
-          "upTo520Accounts": "BIS ZU 5-20 KONTEN"
+          "upTo520Accounts": "BIS ZU 5-20 KONTEN",
+          "agentCredits5000": "5000 DRAFTY AI CREDITS / Monat"
         },
         "targetAudience": "Für Architekturbüros 5-20 MA"
       }
