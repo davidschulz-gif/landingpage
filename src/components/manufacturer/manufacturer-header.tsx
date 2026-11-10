@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
 import { appUrl } from '@/lib/constants'
 import { AudienceToggle } from '@/components/common/audience-toggle'
@@ -22,6 +22,7 @@ interface ManufacturerHeaderProps {
 
 export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
   const t = useTranslations('provider')
+  const locale = useLocale()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -143,6 +144,14 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
           >
             {t('process.nav.login')}
           </a>
+          <a
+            href={`${appUrl}/provider/signup?language=${locale}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white px-3.5 py-1.5 text-[13px] rounded-2xl font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 shadow-2xs"
+          >
+            {t('process.nav.signup')}
+          </a>
           <AudienceToggle />
         </div>
       </NavBody>
@@ -258,6 +267,14 @@ export function ManufacturerHeader({ onOpenContact }: ManufacturerHeaderProps) {
               className="w-full text-center py-2 text-[13px] font-medium text-gray-700"
             >
               {t('process.nav.login')}
+            </a>
+            <a
+              href={`${appUrl}/provider/signup?language=${locale}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-2 text-[13px] font-medium text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700 rounded-xl hover:bg-neutral-50"
+            >
+              {t('process.nav.signup')}
             </a>
           </div>
         </div>
