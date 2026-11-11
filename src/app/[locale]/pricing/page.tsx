@@ -71,7 +71,7 @@ function PricingContent() {
     const token = searchParams.get('token')
     // const showBillingToggle = searchParams.get('disscountPlans') === 'true'
     const showBillingToggle = true
-    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan'>('app')
+    const [viewMode, setViewMode] = useState<'app' | 'education' | 'floorplan' | 'agent'>('app')
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
