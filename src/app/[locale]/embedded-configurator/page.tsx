@@ -42,11 +42,14 @@ export default function EmbeddedConfiguratorLandingPage() {
 
   const t = {
     // Hero
-    heroLabel:      isDe ? 'Eingebetteter TYPUS-Konfigurator' : 'Embedded TYPUS Configurator',
-    heroTitle:      isDe ? 'Digitalisierung leicht gemacht.' : 'Digitisation made simple.',
+    heroLabel:      isDe ? 'Produktlistung' : 'Product Listing',
+    heroTitle:      isDe ? 'Ihre Produkte. Direkt im Fokus.' : 'Your Products. Directly in Focus.',
     heroSubtitle:   isDe
-      ? 'Ein Materialkonfigurator, der Ihre Kunden direkt auf Ihrer Website von Ihren Produkten begeistert – ohne Ihren Auftritt zu verlassen.'
-      : 'A material editor that lets your clients customise your products without ever leaving your site.',
+      ? 'Mehr Sichtbarkeit. Mehr Nachfrage. Neue Geschäftskontakte.'
+      : 'More Visibility. More Demand. New Business Contacts.',
+    heroDesc:       isDe
+      ? 'Präsentieren Sie Ihre Produkte genau dort, wo Architektinnen und Architekten Materialentscheidungen treffen – direkt im KI-gestützten Visualisierungsprozess von TYPUS. Automatische Produktempfehlungen, messbare Sichtbarkeit und konkrete Leads für Ihren Vertrieb.'
+      : 'Present your products exactly where architects make material decisions – directly in the AI-assisted visualization process of TYPUS. Automated product recommendations, measurable visibility and concrete leads for your sales team.',
     cta1:           isDe ? 'Kontakt aufnehmen' : 'Get in touch',
     cta2:           isDe ? 'Demo buchen' : 'Book a demo',
 
@@ -59,84 +62,85 @@ export default function EmbeddedConfiguratorLandingPage() {
 
     // Features
     featuresLabel:  isDe ? 'Was Sie erhalten' : 'What you get',
-    featuresTitle:  isDe ? 'Vorteile auf einen Blick.' : 'Benefits at a glance.',
+    featuresTitle:  isDe ? 'Sichtbarkeit, Performance & neue Geschäftskontakte.' : 'Visibility, Performance & New Business Contacts.',
     features: [
       {
         num: '01',
-        title: isDe ? '1-Klick-Einbettung' : '1-click embed',
+        title: isDe ? 'Dynamische Produktlistung' : 'Dynamic Product Listing',
         desc:  isDe
-          ? 'Standard iFrame oder JS-Snippet – in jede Website oder jedes CMS integrierbar (WordPress, Webflow, Shopify, Typo3 …).'
-          : 'Standard iframe or JS snippet — integrates into any website or CMS (WordPress, Webflow, Shopify, Typo3 …).',
+          ? 'Ihre Produkte werden automatisch und kontextbezogen bei passenden Materialanfragen von Architekturbüros vorgeschlagen.'
+          : 'Your products are automatically and contextually recommended for matching material queries from architecture firms.',
       },
       {
         num: '02',
-        title: isDe ? 'Echtzeit-KI-Rendering' : 'Real-time AI rendering',
+        title: isDe ? 'KI-gestützte Produktempfehlungen' : 'AI-Assisted Product Recommendations',
         desc:  isDe
-          ? 'Kombiniert 3D-Modelle mit modernster KI für sofortige fotorealistische Visualisierungen.'
-          : 'Combines 3D models with cutting-edge AI for instant photorealistic visualisations.',
+          ? 'Ihre Produkte erscheinen direkt im Visualisierungsprozess – genau dort, wo Architektinnen und Architekten Materialentscheidungen treffen.'
+          : 'Your products appear directly in the visualization process – right where architects make material decisions.',
       },
       {
         num: '03',
-        title: isDe ? 'Echte Hersteller-Materialien' : 'Authentic manufacturer materials',
+        title: isDe ? 'Gezielte Herstellerpräsenz' : 'Targeted Manufacturer Presence',
         desc:  isDe
-          ? 'Ihre PBR-Texturen, Farben und Formate werden exakt und maßstabsgetreu digitalisiert.'
-          : 'Your PBR textures, colours and formats digitised precisely to scale.',
+          ? 'Erreichen Sie relevante Architekturbüros direkt im digitalen Planungs- und Entwurfsprozess.'
+          : 'Reach relevant architecture firms directly in the digital design and planning process.',
       },
       {
         num: '04',
-        title: isDe ? 'Lead-Generierung & Spezifikation' : 'Lead generation & specification',
+        title: isDe ? 'Performance-Monitoring' : 'Performance Monitoring',
         desc:  isDe
-          ? 'Planende können Entwürfe speichern, Materiallisten exportieren und Muster anfordern.'
-          : 'Designers can save schemes, export schedules and request physical samples.',
+          ? 'Verfolgen Sie die Sichtbarkeit, Reichweite und tatsächliche Nutzung Ihrer Produkte anhand relevanter Kennzahlen.'
+          : 'Track the visibility, reach, and actual usage of your products using relevant metrics.',
       },
       {
         num: '05',
-        title: isDe ? 'Cloud-basiert & mobiloptimiert' : 'Cloud-powered & mobile responsive',
+        title: isDe ? 'Transparente Produktnachfrage' : 'Transparent Product Demand',
         desc:  isDe
-          ? 'Keine Installation erforderlich. Läuft flüssig auf Desktop, Tablet und Smartphone.'
-          : 'No installation needed. Runs smoothly on desktop, tablet and smartphone.',
+          ? 'Erhalten Sie Einblicke, welche Ihrer Produkte von Architekturbüros in Visualisierungen eingesetzt werden.'
+          : 'Gain insights into which of your products are used by architecture firms in visualizations.',
       },
       {
         num: '06',
-        title: isDe ? 'White-Label & CI-Anpassung' : 'White-label & custom branding',
+        title: isDe ? 'Direkte Leadgenerierung' : 'Direct Lead Generation',
         desc:  isDe
-          ? 'Farben, Typografie und Logos passend zu Ihrem Corporate Design.'
-          : 'Colours, typography and logos matched to your corporate identity.',
+          ? 'Identifizieren Sie Architekturbüros, die Ihre Produkte verwenden, und nutzen Sie verfügbare Kontaktdaten für die gezielte Geschäftsanbahnung.'
+          : 'Identify architecture firms that use your products and utilize available contact details for targeted business development.',
       },
     ],
 
     // How it works
     howLabel:       isDe ? 'So funktioniert es' : 'How it works',
-    howTitle:       isDe ? 'In 3 Schritten live.' : 'Live in 3 steps.',
+    howTitle:       isDe ? 'In 3 Schritten zu mehr Sichtbarkeit.' : 'In 3 steps to more visibility.',
     steps: [
       {
         num: '01',
-        title: isDe ? 'Materialien bereitstellen' : 'Provide your materials',
+        title: isDe ? 'Produktdaten bereitstellen' : 'Provide Product Data',
         desc:  isDe
-          ? 'Senden Sie uns Texturen, Datenblätter oder Produktkataloge. Unser Team digitalisiert Ihre Oberflächen mit PBR-Präzision.'
-          : 'Share your textures, spec sheets or product catalogues. Our team digitises surfaces with PBR precision.',
+          ? 'Sie stellen uns Ihre Produkt- und Materialdaten zur Verfügung. Wir übernehmen die Aufbereitung für die KI-gestützte Integration.'
+          : 'You provide us with your product and material data. We handle the processing for AI-assisted integration.',
       },
       {
         num: '02',
-        title: isDe ? 'Snippet einbinden' : 'Embed the snippet',
+        title: isDe ? 'Integration & Listung' : 'Integration & Listing',
         desc:  isDe
-          ? 'Sie erhalten ein maßgeschneidertes iFrame- oder Script-Snippet, das in wenigen Minuten auf Ihrer Website live ist.'
-          : 'Receive a tailored iframe or script snippet — live on your site in minutes.',
+          ? 'Ihre Produkte werden in das KI-Modell integriert und dynamisch in passenden Visualisierungskontexten vorgeschlagen.'
+          : 'Your products are integrated into the AI model and dynamically suggested in matching visualization contexts.',
       },
       {
         num: '03',
-        title: isDe ? 'Planer begeistern' : 'Engage architects',
+        title: isDe ? 'Performance messen & Kontakte gewinnen' : 'Measure Performance & Gain Leads',
         desc:  isDe
-          ? 'Ihre Website wird zum aktiven Planungswerkzeug mit messbaren Neukontakten.'
-          : 'Your website transforms into an active design tool with measurable new leads.',
+          ? 'Über Ihr Dashboard erhalten Sie Einblicke in Produktnutzung, Sichtbarkeit und relevante Architekturbüros – als Grundlage für neue Geschäftskontakte.'
+          : 'Access insights into product usage, visibility, and relevant architecture firms via your dashboard – as the foundation for new business contacts.',
       },
     ],
 
     // Pricing
-    pricingLabel:   isDe ? 'Transparente Konditionen' : 'Transparent pricing',
-    pricingTitle:   isDe ? 'Eingebetteter TYPUS-Konfigurator' : 'Embedded TYPUS Configurator',
-    price:          '350 €',
-    perMonth:       isDe ? '/ Monat' : '/ month',
+    pricingLabel:   isDe ? 'Transparente Konditionen' : 'Transparent conditions',
+    pricingTitle:   isDe ? 'Dynamische Produktlistung' : 'Dynamic Product Listing',
+    pricingDesc:    isDe
+      ? 'Ihre Produkte werden automatisch und kontextbezogen bei passenden Material- und Produktanfragen von Architekturbüros innerhalb des KI-gestützten Visualisierungsprozesses vorgeschlagen.'
+      : 'Your products are automatically and contextually recommended for matching material and product queries from architecture firms within the AI-assisted visualization process.',
     includes: [
       isDe ? 'Vollständiger Web-Konfigurator (iFrame / Widget)' : 'Full web configurator (iFrame / Widget)',
       isDe ? 'Individuelle Material- und Produktauswahl' : 'Custom material & product selection',
@@ -147,7 +151,7 @@ export default function EmbeddedConfiguratorLandingPage() {
       isDe ? 'Updates, Wartung & Hosting inklusive' : 'Updates, maintenance & hosting included',
       isDe ? 'Prioritärer technischer Support' : 'Priority technical support',
     ],
-    pricingCta:     isDe ? 'Konfigurator anfordern' : 'Request configurator',
+    pricingCta:     isDe ? 'Mehr erfahren' : 'Learn More',
     consultCta:     isDe ? 'Beratungsgespräch buchen' : 'Book a consultation',
 
     // FAQ
@@ -169,8 +173,8 @@ export default function EmbeddedConfiguratorLandingPage() {
       {
         q: isDe ? 'Gibt es eine Mindestvertragslaufzeit?' : 'Is there a minimum contract duration?',
         a: isDe
-          ? 'Der Service wird monatlich mit 350 € abgerechnet — ohne versteckte Einrichtungsgebühren.'
-          : 'The service is billed monthly at 350 € — no hidden setup fees.',
+          ? 'Alle Details zu unseren Leistungspaketen und Konditionen finden Sie auf unserer Leistungsseite.'
+          : 'All details regarding our service packages and terms can be found on our Services page.',
       },
       {
         q: isDe ? 'Ist der Konfigurator mobilfähig?' : 'Is the configurator mobile responsive?',
@@ -206,6 +210,11 @@ export default function EmbeddedConfiguratorLandingPage() {
               <h2 className="heading-primary text-neutral-500 font-normal">
                 {t.heroSubtitle}
               </h2>
+              {t.heroDesc && (
+                <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed max-w-2xl font-normal">
+                  {t.heroDesc}
+                </p>
+              )}
             </div>
 
             {/* CTA row */}
@@ -351,7 +360,7 @@ export default function EmbeddedConfiguratorLandingPage() {
           <CornerSquares />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            {/* Left: label + title + price */}
+            {/* Left: label + title + description + CTAs */}
             <div className="space-y-4">
               <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
                 {t.pricingLabel}
@@ -359,17 +368,14 @@ export default function EmbeddedConfiguratorLandingPage() {
               <h2 className="heading-primary">
                 {t.pricingTitle}
               </h2>
-              <div className="flex items-baseline gap-1 pt-1">
-                <span className="text-5xl font-light">{t.price}</span>
-                <span className="text-sm text-neutral-500">{t.perMonth}</span>
-              </div>
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal">
+                {t.pricingDesc}
+              </p>
               {/* CTAs */}
               <div className="flex flex-col gap-2 pt-2">
                 <Link
-                  href={CALENDAR_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800"
+                  href={`/${locale}/for-manufacturers/pricing`}
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-black px-6 text-xs tracking-widest uppercase text-white transition-colors hover:bg-neutral-800 text-center"
                 >
                   {t.pricingCta}
                 </Link>
@@ -377,7 +383,7 @@ export default function EmbeddedConfiguratorLandingPage() {
                   href={CALENDAR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center justify-center rounded-md border border-black px-6 text-xs tracking-widest uppercase transition-colors hover:bg-black hover:text-white"
+                  className="inline-flex h-9 items-center justify-center rounded-md border border-black px-6 text-xs tracking-widest uppercase transition-colors hover:bg-black hover:text-white text-center"
                 >
                   {t.consultCta}
                 </Link>

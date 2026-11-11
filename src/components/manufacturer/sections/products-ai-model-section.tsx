@@ -128,7 +128,7 @@ export function ProductsAIModelSection({
           {viewerShowcaseNode}
         </div>
 
-        {/* PROMINENT SPOTLIGHT: EINGEBETTETER TYPUS-KONFIGURATOR */}
+        {/* PROMINENT SPOTLIGHT: PRODUKTLISTUNG IN DER MATERIALBIBLIOTHEK */}
         <div className="mt-8 relative p-6 sm:p-8 rounded-2xl bg-[#f7f5f0] dark:bg-neutral-900/90 border border-neutral-200 dark:border-neutral-800 shadow-2xs text-left">
           <CornerSquares />
 
@@ -148,8 +148,8 @@ export function ProductsAIModelSection({
                 style={{ fontFamily: 'Arial' }}
               >
                 {locale === 'de'
-                  ? 'Eingebetteter TYPUS-Konfigurator für Ihre eigene Website'
-                  : 'Embedded TYPUS Configurator for Your Own Website'}
+                  ? 'PRODUKTLISTUNG IN DER MATERIALBIBLIOTHEK'
+                  : 'PRODUCT LISTING IN THE MATERIAL LIBRARY'}
               </h4>
 
               <p

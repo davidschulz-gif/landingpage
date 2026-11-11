@@ -3310,17 +3310,17 @@
       "card5Desc": "Stärken Sie die digitale Sichtbarkeit Ihrer Marke und gestalten Sie mit uns die Zukunft der Architekturvisualisierung."
     },
     "slide12": {
-      "title": "Produktlistung auf Typus.AI",
+      "title": "Performance Paket – Herstellerpräsenz auf Typus.ai",
       "recommendedBadge": "EMPFEHLUNG",
-      "mainTitle": "Aufnahme der Produktpalette in TYPUS",
+      "mainTitle": "Performance Paket – Herstellerpräsenz auf Typus.ai",
       "mainPrice": "5.000 €",
       "mainVat": "netto zzgl. USt.",
       "mainScope": "FÜR DIE GESAMTE PRODUKTPALETTE",
       "mainFeatures": [
-        "Aufbereitung der Materialien für die KI-gestützte Visualisierung",
-        "Strukturierung relevanter Produkt- und Materialdaten",
-        "Integration in die TYPUS.AI Materialbibliothek",
-        "Qualitätskontrolle und Abstimmung der Produktdaten"
+        "Dynamische Produktlistung: Kontextbezogene Empfehlung Ihrer Produkte innerhalb der KI-gestützten Architekturvisualisierung.",
+        "Gezielte Sichtbarkeit: Automatische Präsentation Ihrer Produkte bei passenden Material- und Produktanfragen von Architekturbüros.",
+        "Performance-Monitoring: Transparente Kennzahlen zu Sichtbarkeit, Reichweite und tatsächlicher Produktnutzung.",
+        "Leadgenerierung: Einblick in die Architekturbüros, die Ihre Produkte verwenden, inklusive verfügbarer Kontaktdaten zur direkten Geschäftsanbahnung."
       ],
       "bonusTitle": "INKLUSIVE: INTEGRATION IN EIN EU-KONFORMES KI-MODELL",
       "bonusDesc": "Vorbereitung und Integration der Daten für das anwendungsspezifische KI-Modell",
@@ -3605,9 +3605,9 @@
       "contactUs": "Support kontaktieren",
       "editProfile": "Profil bearbeiten",
       "aiModel": "KI Modell",
-      "appConfigurator": "App Konfigurator",
+      "appConfigurator": "Produktlistung",
       "participationProcess": "Teilnahmeprozess",
-      "pricing": "Produktlistung",
+      "pricing": "Leistungen",
       "research": "Forschung",
       "forArchitects": "Für Architekten",
       "forManufacturers": "Für Hersteller",

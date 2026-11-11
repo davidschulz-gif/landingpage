@@ -3308,17 +3308,17 @@
       "card5Desc": "Boost your brand's digital visibility and shape the future of architectural visualization with us."
     },
     "slide12": {
-      "title": "Product Listing on Typus.AI",
+      "title": "Performance Package – Manufacturer Presence on Typus.ai",
       "recommendedBadge": "RECOMMENDED",
-      "mainTitle": "Listing of Product Range in TYPUS",
+      "mainTitle": "Performance Package – Manufacturer Presence on Typus.ai",
       "mainPrice": "€5,000",
       "mainVat": "net plus VAT",
       "mainScope": "FOR THE ENTIRE PRODUCT RANGE",
       "mainFeatures": [
-        "Material processing for AI-assisted visualization",
-        "Structuring of relevant product and material data",
-        "Integration into TYPUS.AI Material Library",
-        "Quality control & alignment of product data"
+        "Dynamic Product Listing: Contextual recommendation of your products within AI-assisted architectural visualization.",
+        "Targeted Visibility: Automatic presentation of your products for matching material and product queries from architecture firms.",
+        "Performance Monitoring: Transparent metrics on visibility, reach, and actual product usage.",
+        "Lead Generation: Insights into architecture firms using your products, including available contact data for direct business opportunities."
       ],
       "bonusTitle": "INCLUDED: INTEGRATION INTO AN EU-COMPLIANT AI MODEL",
       "bonusDesc": "Data preparation & integration for application-specific AI model",
@@ -3603,9 +3603,9 @@
       "contactUs": "Contact Support",
       "editProfile": "Edit Profile",
       "aiModel": "AI Model",
-      "appConfigurator": "App Configurator",
+      "appConfigurator": "Product Listing",
       "participationProcess": "Participation Process",
-      "pricing": "Product Listing",
+      "pricing": "Services",
       "research": "Research",
       "forArchitects": "For Architects",
       "forManufacturers": "For Manufacturers",
