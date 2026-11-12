@@ -55,7 +55,7 @@ export default function EmbeddedConfiguratorLandingPage() {
 
     // Try it
     tryLabel:       isDe ? 'Selbst ausprobieren' : 'Try it for yourself',
-    tryTitle:       isDe ? 'So sieht der Konfigurator auf Ihrer Website aus.' : 'See how the configurator looks on your site.',
+    tryTitle:       isDe ? 'So sieht die Materialbibliothek aus.' : 'See how the material library looks.',
     tryDesc:        isDe
       ? 'Klicken Sie sich durch Kataloge, Flyouts und Texturzuweisungen – genau so, wie Ihre Besucher es erleben.'
       : 'Click through catalogues, flyouts and texture assignments — exactly as your visitors will experience it.',
