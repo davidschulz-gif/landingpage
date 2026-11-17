@@ -47,7 +47,7 @@ const professionalPlans = [
       },
     },
     features: [
-      { text: '3 CREDITS PER DAY', hasFeature: true },
+      { text: '30 CREDITS /month', hasFeature: true },
       { text: '1K RESOLUTION', hasFeature: true },
       { text: 'EDIT BY CHAT', hasFeature: false },
       { text: 'UPSCALE UP TO 8K', hasFeature: false },
@@ -1121,8 +1121,8 @@ export function ManyChatPricingSection({
       fetchedData: null,
       features: baseTestPlan.features.map(f => {
         let text = f.text;
-        if (f.text.includes('3 CREDITS')) {
-          text = locale === 'de' ? '3 CREDITS pro Tag' : '3 CREDITS per day';
+        if (f.text.includes('30 CREDITS') || f.text.includes('3 CREDITS')) {
+          text = locale === 'de' ? '30 CREDITS / Monat' : '30 CREDITS /month';
         } else if (f.text.includes('1K RESOLUTION')) {
           text = locale === 'de' ? '1K AUFLÖSUNG' : '1K RESOLUTION';
         } else {
@@ -2582,7 +2582,7 @@ function PricingCard({
         return {
           mainPrice: `${currencySymbol}0`,
           period: locale === 'de' ? '/Monat' : '/month',
-          billingInfo: locale === 'de' ? 'Dauerhaft kostenlos • 3 Credits täglich' : 'Free forever • 3 credits daily',
+          billingInfo: locale === 'de' ? 'Dauerhaft kostenlos • 30 Credits monatlich' : 'Free forever • 30 credits monthly',
           stripePriceId: '',
         }
       }
