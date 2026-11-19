@@ -89,8 +89,10 @@ function PricingContent() {
 
     return (
         <div className='relative w-full bg-[#FFFFFF]'>
-            <FlashSaleHeaderMarquee />
-            <NavbarDemo />
+            <div className='sticky top-0 z-[1000] w-full bg-white/95 backdrop-blur-md pb-2'>
+                <FlashSaleHeaderMarquee />
+                <NavbarDemo isSticky={false} />
+            </div>
 
             <main className="pt-4">
 

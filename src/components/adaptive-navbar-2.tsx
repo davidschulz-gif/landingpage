@@ -1,4 +1,5 @@
 'use client'
+import { cn } from '@/lib/utils'
 import {
     MobileNav,
     MobileNavHeader,
@@ -38,7 +39,12 @@ interface NavItem {
   isTestimonials?: boolean
 }
 
-export function NavbarDemo() {
+interface NavbarDemoProps {
+  className?: string
+  isSticky?: boolean
+}
+
+export function NavbarDemo({ className, isSticky = true }: NavbarDemoProps = {}) {
   const t = useTranslations('Navbar')
   const tNav = useTranslations('Navbar.navigation')
   const tPricing = useTranslations('Pricing')
@@ -402,7 +408,7 @@ export function NavbarDemo() {
   }
 
   return (
-    <Navbar setDoNotShowMegaMenu={setDoNotShowMegaMenu}>
+    <Navbar setDoNotShowMegaMenu={setDoNotShowMegaMenu} className={cn(!isSticky && 'relative top-0', className)}>
       {/* Desktop Navigation */}
       <NavBody className='relative z-[60]' visible={true}>
         {/* {!doNotShowMegaMenu ? (
