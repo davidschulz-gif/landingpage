@@ -557,13 +557,6 @@ export function NavbarDemo() {
               >
                 {t('login')}
               </Link>
-              <Link
-                href={`/pricing`}
-                // onClick={handleGoToAppClick}
-                className='font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap text-[13px] transition-colors duration-200 shrink-0'
-              >
-                {t('goToApp')}
-              </Link>
             </>
           )}
           <AudienceToggle />
@@ -978,18 +971,6 @@ export function NavbarDemo() {
               style={{ fontFamily: 'Arial' }}
             >
               {t('login')}
-            </NavbarButton>
-            <NavbarButton
-              href={`/pricing`}
-              // onClick={(e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-              //   setIsMobileMenuOpen(false)
-              //   handleGoToAppClick(e)
-              // }}
-              variant='primary'
-              className='w-full rounded-xl py-3 justify-center text-[14px] font-medium tracking-wide'
-              style={{ fontFamily: 'Arial' }}
-            >
-              {t('goToApp')}
             </NavbarButton>
           </div>
         </div>
