@@ -7,6 +7,7 @@ import { setRequestLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import BeforeYouGoPopup from '@/components/before-you-go-popup'
+import BlackFridayPopup from '@/components/black-friday-popup'
 import { FloatingEmailBuzzer } from '@/components/floating-email-buzzer'
 import { EmailGate } from '@/components/email-gate'
 import { Toaster } from '@/components/ui/sonner'
@@ -310,6 +311,7 @@ export default async function RootLayout({
             <EmailGate>
               {children}
               <BeforeYouGoPopup />
+              <BlackFridayPopup />
                {/* Floating Email Buzzer */}
               <FloatingEmailBuzzer/>
             </EmailGate>

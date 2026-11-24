@@ -1,3053 +1,3061 @@
-'use client'
-
-import { Button } from '@/components/ui/button'
-import { Button as MovingBorderButton } from '@/components/ui/moving-border'
-import { useIsEurope } from '@/hooks/use-is-europe'
-import { apiUrl, appUrl } from '@/lib/constants'
-import { formatPrice } from '@/lib/price-converter'
-import {
-  IconAlertCircle,
-  IconLoader2,
-  IconMail,
-  IconX,
-} from '@tabler/icons-react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Check, X, ArrowLeft, Gift } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { toast } from 'sonner'
-import OnboardingWizard from './onboarding/onboarding-wizard'
-import { OrderOverviewModal } from './order-overview-modal'
-import { TestimonialsSection } from './testimonials-section'
-import Lottie from 'lottie-react'
-import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
-import { FloatingBuzzer } from '@/components/floating-buzzer'
-import {
-  saveCouponActivation,
-  getActiveCoupon,
-  removeCouponActivation,
-  isCouponExpired,
-  EXPIRED_COUPON_MESSAGE_DE,
-  EXPIRED_COUPON_MESSAGE_EN,
-} from '@/lib/coupon-storage'
-import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
-
-const professionalPlans = [
-  {
-    id: 'test',
-    name: 'TEST',
-    monthlyPrice: { eur: '€0', usd: '$0' },
-    planType: 'TEST',
-    discount: {
-      monthly: {
-        discountedMonthly: { eur: '€0', usd: '$0' },
-        introPeriodKey: 'billedMonthly',
-      },
-    },
-    features: [
-      { text: '30 CREDITS /month', hasFeature: true },
-      { text: '1K RESOLUTION', hasFeature: true },
-      { text: 'EDIT BY CHAT', hasFeature: false },
-      { text: 'UPSCALE UP TO 8K', hasFeature: false },
-      { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'TEAM ACCESS', hasFeature: false },
-    ],
-  },
-  {
-    id: 'solo',
-    name: 'SOLO',
-    monthlyPrice: { eur: '€49', usd: '$49' },
-    threeMonthlyPrice: { eur: '€147', usd: '$147' },
-    threeMonthlyMonthlyPrice: { eur: '€49', usd: '$49' },
-    sixMonthPrice: { eur: '€294', usd: '$294' },
-    sixMonthMonthlyPrice: { eur: '€49', usd: '$49' },
-    yearlyPrice: { eur: '€470.42', usd: '$470.42' },
-    yearlyMonthlyPrice: { eur: '€39.20', usd: '$39.20' },
-    planType: 'SOLO',
-    discount: {
-      monthly: {
-        discountedMonthly: { eur: '€49', usd: '$49' },
-        introPeriodKey: 'billedMonthly',
-      },
-      threeMonthly: {
-        discountedMonthly: { eur: '€49', usd: '$49' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€147', usd: '$147' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€147', usd: '$147' },
-        introPeriodKey: 'billedEvery3Months',
-      },
-      sixMonthly: {
-        discountedMonthly: { eur: '€49', usd: '$49' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€294', usd: '$294' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€294', usd: '$294' },
-        introPeriodKey: 'billedEvery6Months',
-      },
-      yearly: {
-        discountedMonthly: { eur: '€39.20', usd: '$39.20' },
-        periodDiscountPercent: 20,
-        periodSaveAmount: { eur: '€117.58', usd: '$117.58' },
-        originalCycle: { eur: '€588', usd: '$588' },
-        discountPercent: 20,
-        saveAmountCycle: { eur: '€117.58', usd: '$117.58' },
-        introFirstPeriod: { eur: '€470.42', usd: '$470.42' },
-        introPeriodKey: 'billedYearly',
-        bestDeal: false,
-      },
-    },
-    features: [
-      { text: '500 CREDITS /month', hasFeature: true },
-      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: '4K RESOLUTION', hasFeature: true },
-      { text: 'EDIT BY CHAT', hasFeature: true },
-      // { text: 'HIGH-END RESULTS', hasFeature: true },
-      { text: 'UPSCALE UP TO 8K', hasFeature: false },
-      { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
-      { text: 'TEAM ACCESS', hasFeature: false },
-      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
-    ],
-  },
-  {
-    id: 'pro',
-    name: 'PRO',
-    monthlyPrice: { eur: '€149', usd: '$149' },
-    threeMonthlyPrice: { eur: '€297', usd: '$297' },
-    threeMonthlyMonthlyPrice: { eur: '€99', usd: '$99' },
-    sixMonthPrice: { eur: '€594', usd: '$594' },
-    sixMonthMonthlyPrice: { eur: '€99', usd: '$99' },
-    yearlyPrice: { eur: '€894', usd: '$894' },
-    yearlyMonthlyPrice: { eur: '€74.50', usd: '$74.50' },
-    planType: 'PRO',
-    discount: {
-      monthly: {
-        discountedMonthly: { eur: '€99', usd: '$99' },
-        introPeriodKey: 'billedMonthly',
-      },
-      threeMonthly: {
-        discountedMonthly: { eur: '€99', usd: '$99' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€297', usd: '$297' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€297', usd: '$297' },
-        introPeriodKey: 'billedEvery3Months',
-      },
-      sixMonthly: {
-        discountedMonthly: { eur: '€99', usd: '$99' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€594', usd: '$594' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€594', usd: '$594' },
-        introPeriodKey: 'billedEvery6Months',
-      },
-      yearly: {
-        discountedMonthly: { eur: '€74.50', usd: '$74.50' },
-        periodDiscountPercent: 50,
-        periodSaveAmount: { eur: '€894', usd: '$894' },
-        originalCycle: { eur: '€1788', usd: '$1788' },
-        discountPercent: 50,
-        saveAmountCycle: { eur: '€894', usd: '$894' },
-        introFirstPeriod: { eur: '€894', usd: '$894' },
-        introPeriodKey: 'billedYearly',
-        bestDeal: false,
-      },
-    },
-    features: [
-      { text: '2000 CREDITS /month', hasFeature: true },
-      { text: '1000 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: '4K RESOLUTION', hasFeature: true },
-      // { text: '4 CONCURRENT JOBS', hasFeature: true },
-      { text: 'EDIT BY CHAT', hasFeature: true },
-      // { text: 'HIGH-END RESULTS', hasFeature: true },
-      { text: 'UPSCALE UP TO 8K', hasFeature: true },
-      { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
-      { text: 'TEAM ACCESS', hasFeature: false },
-      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
-      // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
-    ],
-  },
-  {
-    id: 'business',
-    name: 'TEAM',
-    monthlyPrice: { eur: '€199', usd: '$199' },
-    threeMonthlyPrice: { eur: '€597', usd: '$597' },
-    threeMonthlyMonthlyPrice: { eur: '€199', usd: '$199' },
-    sixMonthPrice: { eur: '€1194', usd: '$1194' },
-    sixMonthMonthlyPrice: { eur: '€199', usd: '$199' },
-    yearlyPrice: { eur: '€1194', usd: '$1194' },
-    yearlyMonthlyPrice: { eur: '€99.50', usd: '$99.50' },
-    planType: 'TEAM',
-    discount: {
-      monthly: {
-        discountedMonthly: { eur: '€199', usd: '$199' },
-        introPeriodKey: 'billedMonthly',
-      },
-      threeMonthly: {
-        discountedMonthly: { eur: '€199', usd: '$199' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€597', usd: '$597' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€597', usd: '$597' },
-        introPeriodKey: 'billedEvery3Months',
-      },
-      sixMonthly: {
-        discountedMonthly: { eur: '€199', usd: '$199' },
-        periodDiscountPercent: 0,
-        periodSaveAmount: { eur: '€0', usd: '$0' },
-        originalCycle: { eur: '€1194', usd: '$1194' },
-        discountPercent: 0,
-        saveAmountCycle: { eur: '€0', usd: '$0' },
-        introFirstPeriod: { eur: '€1194', usd: '$1194' },
-        introPeriodKey: 'billedEvery6Months',
-      },
-      yearly: {
-        discountedMonthly: { eur: '€99.50', usd: '$99.50' },
-        periodDiscountPercent: 50,
-        periodSaveAmount: { eur: '€1194', usd: '$1194' },
-        originalCycle: { eur: '€2388', usd: '$2388' },
-        discountPercent: 50,
-        saveAmountCycle: { eur: '€1194', usd: '$1194' },
-        introFirstPeriod: { eur: '€1194', usd: '$1194' },
-        introPeriodKey: 'billedYearly',
-        bestDeal: true,
-      },
-    },
-    features: [
-      { text: '10000 CREDITS /month', hasFeature: true },
-      { text: '5000 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: '4K RESOLUTION', hasFeature: true },
-      // { text: '4 CONCURRENT JOBS', hasFeature: true },
-      { text: 'EDIT BY CHAT', hasFeature: true },
-      // { text: 'HIGH-END RESULTS', hasFeature: true },
-      { text: 'UPSCALE UP TO 8K', hasFeature: true },
-      { text: 'EMAIL SUPPORT', hasFeature: true },
-      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
-      { text: 'TEAM ACCESS', hasFeature: true },
-      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
-    ],
-  },
-]
-
-const educationPlans = [
-  {
-    id: 'student',
-    name: 'STARTER',
-    monthlyPrice: '€6',
-    yearlyPrice: '€18',
-    monthlyEquivalant: '€2',
-    save: '€54',
-    period: '/month',
-    yearlyPeriod: '/year',
-    planType: 'STARTER',
-    features: [
-      {
-        text: '50 CREDITS /month (e.g. 30 base images and 10 Refinements)',
-        hasFeature: true,
-      },
-      { text: '50 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: 'OPT. CREDITS TOP UPS', hasFeature: true },
-      { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
-      { text: 'INTEGRATED REFINER', hasFeature: true },
-      { text: 'CANCEL ANYTIME', hasFeature: true },
-      { text: 'SECURE PAYMENT ON STRIPE', hasFeature: true },
-      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
-    ],
-  },
-  {
-    id: 'educator',
-    name: 'EXPLORER',
-    monthlyPrice: '€12',
-    yearlyPrice: '€36',
-    monthlyEquivalant: '€3',
-    save: '€108',
-    period: '/month',
-    yearlyPeriod: '/year',
-    planType: 'EXPLORER',
-    features: [
-      { text: 'EVERYTHING FROM STARTER', hasFeature: true },
-      {
-        text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
-        hasFeature: true,
-      },
-      { text: '150 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: '2 CONCURRENT JOBS', hasFeature: true },
-      { text: 'RESOLUTION UP TO 4K', hasFeature: true },
-      { text: 'NO QUEUE', hasFeature: true },
-    ],
-  },
-  {
-    id: 'institution',
-    name: 'PRO',
-    monthlyPrice: '€18',
-    yearlyPrice: '€54',
-    monthlyEquivalant: '€5',
-    save: '€162',
-    period: '/month',
-    yearlyPeriod: '/year',
-    planType: 'PRO',
-    popular: true,
-    badgeTextKey: 'highEndResults',
-    features: [
-      { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
-      {
-        text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
-        hasFeature: true,
-      },
-      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
-      { text: '4 CONCURRENT JOBS', hasFeature: true },
-      { text: 'PREMIUM LIVE VIDEO CALL SUPPORT', hasFeature: true },
-      { text: 'INCREASED SPEED OF GENERATION', hasFeature: true },
-      { text: 'RESOLUTION UP TO 8K', hasFeature: true },
-    ],
-  },
-]
-
-const apiBaseUrl = `${apiUrl}/api/subscription/public/`
-// const apiBaseUrl = 'https://app.typus.ai/api/subscription/public/'
-
-export function ManyChatPricingSection({ 
-  isStandalone = false,
-  showOnly = 'all',
-  verificationToken,
-  showBillingToggle = false,
-}: { 
-  isStandalone?: boolean
-  showOnly?: 'regular' | 'educational' | 'all' | 'floorplan' | 'agent'
-  verificationToken?: string
-  showBillingToggle?: boolean
-}) {
-  const t = useTranslations('Pricing')
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isYearly, setIsYearly] = useState(true)
-  const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>(showBillingToggle ? 'yearly' : 'monthly')
-  const locale = useLocale();
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-
-  useEffect(() => {
-    const targetDate = new Date('2026-07-31T23:59:59').getTime()
-
-    const updateTimer = () => {
-      const now = new Date().getTime()
-      const difference = targetDate - now
-
-      if (difference <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-        return
-      }
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-
-      setTimeLeft({ days, hours, minutes, seconds })
-    }
-
-    updateTimer()
-    const interval = setInterval(updateTimer, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    setProfBillingCycle(showBillingToggle ? 'yearly' : 'monthly')
-  }, [showBillingToggle])
-  const [plans, setPlans] = useState<any>();
-  const [educationalPlans, setEducationalPlans] = useState<any>();
-  const [floorPlans, setFloorPlans] = useState<any[]>([]);
-  const [agentPlans, setAgentPlans] = useState<any[]>([]);
-  const [agentBillingCycle, setAgentBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
-  const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
-  const [isVat, setIsVat] = useState<boolean>(true);
-  const [locationContinent, setLocationContinent] = useState<string | null>(null);
-  const [locationCountryCode, setLocationCountryCode] = useState<string | null>(null);
-  const [locationCurrency, setLocationCurrency] = useState<string | null>(null);
-  const [universityName, setUniversityName] = useState<string | null>(null);
-
-  // Modal state
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [userEmail, setUserEmail] = useState('')
-  const [selectedPlanForModal, setSelectedPlanForModal] = useState<any>(null)
-  const [isRedirecting, setIsRedirecting] = useState(false)
-  const [modalError, setModalError] = useState<string | null>(null)
-  // Professional Promo state
-  const [profPromoCode, setProfPromoCode] = useState('')
-  const [profPromoDiscount, setProfPromoDiscount] = useState<any>(null)
-  const [profPromoError, setProfPromoError] = useState<string | null>(null)
-  const [profPromoSuccess, setProfPromoSuccess] = useState<string | null>(null)
-
-  // Educational Promo state
-  const [eduPromoCode, setEduPromoCode] = useState('')
-  const [eduPromoDiscount, setEduPromoDiscount] = useState<any>(null)
-  const [eduPromoError, setEduPromoError] = useState<string | null>(null)
-  const [eduPromoSuccess, setEduPromoSuccess] = useState<string | null>(null)
-
-  const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
-  const [subscribeError, setSubscribeError] = useState<string | null>(null)
-
-  // Dispatch custom window event when a coupon is applied
-  useEffect(() => {
-    const activeDiscount = profPromoDiscount || eduPromoDiscount
-    const activeCode = profPromoDiscount ? profPromoCode : (eduPromoDiscount ? eduPromoCode : '')
-    
-    if (activeDiscount && activeCode) {
-      const normalizedCode = activeCode.trim().toUpperCase()
-
-      // If expired, reject activation
-      if (isCouponExpired(normalizedCode)) {
-        setProfPromoDiscount(null)
-        setEduPromoDiscount(null)
-        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-        setProfPromoError(expiredMsg)
-        return
-      }
-
-      const discountText = activeDiscount.type === 'percentage'
-        ? `${activeDiscount.value}% RABATT`
-        : `-${activeDiscount.value / 100} ${activeDiscount.currency?.toUpperCase() || 'EUR'}`
-
-      // Persist activation to localStorage: starts 24h timer once, or reuses original valid timer
-      saveCouponActivation(normalizedCode, discountText, activeDiscount)
-
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
-          detail: {
-            isApplied: true,
-            code: normalizedCode,
-            discountText: discountText,
-            discount: activeDiscount,
-          }
-        }))
-      }
-    }
-  }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode, locale])
-
-  // Listen for coupon expiration events from the countdown timer
-  useEffect(() => {
-    const handleCouponEvent = (e: any) => {
-      if (e.detail?.expired) {
-        setProfPromoDiscount(null)
-        setProfPromoSuccess(null)
-        setEduPromoDiscount(null)
-        setEduPromoSuccess(null)
-        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-        setProfPromoError(expiredMsg)
-      }
-    }
-    window.addEventListener('typus-coupon-applied', handleCouponEvent)
-    return () => window.removeEventListener('typus-coupon-applied', handleCouponEvent)
-  }, [locale])
-
-  const [showTrialWarning, setShowTrialWarning] = useState(false)
-  const [showKickOffModal, setShowKickOffModal] = useState(false)
-  const [showOnboarding, setShowOnboarding] = useState(false)
-  const [showOrderModal, setShowOrderModal] = useState(false)
-  const [pendingOrderData, setPendingOrderData] = useState<any>(null)
-  const [onboardingData, setOnboardingData] = useState<any>(null)
-  const [marketingConsent, setMarketingConsent] = useState(true)
-  const [privacyConsent, setPrivacyConsent] = useState(false)
-  const [termsConsent, setTermsConsent] = useState(false)
-  const [emailSent, setEmailSent] = useState(false)
-
-  const router = useRouter()
-  const tModal = useTranslations('SubscriptionModal')
-  const isEurope = useIsEurope();
-  console.log("isEurope", isEurope);
-
-  // Sync window.isCheckoutActive state to prevent BeforeYouGoPopup interference
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      (window as any).isCheckoutActive = isModalOpen || showOnboarding || showOrderModal;
-    }
-    return () => {
-      if (typeof window !== 'undefined') {
-        (window as any).isCheckoutActive = false;
-      }
-    };
-  }, [isModalOpen, showOnboarding, showOrderModal]);
-
-  // Handle email verification token from URL (sent by server when user clicks email link)
-  useEffect(() => {
-    if (!verificationToken) return
-
-    const verifyToken = async () => {
-      try {
-        const response = await fetch(`${apiBaseUrl}verify-token`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: verificationToken })
-        })
-        const resData = await response.json()
-        if (response.ok) {
-          setUserEmail(resData.email || '')
-          if (resData.universityName) setUniversityName(resData.universityName)
-          if (resData.data) setOnboardingData(resData.data)
-
-          // Reconstruct selectedPlanForModal from token data
-          const planType = (resData.plan || 'PRO').toUpperCase()
-          const billingCycle = resData.billing || 'monthly'
-          const isEdu = resData.isEducational ?? false
-          const isFP = resData.isFloorPlan ?? false
-          const isAgent = resData.isAgent ?? false
-
-          // Find the price ID from fetched plans (will be set once plans load)
-          // We set the plan info now; priceId will be filled in after plans load
-          const reconstructedPlan = {
-            planType,
-            billingCycle,
-            priceId: null,
-            isEducational: isEdu,
-            isFloorPlan: isFP,
-            isAgent: isAgent,
-          }
-          setSelectedPlanForModal(reconstructedPlan)
-
-          // Clean the token from the URL without a page reload
-          const cleanUrl = window.location.pathname
-          window.history.replaceState({}, '', cleanUrl)
-
-          setShowOnboarding(false)
-          await handleOnboardingComplete(resData.data || {}, reconstructedPlan, resData.email || '')
-        } else {
-          toast.error(resData.message || 'Verification link is invalid or has expired.')
-        }
-      } catch (err) {
-        console.error('Failed to verify token:', err)
-        toast.error('Verification failed due to a network error.')
-      }
-    }
-
-    verifyToken()
-  }, [verificationToken])
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search)
-    if (searchParams.get('canceled') === 'true') {
-      toast.error(tModal('canceled'))
-      // Clear the canceled param from URL
-      const newUrl = window.location.pathname
-      window.history.replaceState({}, '', newUrl)
-    }
-
-    const urlPromoCode = searchParams.get('promoCode')
-    if (urlPromoCode) {
-      const normalized = urlPromoCode.trim().toUpperCase()
-      if (isCouponExpired(normalized)) {
-        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-        setProfPromoError(expiredMsg)
-        setEduPromoError(expiredMsg)
-        if (typeof window !== 'undefined') {
-          window.dispatchEvent(
-            new CustomEvent('typus-coupon-applied', {
-              detail: {
-                isApplied: false,
-                code: normalized,
-                expired: true,
-              },
-            })
-          )
-        }
-      } else {
-        setProfPromoCode(urlPromoCode)
-        setEduPromoCode(urlPromoCode)
-      }
-    } else {
-      // Restore active, unexpired coupon from localStorage
-      const active = getActiveCoupon()
-      if (active && !isCouponExpired(active.code)) {
-        setProfPromoCode(active.code)
-        if (active.discount) {
-          setProfPromoDiscount(active.discount)
-          setProfPromoSuccess(tModal('promoCodeSuccess'))
-        }
-      }
-    }
-
-    // Scroll to student plan if hash is present
-    if (window.location.hash === '#student-plan') {
-      const element = document.getElementById('student-plan')
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
-      }
-    }
-  }, [tModal, locale])
-
-  const handleVerifyPromoCode = useCallback(async (type: 'prof' | 'edu') => {
-    const isEdu = type === 'edu'
-    const code = isEdu ? eduPromoCode : profPromoCode
-    const setDiscount = isEdu ? setEduPromoDiscount : setProfPromoDiscount
-    const setError = isEdu ? setEduPromoError : setProfPromoError
-    const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
-
-    const normalized = (code || '').trim().toUpperCase()
-    if (!normalized) return
-
-    // CHECK IF THIS COUPON IS EXPIRED IN LOCALSTORAGE
-    if (isCouponExpired(normalized)) {
-      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-      setError(expiredMsg)
-      setDiscount(null)
-      setSuccess(null)
-      toast.error(expiredMsg)
-
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(
-          new CustomEvent('typus-coupon-applied', {
-            detail: {
-              isApplied: false,
-              code: normalized,
-              expired: true,
-            },
-          })
-        )
-      }
-      return
-    }
-
-    if (isEdu && normalized === 'KICK') {
-      const errorMsg = tModal('promoCodeNotForEdu');
-      setError(errorMsg)
-      toast.error(errorMsg)
-      return
-    }
-
-    setIsVerifyingPromo(true)
-    setError(null)
-    setSuccess(null)
-    setDiscount(null)
-    setSubscribeError(null)
-
-    try {
-      const billingCycleMap: Record<string, string> = {
-        monthly: 'MONTHLY',
-        threeMonthly: 'THREE_MONTHLY',
-        sixMonthly: 'SIX_MONTHLY',
-        yearly: 'YEARLY',
-      }
-      // If we're verifying from the card-specific modal, we use that plan logic.
-      // If verifying from the page input, we use a general default (yearly for edu, monthly for prof)
-      // or try to find a selected plan.
-      const mappedBillingCycle = selectedPlanForModal
-        ? (billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase())
-        : (isEdu ? 'YEARLY' : 'MONTHLY')
-
-      const response = await fetch(`${apiBaseUrl}validate-promo-code`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          promoCode: normalized,
-          billingCycle: mappedBillingCycle,
-          planType: selectedPlanForModal?.planType || (isEdu ? 'STARTER' : 'PRO'),
-          isEducational: isEdu,
-          currency: planCurrency,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (response.ok && data.valid) {
-        setDiscount(data.discount)
-        setSuccess(tModal('promoCodeSuccess'))
-      } else {
-        const errorMsg = data.message || tModal('promoCodeError');
-        setError(errorMsg)
-        toast.error(errorMsg)
-      }
-    } catch (error) {
-      const errorMsg = tModal('promoCodeError');
-      setError(errorMsg)
-      toast.error(errorMsg)
-    } finally {
-      setIsVerifyingPromo(false)
-    }
-  }, [eduPromoCode, profPromoCode, selectedPlanForModal, tModal, locale])
-
-
-  useEffect(() => {
-    // Check if we should auto-verify (code exists but no result/error yet)
-    if (profPromoCode && profPromoCode.trim().length >= 3 && !profPromoDiscount && !profPromoError && !isVerifyingPromo) {
-      const normalized = profPromoCode.trim().toUpperCase()
-      if (isCouponExpired(normalized)) {
-        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-        setProfPromoError(expiredMsg)
-        if (typeof window !== 'undefined') {
-          window.dispatchEvent(
-            new CustomEvent('typus-coupon-applied', {
-              detail: {
-                isApplied: false,
-                code: normalized,
-                expired: true,
-              },
-            })
-          )
-        }
-        return
-      }
-      const timer = setTimeout(() => {
-        handleVerifyPromoCode('prof')
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [profPromoCode, handleVerifyPromoCode, profPromoDiscount, profPromoError, isVerifyingPromo, locale])
-
-  useEffect(() => {
-    // Check if we should auto-verify (code exists but no result/error yet)
-    if (eduPromoCode && eduPromoCode.trim().length >= 3 && !eduPromoDiscount && !eduPromoError && !isVerifyingPromo) {
-      const normalized = eduPromoCode.trim().toUpperCase()
-      if (isCouponExpired(normalized)) {
-        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-        setEduPromoError(expiredMsg)
-        if (typeof window !== 'undefined') {
-          window.dispatchEvent(
-            new CustomEvent('typus-coupon-applied', {
-              detail: {
-                isApplied: false,
-                code: normalized,
-                expired: true,
-              },
-            })
-          )
-        }
-        return
-      }
-      const timer = setTimeout(() => {
-        handleVerifyPromoCode('edu')
-      }, 1000)
-      return () => clearTimeout(timer)
-    }
-  }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo, locale])
-
-
-
-  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean, isEligibleForPromo: boolean = true) => {
-    // All plans now use the email-modal → email-verification → onboarding → checkout flow
-    let code = isEdu ? eduPromoCode : profPromoCode
-    let discount = isEdu ? eduPromoDiscount : profPromoDiscount
-    const setError = isEdu ? setEduPromoError : setProfPromoError
-
-    if (!isEligibleForPromo) {
-      code = ''
-      discount = null
-    }
-
-    if (code && isCouponExpired(code)) {
-      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
-      setError(expiredMsg)
-      toast.error(expiredMsg)
-      if (isEdu) setEduPromoDiscount(null)
-      else setProfPromoDiscount(null)
-      return
-    }
-
-    if (discount && discount.couponId) {
-      setSubscribeError(null)
-      // const loadingToastId = toast.loading(tModal('verifying') || 'Verifying...')
-      try {
-        const response = await fetch(`${apiBaseUrl}validate-promo-code-step-2`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            code: code,
-            discount: discount,
-            billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
-            planType: plan.planType,
-            isEducational: isEdu
-          }),
-        })
-        const data = await response.json()
-
-        if (!response.ok || !data.valid) {
-          console.log(response, "RESPOMSE")
-          const errorMessage = data.message || tModal('promoCodeError')
-          setSubscribeError(errorMessage)
-          toast.error(errorMessage)
-          return // do not open modal
-        }
-
-        // toast.dismiss(loadingToastId)
-      } catch (error) {
-        console.log(error, "ERROR")
-        console.error('Error validating promo code with plan:', error)
-        const errorMessage = tModal('promoCodeError')
-        setSubscribeError(errorMessage)
-        // toast.error(tModal('promoCodeError'), { id: loadingToastId })
-        return // do not open modal
-      }
-    }
-    setSubscribeError(null)
-
-    setSelectedPlanForModal({
-      planType: plan.planType,
-      billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
-      priceId: priceInfo.stripePriceId,
-      isEducational: isEdu,
-      isFloorPlan: plan.isFloorPlan ? true : false,
-      isAgent: plan.isAgent ? true : false,
-      eligiblePromoCode: code || null
-    })
-    setIsModalOpen(true)
-    setEmailSent(false)
-    setModalError(null)
-    const searchParams = new URL(window.location.href).searchParams
-    const urlPromoCode = searchParams.get('promoCode')
-    if (urlPromoCode && !code) {
-      if (isEdu) setEduPromoCode(urlPromoCode)
-      else setProfPromoCode(urlPromoCode)
-    }
-    setShowTrialWarning(false)
-  }
-
-  const handleContinue = async (ignoreTrialWarning = false) => {
-    if (!userEmail || !userEmail.trim()) {
-      setModalError(tModal('errorRequired'))
-      return
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(userEmail.trim())) {
-      setModalError(tModal('errorInvalidEmail'))
-      return
-    }
-
-    console.log('--- Handle Continue ---')
-    console.log('Email:', userEmail.trim())
-    console.log('Selected Plan:', selectedPlanForModal)
-
-    setIsRedirecting(true)
-    setModalError(null)
-
-    try {
-      // 1. Verify Email Type
-      const verifyResponse = await fetch(`${apiBaseUrl}verify-email`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: userEmail.trim(),
-          isEducational: selectedPlanForModal.isEducational ? true : false,
-          isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
-          isAgent: selectedPlanForModal.isAgent ? true : false,
-          plan: selectedPlanForModal.planType?.toLowerCase(),
-          billing: selectedPlanForModal.billingCycle?.toLowerCase(),
-          language: locale,
-        }),
-      })
-      const verifyData = await verifyResponse.json()
-      console.log('Verify Data:', verifyData)
-
-      if (verifyData.universityName) {
-        setUniversityName(verifyData.universityName)
-      }
-
-      if (!verifyResponse.ok) {
-        toast.error(verifyData.message || 'An unexpected error occurred')
-        setSubscribeError(verifyData.message || 'An unexpected error occurred')
-        setIsModalOpen(false)
-        setIsRedirecting(false)
-        return
-      }
-
-      // if (selectedPlanForModal.isEducational) {
-      //   setModalError(tModal('errorNotStudentEmail'))
-      //   setIsRedirecting(false)
-      //   return
-      // }
-
-      // if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
-      //   console.log('Showing Trial Warning Modal')
-      //   setShowTrialWarning(true)
-      //   setIsModalOpen(false) // Close the main modal to show warning
-      //   setIsRedirecting(false)
-      //   return
-      // }
-
-      const billingCycleMap: Record<string, string> = {
-        monthly: 'MONTHLY',
-        threeMonthly: 'THREE_MONTHLY',
-        sixMonthly: 'SIX_MONTHLY',
-        yearly: 'YEARLY',
-      }
-      const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
-
-      // 2. Handle email verification response
-      if (verifyData.emailVerified) {
-        if (verifyData.universityName) {
-          setUniversityName(verifyData.universityName)
-        }
-        if (verifyData.data) {
-          setOnboardingData(verifyData.data)
-        }
-        setIsModalOpen(false)
-        setShowTrialWarning(false)
-        setShowOnboarding(false)
-        // Directly move to checkout page
-        await handleOnboardingComplete(verifyData.data || {}, selectedPlanForModal, userEmail.trim())
-      } else if (verifyData.emailSent) {
-        setEmailSent(true)
-        setIsRedirecting(false)
-      } else {
-        setModalError('Verification failed. Please try again.')
-        setIsRedirecting(false)
-      }
-    } catch (error: any) {
-      console.error('Checkout error:', error)
-      const errorMessage = error.message || 'An unexpected error occurred'
-
-      // Check for specific student email error to show translated message
-      if (errorMessage.toLowerCase().includes('student email')) {
-        setModalError(tModal('errorNotStudentEmail'))
-      } else {
-        setModalError(errorMessage)
-      }
-
-      toast.error(errorMessage)
-      setIsRedirecting(false)
-    }
-  }
-
-  const handleOnboardingComplete = async (onboardingData: any = {}, planOverride?: any, emailOverride?: string) => {
-    const activePlan = planOverride || selectedPlanForModal
-    const activeEmail = (emailOverride || userEmail || '').trim()
-    setOnboardingData(onboardingData)
-    setIsRedirecting(true)
-    toast.loading(locale === 'de' ? 'Weiterleitung zur Kasse...' : 'Redirecting to checkout...', { id: 'checkout-redirect' })
-
-    try {
-      if (onboardingData && !onboardingData.id && Object.keys(onboardingData).length > 0) {
-        try {
-          const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email: activeEmail,
-              marketingConsent,
-              privacyConsent,
-              termsConsent,
-              language: locale,
-              ...(locationCountryCode && { countryCode: locationCountryCode }),
-              ...(locationCurrency && { currency: locationCurrency }),
-              ...(locationContinent && { continent: locationContinent }),
-              ...(activePlan?.isEducational && { isStudent: true }),
-              ...(activePlan?.isEducational && { universityName: universityName }),
-              ...onboardingData
-            }),
-          })
-          if (!submitResponse.ok) {
-            console.error('Failed to save public onboarding data:', await submitResponse.json())
-          }
-        } catch (e) {
-          console.error('Error submitting public onboarding data:', e)
-        }
-      }
-
-      const billingCycleMap: Record<string, string> = {
-        monthly: 'MONTHLY',
-        threeMonthly: 'THREE_MONTHLY',
-        sixMonthly: 'SIX_MONTHLY',
-        yearly: 'YEARLY',
-      }
-      const rawBillingCycle = activePlan?.billingCycle || 'monthly'
-      const mappedBillingCycle = billingCycleMap[rawBillingCycle] || rawBillingCycle.toUpperCase()
-
-      const getTrackingCookies = () => {
-        if (typeof document === 'undefined') return {};
-
-        const getCookiesMap = () => document.cookie.split(';').reduce((acc, cookie) => {
-          const [key, value] = cookie.split('=').map(c => c.trim());
-          if (key) acc[key] = value;
-          return acc;
-        }, {} as Record<string, string>);
-
-        let cookies = getCookiesMap();
-
-        // Extract from URL (Priority)
-        const urlParams = new URLSearchParams(window.location.search);
-        const gclid = urlParams.get('gclid') || cookies['gclid'] || null;
-        const gbraid = urlParams.get('gbraid') || cookies['gbraid'] || null;
-        const wbraid = urlParams.get('wbraid') || cookies['wbraid'] || null;
-
-        // Persist GCLID in cookies if found in URL
-        if (urlParams.get('gclid')) {
-          document.cookie = `gclid=${gclid}; path=/; max-age=7776000`; // 90 days
-        }
-
-        // 🛠️ TESTING FALLBACK: If on localhost and cookies are missing, generate fake ones
-        if (window.location.hostname === 'localhost' && !cookies['_ga']) {
-          console.log('🧪 Localhost detected: Generating fake tracking cookies for testing...');
-          const fakeGa = `GA1.1.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
-          const fakeSid = `GS2.1.${Math.floor(Date.now() / 1000)}.1.1.1.1`;
-          const fakeFpid = `FPID2.2.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
-          const fakeGclid = `CLID_${Math.floor(Math.random() * 1000000000)}`;
-
-          document.cookie = `_ga=${fakeGa}; path=/; max-age=31536000`;
-          document.cookie = `_ga_QR6YQP6P8N=${fakeSid}; path=/; max-age=31536000`;
-          document.cookie = `FPID=${fakeFpid}; path=/; max-age=31536000`;
-          document.cookie = `gclid=${fakeGclid}; path=/; max-age=7776000`;
-
-          cookies = getCookiesMap(); // Refresh map
-        }
-
-        const trackingCookies = {
-          _ga: cookies['_ga'] || null,
-          _ga_QR6YQP6P8N: cookies['_ga_QR6YQP6P8N'] || null,
-          _fbp: cookies['_fbp'] || null,
-          FPID: cookies['FPID'] || null,
-          gclid: cookies['gclid'] || urlParams.get('gclid') || null,
-          gbraid: cookies['gbraid'] || urlParams.get('gbraid') || null,
-          wbraid: cookies['wbraid'] || urlParams.get('wbraid') || null,
-          utm_source: cookies['utm_source'] || urlParams.get('utm_source') || null,
-          utm_medium: cookies['utm_medium'] || urlParams.get('utm_medium') || null,
-          utm_campaign: cookies['utm_campaign'] || urlParams.get('utm_campaign') || null,
-          utm_content: cookies['utm_content'] || urlParams.get('utm_content') || null,
-          utm_term: cookies['utm_term'] || urlParams.get('utm_term') || null,
-          utm_campaign_name: cookies['utm_campaign_name'] || urlParams.get('utm_campaign_name') || null,
-          gad_source: cookies['gad_source'] || urlParams.get('gad_source') || null,
-          gad_campaignid: cookies['gad_campaignid'] || urlParams.get('gad_campaignid') || null,
-          bi: cookies['stapeUserId'] || null,
-        };
-        console.log('🎯 Final Tracking Cookies (including GCLID):', trackingCookies);
-        return trackingCookies;
-      };
-
-      // All plans go directly to Stripe checkout — no contract overview modal
-
-      const response = await fetch(`${apiBaseUrl}checkout`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: activeEmail,
-          planType: activePlan.planType,
-          billingCycle: mappedBillingCycle,
-          isEducational: activePlan.isEducational,
-          isFloorPlan: activePlan.isFloorPlan ? true : false,
-          isAgent: activePlan.isAgent ? true : false,
-          promoCode: activePlan.eligiblePromoCode || null,
-          currency: planCurrency,
-          cancelUrl: window.location.href,
-          marketingConsent,
-          privacyConsent,
-          termsConsent,
-          language: locale,
-          onboardingData: onboardingData || {},
-          trackingData: getTrackingCookies(), // Explicitly send cookies here
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to create checkout session')
-      }
-
-      if (data.url) {
-        window.location.href = data.url
-      } else {
-        toast.dismiss('checkout-redirect')
-        throw new Error('No checkout URL received')
-      }
-    } catch (error: any) {
-      console.error('Checkout error:', error)
-      toast.dismiss('checkout-redirect')
-      toast.error(error.message || 'Failed to create checkout session')
-      setIsRedirecting(false)
-    }
-  }
-
-  // Helper to find fetched plan data
-  const findFetchedPlan = (planType: string, isEdu: boolean) => {
-    const source = isEdu ? educationalPlans : plans
-    return source?.find((p: any) => p.planType === planType)
-  }
-
-  // Get translated Professional plans
-  const getProfessionalPlans = () => {
-    // We display all 4 plans: SOLO, PRO, TEAM, and ENTERPRISE.
-    const soloFetchedData = findFetchedPlan('SOLO', false) as any
-    const proFetchedData = findFetchedPlan('PRO', false)
-    const businessFetchedData = findFetchedPlan('TEAM', false)
-    
-    const mapFeatureText = (f: any) => {
-      if (typeof f === 'string') return f;
-      if (f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits500');
-      if (f.text.includes('1000 DRAFTY AI CREDITS') || f.text.includes('1000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits1000');
-      if (f.text.includes('5000 DRAFTY AI CREDITS') || f.text.includes('5000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits5000');
-      if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits200');
-      if (f.text.includes('2000 CREDITS')) return t('plans.pro.features.credits1000');
-      if (f.text.includes('10000 CREDITS')) return t('plans.pro.features.credits5000');
-      if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
-      // if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
-      // if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');
-      // if (f.text.includes('UP TO 5-20 ACCOUNTS')) return t('plans.pro.features.upTo520Accounts');
-      // if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
-      
-      const key = f.text.includes('4K') ? 'resolution4k' : 
-                  f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
-                  f.text.includes('EDIT BY CHAT') ? 'editByChat' : 
-                  // f.text.includes('HIGH-END') ? 'highEndResults' : 
-                  f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : 
-                  f.text.includes('ONBOARDING VIDEO CALL') ? 'onboardingCall' : 
-                  f.text.includes('LIVE WEBINARS') ? 'liveWebinars' : 
-                  f.text.includes('1:1 LIVE VIDEO') ? 'oneOnOneCall' : 
-                  f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k';
-      return t(`plans.pro.features.${key}`);
-    };
-
-    // Test
-    const baseTestPlan = professionalPlans.find(p => p.id === 'test') || professionalPlans[0]
-    const testPlan = {
-      ...baseTestPlan,
-      name: 'TEST',
-      fetchedData: null,
-      features: baseTestPlan.features.map(f => {
-        let text = f.text;
-        if (f.text.includes('30 CREDITS') || f.text.includes('3 CREDITS')) {
-          text = locale === 'de' ? '30 CREDITS / Monat' : '30 CREDITS /month';
-        } else if (f.text.includes('1K RESOLUTION')) {
-          text = locale === 'de' ? '1K AUFLÖSUNG' : '1K RESOLUTION';
-        } else {
-          text = mapFeatureText(f);
-        }
-        return {
-          ...f,
-          text,
-          hasFeature: typeof f === 'object' ? f.hasFeature : true,
-        };
-      }),
-      targetAudience: locale === 'de' ? 'Kostenloser Test' : 'Free Trial',
-      billingCycle: profBillingCycle
-    }
-
-    // Solo
-    const baseSoloPlan = professionalPlans.find(p => p.id === 'solo') || professionalPlans[1]
-    // const soloPlan = {
-    //   ...baseSoloPlan,
-    //   name: 'SOLO',
-    //   fetchedData: soloFetchedData,
-    //   features: baseSoloPlan.features.map(f => ({
-    //     ...f,
-    //     text: mapFeatureText(f),
-    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
-    //   })),
-    //   targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
-    //   billingCycle: profBillingCycle
-    // }
-
-    // Pro
-    const baseProPlan = professionalPlans.find(p => p.id === 'pro') || professionalPlans[2]
-    const proPlan = {
-      ...baseProPlan, 
-      name: 'PRO',
-      fetchedData: proFetchedData,
-      popular: true,
-      badgeTextKey: profBillingCycle === 'yearly' ? 'bestOffer' : 'mostPopular',
-      features: baseProPlan.features.map(f => ({
-        ...f,
-        text: mapFeatureText(f),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-      targetAudience: t('plans.pro.targetAudience'),
-      billingCycle: profBillingCycle
-    }
-
-    // Business
-    const baseBusinessPlan = professionalPlans.find(p => p.id === 'business') || professionalPlans[3]
-    const businessPlan = {
-      ...baseBusinessPlan,
-      name: 'TEAM',
-      fetchedData: businessFetchedData,
-      features: baseBusinessPlan.features.map(f => ({
-        ...f,
-        text: mapFeatureText(f),
-        hasFeature: typeof f === 'object' ? f.hasFeature : true,
-      })),
-      targetAudience: t('plans.business.targetAudience'),
-      billingCycle: profBillingCycle
-    }
-
-    if (profBillingCycle === 'yearly') {
-      return [ proPlan, businessPlan ]
-    }
-
-    return [ testPlan, proPlan, businessPlan ]
-  }
-
-  // Get translated Education plans
-  const getEducationPlans = () => {
-    return [
-      {
-        ...educationPlans[0],
-        name: t('plans.student.name'),
-        fetchedData: findFetchedPlan('STARTER', true),
-        features: educationPlans[0].features.map(f => ({
-          ...f,
-          text:
-            typeof f === 'string'
-              ? f
-              : t(
-                `plans.student.features.${(f.text.includes('50 DRAFTY AI CREDITS') || f.text.includes('50 AI AGENT CREDITS')) ? 'agentCredits50' : f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
-              ),
-          hasFeature: typeof f === 'object' ? f.hasFeature : true,
-        })),
-      },
-      {
-        ...educationPlans[1],
-        name: t('plans.educator.name'),
-        fetchedData: findFetchedPlan('EXPLORER', true),
-        features: educationPlans[1].features.map(f => ({
-          ...f,
-          text:
-            typeof f === 'string'
-              ? f
-              : t(
-                `plans.educator.features.${(f.text.includes('150 DRAFTY AI CREDITS') || f.text.includes('150 AI AGENT CREDITS')) ? 'agentCredits150' : f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
-              ),
-          hasFeature: typeof f === 'object' ? f.hasFeature : true,
-        })),
-      },
-      {
-        ...educationPlans[2],
-        name: t('plans.institution.name'),
-        fetchedData: findFetchedPlan('PRO', true),
-        features: educationPlans[2].features.map(f => ({
-          ...f,
-          text:
-            typeof f === 'string'
-              ? f
-              : t(
-                `plans.institution.features.${(f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) ? 'agentCredits500' : f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
-              ),
-          hasFeature: typeof f === 'object' ? f.hasFeature : true,
-        })),
-      },
-    ]
-  }
-
-  const currentProfPlans = getProfessionalPlans()
-  const currentEduPlans = getEducationPlans()
-
-  useEffect(() => {
-    fetchPlans();
-  }, [isEurope]);
-
-  const fetchPlans = async () => {
-    try {
-      const response = await fetch(`${apiBaseUrl}plans?currency=${isEurope ? 'eur' : 'usd'}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-
-        });
-      const plansData = await response.json();
-
-      setPlans(plansData?.regularPlans);
-      setEducationalPlans(plansData?.educationalPlans);
-      setFloorPlans(plansData?.floorPlans || []);
-      setAgentPlans(plansData?.agentPlans || []);
-      setPlanCurrency(plansData?.currency);
-      if (plansData?.location?.isVat !== undefined) {
-        setIsVat(plansData.location.isVat);
-      }
-      if (plansData?.location?.continent) {
-        setLocationContinent(plansData.location.continent);
-      }
-      if (plansData?.location?.country_code) {
-        setLocationCountryCode(plansData.location.country_code);
-      }
-      if (plansData?.location?.currency) {
-        setLocationCurrency(plansData.location.currency);
-      }
-      // Use currency from backend
-      // const detectedCurrency = ;
-      // setCurrency(detectedCurrency);
-      // console.log(`💰 Setting currency: ${detectedCurrency} (from backend: ${plansData.currency})`);
-      // setIsProfessional(plansData.isProfessional);
-      // setIsEligibleForTrial(plansData.isEligibleForTrial);
-    } catch (error) {
-      console.error('Failed to fetch plans:', error);
-      toast.error('Failed to load pricing plans. Please try again later.');
-    } finally {
-      // setLoading(false);
-    }
-  };
-
-  // After plans load, fill in the priceId if it was set from a token (was null)
-  useEffect(() => {
-    if (!selectedPlanForModal || selectedPlanForModal.priceId !== null) return
-    if (!plans && !educationalPlans) return
-
-    const source = selectedPlanForModal.isEducational ? educationalPlans : plans
-    if (!source) return
-
-    const targetPlan = source.find((p: any) => p.planType === selectedPlanForModal.planType)
-    if (!targetPlan) return
-
-    const stripePrices = targetPlan.stripePrices || {}
-    const billingCycle = selectedPlanForModal.billingCycle
-    const priceId = billingCycle === 'yearly' ? stripePrices.YEARLY :
-                    billingCycle === 'sixMonthly' ? stripePrices.SIX_MONTHLY :
-                    billingCycle === 'threeMonthly' ? stripePrices.THREE_MONTHLY :
-                    stripePrices.MONTHLY
-
-    if (priceId) {
-      setSelectedPlanForModal((prev: any) => ({ ...prev, priceId }))
-    }
-  }, [plans, educationalPlans, selectedPlanForModal])
-
-
-  const renderEducationSection = () => {
-    return (
-      <>
-        {/* Education Section */}
-        <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
-          <h2 className='heading-primary mt-10 mb-2'>
-            {t('educationPlans')}
-          </h2>
-
-          <div className='flex justify-center mb-4'>
-            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
-              <button
-                onClick={() => setIsYearly(false)}
-                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${!isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
-              >
-                {!isYearly && (
-                  <span
-                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
-                    style={{ zIndex: -1 }}
-                  />
-                )}
-                <span className='relative'>{t('monthlyBilling')}</span>
-              </button>
-              <button
-                onClick={() => setIsYearly(true)}
-                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
-              >
-                {isYearly && (
-                  <span
-                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
-                    style={{ zIndex: -1 }}
-                  />
-                )}
-                <span className='relative'>{t('yearlyBilling')}</span>
-              </button>
-            </div>
-          </div>
-          {/* Promo Code Input on Page (Education) */}
-          <div className='w-full max-w-md mx-auto mt-8 mb-6'>
-            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
-              <input
-                type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
-                placeholder={tModal('promoCodePlaceholder')}
-                value={eduPromoCode}
-                onChange={(e) => {
-                  setEduPromoCode(e.target.value)
-                  setEduPromoError(null)
-                  setEduPromoSuccess(null)
-                  setEduPromoDiscount(null)
-                }}
-                disabled={isRedirecting || isVerifyingPromo}
-              />
-              <Button
-                onClick={() => handleVerifyPromoCode('edu')}
-                disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0'
-                style={{ fontFamily: 'Arial' }}
-              >
-                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
-              </Button>
-            </div>
-            {eduPromoError && (
-              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
-                <IconAlertCircle size={14} />
-                <span>{eduPromoError}</span>
-              </div>
-            )}
-            {eduPromoSuccess && (
-              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
-                <Check size={14} />
-                <span>{eduPromoSuccess}</span>
-              </div>
-            )}
-            {eduPromoDiscount && (
-              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
-                <span className=' uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}${tModal('discountOffCaps')}` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
-                {eduPromoDiscount.validPlans && eduPromoDiscount.validPlans.length > 0 ? (
-                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    {tModal('applicableTo')} {eduPromoDiscount.validPlans.join(', ')}
-                    {eduPromoDiscount.validBillingCycles && eduPromoDiscount.validBillingCycles.length > 0 
-                      ? ` (${Array.from(new Set(eduPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
-                      : ''}
-                  </div>
-                ) : (
-                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    {tModal('applicableTo')} {tModal('allPlans')}
-                  </div>
-                )}
-                {eduPromoDiscount.maxRedemptions && (
-                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
-                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {subscribeError && (
-            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
-              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
-                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
-                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
-                  {subscribeError}
-                </p>
-                <button
-                  onClick={() => setSubscribeError(null)}
-                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
-                >
-                  <IconX size={16} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {isYearly && (
-            <div className='flex flex-col gap-1 mb-8 text-center'>
-            </div>
-          )}
-        </div>
-
-        {/* Education Plans Cards */}
-        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
-          {currentEduPlans.map((plan, index) => (
-              <div key={index} className='w-full max-w-xs z-30'>
-                <PricingCard
-                  plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
-                  isYearly={isYearly}
-                  isProfessional={false}
-                  isEurope={planCurrency === 'eur'}
-                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                  onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, true, isEligible)}
-                  promoDiscount={eduPromoDiscount}
-                  isVat={isVat}
-                />
-              </div>
-            ))}
-        </div>
-      </>
-    )
-  }
-
-  const floorPlanStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
-    LITE: {
-      description: 'Für persönliche Projekte und gelegentliche Raumideen.',
-      features: [
-        'HD-Exporte und Downloads ohne Wasserzeichen',
-        '800 monatliche Credits',
-        'Basis-Warteschlange',
-        'Bis zu 6 ausstehende Bildgenerierungen',
-        'Erweiterte Funktionen für KI-Floorplan freischalten',
-        'Persönliche Projekte und leichte Kundenarbeit',
-        '24-Stunden-E-Mail-Support',
-      ],
-    },
-    MEHR: {
-      description: 'Für Innenräume, Außenbereiche und Immobilien-Visuals.',
-      isPopular: true,
-      features: [
-        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
-        'HD-Exporte und Downloads ohne Wasserzeichen',
-        '3.000 monatliche Credits',
-        'Schnellere Warteschlange',
-        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
-        'Bis zu 15 ausstehende Bildgenerierungen',
-        'Erweiterte Funktionen für KI-Floorplan freischalten',
-        '24-Stunden-E-Mail-Support',
-      ],
-    },
-    PRO: {
-      description: 'Für Teams, Studios und umfangreiche Immobilienprojekte.',
-      features: [
-        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
-        'HD-Exporte und Downloads ohne Wasserzeichen',
-        '9.999 monatliche Credits',
-        'Warteschlange mit höchster Priorität',
-        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
-        'Bis zu 30 ausstehende Bildgenerierungen',
-        'Erweiterte Funktionen für KI-Floorplan freischalten',
-        '24-Stunden-E-Mail-Support',
-      ],
-    },
-  };
-
-  const renderFloorPlanSection = () => {
-    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
-
-    return (
-      <>
-        <div className='text-center mb-8 sm:mb-12'>
-          <h2 className='heading-primary'>{locale === 'de' ? 'Grundriss' : 'Floor plans'}</h2>
-        </div>
-        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
-          {floorPlans.map((plan: any) => {
-            const staticData = floorPlanStaticData[plan.planType] || {};
-            const monthlyPrice = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
-            const priceId = plan.stripePrices?.MONTHLY;
-
-            const priceInfo = {
-              mainPrice: `${currencySymbol}${monthlyPrice}`,
-              period: '/month',
-              billingInfo: t('billedMonthly'),
-              stripePriceId: priceId,
-            };
-
-            const isFloorPlanFeatured = Boolean(
-              staticData.isPopular ||
-              plan.planType === 'MEHR' ||
-              plan.name === 'MEHR' ||
-              plan.id === 'mehr'
-            );
-
-            return (
-              <div
-                key={plan.planType}
-                className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
-                  isFloorPlanFeatured
-                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
-                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
-                }`}
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#000000',
-                  fontFamily: 'Arial',
-                  border: isFloorPlanFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
-                }}
-              >
-                {/* Top-Right Blue Ribbon Badge */}
-                {isFloorPlanFeatured && (
-                  <div
-                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
-                  </div>
-                )}
-
-                {/* 4 Corner Small Square Fills */}
-                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-
-                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
-                  <div className='flex items-center justify-center gap-2 mb-1'>
-                    <span
-                      className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {plan.planType}
-                    </span>
-                  </div>
-
-                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
-                    {staticData.description || plan.description}
-                  </span>
-
-                  <div className='mb-3'>
-                    <div className='flex items-baseline justify-center gap-1'>
-                      <span
-                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {currencySymbol}{monthlyPrice}
-                      </span>
-                      <span
-                        className='text-xs sm:text-sm text-gray-500'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {locale === 'de' ? '/Monat' : '/month'}
-                      </span>
-                    </div>
-                    <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
-                      <div style={{ fontFamily: 'Arial' }}>
-                        {t('billedMonthly')}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
-                  <ul className='space-y-4'>
-                    {(staticData.features || []).map((feature: string, idx: number) => (
-                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
-                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
-                        <span
-                          className='text-[10px]  tracking-wider text-gray-900'
-                          style={{ fontFamily: 'Arial' }}
-                        >
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className='mt-auto pt-4'>
-                  <button
-                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
-                      staticData.isPopular
-                        ? 'border border-black bg-transparent text-black hover:bg-black hover:text-white shadow-sm'
-                        : 'border border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black bg-transparent'
-                    }`}
-                    style={{
-                      fontFamily: 'Arial',
-                      ...(staticData.isPopular ? { backgroundColor: 'transparent', color: '#000000', borderColor: '#000000' } : {}),
-                    }}
-                    onClick={() => handleSubscribe(
-                      {
-                        planType: plan.planType,
-                        billingCycle: 'monthly',
-                        isEducational: false,
-                        isFloorPlan: true,
-                        name: plan.name,
-                        fetchedData: plan,
-                      },
-                      priceInfo,
-                      false,
-                      true
-                    )}
-                  >
-                    {t('subscribe')}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  };
-
-  const agentStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
-    STARTER: {
-      description: locale === 'de'
-        ? 'Wesentliche KI-Agenten-Intelligenz für selbstständige Architekten & Designer.'
-        : 'Essential AI agent intelligence for independent architects and designers.',
-      features: locale === 'de' ? [
-        '300 monatliche Drafty Credits',
-        'Dedizierte KI-Agenten-Tools & Workflows',
-        'Automatischer Prompt-Enhancer',
-        'Schnelle Batch-Generierung & Iteration',
-        'Dedizierte Chat-Historie pro Session',
-        '24-Stunden-E-Mail-Support',
-      ] : [
-        '300 monthly Drafty Credits',
-        'Dedicated AI Agent tools & workflows',
-        'Auto prompt enhancer & suggestions',
-        'Fast batch generation & iteration',
-        'Dedicated chat history per session',
-        '24/7 priority email support',
-      ],
-    },
-    PRO: {
-      description: locale === 'de'
-        ? 'Grenzenlose kreative Freiheit für tägliche Entwürfe, 4K-Veredelung und Videos.'
-        : 'Uncapped creative freedom for daily designing, 4K refinement, and video generation.',
-      isPopular: true,
-      features: locale === 'de' ? [
-        '1.000 monatliche Drafty Credits',
-        'Prioritäts-Warteschlange für alle Agenten-Tasks',
-        'High-Res 4K Bildverfeinerung & Upscaling',
-        'KI-Videogenerierung & Render-Animationen',
-        'Erweiterte Werkzeuge & Material-Kataloge',
-        'Unbegrenzte Chat-Sitzungen',
-        'Prioritärer VIP-Support',
-      ] : [
-        '1,000 monthly Drafty Credits',
-        'Priority queue for all Agent tasks',
-        'High-Res 4K image refinement & upscaling',
-        'AI video generation & animations',
-        'Extended toolset & material catalogs',
-        'Unlimited chat sessions',
-        'Priority VIP support',
-      ],
-    },
-    BUSINESS: {
-      description: locale === 'de'
-        ? 'Entwickelt für Architekturbüros, Teams und hochfrequente Multimodal-Produktion.'
-        : 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
-      features: locale === 'de' ? [
-        '3.000 monatliche Drafty Credits',
-        'Höchste Prioritäts-Warteschlange',
-        'Team-Kollaboration & Multi-User Sharing',
-        'Alle High-End KI-Modelle & Video-Engines',
-        'Frühzeitiger Zugang zu neuen Agent-Fähigkeiten',
-        'Dedizierter Account-Manager',
-      ] : [
-        '3,000 monthly Drafty Credits',
-        'Highest priority queue',
-        'Team collaboration & shared workspace',
-        'All high-end AI models & video engines',
-        'Early access to new agent capabilities',
-        'Dedicated account manager',
-      ],
-    },
-  };
-
-  const renderAgentSection = () => {
-    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
-    const displayPlans = agentPlans.length > 0 ? agentPlans : [
-      {
-        planType: 'STARTER',
-        name: 'Drafty AI - Starter Plan',
-        description: 'Essential AI agent intelligence for independent architects and designers.',
-        credits: 300,
-        prices: { monthly: 1900, yearly: 19000 },
-        stripePrices: {},
-      },
-      {
-        planType: 'PRO',
-        name: 'Drafty AI - Pro Plan',
-        description: 'Uncapped creative freedom with high-res refinement, video generation, and priority agent queue.',
-        credits: 1000,
-        prices: { monthly: 4900, yearly: 49000 },
-        stripePrices: {},
-      },
-      {
-        planType: 'BUSINESS',
-        name: 'Drafty AI - Business Plan',
-        description: 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
-        credits: 3000,
-        prices: { monthly: 11900, yearly: 119000 },
-        stripePrices: {},
-      },
-    ];
-
-    return (
-      <>
-        <div className='text-center mb-6 sm:mb-8 max-w-4xl mx-auto px-4'>
-          <h2 className='heading-primary'>
-            {locale === 'de' ? 'Drafty KI-Agent für Architektur' : 'Drafty AI Agent for Architecture'}
-          </h2>
-          <p className='text-sm sm:text-base text-gray-500 mt-2 max-w-2xl mx-auto'>
-            {locale === 'de'
-              ? 'Dedizierte KI-Agenten-Pläne mit separaten Drafty-Credits für automatisierte Entwürfe, 4K-Verfeinerung und Workflows.'
-              : 'Dedicated AI Agent plans with separate Drafty credits for automated workflows, 4K refinement, and video generation.'}
-          </p>
-
-          {/* Billing Cycle Toggle */}
-          <div className='flex justify-center mt-6 mb-2'>
-            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
-              {(['monthly', 'yearly'] as const).map((cycle) => (
-                <button
-                  key={cycle}
-                  onClick={() => setAgentBillingCycle(cycle)}
-                  className={`relative z-10 px-3.5 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${
-                    agentBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'
-                  }`}
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {agentBillingCycle === cycle && (
-                    <span
-                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
-                      style={{ zIndex: -1 }}
-                    />
-                  )}
-                  <span className='relative'>
-                    {cycle === 'yearly'
-                      ? (locale === 'de' ? 'Jährlich (Spare 17%)' : 'Annual (Save 17%)')
-                      : (locale === 'de' ? 'Monatlich' : 'Monthly')}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
-          {displayPlans.map((plan: any) => {
-            const staticData = agentStaticData[plan.planType] || {};
-            const isYearlyMode = agentBillingCycle === 'yearly';
-
-            const monthlyRaw = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
-            const yearlyRaw = plan.prices?.yearly ? plan.prices.yearly / 100 : (monthlyRaw * 10);
-            const displayMonthly = isYearlyMode ? Math.round(yearlyRaw / 12) : monthlyRaw;
-
-            const priceId = isYearlyMode ? (plan.stripePrices?.YEARLY || plan.stripePrices?.MONTHLY) : plan.stripePrices?.MONTHLY;
-
-            const priceInfo = {
-              mainPrice: `${currencySymbol}${displayMonthly}`,
-              period: '/month',
-              billingInfo: isYearlyMode
-                ? (locale === 'de' ? `Jährlich abgerechnet (${currencySymbol}${yearlyRaw}/Jahr)` : `Billed annually (${currencySymbol}${yearlyRaw}/yr)`)
-                : t('billedMonthly'),
-              stripePriceId: priceId,
-            };
-
-            const isAgentFeatured = Boolean(staticData.isPopular || plan.planType === 'PRO');
-
-            return (
-              <div
-                key={plan.planType}
-                className={`flex h-auto lg:h-[720px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
-                  isAgentFeatured
-                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
-                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
-                }`}
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#000000',
-                  fontFamily: 'Arial',
-                  border: isAgentFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
-                }}
-              >
-                {/* Top-Right Recommended Badge */}
-                {isAgentFeatured && (
-                  <div
-                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs uppercase tracking-widest rounded-bl-2xl z-30"
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
-                  </div>
-                )}
-
-                {/* 4 Corner Small Square Fills */}
-                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
-
-                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
-                  <div className='flex items-center justify-center gap-2 mb-1'>
-                    <span
-                      className='text-xl sm:text-2xl uppercase tracking-wider block text-black font-bold'
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {plan.name ? plan.name.replace(/\bStudio\b/gi, 'Business') : `Drafty ${plan.planType}`}
-                    </span>
-                  </div>
-
-                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
-                    {staticData.description || plan.description}
-                  </span>
-
-                  <div className='mb-3'>
-                    <div className='flex items-baseline justify-center gap-1'>
-                      <span
-                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {currencySymbol}{displayMonthly}
-                      </span>
-                      <span
-                        className='text-xs sm:text-sm text-gray-500'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {locale === 'de' ? '/Monat' : '/month'}
-                      </span>
-                    </div>
-
-                    <div className='space-y-1 text-[11px] text-gray-500 mt-2 text-center'>
-                      <div style={{ fontFamily: 'Arial' }}>
-                        {priceInfo.billingInfo}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Credits pill */}
-                  <div className='mt-1 mb-2'>
-                    <span className='inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200'>
-                      ⚡ {plan.credits?.toLocaleString() || 300} {locale === 'de' ? 'Agent-Credits / Monat' : 'Agent Credits / month'}
-                    </span>
-                  </div>
-                </div>
-
-                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
-                  <ul className='space-y-3.5'>
-                    {(staticData.features || []).map((feature: string, idx: number) => (
-                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
-                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
-                        <span
-                          className='text-[11px] tracking-normal text-gray-900'
-                          style={{ fontFamily: 'Arial' }}
-                        >
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className='mt-auto pt-4'>
-                  <button
-                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
-                      isAgentFeatured
-                        ? 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
-                        : 'border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white bg-transparent'
-                    }`}
-                    style={{
-                      fontFamily: 'Arial',
-                    }}
-                    onClick={() => handleSubscribe(
-                      {
-                        planType: plan.planType,
-                        billingCycle: isYearlyMode ? 'yearly' : 'monthly',
-                        isEducational: false,
-                        isFloorPlan: false,
-                        isAgent: true,
-                        name: plan.name,
-                        fetchedData: plan,
-                      },
-                      priceInfo,
-                      false,
-                      true
-                    )}
-                  >
-                    {t('subscribe')}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  };
-
-  return (
-    <section
-      ref={containerRef}
-      className='min-h-screen relative pt-0 pb-20'
-      style={{ backgroundColor: '#FFFFFF' }}
-      id='pricing'
-    >
-
-
-      <div className='w-full  mx-auto px-4 relative z-10 pt-0'>
-        {/* Educational Plans at the top if requested */}
-        {showOnly === 'educational' && renderEducationSection()}
-
-        {/* Floor Plan Section */}
-        {showOnly === 'floorplan' && renderFloorPlanSection()}
-
-        {/* AI Agent Section */}
-        {showOnly === 'agent' && renderAgentSection()}
-
-        {/* Professional Section */}
-        {showOnly !== 'educational' && showOnly !== 'floorplan' && showOnly !== 'agent' && (
-          <>
-            <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
-              {/* Countdown Timer */}
-              {/* <div className='flex justify-center items-center gap-3 mb-6'>
-                {[
-                  { label: locale === 'de' ? 'Tage' : 'Days', value: timeLeft.days },
-                  { label: locale === 'de' ? 'Stunden' : 'Hours', value: timeLeft.hours },
-                  { label: locale === 'de' ? 'Minuten' : 'Minutes', value: timeLeft.minutes },
-                  { label: locale === 'de' ? 'Sekunden' : 'Seconds', value: timeLeft.seconds },
-                ].map((item, idx) => (
-                  <div key={idx} className='flex flex-col items-center bg-neutral-950 text-white rounded-xl px-4 py-2 min-w-[70px] shadow-lg border border-neutral-900'>
-                    <span className='text-xl sm:text-2xl  tracking-tight' style={{ fontFamily: 'Arial' }}>
-                      {String(item.value).padStart(2, '0')}
-                    </span>
-                    <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: 'Arial' }}>
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div> */}
-              <h2 className="text-center mt-10 mb-4 heading-primary">
-                {t('selfServiceTitle')}
-              </h2>
-              
-              {/* Lottie Arrow pointing to the right/booking form */}
-              {/* <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
-                <Lottie animationData={HandDrawnArrow} loop={true} />
-              </div> */}
-
-          {/* Billing Toggle — only shown when ?disscountPlans=true */}
-          {showBillingToggle && (
-          <div className='flex justify-center mt-8 mb-2'>
-            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
-              {/* (['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => ( */}
-              {(['monthly', 'yearly'] as const).map((cycle) => (
-                <button
-                  key={cycle}
-                  onClick={() => setProfBillingCycle(cycle)}
-                  className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${profBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
-                >
-                  {profBillingCycle === cycle && (
-                    <span
-                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
-                      style={{ zIndex: -1 }}
-                    />
-                  )}
-                  <span className='relative'>
-                    {cycle === 'yearly' ? (
-                      <span className='flex items-center gap-2'>
-                        {t('yearlyBilling')}
-                      </span>
-                    ) : (
-                      t('monthlyBilling')
-                    )}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-          )}
-
-          {/* Promo Code Input on Page */}
-          <div className='w-full max-w-md mx-auto mt-8 mb-10'>
-            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
-              <input
-                id='prof-promo-code-input'
-                type='text'
-                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
-                placeholder={tModal('promoCodePlaceholder')}
-                value={profPromoCode}
-                onChange={(e) => {
-                  setProfPromoCode(e.target.value)
-                  setProfPromoError(null)
-                  setProfPromoSuccess(null)
-                  setProfPromoDiscount(null)
-                  setSubscribeError(null)
-                }}
-                disabled={isRedirecting || isVerifyingPromo}
-              />
-              <Button
-                onClick={() => handleVerifyPromoCode('prof')}
-                disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
-                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
-                style={{ fontFamily: 'Arial' }}
-              >
-                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
-              </Button>
-            </div>
-            {profPromoError && (
-              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
-                <IconAlertCircle size={14} />
-                <span>{profPromoError}</span>
-              </div>
-            )}
-            {profPromoSuccess && (
-              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
-                <Check size={14} />
-                <span>{profPromoSuccess}</span>
-              </div>
-            )}
-            {profPromoDiscount && (
-              <div className='mt-2 flex flex-col sm:flex-row gap-2'>
-                <div className='flex-1 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
-                  <span className='font-medium normal-case'>
-                    {profPromoDiscount.name}:
-                  </span>{' '}
-                  <span className='font-normal'>
-                    {profPromoDiscount.type === 'percentage'
-                      ? `${profPromoDiscount.value}${tModal('discountOff')}`
-                      : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
-                  </span>
-                  {profPromoDiscount.validPlans && profPromoDiscount.validPlans.length > 0 ? (
-                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
-                      {tModal('applicableTo')} {profPromoDiscount.validPlans.join(', ')}
-                      {profPromoDiscount.validBillingCycles && profPromoDiscount.validBillingCycles.length > 0 
-                        ? ` (${Array.from(new Set(profPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
-                        : ''}
-                    </div>
-                  ) : (
-                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
-                      {tModal('applicableTo')} {tModal('allPlans')}
-                    </div>
-                  )}
-                </div>
-                {profPromoDiscount.maxRedemptions && (
-                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base  rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: 'Arial' }}>
-                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
-                  </div>
-                )}
-              </div>
-            )}
-            {/* Weekly Coupon Banner */}
-            {/* {profPromoDiscount && profPromoCode?.trim().toUpperCase() === 'JOIN80' && (
-              <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
-               
-                <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
-                  {tModal('weeklyCouponValidUntil', { date: 'Sep 04, 2026' })}
-                </p>
-              </div>
-            )} */}
-          </div>
-        </div>
-
-          <div className={`w-full ${currentProfPlans.length === 2 ? 'max-w-[1040px]' : 'max-w-[1400px]'} mx-auto px-4 mb-4`}>
-            <div className={`grid grid-cols-1 ${currentProfPlans.length === 2 ? 'sm:grid-cols-3' : 'sm:grid-cols-3 lg:grid-cols-4'} justify-center items-stretch gap-4`}>
-              {currentProfPlans
-                .filter(plan => !(plan.id === 'test' && profBillingCycle === 'yearly'))
-                .map((plan, index) => (
-            
-                <div key={plan.id || index} className='w-full z-10 relative'>
-                  {plan.id === 'pro' && (
-                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
-                      <div className='flex flex-col items-center gap-1'>
-                        {/* Empty to preserve structure if Lottie was here */}
-                      </div>
-                    </div>
-                  )}
-                  <PricingCard
-                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }}
-                    isYearly={profBillingCycle === 'yearly'}
-                    isProfessional={true}
-                    isEurope={planCurrency === 'eur'}
-                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
-                    onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, false, isEligible)}
-                    promoDiscount={profPromoDiscount}
-                    isVat={isVat}
-                  />
-                </div>
-              ))}
-                <BookingDemoClassFormForPricingPage/>
-            </div>
-          </div>
-
-
-
-          {subscribeError && (
-            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
-              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
-                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
-                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
-                  {subscribeError}
-                </p>
-                <button
-                  onClick={() => setSubscribeError(null)}
-                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
-                >
-                  <IconX size={16} />
-                </button>
-              </div>
-            </div>
-          )}
-          </>
-        )}
-
-        {/* Credit Deduction Overview & Status */}
-        <div className='w-full max-w-3xl mx-auto mt-4 mb-8 z-20 relative'>
-          <div className='border border-black/10 bg-white'>
-            <div className='border-b border-black/10 px-3 py-2'>
-              <h3
-                className='text-[11px]  text-black lowercase tracking-wider text-center'
-                style={{ fontFamily: 'Arial' }}
-              >
-                {t('creditDeduction.title')}
-              </h3>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/10'>
-              {/* Image Credits */}
-              <div className='px-4 py-3'>
-                <div className='flex items-center gap-1.5 mb-2'>
-                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
-                    <rect x='3' y='3' width='18' height='18' rx='2' strokeLinecap='round' strokeLinejoin='round' />
-                    <circle cx='8.5' cy='8.5' r='1.5' />
-                    <polyline points='21 15 16 10 5 21' strokeLinecap='round' strokeLinejoin='round' />
-                  </svg>
-                  <h4
-                    className='text-[10px]  tracking-wide text-black'
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('creditDeduction.imageGeneration')}
-                  </h4>
-                </div>
-                <div className='space-y-0.5'>
-                  {[
-                    { label: t('creditDeduction.resolution1K'), credits: t('creditDeduction.credit1') },
-                    { label: t('creditDeduction.resolution2K'), credits: t('creditDeduction.credits3') },
-                    { label: t('creditDeduction.resolution4K'), credits: t('creditDeduction.credits5') },
-                  ].map(({ label, credits }) => (
-                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
-                      <span
-                        className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {label}
-                      </span>
-                      <span
-                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {credits}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Video Credits */}
-              <div className='px-4 py-3'>
-                <div className='flex items-center gap-1.5 mb-2'>
-                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
-                    <polygon points='23 7 16 12 23 17 23 7' strokeLinecap='round' strokeLinejoin='round' />
-                    <rect x='1' y='5' width='15' height='14' rx='2' strokeLinecap='round' strokeLinejoin='round' />
-                  </svg>
-                  <h4
-                    className='text-[10px]  tracking-wide text-black'
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('creditDeduction.videoGeneration')}
-                  </h4>
-                </div>
-                <div className='space-y-0.5'>
-                  {[
-                    { label: '4s / 5s', credits: t('creditDeduction.credits25') },
-                    { label: '8s / 10s', credits: t('creditDeduction.credits50') },
-                    { label: '12s', credits: t('creditDeduction.credits75') },
-                  ].map(({ label, credits }) => (
-                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
-                      <span
-                        className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {label}
-                      </span>
-                      <span
-                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {credits}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Upscaling Credits */}
-              <div className='px-4 py-3'>
-                <div className='flex items-center gap-1.5 mb-2'>
-                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
-                    <polyline points='17 11 12 6 7 11' strokeLinecap='round' strokeLinejoin='round' />
-                    <polyline points='17 18 12 13 7 18' strokeLinecap='round' strokeLinejoin='round' />
-                  </svg>
-                  <h4
-                    className='text-[10px]  tracking-wide text-black'
-                    style={{ fontFamily: 'Arial' }}
-                  >
-                    {t('creditDeduction.imageUpscaling')}
-                  </h4>
-                </div>
-                <div className='space-y-0.5'>
-                  {[
-                    { label: t('creditDeduction.upscaleFactor2'), credits: t('creditDeduction.upscaleCredits20') },
-                    { label: t('creditDeduction.upscaleFactor4'), credits: t('creditDeduction.upscaleCredits40') },
-                    { label: t('creditDeduction.upscaleFactor8'), credits: t('creditDeduction.upscaleCredits50') },
-                    { label: t('creditDeduction.upscaleFactor16'), credits: t('creditDeduction.upscaleCredits80') },
-                  ].map(({ label, credits }) => (
-                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
-                      <span
-                        className='text-[9px] font-medium text-gray-500'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {label}
-                      </span>
-                      <span
-                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {credits}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-wrap justify-center items-center gap-4 mt-2.5 text-gray-400'>
-            <div className='flex items-center gap-1.5'>
-              <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Safe & Secure Checkout</span>
-            </div>
-            <div className='flex items-center gap-1.5'>
-              <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Cancel Anytime</span>
-            </div>
-            <div className='flex items-center gap-1.5'>
-              <Check className='w-3 h-3 text-emerald-500' />
-              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>No Setup Fee</span>
-            </div>
-          </div>
-        </div>
-
-        <TestimonialsSection />
-
-        {/* Education Section */}
-        {showOnly === 'all' && renderEducationSection()}
-
-      </div>
-
-      {/* Subscription Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative text-black dark:text-white'
-            >
-              <button
-                className='absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 dark:hover:text-white transition-colors cursor-pointer'
-                onClick={() => setIsModalOpen(false)}
-              >
-                <IconX size={20} />
-              </button>
-
-              {emailSent ? (
-                <div className='flex flex-col items-center gap-4 py-8'>
-                  <div className='w-16 h-16 bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white rounded-full flex items-center justify-center mb-2'>
-                    <IconMail size={32} />
-                  </div>
-                  <h3 className='text-xl  text-center text-black dark:text-white' style={{ fontFamily: 'Arial' }}>
-                    Check your inbox
-                  </h3>
-                  <p className='text-center text-neutral-600 dark:text-neutral-300 text-sm'>
-                    We've sent a verification link to<br/>
-                    <span className='font-semibold text-black dark:text-white'>{userEmail}</span>
-                  </p>
-                  <p className='text-center text-neutral-400 text-xs mt-2'>
-                    You can close this window now. The link will take you directly to the next step.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <div className='flex flex-col gap-2'>
-                    <h3
-                      className='text-xl  text-black dark:text-white uppercase tracking-wider'
-                      style={{ fontFamily: 'Arial' }}
-                    >
-                      {tModal('title')}
-                    </h3>
-                    <p className='text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
-                      {tModal('description')}
-                    </p>
-                  </div>
-
-                  <div className='space-y-4'>
-                    <div className='relative'>
-                      <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                        <IconMail className='h-5 w-5 text-neutral-400' />
-                      </div>
-                      <input
-                        type='email'
-                        className='block w-full pl-10 pr-3 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-black dark:text-white text-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all placeholder:text-neutral-400'
-                        placeholder={tModal('placeholder')}
-                        value={userEmail}
-                        onChange={(e) => setUserEmail(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
-                        disabled={isRedirecting}
-                      />
-                    </div>
-
-                    {modalError && (
-                      <div className='flex items-center gap-2 text-red-500 text-xs mt-1'>
-                        <IconAlertCircle size={14} />
-                        <span>{modalError}</span>
-                      </div>
-                    )}
-
-                    <div className='flex flex-col gap-3 pt-2'>
-                      <label className='flex items-start gap-3 cursor-pointer group'>
-                        <input
-                          type='checkbox'
-                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
-                          checked={marketingConsent}
-                          onChange={(e) => setMarketingConsent(e.target.checked)}
-                          disabled={isRedirecting}
-                        />
-                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
-                          {tModal('marketingConsent')}
-                        </span>
-                      </label>
-
-                      <label className='flex items-start gap-3 cursor-pointer group'>
-                        <input
-                          type='checkbox'
-                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
-                          checked={termsConsent && privacyConsent}
-                          onChange={(e) => {
-                            setTermsConsent(e.target.checked)
-                            setPrivacyConsent(e.target.checked)
-                          }}
-                          disabled={isRedirecting}
-                        />
-                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
-                          {tModal.rich('agbPrivacyConsent', {
-                            privacyPolicy: (chunks) => (
-                              <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-blue-600 dark:text-blue-400 underline hover:text-blue-700'>
-                                {chunks}
-                              </Link>
-                            )
-                          })}
-                        </span>
-                      </label>
-                    </div>
-
-                    <div className='flex flex-col gap-3 mt-4'>
-                      <Button
-                        onClick={() => handleContinue()}
-                        disabled={isRedirecting || !privacyConsent || !termsConsent}
-                        className='w-full h-12 bg-blue-600 hover:bg-blue-700 text-white  text-xs uppercase tracking-widest transition-all rounded-full cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {isRedirecting ? (
-                          <IconLoader2 className='animate-spin mr-2 text-white' size={16} />
-                        ) : null}
-                        <span className='text-white '>{tModal('continue')}</span>
-                      </Button>
-                      <button
-                        onClick={() => setIsModalOpen(false)}
-                        className='text-neutral-500 hover:text-neutral-800 dark:hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors cursor-pointer'
-                        style={{ fontFamily: 'Arial' }}
-                      >
-                        {tModal('cancel')}
-                      </button>
-                    </div>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Trial Warning Modal */}
-      <AnimatePresence>
-        {showTrialWarning && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm'
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className='bg-white p-8 shadow-2xl flex flex-col gap-6 max-w-sm w-full relative'
-            >
-              <button
-                className='absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors'
-                onClick={() => setShowTrialWarning(false)}
-              >
-                <IconX size={20} />
-              </button>
-
-              <div className='flex flex-col gap-2'>
-                <h3
-                  className='text-xl  text-black uppercase tracking-wider'
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {tModal('TrialWarningModal.title')}
-                </h3>
-                <p className='text-sm text-gray-600'>
-                  {tModal('TrialWarningModal.description')}
-                </p>
-              </div>
-
-              <div className='flex gap-3 mt-4'>
-                <Button
-                  onClick={() => {
-                    setShowTrialWarning(false)
-                    setIsModalOpen(true)
-                  }}
-                  className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px]  tracking-wider py-3'
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {tModal('TrialWarningModal.cancel')}
-                </Button>
-                <Button
-                  onClick={() => handleContinue(true)}
-                  className='flex-1 bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 uppercase text-[10px]  tracking-wider py-3'
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {tModal('TrialWarningModal.proceed')}
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <FloatingBuzzer triggerPopup={false} />
-
-      {showOrderModal && pendingOrderData && (
-        <OrderOverviewModal
-          locale={locale}
-          planId={pendingOrderData.planId}
-          checkoutData={pendingOrderData.checkoutData}
-          onClose={() => setShowOrderModal(false)}
-        />
-      )}
-
-      {/* {showOnboarding && !showOrderModal && (
-        <OnboardingWizard
-          email={userEmail}
-          locale={locale}
-          initialData={onboardingData}
-          onComplete={handleOnboardingComplete}
-          onCancel={() => setShowOnboarding(false)}
-          isSubmitting={isRedirecting}
-        />
-      )} */}
-    </section>
-  )
-}
-
-type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
-  fetchedData?: any
-  popular?: boolean
-  badgeTextKey?: string
-}
-
-interface PricingCardProps {
-  plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }
-  isYearly: boolean
-  isProfessional: boolean
-  isEurope: boolean
-  currencySymbol: string
-  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }, priceInfo: any, isEligibleForPromo?: boolean) => void
-  promoDiscount?: any
-  isVat?: boolean
-}
-
-function PricingCard({
-  plan,
-  isYearly,
-  isProfessional,
-  isEurope,
-  currencySymbol,
-  onSubscribe,
-  promoDiscount,
-  isVat = true,
-}: PricingCardProps) {
-  const t = useTranslations('Pricing')
-  const locale = useLocale()
-
-  // For professional plans, show pricing based on plan and billing cycle
-  const getPriceDisplay = () => {
-    const fetchedData = plan.fetchedData
-    // const isUsd = (fetchedData?.currency || (isEurope ? 'eur' : 'usd')) === 'usd'
-    // const currencySymbol = isUsd ? '$' : '€' // Now passed as prop
-
-    if (isProfessional) {
-      const profPlan = plan as any
-      const fetchedData = plan.fetchedData
-
-      // ENTERPRISE
-      if (profPlan.planType === 'ENTERPRISE') {
-        return {
-          mainPrice: t('enterpriseCustom'),
-          period: '',
-          billingInfo: t('enterpriseBillingInfo'),
-          stripePriceId: '',
-        }
-      }
-
-      // TEST
-      if (profPlan.planType === 'TEST') {
-        return {
-          mainPrice: `${currencySymbol}0`,
-          period: locale === 'de' ? '/Monat' : '/month',
-          billingInfo: locale === 'de' ? 'Dauerhaft kostenlos • 30 Credits monatlich' : 'Free forever • 30 credits monthly',
-          stripePriceId: '',
-        }
-      }
-
-      // SOLO, PRO, TEAM
-      if (profPlan.planType === 'PRO' || profPlan.planType === 'SOLO' || profPlan.planType === 'TEAM') {
-        const billingCycle = profPlan.billingCycle || 'monthly'
-
-        let mainPrice = ''
-        let billingInfo = ''
-        let stripePriceId = ''
-        let discount = undefined
-
-        let mPriceVal = 0
-        let cyclePriceVal = 0
-        let monthsCount = 1
-
-        if (fetchedData && fetchedData.prices?.monthly) {
-          mPriceVal = fetchedData.prices.monthly / 100
-        } else {
-          const fallbackMPrice = isEurope ? profPlan.monthlyPrice?.eur : profPlan.monthlyPrice?.usd
-          mPriceVal = parseFloat(fallbackMPrice?.replace(/[^0-9.]/g, '') || '0')
-        }
-
-        if (billingCycle === 'monthly') {
-          monthsCount = 1
-          cyclePriceVal = mPriceVal
-          mainPrice = `${currencySymbol}${mPriceVal}`
-          billingInfo = t('billedMonthly')
-          stripePriceId = (fetchedData ? fetchedData.stripePrices?.MONTHLY : profPlan.discount?.monthly?.stripePriceId) || ''
-        } else if (billingCycle === 'threeMonthly') {
-          monthsCount = 3
-          if (fetchedData && fetchedData.prices?.threeMonthly) {
-            cyclePriceVal = fetchedData.prices.threeMonthly / 100
-            stripePriceId = fetchedData.stripePrices?.THREE_MONTHLY || ''
-          } else {
-            const fallbackCyclePrice = isEurope ? profPlan.threeMonthlyPrice?.eur : profPlan.threeMonthlyPrice?.usd
-            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
-            stripePriceId = profPlan.discount?.threeMonthly?.stripePriceId || ''
-          }
-          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 3) * 100) / 100}`
-          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery3Months')}`
-        } else if (billingCycle === 'sixMonthly') {
-          monthsCount = 6
-          if (fetchedData && fetchedData.prices?.sixMonthly) {
-            cyclePriceVal = fetchedData.prices.sixMonthly / 100
-            stripePriceId = fetchedData.stripePrices?.SIX_MONTHLY || ''
-          } else {
-            const fallbackCyclePrice = isEurope
-              ? profPlan.sixMonthPrice?.eur || profPlan.sixMonthlyPrice?.eur || ''
-              : profPlan.sixMonthPrice?.usd || profPlan.sixMonthlyPrice?.usd || ''
-            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
-            stripePriceId = profPlan.discount?.sixMonthly?.stripePriceId || ''
-          }
-          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 6) * 100) / 100}`
-          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery6Months')}`
-        } else {
-          // yearly
-          monthsCount = 12
-          if (fetchedData && fetchedData.prices?.yearly) {
-            if (promoDiscount && fetchedData.originalPrices?.yearly) {
-              cyclePriceVal = fetchedData.originalPrices.yearly / 100
-              stripePriceId = fetchedData.stripeBasePrices?.YEARLY || fetchedData.stripePrices?.YEARLY || ''
-            } else {
-              cyclePriceVal = fetchedData.prices.yearly / 100
-              stripePriceId = fetchedData.stripePrices?.YEARLY || ''
-            }
-          } else {
-            const fallbackCyclePrice = isEurope ? profPlan.yearlyPrice?.eur : profPlan.yearlyPrice?.usd
-            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
-            stripePriceId = profPlan.discount?.yearly?.stripePriceId || ''
-          }
-          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 12) * 100) / 100}`
-          billingInfo = `${t('billedYearly')} (${currencySymbol}${cyclePriceVal}/year)`
-        }
-
-        let originalCycleVal = mPriceVal * monthsCount
-        
-        // If it's a yearly plan and we have the true base price from the backend, use it!
-        if (billingCycle === 'yearly' && fetchedData && fetchedData.originalPrices?.yearly) {
-          originalCycleVal = fetchedData.originalPrices.yearly / 100
-        }
-
-        if (monthsCount > 1 && originalCycleVal > cyclePriceVal) {
-          const saveAmountVal = originalCycleVal - cyclePriceVal
-          const discountPercentVal = Math.round((saveAmountVal / originalCycleVal) * 100)
-
-          discount = {
-            originalCycle: `${currencySymbol}${originalCycleVal % 1 === 0 ? originalCycleVal : originalCycleVal.toFixed(2)}`,
-            discountPercent: discountPercentVal,
-            saveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
-            periodDiscountPercent: discountPercentVal,
-            periodSaveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
-            bestDeal: billingCycle === 'yearly' && profPlan.planType === 'TEAM',
-          }
-
-          if (billingCycle === 'yearly') {
-            const baseVal = (fetchedData && fetchedData.originalPrices?.yearly)
-              ? (fetchedData.originalPrices.yearly / 100) / 12
-              : mPriceVal;
-            if (baseVal > (cyclePriceVal / 12)) {
-              (discount as any).originalPrice = `${currencySymbol}${baseVal % 1 === 0 ? baseVal : baseVal.toFixed(2)}`;
-              (discount as any).isYearlyDefault = true;
-            }
-          }
-        }
-
-        return {
-          mainPrice: mainPrice,
-          period: '/month',
-          billingInfo: billingInfo,
-          discount: discount,
-          stripePriceId,
-        }
-      }
-
-      return {
-        mainPrice: '',
-        period: '/month',
-        billingInfo: '',
-      }
-    } else {
-      // Educational: Show yearly or monthly based on toggle
-      const eduPlan = plan as (typeof educationPlans)[0] & { fetchedData?: any }
-      let mainPrice = ''
-      let billingInfo = ''
-      let saveInfo = ''
-      let stripePriceId = ''
-
-      if (isYearly) {
-        mainPrice = formatPrice(eduPlan.monthlyEquivalant, isEurope)
-        billingInfo = `${t('billedYearly')} (${formatPrice(eduPlan.yearlyPrice, isEurope)}/year)`
-        saveInfo = t('saveWithAnnual', {
-          amount: formatPrice(eduPlan.save, isEurope),
-        })
-
-        if (fetchedData) {
-          const yPrice = fetchedData.prices?.yearly
-          if (yPrice) {
-            mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
-            billingInfo = `${t('billedYearly')} (${currencySymbol}${yPrice / 100}/year)`
-          }
-          stripePriceId = fetchedData.stripePrices?.YEARLY || ''
-        }
-
-        // Add discount object for yearly plans so we get green colors and badge
-        const discount = {
-          periodDiscountPercent: 75,
-          periodSaveAmount: formatPrice(eduPlan.save, isEurope),
-        }
-
-        return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId, discount }
-      } else {
-        mainPrice = formatPrice(eduPlan.monthlyPrice, isEurope)
-        billingInfo = t('billedMonthly')
-
-        if (fetchedData) {
-          const mPrice = fetchedData.prices?.monthly
-          if (mPrice) mainPrice = `${currencySymbol}${mPrice / 100}`
-          stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
-        }
-      }
-
-      return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId }
-    }
-  }
-
-  const priceInfo = getPriceDisplay()
-  let isEligibleForPromo = !!promoDiscount;
-    if (promoDiscount) {
-      // Always enforce the plan name check to ensure discounts apply to the right visual cards
-      if (promoDiscount.validPlans && promoDiscount.validPlans.length > 0) {
-        isEligibleForPromo = isEligibleForPromo && promoDiscount.validPlans.includes(plan.name);
-      }
-      if (promoDiscount.validBillingCycles && promoDiscount.validBillingCycles.length > 0) {
-        const currentCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly');
-        isEligibleForPromo = isEligibleForPromo && (promoDiscount.validBillingCycles.includes(currentCycle.toUpperCase()) || promoDiscount.validBillingCycles.includes(currentCycle.toLowerCase()));
-      }
-    }
-
-  if (isEligibleForPromo && priceInfo.mainPrice) {
-    const numericMatch = priceInfo.mainPrice.match(/[\d,.]+/);
-    if (numericMatch) {
-      let numericStr = numericMatch[0].replace(',', '.');
-      let val = parseFloat(numericStr);
-      if (!isNaN(val)) {
-        let newVal = val;
-        if (promoDiscount.type === 'percentage') {
-          newVal = val * (1 - promoDiscount.value / 100);
-        } else {
-          let months = 1;
-          if (plan.billingCycle === 'sixMonthly') {
-            months = 6;
-          } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
-            months = 12;
-          }
-          let discountPerMonth = (promoDiscount.value / 100) / months;
-          newVal = Math.max(0, val - discountPerMonth); // fixed amount is calculated per month equivalent
-        }
-
-        if (!priceInfo.discount) {
-          (priceInfo as any).discount = { originalPrice: priceInfo.mainPrice };
-        } else if (!('originalPrice' in (priceInfo.discount as any))) {
-          (priceInfo.discount as any).originalPrice = priceInfo.mainPrice;
-        }
-
-        priceInfo.mainPrice = `${currencySymbol}${newVal % 1 === 0 ? newVal : newVal.toFixed(2)}`;
-
-        // Also update billingInfo text like "418 billed every 6 months" -> "348 billed every 6 months"
-        if (priceInfo.billingInfo) {
-          const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const numRegex = new RegExp(`(${escapeRegExp(currencySymbol)}\\s?)([\\d,]+(?:\\.\\d+)?)`);
-          const match = priceInfo.billingInfo.match(numRegex);
-          if (match) {
-            let bNumericStr = match[2].replace(',', '.');
-            let bVal = parseFloat(bNumericStr);
-            if (!isNaN(bVal)) {
-              let newBVal = bVal;
-              if (promoDiscount.type === 'percentage') {
-                newBVal = bVal * (1 - promoDiscount.value / 100);
-              } else {
-                newBVal = Math.max(0, bVal - (promoDiscount.value / 100)); // fixed amount applies entirely to the cycle
-              }
-              priceInfo.billingInfo = priceInfo.billingInfo.replace(match[0], `${match[1]}${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
-            }
-          } else {
-            // Check if currency symbol is at the end or not present, but the number is 418, 594, etc.
-            // Simplified fallback for strings like "418€ alle 6 Monate" or plain un-prefixed values
-            const fallbackMatch = priceInfo.billingInfo.match(/^([\d,.]+) ?(?:€|\$|EUR|USD|£)?\b/);
-            if (fallbackMatch && parseFloat(fallbackMatch[1].replace(',', '.')) > 12) {
-              let bNumericStr = fallbackMatch[1].replace(',', '.');
-              let bVal = parseFloat(bNumericStr);
-              if (!isNaN(bVal)) {
-                let newBVal = bVal;
-                if (promoDiscount.type === 'percentage') {
-                  newBVal = bVal * (1 - promoDiscount.value / 100);
-                } else {
-                  newBVal = Math.max(0, bVal - (promoDiscount.value / 100));
-                }
-                priceInfo.billingInfo = priceInfo.billingInfo.replace(fallbackMatch[1], `${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
-              }
-            }
-          }
-        }
-        
-        // Populate the badge with the manual promo discount info
-        if (promoDiscount.type === 'percentage') {
-          (priceInfo.discount as any).periodDiscountPercent = promoDiscount.value;
-        } else {
-          (priceInfo.discount as any).periodDiscountPercent = Math.round(((val - newVal) / val) * 100);
-        }
-        let currentCycleMonths = 1;
-        if (plan.billingCycle === 'sixMonthly') {
-          currentCycleMonths = 6;
-        } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
-          currentCycleMonths = 12;
-        } else if (plan.billingCycle === 'threeMonthly') {
-          currentCycleMonths = 3;
-        }
-        const savingsVal = (val - newVal) * currentCycleMonths;
-        (priceInfo.discount as any).periodSaveAmount = `${currencySymbol}${savingsVal % 1 === 0 ? savingsVal : savingsVal.toFixed(2)}`;
-      }
-    }
-  }
-
-  const isFeatured = Boolean(
-    plan.popular || 
-    plan.badgeTextKey ||
-    (plan as any).isPopular ||
-    (plan as any).planType === 'PRO' || 
-    plan.name === 'PRO' || 
-    (plan as any).id === 'pro'
-  );
-
-  if (plan.id === 'test' && plan.billingCycle === 'yearly') {
-    return null
-  }
-
-  return (
-    <div
-      className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl ${
-        isFeatured
-          ? 'card-featured-red-border shadow-md hover:shadow-xl'
-          : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
-      }`}
-      style={{
-        backgroundColor: '#ffffff',
-        color: '#000000',
-        fontFamily: 'Arial',
-        border: isFeatured ? '2px solid #000000' : '1px solid rgba(212, 212, 216, 0.9)',
-      }}
-    >
-      {/* Top-Right Blue Ribbon Badge */}
-      {isFeatured && (
-        <div
-          className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
-          style={{ fontFamily: 'Arial' }}
-        >
-          {plan.planType === 'PRO' || plan.name === 'PRO' || (plan as any).id === 'pro'
-            ? (locale === 'de' ? 'BESTES ANGEBOT' : 'BEST OFFER')
-            : (plan.badgeTextKey ? t(plan.badgeTextKey) : (locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'))}
-        </div>
-      )}
-
-      {/* 4 Corner Small Square Fills */}
-      <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-      <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
-
-      {/* Header Section */}
-      <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-1`}>
-        <div className='flex items-center justify-center gap-2 mb-1'>
-          <span
-            className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
-            style={{ fontFamily: 'Arial' }}
-          >
-            {plan.name}
-          </span>
-        </div>
-        
-        {(plan as any).targetAudience && (
-          <span className='text-[12px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block'>
-            {(plan as any).targetAudience}
-          </span>
-        )}
-
-        {/* Discount badge above price - manual promo discount or default discount */}
-        {priceInfo.discount?.periodDiscountPercent != null && (
-          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px]  uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
-            {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
-          </div>
-        )}
-
-        {/* Pricing Section */}
-        <div className='mb-3'>
-          <div className='flex flex-col items-center justify-center'>
-            {priceInfo.discount ? (
-              <>
-                {'originalPrice' in priceInfo.discount && (
-                  <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: 'Arial' }}>
-                    {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
-                  </div>
-                )}
-                <div className='flex items-baseline justify-center gap-1'>
-                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
-                    {priceInfo.mainPrice}
-                  </span>
-                  <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
-                    {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
-                  </span>
-                </div>
-              </>
-            ) : (
-              <div className='flex items-baseline justify-center gap-1'>
-                {priceInfo.mainPrice === t('enterpriseCustom') ? (
-                  <span className='text-[13px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block mt-2 mb-2'>
-                    {priceInfo.mainPrice}
-                  </span>
-                ) : (
-                  <>
-                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
-                      {priceInfo.mainPrice}
-                    </span>
-                    <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
-                      {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
-                    </span>
-                  </>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
-            <div style={{ fontFamily: 'Arial' }}>
-              {priceInfo.billingInfo}
-            </div>
-            {priceInfo.saveInfo && (
-              <div style={{ fontFamily: 'Arial' }}>
-                {priceInfo.saveInfo}
-              </div>
-            )}
-            {isVat && plan.planType !== 'TEST' && (
-              <div style={{ fontFamily: 'Arial' }}>
-                {t('plusVat')}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section - Flex Grow */}
-      <div className='flex-1 mb-4 pt-1'>
-        <ul className='space-y-1.5'>
-          {plan.features.map((feature, index) => {
-            const featureText =
-              typeof feature === 'string' ? feature : feature.text
-            const hasFeature =
-              typeof feature === 'object' ? feature.hasFeature : true
-
-            return (
-              <li
-                key={index}
-                className='flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0'
-              >
-                {hasFeature ? (
-                  <Check className='w-3 h-3 flex-shrink-0 mt-0.5 mr-2 text-emerald-600' />
-                ) : (
-                  <span className='w-1.5 h-1.5 flex-shrink-0 mt-1.5 mr-2.5 ml-0.5 bg-neutral-400 dark:bg-neutral-600 inline-block' />
-                )}
-                <span
-                  className={`leading-tight text-left flex-1 ${
-                    hasFeature ? 'text-black font-semibold' : 'text-neutral-400 font-normal'
-                  }`}
-                  style={{ fontFamily: 'Arial' }}
-                >
-                  {featureText}
-                </span>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-
-      {/* Button Section - Fixed at Bottom */}
-      <div className='mt-auto pt-2'>
-        {plan.planType === 'TEST' ? (
-          <button
-            onClick={() => {
-              window.location.href = `${appUrl}/register?language=${locale}`;
-            }}
-            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
-            style={{ fontFamily: 'Arial' }}
-          >
-            {locale === 'de' ? 'Jetzt starten' : 'Start now'}
-          </button>
-        ) : plan.id === 'enterprise' ? (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('open-before-you-go'));
-            }}
-            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
-            style={{ fontFamily: 'Arial' }}
-          >
-            {t('enterpriseBookCall')}
-          </button>
-        ) : isFeatured ? (
-          <Button
-            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='w-full py-2.5 px-4 rounded-full border border-black text-black hover:bg-black hover:text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer bg-transparent'
-            style={{ fontFamily: 'Arial' }}
-          >
-            {t('subscribe')}
-          </Button>
-        ) : (
-          <Button
-            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
-            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer bg-transparent'
-            style={{ fontFamily: 'Arial' }}
-          >
-            {t('subscribe')}
-          </Button>
-        )}
-      </div>
-    </div>
-  )
-}
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { Button as MovingBorderButton } from '@/components/ui/moving-border'
+import { useIsEurope } from '@/hooks/use-is-europe'
+import { apiUrl, appUrl } from '@/lib/constants'
+import { formatPrice } from '@/lib/price-converter'
+import {
+  IconAlertCircle,
+  IconLoader2,
+  IconMail,
+  IconX,
+} from '@tabler/icons-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Check, X, ArrowLeft, Gift } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
+import OnboardingWizard from './onboarding/onboarding-wizard'
+import { OrderOverviewModal } from './order-overview-modal'
+import { TestimonialsSection } from './testimonials-section'
+import Lottie from 'lottie-react'
+import HandDrawnArrow from '../../public/lottie/Hand-drawn arrow.json'
+import { FloatingBuzzer } from '@/components/floating-buzzer'
+import {
+  saveCouponActivation,
+  getActiveCoupon,
+  removeCouponActivation,
+  isCouponExpired,
+  EXPIRED_COUPON_MESSAGE_DE,
+  EXPIRED_COUPON_MESSAGE_EN,
+} from '@/lib/coupon-storage'
+import BookingDemoClassFormForPricingPage from './demo-class-boooking-form-for-pricing-page'
+
+const professionalPlans = [
+  {
+    id: 'test',
+    name: 'TEST',
+    monthlyPrice: { eur: '€0', usd: '$0' },
+    planType: 'TEST',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€0', usd: '$0' },
+        introPeriodKey: 'billedMonthly',
+      },
+    },
+    features: [
+      { text: '30 CREDITS /month', hasFeature: true },
+      { text: '1K RESOLUTION', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: false },
+      { text: 'UPSCALE UP TO 8K', hasFeature: false },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: false },
+    ],
+  },
+  {
+    id: 'solo',
+    name: 'SOLO',
+    monthlyPrice: { eur: '€49', usd: '$49' },
+    threeMonthlyPrice: { eur: '€147', usd: '$147' },
+    threeMonthlyMonthlyPrice: { eur: '€49', usd: '$49' },
+    sixMonthPrice: { eur: '€294', usd: '$294' },
+    sixMonthMonthlyPrice: { eur: '€49', usd: '$49' },
+    yearlyPrice: { eur: '€470.42', usd: '$470.42' },
+    yearlyMonthlyPrice: { eur: '€39.20', usd: '$39.20' },
+    planType: 'SOLO',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€49', usd: '$49' },
+        introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€49', usd: '$49' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€147', usd: '$147' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€147', usd: '$147' },
+        introPeriodKey: 'billedEvery3Months',
+      },
+      sixMonthly: {
+        discountedMonthly: { eur: '€49', usd: '$49' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€294', usd: '$294' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€294', usd: '$294' },
+        introPeriodKey: 'billedEvery6Months',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€39.20', usd: '$39.20' },
+        periodDiscountPercent: 20,
+        periodSaveAmount: { eur: '€117.58', usd: '$117.58' },
+        originalCycle: { eur: '€588', usd: '$588' },
+        discountPercent: 20,
+        saveAmountCycle: { eur: '€117.58', usd: '$117.58' },
+        introFirstPeriod: { eur: '€470.42', usd: '$470.42' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: false,
+      },
+    },
+    features: [
+      { text: '500 CREDITS /month', hasFeature: true },
+      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: false },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: false },
+      { text: 'TEAM ACCESS', hasFeature: false },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
+    ],
+  },
+  {
+    id: 'pro',
+    name: 'PRO',
+    monthlyPrice: { eur: '€149', usd: '$149' },
+    threeMonthlyPrice: { eur: '€297', usd: '$297' },
+    threeMonthlyMonthlyPrice: { eur: '€99', usd: '$99' },
+    sixMonthPrice: { eur: '€594', usd: '$594' },
+    sixMonthMonthlyPrice: { eur: '€99', usd: '$99' },
+    yearlyPrice: { eur: '€894', usd: '$894' },
+    yearlyMonthlyPrice: { eur: '€74.50', usd: '$74.50' },
+    planType: 'PRO',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€99', usd: '$99' },
+        introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€99', usd: '$99' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€297', usd: '$297' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€297', usd: '$297' },
+        introPeriodKey: 'billedEvery3Months',
+      },
+      sixMonthly: {
+        discountedMonthly: { eur: '€99', usd: '$99' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€594', usd: '$594' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€594', usd: '$594' },
+        introPeriodKey: 'billedEvery6Months',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€74.50', usd: '$74.50' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€894', usd: '$894' },
+        originalCycle: { eur: '€1788', usd: '$1788' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€894', usd: '$894' },
+        introFirstPeriod: { eur: '€894', usd: '$894' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: false,
+      },
+    },
+    features: [
+      { text: '2000 CREDITS /month', hasFeature: true },
+      { text: '1000 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      // { text: '4 CONCURRENT JOBS', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: true },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: false },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: false },
+      // { text: 'SATISFACTION GUARANTEE', hasFeature: true },
+    ],
+  },
+  {
+    id: 'business',
+    name: 'TEAM',
+    monthlyPrice: { eur: '€199', usd: '$199' },
+    threeMonthlyPrice: { eur: '€597', usd: '$597' },
+    threeMonthlyMonthlyPrice: { eur: '€199', usd: '$199' },
+    sixMonthPrice: { eur: '€1194', usd: '$1194' },
+    sixMonthMonthlyPrice: { eur: '€199', usd: '$199' },
+    yearlyPrice: { eur: '€1194', usd: '$1194' },
+    yearlyMonthlyPrice: { eur: '€99.50', usd: '$99.50' },
+    planType: 'TEAM',
+    discount: {
+      monthly: {
+        discountedMonthly: { eur: '€199', usd: '$199' },
+        introPeriodKey: 'billedMonthly',
+      },
+      threeMonthly: {
+        discountedMonthly: { eur: '€199', usd: '$199' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€597', usd: '$597' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€597', usd: '$597' },
+        introPeriodKey: 'billedEvery3Months',
+      },
+      sixMonthly: {
+        discountedMonthly: { eur: '€199', usd: '$199' },
+        periodDiscountPercent: 0,
+        periodSaveAmount: { eur: '€0', usd: '$0' },
+        originalCycle: { eur: '€1194', usd: '$1194' },
+        discountPercent: 0,
+        saveAmountCycle: { eur: '€0', usd: '$0' },
+        introFirstPeriod: { eur: '€1194', usd: '$1194' },
+        introPeriodKey: 'billedEvery6Months',
+      },
+      yearly: {
+        discountedMonthly: { eur: '€99.50', usd: '$99.50' },
+        periodDiscountPercent: 50,
+        periodSaveAmount: { eur: '€1194', usd: '$1194' },
+        originalCycle: { eur: '€2388', usd: '$2388' },
+        discountPercent: 50,
+        saveAmountCycle: { eur: '€1194', usd: '$1194' },
+        introFirstPeriod: { eur: '€1194', usd: '$1194' },
+        introPeriodKey: 'billedYearly',
+        bestDeal: true,
+      },
+    },
+    features: [
+      { text: '10000 CREDITS /month', hasFeature: true },
+      { text: '5000 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: '4K RESOLUTION', hasFeature: true },
+      // { text: '4 CONCURRENT JOBS', hasFeature: true },
+      { text: 'EDIT BY CHAT', hasFeature: true },
+      // { text: 'HIGH-END RESULTS', hasFeature: true },
+      { text: 'UPSCALE UP TO 8K', hasFeature: true },
+      { text: 'EMAIL SUPPORT', hasFeature: true },
+      { text: 'ONBOARDING VIDEO CALL', hasFeature: true },
+      { text: 'TEAM ACCESS', hasFeature: true },
+      { text: '1:1 LIVE VIDEO CALL 1X/MONTH', hasFeature: true },
+    ],
+  },
+]
+
+const educationPlans = [
+  {
+    id: 'student',
+    name: 'STARTER',
+    monthlyPrice: '€6',
+    yearlyPrice: '€18',
+    monthlyEquivalant: '€2',
+    save: '€54',
+    period: '/month',
+    yearlyPeriod: '/year',
+    planType: 'STARTER',
+    features: [
+      {
+        text: '50 CREDITS /month (e.g. 30 base images and 10 Refinements)',
+        hasFeature: true,
+      },
+      { text: '50 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: 'OPT. CREDITS TOP UPS', hasFeature: true },
+      { text: 'UNLIMITED CONCURRENT JOBS', hasFeature: true },
+      { text: 'INTEGRATED REFINER', hasFeature: true },
+      { text: 'CANCEL ANYTIME', hasFeature: true },
+      { text: 'SECURE PAYMENT ON STRIPE', hasFeature: true },
+      { text: 'ALL PLUGIN INTEGRATIONS', hasFeature: true },
+    ],
+  },
+  {
+    id: 'educator',
+    name: 'EXPLORER',
+    monthlyPrice: '€12',
+    yearlyPrice: '€36',
+    monthlyEquivalant: '€3',
+    save: '€108',
+    period: '/month',
+    yearlyPeriod: '/year',
+    planType: 'EXPLORER',
+    features: [
+      { text: 'EVERYTHING FROM STARTER', hasFeature: true },
+      {
+        text: '150 CREDITS /month (e.g. 100 base images and 10 Refinements)',
+        hasFeature: true,
+      },
+      { text: '150 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: '2 CONCURRENT JOBS', hasFeature: true },
+      { text: 'RESOLUTION UP TO 4K', hasFeature: true },
+      { text: 'NO QUEUE', hasFeature: true },
+    ],
+  },
+  {
+    id: 'institution',
+    name: 'PRO',
+    monthlyPrice: '€18',
+    yearlyPrice: '€54',
+    monthlyEquivalant: '€5',
+    save: '€162',
+    period: '/month',
+    yearlyPeriod: '/year',
+    planType: 'PRO',
+    popular: true,
+    badgeTextKey: 'highEndResults',
+    features: [
+      { text: 'EVERYTHING FROM EXPLORER', hasFeature: true },
+      {
+        text: '1000 CREDITS /month (e.g. 800 base images and 40 Refinements)',
+        hasFeature: true,
+      },
+      { text: '500 DRAFTY AI CREDITS /month', hasFeature: true },
+      { text: '4 CONCURRENT JOBS', hasFeature: true },
+      { text: 'PREMIUM LIVE VIDEO CALL SUPPORT', hasFeature: true },
+      { text: 'INCREASED SPEED OF GENERATION', hasFeature: true },
+      { text: 'RESOLUTION UP TO 8K', hasFeature: true },
+    ],
+  },
+]
+
+const apiBaseUrl = `${apiUrl}/api/subscription/public/`
+// const apiBaseUrl = 'https://app.typus.ai/api/subscription/public/'
+
+export function ManyChatPricingSection({ 
+  isStandalone = false,
+  showOnly = 'all',
+  verificationToken,
+  showBillingToggle = false,
+}: { 
+  isStandalone?: boolean
+  showOnly?: 'regular' | 'educational' | 'all' | 'floorplan' | 'agent'
+  verificationToken?: string
+  showBillingToggle?: boolean
+}) {
+  const t = useTranslations('Pricing')
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isYearly, setIsYearly] = useState(true)
+  const [profBillingCycle, setProfBillingCycle] = useState<'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly'>(showBillingToggle ? 'yearly' : 'monthly')
+  const locale = useLocale();
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    const targetDate = new Date('2026-07-31T23:59:59').getTime()
+
+    const updateTimer = () => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+
+      if (difference <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        return
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+      setTimeLeft({ days, hours, minutes, seconds })
+    }
+
+    updateTimer()
+    const interval = setInterval(updateTimer, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    setProfBillingCycle(showBillingToggle ? 'yearly' : 'monthly')
+  }, [showBillingToggle])
+  const [plans, setPlans] = useState<any>();
+  const [educationalPlans, setEducationalPlans] = useState<any>();
+  const [floorPlans, setFloorPlans] = useState<any[]>([]);
+  const [agentPlans, setAgentPlans] = useState<any[]>([]);
+  const [agentBillingCycle, setAgentBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
+  const [planCurrency, setPlanCurrency] = useState<'eur' | 'usd'>('eur');
+  const [isVat, setIsVat] = useState<boolean>(true);
+  const [locationContinent, setLocationContinent] = useState<string | null>(null);
+  const [locationCountryCode, setLocationCountryCode] = useState<string | null>(null);
+  const [locationCurrency, setLocationCurrency] = useState<string | null>(null);
+  const [universityName, setUniversityName] = useState<string | null>(null);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [userEmail, setUserEmail] = useState('')
+  const [selectedPlanForModal, setSelectedPlanForModal] = useState<any>(null)
+  const [isRedirecting, setIsRedirecting] = useState(false)
+  const [modalError, setModalError] = useState<string | null>(null)
+  // Professional Promo state
+  const [profPromoCode, setProfPromoCode] = useState('')
+  const [profPromoDiscount, setProfPromoDiscount] = useState<any>(null)
+  const [profPromoError, setProfPromoError] = useState<string | null>(null)
+  const [profPromoSuccess, setProfPromoSuccess] = useState<string | null>(null)
+
+  // Educational Promo state
+  const [eduPromoCode, setEduPromoCode] = useState('')
+  const [eduPromoDiscount, setEduPromoDiscount] = useState<any>(null)
+  const [eduPromoError, setEduPromoError] = useState<string | null>(null)
+  const [eduPromoSuccess, setEduPromoSuccess] = useState<string | null>(null)
+
+  const [isVerifyingPromo, setIsVerifyingPromo] = useState(false)
+  const [subscribeError, setSubscribeError] = useState<string | null>(null)
+
+  // Dispatch custom window event when a coupon is applied
+  useEffect(() => {
+    const activeDiscount = profPromoDiscount || eduPromoDiscount
+    const activeCode = profPromoDiscount ? profPromoCode : (eduPromoDiscount ? eduPromoCode : '')
+    
+    if (activeDiscount && activeCode) {
+      const normalizedCode = activeCode.trim().toUpperCase()
+
+      // If expired, reject activation
+      if (isCouponExpired(normalizedCode)) {
+        setProfPromoDiscount(null)
+        setEduPromoDiscount(null)
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        return
+      }
+
+      const discountText = activeDiscount.type === 'percentage'
+        ? `${activeDiscount.value}% RABATT`
+        : `-${activeDiscount.value / 100} ${activeDiscount.currency?.toUpperCase() || 'EUR'}`
+
+      // Persist activation to localStorage: starts 24h timer once, or reuses original valid timer
+      saveCouponActivation(normalizedCode, discountText, activeDiscount)
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('typus-coupon-applied', {
+          detail: {
+            isApplied: true,
+            code: normalizedCode,
+            discountText: discountText,
+            discount: activeDiscount,
+          }
+        }))
+      }
+    }
+  }, [profPromoDiscount, eduPromoDiscount, profPromoCode, eduPromoCode, locale])
+
+  // Listen for coupon expiration events from the countdown timer
+  useEffect(() => {
+    const handleCouponEvent = (e: any) => {
+      if (e.detail?.expired) {
+        setProfPromoDiscount(null)
+        setProfPromoSuccess(null)
+        setEduPromoDiscount(null)
+        setEduPromoSuccess(null)
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+      } else if (e.detail?.code) {
+        const normalized = e.detail.code.trim().toUpperCase()
+        if (normalized === 'BF') {
+          setIsYearly(true)
+          setProfBillingCycle('yearly')
+        }
+        setProfPromoCode(normalized)
+        setEduPromoCode(normalized)
+      }
+    }
+    window.addEventListener('typus-coupon-applied', handleCouponEvent)
+    return () => window.removeEventListener('typus-coupon-applied', handleCouponEvent)
+  }, [locale])
+
+  const [showTrialWarning, setShowTrialWarning] = useState(false)
+  const [showKickOffModal, setShowKickOffModal] = useState(false)
+  const [showOnboarding, setShowOnboarding] = useState(false)
+  const [showOrderModal, setShowOrderModal] = useState(false)
+  const [pendingOrderData, setPendingOrderData] = useState<any>(null)
+  const [onboardingData, setOnboardingData] = useState<any>(null)
+  const [marketingConsent, setMarketingConsent] = useState(true)
+  const [privacyConsent, setPrivacyConsent] = useState(false)
+  const [termsConsent, setTermsConsent] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+
+  const router = useRouter()
+  const tModal = useTranslations('SubscriptionModal')
+  const isEurope = useIsEurope();
+  console.log("isEurope", isEurope);
+
+  // Sync window.isCheckoutActive state to prevent BeforeYouGoPopup interference
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).isCheckoutActive = isModalOpen || showOnboarding || showOrderModal;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        (window as any).isCheckoutActive = false;
+      }
+    };
+  }, [isModalOpen, showOnboarding, showOrderModal]);
+
+  // Handle email verification token from URL (sent by server when user clicks email link)
+  useEffect(() => {
+    if (!verificationToken) return
+
+    const verifyToken = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}verify-token`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: verificationToken })
+        })
+        const resData = await response.json()
+        if (response.ok) {
+          setUserEmail(resData.email || '')
+          if (resData.universityName) setUniversityName(resData.universityName)
+          if (resData.data) setOnboardingData(resData.data)
+
+          // Reconstruct selectedPlanForModal from token data
+          const planType = (resData.plan || 'PRO').toUpperCase()
+          const billingCycle = resData.billing || 'monthly'
+          const isEdu = resData.isEducational ?? false
+          const isFP = resData.isFloorPlan ?? false
+          const isAgent = resData.isAgent ?? false
+
+          // Find the price ID from fetched plans (will be set once plans load)
+          // We set the plan info now; priceId will be filled in after plans load
+          const reconstructedPlan = {
+            planType,
+            billingCycle,
+            priceId: null,
+            isEducational: isEdu,
+            isFloorPlan: isFP,
+            isAgent: isAgent,
+          }
+          setSelectedPlanForModal(reconstructedPlan)
+
+          // Clean the token from the URL without a page reload
+          const cleanUrl = window.location.pathname
+          window.history.replaceState({}, '', cleanUrl)
+
+          setShowOnboarding(false)
+          await handleOnboardingComplete(resData.data || {}, reconstructedPlan, resData.email || '')
+        } else {
+          toast.error(resData.message || 'Verification link is invalid or has expired.')
+        }
+      } catch (err) {
+        console.error('Failed to verify token:', err)
+        toast.error('Verification failed due to a network error.')
+      }
+    }
+
+    verifyToken()
+  }, [verificationToken])
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.get('canceled') === 'true') {
+      toast.error(tModal('canceled'))
+      // Clear the canceled param from URL
+      const newUrl = window.location.pathname
+      window.history.replaceState({}, '', newUrl)
+    }
+
+    const urlPromoCode = searchParams.get('promoCode') || searchParams.get('coupon')
+    if (urlPromoCode) {
+      const normalized = urlPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        setEduPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+      } else {
+        setProfPromoCode(urlPromoCode)
+        setEduPromoCode(urlPromoCode)
+      }
+    } else {
+      // Restore active, unexpired coupon from localStorage
+      const active = getActiveCoupon()
+      if (active && !isCouponExpired(active.code)) {
+        setProfPromoCode(active.code)
+        if (active.discount) {
+          setProfPromoDiscount(active.discount)
+          setProfPromoSuccess(tModal('promoCodeSuccess'))
+        }
+      }
+    }
+
+    // Scroll to student plan if hash is present
+    if (window.location.hash === '#student-plan') {
+      const element = document.getElementById('student-plan')
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      }
+    }
+  }, [tModal, locale])
+
+  const handleVerifyPromoCode = useCallback(async (type: 'prof' | 'edu') => {
+    const isEdu = type === 'edu'
+    const code = isEdu ? eduPromoCode : profPromoCode
+    const setDiscount = isEdu ? setEduPromoDiscount : setProfPromoDiscount
+    const setError = isEdu ? setEduPromoError : setProfPromoError
+    const setSuccess = isEdu ? setEduPromoSuccess : setProfPromoSuccess
+
+    const normalized = (code || '').trim().toUpperCase()
+    if (!normalized) return
+
+    // CHECK IF THIS COUPON IS EXPIRED IN LOCALSTORAGE
+    if (isCouponExpired(normalized)) {
+      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+      setError(expiredMsg)
+      setDiscount(null)
+      setSuccess(null)
+      toast.error(expiredMsg)
+
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('typus-coupon-applied', {
+            detail: {
+              isApplied: false,
+              code: normalized,
+              expired: true,
+            },
+          })
+        )
+      }
+      return
+    }
+
+    if (isEdu && normalized === 'KICK') {
+      const errorMsg = tModal('promoCodeNotForEdu');
+      setError(errorMsg)
+      toast.error(errorMsg)
+      return
+    }
+
+    setIsVerifyingPromo(true)
+    setError(null)
+    setSuccess(null)
+    setDiscount(null)
+    setSubscribeError(null)
+
+    try {
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
+      }
+      // If we're verifying from the card-specific modal, we use that plan logic.
+      // If verifying from the page input, we use a general default (yearly for edu, monthly for prof)
+      // or try to find a selected plan.
+      const mappedBillingCycle = selectedPlanForModal
+        ? (billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase())
+        : (isEdu ? 'YEARLY' : 'MONTHLY')
+
+      const response = await fetch(`${apiBaseUrl}validate-promo-code`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          promoCode: normalized,
+          billingCycle: mappedBillingCycle,
+          planType: selectedPlanForModal?.planType || (isEdu ? 'STARTER' : 'PRO'),
+          isEducational: isEdu,
+          currency: planCurrency,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.valid) {
+        setDiscount(data.discount)
+        setSuccess(tModal('promoCodeSuccess'))
+      } else {
+        const errorMsg = data.message || tModal('promoCodeError');
+        setError(errorMsg)
+        toast.error(errorMsg)
+      }
+    } catch (error) {
+      const errorMsg = tModal('promoCodeError');
+      setError(errorMsg)
+      toast.error(errorMsg)
+    } finally {
+      setIsVerifyingPromo(false)
+    }
+  }, [eduPromoCode, profPromoCode, selectedPlanForModal, tModal, locale])
+
+
+  useEffect(() => {
+    // Check if we should auto-verify (code exists but no result/error yet)
+    if (profPromoCode && profPromoCode.trim().length >= 2 && !profPromoDiscount && !profPromoError && !isVerifyingPromo) {
+      const normalized = profPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setProfPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+        return
+      }
+      const timer = setTimeout(() => {
+        handleVerifyPromoCode('prof')
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [profPromoCode, handleVerifyPromoCode, profPromoDiscount, profPromoError, isVerifyingPromo, locale])
+
+  useEffect(() => {
+    // Check if we should auto-verify (code exists but no result/error yet)
+    if (eduPromoCode && eduPromoCode.trim().length >= 2 && !eduPromoDiscount && !eduPromoError && !isVerifyingPromo) {
+      const normalized = eduPromoCode.trim().toUpperCase()
+      if (isCouponExpired(normalized)) {
+        const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+        setEduPromoError(expiredMsg)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(
+            new CustomEvent('typus-coupon-applied', {
+              detail: {
+                isApplied: false,
+                code: normalized,
+                expired: true,
+              },
+            })
+          )
+        }
+        return
+      }
+      const timer = setTimeout(() => {
+        handleVerifyPromoCode('edu')
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [eduPromoCode, handleVerifyPromoCode, eduPromoDiscount, eduPromoError, isVerifyingPromo, locale])
+
+
+
+  const handleSubscribe = async (plan: any, priceInfo: any, isEdu: boolean, isEligibleForPromo: boolean = true) => {
+    // All plans now use the email-modal → email-verification → onboarding → checkout flow
+    let code = isEdu ? eduPromoCode : profPromoCode
+    let discount = isEdu ? eduPromoDiscount : profPromoDiscount
+    const setError = isEdu ? setEduPromoError : setProfPromoError
+
+    if (!isEligibleForPromo) {
+      code = ''
+      discount = null
+    }
+
+    if (code && isCouponExpired(code)) {
+      const expiredMsg = locale === 'de' ? EXPIRED_COUPON_MESSAGE_DE : EXPIRED_COUPON_MESSAGE_EN
+      setError(expiredMsg)
+      toast.error(expiredMsg)
+      if (isEdu) setEduPromoDiscount(null)
+      else setProfPromoDiscount(null)
+      return
+    }
+
+    if (discount && discount.couponId) {
+      setSubscribeError(null)
+      // const loadingToastId = toast.loading(tModal('verifying') || 'Verifying...')
+      try {
+        const response = await fetch(`${apiBaseUrl}validate-promo-code-step-2`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            code: code,
+            discount: discount,
+            billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
+            planType: plan.planType,
+            isEducational: isEdu
+          }),
+        })
+        const data = await response.json()
+
+        if (!response.ok || !data.valid) {
+          console.log(response, "RESPOMSE")
+          const errorMessage = data.message || tModal('promoCodeError')
+          setSubscribeError(errorMessage)
+          toast.error(errorMessage)
+          return // do not open modal
+        }
+
+        // toast.dismiss(loadingToastId)
+      } catch (error) {
+        console.log(error, "ERROR")
+        console.error('Error validating promo code with plan:', error)
+        const errorMessage = tModal('promoCodeError')
+        setSubscribeError(errorMessage)
+        // toast.error(tModal('promoCodeError'), { id: loadingToastId })
+        return // do not open modal
+      }
+    }
+    setSubscribeError(null)
+
+    setSelectedPlanForModal({
+      planType: plan.planType,
+      billingCycle: plan.billingCycle || (isEdu ? (isYearly ? 'YEARLY' : 'MONTHLY') : 'MONTHLY'),
+      priceId: priceInfo.stripePriceId,
+      isEducational: isEdu,
+      isFloorPlan: plan.isFloorPlan ? true : false,
+      isAgent: plan.isAgent ? true : false,
+      eligiblePromoCode: code || null
+    })
+    setIsModalOpen(true)
+    setEmailSent(false)
+    setModalError(null)
+    const searchParams = new URL(window.location.href).searchParams
+    const urlPromoCode = searchParams.get('promoCode') || searchParams.get('coupon')
+    if (urlPromoCode && !code) {
+      if (isEdu) setEduPromoCode(urlPromoCode)
+      else setProfPromoCode(urlPromoCode)
+    }
+    setShowTrialWarning(false)
+  }
+
+  const handleContinue = async (ignoreTrialWarning = false) => {
+    if (!userEmail || !userEmail.trim()) {
+      setModalError(tModal('errorRequired'))
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(userEmail.trim())) {
+      setModalError(tModal('errorInvalidEmail'))
+      return
+    }
+
+    console.log('--- Handle Continue ---')
+    console.log('Email:', userEmail.trim())
+    console.log('Selected Plan:', selectedPlanForModal)
+
+    setIsRedirecting(true)
+    setModalError(null)
+
+    try {
+      // 1. Verify Email Type
+      const verifyResponse = await fetch(`${apiBaseUrl}verify-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userEmail.trim(),
+          isEducational: selectedPlanForModal.isEducational ? true : false,
+          isFloorPlan: selectedPlanForModal.isFloorPlan ? true : false,
+          isAgent: selectedPlanForModal.isAgent ? true : false,
+          plan: selectedPlanForModal.planType?.toLowerCase(),
+          billing: selectedPlanForModal.billingCycle?.toLowerCase(),
+          language: locale,
+        }),
+      })
+      const verifyData = await verifyResponse.json()
+      console.log('Verify Data:', verifyData)
+
+      if (verifyData.universityName) {
+        setUniversityName(verifyData.universityName)
+      }
+
+      if (!verifyResponse.ok) {
+        toast.error(verifyData.message || 'An unexpected error occurred')
+        setSubscribeError(verifyData.message || 'An unexpected error occurred')
+        setIsModalOpen(false)
+        setIsRedirecting(false)
+        return
+      }
+
+      // if (selectedPlanForModal.isEducational) {
+      //   setModalError(tModal('errorNotStudentEmail'))
+      //   setIsRedirecting(false)
+      //   return
+      // }
+
+      // if (!selectedPlanForModal.isEducational && !verifyData.isProfessional && !ignoreTrialWarning && !(selectedPlanForModal.isEducational ? eduPromoDiscount : profPromoDiscount)) {
+      //   console.log('Showing Trial Warning Modal')
+      //   setShowTrialWarning(true)
+      //   setIsModalOpen(false) // Close the main modal to show warning
+      //   setIsRedirecting(false)
+      //   return
+      // }
+
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
+      }
+      const mappedBillingCycle = billingCycleMap[selectedPlanForModal.billingCycle] || selectedPlanForModal.billingCycle.toUpperCase()
+
+      // 2. Handle email verification response
+      if (verifyData.emailVerified) {
+        if (verifyData.universityName) {
+          setUniversityName(verifyData.universityName)
+        }
+        if (verifyData.data) {
+          setOnboardingData(verifyData.data)
+        }
+        setIsModalOpen(false)
+        setShowTrialWarning(false)
+        setShowOnboarding(false)
+        // Directly move to checkout page
+        await handleOnboardingComplete(verifyData.data || {}, selectedPlanForModal, userEmail.trim())
+      } else if (verifyData.emailSent) {
+        setEmailSent(true)
+        setIsRedirecting(false)
+      } else {
+        setModalError('Verification failed. Please try again.')
+        setIsRedirecting(false)
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error)
+      const errorMessage = error.message || 'An unexpected error occurred'
+
+      // Check for specific student email error to show translated message
+      if (errorMessage.toLowerCase().includes('student email')) {
+        setModalError(tModal('errorNotStudentEmail'))
+      } else {
+        setModalError(errorMessage)
+      }
+
+      toast.error(errorMessage)
+      setIsRedirecting(false)
+    }
+  }
+
+  const handleOnboardingComplete = async (onboardingData: any = {}, planOverride?: any, emailOverride?: string) => {
+    const activePlan = planOverride || selectedPlanForModal
+    const activeEmail = (emailOverride || userEmail || '').trim()
+    setOnboardingData(onboardingData)
+    setIsRedirecting(true)
+    toast.loading(locale === 'de' ? 'Weiterleitung zur Kasse...' : 'Redirecting to checkout...', { id: 'checkout-redirect' })
+
+    try {
+      if (onboardingData && !onboardingData.id && Object.keys(onboardingData).length > 0) {
+        try {
+          const submitResponse = await fetch(`${apiUrl}/api/onboarding/public/submit`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: activeEmail,
+              marketingConsent,
+              privacyConsent,
+              termsConsent,
+              language: locale,
+              ...(locationCountryCode && { countryCode: locationCountryCode }),
+              ...(locationCurrency && { currency: locationCurrency }),
+              ...(locationContinent && { continent: locationContinent }),
+              ...(activePlan?.isEducational && { isStudent: true }),
+              ...(activePlan?.isEducational && { universityName: universityName }),
+              ...onboardingData
+            }),
+          })
+          if (!submitResponse.ok) {
+            console.error('Failed to save public onboarding data:', await submitResponse.json())
+          }
+        } catch (e) {
+          console.error('Error submitting public onboarding data:', e)
+        }
+      }
+
+      const billingCycleMap: Record<string, string> = {
+        monthly: 'MONTHLY',
+        threeMonthly: 'THREE_MONTHLY',
+        sixMonthly: 'SIX_MONTHLY',
+        yearly: 'YEARLY',
+      }
+      const rawBillingCycle = activePlan?.billingCycle || 'monthly'
+      const mappedBillingCycle = billingCycleMap[rawBillingCycle] || rawBillingCycle.toUpperCase()
+
+      const getTrackingCookies = () => {
+        if (typeof document === 'undefined') return {};
+
+        const getCookiesMap = () => document.cookie.split(';').reduce((acc, cookie) => {
+          const [key, value] = cookie.split('=').map(c => c.trim());
+          if (key) acc[key] = value;
+          return acc;
+        }, {} as Record<string, string>);
+
+        let cookies = getCookiesMap();
+
+        // Extract from URL (Priority)
+        const urlParams = new URLSearchParams(window.location.search);
+        const gclid = urlParams.get('gclid') || cookies['gclid'] || null;
+        const gbraid = urlParams.get('gbraid') || cookies['gbraid'] || null;
+        const wbraid = urlParams.get('wbraid') || cookies['wbraid'] || null;
+
+        // Persist GCLID in cookies if found in URL
+        if (urlParams.get('gclid')) {
+          document.cookie = `gclid=${gclid}; path=/; max-age=7776000`; // 90 days
+        }
+
+        // 🛠️ TESTING FALLBACK: If on localhost and cookies are missing, generate fake ones
+        if (window.location.hostname === 'localhost' && !cookies['_ga']) {
+          console.log('🧪 Localhost detected: Generating fake tracking cookies for testing...');
+          const fakeGa = `GA1.1.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
+          const fakeSid = `GS2.1.${Math.floor(Date.now() / 1000)}.1.1.1.1`;
+          const fakeFpid = `FPID2.2.${Math.floor(Math.random() * 1000000000)}.${Math.floor(Date.now() / 1000)}`;
+          const fakeGclid = `CLID_${Math.floor(Math.random() * 1000000000)}`;
+
+          document.cookie = `_ga=${fakeGa}; path=/; max-age=31536000`;
+          document.cookie = `_ga_QR6YQP6P8N=${fakeSid}; path=/; max-age=31536000`;
+          document.cookie = `FPID=${fakeFpid}; path=/; max-age=31536000`;
+          document.cookie = `gclid=${fakeGclid}; path=/; max-age=7776000`;
+
+          cookies = getCookiesMap(); // Refresh map
+        }
+
+        const trackingCookies = {
+          _ga: cookies['_ga'] || null,
+          _ga_QR6YQP6P8N: cookies['_ga_QR6YQP6P8N'] || null,
+          _fbp: cookies['_fbp'] || null,
+          FPID: cookies['FPID'] || null,
+          gclid: cookies['gclid'] || urlParams.get('gclid') || null,
+          gbraid: cookies['gbraid'] || urlParams.get('gbraid') || null,
+          wbraid: cookies['wbraid'] || urlParams.get('wbraid') || null,
+          utm_source: cookies['utm_source'] || urlParams.get('utm_source') || null,
+          utm_medium: cookies['utm_medium'] || urlParams.get('utm_medium') || null,
+          utm_campaign: cookies['utm_campaign'] || urlParams.get('utm_campaign') || null,
+          utm_content: cookies['utm_content'] || urlParams.get('utm_content') || null,
+          utm_term: cookies['utm_term'] || urlParams.get('utm_term') || null,
+          utm_campaign_name: cookies['utm_campaign_name'] || urlParams.get('utm_campaign_name') || null,
+          gad_source: cookies['gad_source'] || urlParams.get('gad_source') || null,
+          gad_campaignid: cookies['gad_campaignid'] || urlParams.get('gad_campaignid') || null,
+          bi: cookies['stapeUserId'] || null,
+        };
+        console.log('🎯 Final Tracking Cookies (including GCLID):', trackingCookies);
+        return trackingCookies;
+      };
+
+      // All plans go directly to Stripe checkout — no contract overview modal
+
+      const response = await fetch(`${apiBaseUrl}checkout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: activeEmail,
+          planType: activePlan.planType,
+          billingCycle: mappedBillingCycle,
+          isEducational: activePlan.isEducational,
+          isFloorPlan: activePlan.isFloorPlan ? true : false,
+          isAgent: activePlan.isAgent ? true : false,
+          promoCode: activePlan.eligiblePromoCode || null,
+          currency: planCurrency,
+          cancelUrl: window.location.href,
+          marketingConsent,
+          privacyConsent,
+          termsConsent,
+          language: locale,
+          onboardingData: onboardingData || {},
+          trackingData: getTrackingCookies(), // Explicitly send cookies here
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to create checkout session')
+      }
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        toast.dismiss('checkout-redirect')
+        throw new Error('No checkout URL received')
+      }
+    } catch (error: any) {
+      console.error('Checkout error:', error)
+      toast.dismiss('checkout-redirect')
+      toast.error(error.message || 'Failed to create checkout session')
+      setIsRedirecting(false)
+    }
+  }
+
+  // Helper to find fetched plan data
+  const findFetchedPlan = (planType: string, isEdu: boolean) => {
+    const source = isEdu ? educationalPlans : plans
+    return source?.find((p: any) => p.planType === planType)
+  }
+
+  // Get translated Professional plans
+  const getProfessionalPlans = () => {
+    // We display all 4 plans: SOLO, PRO, TEAM, and ENTERPRISE.
+    const soloFetchedData = findFetchedPlan('SOLO', false) as any
+    const proFetchedData = findFetchedPlan('PRO', false)
+    const businessFetchedData = findFetchedPlan('TEAM', false)
+    
+    const mapFeatureText = (f: any) => {
+      if (typeof f === 'string') return f;
+      if (f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits500');
+      if (f.text.includes('1000 DRAFTY AI CREDITS') || f.text.includes('1000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits1000');
+      if (f.text.includes('5000 DRAFTY AI CREDITS') || f.text.includes('5000 AI AGENT CREDITS')) return t('plans.pro.features.agentCredits5000');
+      if (f.text.includes('500 CREDITS')) return t('plans.pro.features.credits200');
+      if (f.text.includes('2000 CREDITS')) return t('plans.pro.features.credits1000');
+      if (f.text.includes('10000 CREDITS')) return t('plans.pro.features.credits5000');
+      if (f.text.includes('TEAM ACCESS')) return t('plans.pro.features.teamAccess');
+      // if (f.text.includes('UP TO 0-1 ACCOUNTS')) return t('plans.pro.features.upTo01Accounts');
+      // if (f.text.includes('UP TO 1-5 ACCOUNTS')) return t('plans.pro.features.upTo15Accounts');
+      // if (f.text.includes('UP TO 5-20 ACCOUNTS')) return t('plans.pro.features.upTo520Accounts');
+      // if (f.text.includes('UP TO 5 ACCOUNTS')) return t('plans.pro.features.upTo5Accounts');
+      
+      const key = f.text.includes('4K') ? 'resolution4k' : 
+                  f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : 
+                  f.text.includes('EDIT BY CHAT') ? 'editByChat' : 
+                  // f.text.includes('HIGH-END') ? 'highEndResults' : 
+                  f.text.includes('EMAIL SUPPORT') ? 'emailSupport' : 
+                  f.text.includes('ONBOARDING VIDEO CALL') ? 'onboardingCall' : 
+                  f.text.includes('LIVE WEBINARS') ? 'liveWebinars' : 
+                  f.text.includes('1:1 LIVE VIDEO') ? 'oneOnOneCall' : 
+                  f.text.includes('SATISFACTION GUARANTEE') ? 'satisfactionGuarantee' : 'upscale13k';
+      return t(`plans.pro.features.${key}`);
+    };
+
+    // Test
+    const baseTestPlan = professionalPlans.find(p => p.id === 'test') || professionalPlans[0]
+    const testPlan = {
+      ...baseTestPlan,
+      name: 'TEST',
+      fetchedData: null,
+      features: baseTestPlan.features.map(f => {
+        let text = f.text;
+        if (f.text.includes('30 CREDITS') || f.text.includes('3 CREDITS')) {
+          text = locale === 'de' ? '30 CREDITS / Monat' : '30 CREDITS /month';
+        } else if (f.text.includes('1K RESOLUTION')) {
+          text = locale === 'de' ? '1K AUFLÖSUNG' : '1K RESOLUTION';
+        } else {
+          text = mapFeatureText(f);
+        }
+        return {
+          ...f,
+          text,
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        };
+      }),
+      targetAudience: locale === 'de' ? 'Kostenloser Test' : 'Free Trial',
+      billingCycle: profBillingCycle
+    }
+
+    // Solo
+    const baseSoloPlan = professionalPlans.find(p => p.id === 'solo') || professionalPlans[1]
+    // const soloPlan = {
+    //   ...baseSoloPlan,
+    //   name: 'SOLO',
+    //   fetchedData: soloFetchedData,
+    //   features: baseSoloPlan.features.map(f => ({
+    //     ...f,
+    //     text: mapFeatureText(f),
+    //     hasFeature: typeof f === 'object' ? f.hasFeature : true,
+    //   })),
+    //   targetAudience: t('plans.explorer.targetAudience'), // Defaulting, you can add translation if needed
+    //   billingCycle: profBillingCycle
+    // }
+
+    // Pro
+    const baseProPlan = professionalPlans.find(p => p.id === 'pro') || professionalPlans[2]
+    const proPlan = {
+      ...baseProPlan, 
+      name: 'PRO',
+      fetchedData: proFetchedData,
+      popular: true,
+      badgeTextKey: profBillingCycle === 'yearly' ? 'bestOffer' : 'mostPopular',
+      features: baseProPlan.features.map(f => ({
+        ...f,
+        text: mapFeatureText(f),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: t('plans.pro.targetAudience'),
+      billingCycle: profBillingCycle
+    }
+
+    // Business
+    const baseBusinessPlan = professionalPlans.find(p => p.id === 'business') || professionalPlans[3]
+    const businessPlan = {
+      ...baseBusinessPlan,
+      name: 'TEAM',
+      fetchedData: businessFetchedData,
+      features: baseBusinessPlan.features.map(f => ({
+        ...f,
+        text: mapFeatureText(f),
+        hasFeature: typeof f === 'object' ? f.hasFeature : true,
+      })),
+      targetAudience: t('plans.business.targetAudience'),
+      billingCycle: profBillingCycle
+    }
+
+    if (profBillingCycle === 'yearly') {
+      return [ proPlan, businessPlan ]
+    }
+
+    return [ testPlan, proPlan, businessPlan ]
+  }
+
+  // Get translated Education plans
+  const getEducationPlans = () => {
+    return [
+      {
+        ...educationPlans[0],
+        name: t('plans.student.name'),
+        fetchedData: findFetchedPlan('STARTER', true),
+        features: educationPlans[0].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.student.features.${(f.text.includes('50 DRAFTY AI CREDITS') || f.text.includes('50 AI AGENT CREDITS')) ? 'agentCredits50' : f.text.includes('50 CREDITS') ? 'credits50' : f.text.includes('OPT. CREDITS') ? 'optCreditsTopUps' : f.text.includes('UNLIMITED CONCURRENT') ? 'unlimitedJobs' : f.text.includes('INTEGRATED REFINER') ? 'integratedRefiner' : f.text.includes('CANCEL ANYTIME') ? 'cancelAnytime' : f.text.includes('SECURE PAYMENT') ? 'securePayment' : 'allPlugins'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+      {
+        ...educationPlans[1],
+        name: t('plans.educator.name'),
+        fetchedData: findFetchedPlan('EXPLORER', true),
+        features: educationPlans[1].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.educator.features.${(f.text.includes('150 DRAFTY AI CREDITS') || f.text.includes('150 AI AGENT CREDITS')) ? 'agentCredits150' : f.text.includes('EVERYTHING FROM STARTER') ? 'everythingFromStarter' : f.text.includes('150 CREDITS') ? 'credits150' : f.text.includes('2 CONCURRENT') ? 'concurrentJobs2' : f.text.includes('4K') ? 'resolution4k' : 'noQueue'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+      {
+        ...educationPlans[2],
+        name: t('plans.institution.name'),
+        fetchedData: findFetchedPlan('PRO', true),
+        features: educationPlans[2].features.map(f => ({
+          ...f,
+          text:
+            typeof f === 'string'
+              ? f
+              : t(
+                `plans.institution.features.${(f.text.includes('500 DRAFTY AI CREDITS') || f.text.includes('500 AI AGENT CREDITS')) ? 'agentCredits500' : f.text.includes('EVERYTHING FROM EXPLORER') ? 'everythingFromExplorer' : f.text.includes('1000 CREDITS') ? 'credits1000' : f.text.includes('4 CONCURRENT') ? 'concurrentJobs4' : f.text.includes('PREMIUM LIVE') ? 'premiumSupport' : f.text.includes('INCREASED SPEED') ? 'increasedSpeed' : 'resolution13k'}`
+              ),
+          hasFeature: typeof f === 'object' ? f.hasFeature : true,
+        })),
+      },
+    ]
+  }
+
+  const currentProfPlans = getProfessionalPlans()
+  const currentEduPlans = getEducationPlans()
+
+  useEffect(() => {
+    fetchPlans();
+  }, [isEurope]);
+
+  const fetchPlans = async () => {
+    try {
+      const response = await fetch(`${apiBaseUrl}plans?currency=${isEurope ? 'eur' : 'usd'}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+
+        });
+      const plansData = await response.json();
+
+      setPlans(plansData?.regularPlans);
+      setEducationalPlans(plansData?.educationalPlans);
+      setFloorPlans(plansData?.floorPlans || []);
+      setAgentPlans(plansData?.agentPlans || []);
+      setPlanCurrency(plansData?.currency);
+      if (plansData?.location?.isVat !== undefined) {
+        setIsVat(plansData.location.isVat);
+      }
+      if (plansData?.location?.continent) {
+        setLocationContinent(plansData.location.continent);
+      }
+      if (plansData?.location?.country_code) {
+        setLocationCountryCode(plansData.location.country_code);
+      }
+      if (plansData?.location?.currency) {
+        setLocationCurrency(plansData.location.currency);
+      }
+      // Use currency from backend
+      // const detectedCurrency = ;
+      // setCurrency(detectedCurrency);
+      // console.log(`💰 Setting currency: ${detectedCurrency} (from backend: ${plansData.currency})`);
+      // setIsProfessional(plansData.isProfessional);
+      // setIsEligibleForTrial(plansData.isEligibleForTrial);
+    } catch (error) {
+      console.error('Failed to fetch plans:', error);
+      toast.error('Failed to load pricing plans. Please try again later.');
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  // After plans load, fill in the priceId if it was set from a token (was null)
+  useEffect(() => {
+    if (!selectedPlanForModal || selectedPlanForModal.priceId !== null) return
+    if (!plans && !educationalPlans) return
+
+    const source = selectedPlanForModal.isEducational ? educationalPlans : plans
+    if (!source) return
+
+    const targetPlan = source.find((p: any) => p.planType === selectedPlanForModal.planType)
+    if (!targetPlan) return
+
+    const stripePrices = targetPlan.stripePrices || {}
+    const billingCycle = selectedPlanForModal.billingCycle
+    const priceId = billingCycle === 'yearly' ? stripePrices.YEARLY :
+                    billingCycle === 'sixMonthly' ? stripePrices.SIX_MONTHLY :
+                    billingCycle === 'threeMonthly' ? stripePrices.THREE_MONTHLY :
+                    stripePrices.MONTHLY
+
+    if (priceId) {
+      setSelectedPlanForModal((prev: any) => ({ ...prev, priceId }))
+    }
+  }, [plans, educationalPlans, selectedPlanForModal])
+
+
+  const renderEducationSection = () => {
+    return (
+      <>
+        {/* Education Section */}
+        <div id='student-plan' className='text-center mb-2 relative z-40 scroll-mt-28'>
+          <h2 className='heading-primary mt-10 mb-2'>
+            {t('educationPlans')}
+          </h2>
+
+          <div className='flex justify-center mb-4'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
+              <button
+                onClick={() => setIsYearly(false)}
+                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${!isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
+              >
+                {!isYearly && (
+                  <span
+                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                <span className='relative'>{t('monthlyBilling')}</span>
+              </button>
+              <button
+                onClick={() => setIsYearly(true)}
+                className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${isYearly ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
+              >
+                {isYearly && (
+                  <span
+                    className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                <span className='relative'>{t('yearlyBilling')}</span>
+              </button>
+            </div>
+          </div>
+          {/* Promo Code Input on Page (Education) */}
+          <div className='w-full max-w-md mx-auto mt-8 mb-6'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
+              <input
+                type='text'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full'
+                placeholder={tModal('promoCodePlaceholder')}
+                value={eduPromoCode}
+                onChange={(e) => {
+                  setEduPromoCode(e.target.value)
+                  setEduPromoError(null)
+                  setEduPromoSuccess(null)
+                  setEduPromoDiscount(null)
+                }}
+                disabled={isRedirecting || isVerifyingPromo}
+              />
+              <Button
+                onClick={() => handleVerifyPromoCode('edu')}
+                disabled={!eduPromoCode.trim() || isRedirecting || isVerifyingPromo}
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0'
+                style={{ fontFamily: 'Arial' }}
+              >
+                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+              </Button>
+            </div>
+            {eduPromoError && (
+              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
+                <IconAlertCircle size={14} />
+                <span>{eduPromoError}</span>
+              </div>
+            )}
+            {eduPromoSuccess && (
+              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
+                <Check size={14} />
+                <span>{eduPromoSuccess}</span>
+              </div>
+            )}
+            {eduPromoDiscount && (
+              <div className='mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm'>
+                <span className=' uppercase'>{eduPromoDiscount.name}:</span> {eduPromoDiscount.type === 'percentage' ? `${eduPromoDiscount.value}${tModal('discountOffCaps')}` : `-${eduPromoDiscount.value / 100} ${eduPromoDiscount.currency?.toUpperCase()}`}
+                {eduPromoDiscount.validPlans && eduPromoDiscount.validPlans.length > 0 ? (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    {tModal('applicableTo')} {eduPromoDiscount.validPlans.join(', ')}
+                    {eduPromoDiscount.validBillingCycles && eduPromoDiscount.validBillingCycles.length > 0 
+                      ? ` (${Array.from(new Set(eduPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
+                      : ''}
+                  </div>
+                ) : (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    {tModal('applicableTo')} {tModal('allPlans')}
+                  </div>
+                )}
+                {eduPromoDiscount.maxRedemptions && (
+                  <div className='mt-1 text-emerald-800/80 text-xs font-medium'>
+                    {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0)} {eduPromoDiscount.maxRedemptions - (eduPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {subscribeError && (
+            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
+                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
+                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
+                  {subscribeError}
+                </p>
+                <button
+                  onClick={() => setSubscribeError(null)}
+                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
+                >
+                  <IconX size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {isYearly && (
+            <div className='flex flex-col gap-1 mb-8 text-center'>
+            </div>
+          )}
+        </div>
+
+        {/* Education Plans Cards */}
+        <div className='flex flex-wrap justify-center items-stretch w-full gap-8 mb-10'>
+          {currentEduPlans.map((plan, index) => (
+              <div key={index} className='w-full max-w-xs z-30'>
+                <PricingCard
+                  plan={plan as PlanType & { billingCycle?: 'monthly' | 'sixMonthly' | 'yearly' }}
+                  isYearly={isYearly}
+                  isProfessional={false}
+                  isEurope={planCurrency === 'eur'}
+                  currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                  onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, true, isEligible)}
+                  promoDiscount={eduPromoDiscount}
+                  isVat={isVat}
+                />
+              </div>
+            ))}
+        </div>
+      </>
+    )
+  }
+
+  const floorPlanStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
+    LITE: {
+      description: 'Für persönliche Projekte und gelegentliche Raumideen.',
+      features: [
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '800 monatliche Credits',
+        'Basis-Warteschlange',
+        'Bis zu 6 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        'Persönliche Projekte und leichte Kundenarbeit',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+    MEHR: {
+      description: 'Für Innenräume, Außenbereiche und Immobilien-Visuals.',
+      isPopular: true,
+      features: [
+        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '3.000 monatliche Credits',
+        'Schnellere Warteschlange',
+        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
+        'Bis zu 15 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+    PRO: {
+      description: 'Für Teams, Studios und umfangreiche Immobilienprojekte.',
+      features: [
+        'Kommerzielle Nutzungsrechte für deine generierten Bilder',
+        'HD-Exporte und Downloads ohne Wasserzeichen',
+        '9.999 monatliche Credits',
+        'Warteschlange mit höchster Priorität',
+        'Bestehende Ergebnisse weiter bearbeiten, ohne neu zu starten',
+        'Bis zu 30 ausstehende Bildgenerierungen',
+        'Erweiterte Funktionen für KI-Floorplan freischalten',
+        '24-Stunden-E-Mail-Support',
+      ],
+    },
+  };
+
+  const renderFloorPlanSection = () => {
+    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
+
+    return (
+      <>
+        <div className='text-center mb-8 sm:mb-12'>
+          <h2 className='heading-primary'>{locale === 'de' ? 'Grundriss' : 'Floor plans'}</h2>
+        </div>
+        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+          {floorPlans.map((plan: any) => {
+            const staticData = floorPlanStaticData[plan.planType] || {};
+            const monthlyPrice = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
+            const priceId = plan.stripePrices?.MONTHLY;
+
+            const priceInfo = {
+              mainPrice: `${currencySymbol}${monthlyPrice}`,
+              period: '/month',
+              billingInfo: t('billedMonthly'),
+              stripePriceId: priceId,
+            };
+
+            const isFloorPlanFeatured = Boolean(
+              staticData.isPopular ||
+              plan.planType === 'MEHR' ||
+              plan.name === 'MEHR' ||
+              plan.id === 'mehr'
+            );
+
+            return (
+              <div
+                key={plan.planType}
+                className={`flex h-auto lg:h-[700px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
+                  isFloorPlanFeatured
+                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
+                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+                }`}
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  fontFamily: 'Arial',
+                  border: isFloorPlanFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
+                }}
+              >
+                {/* Top-Right Blue Ribbon Badge */}
+                {isFloorPlanFeatured && (
+                  <div
+                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
+                  </div>
+                )}
+
+                {/* 4 Corner Small Square Fills */}
+                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isFloorPlanFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+
+                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
+                  <div className='flex items-center justify-center gap-2 mb-1'>
+                    <span
+                      className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
+                      style={{ fontFamily: 'Arial' }}
+                    >
+                      {plan.planType}
+                    </span>
+                  </div>
+
+                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
+                    {staticData.description || plan.description}
+                  </span>
+
+                  <div className='mb-3'>
+                    <div className='flex items-baseline justify-center gap-1'>
+                      <span
+                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {currencySymbol}{monthlyPrice}
+                      </span>
+                      <span
+                        className='text-xs sm:text-sm text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {locale === 'de' ? '/Monat' : '/month'}
+                      </span>
+                    </div>
+                    <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
+                      <div style={{ fontFamily: 'Arial' }}>
+                        {t('billedMonthly')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
+                  <ul className='space-y-4'>
+                    {(staticData.features || []).map((feature: string, idx: number) => (
+                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
+                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
+                        <span
+                          className='text-[10px]  tracking-wider text-gray-900'
+                          style={{ fontFamily: 'Arial' }}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className='mt-auto pt-4'>
+                  <button
+                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
+                      staticData.isPopular
+                        ? 'border border-black bg-transparent text-black hover:bg-black hover:text-white shadow-sm'
+                        : 'border border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black bg-transparent'
+                    }`}
+                    style={{
+                      fontFamily: 'Arial',
+                      ...(staticData.isPopular ? { backgroundColor: 'transparent', color: '#000000', borderColor: '#000000' } : {}),
+                    }}
+                    onClick={() => handleSubscribe(
+                      {
+                        planType: plan.planType,
+                        billingCycle: 'monthly',
+                        isEducational: false,
+                        isFloorPlan: true,
+                        name: plan.name,
+                        fetchedData: plan,
+                      },
+                      priceInfo,
+                      false,
+                      true
+                    )}
+                  >
+                    {t('subscribe')}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>
+    );
+  };
+
+  const agentStaticData: Record<string, { description: string; features: string[]; isPopular?: boolean }> = {
+    STARTER: {
+      description: locale === 'de'
+        ? 'Wesentliche KI-Agenten-Intelligenz für selbstständige Architekten & Designer.'
+        : 'Essential AI agent intelligence for independent architects and designers.',
+      features: locale === 'de' ? [
+        '300 monatliche Drafty Credits',
+        'Dedizierte KI-Agenten-Tools & Workflows',
+        'Automatischer Prompt-Enhancer',
+        'Schnelle Batch-Generierung & Iteration',
+        'Dedizierte Chat-Historie pro Session',
+        '24-Stunden-E-Mail-Support',
+      ] : [
+        '300 monthly Drafty Credits',
+        'Dedicated AI Agent tools & workflows',
+        'Auto prompt enhancer & suggestions',
+        'Fast batch generation & iteration',
+        'Dedicated chat history per session',
+        '24/7 priority email support',
+      ],
+    },
+    PRO: {
+      description: locale === 'de'
+        ? 'Grenzenlose kreative Freiheit für tägliche Entwürfe, 4K-Veredelung und Videos.'
+        : 'Uncapped creative freedom for daily designing, 4K refinement, and video generation.',
+      isPopular: true,
+      features: locale === 'de' ? [
+        '1.000 monatliche Drafty Credits',
+        'Prioritäts-Warteschlange für alle Agenten-Tasks',
+        'High-Res 4K Bildverfeinerung & Upscaling',
+        'KI-Videogenerierung & Render-Animationen',
+        'Erweiterte Werkzeuge & Material-Kataloge',
+        'Unbegrenzte Chat-Sitzungen',
+        'Prioritärer VIP-Support',
+      ] : [
+        '1,000 monthly Drafty Credits',
+        'Priority queue for all Agent tasks',
+        'High-Res 4K image refinement & upscaling',
+        'AI video generation & animations',
+        'Extended toolset & material catalogs',
+        'Unlimited chat sessions',
+        'Priority VIP support',
+      ],
+    },
+    BUSINESS: {
+      description: locale === 'de'
+        ? 'Entwickelt für Architekturbüros, Teams und hochfrequente Multimodal-Produktion.'
+        : 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
+      features: locale === 'de' ? [
+        '3.000 monatliche Drafty Credits',
+        'Höchste Prioritäts-Warteschlange',
+        'Team-Kollaboration & Multi-User Sharing',
+        'Alle High-End KI-Modelle & Video-Engines',
+        'Frühzeitiger Zugang zu neuen Agent-Fähigkeiten',
+        'Dedizierter Account-Manager',
+      ] : [
+        '3,000 monthly Drafty Credits',
+        'Highest priority queue',
+        'Team collaboration & shared workspace',
+        'All high-end AI models & video engines',
+        'Early access to new agent capabilities',
+        'Dedicated account manager',
+      ],
+    },
+  };
+
+  const renderAgentSection = () => {
+    const currencySymbol = planCurrency === 'eur' ? '€' : '$';
+    const displayPlans = agentPlans.length > 0 ? agentPlans : [
+      {
+        planType: 'STARTER',
+        name: 'Drafty AI - Starter Plan',
+        description: 'Essential AI agent intelligence for independent architects and designers.',
+        credits: 300,
+        prices: { monthly: 1900, yearly: 19000 },
+        stripePrices: {},
+      },
+      {
+        planType: 'PRO',
+        name: 'Drafty AI - Pro Plan',
+        description: 'Uncapped creative freedom with high-res refinement, video generation, and priority agent queue.',
+        credits: 1000,
+        prices: { monthly: 4900, yearly: 49000 },
+        stripePrices: {},
+      },
+      {
+        planType: 'BUSINESS',
+        name: 'Drafty AI - Business Plan',
+        description: 'Designed for architectural businesses, teams, and high-frequency multi-modal production.',
+        credits: 3000,
+        prices: { monthly: 11900, yearly: 119000 },
+        stripePrices: {},
+      },
+    ];
+
+    return (
+      <>
+        <div className='text-center mb-6 sm:mb-8 max-w-4xl mx-auto px-4'>
+          <h2 className='heading-primary'>
+            {locale === 'de' ? 'Drafty KI-Agent für Architektur' : 'Drafty AI Agent for Architecture'}
+          </h2>
+          <p className='text-sm sm:text-base text-gray-500 mt-2 max-w-2xl mx-auto'>
+            {locale === 'de'
+              ? 'Dedizierte KI-Agenten-Pläne mit separaten Drafty-Credits für automatisierte Entwürfe, 4K-Verfeinerung und Workflows.'
+              : 'Dedicated AI Agent plans with separate Drafty credits for automated workflows, 4K refinement, and video generation.'}
+          </p>
+
+          {/* Billing Cycle Toggle */}
+          <div className='flex justify-center mt-6 mb-2'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative'>
+              {(['monthly', 'yearly'] as const).map((cycle) => (
+                <button
+                  key={cycle}
+                  onClick={() => setAgentBillingCycle(cycle)}
+                  className={`relative z-10 px-3.5 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${
+                    agentBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'
+                  }`}
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {agentBillingCycle === cycle && (
+                    <span
+                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                      style={{ zIndex: -1 }}
+                    />
+                  )}
+                  <span className='relative'>
+                    {cycle === 'yearly'
+                      ? (locale === 'de' ? 'Jährlich (Spare 17%)' : 'Annual (Save 17%)')
+                      : (locale === 'de' ? 'Monatlich' : 'Monthly')}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className='flex flex-col xl:flex-row justify-center items-start w-full gap-6 mb-4 px-4 xl:px-0 max-w-[1298px] mx-auto'>
+          {displayPlans.map((plan: any) => {
+            const staticData = agentStaticData[plan.planType] || {};
+            const isYearlyMode = agentBillingCycle === 'yearly';
+
+            const monthlyRaw = plan.prices?.monthly ? plan.prices.monthly / 100 : 0;
+            const yearlyRaw = plan.prices?.yearly ? plan.prices.yearly / 100 : (monthlyRaw * 10);
+            const displayMonthly = isYearlyMode ? Math.round(yearlyRaw / 12) : monthlyRaw;
+
+            const priceId = isYearlyMode ? (plan.stripePrices?.YEARLY || plan.stripePrices?.MONTHLY) : plan.stripePrices?.MONTHLY;
+
+            const priceInfo = {
+              mainPrice: `${currencySymbol}${displayMonthly}`,
+              period: '/month',
+              billingInfo: isYearlyMode
+                ? (locale === 'de' ? `Jährlich abgerechnet (${currencySymbol}${yearlyRaw}/Jahr)` : `Billed annually (${currencySymbol}${yearlyRaw}/yr)`)
+                : t('billedMonthly'),
+              stripePriceId: priceId,
+            };
+
+            const isAgentFeatured = Boolean(staticData.isPopular || plan.planType === 'PRO');
+
+            return (
+              <div
+                key={plan.planType}
+                className={`flex h-auto lg:h-[720px] mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl w-full max-w-sm mx-auto ${
+                  isAgentFeatured
+                    ? 'card-featured-red-border shadow-md hover:shadow-xl'
+                    : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+                }`}
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  fontFamily: 'Arial',
+                  border: isAgentFeatured ? '2px solid #2563eb' : '1px solid rgba(212, 212, 216, 0.9)',
+                }}
+              >
+                {/* Top-Right Recommended Badge */}
+                {isAgentFeatured && (
+                  <div
+                    className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs uppercase tracking-widest rounded-bl-2xl z-30"
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'}
+                  </div>
+                )}
+
+                {/* 4 Corner Small Square Fills */}
+                <span className={`absolute -top-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -top-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -left-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+                <span className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 pointer-events-none select-none z-20 ${isAgentFeatured ? 'bg-blue-600' : 'bg-black dark:bg-white'}`} />
+
+                <div className='flex flex-col items-center text-center justify-center mb-4 relative pt-1'>
+                  <div className='flex items-center justify-center gap-2 mb-1'>
+                    <span
+                      className='text-xl sm:text-2xl uppercase tracking-wider block text-black font-bold'
+                      style={{ fontFamily: 'Arial' }}
+                    >
+                      {plan.name ? plan.name.replace(/\bStudio\b/gi, 'Business') : `Drafty ${plan.planType}`}
+                    </span>
+                  </div>
+
+                  <span className='text-[11px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block max-w-[90%] text-center leading-tight'>
+                    {staticData.description || plan.description}
+                  </span>
+
+                  <div className='mb-3'>
+                    <div className='flex items-baseline justify-center gap-1'>
+                      <span
+                        className='text-3xl sm:text-4xl font-normal tracking-tight text-black'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {currencySymbol}{displayMonthly}
+                      </span>
+                      <span
+                        className='text-xs sm:text-sm text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {locale === 'de' ? '/Monat' : '/month'}
+                      </span>
+                    </div>
+
+                    <div className='space-y-1 text-[11px] text-gray-500 mt-2 text-center'>
+                      <div style={{ fontFamily: 'Arial' }}>
+                        {priceInfo.billingInfo}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Credits pill */}
+                  <div className='mt-1 mb-2'>
+                    <span className='inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200'>
+                      ⚡ {plan.credits?.toLocaleString() || 300} {locale === 'de' ? 'Agent-Credits / Monat' : 'Agent Credits / month'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className='px-4 flex-1 flex flex-col justify-start mb-4 overflow-y-auto no-scrollbar'>
+                  <ul className='space-y-3.5'>
+                    {(staticData.features || []).map((feature: string, idx: number) => (
+                      <li key={idx} className='flex items-start text-[11px] text-gray-600 font-medium leading-relaxed'>
+                        <Check className='mr-3 h-[18px] w-[18px] text-emerald-500 shrink-0' strokeWidth={2} />
+                        <span
+                          className='text-[11px] tracking-normal text-gray-900'
+                          style={{ fontFamily: 'Arial' }}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className='mt-auto pt-4'>
+                  <button
+                    className={`w-full py-2.5 px-4 rounded-full text-center text-xs uppercase tracking-wider transition-all duration-200 inline-block font-semibold cursor-pointer ${
+                      isAgentFeatured
+                        ? 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
+                        : 'border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white bg-transparent'
+                    }`}
+                    style={{
+                      fontFamily: 'Arial',
+                    }}
+                    onClick={() => handleSubscribe(
+                      {
+                        planType: plan.planType,
+                        billingCycle: isYearlyMode ? 'yearly' : 'monthly',
+                        isEducational: false,
+                        isFloorPlan: false,
+                        isAgent: true,
+                        name: plan.name,
+                        fetchedData: plan,
+                      },
+                      priceInfo,
+                      false,
+                      true
+                    )}
+                  >
+                    {t('subscribe')}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      className='min-h-screen relative pt-0 pb-20'
+      style={{ backgroundColor: '#FFFFFF' }}
+      id='pricing'
+    >
+
+
+      <div className='w-full  mx-auto px-4 relative z-10 pt-0'>
+        {/* Educational Plans at the top if requested */}
+        {showOnly === 'educational' && renderEducationSection()}
+
+        {/* Floor Plan Section */}
+        {showOnly === 'floorplan' && renderFloorPlanSection()}
+
+        {/* AI Agent Section */}
+        {showOnly === 'agent' && renderAgentSection()}
+
+        {/* Professional Section */}
+        {showOnly !== 'educational' && showOnly !== 'floorplan' && showOnly !== 'agent' && (
+          <>
+            <div className='text-center mb-6 relative z-40 max-w-4xl mx-auto'>
+              {/* Countdown Timer */}
+              {/* <div className='flex justify-center items-center gap-3 mb-6'>
+                {[
+                  { label: locale === 'de' ? 'Tage' : 'Days', value: timeLeft.days },
+                  { label: locale === 'de' ? 'Stunden' : 'Hours', value: timeLeft.hours },
+                  { label: locale === 'de' ? 'Minuten' : 'Minutes', value: timeLeft.minutes },
+                  { label: locale === 'de' ? 'Sekunden' : 'Seconds', value: timeLeft.seconds },
+                ].map((item, idx) => (
+                  <div key={idx} className='flex flex-col items-center bg-neutral-950 text-white rounded-xl px-4 py-2 min-w-[70px] shadow-lg border border-neutral-900'>
+                    <span className='text-xl sm:text-2xl  tracking-tight' style={{ fontFamily: 'Arial' }}>
+                      {String(item.value).padStart(2, '0')}
+                    </span>
+                    <span className='text-[9px] uppercase tracking-wider font-semibold text-neutral-400 mt-0.5' style={{ fontFamily: 'Arial' }}>
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div> */}
+              <h2 className="text-center mt-10 mb-4 heading-primary">
+                {t('selfServiceTitle')}
+              </h2>
+              
+              {/* Lottie Arrow pointing to the right/booking form */}
+              {/* <div className='absolute -bottom-0 right-[5%] hidden xl:block w-24 h-24 pointer-events-none z-50 transform rotate-[-45deg]'>
+                <Lottie animationData={HandDrawnArrow} loop={true} />
+              </div> */}
+
+          {/* Billing Toggle — only shown when ?disscountPlans=true */}
+          {showBillingToggle && (
+          <div className='flex justify-center mt-8 mb-2'>
+            <div className='p-1 bg-transparent border border-neutral-300 dark:border-neutral-700 rounded-full inline-flex relative flex-wrap justify-center gap-1 sm:gap-0'>
+              {/* (['monthly', 'threeMonthly', 'sixMonthly', 'yearly'] as const).map((cycle) => ( */}
+              {(['monthly', 'yearly'] as const).map((cycle) => (
+                <button
+                  key={cycle}
+                  onClick={() => setProfBillingCycle(cycle)}
+                  className={`relative z-10 px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full transition-colors duration-300 ${profBillingCycle === cycle ? 'text-black dark:text-white' : 'text-neutral-500 hover:text-neutral-700'}`}
+                >
+                  {profBillingCycle === cycle && (
+                    <span
+                      className='absolute inset-0 bg-white dark:bg-neutral-800 rounded-full border border-neutral-300 dark:border-neutral-600 shadow-xs'
+                      style={{ zIndex: -1 }}
+                    />
+                  )}
+                  <span className='relative'>
+                    {cycle === 'yearly' ? (
+                      <span className='flex items-center gap-2'>
+                        {t('yearlyBilling')}
+                      </span>
+                    ) : (
+                      t('monthlyBilling')
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+          )}
+
+          {/* Promo Code Input on Page */}
+          <div className='w-full max-w-md mx-auto mt-8 mb-10'>
+            <div className='flex flex-col sm:flex-row gap-2 min-h-[50px]'>
+              <input
+                id='prof-promo-code-input'
+                type='text'
+                className='block flex-1 px-4 py-3 border border-black bg-white text-black text-sm focus:outline-none focus:ring-1 focus:ring-black/20 transition-all uppercase placeholder:normal-case h-[50px] sm:h-full rounded-xl'
+                placeholder={tModal('promoCodePlaceholder')}
+                value={profPromoCode}
+                onChange={(e) => {
+                  setProfPromoCode(e.target.value)
+                  setProfPromoError(null)
+                  setProfPromoSuccess(null)
+                  setProfPromoDiscount(null)
+                  setSubscribeError(null)
+                }}
+                disabled={isRedirecting || isVerifyingPromo}
+              />
+              <Button
+                onClick={() => handleVerifyPromoCode('prof')}
+                disabled={!profPromoCode.trim() || isRedirecting || isVerifyingPromo}
+                className='bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 px-8 py-3 h-[50px] sm:h-full text-sm uppercase  tracking-wider transition-all w-full sm:w-auto shrink-0 rounded-xl'
+                style={{ fontFamily: 'Arial' }}
+              >
+                {isVerifyingPromo ? <IconLoader2 className='animate-spin' size={14} /> : tModal('apply')}
+              </Button>
+            </div>
+            {profPromoError && (
+              <div className='flex items-center gap-2 text-red-600 text-xs mt-2'>
+                <IconAlertCircle size={14} />
+                <span>{profPromoError}</span>
+              </div>
+            )}
+            {profPromoSuccess && (
+              <div className='flex items-center gap-2 text-emerald-600 text-xs mt-2'>
+                <Check size={14} />
+                <span>{profPromoSuccess}</span>
+              </div>
+            )}
+            {profPromoDiscount && (
+              <div className='mt-2 flex flex-col sm:flex-row gap-2'>
+                <div className='flex-1 px-3 py-2 bg-emerald-50/60 border border-emerald-100 text-emerald-600 text-xs rounded-md'>
+                  <span className='font-medium normal-case'>
+                    {profPromoDiscount.name}:
+                  </span>{' '}
+                  <span className='font-normal'>
+                    {profPromoDiscount.type === 'percentage'
+                      ? `${profPromoDiscount.value}${tModal('discountOff')}`
+                      : `-${profPromoDiscount.value / 100} ${profPromoDiscount.currency?.toUpperCase()}`}
+                  </span>
+                  {profPromoDiscount.validPlans && profPromoDiscount.validPlans.length > 0 ? (
+                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                      {tModal('applicableTo')} {profPromoDiscount.validPlans.join(', ')}
+                      {profPromoDiscount.validBillingCycles && profPromoDiscount.validBillingCycles.length > 0 
+                        ? ` (${Array.from(new Set(profPromoDiscount.validBillingCycles.map((c: string) => c.toUpperCase()))).join(', ')})` 
+                        : ''}
+                    </div>
+                  ) : (
+                    <div className='mt-1 text-emerald-700/80 text-[11px]'>
+                      {tModal('applicableTo')} {tModal('allPlans')}
+                    </div>
+                  )}
+                </div>
+                {profPromoDiscount.maxRedemptions && (
+                  <div className='px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 text-sm sm:text-base  rounded-md flex items-center justify-center whitespace-nowrap shadow-sm' style={{ fontFamily: 'Arial' }}>
+                    {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0)} {profPromoDiscount.maxRedemptions - (profPromoDiscount.timesRedeemed || 0) === 1 ? tModal('couponLeft') : tModal('couponsLeft')}
+                  </div>
+                )}
+              </div>
+            )}
+            {/* Weekly Coupon Banner */}
+            {/* {profPromoDiscount && profPromoCode?.trim().toUpperCase() === 'JOIN80' && (
+              <div className='mt-6 text-center bg-yellow-50 border border-yellow-200 rounded-xl p-4 shadow-sm'>
+               
+                <p className='text-sm md:text-base text-neutral-600 mt-1 font-medium'>
+                  {tModal('weeklyCouponValidUntil', { date: 'Sep 04, 2026' })}
+                </p>
+              </div>
+            )} */}
+          </div>
+        </div>
+
+          <div className={`w-full ${currentProfPlans.length === 2 ? 'max-w-[1040px]' : 'max-w-[1400px]'} mx-auto px-4 mb-4`}>
+            <div className={`grid grid-cols-1 ${currentProfPlans.length === 2 ? 'sm:grid-cols-3' : 'sm:grid-cols-3 lg:grid-cols-4'} justify-center items-stretch gap-4`}>
+              {currentProfPlans
+                .filter(plan => !(plan.id === 'test' && profBillingCycle === 'yearly'))
+                .map((plan, index) => (
+            
+                <div key={plan.id || index} className='w-full z-10 relative'>
+                  {plan.id === 'pro' && (
+                    <div className='absolute -top-20 -right-6 hidden lg:block animate-bounce-slow pointer-events-none'>
+                      <div className='flex flex-col items-center gap-1'>
+                        {/* Empty to preserve structure if Lottie was here */}
+                      </div>
+                    </div>
+                  )}
+                  <PricingCard
+                    plan={plan as PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }}
+                    isYearly={profBillingCycle === 'yearly'}
+                    isProfessional={true}
+                    isEurope={planCurrency === 'eur'}
+                    currencySymbol={planCurrency === 'eur' ? '€' : '$'}
+                    onSubscribe={(plan, priceInfo, isEligible) => handleSubscribe(plan, priceInfo, false, isEligible)}
+                    promoDiscount={profPromoDiscount}
+                    isVat={isVat}
+                  />
+                </div>
+              ))}
+                <BookingDemoClassFormForPricingPage/>
+            </div>
+          </div>
+
+
+
+          {subscribeError && (
+            <div className='w-full max-w-2xl mx-auto mb-8 animate-in fade-in slide-in-from-top-2 duration-300'>
+              <div className='bg-red-50 border border-red-200 p-4 flex items-center gap-3'>
+                <IconAlertCircle className='text-red-600 shrink-0' size={20} />
+                <p className='text-red-700 text-sm font-medium font-space-grotesk'>
+                  {subscribeError}
+                </p>
+                <button
+                  onClick={() => setSubscribeError(null)}
+                  className='ml-auto text-red-400 hover:text-red-600 transition-colors'
+                >
+                  <IconX size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+          </>
+        )}
+
+        {/* Credit Deduction Overview & Status */}
+        <div className='w-full max-w-3xl mx-auto mt-4 mb-8 z-20 relative'>
+          <div className='border border-black/10 bg-white'>
+            <div className='border-b border-black/10 px-3 py-2'>
+              <h3
+                className='text-[11px]  text-black lowercase tracking-wider text-center'
+                style={{ fontFamily: 'Arial' }}
+              >
+                {t('creditDeduction.title')}
+              </h3>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/10'>
+              {/* Image Credits */}
+              <div className='px-4 py-3'>
+                <div className='flex items-center gap-1.5 mb-2'>
+                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
+                    <rect x='3' y='3' width='18' height='18' rx='2' strokeLinecap='round' strokeLinejoin='round' />
+                    <circle cx='8.5' cy='8.5' r='1.5' />
+                    <polyline points='21 15 16 10 5 21' strokeLinecap='round' strokeLinejoin='round' />
+                  </svg>
+                  <h4
+                    className='text-[10px]  tracking-wide text-black'
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {t('creditDeduction.imageGeneration')}
+                  </h4>
+                </div>
+                <div className='space-y-0.5'>
+                  {[
+                    { label: t('creditDeduction.resolution1K'), credits: t('creditDeduction.credit1') },
+                    { label: t('creditDeduction.resolution2K'), credits: t('creditDeduction.credits3') },
+                    { label: t('creditDeduction.resolution4K'), credits: t('creditDeduction.credits5') },
+                  ].map(({ label, credits }) => (
+                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
+                      <span
+                        className='text-[9px] font-medium text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {credits}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Video Credits */}
+              <div className='px-4 py-3'>
+                <div className='flex items-center gap-1.5 mb-2'>
+                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
+                    <polygon points='23 7 16 12 23 17 23 7' strokeLinecap='round' strokeLinejoin='round' />
+                    <rect x='1' y='5' width='15' height='14' rx='2' strokeLinecap='round' strokeLinejoin='round' />
+                  </svg>
+                  <h4
+                    className='text-[10px]  tracking-wide text-black'
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {t('creditDeduction.videoGeneration')}
+                  </h4>
+                </div>
+                <div className='space-y-0.5'>
+                  {[
+                    { label: '4s / 5s', credits: t('creditDeduction.credits25') },
+                    { label: '8s / 10s', credits: t('creditDeduction.credits50') },
+                    { label: '12s', credits: t('creditDeduction.credits75') },
+                  ].map(({ label, credits }) => (
+                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
+                      <span
+                        className='text-[9px] font-medium text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {credits}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Upscaling Credits */}
+              <div className='px-4 py-3'>
+                <div className='flex items-center gap-1.5 mb-2'>
+                  <svg className='w-3.5 h-3.5 text-black flex-shrink-0' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={1.8}>
+                    <polyline points='17 11 12 6 7 11' strokeLinecap='round' strokeLinejoin='round' />
+                    <polyline points='17 18 12 13 7 18' strokeLinecap='round' strokeLinejoin='round' />
+                  </svg>
+                  <h4
+                    className='text-[10px]  tracking-wide text-black'
+                    style={{ fontFamily: 'Arial' }}
+                  >
+                    {t('creditDeduction.imageUpscaling')}
+                  </h4>
+                </div>
+                <div className='space-y-0.5'>
+                  {[
+                    { label: t('creditDeduction.upscaleFactor2'), credits: t('creditDeduction.upscaleCredits20') },
+                    { label: t('creditDeduction.upscaleFactor4'), credits: t('creditDeduction.upscaleCredits40') },
+                    { label: t('creditDeduction.upscaleFactor8'), credits: t('creditDeduction.upscaleCredits50') },
+                    { label: t('creditDeduction.upscaleFactor16'), credits: t('creditDeduction.upscaleCredits80') },
+                  ].map(({ label, credits }) => (
+                    <div key={label} className='flex items-center justify-between py-1 border-b border-black/5 last:border-0'>
+                      <span
+                        className='text-[9px] font-medium text-gray-500'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {label}
+                      </span>
+                      <span
+                        className='text-[9px]  text-black bg-gray-100 px-1.5 py-0.5 rounded-[2px]'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {credits}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='flex flex-wrap justify-center items-center gap-4 mt-2.5 text-gray-400'>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Safe & Secure Checkout</span>
+            </div>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>Cancel Anytime</span>
+            </div>
+            <div className='flex items-center gap-1.5'>
+              <Check className='w-3 h-3 text-emerald-500' />
+              <span className='text-[8px] uppercase tracking-wider font-semibold text-gray-400' style={{ fontFamily: 'Arial' }}>No Setup Fee</span>
+            </div>
+          </div>
+        </div>
+
+        <TestimonialsSection />
+
+        {/* Education Section */}
+        {showOnly === 'all' && renderEducationSection()}
+
+      </div>
+
+      {/* Subscription Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            className='fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className='bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 shadow-2xl rounded-2xl flex flex-col gap-6 max-w-md w-full relative text-black dark:text-white'
+            >
+              <button
+                className='absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 dark:hover:text-white transition-colors cursor-pointer'
+                onClick={() => setIsModalOpen(false)}
+              >
+                <IconX size={20} />
+              </button>
+
+              {emailSent ? (
+                <div className='flex flex-col items-center gap-4 py-8'>
+                  <div className='w-16 h-16 bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white rounded-full flex items-center justify-center mb-2'>
+                    <IconMail size={32} />
+                  </div>
+                  <h3 className='text-xl  text-center text-black dark:text-white' style={{ fontFamily: 'Arial' }}>
+                    Check your inbox
+                  </h3>
+                  <p className='text-center text-neutral-600 dark:text-neutral-300 text-sm'>
+                    We've sent a verification link to<br/>
+                    <span className='font-semibold text-black dark:text-white'>{userEmail}</span>
+                  </p>
+                  <p className='text-center text-neutral-400 text-xs mt-2'>
+                    You can close this window now. The link will take you directly to the next step.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div className='flex flex-col gap-2'>
+                    <h3
+                      className='text-xl  text-black dark:text-white uppercase tracking-wider'
+                      style={{ fontFamily: 'Arial' }}
+                    >
+                      {tModal('title')}
+                    </h3>
+                    <p className='text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed'>
+                      {tModal('description')}
+                    </p>
+                  </div>
+
+                  <div className='space-y-4'>
+                    <div className='relative'>
+                      <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                        <IconMail className='h-5 w-5 text-neutral-400' />
+                      </div>
+                      <input
+                        type='email'
+                        className='block w-full pl-10 pr-3 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-black dark:text-white text-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-black dark:focus:ring-white transition-all placeholder:text-neutral-400'
+                        placeholder={tModal('placeholder')}
+                        value={userEmail}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleContinue()}
+                        disabled={isRedirecting}
+                      />
+                    </div>
+
+                    {modalError && (
+                      <div className='flex items-center gap-2 text-red-500 text-xs mt-1'>
+                        <IconAlertCircle size={14} />
+                        <span>{modalError}</span>
+                      </div>
+                    )}
+
+                    <div className='flex flex-col gap-3 pt-2'>
+                      <label className='flex items-start gap-3 cursor-pointer group'>
+                        <input
+                          type='checkbox'
+                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
+                          checked={marketingConsent}
+                          onChange={(e) => setMarketingConsent(e.target.checked)}
+                          disabled={isRedirecting}
+                        />
+                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
+                          {tModal('marketingConsent')}
+                        </span>
+                      </label>
+
+                      <label className='flex items-start gap-3 cursor-pointer group'>
+                        <input
+                          type='checkbox'
+                          className='mt-1 size-4 border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 accent-blue-600 cursor-pointer rounded-sm transition-all'
+                          checked={termsConsent && privacyConsent}
+                          onChange={(e) => {
+                            setTermsConsent(e.target.checked)
+                            setPrivacyConsent(e.target.checked)
+                          }}
+                          disabled={isRedirecting}
+                        />
+                        <span className='text-[11px] text-neutral-600 dark:text-neutral-300 select-none leading-tight'>
+                          {tModal.rich('agbPrivacyConsent', {
+                            privacyPolicy: (chunks) => (
+                              <Link href='https://app.typus.ai/data-privacy' target='_blank' className='text-blue-600 dark:text-blue-400 underline hover:text-blue-700'>
+                                {chunks}
+                              </Link>
+                            )
+                          })}
+                        </span>
+                      </label>
+                    </div>
+
+                    <div className='flex flex-col gap-3 mt-4'>
+                      <Button
+                        onClick={() => handleContinue()}
+                        disabled={isRedirecting || !privacyConsent || !termsConsent}
+                        className='w-full h-12 bg-blue-600 hover:bg-blue-700 text-white  text-xs uppercase tracking-widest transition-all rounded-full cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center border-0 shadow-sm'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {isRedirecting ? (
+                          <IconLoader2 className='animate-spin mr-2 text-white' size={16} />
+                        ) : null}
+                        <span className='text-white '>{tModal('continue')}</span>
+                      </Button>
+                      <button
+                        onClick={() => setIsModalOpen(false)}
+                        className='text-neutral-500 hover:text-neutral-800 dark:hover:text-white text-[10px] uppercase tracking-widest font-medium transition-colors cursor-pointer'
+                        style={{ fontFamily: 'Arial' }}
+                      >
+                        {tModal('cancel')}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Trial Warning Modal */}
+      <AnimatePresence>
+        {showTrialWarning && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm'
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className='bg-white p-8 shadow-2xl flex flex-col gap-6 max-w-sm w-full relative'
+            >
+              <button
+                className='absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors'
+                onClick={() => setShowTrialWarning(false)}
+              >
+                <IconX size={20} />
+              </button>
+
+              <div className='flex flex-col gap-2'>
+                <h3
+                  className='text-xl  text-black uppercase tracking-wider'
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {tModal('TrialWarningModal.title')}
+                </h3>
+                <p className='text-sm text-gray-600'>
+                  {tModal('TrialWarningModal.description')}
+                </p>
+              </div>
+
+              <div className='flex gap-3 mt-4'>
+                <Button
+                  onClick={() => {
+                    setShowTrialWarning(false)
+                    setIsModalOpen(true)
+                  }}
+                  className='flex-1 bg-white border border-black text-black hover:bg-gray-50 uppercase text-[10px]  tracking-wider py-3'
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {tModal('TrialWarningModal.cancel')}
+                </Button>
+                <Button
+                  onClick={() => handleContinue(true)}
+                  className='flex-1 bg-transparent text-black border border-[#e5e7eb] hover:bg-black/5 uppercase text-[10px]  tracking-wider py-3'
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {tModal('TrialWarningModal.proceed')}
+                </Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <FloatingBuzzer triggerPopup={false} />
+
+      {showOrderModal && pendingOrderData && (
+        <OrderOverviewModal
+          locale={locale}
+          planId={pendingOrderData.planId}
+          checkoutData={pendingOrderData.checkoutData}
+          onClose={() => setShowOrderModal(false)}
+        />
+      )}
+
+      {/* {showOnboarding && !showOrderModal && (
+        <OnboardingWizard
+          email={userEmail}
+          locale={locale}
+          initialData={onboardingData}
+          onComplete={handleOnboardingComplete}
+          onCancel={() => setShowOnboarding(false)}
+          isSubmitting={isRedirecting}
+        />
+      )} */}
+    </section>
+  )
+}
+
+type PlanType = ((typeof professionalPlans)[0] | (typeof educationPlans)[0]) & {
+  fetchedData?: any
+  popular?: boolean
+  badgeTextKey?: string
+}
+
+interface PricingCardProps {
+  plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }
+  isYearly: boolean
+  isProfessional: boolean
+  isEurope: boolean
+  currencySymbol: string
+  onSubscribe: (plan: PlanType & { billingCycle?: 'monthly' | 'threeMonthly' | 'sixMonthly' | 'yearly' }, priceInfo: any, isEligibleForPromo?: boolean) => void
+  promoDiscount?: any
+  isVat?: boolean
+}
+
+function PricingCard({
+  plan,
+  isYearly,
+  isProfessional,
+  isEurope,
+  currencySymbol,
+  onSubscribe,
+  promoDiscount,
+  isVat = true,
+}: PricingCardProps) {
+  const t = useTranslations('Pricing')
+  const locale = useLocale()
+
+  // For professional plans, show pricing based on plan and billing cycle
+  const getPriceDisplay = () => {
+    const fetchedData = plan.fetchedData
+    // const isUsd = (fetchedData?.currency || (isEurope ? 'eur' : 'usd')) === 'usd'
+    // const currencySymbol = isUsd ? '$' : '€' // Now passed as prop
+
+    if (isProfessional) {
+      const profPlan = plan as any
+      const fetchedData = plan.fetchedData
+
+      // ENTERPRISE
+      if (profPlan.planType === 'ENTERPRISE') {
+        return {
+          mainPrice: t('enterpriseCustom'),
+          period: '',
+          billingInfo: t('enterpriseBillingInfo'),
+          stripePriceId: '',
+        }
+      }
+
+      // TEST
+      if (profPlan.planType === 'TEST') {
+        return {
+          mainPrice: `${currencySymbol}0`,
+          period: locale === 'de' ? '/Monat' : '/month',
+          billingInfo: locale === 'de' ? 'Dauerhaft kostenlos • 30 Credits monatlich' : 'Free forever • 30 credits monthly',
+          stripePriceId: '',
+        }
+      }
+
+      // SOLO, PRO, TEAM
+      if (profPlan.planType === 'PRO' || profPlan.planType === 'SOLO' || profPlan.planType === 'TEAM') {
+        const billingCycle = profPlan.billingCycle || 'monthly'
+
+        let mainPrice = ''
+        let billingInfo = ''
+        let stripePriceId = ''
+        let discount = undefined
+
+        let mPriceVal = 0
+        let cyclePriceVal = 0
+        let monthsCount = 1
+
+        if (fetchedData && fetchedData.prices?.monthly) {
+          mPriceVal = fetchedData.prices.monthly / 100
+        } else {
+          const fallbackMPrice = isEurope ? profPlan.monthlyPrice?.eur : profPlan.monthlyPrice?.usd
+          mPriceVal = parseFloat(fallbackMPrice?.replace(/[^0-9.]/g, '') || '0')
+        }
+
+        if (billingCycle === 'monthly') {
+          monthsCount = 1
+          cyclePriceVal = mPriceVal
+          mainPrice = `${currencySymbol}${mPriceVal}`
+          billingInfo = t('billedMonthly')
+          stripePriceId = (fetchedData ? fetchedData.stripePrices?.MONTHLY : profPlan.discount?.monthly?.stripePriceId) || ''
+        } else if (billingCycle === 'threeMonthly') {
+          monthsCount = 3
+          if (fetchedData && fetchedData.prices?.threeMonthly) {
+            cyclePriceVal = fetchedData.prices.threeMonthly / 100
+            stripePriceId = fetchedData.stripePrices?.THREE_MONTHLY || ''
+          } else {
+            const fallbackCyclePrice = isEurope ? profPlan.threeMonthlyPrice?.eur : profPlan.threeMonthlyPrice?.usd
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.threeMonthly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 3) * 100) / 100}`
+          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery3Months')}`
+        } else if (billingCycle === 'sixMonthly') {
+          monthsCount = 6
+          if (fetchedData && fetchedData.prices?.sixMonthly) {
+            cyclePriceVal = fetchedData.prices.sixMonthly / 100
+            stripePriceId = fetchedData.stripePrices?.SIX_MONTHLY || ''
+          } else {
+            const fallbackCyclePrice = isEurope
+              ? profPlan.sixMonthPrice?.eur || profPlan.sixMonthlyPrice?.eur || ''
+              : profPlan.sixMonthPrice?.usd || profPlan.sixMonthlyPrice?.usd || ''
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.sixMonthly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 6) * 100) / 100}`
+          billingInfo = `${currencySymbol}${cyclePriceVal} ${t('billedEvery6Months')}`
+        } else {
+          // yearly
+          monthsCount = 12
+          if (fetchedData && fetchedData.prices?.yearly) {
+            if (promoDiscount && fetchedData.originalPrices?.yearly) {
+              cyclePriceVal = fetchedData.originalPrices.yearly / 100
+              stripePriceId = fetchedData.stripeBasePrices?.YEARLY || fetchedData.stripePrices?.YEARLY || ''
+            } else {
+              cyclePriceVal = fetchedData.prices.yearly / 100
+              stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+            }
+          } else {
+            const fallbackCyclePrice = isEurope ? profPlan.yearlyPrice?.eur : profPlan.yearlyPrice?.usd
+            cyclePriceVal = parseFloat(fallbackCyclePrice?.replace(/[^0-9.]/g, '') || '0')
+            stripePriceId = profPlan.discount?.yearly?.stripePriceId || ''
+          }
+          mainPrice = `${currencySymbol}${Math.round((cyclePriceVal / 12) * 100) / 100}`
+          billingInfo = `${t('billedYearly')} (${currencySymbol}${cyclePriceVal}/year)`
+        }
+
+        let originalCycleVal = mPriceVal * monthsCount
+        
+        // If it's a yearly plan and we have the true base price from the backend, use it!
+        if (billingCycle === 'yearly' && fetchedData && fetchedData.originalPrices?.yearly) {
+          originalCycleVal = fetchedData.originalPrices.yearly / 100
+        }
+
+        if (monthsCount > 1 && originalCycleVal > cyclePriceVal) {
+          const saveAmountVal = originalCycleVal - cyclePriceVal
+          const discountPercentVal = Math.round((saveAmountVal / originalCycleVal) * 100)
+
+          discount = {
+            originalCycle: `${currencySymbol}${originalCycleVal % 1 === 0 ? originalCycleVal : originalCycleVal.toFixed(2)}`,
+            discountPercent: discountPercentVal,
+            saveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
+            periodDiscountPercent: discountPercentVal,
+            periodSaveAmount: `${currencySymbol}${saveAmountVal % 1 === 0 ? saveAmountVal : saveAmountVal.toFixed(2)}`,
+            bestDeal: billingCycle === 'yearly' && profPlan.planType === 'TEAM',
+          }
+
+          if (billingCycle === 'yearly') {
+            const baseVal = (fetchedData && fetchedData.originalPrices?.yearly)
+              ? (fetchedData.originalPrices.yearly / 100) / 12
+              : mPriceVal;
+            if (baseVal > (cyclePriceVal / 12)) {
+              (discount as any).originalPrice = `${currencySymbol}${baseVal % 1 === 0 ? baseVal : baseVal.toFixed(2)}`;
+              (discount as any).isYearlyDefault = true;
+            }
+          }
+        }
+
+        return {
+          mainPrice: mainPrice,
+          period: '/month',
+          billingInfo: billingInfo,
+          discount: discount,
+          stripePriceId,
+        }
+      }
+
+      return {
+        mainPrice: '',
+        period: '/month',
+        billingInfo: '',
+      }
+    } else {
+      // Educational: Show yearly or monthly based on toggle
+      const eduPlan = plan as (typeof educationPlans)[0] & { fetchedData?: any }
+      let mainPrice = ''
+      let billingInfo = ''
+      let saveInfo = ''
+      let stripePriceId = ''
+
+      if (isYearly) {
+        mainPrice = formatPrice(eduPlan.monthlyEquivalant, isEurope)
+        billingInfo = `${t('billedYearly')} (${formatPrice(eduPlan.yearlyPrice, isEurope)}/year)`
+        saveInfo = t('saveWithAnnual', {
+          amount: formatPrice(eduPlan.save, isEurope),
+        })
+
+        if (fetchedData) {
+          const yPrice = fetchedData.prices?.yearly
+          if (yPrice) {
+            mainPrice = `${currencySymbol}${Math.round(yPrice / 12) / 100}`
+            billingInfo = `${t('billedYearly')} (${currencySymbol}${yPrice / 100}/year)`
+          }
+          stripePriceId = fetchedData.stripePrices?.YEARLY || ''
+        }
+
+        // Add discount object for yearly plans so we get green colors and badge
+        const discount = {
+          periodDiscountPercent: 75,
+          periodSaveAmount: formatPrice(eduPlan.save, isEurope),
+        }
+
+        return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId, discount }
+      } else {
+        mainPrice = formatPrice(eduPlan.monthlyPrice, isEurope)
+        billingInfo = t('billedMonthly')
+
+        if (fetchedData) {
+          const mPrice = fetchedData.prices?.monthly
+          if (mPrice) mainPrice = `${currencySymbol}${mPrice / 100}`
+          stripePriceId = fetchedData.stripePrices?.MONTHLY || ''
+        }
+      }
+
+      return { mainPrice, period: '/month', billingInfo, saveInfo, stripePriceId }
+    }
+  }
+
+  const priceInfo = getPriceDisplay()
+  let isEligibleForPromo = !!promoDiscount;
+    if (promoDiscount) {
+      // Always enforce the plan name check to ensure discounts apply to the right visual cards
+      if (promoDiscount.validPlans && promoDiscount.validPlans.length > 0) {
+        isEligibleForPromo = isEligibleForPromo && promoDiscount.validPlans.includes(plan.name);
+      }
+      if (promoDiscount.validBillingCycles && promoDiscount.validBillingCycles.length > 0) {
+        const currentCycle = plan.billingCycle || (isYearly ? 'yearly' : 'monthly');
+        isEligibleForPromo = isEligibleForPromo && (promoDiscount.validBillingCycles.includes(currentCycle.toUpperCase()) || promoDiscount.validBillingCycles.includes(currentCycle.toLowerCase()));
+      }
+    }
+
+  if (isEligibleForPromo && priceInfo.mainPrice) {
+    const numericMatch = priceInfo.mainPrice.match(/[\d,.]+/);
+    if (numericMatch) {
+      let numericStr = numericMatch[0].replace(',', '.');
+      let val = parseFloat(numericStr);
+      if (!isNaN(val)) {
+        let newVal = val;
+        if (promoDiscount.type === 'percentage') {
+          newVal = val * (1 - promoDiscount.value / 100);
+        } else {
+          let months = 1;
+          if (plan.billingCycle === 'sixMonthly') {
+            months = 6;
+          } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
+            months = 12;
+          }
+          let discountPerMonth = (promoDiscount.value / 100) / months;
+          newVal = Math.max(0, val - discountPerMonth); // fixed amount is calculated per month equivalent
+        }
+
+        if (!priceInfo.discount) {
+          (priceInfo as any).discount = { originalPrice: priceInfo.mainPrice };
+        } else if (!('originalPrice' in (priceInfo.discount as any))) {
+          (priceInfo.discount as any).originalPrice = priceInfo.mainPrice;
+        }
+
+        priceInfo.mainPrice = `${currencySymbol}${newVal % 1 === 0 ? newVal : newVal.toFixed(2)}`;
+
+        // Also update billingInfo text like "418 billed every 6 months" -> "348 billed every 6 months"
+        if (priceInfo.billingInfo) {
+          const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const numRegex = new RegExp(`(${escapeRegExp(currencySymbol)}\\s?)([\\d,]+(?:\\.\\d+)?)`);
+          const match = priceInfo.billingInfo.match(numRegex);
+          if (match) {
+            let bNumericStr = match[2].replace(',', '.');
+            let bVal = parseFloat(bNumericStr);
+            if (!isNaN(bVal)) {
+              let newBVal = bVal;
+              if (promoDiscount.type === 'percentage') {
+                newBVal = bVal * (1 - promoDiscount.value / 100);
+              } else {
+                newBVal = Math.max(0, bVal - (promoDiscount.value / 100)); // fixed amount applies entirely to the cycle
+              }
+              priceInfo.billingInfo = priceInfo.billingInfo.replace(match[0], `${match[1]}${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
+            }
+          } else {
+            // Check if currency symbol is at the end or not present, but the number is 418, 594, etc.
+            // Simplified fallback for strings like "418€ alle 6 Monate" or plain un-prefixed values
+            const fallbackMatch = priceInfo.billingInfo.match(/^([\d,.]+) ?(?:€|\$|EUR|USD|£)?\b/);
+            if (fallbackMatch && parseFloat(fallbackMatch[1].replace(',', '.')) > 12) {
+              let bNumericStr = fallbackMatch[1].replace(',', '.');
+              let bVal = parseFloat(bNumericStr);
+              if (!isNaN(bVal)) {
+                let newBVal = bVal;
+                if (promoDiscount.type === 'percentage') {
+                  newBVal = bVal * (1 - promoDiscount.value / 100);
+                } else {
+                  newBVal = Math.max(0, bVal - (promoDiscount.value / 100));
+                }
+                priceInfo.billingInfo = priceInfo.billingInfo.replace(fallbackMatch[1], `${newBVal % 1 === 0 ? newBVal : newBVal.toFixed(2)}`);
+              }
+            }
+          }
+        }
+        
+        // Populate the badge with the manual promo discount info
+        if (promoDiscount.type === 'percentage') {
+          (priceInfo.discount as any).periodDiscountPercent = promoDiscount.value;
+        } else {
+          (priceInfo.discount as any).periodDiscountPercent = Math.round(((val - newVal) / val) * 100);
+        }
+        let currentCycleMonths = 1;
+        if (plan.billingCycle === 'sixMonthly') {
+          currentCycleMonths = 6;
+        } else if (plan.billingCycle === 'yearly' || (!plan.billingCycle && isYearly)) {
+          currentCycleMonths = 12;
+        } else if (plan.billingCycle === 'threeMonthly') {
+          currentCycleMonths = 3;
+        }
+        const savingsVal = (val - newVal) * currentCycleMonths;
+        (priceInfo.discount as any).periodSaveAmount = `${currencySymbol}${savingsVal % 1 === 0 ? savingsVal : savingsVal.toFixed(2)}`;
+      }
+    }
+  }
+
+  const isFeatured = Boolean(
+    plan.popular || 
+    plan.badgeTextKey ||
+    (plan as any).isPopular ||
+    (plan as any).planType === 'PRO' || 
+    plan.name === 'PRO' || 
+    (plan as any).id === 'pro'
+  );
+
+  if (plan.id === 'test' && plan.billingCycle === 'yearly') {
+    return null
+  }
+
+  return (
+    <div
+      className={`flex ${plan.planType === 'ENTERPRISE' ? 'min-h-[480px]' : 'min-h-[700px]'} mb-4 flex-col p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group rounded-2xl ${
+        isFeatured
+          ? 'card-featured-red-border shadow-md hover:shadow-xl'
+          : 'border border-neutral-300/90 dark:border-neutral-800 shadow-sm hover:shadow-xl'
+      }`}
+      style={{
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        fontFamily: 'Arial',
+        border: isFeatured ? '2px solid #000000' : '1px solid rgba(212, 212, 216, 0.9)',
+      }}
+    >
+      {/* Top-Right Blue Ribbon Badge */}
+      {isFeatured && (
+        <div
+          className="absolute top-0 right-0 px-4 py-1.5 bg-blue-600 text-white text-[10px] sm:text-xs  uppercase tracking-widest rounded-bl-2xl z-30"
+          style={{ fontFamily: 'Arial' }}
+        >
+          {plan.planType === 'PRO' || plan.name === 'PRO' || (plan as any).id === 'pro'
+            ? (locale === 'de' ? 'BESTES ANGEBOT' : 'BEST OFFER')
+            : (plan.badgeTextKey ? t(plan.badgeTextKey) : (locale === 'de' ? 'EMPFEHLUNG' : 'RECOMMENDED'))}
+        </div>
+      )}
+
+      {/* 4 Corner Small Square Fills */}
+      <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+      <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-black dark:bg-white pointer-events-none select-none z-20" />
+
+      {/* Header Section */}
+      <div className={`flex flex-col items-center text-center justify-center mb-4 relative pt-1`}>
+        <div className='flex items-center justify-center gap-2 mb-1'>
+          <span
+            className='text-xl sm:text-2xl  uppercase tracking-wider block text-black'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {plan.name}
+          </span>
+        </div>
+        
+        {(plan as any).targetAudience && (
+          <span className='text-[12px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block'>
+            {(plan as any).targetAudience}
+          </span>
+        )}
+
+        {/* Discount badge above price - manual promo discount or default discount */}
+        {priceInfo.discount?.periodDiscountPercent != null && (
+          <div className='bg-transparent border border-emerald-600 text-emerald-600 text-[11px]  uppercase tracking-wide px-3 py-1 rounded-full mb-2.5' style={{ fontFamily: 'Arial' }}>
+            {t('periodDiscountBadge', { percent: priceInfo.discount.periodDiscountPercent, amount: priceInfo.discount.periodSaveAmount })}
+          </div>
+        )}
+
+        {/* Pricing Section */}
+        <div className='mb-3'>
+          <div className='flex flex-col items-center justify-center'>
+            {priceInfo.discount ? (
+              <>
+                {'originalPrice' in priceInfo.discount && (
+                  <div className='text-[20px] text-gray-400 line-through mb-1' style={{ fontFamily: 'Arial' }}>
+                    {(priceInfo.discount as { originalPrice: string }).originalPrice} {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
+                  </div>
+                )}
+                <div className='flex items-baseline justify-center gap-1'>
+                  <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
+                    {priceInfo.mainPrice}
+                  </span>
+                  <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
+                    {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className='flex items-baseline justify-center gap-1'>
+                {priceInfo.mainPrice === t('enterpriseCustom') ? (
+                  <span className='text-[13px] font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full inline-block mt-2 mb-2'>
+                    {priceInfo.mainPrice}
+                  </span>
+                ) : (
+                  <>
+                    <span className={`text-3xl sm:text-4xl font-normal tracking-tight ${isEligibleForPromo || (priceInfo.discount as any)?.isYearlyDefault ? 'text-emerald-600' : 'text-black'}`} style={{ fontFamily: 'Arial' }}>
+                      {priceInfo.mainPrice}
+                    </span>
+                    <span className='text-xs sm:text-sm text-gray-500' style={{ fontFamily: 'Arial' }}>
+                      {priceInfo.period === '/month' && locale === 'de' ? '/Monat' : priceInfo.period}
+                    </span>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className='space-y-1 text-[11px] text-gray-500 mt-3 text-center'>
+            <div style={{ fontFamily: 'Arial' }}>
+              {priceInfo.billingInfo}
+            </div>
+            {priceInfo.saveInfo && (
+              <div style={{ fontFamily: 'Arial' }}>
+                {priceInfo.saveInfo}
+              </div>
+            )}
+            {isVat && plan.planType !== 'TEST' && (
+              <div style={{ fontFamily: 'Arial' }}>
+                {t('plusVat')}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section - Flex Grow */}
+      <div className='flex-1 mb-4 pt-1'>
+        <ul className='space-y-1.5'>
+          {plan.features.map((feature, index) => {
+            const featureText =
+              typeof feature === 'string' ? feature : feature.text
+            const hasFeature =
+              typeof feature === 'object' ? feature.hasFeature : true
+
+            return (
+              <li
+                key={index}
+                className='flex items-start text-xs font-medium py-1.5 border-b border-gray-100 last:border-b-0'
+              >
+                {hasFeature ? (
+                  <Check className='w-3 h-3 flex-shrink-0 mt-0.5 mr-2 text-emerald-600' />
+                ) : (
+                  <span className='w-1.5 h-1.5 flex-shrink-0 mt-1.5 mr-2.5 ml-0.5 bg-neutral-400 dark:bg-neutral-600 inline-block' />
+                )}
+                <span
+                  className={`leading-tight text-left flex-1 ${
+                    hasFeature ? 'text-black font-semibold' : 'text-neutral-400 font-normal'
+                  }`}
+                  style={{ fontFamily: 'Arial' }}
+                >
+                  {featureText}
+                </span>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
+      {/* Button Section - Fixed at Bottom */}
+      <div className='mt-auto pt-2'>
+        {plan.planType === 'TEST' ? (
+          <button
+            onClick={() => {
+              window.location.href = `${appUrl}/register?language=${locale}`;
+            }}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {locale === 'de' ? 'Jetzt starten' : 'Start now'}
+          </button>
+        ) : plan.id === 'enterprise' ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent('open-before-you-go'));
+            }}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {t('enterpriseBookCall')}
+          </button>
+        ) : isFeatured ? (
+          <Button
+            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
+            className='w-full py-2.5 px-4 rounded-full border border-black text-black hover:bg-black hover:text-white text-center text-xs uppercase tracking-wider transition-all duration-200 shadow-sm inline-block font-semibold cursor-pointer bg-transparent'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {t('subscribe')}
+          </Button>
+        ) : (
+          <Button
+            onClick={() => onSubscribe(plan, priceInfo, isEligibleForPromo)}
+            className='w-full py-2.5 px-4 rounded-full border border-neutral-900 dark:border-white text-neutral-900 dark:text-white text-center text-xs uppercase tracking-wider hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 inline-block font-semibold cursor-pointer bg-transparent'
+            style={{ fontFamily: 'Arial' }}
+          >
+            {t('subscribe')}
+          </Button>
+        )}
+      </div>
+    </div>
+  )
+}
