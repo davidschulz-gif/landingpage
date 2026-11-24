@@ -16,7 +16,7 @@ const COOLDOWN_HOURS = 12
  */
 function getFridayEOD(referenceDate: Date = new Date()): Date {
   const target = new Date(referenceDate)
-  const day = target.getDay() // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
+  const day = target.getDay() // 0 = Sun, 1 = Mon, ..., 5 = Sat
   const diff = (5 - day + 7) % 7
   target.setDate(target.getDate() + diff)
   target.setHours(23, 59, 59, 999)
@@ -179,31 +179,31 @@ export default function BlackFridayPopup() {
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-        {/* Backdrop overlay */}
+        {/* Backdrop overlay - dark backdrop without peeking blue borders */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.2 }}
           onClick={handleClose}
-          className="fixed inset-0 bg-black/65 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/80 backdrop-blur-md"
         />
 
-        {/* Modal Card */}
+        {/* Modal Card - Sharp rectangular edges (rounded-none), zero blue ring/shadow */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 16 }}
+          initial={{ opacity: 0, scale: 0.95, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 16 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 320 }}
-          className="relative w-full max-w-[690px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-neutral-200/80 z-10 my-auto"
+          exit={{ opacity: 0, scale: 0.95, y: 12 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+          className="relative w-full max-w-[690px] bg-white rounded-none shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden border-0 outline-none ring-0 focus:outline-none focus:ring-0 z-10 my-auto"
           role="dialog"
           aria-modal="true"
         >
-          {/* Close button */}
+          {/* Close button - Sharp square */}
           <button
             onClick={handleClose}
             aria-label="Close popup"
-            className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 z-20 w-8 h-8 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
+            className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 z-20 w-8 h-8 rounded-none bg-black/5 hover:bg-black/10 flex items-center justify-center text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer outline-none ring-0 focus:outline-none focus:ring-0 border-0"
           >
             <X className="w-4 h-4" />
           </button>
@@ -236,10 +236,10 @@ export default function BlackFridayPopup() {
                     )}
                   </p>
 
-                  {/* Highlighted Price Callout - Clickable to apply discount */}
+                  {/* Highlighted Price Callout - Sharp square */}
                   <div
                     onClick={handleClaimDiscount}
-                    className="py-1.5 px-3 bg-neutral-100 hover:bg-neutral-200/80 rounded-lg border border-neutral-200 inline-block my-1 cursor-pointer transition-colors"
+                    className="py-1.5 px-3 bg-neutral-100 hover:bg-neutral-200/80 rounded-none border border-neutral-200 inline-block my-1 cursor-pointer transition-colors outline-none ring-0 focus:outline-none focus:ring-0"
                     title={isDe ? 'Klicken, um Code BF automatisch einzulösen' : 'Click to apply code BF automatically'}
                   >
                     <span className="text-sm sm:text-base font-normal text-neutral-900">
@@ -248,11 +248,11 @@ export default function BlackFridayPopup() {
                   </div>
                 </div>
 
-                {/* Promo Code Pill with One-Click Auto-Apply */}
+                {/* Promo Code Pill - Sharp square */}
                 <div className="flex justify-center mb-4">
                   <button
                     onClick={handleClaimDiscount}
-                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-dashed border-neutral-300 hover:border-neutral-500 bg-neutral-50 hover:bg-neutral-100 transition-all cursor-pointer shadow-sm"
+                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-none border border-dashed border-neutral-300 hover:border-neutral-500 bg-neutral-50 hover:bg-neutral-100 transition-all cursor-pointer outline-none ring-0 focus:outline-none focus:ring-0"
                     title={isDe ? 'Code BF automatisch anwenden' : 'Apply code BF automatically'}
                   >
                     <span className="text-xs font-normal text-neutral-500 uppercase tracking-wider">
@@ -262,7 +262,7 @@ export default function BlackFridayPopup() {
                       {PROMO_CODE}
                     </span>
                     {copied ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-normal text-green-700 bg-green-100 px-1.5 py-0.5 rounded">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-normal text-green-700 bg-green-100 px-1.5 py-0.5 rounded-none">
                         <Check className="w-3 h-3" />
                         {isDe ? 'Angewendet!' : 'Applied!'}
                       </span>
@@ -272,14 +272,14 @@ export default function BlackFridayPopup() {
                   </button>
                 </div>
 
-                {/* Countdown Timer Blocks */}
+                {/* Countdown Timer Blocks - Sharp squares */}
                 <div
                   onClick={handleClaimDiscount}
                   className="flex items-center justify-center gap-2 sm:gap-2.5 my-2 cursor-pointer group"
                   title={isDe ? 'Angebot jetzt sichern' : 'Claim offer now'}
                 >
                   {timeLeft.days > 0 && (
-                    <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
+                    <div className="bg-[#111111] group-hover:bg-neutral-800 transition-colors text-white rounded-none px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center">
                       <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                         {String(timeLeft.days).padStart(2, '0')}
                       </div>
@@ -289,7 +289,7 @@ export default function BlackFridayPopup() {
                     </div>
                   )}
 
-                  <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
+                  <div className="bg-[#111111] group-hover:bg-neutral-800 transition-colors text-white rounded-none px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center">
                     <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.hours).padStart(2, '0')}
                     </div>
@@ -298,7 +298,7 @@ export default function BlackFridayPopup() {
                     </span>
                   </div>
 
-                  <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
+                  <div className="bg-[#111111] group-hover:bg-neutral-800 transition-colors text-white rounded-none px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center">
                     <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.minutes).padStart(2, '0')}
                     </div>
@@ -307,7 +307,7 @@ export default function BlackFridayPopup() {
                     </span>
                   </div>
 
-                  <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
+                  <div className="bg-[#111111] group-hover:bg-neutral-800 transition-colors text-white rounded-none px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center">
                     <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.seconds).padStart(2, '0')}
                     </div>
@@ -318,12 +318,12 @@ export default function BlackFridayPopup() {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons - Sharp squares */}
               <div className="flex items-center gap-2 pt-4 mt-auto">
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-4 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-normal text-xs sm:text-sm transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-none bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-normal text-xs sm:text-sm transition-colors cursor-pointer outline-none ring-0 focus:outline-none focus:ring-0 border-0"
                 >
                   {isDe ? 'Schließen' : 'Close'}
                 </button>
@@ -331,24 +331,24 @@ export default function BlackFridayPopup() {
                 <button
                   type="button"
                   onClick={handleClaimDiscount}
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-[#f5b324] hover:bg-[#e2a216] active:scale-[0.98] text-neutral-950 font-medium text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="flex-1 px-4 py-2.5 rounded-none bg-black hover:bg-neutral-800 active:scale-[0.99] text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer outline-none ring-0 focus:outline-none focus:ring-0 border-0"
                 >
-                  <Sparkles className="w-4 h-4 text-neutral-900 shrink-0" />
+                  <Sparkles className="w-4 h-4 text-white shrink-0" />
                   <span>{isDe ? '80% Rabatt sichern' : 'Get my 80% discount'}</span>
                 </button>
               </div>
             </div>
 
-            {/* Right Column: Clean Simple Banner (Black font on one color background, regular plain text) */}
+            {/* Right Column: Bright Yellow #FFFF00 Banner with Black Regular Text - Sharp square */}
             <div
               onClick={handleClaimDiscount}
-              className="relative min-h-[220px] sm:min-h-[260px] md:min-h-full bg-[#f5b324] hover:bg-[#efa918] transition-colors flex items-center justify-center overflow-hidden order-1 md:order-2 cursor-pointer select-none"
+              className="relative min-h-[220px] sm:min-h-[260px] md:min-h-full bg-[#FFFF00] hover:bg-[#EBEB00] transition-colors flex items-center justify-center overflow-hidden order-1 md:order-2 cursor-pointer select-none rounded-none outline-none ring-0 focus:outline-none focus:ring-0 border-0"
               title={isDe ? 'Code BF automatisch aktivieren' : 'Apply code BF automatically'}
             >
               <img
-                src="/images/black-friday-banner.png?v=3"
+                src="/images/black-friday-banner.png?v=4"
                 alt="Black Friday -80%"
-                className="w-full h-full object-cover select-none pointer-events-none"
+                className="w-full h-full object-cover select-none pointer-events-none rounded-none"
                 loading="eager"
               />
             </div>
