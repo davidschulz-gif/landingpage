@@ -213,12 +213,12 @@ export default function BlackFridayPopup() {
             <div className="p-6 sm:p-7 flex flex-col justify-between text-center bg-white order-2 md:order-1">
               <div>
                 {/* Top date notice */}
-                <p className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
+                <p className="text-[11px] sm:text-xs font-medium uppercase tracking-wider text-neutral-500 mb-1.5">
                   {headerDateText}
                 </p>
 
                 {/* Main Headline */}
-                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-neutral-900 mb-2.5">
+                <h2 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-neutral-900 mb-2">
                   BLACKFRIDAY
                 </h2>
 
@@ -227,11 +227,11 @@ export default function BlackFridayPopup() {
                   <p>
                     {isDe ? (
                       <>
-                        Nutze diesen Code für <span className="font-bold text-neutral-900">80% Rabatt</span> auf das Jahresabo:
+                        Nutze diesen Code für 80% Rabatt auf das Jahresabo:
                       </>
                     ) : (
                       <>
-                        Use this code to get an <span className="font-bold text-neutral-900">80% discount</span> on the annual plan:
+                        Use this code to get an 80% discount on the annual plan:
                       </>
                     )}
                   </p>
@@ -239,10 +239,10 @@ export default function BlackFridayPopup() {
                   {/* Highlighted Price Callout - Clickable to apply discount */}
                   <div
                     onClick={handleClaimDiscount}
-                    className="py-1.5 px-3 bg-amber-50 hover:bg-amber-100/90 rounded-lg border border-amber-200/90 inline-block my-1 cursor-pointer transition-all hover:scale-[1.02]"
+                    className="py-1.5 px-3 bg-neutral-100 hover:bg-neutral-200/80 rounded-lg border border-neutral-200 inline-block my-1 cursor-pointer transition-colors"
                     title={isDe ? 'Klicken, um Code BF automatisch einzulösen' : 'Click to apply code BF automatically'}
                   >
-                    <span className="text-sm sm:text-base font-extrabold text-amber-700">
+                    <span className="text-sm sm:text-base font-normal text-neutral-900">
                       {isDe ? '19,80 € pro Monat für das Jahresabo' : '19.80 € per month for the annual subscription'}
                     </span>
                   </div>
@@ -252,22 +252,22 @@ export default function BlackFridayPopup() {
                 <div className="flex justify-center mb-4">
                   <button
                     onClick={handleClaimDiscount}
-                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border-2 border-dashed border-neutral-300 hover:border-amber-500 bg-neutral-50 hover:bg-amber-50 transition-all cursor-pointer shadow-sm hover:shadow"
+                    className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-dashed border-neutral-300 hover:border-neutral-500 bg-neutral-50 hover:bg-neutral-100 transition-all cursor-pointer shadow-sm"
                     title={isDe ? 'Code BF automatisch anwenden' : 'Apply code BF automatically'}
                   >
-                    <span className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+                    <span className="text-xs font-normal text-neutral-500 uppercase tracking-wider">
                       Code:
                     </span>
-                    <span className="text-sm font-black tracking-widest text-neutral-900 font-mono">
+                    <span className="text-sm font-normal tracking-widest text-neutral-900 font-mono">
                       {PROMO_CODE}
                     </span>
                     {copied ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-600 bg-green-100 px-1.5 py-0.5 rounded">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-normal text-green-700 bg-green-100 px-1.5 py-0.5 rounded">
                         <Check className="w-3 h-3" />
                         {isDe ? 'Angewendet!' : 'Applied!'}
                       </span>
                     ) : (
-                      <Copy className="w-3.5 h-3.5 text-neutral-400 group-hover:text-amber-600 transition-colors" />
+                      <Copy className="w-3.5 h-3.5 text-neutral-400 group-hover:text-neutral-700 transition-colors" />
                     )}
                   </button>
                 </div>
@@ -280,38 +280,38 @@ export default function BlackFridayPopup() {
                 >
                   {timeLeft.days > 0 && (
                     <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
-                      <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight leading-none text-white">
+                      <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                         {String(timeLeft.days).padStart(2, '0')}
                       </div>
-                      <span className="text-[10px] sm:text-[11px] text-neutral-400 font-medium lowercase tracking-wide mt-1 block">
+                      <span className="text-[10px] sm:text-[11px] text-neutral-400 font-normal lowercase tracking-wide mt-1 block">
                         {isDe ? 'tage' : 'days'}
                       </span>
                     </div>
                   )}
 
                   <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
-                    <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight leading-none text-white">
+                    <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.hours).padStart(2, '0')}
                     </div>
-                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-medium lowercase tracking-wide mt-1 block">
+                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-normal lowercase tracking-wide mt-1 block">
                       {isDe ? 'stunden' : 'hours'}
                     </span>
                   </div>
 
                   <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
-                    <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight leading-none text-white">
+                    <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.minutes).padStart(2, '0')}
                     </div>
-                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-medium lowercase tracking-wide mt-1 block">
+                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-normal lowercase tracking-wide mt-1 block">
                       {isDe ? 'minuten' : 'minutes'}
                     </span>
                   </div>
 
                   <div className="bg-[#212124] group-hover:bg-neutral-800 transition-colors text-white rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 min-w-[54px] sm:min-w-[60px] text-center shadow-md">
-                    <div className="text-xl sm:text-2xl font-bold font-mono tracking-tight leading-none text-white">
+                    <div className="text-xl sm:text-2xl font-normal font-mono tracking-tight leading-none text-white">
                       {String(timeLeft.seconds).padStart(2, '0')}
                     </div>
-                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-medium lowercase tracking-wide mt-1 block">
+                    <span className="text-[10px] sm:text-[11px] text-neutral-400 font-normal lowercase tracking-wide mt-1 block">
                       {isDe ? 'sekunden' : 'seconds'}
                     </span>
                   </div>
@@ -323,7 +323,7 @@ export default function BlackFridayPopup() {
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-4 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium text-xs sm:text-sm transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-normal text-xs sm:text-sm transition-colors cursor-pointer"
                 >
                   {isDe ? 'Schließen' : 'Close'}
                 </button>
@@ -331,7 +331,7 @@ export default function BlackFridayPopup() {
                 <button
                   type="button"
                   onClick={handleClaimDiscount}
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-[#f5b324] hover:bg-[#e2a216] active:scale-[0.98] text-neutral-950 font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-[#f5b324] hover:bg-[#e2a216] active:scale-[0.98] text-neutral-950 font-medium text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 text-neutral-900 shrink-0" />
                   <span>{isDe ? '80% Rabatt sichern' : 'Get my 80% discount'}</span>
@@ -339,23 +339,18 @@ export default function BlackFridayPopup() {
               </div>
             </div>
 
-            {/* Right Column: Visual Graphic Banner - Clickable to apply discount */}
+            {/* Right Column: Clean Simple Banner (Black font on one color background, regular plain text) */}
             <div
               onClick={handleClaimDiscount}
-              className="relative min-h-[200px] sm:min-h-[260px] md:min-h-full bg-neutral-900 flex items-center justify-center overflow-hidden order-1 md:order-2 cursor-pointer group"
+              className="relative min-h-[220px] sm:min-h-[260px] md:min-h-full bg-[#f5b324] hover:bg-[#efa918] transition-colors flex items-center justify-center overflow-hidden order-1 md:order-2 cursor-pointer select-none"
               title={isDe ? 'Code BF automatisch aktivieren' : 'Apply code BF automatically'}
             >
               <img
-                src="/images/black-friday-banner.jpg"
-                alt="Black Friday 80% Discount"
-                className="w-full h-full object-cover select-none group-hover:scale-105 transition-transform duration-500"
+                src="/images/black-friday-banner.png?v=3"
+                alt="Black Friday -80%"
+                className="w-full h-full object-cover select-none pointer-events-none"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-end justify-center p-3">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white text-[11px] font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm">
-                  {isDe ? 'Klicken zum Einlösen' : 'Click to claim'}
-                </span>
-              </div>
             </div>
           </div>
         </motion.div>
