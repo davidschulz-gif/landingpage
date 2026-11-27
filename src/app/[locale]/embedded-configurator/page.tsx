@@ -467,7 +467,7 @@ export default function EmbeddedConfiguratorLandingPage() {
         <section className="relative mx-auto max-w-6xl px-6 md:px-10 py-8 text-center space-y-4">
           <CornerSquares />
           <p className="text-xs tracking-widest uppercase text-neutral-500 font-medium">
-            {isDe ? 'Jetzt starten' : 'Get started'}
+            {isDe ? 'Jetzt kostenlos testen' : 'Test now for free'}
           </p>
           <h2 className="heading-primary">
             {isDe

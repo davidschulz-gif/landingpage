@@ -86,6 +86,10 @@ export function OrderOverviewModal({ planId, locale, checkoutData, onClose }: Or
               <div className="mb-10">
                 <h2 className="text-2xl font-bold mb-5">{data.pricingTitle}</h2>
                 <div className="font-black text-xl mb-3">{data.pricingMain}</div>
+                  <div className="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold rounded-full uppercase tracking-wider">
+                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                    <span>{locale === 'de' ? 'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)' : 'Includes 3-Day Free Trial (Today: €0.00)'}</span>
+                  </div>
                 <ul className="space-y-2 mb-4">
                   {data.pricingList.map((item, i) => (
                     <li key={i} className="flex items-start">

@@ -13,10 +13,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '6,00 € / Monat' : '€6.00 / month',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Monatlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Jederzeit kündbar (keine Mindestlaufzeit)'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed monthly',
           'Plus 19% VAT',
           'Cancel anytime (no minimum contract term)'
@@ -125,7 +127,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 6 € / Monat ab' : 'I conclude a paid subscription for €6 / month',
           isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
@@ -142,10 +144,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '18,00 € / Jahr (entspricht 1,50 € / Monat)' : '€18.00 / year (equivalent to €1.50 / month)',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Jährlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Mindestvertragslaufzeit: 12 Monate'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed annually',
           'Plus 19% VAT',
           'Minimum contract term: 12 months'
@@ -256,7 +260,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 18 € / Jahr ab' : 'I conclude a paid subscription for €18 / year',
           isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
@@ -273,10 +277,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '12,00 € / Monat' : '€12.00 / month',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Monatlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Jederzeit kündbar (keine Mindestlaufzeit)'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed monthly',
           'Plus 19% VAT',
           'Cancel anytime (no minimum contract term)'
@@ -385,7 +391,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 12 € / Monat ab' : 'I conclude a paid subscription for €12 / month',
           isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
@@ -402,10 +408,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '36,00 € / Jahr (entspricht 3,00 € / Monat)' : '€36.00 / year (equivalent to €3.00 / month)',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Jährlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Mindestvertragslaufzeit: 12 Monate'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed annually',
           'Plus 19% VAT',
           'Minimum contract term: 12 months'
@@ -516,7 +524,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 36 € / Jahr ab' : 'I conclude a paid subscription for €36 / year',
           isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
@@ -533,10 +541,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '18,00 € / Monat' : '€18.00 / month',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Monatlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Jederzeit kündbar (keine Mindestlaufzeit)'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed monthly',
           'Plus 19% VAT',
           'Cancel anytime (no minimum contract term)'
@@ -645,7 +655,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 18 € / Monat ab' : 'I conclude a paid subscription for €18 / month',
           isDe ? 'Ich akzeptiere die monatliche Kündbarkeit' : 'I accept that the subscription is cancellable monthly',
@@ -662,10 +672,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         pricingTitle: isDe ? 'Preis' : 'Price',
         pricingMain: isDe ? '54,00 € / Jahr (entspricht 4,50 € / Monat)' : '€54.00 / year (equivalent to €4.50 / month)',
         pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
           'Jährlich abgerechnet',
           'Zuzüglich 19 % MwSt.',
           'Mindestvertragslaufzeit: 12 Monate'
         ] : [
+          'Includes 3-day free trial (Today: €0.00)',
           'Billed annually',
           'Plus 19% VAT',
           'Minimum contract term: 12 months'
@@ -776,7 +788,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         agbTitle: isDe ? 'AGB & Zustimmung' : 'Terms & Consent',
         agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
         agbLink: agbLink,
-        finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+        finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
         checkboxes: [
           isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 54 € / Jahr ab' : 'I conclude a paid subscription for €54 / year',
           isDe ? 'Ich akzeptiere die Mindestlaufzeit von 12 Monaten' : 'I accept the minimum term of 12 months',
@@ -796,10 +808,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Preis' : 'Price',
       pricingMain: isDe ? '149,00 € / Monat' : '€149.00 / month',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         'Monatlich abgerechnet',
         'Zuzüglich 19 % MwSt.',
         'Mindestvertragslaufzeit: 12 Monate'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         'Billed monthly',
         'Plus 19% VAT',
         'Minimum contract term: 12 months'
@@ -951,7 +965,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Acceptance of the minimum contract term'
       ],
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 149 € / Monat ab' : 'I am concluding a paid subscription for €149 / month',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
@@ -968,12 +982,14 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
       pricingMain: isDe ? '€119,17 / Monat' : '€119.17 / month',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         'Jährliche Abrechnung: €1.430 / Jahr',
         'Regulärer Monatspreis: €149 / Monat (jährlich rabattiert)',
         'Ersparnis: ca. 20 % (€358 pro Jahr)',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
         'Mindestvertragslaufzeit: 12 Monate'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         'Annual billing: €1,430 / year',
         'Regular monthly price: €149 / month (annual discount)',
         'Savings: approx. 20% (€358 per year)',
@@ -1129,7 +1145,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Knowledge of and consent to the Terms and Conditions'
       ],
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (PRO)' : 'Conclusion of a paid SaaS subscription (PRO)',
         isDe ? 'Mindestvertragslaufzeit von 12 Monaten' : 'Minimum contract term of 12 months',
@@ -1146,10 +1162,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
       pricingMain: isDe ? '149 € / Monat' : '€149 / month',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         'Monatliche Abrechnung',
         'Zuzüglich 19 % gesetzlicher Umsatzsteuer',
         'Mindestvertragslaufzeit: 12 Monate'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         'Monthly billing',
         'Plus 19% statutory VAT',
         'Minimum contract term: 12 months'
@@ -1305,7 +1323,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Knowledge of and consent to the Terms and Conditions'
       ],
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (TEAM)' : 'Conclusion of a paid SaaS subscription (TEAM)',
         isDe ? 'Mindestvertragslaufzeit von 12 Monaten' : 'Minimum contract term of 12 months',
@@ -1322,6 +1340,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
       pricingMain: isDe ? '€239,17 / Monat (jährlich abgerechnet)' : '€239.17 / month (billed annually)',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         '€2.870 / Jahr Gesamtbetrag',
         'Regulärer Monatspreis: €299 (monatliche Alternative)',
         'Ersparnis: ca. 20 % (€718 pro Jahr)',
@@ -1329,6 +1348,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Mindestvertragslaufzeit: 12 Monate',
         'Abrechnung erfolgt jährlich im Voraus'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         '€2,870 / year total amount',
         'Regular monthly price: €299 (monthly alternative)',
         'Savings: approx. 20% (€718 per year)',
@@ -1489,7 +1509,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbDesc: isDe ? 'Mit Abschluss der Bestellung erklärt der Kunde:' : 'By completing the order, the customer declares:',
       agbList: null,
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Abschluss eines kostenpflichtigen SaaS-Abonnements (TEAM)' : 'Conclusion of a paid SaaS subscription (TEAM)',
         isDe ? 'Kenntnis der jährlichen Abrechnung und Mindestlaufzeit' : 'Knowledge of the annual billing and minimum term',
@@ -1506,10 +1526,12 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Preis' : 'Price',
       pricingMain: isDe ? '59,00 € / Monat' : '€59.00 / month',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         'Monatlich abgerechnet',
         'Zuzüglich 19 % MwSt.',
         'Mindestvertragslaufzeit: 12 Monate'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         'Billed monthly',
         'Plus 19% VAT',
         'Minimum contract term: 12 months'
@@ -1671,7 +1693,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
       agbList: null,
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 59 € / Monat ab' : 'I am taking out a paid subscription for €59 / month',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',
@@ -1688,6 +1710,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       pricingTitle: isDe ? 'Vergütung' : 'Remuneration',
       pricingMain: isDe ? '€46,40 / Monat (jährlich abgerechnet)' : '€46.40 / month (billed annually)',
       pricingList: isDe ? [
+          'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)',
         '€556,80 / Jahr Gesamtbetrag',
         'Regulärer Monatspreis: €59 (monatliche Alternative)',
         'Ersparnis: ca. 21 % (€151,20 pro Jahr)',
@@ -1695,6 +1718,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
         'Mindestvertragslaufzeit: 12 Monate',
         'Abrechnung erfolgt jährlich im Voraus'
       ] : [
+          'Includes 3-day free trial (Today: €0.00)',
         '€556.80 / year total amount',
         'Regular monthly price: €59 (monthly alternative)',
         'Savings: approx. 21% (€151.20 per year)',
@@ -1855,7 +1879,7 @@ export function getOrderPageData(planId: string, locale: string, isEducational: 
       agbDesc: isDe ? 'Mit der Bestellung bestätigen Sie:' : 'By ordering, you confirm:',
       agbList: null,
       agbLink: agbLink,
-      finishOrderTitle: isDe ? 'Bestellung abschließen' : 'Complete Order',
+      finishOrderTitle: isDe ? '3 Tage kostenlos testen & bestellen' : 'Start 3-Day Free Trial & Order',
       checkboxes: [
         isDe ? 'Ich schließe ein kostenpflichtiges Abonnement über 556,80 € / Jahr ab' : 'I am taking out a paid subscription for €556.80 / year',
         isDe ? 'Ich akzeptiere die Mindestvertragslaufzeit von 12 Monaten' : 'I accept the minimum contract term of 12 months',

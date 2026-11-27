@@ -149,6 +149,9 @@ export function FloorPlanPricingSection() {
                   <div style={{ fontFamily: 'Arial' }}>
                     {t('billedMonthly')}
                   </div>
+                  <div className='text-emerald-600 font-bold text-xs mt-1 text-center' style={{ fontFamily: 'Arial' }}>
+                    {locale === 'de' ? '3 Tage 0,00 €, danach Monatsabo' : '3 days €0.00, then monthly'}
+                  </div>
                 </div>
               </div>
             </div>
@@ -180,7 +183,7 @@ export function FloorPlanPricingSection() {
                   }
                 }}
               >
-                {t('subscribe')}
+                {locale === 'de' ? '3 Tage kostenlos testen' : 'Start 3-Day Free Trial'}
               </Button>
             </div>
 

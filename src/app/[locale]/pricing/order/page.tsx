@@ -542,6 +542,16 @@ function OrderContent() {
                         <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">{tPreview.paymentMethod}</span>
                         <span className="font-semibold">{tPreview.stripePayment}</span>
                       </div>
+                      <div className="p-4 bg-emerald-50 border border-emerald-300 rounded-xl">
+                        <div className="flex items-center gap-2 text-emerald-800 font-bold text-xs sm:text-sm uppercase tracking-wide">
+                          <Check className="w-4 h-4 text-emerald-600 stroke-[3] shrink-0" />
+                          <span>{locale === 'de' ? '3 Tage kostenlose Testphase inklusive' : '3-Day Free Trial Included'}</span>
+                        </div>
+                        <div className="mt-2 text-xs text-emerald-800 space-y-1">
+                          <p><strong>{locale === 'de' ? 'Heute fällig:' : 'Due today:'}</strong> {locale === 'de' ? '0,00 €' : '€0.00'}</p>
+                          <p>{locale === 'de' ? 'Die reguläre Abbuchung erfolgt erst nach Ablauf der 3 Tage. Sie können jederzeit vor Ablauf der Testphase ohne Kosten kündigen.' : 'Regular billing begins only after the 3-day trial expires. You can cancel anytime during the trial with no charges.'}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -561,7 +571,7 @@ function OrderContent() {
                     className="w-full sm:w-auto px-12 py-5 text-sm bg-transparent border border-[#e5e7eb] text-black uppercase tracking-widest rounded hover:bg-black/5 transition-all flex items-center justify-center hover:-translate-y-1 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-[#e5e7eb] disabled:cursor-not-allowed"
                     style={{ fontFamily: 'Arial' }}
                   >
-                    {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : tPreview.confirmAndPay}
+                    {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : (locale === 'de' ? '3 Tage kostenlos testen & zahlen' : 'Start 3-Day Free Trial & Pay')}
                   </button>
                 </div>
               </div>
@@ -578,6 +588,10 @@ function OrderContent() {
                 <div className="mb-10">
                   <h2 className="subheading-primary mb-5">{data.pricingTitle}</h2>
                   <div className="font-black text-xl mb-3">{data.pricingMain}</div>
+                  <div className="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold rounded-full uppercase tracking-wider">
+                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                    <span>{locale === 'de' ? 'Inklusive 3 Tage kostenloser Testphase (Heute: 0,00 €)' : 'Includes 3-Day Free Trial (Today: €0.00)'}</span>
+                  </div>
                   <ul className="space-y-2 mb-4">
                     {data.pricingList.map((item, i) => (
                       <li key={i} className="flex items-start">
