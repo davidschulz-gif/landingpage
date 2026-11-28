@@ -33,7 +33,7 @@ export function FlashSaleHeaderMarquee({
   // Avoid Next.js SSR hydration mismatches by initializing false on server
   const [internalVisible, setInternalVisible] = useState(true)
   const [marqueeMode, setMarqueeMode] = useState<'promo' | 'countdown' | 'expired'>('promo')
-  const [couponCode, setCouponCode] = useState(propCode || 'TYP70')
+  const [couponCode, setCouponCode] = useState(propCode || 'TYP50')
   const [discountText, setDiscountText] = useState(propDiscountText || '70% RABATT')
   const [timeLeft, setTimeLeft] = useState<number>(24 * 60 * 60) // 24 hours (86400s)
   const [copied, setCopied] = useState(false)
@@ -44,7 +44,7 @@ export function FlashSaleHeaderMarquee({
 
   // 1. Initial client-side restoration from localStorage
   useEffect(() => {
-    const codeToCheck = propCode || 'TYP70'
+    const codeToCheck = propCode || 'TYP50'
 
     if (forceExpired || isCouponExpired(codeToCheck)) {
       setInternalVisible(true)
@@ -88,7 +88,7 @@ export function FlashSaleHeaderMarquee({
       // Default state before code is entered: for anyone visiting the page
       setInternalVisible(true)
       setMarqueeMode('promo')
-      setCouponCode(propCode || 'TYP70')
+      setCouponCode(propCode || 'TYP50')
     }
   }, [propIsVisible, propCode, propDiscountText, forceExpired])
 
@@ -269,7 +269,7 @@ export function FlashSaleHeaderMarquee({
     if (marqueeMode === 'promo') {
       try {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
-          navigator.clipboard.writeText('TYP70')
+          navigator.clipboard.writeText('TYP50')
           setCopied(true)
           setTimeout(() => setCopied(false), 2500)
         }
@@ -292,8 +292,8 @@ export function FlashSaleHeaderMarquee({
   const isPromo = marqueeMode === 'promo'
 
   // Promo messages (default before code is entered)
-  const messagePromoDE = 'TEMPORÄRE AKTION • CODE: TYP70'
-  const messagePromoEN = 'TEMPORARY PROMOTION • CODE: TYP70'
+  const messagePromoDE = 'TEMPORÄRE AKTION • CODE: TYP50'
+  const messagePromoEN = 'TEMPORARY PROMOTION • CODE: TYP50'
 
   // Active reservation messages (after code is entered)
   const messageActiveDE = 'Begrenzte Plätze verfügbar. Dieser Platz ist für 24 Stunden für Sie reserviert.'
@@ -365,7 +365,7 @@ export function FlashSaleHeaderMarquee({
             >
               <Tag className="w-4 h-4 text-[#FF3F34] shrink-0" />
               <span className="text-[#FF3F34]">
-                {copied ? (isDe ? 'KOPIERT!' : 'COPIED!') : 'CODE: TYP70'}
+                {copied ? (isDe ? 'KOPIERT!' : 'COPIED!') : 'CODE: TYP50'}
               </span>
             </button>
           ) : marqueeMode === 'countdown' ? (
